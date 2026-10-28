@@ -9144,8 +9144,8 @@ addEventListener('keydown', e => {
 }, true);
 /* ================= accounts & cloud save (Supabase, plain fetch, no SDK) ================= */
 // Fill these two in from Supabase > Settings > API. The anon key is public by design; row level security protects the data.
-const SB_URL = '';
-const SB_KEY = '';
+const SB_URL = 'https://gunxpsrasmzozqkbtlgt.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1bnhwc3Jhc216b3pxa2J0bGd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNzk2OTUsImV4cCI6MjEwODc1NTY5NX0.SsOvza4ixz3Pbot_3Y3fw4QHjlrdThsKT-PkondP0GE';
 const SB_ON = () => !!(SB_URL && SB_KEY);
 const ACC_KEY = 'smfa3d.account';
 const ACC = { user: null, token: null, refresh: null, exp: 0, profile: null, ents: [], loaded: false, busy: false, lastSync: 0, offline: false };
