@@ -477,6 +477,76 @@ body.mobile #fpowers{display:none}
 body.mobile #godPanel{top:calc(112px + var(--st));max-height:calc(100% - 118px - var(--st) - var(--sb));width:min(320px,calc(100% - 16px))}
 body.mobile #godChip{top:calc(48px + var(--st));font-size:11px}
 body.mobile #godBtn{font-size:11px;padding:4px 9px}
+
+/* ---- accounts & store ---- */
+#accChip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin:-4px 0 10px;font-size:13px;color:var(--muted)}
+#accChip .accName{font-weight:800;color:var(--fg);font-size:15px}
+#accChip .accAdmin{background:var(--amber);color:#1a1000;font:800 10px var(--ui);padding:2px 6px;border-radius:3px;letter-spacing:.08em}
+#accChip .accSync{font-size:11px}
+#accChip .accOff{font-size:12px;opacity:.7}
+.lgLab{display:block;margin:10px 0;font-size:13px;color:var(--muted)}
+.lgLab input{display:block;width:100%;margin-top:4px;padding:10px 12px;background:#0b0f0b;border:1px solid var(--line2);border-radius:4px;color:var(--fg);font-size:16px}
+.btn.store{border-color:#2d7a46;background:linear-gradient(180deg,rgba(57,211,83,.16),rgba(57,211,83,.04))}
+.memBadge{display:inline-block;font:800 10px var(--ui);letter-spacing:.08em;padding:2px 6px;border-radius:3px;vertical-align:middle;background:#3a3a3a;color:#fff}
+.memBadge.soldier{background:#4a6a3a}.memBadge.sergeant{background:#2d7a46}.memBadge.captain{background:#1c4a8a}.memBadge.general{background:#d4a017;color:#1a1000}
+#scr-store .card,#scr-admin .card{width:min(1200px,100%)}
+.stHead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;margin:6px 0 10px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:6px}
+.stHead b{font-size:16px}.stHead small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.stSD{font:800 18px var(--ui);color:var(--amber);white-space:nowrap}.stSD small{font-size:11px;color:var(--muted)}
+.row.wrap{flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.stGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:6px 0 14px}
+.stCard{display:flex;flex-direction:column;gap:6px;padding:11px 12px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:6px;font-size:13px;min-height:120px}
+.stCard.own{border-color:#2d7a46;background:rgba(57,211,83,.05)}.stCard.soon{opacity:.72}.stCard.focus{box-shadow:0 0 0 2px var(--amber)}
+.stCard .stTop{display:flex;justify-content:space-between;align-items:center;gap:6px}.stCard .stTop b{font-size:14px}
+.stCard small{color:var(--muted);line-height:1.35}
+.stTag{font:700 10px var(--ui);letter-spacing:.08em;padding:1px 6px;border-radius:3px;background:#2a2a2a;color:#ddd;font-style:normal;text-transform:uppercase}
+.stInc{margin:2px 0;padding-left:16px;font-size:12px;color:#cfd9c9}.stInc li span{color:var(--muted);margin-left:4px}.stInc li.own{color:var(--green)}.stInc li.own span{color:var(--green)}
+.stPrice{margin-top:auto;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.stPrice b{font-size:18px;color:var(--amber)}.stPrice s{color:var(--muted);font-size:13px}.stPrice small{color:var(--muted);font-size:11px;width:100%}
+.stBtns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.stOwned{color:var(--green);font-weight:800;font-size:12px;letter-spacing:.08em}.stSoon{color:var(--muted);font-weight:700;font-size:12px;letter-spacing:.06em}.stPend{color:var(--amber);font-weight:700;font-size:12px}
+.memGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:8px 0}
+.memCard{display:flex;flex-direction:column;gap:6px;padding:12px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.03);font-size:12.5px}
+.memCard.cur{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset}.memCard.top{border-color:#8a6d1c;background:linear-gradient(180deg,rgba(212,160,23,.1),rgba(0,0,0,.1))}
+.memName{font:800 16px var(--ui);display:flex;justify-content:space-between;align-items:center}.memName span{font-size:10px;color:var(--green);letter-spacing:.1em}
+.memPrice{font:800 20px var(--ui);color:var(--amber)}.memPrice small{font-size:11px;color:var(--muted);font-weight:600}
+.memDisc{color:var(--green);font-weight:700}
+.memCard ul{margin:0;padding-left:16px;color:#cfd9c9;line-height:1.4;flex:1}
+.memCard .btn{margin-top:4px}
+.stRedeem{padding:12px;border:1px solid var(--line);border-radius:6px;margin:6px 0 12px;background:rgba(255,255,255,.03)}
+.stRedeem input{flex:1;padding:9px 12px;background:#0b0f0b;border:1px solid var(--line2);border-radius:4px;color:var(--fg);font:700 15px ui-monospace,monospace;letter-spacing:.08em;min-width:0}
+.stRedeem .row{margin-top:6px;gap:6px}.stRedeem small{display:block;color:var(--amber);margin-top:4px;min-height:1em}
+.stTable{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 12px}.stTable th{text-align:left;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}.stTable td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.05)}
+.stTable tr.approved td{color:#cfe9c9}.stTable tr.rejected td,.stTable tr.cancelled td{color:var(--muted)}
+.stTable .mono,.adCodes .mono{font:700 13px ui-monospace,monospace;letter-spacing:.06em}
+.stChk{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--fg)}
+.wall{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.wallName{padding:8px 12px;border-radius:6px;border:1px solid var(--line);font-weight:800;font-size:14px}.wallName small{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.wallName.general{border-color:#d4a017;background:rgba(212,160,23,.12)}.wallName.captain{border-color:#3a6aaa;background:rgba(58,106,170,.12)}
+#buyBox{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:16px}
+.buyCard{background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:18px 20px;width:min(480px,100%);box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.buyCard h3{margin:0 0 4px}.buyCard h4{margin:12px 0 6px;font-size:12px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.buyPrice{font-size:14px;margin:8px 0}.buyPrice b{font-size:24px;color:var(--amber);margin-right:6px}.buyPrice s{color:var(--muted)}.buyPrice small{display:block;color:var(--muted)}
+.adForm{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0}.adForm input,.adForm select{padding:8px 10px;background:#0b0f0b;border:1px solid var(--line2);border-radius:4px;color:var(--fg);font-size:14px}
+.adForm input[type=number]{width:80px}.adCodes{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;border:1px dashed var(--amber);border-radius:6px;margin:8px 0}
+body.mobile .stGrid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+
+/* ---- The Long War ---- */
+#csChoice{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10vh + 14px);width:min(760px,calc(100% - 24px));z-index:4;display:flex;flex-direction:column;gap:6px}
+#csChoice .csq{font:800 15px var(--ui);letter-spacing:.06em;color:#ffd86b;text-align:center;text-shadow:0 2px 8px #000;margin-bottom:4px}
+#csChoice .csopt{text-align:left;padding:10px 14px;background:rgba(6,12,7,.9);border:1px solid #3f6b3a;border-left:4px solid var(--green);border-radius:6px;color:#e8f2e2;font:600 15px var(--ui)}
+#csChoice .csopt small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:2px}
+#csChoice .csopt:hover{background:rgba(57,211,83,.18)}
+body.mobile #csChoice{bottom:calc(6vh + 8px)}body.mobile #csChoice .csopt{padding:8px 10px;font-size:13.5px}
+.chCard{display:flex;flex-direction:column;gap:5px;padding:10px 12px;border:1px solid #2d7a46;border-radius:6px;background:rgba(57,211,83,.05);margin:6px 0}
+.chCard .chAct{font:700 10px var(--ui);letter-spacing:.14em;color:var(--muted);text-transform:uppercase}.chCard b{font-size:15px}.chCard small{color:var(--muted);font-size:12px}
+.chCard ul{margin:2px 0;padding-left:16px;font-size:12px;color:#cfd9c9}.chCard.done{border-color:var(--amber)}
+#scr-story .card{width:min(1100px,100%)}
+.chTally{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:4px 0 8px}.chTally span{padding:4px 8px;border:1px solid var(--line);border-radius:4px}.chTally b{color:var(--amber);margin-left:4px}
+.chGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:6px;margin:4px 0 12px}
+.chItem{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.03);font-size:12.5px}
+.chItem.done{border-color:#2d7a46}.chItem.next{border-color:var(--amber);box-shadow:0 0 0 1px rgba(242,179,61,.35) inset}.chItem.locked{opacity:.55}
+.chNum{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:800 13px var(--ui);background:#1d241c;border:1px solid var(--line2)}
+.chItem.done .chNum{background:var(--green);color:#062008}.chItem.next .chNum{background:var(--amber);color:#1a1000}
+.chTxt{flex:1;min-width:0}.chTxt b{display:block}.chTxt small{color:var(--muted);display:block;line-height:1.3}.chLock{font-size:11px;color:var(--muted);letter-spacing:.06em}
 </style>
 
 <div id="stage"></div>
@@ -588,6 +658,7 @@ body.mobile #godBtn{font-size:11px;padding:4px 9px}
       <button data-dev="laptop">Laptop mode</button><button data-dev="mobile">Mobile mode</button>
     </div>
     <div id="profCard"></div>
+    <div id="accChip" hidden></div>
     <div class="menu-col">
       <button class="btn primary" id="continueBtn" hidden>Continue battle</button>
       <button class="btn primary" id="goCampaign">Campaign</button>
@@ -595,6 +666,8 @@ body.mobile #godBtn{font-size:11px;padding:4px 9px}
       <button class="btn god" id="goGod">God Mode<span class="newbadge">NEW</span></button>
       <button class="btn" id="goArcade">Arcade</button>
       <button class="btn" id="goBarracks">Barracks</button>
+      <button class="btn store" id="goStore">Store<span class="newbadge">NEW</span></button>
+      <button class="btn god" id="goAdmin" hidden>President's Desk</button>
       <button class="btn" id="goTutorial">Tutorial<span class="newbadge" id="tutNew">NEW</span></button>
       <button class="btn" id="goMedals">Medals</button>
       <button class="btn" id="goHow">How to play</button>
@@ -621,6 +694,49 @@ body.mobile #godBtn{font-size:11px;padding:4px 9px}
     <h3>Special event</h3><div class="opts" id="sk-special"></div>
     <h3 id="skRulesH">Rules</h3><div class="opts" id="sk-rules"></div>
     <div class="row" style="margin-top:18px"><button class="btn primary" id="sk-start">Start battle</button></div>
+  </div>
+</div>
+
+
+<!-- Login -->
+<div id="scr-login" class="screen" hidden>
+  <div class="card" style="width:min(440px,100%)">
+    <div class="row between"><h2>SMFA account</h2><button class="btn small" id="lgBack">Back</button></div>
+    <p class="note">One account saves your progress online, keeps you logged in on this device, and holds everything you buy in the Store. No email needed.</p>
+    <label class="lgLab">Username<input id="lgUser" maxlength="16" autocomplete="username" placeholder="3–16 letters or numbers"></label>
+    <label class="lgLab">Password<input id="lgPass" type="password" autocomplete="current-password" placeholder="at least 6 characters"></label>
+    <p class="note" id="lgMsg" style="min-height:1.4em;color:var(--amber)"></p>
+    <div class="row"><button class="btn primary" id="lgGo">Log in</button><button class="btn" id="lgNew">Create account</button></div>
+  </div>
+</div>
+
+<!-- Store -->
+<div id="scr-store" class="screen" hidden>
+  <div class="card">
+    <div class="row between"><h2>SMFA Store</h2><button class="btn small" id="stBack">Back</button></div>
+    <div id="stTop"></div>
+    <div class="row wrap" id="stTabs"></div>
+    <div id="stBody"></div>
+  </div>
+  <div id="buyBox" hidden>
+    <div class="buyCard">
+      <h3 id="buyName"></h3><p class="note" id="buyDesc"></p>
+      <div id="buyPrice" class="buyPrice"></div>
+      <h4>How will you pay?</h4><div class="opts" id="buyMethod"></div>
+      <p class="note">Nothing is charged by the game. You pay the President directly; the item unlocks on your account when the President approves the order.</p>
+      <p class="note" id="buyMsg" style="color:var(--amber)"></p>
+      <div class="row"><button class="btn primary" id="buyGo">Place order</button><button class="btn" id="buyNo">Cancel</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin -->
+<div id="scr-admin" class="screen" hidden>
+  <div class="card">
+    <div class="row between"><h2>President's Desk</h2><button class="btn small" id="adBack">Back</button></div>
+    <p class="note">Approve cash and GoPay orders, generate codes, grant or revoke items, and see who plays.</p>
+    <div class="row wrap" id="adTabs"></div>
+    <div id="adBody"></div>
   </div>
 </div>
 
@@ -678,10 +794,12 @@ body.mobile #godBtn{font-size:11px;padding:4px 9px}
       <div><h3>Diplomacy</h3>Not every problem needs a war. In the campaign, press <b>Talk</b> next to a nation to propose a ceasefire, trade deal, tribute, peace, an alliance, or the handover of a country. Talks are a debate: read the leader's mood and pick Logic, Pressure, Appeal or Bribe. Proud leaders want respect, greedy ones want money, frightened ones respect strength, cold ones want facts, and angry ones need calm. Each nation remembers how you treat it. Select a country and press <b>Demand surrender</b>: if it surrenders, you secure it with a <b>non-lethal operation</b> where downed enemies are arrested instead of killed. Random world events also ask for your decision between turns.</div>
       <div><h3>Navy</h3>The <b>Island Sea</b> map (and island countries in the campaign) is fought across islands. Destroyers, battleships, submarines, carriers and speedboats fight at sea, and landing craft carry squads to the beaches. Soldiers can swim but cannot shoot in the water. Deploy as a speedboat, destroyer or submarine from the deploy menu.</div>
       <div><h3>Kill cams and VIPs</h3>Every battle has an enemy commander (★) guarding their HQ, and capitals have the nation's leader (♛). Killing them rewards money and weakens the enemy. Long headshots, commander and leader kills, and vehicles you destroy play a slow-motion kill cam (turn it off in Settings). Earn medals for feats on the Medals screen.</div>
+      <div><h3>The Long War (campaign story)</h3>Thirty chapters in five acts, launched from the <b>The Long War</b> card on the campaign screen or the chapter list. Chapters are battles, convoy runs, stealth infiltrations, recovery operations and cutscenes. Some cutscenes ask you to <b>decide</b>: those choices are counted as Protector, Strategist, Liberator or Conqueror instincts and, together with your diplomacy, pick one of three endings. Skipping a cutscene never skips a decision. Completed chapters can be replayed without changing your progress; the world map conquest continues alongside the story.</div>
+      <div><h3>Accounts and the Store</h3>Log in from the title screen (username and password, no email) to save progress online, stay logged in on this device, and use the Store. Smiley Dollars (SD) are earned in every battle and unlock new weapons. Rp items are paid in <b>cash or GoPay directly to the President</b>: place an order, pay, and it unlocks when the President approves it. Codes can be redeemed in the Orders tab. Memberships are 30-day passes with a discount on eligible items; they never change your rank or stats. Nothing in the Store makes you stronger than a free player.</div>
       <div><h3>God Mode</h3>A sandbox skirmish for fun. You cannot die, money is unlimited, and nothing is saved and no EXP or medals are earned. Press <b>⚡ GOD</b> (or B) to open the panel. Pick a tool, then tap a soldier in the office, or shoot one in the field: smite, behead, gib, cut off limbs (Realistic or Sadistic), set on fire, launch, heal, upgrade, make a champion or switch sides. The Spawn tab drops soldiers, squads, extra enemy commanders and leaders, heroes, tanks, helicopters, jets and bombs wherever you tap. The World tab has slow motion, one-hit kills, freezing armies and mass actions. Use Declare victory when you are done.</div>
       <div><h3>Special events in skirmish</h3>Choose <b>Kuala Lumpur Twin Towers</b> to fight in the capital city with the towers, or <b>Twin Towers + hijack</b> to have the airliner hijacking strike about a minute in. Bagas flies the plane: dodge the towers to win.</div>
       <div><h3>Arcade</h3>Quick 3 to 5 minute matches from the title screen: <b>Waves</b> (survive bigger and bigger attacks with 3 lives), <b>King of the Hill</b> (hold the middle flag to score), <b>Tank Brawl</b> and <b>Dogfight Arena</b> (most vehicle kills in 4 minutes, you respawn automatically). In the campaign, invading a small country plays one of these instead of a full battle.</div>
-      <div><h3>Barracks and rewards</h3>Every battle earns <b>EXP</b> and <b>coins</b>; medals give a bonus. Levelling up, spending coins and earning medals unlock President outfits, soldier uniforms, helmets, vehicle paint, flag colors, emblems and kill effects like the Abduction Beam. Equip them in the <b>Barracks</b>.</div>
+      <div><h3>Barracks and rewards</h3>Every battle earns <b>EXP</b> and <b>Smiley Dollars (SD)</b>; medals give a bonus. Levelling up, spending SD and earning medals unlock President outfits, soldier uniforms, helmets, vehicle paint, flag colors, emblems and kill effects like the Abduction Beam. Equip them in the <b>Barracks</b>.</div>
       <div><h3>Replays</h3>After a battle, press <b>Watch highlights</b> to see your best moments (headshots, multi-kills, crashes, enemies sent flying) with a cinematic camera, or <b>Full replay</b> to scrub through the whole fight at ¼× to 4× speed. Drag to move the camera, and tap the markers on the timeline to jump to moments.</div>
       <div><h3>Saving</h3>Battles autosave every minute and when you switch away from the tab. Press <b>Save battle</b> in the pause menu to save right away, then use <b>Continue battle</b> on the title screen to resume. Finishing or retreating from a battle clears that save. The campaign has three slots. <b>Save codes</b> on the title screen turns your saves into text you can paste on another device.</div>
       <div><h3>Deploying and flying</h3>Press <b>Join the fight</b> (<kbd>Tab</kbd>) and choose on foot, jeep, tank, helicopter or fighter jet. Each vehicle has a cooldown before you can spawn another. <b>Jets</b>: the mouse (or a drag on mobile) steers the plane toward where you look, <kbd>W</kbd>/<kbd>S</kbd> set throttle, left click fires guns, right click (MSL) fires a missile once the lock box turns red, <kbd>G</kbd> (BOMB) drops bombs onto the red ground marker, <kbd>R</kbd> (FLARE) fools incoming missiles. Fly too slow and you stall. <kbd>E</kbd> (BAIL) jumps out of a jet or helicopter: press <kbd>Space</kbd> (CHUTE) to open your parachute before you hit the ground.</div>
@@ -776,8 +894,13 @@ body.mobile #godBtn{font-size:11px;padding:4px 9px}
 <div id="vipTags"></div>
 <div id="kcBars"></div>
 <div id="kcText"><div id="kcLabel"></div><div id="kcSub"></div></div>
-<div id="scr-cut" hidden><div id="csCanvas"></div><div id="csTitle"></div><div id="csHint">Tap or Enter to continue</div><button class="btn small" id="csVoice">Voice: Synth</button><button class="btn small" id="csSkip">Skip ▸▸</button><div id="csSub" hidden><div id="csName"></div><div id="csText"></div></div></div>
+<div id="scr-cut" hidden><div id="csCanvas"></div><div id="csTitle"></div><div id="csChoice" hidden></div><div id="csHint">Tap or Enter to continue</div><button class="btn small" id="csVoice">Voice: Synth</button><button class="btn small" id="csSkip">Skip ▸▸</button><div id="csSub" hidden><div id="csName"></div><div id="csText"></div></div></div>
 <div id="toasts"></div>
+<div id="scr-story" class="screen" hidden>
+  <div class="card"><div class="row between"><h2>The Long War</h2><button class="btn small" id="chBack">Back</button></div>
+    <p class="note">Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.</p>
+    <div id="chBody"></div></div>
+</div>
 <div id="scr-debate" class="screen" hidden>
   <div class="card"><div class="dbHead"><img id="dbPort" alt=""><div><h2 id="dbName" style="margin:0"></h2><p class="note" id="dbTitle" style="margin:4px 0 0"></p></div></div><div id="dbBody"></div></div>
 </div>
@@ -795,7 +918,7 @@ body.mobile #godBtn{font-size:11px;padding:4px 9px}
 </div>
 <div id="scr-arcade" class="screen" hidden>
   <div class="card"><div class="row between"><h2>Arcade</h2><button class="btn small" data-back>Back</button></div>
-    <p class="note">Quick matches of 3 to 5 minutes. Earn EXP and coins for the Barracks.</p>
+    <p class="note">Quick matches of 3 to 5 minutes. Earn EXP and SD for the Barracks.</p>
     <div id="arcModes"></div>
     <h3>Map</h3><div class="opts" id="arc-map"></div><p class="note" id="arcNote"></p>
     <h3>Difficulty</h3><div class="opts" id="arc-diff"></div>
@@ -804,7 +927,7 @@ body.mobile #godBtn{font-size:11px;padding:4px 9px}
 </div>
 <div id="scr-barracks" class="screen" hidden>
   <div class="card"><div class="row between"><h2>Barracks</h2><div class="row"><span class="note" id="cosCoins" style="margin-right:10px"></span><button class="btn small" id="cosBack">Back</button></div></div>
-    <p class="note">Unlock gear by levelling up with EXP, buying it with coins, or earning medals. You earn both in every battle.</p>
+    <p class="note">Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.</p>
     <div id="cosTabs"></div>
     <div class="cosLayout"><div id="cosGrid"></div><div id="cosPrev"></div></div>
   </div>
@@ -2408,7 +2531,7 @@ function renderBodies() {
     } else {
       const GD = GUNDIM[u.role] || GUNDIM.rifle, L2 = GD[0], bk = u.role === 'minigun' || u.role === 'mg' ? 0.3 : 0.2;
       segMatrix(P[18] - d[0] * bk, P[19] - d[1] * bk, P[20] - d[2] * bk, P[18] + d[0] * (L2 - bk), P[19] + d[1] * (L2 - bk), P[20] + d[2] * (L2 - bk), GD[1], GD[2], lx, 0, lz);
-      pm.setMatrixAt(n, _m4); pm.setColorAt(n, _col.setHex(GD[3])); n++;
+      pm.setMatrixAt(n, _m4); pm.setColorAt(n, _col.setHex(typeof gunColor === 'function' ? gunColor(u, GD) : GD[3])); n++;
       if (u.role === 'flamer') { segMatrix(P[3] - fx * 0.2, P[4] - 0.1, P[5] - fz * 0.2, P[3] - fx * 0.2, P[4] - 0.55, P[5] - fz * 0.2, 0.32, 0.16, lx, 0, lz); pm.setMatrixAt(n, _m4); pm.setColorAt(n, _col.setHex(0x8a2a1a)); n++; }
     }
     if (office && rn < 499) {
@@ -3117,8 +3240,9 @@ function knifeAttack(p) {
   if (!best) return;
   const back = Math.abs(angDiff(best.yaw, p.yaw)) < 0.9;
   const part = R() < 0.3 ? 'head' : 'torso', hp = partPoint(best, part);
-  hurtUnit(best, WEAP.knife.dmg * (back ? 3 : 1) * G.up.dmg, hp[0], hp[1], hp[2], fx, 0.2, fz, part, 'melee', p);
-  if (G.mode.blood > 0) bloodBurst(hp[0], hp[1], hp[2], fx, 0.3, fz, 10, 3);
+  const mw = WEAP[p.weapon] && WEAP[p.weapon].melee ? WEAP[p.weapon] : WEAP.knife;
+  hurtUnit(best, mw.dmg * (back ? 3 : 1) * G.up.dmg, hp[0], hp[1], hp[2], fx, 0.2, fz, part, 'melee', p);
+  if (G.mode.blood > 0 && !mw.stun) bloodBurst(hp[0], hp[1], hp[2], fx, 0.3, fz, 10, 3);
   showHitmark(!best.alive);
 }
 function playerFire() {
@@ -3168,7 +3292,7 @@ function vehicleFire(v) {
 }
 function updatePlayer(dt) {
   const p = G.player; if (!p) return;
-  const sens = 0.0024 * settings.sens * (p.ads ? (p.weapon === 'marksman' && !p.inVeh ? 0.22 : 0.55) : 1);
+  const sens = 0.0024 * settings.sens * (p.ads ? ((p.weapon === 'marksman' || (WEAP[p.weapon] && WEAP[p.weapon].scoped)) && !p.inVeh ? 0.22 : 0.55) : 1);
   G.camYaw -= mouseDX * sens; G.camPitch -= mouseDY * sens * (settings.invertY ? -1 : 1);
   mouseDX = mouseDY = 0;
   G.camPitch = clamp(G.camPitch, -1.25, 1.05);
@@ -3300,7 +3424,7 @@ function updateFieldCam(dt) {
   camera.position.set(cx, cy, cz);
   camera.lookAt(cx + fx * 50, cy + fy * 50, cz + fz * 50);
   }
-  const sniper = p.alive && !p.inVeh && p.ads && p.weapon === 'marksman';
+  const sniper = p.alive && !p.inVeh && p.ads && (p.weapon === 'marksman' || !!(WEAP[p.weapon] && WEAP[p.weapon].scoped));
   const fov = sniper ? 14 : (p.ads ? 46 : 70);
   if (Math.abs(camera.fov - fov) > 0.1) { camera.fov = lerp(camera.fov, fov, Math.min(1, dt * 14)); camera.updateProjectionMatrix(); updatePScale(); }
   $('#scope').style.display = sniper && camera.fov < 20 ? 'block' : 'none';
@@ -3870,7 +3994,7 @@ function updateViewmodel(u, dt) {
   const rocket = u.role === 'rocket';
   const bx = ads ? 0 : 0.13, by = (ads ? -0.075 : -0.13) + bob + (rocket ? 0.07 : 0), bz = -0.3 + k * 0.6;
   const sc = 0.32;
-  U.gun.scale.set(GD[1] * sc, GD[2] * sc, GD[0] * sc); U.gun.material.color.setHex(GD[3]);
+  U.gun.scale.set(GD[1] * sc, GD[2] * sc, GD[0] * sc); U.gun.material.color.setHex(typeof gunColor === 'function' ? gunColor(u, GD) : GD[3]);
   U.gun.position.set(bx, by, bz - GD[0] * sc * 0.5);
   U.hr.scale.set(0.035, 0.035, 0.06); U.hr.position.set(bx + 0.01, by - 0.03, bz + 0.01);
   U.hl.scale.set(0.035, 0.035, 0.06); U.hl.position.set(bx - 0.015, by - 0.025, bz - GD[0] * sc * 0.75);
@@ -6269,8 +6393,8 @@ function navyTick(dt) {
 /* ================= kill cams, enemy commanders & leaders, SMFA heroes ================= */
 if (settings.killcam === undefined) settings.killcam = true;
 const LEADERS = {
-  geda: { name: 'Emperor Gedago XIV', short: 'Gedago', title: 'Emperor of the Gedagedigedagedago Empire' },
-  french: { name: 'Empress Margaux Delacroix', short: 'Margaux', title: 'Empress of the French Empire' },
+  geda: { name: 'Emperor Malik', short: 'Malik', title: 'Emperor of the Gedagedigedagedago Empire' },
+  french: { name: 'Emperor Archer', short: 'Archer', title: 'Emperor of the French Empire' },
   frowny: { name: 'Chancellor Otto Grimsby', short: 'Grimsby', title: 'Chancellor of the Frowny Federation' },
   gloom: { name: 'Queen Morwen', short: 'Morwen', title: 'Queen of Gloomvania' },
   tundra: { name: 'Marshal Ivan Koldun', short: 'Koldun', title: 'Supreme Marshal of the Iron Tundra Pact' }
@@ -6449,8 +6573,8 @@ const CHARS = {
   reyes: { name: 'Reyes', css: '#9dffb0', uni: 0x4a5a38, pants: 0x3a4a2c, skin: 0xb98563, hat: 'cap', hatc: 0x2a3420, voice: 1.0, face: { brow: 0x1a120a, beard: 0x2a1a10 } },
   okoro: { name: 'Okoro', css: '#9dffb0', uni: 0x5a5236, pants: 0x3a3626, skin: 0x7a4e30, hat: 'beret', hatc: 0x2a4a2a, voice: 1.2, female: true, face: { brow: 0x120a06, lips: 0x6a2a2a } },
   brandt: { name: 'Brandt', css: '#9dffb0', uni: 0x5a6670, pants: 0x3e464c, skin: 0xe8c3a3, hat: 'pilot', hatc: 0x3a3f44, voice: 1.05, face: { brow: 0x8a6a3a } },
-  gedago: { name: 'Emperor Gedago XIV', css: '#ffb35a', uni: 0x8a5428, pants: 0x5c3a1e, skin: 0xc68e5e, hat: 'crown', hatc: 0xd4a017, voice: 0.62, cape: 0x7a1a1a, medals: true, face: { brow: 0x1a0e06, beard: 0x1a0e06 } },
-  margaux: { name: 'Empress Margaux', css: '#8fa8ff', uni: 0x1f3d94, pants: 0xe4e4e0, skin: 0xf0c7a4, hat: 'bicorne', hatc: 0x111111, voice: 1.3, female: true, gown: 0x1f3d94, face: { brow: 0x5a3a1a, lips: 0xb03040 } },
+  gedago: { name: 'Emperor Malik', css: '#ffb35a', uni: 0x8a5428, pants: 0x5c3a1e, skin: 0xc68e5e, hat: 'crown', hatc: 0xd4a017, voice: 0.62, cape: 0x7a1a1a, medals: true, face: { brow: 0x1a0e06, beard: 0x1a0e06 } },
+  margaux: { name: 'Emperor Archer', css: '#8fa8ff', uni: 0x1f3d94, pants: 0x1a2a5a, medals: true, cape: 0x14285c, skin: 0xf0c7a4, hat: 'bicorne', hatc: 0x111111, voice: 0.8, face: { brow: 0x5a3a1a } },
   grimsby: { name: 'Chancellor Grimsby', css: '#ff8a8a', uni: 0x55585f, pants: 0x3c3e44, skin: 0xd9a77f, hat: 'beret', hatc: 0xb3242c, voice: 0.85, medals: true, face: { brow: 0x777777, stache: 0x777777 } },
   morwen: { name: 'Queen Morwen', css: '#d0a8ff', uni: 0x40294f, pants: 0x241830, skin: 0xd8c2b0, hat: 'crown', hatc: 0x9a9aa8, voice: 1.15, female: true, gown: 0x40294f, cape: 0x1c1224, face: { brow: 0x1c1224, lips: 0x5a1a3a } },
   koldun: { name: 'Marshal Koldun', css: '#bfe8f6', uni: 0xb7c0c6, pants: 0x8e979d, skin: 0xe8c3a3, hat: 'ushanka', hatc: 0x4a3a2c, voice: 0.6, medals: true, face: { brow: 0x5a4a3a, stache: 0x5a4a3a } },
@@ -6562,7 +6686,9 @@ function animChar(A, dt) {
     L.sh.rotation.x = -s * amp * 0.8; Rr.sh.rotation.x = s * amp * 0.8; A.body.position.y = Math.abs(Math.cos(t * sp)) * 0.04;
     if (a === 'run') A.torso.rotation.x = 0.2;
   } else if (a === 'sit') {
-    A.body.position.y = -0.47; LL.hip.rotation.x = RL.hip.rotation.x = -1.5; LL.knee.rotation.x = RL.knee.rotation.x = 1.5;
+    const sy = A.sitY !== undefined ? A.sitY : 0.5, drop = Math.max(0, 0.5 - sy);
+    A.body.position.y = sy - 0.95; LL.hip.rotation.x = RL.hip.rotation.x = -1.5 + drop; LL.knee.rotation.x = RL.knee.rotation.x = 1.5 - drop * 0.5;
+    A.torso.rotation.x = 0.06;
     L.sh.rotation.x = Rr.sh.rotation.x = -0.6; L.el.rotation.x = Rr.el.rotation.x = -0.5;
   } else if (a === 'point') { Rr.sh.rotation.x = -1.5; Rr.sh.rotation.z = 0.1; }
   else if (a === 'salute') { Rr.sh.rotation.x = -1.2; Rr.sh.rotation.z = 0.9; Rr.el.rotation.x = -1.6; }
@@ -6572,7 +6698,7 @@ function animChar(A, dt) {
   else if (a === 'kneel') { A.body.position.y = -0.42; LL.hip.rotation.x = -1.4; LL.knee.rotation.x = 1.4; RL.hip.rotation.x = 0.1; RL.knee.rotation.x = 1.6; L.sh.rotation.z = -2.6; Rr.sh.rotation.z = 2.6; }
   else if (a === 'fall') { const k = clamp((A.fallT = (A.fallT || 0) + dt) / 0.7, 0, 1); A.body.rotation.x = -k * 1.5; A.body.position.y = -k * 0.75 + k * 0.1; L.sh.rotation.z = -k * 1.2; Rr.sh.rotation.z = k * 1.2; }
   else if (a === 'dead') { A.body.rotation.x = -1.5; A.body.position.y = -0.65; L.sh.rotation.z = -1.2; Rr.sh.rotation.z = 1.2; }
-  else if (a === 'slump') { A.body.position.y = -0.47; LL.hip.rotation.x = RL.hip.rotation.x = -1.5; LL.knee.rotation.x = RL.knee.rotation.x = 1.5; A.torso.rotation.x = 0.6; A.head.rotation.x = 0.5; }
+  else if (a === 'slump') { A.body.position.y = (A.sitY !== undefined ? A.sitY : 0.5) - 0.95; LL.hip.rotation.x = RL.hip.rotation.x = -1.5; LL.knee.rotation.x = RL.knee.rotation.x = 1.5; A.torso.rotation.x = 0.6; A.head.rotation.x = 0.5; }
   else if (a === 'fist') { Rr.sh.rotation.x = -2.6; Rr.el.rotation.x = -0.4; }
   if (A.prop && a !== 'aim') { Rr.sh.rotation.x = Math.min(Rr.sh.rotation.x, -0.5); }
   // talking gestures and mouth
@@ -6605,7 +6731,7 @@ function csSet(name, scene) {
     B(14, 0.3, 12, 0x2a2d2a, 0, 5, 0);
     for (let k = -2; k <= 2; k++) B(0.15, 5, 0.15, 0x3a3e3a, k * 2.8, 2.5, -3.8);
     B(2.6, 0.12, 1.2, 0x5a3a22, 0, 0.82, -1.2); B(2.4, 0.78, 1, 0x4a2e1a, 0, 0.4, -1.2); B(0.6, 0.06, 0.4, 0x222222, 0.6, 0.91, -1.2); B(0.3, 0.08, 0.2, 0x39d353, -0.5, 0.92, -1.2);
-    B(0.9, 0.9, 0.9, 0x2a2a2a, 0, 0.45, -2.3); B(0.9, 1.3, 0.15, 0x2a2a2a, 0, 1.1, -2.75);
+    B(0.9, 0.5, 0.9, 0x2a2a2a, 0, 0.25, -2.3); B(0.9, 1.1, 0.14, 0x2a2a2a, 0, 1.0, -2.75); B(0.12, 0.5, 0.7, 0x2a2a2a, -0.45, 0.75, -2.4); B(0.12, 0.5, 0.7, 0x2a2a2a, 0.45, 0.75, -2.4);
     // world map screen
     const c = document.createElement('canvas'); c.width = 256; c.height = 128; const g = c.getContext('2d'); g.fillStyle = '#0b1b26'; g.fillRect(0, 0, 256, 128);
     if (typeof WORLD !== 'undefined') { const own = (CAMP && CAMP.owners) || {}; for (const t of WORLD) { g.fillStyle = NATIONS[own[t.id] || t.owner].css; g.fillRect(t.x * 0.256 - 2, t.y * 0.246 - 2, 4, 4); } }
@@ -6618,7 +6744,7 @@ function csSet(name, scene) {
   } else if (name === 'throne') {
     B(16, 0.2, 18, 0x2a1e18, 0, -0.1, 0); B(2.4, 0.02, 14, 0x7a1a1a, 0, 0.02, 1);
     for (const s of [-1, 1]) for (let k = 0; k < 4; k++) { B(0.7, 6, 0.7, 0x8a7a64, s * 4.5, 3, -5 + k * 3.6); }
-    B(3, 0.5, 2.2, 0x5a4a3a, 0, 0.25, -6); B(1.6, 0.6, 1.2, 0x8a6a20, 0, 0.8, -6.2); B(1.6, 2.4, 0.3, 0x8a6a20, 0, 1.7, -6.8); B(0.3, 0.3, 0.3, 0xd4a017, -0.7, 3, -6.8); B(0.3, 0.3, 0.3, 0xd4a017, 0.7, 3, -6.8);
+    B(3, 0.5, 2.2, 0x5a4a3a, 0, 0.25, -6); B(1.6, 0.5, 1.2, 0x8a6a20, 0, 0.75, -6.2); B(1.6, 2.6, 0.3, 0x8a6a20, 0, 1.8, -6.8); B(0.16, 0.7, 1.0, 0x8a6a20, -0.72, 1.3, -6.3); B(0.16, 0.7, 1.0, 0x8a6a20, 0.72, 1.3, -6.3); B(0.3, 0.3, 0.3, 0xd4a017, -0.7, 3, -6.8); B(0.3, 0.3, 0.3, 0xd4a017, 0.7, 3, -6.8);
     B(16, 8, 0.3, 0x3a2e26, 0, 4, -8);
     for (const s of [-1, 1]) { const b = B(1.4, 3.6, 0.05, 0x8a2a1a, s * 2.6, 4.2, -7.8); b.userData.banner = true; }
     for (const [x, z] of [[-3, -5], [3, -5]]) { const l = new THREE.PointLight(0xffa040, 1.2, 9); l.position.set(x, 2.5, z); scene.add(l); B(0.25, 0.4, 0.25, 0xffb050, x, 2.4, z); }
@@ -6683,7 +6809,7 @@ function playCutscene(id, onDone) {
   const cam = new THREE.PerspectiveCamera(45, 16 / 9, 0.05, 200);
   const actors = {};
   for (const [k, a] of Object.entries(S.actors || {})) {
-    const A = buildChar(a.c || k); A.root.position.set(a.p[0], 0, a.p[1]); A.root.rotation.y = a.r || 0; A.anim = a.a || 'idle'; if (a.prop) addProp(A, a.prop);
+    const A = buildChar(a.c || k); A.root.position.set(a.p[0], 0, a.p[1]); A.root.rotation.y = a.r || 0; A.anim = a.a || 'idle'; if (a.sitY !== undefined) A.sitY = a.sitY; if (a.prop) addProp(A, a.prop);
     scene.add(A.root); actors[k] = A;
   }
   CS = { id, S, r, scene, cam, actors, bi: -1, beatT: 0, line: null, onDone, last: performance.now(), skip: false };
@@ -6692,7 +6818,7 @@ function playCutscene(id, onDone) {
   const loop = now => { if (!CS || CS.id !== id) return; CS.raf = requestAnimationFrame(loop); const dt = Math.min(0.05, (now - CS.last) / 1000); CS.last = now; csTick(dt); r.render(scene, cam); };
   CS.raf = requestAnimationFrame(loop);
 }
-function csResize() { if (!CS) return; const w = innerWidth, h = innerHeight; CS.r.setSize(w, h); CS.cam.aspect = w / h; CS.cam.updateProjectionMatrix(); }
+function csResize() { if (!CS || !CS.cam) return; const w = innerWidth, h = innerHeight; CS.r.setSize(w, h); CS.cam.aspect = w / h; CS.cam.updateProjectionMatrix(); }
 addEventListener('resize', csResize);
 function csNext() {
   const C = CS; C.bi++; C.beatT = 0;
@@ -6712,7 +6838,7 @@ function csNext() {
     csSpeak(text, def);
   } else { C.line = null; $('#csSub').hidden = true; }
 }
-const headY = A => ({ sit: 1.22, kneel: 1.28, slump: 1.12, dead: 0.3, fall: 0.6 })[A.anim] || 1.72;
+const headY = A => A.anim === 'sit' ? (A.sitY !== undefined ? A.sitY : 0.5) + 0.72 : A.anim === 'slump' ? (A.sitY !== undefined ? A.sitY : 0.5) + 0.62 : ({ kneel: 1.28, dead: 0.3, fall: 0.6 })[A.anim] || 1.72;
 // frames the speaker: alternates over-the-shoulder shots and medium close-ups
 function csAutoShot(C, who, i) {
   const A = C.actors[who], p = A.root.position, r = A.root.rotation.y, fx = Math.sin(r), fz = Math.cos(r), hy = headY(A);
@@ -6790,7 +6916,7 @@ const CUTSCENES = {
       { cam: { p: [0, 3.4, 7.5], l: [0, 1.6, -2] }, cam2: { p: [0, 2.4, 5], l: [0, 1.4, -1.5] }, dur: 3.5 },
       { cam: { p: [-0.8, 1.8, -0.4], l: [-1.5, 1.55, 0.5] }, say: ['mara', 'Mr. President. The last ships made it through the ice. Everyone who stayed loyal is here.'] },
       { cam: { p: [0.5, 1.55, -0.2], l: [0, 1.2, -2.1] }, say: ['pres', 'Antarctica. Five empires carved up the world, and they left us the one place nobody wanted.', 'angry'] },
-      { cam: { p: [-1.2, 2.4, 2.4], l: [0, 3, -3.8] }, keep: true, act: { mara: { a: 'point', r: PI - 0.2 } }, say: ['mara', "Gedago's Empire holds the great powers. The French Empire owns Europe. The Frowny Federation, Gloomvania and the Tundra Pact split the rest."] },
+      { cam: { p: [-1.2, 2.4, 2.4], l: [0, 3, -3.8] }, keep: true, act: { mara: { a: 'point', r: PI - 0.2 } }, say: ['mara', "Malik's Empire holds the great powers. The French Empire owns Europe. The Frowny Federation, Gloomvania and the Tundra Pact split the rest."] },
       { cam: { p: [1.1, 1.8, 0.2], l: [1.6, 1.6, 1.4] }, act: { hale: 'salute', mara: 'idle' }, say: ['hale', 'Sergeant Hale reporting, sir. The men are cold, angry and ready.'] },
       { cam: { p: [0, 1.3, 1.2], l: [0, 1.6, -2] }, act: { pres: { a: 'fist' }, hale: 'idle' }, say: ['pres', 'Then we take it back. One country at a time.', 'angry'] },
       { cam: { p: [-0.8, 1.8, -0.4], l: [-1.5, 1.55, 0.5] }, act: { pres: 'sit' }, say: ['mara', "South America is closest. Argentina, Chile. I've already marked the targets.", 'smile'] },
@@ -6805,19 +6931,19 @@ const CUTSCENES = {
       { cam: { p: [2, 1.8, 6], l: [3.5, 1.3, 0] }, act: { reyes: { to: [1.4, 1.6], face: PI * 0.9 } }, dur: 3 },
       { cam: { p: [0.6, 1.7, 3.2], l: [1.4, 1.6, 1.6] }, say: ['reyes', 'Name is Reyes. I watched your boys take that ridge. Took out three of their officers from a kilometer away.'] },
       { cam: { p: [0.6, 1.7, 2.2], l: [0, 1.6, 4] }, say: ['pres', 'You are not in uniform.'] },
-      { cam: { p: [0.6, 1.7, 3.2], l: [1.4, 1.6, 1.6] }, say: ['reyes', "I was a hunter, until Gedago's men burned my village. Give me a rifle and a reason.", 'angry'] },
+      { cam: { p: [0.6, 1.7, 3.2], l: [1.4, 1.6, 1.6] }, say: ['reyes', "I was a hunter, until Malik's men burned my village. Give me a rifle and a reason.", 'angry'] },
       { cam: { p: [-0.4, 2, 6.5], l: [0.6, 1.4, 2.6] }, say: ['pres', 'You have both. Welcome to the Smiley Face Army.', 'smile'] }
     ] },
   conspiracy: { title: 'Chapter 2 · The Emperor', set: 'throne',
-    actors: { gedago: { p: [0, -6.15], r: 0, a: 'sit' }, margaux: { p: [0.8, -2.5], r: PI + 0.2 }, g1: { c: 'geda', p: [-2.2, -4.6], r: 0.6, prop: 'rifle' }, g2: { c: 'geda', p: [2.2, -4.6], r: -0.6, prop: 'rifle' } },
+    actors: { gedago: { p: [0, -6.15], r: 0, a: 'sit', sitY: 1.0 }, margaux: { p: [0.8, -2.5], r: PI + 0.2 }, g1: { c: 'geda', p: [-2.2, -4.6], r: 0.6, prop: 'rifle' }, g2: { c: 'geda', p: [2.2, -4.6], r: -0.6, prop: 'rifle' } },
     beats: [
       { cam: { p: [0, 2.2, 6], l: [0, 1.6, -6] }, cam2: { p: [0, 2, 1], l: [0, 1.4, -6] }, dur: 4 },
-      { cam: { p: [0.3, 1.8, -0.6], l: [0.8, 1.65, -2.5] }, say: ['margaux', 'The Smiley Face Army has crawled out of the ice, Gedago. They took South America in a week.', 'angry'] },
-      { cam: { p: [0.2, 1.4, -3.8], l: [0, 1.3, -6.1] }, say: ['gedago', 'A week. And how long did it take your armies to lose it, Margaux?', 'smile'] },
+      { cam: { p: [0.3, 1.8, -0.6], l: [0.8, 1.65, -2.5] }, say: ['margaux', 'The Smiley Face Army has crawled out of the ice, Malik. They took South America in a week.', 'angry'] },
+      { cam: { p: [0.2, 1.4, -3.8], l: [0, 1.3, -6.1] }, say: ['gedago', 'A week. And how long did it take your armies to lose it, Archer?', 'smile'] },
       { cam: { p: [0.3, 1.8, -0.6], l: [0.8, 1.65, -2.5] }, say: ['margaux', 'Mock me later. Their President hides in a bunker, but his ambassador sits in Paris, smiling at my court.'] },
       { cam: { p: [0.2, 1.4, -3.8], l: [0, 1.3, -6.1] }, say: ['gedago', 'Then let him stop smiling. Burn the embassy. Leave no one.', 'angry'] },
       { cam: { p: [1.6, 1.8, -1], l: [0.8, 1.6, -2.5] }, say: ['margaux', 'And the President?'] },
-      { cam: { p: [-1, 2.4, -2], l: [0, 1.4, -6] }, cam2: { p: [0, 1.6, -4.3], l: [0, 1.4, -6.1] }, say: ['gedago', 'Our friend inside his bunker will tell us everything we need. Patience, Margaux. Patience.', 'smile'] }
+      { cam: { p: [-1, 2.4, -2], l: [0, 1.4, -6] }, cam2: { p: [0, 1.6, -4.3], l: [0, 1.4, -6.1] }, say: ['gedago', 'Our friend inside his bunker will tell us everything we need. Patience, Archer. Patience.', 'smile'] }
     ] },
   codes: { title: 'Chapter 3 · Leak', set: 'bunker',
     actors: { pres: { p: [0, -2.05], r: 0, a: 'sit' }, mara: { p: [-1.5, 0.5], r: PI + 0.4 }, hale: { p: [1.6, 0.6], r: PI - 0.4 } },
@@ -6860,7 +6986,7 @@ const CUTSCENES = {
       { cam: { p: [0.3, 1.7, 0.4], l: [0, 1.6, 1.6] }, say: ['pres', 'Hale, lock the doors. Where is Quill?'] },
       { cam: { p: [-0.3, 1.7, 0.6], l: [-0.8, 1.6, -1.1] }, say: ['mara', 'Right here, Mr. President.', 'smile'] },
       { cam: { p: [-0.4, 1.6, 0.5], l: [-0.6, 1.6, -0.4] }, say: ['hale', 'Sir, do not...', 'shock'] },
-      { cam: { p: [-0.3, 1.7, 0.6], l: [-0.8, 1.6, -1.1] }, say: ['mara', 'Gedago offered me something you never could. A world that does not end in snow.'] },
+      { cam: { p: [-0.3, 1.7, 0.6], l: [-0.8, 1.6, -1.1] }, say: ['mara', 'Malik offered me something you never could. A world that does not end in snow.'] },
       { cam: { p: [0.3, 1.7, 0.4], l: [0, 1.6, 1.6] }, say: ['pres', 'Let him go, Mara.', 'angry'] },
       { keep: true, cam: { p: [-2.5, 2.2, 1.5], l: [-1, 1.4, -1] }, act: { mara: { to: [-4.8, 0.6], a: 'aim' }, hale: { to: [-4.4, 1.1], a: 'handsup' } }, say: ['mara', 'He is coming with me. A guarantee. Follow us and he dies.'] },
       { cam: { p: [0, 1.6, 0.4], l: [0, 1.6, 2] }, act: { pres: 'fist' }, say: ['radio', 'Sir! A Gloomvanian helicopter just lifted off from the east pad!'] },
@@ -6883,7 +7009,7 @@ const CUTSCENES = {
       { cam: { p: [3, 2, 3], l: [0, 1, -2] }, dur: 2.4 },
       { cam: { p: [0.3, 1.2, -0.7], l: [0, 1.1, -2] }, say: ['mara', 'You came yourself. Of course you did.', 'sad'] },
       { cam: { p: [-0.3, 1.6, -1.3], l: [0, 1.6, 0.2] }, say: ['pres', 'Why, Mara?', 'angry'] },
-      { cam: { p: [0.3, 1.2, -0.7], l: [0, 1.1, -2] }, say: ['mara', 'Because you cannot win. Gedago has an army in every great city. Even if you kill me, he is waiting for you in his capital.'] },
+      { cam: { p: [0.3, 1.2, -0.7], l: [0, 1.1, -2] }, say: ['mara', 'Because you cannot win. Malik has an army in every great city. Even if you kill me, he is waiting for you in his capital.'] },
       { cam: { p: [0.3, 1.2, -0.7], l: [0, 1.1, -2] }, say: ['mara', 'The United States. He wants you to come.', 'smile'] },
       { cam: { p: [-0.3, 1.6, -1.3], l: [0, 1.6, 0.2] }, say: ['pres', 'Then he gets his wish.'] },
       { cam: { p: [2, 1.5, -1], l: [0, 0.6, -2] }, act: { mara: 'fall' }, dur: 2 },
@@ -6894,7 +7020,7 @@ const CUTSCENES = {
     actors: { pres: { p: [0, 0], r: PI }, hale: { p: [-1.4, -1.4], r: 0.4 }, reyes: { p: [1.5, -1.3], r: -0.5, prop: 'rifle' }, okoro: { p: [-0.2, -2.4], r: 0.1 }, brandt: { p: [2.4, -0.2], r: -1.2 } },
     beats: [
       { cam: { p: [0, 4, 9], l: [0, 1.4, -1] }, cam2: { p: [0, 2.4, 5], l: [0, 1.4, -1] }, dur: 4 },
-      { cam: { p: [-0.8, 1.8, -0.2], l: [-1.4, 1.6, -1.4] }, say: ['hale', 'It is over, sir. Gedago is dead. His generals are surrendering one by one.'] },
+      { cam: { p: [-0.8, 1.8, -0.2], l: [-1.4, 1.6, -1.4] }, say: ['hale', 'It is over, sir. Malik is dead. His generals are surrendering one by one.'] },
       { cam: { p: [1, 1.8, -0.2], l: [1.5, 1.6, -1.3] }, say: ['reyes', 'Funny. It is quieter than I imagined.'] },
       { cam: { p: [0.3, 1.7, -1.4], l: [0, 1.6, 0] }, say: ['pres', 'It is not over. It is just finally ours to finish.'] },
       { cam: { p: [-0.2, 1.8, -1.0], l: [-0.2, 1.6, -2.4] }, say: ['okoro', 'There are still empires out there, sir.'] },
@@ -6939,7 +7065,7 @@ const MISSIONS = {
     cfg: () => ({ map: 'desert', enemy: 'geda', size: 'medium', msize: 'big', mission: 'convoy', time: 'noon', weather: 'clear' }) },
   quill: { name: 'The Safehouse', nation: 'tundra', desc: 'Mara Quill hides in a Tundra Pact safehouse in the mountains. End the traitor.', reward: 2600, stealth: true,
     cfg: () => ({ map: 'snow', enemy: 'tundra', size: 'small', msize: 'std', stealth: 'safehouse', time: 'dusk', weather: 'snow', target: 'Mara Quill' }) },
-  final: { name: 'Operation Last Light', nation: 'geda', desc: "Storm Gedago's capital in the United States and kill the Emperor himself.", reward: 6000,
+  final: { name: 'Operation Last Light', nation: 'geda', desc: "Storm Malik's capital in the United States and kill the Emperor himself.", reward: 6000,
     cfg: () => ({ map: 'city', enemy: 'geda', size: 'large', msize: 'big', mission: 'final', time: 'dusk', weather: 'storm', leader: true }) }
 };
 const MISSION_SCENE = { embassy: 'codes', villa: 'moreau', decapitate: null, rescue: 'reunion', convoy: null, quill: 'quill_end', final: 'ending' };
@@ -7052,7 +7178,7 @@ restoreCapitalScenes();
 const REL0 = { geda: -60, french: -50, frowny: -40, gloom: -35, tundra: -45 };
 const PERSONA = {
   geda: { st: ['pride', 'pride', 'pride', 'anger', 'anger', 'greed'], fav: 'appeal', title: 'Emperor' },
-  french: { st: ['reason', 'reason', 'reason', 'pride', 'pride', 'greed'], fav: 'logic', title: 'Empress' },
+  french: { st: ['reason', 'reason', 'reason', 'pride', 'pride', 'greed'], fav: 'logic', title: 'Emperor' },
   frowny: { st: ['greed', 'greed', 'greed', 'fear', 'fear', 'reason'], fav: 'bribe', title: 'Chancellor' },
   gloom: { st: ['pride', 'pride', 'fear', 'fear', 'anger', 'reason'], fav: 'appeal', title: 'Queen' },
   tundra: { st: ['fear', 'fear', 'anger', 'anger', 'reason', 'pride'], fav: 'pressure', title: 'Marshal' }
@@ -7334,7 +7460,7 @@ function missionSetup() {
   const T0 = G.teams[0], T1 = G.teams[1];
   if (c.mission === 'defend') { G.enemyPush = true; T1.tickets = Math.round(T1.tickets * 1.6); misObjective('Hold the embassy (your HQ)'); banner('DEFEND THE EMBASSY', 2.5, 'var(--amber)'); }
   if (c.mission === 'decapitate') misObjective(`Kill ${c.commanderName}`);
-  if (c.mission === 'final') { misObjective('Kill Emperor Gedago XIV'); banner('OPERATION LAST LIGHT', 3, 'var(--amber)'); }
+  if (c.mission === 'final') { misObjective('Kill Emperor Malik'); banner('OPERATION LAST LIGHT', 3, 'var(--amber)'); }
   if (c.mission === 'rescue') {
     const p = vipPost(1); G.mis.prison = { x: p.x + 16, z: p.z };
     const keeper = { alive: true }; G.mis.keeper = keeper;
@@ -7355,7 +7481,7 @@ function missionTick(dt) {
   const c = G.cfg;
   if (M.type === 'defend') { const left = Math.max(0, 240 - (G.t - M.t0)); misObjective('Hold the embassy (your HQ)', `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`); if (left <= 0) misEnd('win', 'The embassy held until reinforcements arrived.'); }
   else if (M.type === 'decapitate') { if (G.cmdrKilled) misEnd('win', `${c.commanderName} is dead. The enemy front collapses.`, 3.6); }
-  else if (M.type === 'final') { if (G.leaderKilled) misEnd('win', 'Emperor Gedago XIV is dead. The Gedagedigedagedago Empire falls.', 4.6); }
+  else if (M.type === 'final') { if (G.leaderKilled) misEnd('win', 'Emperor Malik is dead. The Gedagedigedagedago Empire falls.', 4.6); }
   else if (M.type === 'rescue') rescueTick(dt);
   else if (M.type === 'convoy') convoyTick(dt);
   else if (M.type === 'stealth') stealthTick(dt);
@@ -7747,9 +7873,9 @@ $('#arcPlay').addEventListener('click', () => { const S = arcData().sel; startAr
 }
 /* ================= profile: EXP, coins, cosmetics, kill effects, more medals ================= */
 const PROFILE_KEY = 'smfa3d.profile';
-const profDefault = () => ({ xp: 0, coins: 0, owned: {}, equip: { pres: 'classic', uni: 'standard', helmet: 'helmet', paint: 'standard', flag: 'green', emblem: 'smile', killfx: 'none' }, n: {} });
-const prof = () => { const p = store.get(PROFILE_KEY, null) || profDefault(); p.equip = Object.assign(profDefault().equip, p.equip || {}); p.owned = p.owned || {}; p.n = p.n || {}; return p; };
-const profSave = p => store.set(PROFILE_KEY, p);
+let profDefault = () => ({ xp: 0, coins: 0, owned: {}, equip: { pres: 'classic', uni: 'standard', helmet: 'helmet', paint: 'standard', flag: 'green', emblem: 'smile', killfx: 'none' }, n: {} });
+let prof = () => { const p = store.get(PROFILE_KEY, null) || profDefault(); p.equip = Object.assign(profDefault().equip, p.equip || {}); p.owned = p.owned || {}; p.n = p.n || {}; return p; };
+let profSave = p => store.set(PROFILE_KEY, p);
 const lvlCost = L => 200 + 100 * (L - 1);
 function levelOf(xp) { let L = 1, need = lvlCost(1); while (xp >= need) { xp -= need; L++; need = lvlCost(L); } return { L, into: xp, need }; }
 
@@ -7824,7 +7950,7 @@ function cosLock(it) {
   if (P.owned[it.id + '@' + it._slot]) return null;
   if (it.lvl && levelOf(P.xp).L >= it.lvl) return null;
   if (it.medal && M.got[it.medal]) return null;
-  if (it.coins) return { buy: it.coins, text: `${it.coins.toLocaleString()} coins` };
+  if (it.coins) return { buy: it.coins, text: `${it.coins.toLocaleString()} SD` };
   if (it.lvl) return { text: `Reach level ${it.lvl}` };
   if (it.medal) { const m = MEDALS.find(x => x.id === it.medal); return { text: `Medal: ${m ? m.name : it.medal}` }; }
   return null;
@@ -7846,7 +7972,7 @@ function grantRewards(xp, coins, why) {
   const P = prof(), before = levelOf(P.xp).L;
   P.xp += Math.max(0, Math.round(xp)); P.coins += Math.max(0, Math.round(coins)); profSave(P);
   const after = levelOf(P.xp).L;
-  if (after > before) { for (let L = before + 1; L <= after; L++) { P.coins += 100; } profSave(P); toast(`Level up! You are level ${after}`, '+100 coins. New gear may be unlocked in the Barracks.'); if (after >= 10) medalGive('veteran'); if (after >= 25) medalGive('legend'); }
+  if (after > before) { for (let L = before + 1; L <= after; L++) { P.coins += 100; } profSave(P); toast(`Level up! You are level ${after}`, '+100 SD. New gear may be unlocked in the Barracks.'); if (after >= 10) medalGive('veteran'); if (after >= 25) medalGive('legend'); }
   updateProfileCard();
   return { xp: Math.round(xp), coins: Math.round(coins), level: after, up: after > before };
 }
@@ -7860,7 +7986,7 @@ function battleRewards(result) {
 function updateProfileCard() {
   const el = $('#profCard'); if (!el) return;
   const P = prof(), lv = levelOf(P.xp), em = cosItem('emblem', P.equip.emblem), fl = cosItem('flag', P.equip.flag);
-  el.innerHTML = `<div class="pcEmb" style="background:#${new THREE.Color(fl.col).getHexString()}">${esc(em.sym)}</div><div class="pcMain"><b>Level ${lv.L}</b><div class="pcBar"><span style="width:${lv.into / lv.need * 100}%"></span></div><small>${lv.into.toLocaleString()} / ${lv.need.toLocaleString()} EXP</small></div><div class="pcCoins">🪙 ${P.coins.toLocaleString()}</div>`;
+  el.innerHTML = `<div class="pcEmb" style="background:#${new THREE.Color(fl.col).getHexString()}">${esc(em.sym)}</div><div class="pcMain"><b>Level ${lv.L}</b><div class="pcBar"><span style="width:${lv.into / lv.need * 100}%"></span></div><small>${lv.into.toLocaleString()} / ${lv.need.toLocaleString()} EXP</small></div><div class="pcCoins">${P.coins.toLocaleString()} <small>SD</small></div>`;
 }
 
 /* ---------- barracks (customization screen) ---------- */
@@ -7872,7 +7998,7 @@ function openBarracks(back) {
 function renderBarracks() {
   const P = prof();
   $('#cosTabs').innerHTML = COS_TABS.map(([k, n]) => `<button class="btn small ${k === cosTab ? 'primary' : ''}" data-ctab="${k}">${n}</button>`).join('');
-  $('#cosCoins').textContent = `🪙 ${P.coins.toLocaleString()} coins · Level ${levelOf(P.xp).L}`;
+  $('#cosCoins').textContent = `${P.coins.toLocaleString()} SD · Level ${levelOf(P.xp).L}`;
   $('#cosGrid').innerHTML = COS[cosTab].map(it => {
     const lock = cosLock(it), eq = P.equip[cosTab] === it.id;
     const sw = cosSwatch(cosTab, it);
@@ -8064,8 +8190,10 @@ function recTick(dt) {
   R0.frames.push({ t: G.t, uid, uf, nv, vf });
   // ragdolls settle for a few seconds; record them while they move
   R0.corpActive = R0.corpActive.filter(c => {
-    c.rec.frames.push(c.rd.p.slice(0, 45));
-    let top = 0; for (let k = 1; k < 45; k += 3) top = Math.max(top, c.rd.p[k]);
+    const rd = c.rd; c.rec.frames.push(rd.p.slice(0, rd.n * 3));
+    const gs = rd.n + ':' + (rd.noHead ? 1 : 0) + (rd.headOff ? 1 : 0) + (rd.ribs ? 1 : 0) + (rd.bones ? rd.bones.length : 0) + (rd.rope ? rd.rope.length : 0) + (rd.gibbed ? 1 : 0) + rd.segs.map(s => s[2]).join('');
+    if (gs !== c.rec.gs) { c.rec.gs = gs; c.rec.st.push({ fi: c.rec.frames.length - 1, n: rd.n, segs: rd.segs.map(s => s.slice()), noHead: rd.noHead, ribs: rd.ribs, bones: rd.bones ? rd.bones.slice() : null, rope: rd.rope ? rd.rope.slice() : null, burnT: rd.burnT }); }
+    let top = 0; for (let k = 1; k < 45; k += 3) top = Math.max(top, rd.p[k]);
     if (top > 6 && !c.rec.flew) { c.rec.flew = true; recMoment('fly', 'SENT FLYING', c.rec.byPres ? 4 : 3, { type: 'c', id: c.rec.id }); if (c.rec.team === 1) medalCount('flyers'); }
     if (c.corpse.hideAt && !c.rec.hideAt) c.rec.hideAt = c.corpse.hideAt;
     return G.t - c.rec.t < 4;
@@ -8081,7 +8209,7 @@ function recTick(dt) {
     if (!REC || !REC.on || !was || u.alive || u.arrested) return r;
     const c = G.corpses[G.corpses.length - 1];
     const byPres = !!attacker && (attacker === G.player || (attacker.kind === 'veh' && attacker.driver === 'player'));
-    if (c && c.rd && G.corpses.length >= nc) { const rec = { id: u.id, t: G.t, look: c.rd.look, segs: c.rd.segs, frames: [], team: u.team, byPres, hideAt: null }; REC.corp.set(u.id, rec); REC.corpActive.push({ rec, rd: c.rd, corpse: c }); }
+    if (c && c.rd && G.corpses.length >= nc) { const rec = { id: u.id, t: G.t, look: c.rd.look, segs: c.rd.segs, frames: [], st: [], team: u.team, byPres, hideAt: null }; REC.corp.set(u.id, rec); REC.corpActive.push({ rec, rd: c.rd, corpse: c }); }
     const foc = { type: 'c', id: u.id };
     if (u.vip) recMoment('vip', u.vip === 'leader' ? `LEADER ELIMINATED · ${u.vipName}` : u.vip === 'target' ? `TARGET ELIMINATED · ${u.vipName}` : `COMMANDER DOWN · ${u.vipName}`, 7, foc);
     else if (u.isPres) recMoment('pres', 'THE PRESIDENT IS DOWN', 4, foc);
@@ -8105,6 +8233,15 @@ function recTick(dt) {
     return r;
   };
   const _ex = explode; explode = function (x, y, z, r) { recEvent({ k: 'boom', x, y, z, r }); return _ex.apply(this, arguments); };
+  // blood, gore spray and ground decals so Realistic and Sadistic replays look like the live kill
+  const _bb = bloodBurst; bloodBurst = function (x, y, z, dx, dy, dz, n, spd) { if (n >= 6 && REC && REC.on && G && !G.replay && REC.ev.length < 60000) recEvent({ k: 'bl', a: [x, y, z, dx, dy, dz, n, spd] }); return _bb.apply(this, arguments); };
+  const _so = spillOrgans; spillOrgans = function (x, y, z, n, bones, power) { recEvent({ k: 'so', a: [x, y, z, n, bones, power] }); return _so.apply(this, arguments); };
+  const _ad2 = addDecal; addDecal = function (x, y, z, s, tgt, rate, r, g, b, stretch) {
+    if (REC && REC.on && G && !G.replay) { // pools always, small splats sampled, both capped per second
+      const sec = Math.floor(G.t); if (REC.dcSec !== sec) { REC.dcSec = sec; REC.dcN = 0; }
+      if (REC.dcN < 50 && (tgt > s || s >= 0.5 || R() < 0.2)) { REC.dcN++; recEvent({ k: 'dc', a: [x, y, z, s, tgt, rate, r, g, b, stretch] }); }
+    }
+    return _ad2.apply(this, arguments); };
   const _tr = addTracer; addTracer = function (ax, ay, az, bx, by, bz, cr, cg, cb) { if (REC && REC.on && G && !G.replay && REC.ev.length < 60000) REC.ev.push({ t: G.t, k: 'tr', a: [ax, ay, az, bx, by, bz, cr, cg, cb] }); return _tr.apply(this, arguments); };
   const _mf = muzzleFlash; muzzleFlash = function (x, y, z) { if (REC && REC.on && G && !G.replay && REC.ev.length < 60000) REC.ev.push({ t: G.t, k: 'mf', x, y, z }); return _mf.apply(this, arguments); };
   const _nd = nukeDetonate; nukeDetonate = function () { recMoment('nuke', 'NUCLEAR DETONATION', 10, { type: 'p', x: 0, y: 20, z: 0 }); recEvent({ k: 'nuke' }); return _nd.apply(this, arguments); };
@@ -8151,7 +8288,7 @@ function stopReplay() {
 function frameAt(t) { const F = REC.frames; let lo = 0, hi = F.length - 1; while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (F[mid].t <= t) lo = mid; else hi = mid - 1; } return lo; }
 function rpApplyBlocks(t) {
   const D = REC.blk;
-  if (t < RP.blkT || RP.blkT < 0) { for (let i = 0; i < D.init.length; i++) { if (B.alive[i] !== D.init[i]) { B.alive[i] = D.init[i]; blockInst(i); } } RP.blkT = -1; }
+  if (t < RP.blkT || RP.blkT < 0) { rpClearDecals(); for (let i = 0; i < D.init.length; i++) { if (B.alive[i] !== D.init[i]) { B.alive[i] = D.init[i]; blockInst(i); } } RP.blkT = -1; }
   for (const d of D.diffs) { if (d.t <= RP.blkT || d.t > t) continue; for (let k = 0; k < d.idx.length; k++) { B.alive[d.idx[k]] = d.v[k]; blockInst(d.idx[k]); } }
   RP.blkT = t; flushBlocks();
 }
@@ -8179,7 +8316,10 @@ function rpApply(t) {
   for (const rec of REC.corp.values()) {
     if (rec.t > t || (rec.hideAt && t > rec.hideAt)) continue;
     let c = RP.corps.get(rec.id); if (!c) { c = { rd: { p: new Float32Array(90), segs: rec.segs, look: rec.look, n: 15, emit: [], frozen: true, age: 9, pool: true }, team: rec.team }; RP.corps.set(rec.id, c); }
-    const fi = Math.min(rec.frames.length - 1, Math.floor((t - rec.t) / REC_DT)); if (fi >= 0) c.rd.p.set(rec.frames[fi]);
+    const fi = Math.min(rec.frames.length - 1, Math.floor((t - rec.t) / REC_DT));
+    if (fi >= 0) { const fr = rec.frames[fi]; c.rd.p.set(fr); c.rd.n = Math.max(15, fr.length / 3); }
+    let st = null; for (const s of rec.st) { if (s.fi <= Math.max(0, fi)) st = s; else break; }
+    if (st && c.rd.st !== st) { c.rd.st = st; c.rd.segs = st.segs; c.rd.noHead = st.noHead; c.rd.ribs = st.ribs; c.rd.bones = st.bones; c.rd.rope = st.rope; }
     cs.push(c);
   }
   G.corpses = cs;
@@ -8199,6 +8339,7 @@ function rpApply(t) {
   });
   rpApplyBlocks(t);
 }
+function rpClearDecals() { if (!decal) return; const d = decal; for (let k = 0; k < d.cap; k++) { d.m.setMatrixAt(k, ZERO_M); d.s[k] = 0; } d.i = 0; d.growing = []; d.m.instanceMatrix.needsUpdate = true; }
 function rpPlayEvents(t0, t1) {
   if (t1 <= t0 || t1 - t0 > 0.6) return;
   for (const e of REC.ev) {
@@ -8207,6 +8348,9 @@ function rpPlayEvents(t0, t1) {
     else if (e.k === 'mf') muzzleFlash(e.x, e.y, e.z);
     else if (e.k === 'boom') rpBoom(e.x, e.y, e.z, e.r);
     else if (e.k === 'kfx') playKillFx(e.fx, e.x, e.y, e.z, null, null);
+    else if (e.k === 'bl') bloodBurst(...e.a);
+    else if (e.k === 'so') spillOrgans(...e.a);
+    else if (e.k === 'dc') addDecal(...e.a);
     else if (e.k === 'nuke') { const fl = $('#nukeFlash'); fl.style.transition = 'none'; fl.style.opacity = 1; requestAnimationFrame(() => { fl.style.transition = 'opacity 3s ease-out'; fl.style.opacity = 0; }); SFX.boom(5, true); }
   }
 }
@@ -8295,7 +8439,7 @@ $('#rpFull').addEventListener('click', () => startReplay('full'));
 {
   const _eb3 = endBattle; endBattle = function () {
     const r = _eb3.apply(this, arguments);
-    const g = G; setTimeout(() => { if (G !== g || !G) return; G.kc = null; document.body.classList.remove('kcam'); const ok = replayAvailable(); $('#rpBtns').hidden = !ok; const rw = G.rewards; $('#endRewards').innerHTML = rw ? `<span>+${rw.xp} EXP</span><span>+${rw.coins} coins</span>${rw.up ? `<span class="up">Level up! Level ${rw.level}</span>` : ''}` : ''; }, 2700);
+    const g = G; setTimeout(() => { if (G !== g || !G) return; G.kc = null; document.body.classList.remove('kcam'); const ok = replayAvailable(); $('#rpBtns').hidden = !ok; const rw = G.rewards; $('#endRewards').innerHTML = rw ? `<span>+${rw.xp} EXP</span><span>+${rw.coins} SD</span>${rw.up ? `<span class="up">Level up! Level ${rw.level}</span>` : ''}` : ''; }, 2700);
     return r;
   };
   const _lb2 = leaveBattle; leaveBattle = function () { document.body.classList.remove('arcv'); RP = null; if (G) G.replay = null; $('#rpUI').hidden = true; document.body.classList.remove('replaying'); REC = null; return _lb2.apply(this, arguments); };
@@ -8428,10 +8572,10 @@ function csPlane(C, x, y, z, ry) { if (!C.plane) { C.plane = buildAirliner(1); C
 
 const HIJACK_SCENES = {
   hijack_intro: { title: 'Kuala Lumpur · Flight NA-214', set: 'cabin',
-    actors: { bagas: { p: [1.6, 3.4], r: 0, a: 'sit' }, p1: { c: 'civ1', p: [-0.95, 1.8], r: 0, a: 'sit' }, p2: { c: 'civ2', p: [0.95, 0.2], r: 0, a: 'sit' }, p3: { c: 'civ3', p: [-1.6, 5], r: 0, a: 'sit' }, h1: { c: 'hijacker', p: [0, -2.5], r: 0, prop: 'rifle', a: 'aim' }, h2: { c: 'hijacker', p: [0, 9], r: PI, prop: 'rifle' } },
+    actors: { bagas: { p: [1.6, 3.4], r: 0, a: 'sit', sitY: 0.65 }, p1: { c: 'civ1', p: [-0.95, 1.8], r: 0, a: 'sit', sitY: 0.65 }, p2: { c: 'civ2', p: [0.95, 0.2], r: 0, a: 'sit', sitY: 0.65 }, p3: { c: 'civ3', p: [-1.6, 5], r: 0, a: 'sit', sitY: 0.65 }, h1: { c: 'hijacker', p: [0, -2.5], r: 0, prop: 'rifle', a: 'aim' }, h2: { c: 'hijacker', p: [0, 9], r: PI, prop: 'rifle' } },
     beats: [
       { keep: true, cam: { p: [0, 2.2, 12], l: [0, 1.2, -6] }, cam2: { p: [0, 2, 9], l: [0, 1.2, -6] }, dur: 3 },
-      { say: ['h1', 'Everyone stay in your seats! This flight now belongs to Emperor Gedago!', 'angry'] },
+      { say: ['h1', 'Everyone stay in your seats! This flight now belongs to Emperor Malik!', 'angry'] },
       { say: ['p1', 'Where are you taking us?!', 'shock'] },
       { say: ['h1', 'To the Twin Towers. The President of the Smiley Face Army is fighting down there today. He will never see us coming.', 'smile'] },
       { keep: true, cam: { p: [0.4, 1.4, 5.4], l: [1.6, 1.1, 3.4] }, act: { bagas: 'idle' }, say: ['bagas', '...Not on my flight.', 'angry'] },
@@ -8473,7 +8617,7 @@ const HIJACK_SCENES = {
       { keep: true, cam: { p: [1.6, 1.8, 0.4], l: [0.3, 1.6, -1.8] }, act: { bagas: 'salute' }, say: ['bagas', 'Then count me in. Bagas Pratama, from Surabaya. At your service.', 'smile'] }
     ] },
   gedago_rage: { title: 'Interlude · Failure', set: 'throne',
-    actors: { gedago: { p: [0, -6.15], r: 0, a: 'sit' }, g1: { c: 'geda', p: [0.6, -2.5], r: PI, a: 'idle' } },
+    actors: { gedago: { p: [0, -6.15], r: 0, a: 'sit', sitY: 1.0 }, g1: { c: 'geda', p: [0.6, -2.5], r: PI, a: 'idle' } },
     beats: [
       { keep: true, cam: { p: [0, 2, 3], l: [0, 1.4, -6] }, dur: 2.4 },
       { say: ['g1', 'Your Majesty... the plane missed. One of the passengers fought our men and flew it himself.', 'sad'] },
@@ -8998,6 +9142,1380 @@ addEventListener('keydown', e => {
   if (e.code === 'KeyB') { e.preventDefault(); godOpen(); }
   else if (e.code === 'Escape' && G.god.tool) { e.stopImmediatePropagation(); e.preventDefault(); godSetTool(null); }
 }, true);
+/* ================= accounts & cloud save (Supabase, plain fetch, no SDK) ================= */
+// Fill these two in from Supabase > Settings > API. The anon key is public by design; row level security protects the data.
+const SB_URL = '';
+const SB_KEY = '';
+const SB_ON = () => !!(SB_URL && SB_KEY);
+const ACC_KEY = 'smfa3d.account';
+const ACC = { user: null, token: null, refresh: null, exp: 0, profile: null, ents: [], loaded: false, busy: false, lastSync: 0, offline: false };
+const accOn = () => !!(ACC.user && ACC.token);
+const accName = () => ACC.profile ? ACC.profile.username : (ACC.user && ACC.user.user_metadata && ACC.user.user_metadata.username) || '';
+const fakeEmail = u => `${u.toLowerCase()}@players.smfa3d.app`;
+
+async function sbFetch(path, opt) {
+  opt = opt || {};
+  const h = Object.assign({ apikey: SB_KEY, 'Content-Type': 'application/json' }, opt.headers || {});
+  if (ACC.token && !opt.noAuth) h.Authorization = 'Bearer ' + ACC.token;
+  const r = await fetch(SB_URL + path, { method: opt.method || 'GET', headers: h, body: opt.body === undefined ? undefined : JSON.stringify(opt.body) });
+  const txt = await r.text(); let j = null; try { j = txt ? JSON.parse(txt) : null; } catch (e) { j = txt; }
+  if (!r.ok) { const msg = (j && (j.msg || j.message || j.error_description || j.error || j.hint)) || ('HTTP ' + r.status); throw new Error(String(msg).replace(/^.*?: /, '')); }
+  return j;
+}
+const sbRpc = (fn, args) => sbFetch('/rest/v1/rpc/' + fn, { method: 'POST', body: args || {} });
+
+/* ---------- session ---------- */
+function accStore() { store.set(ACC_KEY, ACC.user ? { user: ACC.user, token: ACC.token, refresh: ACC.refresh, exp: ACC.exp, profile: ACC.profile, ents: ACC.ents } : null); }
+function accSet(sess) {
+  ACC.user = sess.user; ACC.token = sess.access_token; ACC.refresh = sess.refresh_token; ACC.exp = Date.now() + (sess.expires_in || 3600) * 1000;
+  accStore();
+}
+async function accRefreshIfNeeded() {
+  if (!accOn() || !SB_ON()) return;
+  if (Date.now() < ACC.exp - 60000) return;
+  try { const s = await sbFetch('/auth/v1/token?grant_type=refresh_token', { method: 'POST', body: { refresh_token: ACC.refresh }, noAuth: true }); accSet(s); ACC.offline = false; }
+  catch (e) { if (/refresh|invalid|expired|revoked/i.test(e.message)) accLogout(true); else ACC.offline = true; }
+}
+async function accSignup(username, password) {
+  if (!SB_ON()) throw new Error('The account server is not connected yet.');
+  if (!/^[A-Za-z0-9_]{3,16}$/.test(username)) throw new Error('Usernames are 3 to 16 letters, numbers or underscores.');
+  if (password.length < 6) throw new Error('Passwords need at least 6 characters.');
+  const s = await sbFetch('/auth/v1/signup', { method: 'POST', body: { email: fakeEmail(username), password, data: { username } }, noAuth: true });
+  if (!s.access_token) throw new Error('Account created, but the server wants an email confirmation. Ask the President to turn off "Confirm email" in Supabase.');
+  accSet(s); await accAfterLogin(true);
+}
+async function accLogin(username, password) {
+  if (!SB_ON()) throw new Error('The account server is not connected yet.');
+  const s = await sbFetch('/auth/v1/token?grant_type=password', { method: 'POST', body: { email: fakeEmail(username), password }, noAuth: true });
+  accSet(s); await accAfterLogin(false);
+}
+function accLogout(silent) {
+  if (SB_ON() && ACC.token) sbFetch('/auth/v1/logout', { method: 'POST' }).catch(() => { });
+  ACC.user = null; ACC.token = null; ACC.refresh = null; ACC.profile = null; ACC.ents = []; ACC.loaded = false; accStore();
+  renderAccount(); if (!silent) toast('Logged out', 'Your progress stays on this device.');
+}
+async function accAfterLogin(fresh) {
+  await accLoadProfile();
+  await cloudSync(fresh ? 'up' : 'merge');
+  renderAccount();
+}
+async function accLoadProfile() {
+  const rows = await sbFetch(`/rest/v1/profiles?id=eq.${ACC.user.id}&select=username,is_admin,save,save_at,supporter_ok`);
+  if (!rows || !rows.length) { // the trigger may lag for a moment on a brand-new account
+    await new Promise(r => setTimeout(r, 800));
+    const again = await sbFetch(`/rest/v1/profiles?id=eq.${ACC.user.id}&select=username,is_admin,save,save_at,supporter_ok`);
+    ACC.profile = again && again[0] || { username: accName(), is_admin: false };
+  } else ACC.profile = rows[0];
+  ACC.ents = await sbRpc('my_entitlements').catch(() => ACC.ents || []);
+  ACC.loaded = true; accStore();
+}
+async function accRefreshEnts() { if (!accOn() || !SB_ON()) return; try { await accRefreshIfNeeded(); ACC.ents = await sbRpc('my_entitlements'); accStore(); ACC.offline = false; } catch (e) { ACC.offline = true; } }
+
+/* ---------- cloud save ---------- */
+const SAVE_KEYS = ['smfa3d.profile', 'smfa3d.medals', 'smfa3d.campaigns', 'smfa3d.settings', 'smfa3d.tutorial', 'smfa3d.arcade'];
+function localSnapshot() { const o = { v: 1, at: Date.now() }; for (const k of SAVE_KEYS) o[k] = store.get(k, null); return o; }
+function mergeSaves(loc, rem) {
+  // newest wins per file, but EXP, SD, medals and owned gear are merged so nothing is lost
+  if (!rem) return loc; if (!loc) return rem;
+  const out = Object.assign({}, loc.at >= rem.at ? loc : rem);
+  const lp = loc['smfa3d.profile'], rp = rem['smfa3d.profile'];
+  if (lp && rp) {
+    const base = Object.assign({}, loc.at >= rem.at ? lp : rp);
+    base.xp = Math.max(lp.xp || 0, rp.xp || 0); base.coins = Math.max(lp.coins || 0, rp.coins || 0);
+    base.owned = Object.assign({}, rp.owned || {}, lp.owned || {});
+    base.n = Object.assign({}, rp.n || {}, lp.n || {}); for (const k in (lp.n || {})) base.n[k] = Math.max(lp.n[k] || 0, (rp.n || {})[k] || 0);
+    out['smfa3d.profile'] = base;
+  }
+  const lm = loc['smfa3d.medals'], rm = rem['smfa3d.medals'];
+  if (lm && rm) { const got = Object.assign({}, rm.got || {}, lm.got || {}); const n = Object.assign({}, rm.n || {}); for (const k in (lm.n || {})) n[k] = Math.max(n[k] || 0, lm.n[k] || 0); out['smfa3d.medals'] = { got, n }; }
+  const lc = loc['smfa3d.campaigns'], rc = rem['smfa3d.campaigns'];
+  if (lc && rc) { // keep each campaign slot from whichever side has played it further
+    const slots = [0, 1, 2].map(i => { const a = lc.slots && lc.slots[i], b = rc.slots && rc.slots[i]; if (!a) return b; if (!b) return a; return (a.turn || 0) + Object.keys(a.owners || {}).length >= (b.turn || 0) + Object.keys(b.owners || {}).length ? a : b; });
+    out['smfa3d.campaigns'] = Object.assign({}, loc.at >= rem.at ? lc : rc, { slots });
+  }
+  for (const k of SAVE_KEYS) if (out[k] === null || out[k] === undefined) out[k] = loc[k] !== null && loc[k] !== undefined ? loc[k] : rem[k];
+  out.at = Math.max(loc.at, rem.at);
+  return out;
+}
+function applySnapshot(s) {
+  for (const k of SAVE_KEYS) if (s[k] !== undefined && s[k] !== null) store.set(k, s[k]);
+  // refresh live copies
+  try { Object.assign(settings, store.get('smfa3d.settings', {})); } catch (e) { }
+  try { const c = store.get('smfa3d.campaigns', null); if (c) { CAMPS = c; } } catch (e) { }
+  try { applyCosmetics(); updateProfileCard(); } catch (e) { }
+}
+let cloudT = 0;
+async function cloudSync(mode) {
+  if (!accOn() || !SB_ON() || ACC.busy) return;
+  ACC.busy = true;
+  try {
+    await accRefreshIfNeeded();
+    const loc = localSnapshot();
+    if (mode === 'merge' || mode === 'down') {
+      const rows = await sbFetch(`/rest/v1/profiles?id=eq.${ACC.user.id}&select=save,save_at`);
+      const rem = rows && rows[0] && rows[0].save;
+      const merged = mode === 'down' ? (rem || loc) : mergeSaves(loc, rem);
+      applySnapshot(merged);
+      await sbFetch(`/rest/v1/profiles?id=eq.${ACC.user.id}`, { method: 'PATCH', body: { save: merged, save_at: new Date().toISOString() }, headers: { Prefer: 'return=minimal' } });
+    } else {
+      await sbFetch(`/rest/v1/profiles?id=eq.${ACC.user.id}`, { method: 'PATCH', body: { save: loc, save_at: new Date().toISOString() }, headers: { Prefer: 'return=minimal' } });
+    }
+    ACC.lastSync = Date.now(); ACC.offline = false;
+  } catch (e) { ACC.offline = true; console.warn('cloud sync', e.message); }
+  ACC.busy = false; renderAccount();
+}
+function cloudSaveSoon() { if (!accOn()) return; clearTimeout(cloudT); cloudT = setTimeout(() => cloudSync('up'), 1500); }
+
+/* ---------- UI ---------- */
+function renderAccount() {
+  const el = $('#accChip'); if (!el) return;
+  if (!SB_ON()) { el.innerHTML = `<span class="accOff">Accounts: not connected yet</span>`; el.hidden = false; return; }
+  if (!accOn()) { el.innerHTML = `<button class="btn small" id="accLoginBtn">Log in / Create account</button><small>Log in to save progress online and use the Store</small>`; }
+  else el.innerHTML = `<span class="accName">${esc(accName())}</span>${ACC.profile && ACC.profile.is_admin ? '<span class="accAdmin">PRESIDENT</span>' : ''}<span class="accSync">${ACC.offline ? 'offline · saved on this device' : ACC.lastSync ? 'synced' : 'online'}</span><button class="btn small" id="accOutBtn">Log out</button>`;
+  el.hidden = false;
+  const lb = $('#accLoginBtn'); if (lb) lb.onclick = () => openLogin();
+  const ob = $('#accOutBtn'); if (ob) ob.onclick = () => { if (confirm('Log out? Your progress stays saved on this device and online.')) accLogout(); };
+  if (typeof updateStoreBadges === 'function') updateStoreBadges();
+}
+function openLogin(back) {
+  $('#lgMsg').textContent = ''; $('#lgUser').value = $('#lgUser').value || ''; $('#lgPass').value = '';
+  $('#scr-login').dataset.back = back || '#scr-title';
+  show('#scr-login'); setTimeout(() => $('#lgUser').focus(), 50);
+}
+async function loginSubmit(create) {
+  const u = $('#lgUser').value.trim(), p = $('#lgPass').value, msg = $('#lgMsg');
+  if (!u || !p) { msg.textContent = 'Enter a username and a password.'; return; }
+  msg.textContent = create ? 'Creating your account…' : 'Logging in…'; $('#lgGo').disabled = $('#lgNew').disabled = true;
+  try {
+    if (create) await accSignup(u, p); else await accLogin(u, p);
+    toast(create ? `Welcome to the SMFA, ${accName()}` : `Welcome back, ${accName()}`, create ? 'Your progress now saves online.' : 'Progress synced.');
+    show($('#scr-login').dataset.back || '#scr-title'); updateProfileCard();
+  } catch (e) { msg.textContent = /invalid login|Invalid/i.test(e.message) ? 'Wrong username or password.' : /already registered|already exists|duplicate/i.test(e.message) ? 'That username is taken.' : e.message; }
+  $('#lgGo').disabled = $('#lgNew').disabled = false;
+}
+$('#lgGo').addEventListener('click', () => loginSubmit(false));
+$('#lgNew').addEventListener('click', () => loginSubmit(true));
+$('#lgPass').addEventListener('keydown', e => { if (e.key === 'Enter') loginSubmit(false); });
+$('#lgBack').addEventListener('click', () => show($('#scr-login').dataset.back || '#scr-title'));
+
+/* ---------- hooks ---------- */
+{
+  const saved = store.get(ACC_KEY, null);
+  if (saved && saved.user && saved.token && SB_ON()) { Object.assign(ACC, saved); ACC.loaded = true; setTimeout(() => accRefreshIfNeeded().then(() => cloudSync('merge')).then(accRefreshEnts), 400); }
+  else if (saved && !SB_ON()) { /* keep the cached session until the server is configured */ }
+  const _eb = endBattle; endBattle = function () { const r = _eb.apply(this, arguments); setTimeout(cloudSaveSoon, 3000); return r; };
+  const _ps = profSave; profSave = function () { const r = _ps.apply(this, arguments); cloudSaveSoon(); return r; };
+  const _sc = saveCamp; saveCamp = function () { const r = _sc.apply(this, arguments); cloudSaveSoon(); return r; };
+  const _mg = medalGive; medalGive = function () { const r = _mg.apply(this, arguments); cloudSaveSoon(); return r; };
+  const _sh = show; show = function (sel) { const r = _sh.apply(this, arguments); if (sel === '#scr-title') { renderAccount(); if (accOn() && Date.now() - ACC.lastSync > 60000) cloudSync('merge'); } return r; };
+  renderAccount();
+}
+/* ================= store content: paid cosmetics, gun skins, menu themes, new weapons ================= */
+// Every item here is NEW. Everything that was already free stays free.
+// A cosmetic with `prod` is unlocked by owning that store product (SD or Rp); `tier` means a membership pass unlocks it while active.
+
+// ---- new Barracks slots ----
+COS.gunskin = [{ id: 'none', name: 'Standard', desc: 'Factory finish.' }];
+COS.menubg = [{ id: 'default', name: 'Command Bunker', desc: 'The classic title screen.' }];
+COS_TABS.push(['gunskin', 'Weapon skins'], ['menubg', 'Menu theme']);
+if (!profDefault().equip.gunskin) { const _pd = profDefault; profDefault = () => { const d = _pd(); d.equip.gunskin = 'none'; d.equip.menubg = 'default'; return d; }; }
+
+const addCos = (slot, items) => items.forEach(it => { it._slot = slot; COS[slot].push(it); });
+// President outfits
+addCos('pres', [
+  { id: 'pres_ceremonial', name: 'Presidential Dress', c: [0x0e2a1a, 0x0b1f14, 'cap', 0x0b1f14, 0xd4a017], prod: 'cos_presidential' },
+  { id: 'pres_arctic_cmd', name: 'Arctic Command', c: [0xdfe8ee, 0xb8c4cc, 'ushanka', 0x2a2f33, 0x39d353], prod: 'cos_arctic_pack' },
+  { id: 'pres_emerald', name: 'Emerald Vanguard', c: [0x0f3b2a, 0x0a2a1e, 'helmet', 0x1a5a3a, 0x39ff8a], prod: 'cos_uni_emerald' }
+]);
+// soldier uniforms
+addCos('uni', [
+  { id: 'uni_plus', name: 'Standard Issue Plus', c: [0x3f7238, 0x2a4a26, 0x3a6a33], prod: 'cos_uni_plus' },
+  { id: 'uni_arctic_op', name: 'Arctic Operator', c: [0xeef2f4, 0x9aa6ad, 0xd8e0e4], prod: 'cos_uni_arctic' },
+  { id: 'uni_emerald', name: 'Emerald Vanguard', c: [0x0f3b2a, 0x0a2a1e, 0x1a5a3a], prod: 'cos_uni_emerald' },
+  { id: 'uni_coll_forest', name: 'Deep Forest', c: [0x1e3a1a, 0x16281a, 0x2a4a22], prod: 'cos_uniform_coll' },
+  { id: 'uni_coll_sand', name: 'Sandstorm', c: [0xd2b98a, 0xa88a5a, 0xc4a870], prod: 'cos_uniform_coll' },
+  { id: 'uni_coll_steel', name: 'Steel Grey', c: [0x4a5058, 0x30343a, 0x5a6068], prod: 'cos_uniform_coll' },
+  { id: 'uni_elite', name: 'Elite Black-Green', c: [0x14201a, 0x0e1610, 0x39d353], prod: 'cos_elite_pack' },
+  { id: 'uni_arctic_vet', name: 'Arctic Veteran', c: [0xc9d6dc, 0x6b7a84, 0xe6edf1], prod: 'cos_arctic_pack' },
+  { id: 'uni_variant_olive', name: 'Olive Drab', c: [0x5a5a2e, 0x3f3f22, 0x4a4a26], prod: 'cos_uni_variant' },
+  { id: 'uni_captain', name: 'Captain Dress', c: [0x1c3a5a, 0x12283e, 0xd4a017], tier: 'captain' },
+  { id: 'uni_general', name: 'General Dress', c: [0x2a1a3a, 0x1a1026, 0xd4a017], tier: 'general' }
+]);
+addCos('helmet', [
+  { id: 'elite_helmet', name: 'Elite Visor Helmet', prod: 'cos_elite_pack', draw: 'helmet' },
+  { id: 'arctic_hood', name: 'Arctic Hood', prod: 'cos_arctic_pack', draw: 'ushanka' },
+  { id: 'ranger_boonie', name: 'Ranger Boonie', prod: 'cos_helmet_single', draw: 'boonie' },
+  { id: 'night_mask', name: 'Night Balaclava', prod: 'cos_facecover', draw: 'mask' }
+]);
+addCos('paint', [
+  { id: 'vp_sand', name: 'Sand Camo', col: 0xc9b07a, prod: 'cos_vehicle_paint' }, { id: 'vp_forest', name: 'Forest Camo', col: 0x2f4a22, prod: 'cos_vehicle_paint' },
+  { id: 'vp_steel', name: 'Gunmetal', col: 0x3a3e44, prod: 'cos_vehicle_paint' }, { id: 'vp_white', name: 'Snow White', col: 0xf0f4f6, prod: 'cos_vehicle_paint' },
+  { id: 'vp_emerald', name: 'Emerald Gloss', col: 0x14a060, prod: 'cos_vehicle_paint' },
+  { id: 'vp_arctic_ghost', name: 'Arctic Ghost Paint', col: 0xdbe6ee, prod: 'cos_arctic_vpaint' },
+  { id: 'vp_tank_scheme', name: 'Tiger Armor', col: 0x8a7a3a, prod: 'cos_tank_paint' }, { id: 'vp_heli_scheme', name: 'Sky Grey', col: 0x8a98a8, prod: 'cos_heli_paint' }
+]);
+addCos('flag', [{ id: 'flag_hq', name: 'HQ Banner Green', col: 0x1f8f35, prod: 'cos_hq_flag' }]);
+addCos('emblem', [
+  { id: 'em_wing', name: 'Wings', sym: '✈', prod: 'cos_insignia' }, { id: 'em_shield', name: 'Shield', sym: '⛨', prod: 'cos_insignia' }, { id: 'em_sword', name: 'Swords', sym: '⚔', prod: 'cos_insignia' },
+  { id: 'em_target', name: 'Target', sym: '◎', prod: 'cos_insignia' }, { id: 'em_flame', name: 'Flame', sym: '♨', prod: 'cos_insignia' },
+  { id: 'em_elite', name: 'Elite Star', sym: '✪', prod: 'cos_elite_pack' }, { id: 'em_neon', name: 'Neon Smile', sym: '◕‿◕', prod: 'cos_neon_insignia' },
+  { id: 'em_arctic', name: 'Snowflake', sym: '❄', prod: 'cos_arctic_pack' }, { id: 'em_pres', name: 'Presidential Seal', sym: '❂', prod: 'cos_presidential' },
+  { id: 'em_memo', name: 'Campaign Ribbon', sym: '🎗', prod: 'cos_memorabilia' }, { id: 'em_shoulder', name: 'Shoulder Chevrons', sym: '≡', prod: 'cos_shoulder' },
+  { id: 'em_general', name: 'General\'s Laurel', sym: '❦', tier: 'general' }
+]);
+addCos('killfx', [
+  { id: 'pixelstorm', name: 'Pixel Storm', desc: 'The body shatters into a rising cloud of cyan cubes.', prod: 'fx_pixelstorm' },
+  { id: 'static', name: 'Static Shock', desc: 'Blue arcs crawl over the body before it vanishes.', prod: 'fx_static' },
+  { id: 'emerald', name: 'Emerald Burst', desc: 'A green shockwave dissolves the body.', prod: 'fx_emerald' },
+  { id: 'golden', name: 'Golden Finale', desc: 'Gold fireworks and a shower of coins.', prod: 'fx_golden' }
+]);
+addCos('gunskin', [
+  { id: 'neon', name: 'Neon Strike', col: 0x39ff8a, glow: true, prod: 'skin_neon' },
+  { id: 'arctic', name: 'Arctic Ghost', col: 0xe8f1f6, prod: 'skin_arctic' },
+  { id: 'emerald', name: 'Emerald Protocol', col: 0x0f8a4a, prod: 'skin_emerald' },
+  { id: 'golden', name: 'Golden Command', col: 0xd4a017, prod: 'skin_golden' },
+  { id: 'carbon', name: 'Carbon', col: 0x2a2d31, prod: 'cos_weapon_skins' }, { id: 'tan', name: 'Desert Tan', col: 0xb59a6a, prod: 'cos_weapon_skins' },
+  { id: 'woodland', name: 'Woodland', col: 0x3a5a2a, prod: 'cos_weapon_skins' }, { id: 'chrome', name: 'Chrome', col: 0xc8ccd2, prod: 'cos_weapon_skins' },
+  { id: 'rifle_crimson', name: 'Crimson Rifle', col: 0x8a1a22, prod: 'skin_rifle' }, { id: 'sniper_shadow', name: 'Shadow Sniper', col: 0x101418, prod: 'skin_sniper' },
+  { id: 'shotgun_brass', name: 'Brass Shotgun', col: 0xb08a3a, prod: 'skin_shotgun' }, { id: 'pistol_pearl', name: 'Pearl Pistol', col: 0xe8e2d8, prod: 'skin_pistol' },
+  { id: 'melee_obsidian', name: 'Obsidian Blade', col: 0x1a1020, prod: 'skin_melee' }
+]);
+addCos('menubg', [
+  { id: 'poster_war', name: 'War Poster', desc: 'Campaign propaganda poster backdrop.', css: 'radial-gradient(ellipse at 30% 20%, rgba(239,75,79,.25), transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(242,179,61,.18), transparent 50%), #0b0d0b', prod: 'cos_memorabilia' },
+  { id: 'poster_victory', name: 'Victory Poster', desc: 'Green dawn over the capital.', css: 'linear-gradient(180deg, #06140a, #0b2412 60%, #0b0d0b)', prod: 'cos_memorabilia' },
+  { id: 'menu_neon', name: 'Neon Grid', desc: 'Glowing grid floor.', css: 'repeating-linear-gradient(0deg, rgba(57,255,138,.08) 0 1px, transparent 1px 26px), repeating-linear-gradient(90deg, rgba(57,255,138,.08) 0 1px, transparent 1px 26px), #050a07', prod: 'cos_menu_bg' },
+  { id: 'menu_arctic', name: 'Whiteout', desc: 'Snowstorm over the ice base.', css: 'radial-gradient(ellipse at 50% 100%, rgba(200,220,235,.25), transparent 60%), linear-gradient(180deg, #0e1418, #1a2630)', prod: 'cos_arctic_pack' },
+  { id: 'menu_gold', name: 'Presidential Gold', desc: 'Dark marble and gold.', css: 'radial-gradient(ellipse at 50% 0%, rgba(212,160,23,.28), transparent 55%), #0a0806', prod: 'cos_presidential' }
+]);
+// helmets added above use `draw` to pick a hat shape; teach the renderer
+{
+  const _ac = applyCosmetics; applyCosmetics = function () {
+    _ac.apply(this, arguments);
+    const E = prof().equip, h = cosItem('helmet', E.helmet); NATIONS.smfa.hat = h.draw || h.id;
+    applyMenuBg();
+  };
+  function applyMenuBg() {
+    const it = cosItem('menubg', prof().equip.menubg || 'default');
+    const t = $('#scr-title'); if (t) t.style.background = it.css || '';
+  }
+  window.applyMenuBg = applyMenuBg;
+}
+// swatches for the new slots
+{
+  const _sw = cosSwatch; cosSwatch = function (slot, it) {
+    const hx = c => '#' + new THREE.Color(c).getHexString();
+    if (slot === 'gunskin') return `<div class="sw2"><i style="background:${it.col !== undefined ? hx(it.col) : '#1d1e1c'};flex:3;${it.glow ? 'box-shadow:0 0 10px ' + hx(it.col) + ' inset' : ''}"></i></div>`;
+    if (slot === 'menubg') return `<div class="sw2"><i style="background:${it.css || '#0b0d0b'};flex:3"></i></div>`;
+    if (slot === 'helmet' && it.draw) return `<div class="sw2 sym">${{ helmet: '⛑', beret: '◒', cap: '🧢', boonie: '◠', ushanka: '❄', mask: '◉', tall: '▮' }[it.draw] || '◒'}</div>`;
+    if (slot === 'killfx') { const m = { pixelstorm: '▩', static: '⚡', emerald: '✺', golden: '✦' }[it.id]; if (m) return `<div class="sw2 sym">${m}</div>`; }
+    return _sw.apply(this, arguments);
+  };
+}
+// gun colour for the President's weapon (third person and first person)
+function gunColor(u, GD) {
+  if (!u || !u.isPlayer) return GD[3];
+  const sk = cosItem('gunskin', prof().equip.gunskin || 'none'); return sk.col !== undefined ? sk.col : GD[3];
+}
+
+/* ---------- new kill effects ---------- */
+{
+  const _pk = playKillFx; playKillFx = function (fx, x, y, z, rd, corpse) {
+    if (fx === 'pixelstorm') { for (let k = 0; k < 26; k++) spawnDebris(x + rr(-0.4, 0.4), y + rr(-0.7, 0.8), z + rr(-0.4, 0.4), rr(-1.5, 1.5), rr(4, 9), rr(-1.5, 1.5), 0.2, 0.2, 0.2, 0.2, 0.9, 1, 4, 0); for (let k = 0; k < 20; k++) PS.add.spawn(x, y, z, rr(-2, 2), rr(2, 6), rr(-2, 2), rr(0.6, 1.2), rr(0.15, 0.3), 0.3, 0.9, 1, 1, 0, 0, 2); if (corpse) corpse.hideAt = G.t + 0.05; try { SFX.tone(0.1, 0.3, 900, 1800, 'square'); } catch (e) { } return; }
+    if (fx === 'golden') { for (let k = 0; k < 50; k++) PS.crisp.spawn(x, y + 0.5, z, rr(-4, 4), rr(3, 8), rr(-4, 4), rr(1.2, 2.2), rr(0.07, 0.12), 1, 0.75, 0.15, 1, 6, 0, 0); for (let b = 0; b < 3; b++) G.timers.push({ t: G.t + b * 0.3, fn: () => { const hx = x + rr(-2, 2), hy = y + rr(6, 10), hz = z + rr(-2, 2); for (let k = 0; k < 40; k++) { const a = R() * TAU, e = rr(-1, 1), s = rr(5, 8); PS.add.spawn(hx, hy, hz, Math.cos(a) * s * Math.sqrt(1 - e * e), e * s, Math.sin(a) * s * Math.sqrt(1 - e * e), rr(0.8, 1.4), rr(0.25, 0.45), 1, 0.8, 0.2, 1, 3, 0, 2); } try { SFX.burst(0.08, 0.3, 1800, 0.6, 'highpass'); } catch (e) { } } }); return; }
+    if (fx === 'static' || fx === 'emerald') { G_KFX.push({ fx, x, y, z, t: 0, rd, corpse, mesh: null }); try { SFX.tone(0.1, fx === 'static' ? 0.5 : 0.4, fx === 'static' ? 1200 : 400, fx === 'static' ? 200 : 900, 'sawtooth'); } catch (e) { } return; }
+    return _pk.apply(this, arguments);
+  };
+  const _kt = killFxTick; killFxTick = function (dt) {
+    G_KFX = G_KFX.filter(F => {
+      if (F.fx !== 'static' && F.fx !== 'emerald') return true;
+      F.t += dt; const t = F.t, rd = F.rd;
+      if (F.fx === 'static') {
+        if (rd) { rd.frozen = true; if (R() < 0.8) { const a = Math.floor(R() * rd.n) * 3, b = Math.floor(R() * rd.n) * 3; addTracer(rd.p[a], rd.p[a + 1], rd.p[a + 2], rd.p[b], rd.p[b + 1], rd.p[b + 2], 0.5, 0.75, 1); } if (t > 0.9) for (let k = 0; k < rd.n; k++) { rd.p[k * 3] += rr(-0.04, 0.04); rd.p[k * 3 + 2] += rr(-0.04, 0.04); } }
+        if (R() < 0.5) PS.add.spawn(F.x + rr(-0.5, 0.5), F.y + rr(-0.5, 0.8), F.z + rr(-0.5, 0.5), rr(-1, 1), rr(0, 2), rr(-1, 1), rr(0.2, 0.4), rr(0.1, 0.2), 0.6, 0.8, 1, 1, 0, 0, 2);
+        if (t > 1.6 && F.corpse) F.corpse.hideAt = G.t; if (t > 1.6) { flashAt(F.x, F.y + 1, F.z, 3); return false; }
+      } else {
+        if (!F.mesh) { F.mesh = new THREE.Mesh(new THREE.RingGeometry(0.2, 0.5, 32), new THREE.MeshBasicMaterial({ color: 0x39ff8a, transparent: true, opacity: 0.8, side: THREE.DoubleSide, depthWrite: false, fog: false })); F.mesh.rotation.x = -PI / 2; F.mesh.position.set(F.x, 0.1, F.z); scene.add(F.mesh); }
+        F.mesh.scale.setScalar(1 + t * 9); F.mesh.material.opacity = Math.max(0, 0.8 - t * 0.6);
+        if (rd) { rd.frozen = true; for (let k = 0; k < rd.n; k++) rd.p[k * 3 + 1] += dt * 0.6; }
+        for (let k = 0; k < 4; k++) PS.add.spawn(F.x + rr(-0.5, 0.5), F.y + rr(-0.8, 0.8), F.z + rr(-0.5, 0.5), rr(-1, 1), rr(1, 3), rr(-1, 1), rr(0.4, 0.8), rr(0.12, 0.25), 0.3, 1, 0.5, 1, 0, 0, 2);
+        if (t > 1.2 && F.corpse) F.corpse.hideAt = G.t; if (t > 1.5) { scene.remove(F.mesh); F.mesh.geometry.dispose(); F.mesh.material.dispose(); return false; }
+      }
+      return true;
+    });
+    return _kt.apply(this, arguments);
+  };
+}
+
+/* ---------- new weapons (President only; sidegrades, never stronger than the free set) ---------- */
+// SD = Smiley Dollars. Each can be unlocked with SD or with an optional Rp purchase in the Store.
+const NEW_WEAPONS = {
+  ar17:   { name: 'AR-17 Viper', cat: 1, dmg: 20, prate: 0.095, mag: 32, reload: 1.7, range: 70, acc: 0.42, spread: [0.022, 0.006], gun: [0.84, 0.07, 0.11, 0x2a3a2a], sd: 2000, rp: 2000, desc: 'Balanced all-rounder. A touch faster than the standard rifle, a touch weaker.' },
+  smg9:   { name: 'SMG-9 Flicker', cat: 1, dmg: 13, prate: 0.055, mag: 36, reload: 1.4, range: 42, acc: 0.42, spread: [0.034, 0.014], gun: [0.5, 0.07, 0.13, 0x1e2a3a], sd: 1500, rp: 2000, desc: 'Fast handling and mobility, weak at range.' },
+  br8:    { name: 'BR-8 Hammer', cat: 1, dmg: 38, prate: 0.22, mag: 20, reload: 2.1, range: 85, acc: 0.5, spread: [0.02, 0.004], kick: 0.016, gun: [0.95, 0.08, 0.12, 0x3a2a1a], sd: 3000, rp: 3000, desc: 'Battle rifle. Hard-hitting, slow and kicks like a mule.' },
+  sr12:   { name: 'SR-12 Longshot', cat: 2, dmg: 90, prate: 1.15, mag: 4, reload: 2.8, range: 120, acc: 0.72, spread: [0.05, 0.0003], heavy: true, scoped: true, kick: 0.04, gun: [1.2, 0.07, 0.11, 0x2a2a30], sd: 3500, rp: 3000, desc: 'Precision sniper. Slower follow-up than the standard sniper, slightly harder hit.' },
+  dmr6:   { name: 'DMR-6 Sentinel', cat: 2, dmg: 48, prate: 0.38, mag: 10, reload: 2.2, range: 105, acc: 0.6, spread: [0.035, 0.001], scoped: true, kick: 0.02, gun: [1.05, 0.07, 0.11, 0x263a2a], sd: 2800, rp: 3000, desc: 'Semi-automatic marksman rifle.' },
+  lmg40:  { name: 'LMG-40 Bastion', cat: 1, dmg: 16, prate: 0.085, mag: 120, reload: 3.6, range: 70, acc: 0.3, spread: [0.04, 0.016], slow: 0.85, gun: [1.05, 0.1, 0.15, 0x2a2a22], sd: 4000, rp: 4000, desc: 'Sustained fire. Slows you down and reloads slowly.' },
+  sg7:    { name: 'SG-7 Breacher', cat: 1, dmg: 12, pellets: 9, prate: 0.85, mag: 5, reload: 2.6, range: 20, acc: 0.5, kick: 0.045, gun: [0.85, 0.08, 0.1, 0x3a2a1c], sd: 2500, rp: 2000, desc: 'Close-range shotgun. Useless at distance.' },
+  p9:     { name: 'P-9 Compact', cat: 2, dmg: 18, prate: 0.16, mag: 15, reload: 1.1, range: 40, acc: 0.45, spread: [0.025, 0.01], pistol: true, gun: [0.3, 0.06, 0.1, 0x1a1a1a], sd: 500, rp: 1000, desc: 'Light sidearm. Fast reload.' },
+  r45:    { name: 'R-45 Heavy', cat: 2, dmg: 34, prate: 0.32, mag: 7, reload: 1.5, range: 45, acc: 0.45, spread: [0.03, 0.012], pistol: true, kick: 0.02, gun: [0.34, 0.07, 0.11, 0x3a3030], sd: 1200, rp: 1000, desc: 'Heavy pistol. Big hits, small magazine.' },
+  t3:     { name: 'T-3 Shock', cat: 2, dmg: 6, prate: 0.7, mag: 4, reload: 2.0, range: 18, acc: 0.5, spread: [0.03, 0.015], pistol: true, stun: 2.2, gun: [0.32, 0.07, 0.11, 0x2a4a7a], sd: 1500, rp: 2000, desc: 'Stun sidearm. Freezes one soldier for 2 seconds. Barely hurts.' },
+  knife2: { name: 'Trench Knife', cat: 2, dmg: 130, prate: 0.5, mag: 0, reload: 0, range: 2.4, acc: 1, melee: true, gun: [0.3, 0.03, 0.06, 0x8a8a90], sd: 800, rp: 1000, desc: 'Quicker swing than the combat knife, a little less bite.' },
+  baton:  { name: 'Training Baton', cat: 2, dmg: 60, prate: 0.35, mag: 0, reload: 0, range: 2.6, acc: 1, melee: true, stun: 1.2, gun: [0.5, 0.04, 0.04, 0x222222], sd: 500, rp: 1000, desc: 'Non-lethal melee. Stuns on hit.' }
+};
+for (const [id, W] of Object.entries(NEW_WEAPONS)) {
+  WEAP[id] = { name: W.name, dmg: W.dmg, aiRate: 0.2, burst: 1, pause: [0.5, 1], range: W.range, acc: W.acc, mag: W.mag, reload: W.reload, prate: W.prate, heavy: !!W.heavy, melee: !!W.melee, pellets: W.pellets, stun: W.stun, pistol: W.pistol, scoped: W.scoped, spread: W.spread, kick: W.kick, slow: W.slow, newWeapon: true };
+  GUNDIM[id] = W.gun; PLAYER_AMMO[id] = [W.mag, W.mag * (W.pistol ? 6 : W.pellets ? 7 : 5)];
+}
+const BASE_WEAPONS = PW_LIST.slice();
+function ownsWeapon(id) { return !!(WEAP[id] && !WEAP[id].newWeapon) || (typeof owns === 'function' && owns('wpn_' + id)); }
+function refreshWeaponList() {
+  PW_LIST.length = 0; PW_LIST.push(...BASE_WEAPONS);
+  for (const [id, W] of Object.entries(NEW_WEAPONS)) if (ownsWeapon(id)) { PW_LIST.push(id); if (!WCATS[W.cat].includes(id)) WCATS[W.cat].push(id); }
+  for (const c of [1, 2, 3]) WCATS[c] = WCATS[c].filter(id => !NEW_WEAPONS[id] || ownsWeapon(id));
+}
+try { refreshWeaponList(); } catch (e) { }
+{
+  const _sb = startBattle; startBattle = function () { refreshWeaponList(); return _sb.apply(this, arguments); };
+  // generic firing for the new weapons: pellets, spread, kick, stun, slow
+  const _pf = playerFire; playerFire = function () {
+    const p = G.player; if (!p || p.inVeh) return _pf.apply(this, arguments);
+    const wk = p.weapon, w = WEAP[wk]; if (!w || !w.newWeapon || w.melee) return _pf.apply(this, arguments);
+    if (p.reloadT > 0 || p.fireCd > 0) return;
+    if (p.mag[wk] <= 0) { reload(); return; }
+    p.mag[wk]--; p.fireCd = w.prate; G.vmKick = 1;
+    const m = muzzleOf(p); muzzleFlash(m[0], m[1], m[2]);
+    const sp = (w.spread || [0.02, 0.006]), spread = (p.ads ? sp[1] : sp[0]) * (p.speed > 3 ? 1.8 : 1) * (p.blind ? 5 : 1);
+    if (w.pellets) { for (let k = 0; k < w.pellets; k++) playerHitscan(w.dmg * 1.15, (p.ads ? 0.04 : 0.07), m, false, k > 2); SFX.shot(2, 'heavy'); }
+    else { G.stunShot = w.stun || 0; playerHitscan(w.dmg * (w.scoped ? 1.6 : 1.1), spread, m, !!w.heavy); G.stunShot = 0; SFX.shot(2, w.heavy || w.pistol ? 'heavy' : 'rifle'); }
+    G.camPitch += w.kick || 0.006; G.camYaw += rr(-0.003, 0.003);
+    if (p.mag[wk] <= 0) reload();
+  };
+  // the stun lands through hurtUnit (so armour and headshots still apply)
+  const _hu = hurtUnit; hurtUnit = function (u, dmg, hx, hy, hz, dx, dy, dz, part, kind, attacker) {
+    const r = _hu.apply(this, arguments);
+    if (G && G.stunShot && u.alive && !u.isPlayer && attacker && attacker.isPlayer) { u.stunT = G.t + G.stunShot; u.tgt = null; for (let k = 0; k < 8; k++) PS.add.spawn(u.x + rr(-0.3, 0.3), u.y + rr(0.5, 1.6), u.z + rr(-0.3, 0.3), rr(-1, 1), rr(0, 1), rr(-1, 1), rr(0.3, 0.6), rr(0.08, 0.15), 0.5, 0.8, 1, 1, 0, 0, 2); }
+    return r;
+  };
+  const _ka = knifeAttack; knifeAttack = function (p) {
+    const w = WEAP[p.weapon]; if (w && w.stun) G.stunShot = w.stun;
+    const r = _ka.apply(this, arguments); G.stunShot = 0; return r;
+  };
+  const _ua = updateUnitAI; updateUnitAI = function (u, dt) {
+    if (u.stunT > G.t) { u.speed = 0; u.aiming = false; u.burst = 0; if (R() < dt * 6) PS.add.spawn(u.x + rr(-0.3, 0.3), u.y + rr(0.8, 1.7), u.z + rr(-0.3, 0.3), 0, 0.5, 0, 0.25, 0.1, 0.5, 0.8, 1, 1, 0, 0, 2); return; }
+    return _ua.apply(this, arguments);
+  };
+  // the LMG slows the President a little
+  const _mu = moveUnit; moveUnit = function (u, ang, spd, dt) { if (u.isPlayer && u.w && u.w.slow) spd *= u.w.slow; return _mu.apply(this, [u, ang, spd, dt]); };
+}
+/* ================= the SMFA Store: memberships, story DLC, bundles, cosmetics, weapons, orders, codes, admin ================= */
+// How to pay: the President collects cash or GoPay, then approves the order in the admin screen (or hands out a code).
+const PAY_INFO = { gopay: 'Ask the President for the GoPay number', cash: 'Hand the money to the President in person' };
+const RPF = n => 'Rp' + Math.round(n).toLocaleString('en-US');
+const MEMBERS = {
+  recruit:  { id: 'mem_recruit', name: 'Recruit', rp: 0, disc: 0, rank: 0, perks: ['Access to the base game', 'Standard cosmetics', 'Community access', 'Report bugs and suggest features', 'Earn ranks, SD and ordinary unlocks', 'The full campaign and progression'] },
+  soldier:  { id: 'mem_soldier', name: 'Soldier', rp: 2000, disc: 5, rank: 1, perks: ['Everything in Recruit', 'Soldier membership badge and nameplate', 'Development screenshots', 'Selected community polls', 'Member-only cosmetic design submissions'] },
+  sergeant: { id: 'mem_sergeant', name: 'Sergeant', rp: 3000, disc: 10, rank: 2, perks: ['Everything in Soldier', 'Extra cosmetic rewards', 'Developer notes on progress', 'Selected feedback polls', 'Submit cosmetic concepts', 'Early previews of selected features'] },
+  captain:  { id: 'mem_captain', name: 'Captain', rp: 4000, disc: 15, rank: 3, perks: ['Everything in Sergeant', 'Captain Dress uniform', 'Special membership title', 'Previews of experimental features', 'Vote on optional mission and cosmetic themes', 'Submit original-character concepts', 'Playtest invitations when organised', 'Supporter wall listing (with your consent)'] },
+  general:  { id: 'mem_general', name: 'General', rp: 5000, disc: 20, rank: 4, perks: ['Everything in Captain', 'General Dress uniform and General\'s Laurel emblem', 'Thank-you in the credits and supporter wall', 'Priority consideration for cosmetic suggestions', 'Selected development builds and playtests', 'Propose poster and insignia concepts', 'Special supporter titles'] }
+};
+const memByProd = id => Object.values(MEMBERS).find(m => m.id === id);
+// ---- product catalogue (all prices are the ones the President set; avail: 'ok' = buyable now, 'soon' = shown but not for sale yet) ----
+const P_ = (id, kind, name, rp, o) => Object.assign({ id, kind, name, rp, disc: kind === 'dlc' || kind === 'cos' || kind === 'weapon', avail: 'ok' }, o || {});
+const PRODUCTS = [
+  // memberships (30-day passes)
+  ...Object.values(MEMBERS).filter(m => m.rp).map(m => P_(m.id, 'mem', m.name + ' Pass', m.rp, { desc: `30 days of ${m.name} membership. ${m.disc}% off eligible purchases.`, disc: false, days: 30 })),
+  // story DLC (concepts until their missions ship)
+  P_('dlc_whiteout', 'dlc', 'Operation Whiteout', 8000, { avail: 'soon', desc: 'Prequel campaign in Antarctica, 3–4 missions. The retreat, the ice base and the President\'s return.' }),
+  P_('dlc_shadow', 'dlc', 'Shadow Protocol', 10000, { avail: 'soon', desc: 'Four espionage missions: intercepts, infiltration and a conspiracy.' }),
+  P_('dlc_empires', 'dlc', 'The Five Empires', 15000, { avail: 'soon', desc: 'A multi-faction mini-campaign across the powers that divided the world.' }),
+  P_('dlc_lastlight', 'dlc', 'After the Last Light', 12000, { avail: 'soon', desc: 'A postwar campaign about the consequences of victory.' }),
+  P_('dlc_forgotten', 'dlc', 'The Forgotten Front', 8000, { avail: 'soon', desc: 'A stranded SMFA unit fights its way home.' }),
+  P_('dlc_broken', 'dlc', 'The Broken Alliance', 10000, { avail: 'soon', desc: 'Diplomacy, political conflict and unstable alliances.' }),
+  P_('dlc_deepfreeze', 'dlc', 'Project Deepfreeze', 8000, { avail: 'soon', desc: 'A mystery campaign about Antarctic research.' }),
+  P_('dlc_burden', 'dlc', 'The President\'s Burden', 12000, { avail: 'soon', desc: 'A character campaign about the cost of command.' }),
+  // cosmetic packs
+  P_('cos_insignia', 'cos', 'Basic Insignia Pack', 2000, { desc: 'Five emblems: Wings, Shield, Swords, Target, Flame.', items: 'emblem' }),
+  P_('cos_uniform_coll', 'cos', 'Uniform Collection', 3000, { desc: 'Three soldier uniforms: Deep Forest, Sandstorm, Steel Grey.', items: 'uni' }),
+  P_('cos_weapon_skins', 'cos', 'Weapon Skin Collection', 3000, { desc: 'Four weapon finishes: Carbon, Desert Tan, Woodland, Chrome.', items: 'gunskin' }),
+  P_('cos_vehicle_paint', 'cos', 'Vehicle Paint Pack', 3000, { desc: 'Five vehicle paints: Sand Camo, Forest Camo, Gunmetal, Snow White, Emerald Gloss.', items: 'paint' }),
+  P_('cos_elite_pack', 'cos', 'Elite Appearance Pack', 4000, { desc: 'Elite Black-Green uniform, Elite Visor Helmet and the Elite Star emblem.', items: 'uni' }),
+  P_('cos_armory_coll', 'bundle', 'SMFA Armory Collection', 7000, { desc: 'Weapon Skin Collection + Vehicle Paint Pack + Basic Insignia Pack.', includes: ['cos_weapon_skins', 'cos_vehicle_paint', 'cos_insignia'], fixed: true }),
+  P_('cos_memorabilia', 'cos', 'Campaign Memorabilia', 2000, { desc: 'War Poster and Victory Poster menu themes, plus the Campaign Ribbon emblem.', items: 'menubg' }),
+  P_('cos_presidential', 'cos', 'Presidential Collection', 3000, { desc: 'Presidential Dress outfit, Presidential Seal emblem and the Presidential Gold menu theme.', items: 'pres' }),
+  P_('cos_hq_decor', 'cos', 'Headquarters Decor Pack', 3000, { avail: 'soon', desc: 'Decorations for the HQ and the office. Coming with the HQ update.' }),
+  P_('cos_arctic_pack', 'cos', 'Arctic Veteran Pack', 3000, { desc: 'Arctic Command outfit, Arctic Veteran uniform, Arctic Hood, Snowflake emblem and the Whiteout menu theme.', items: 'uni' }),
+  // weapon appearance
+  P_('skin_neon', 'cos', 'Neon Strike skin', 1000, { desc: 'Glowing green weapon finish.', items: 'gunskin' }),
+  P_('skin_arctic', 'cos', 'Arctic Ghost skin', 2000, { desc: 'Frost-white weapon finish.', items: 'gunskin' }),
+  P_('skin_emerald', 'cos', 'Emerald Protocol skin', 3000, { desc: 'Deep emerald weapon finish.', items: 'gunskin' }),
+  P_('skin_golden', 'cos', 'Golden Command skin', 4000, { desc: 'Solid gold weapon finish.', items: 'gunskin' }),
+  P_('skin_rifle', 'cos', 'Crimson Rifle skin', 2000, { desc: 'A rifle-red weapon finish.', items: 'gunskin' }),
+  P_('skin_pistol', 'cos', 'Pearl Pistol skin', 1000, { desc: 'Pearl weapon finish.', items: 'gunskin' }),
+  P_('skin_shotgun', 'cos', 'Brass Shotgun skin', 2000, { desc: 'Brass weapon finish.', items: 'gunskin' }),
+  P_('skin_sniper', 'cos', 'Shadow Sniper skin', 3000, { desc: 'Matte black weapon finish.', items: 'gunskin' }),
+  P_('skin_melee', 'cos', 'Obsidian melee appearance', 2000, { desc: 'Obsidian blade finish.', items: 'gunskin' }),
+  P_('cos_charm', 'cos', 'Weapon charm', 1000, { avail: 'soon', desc: 'A dangling charm on your weapon.' }),
+  P_('cos_inspect', 'cos', 'Weapon inspection animation', 2000, { avail: 'soon', desc: 'Admire your weapon with a key press.' }),
+  P_('cos_nameplate', 'cos', 'Custom weapon nameplate', 1000, { avail: 'soon', desc: 'Name your weapon.' }),
+  // uniforms and equipment appearance
+  P_('cos_uni_plus', 'cos', 'Standard Issue Plus', 2000, { desc: 'A sharper cut of the SMFA green.', items: 'uni' }),
+  P_('cos_uni_arctic', 'cos', 'Arctic Operator', 3000, { desc: 'White-out uniform for the snow.', items: 'uni' }),
+  P_('cos_uni_emerald', 'cos', 'Emerald Vanguard', 4000, { desc: 'Emerald uniform for soldiers and a matching President outfit.', items: 'uni' }),
+  P_('cos_helmet_single', 'cos', 'Ranger Boonie helmet', 1000, { desc: 'Individual helmet appearance.', items: 'helmet' }),
+  P_('cos_vest', 'cos', 'Tactical vest appearance', 1000, { avail: 'soon', desc: 'Vest over the uniform.' }),
+  P_('cos_backpack', 'cos', 'Backpack appearance', 1000, { avail: 'soon', desc: 'Field pack on the back.' }),
+  P_('cos_gloves', 'cos', 'Gloves appearance', 1000, { avail: 'soon', desc: 'Tactical gloves.' }),
+  P_('cos_boots', 'cos', 'Boots appearance', 1000, { avail: 'soon', desc: 'Field boots.' }),
+  P_('cos_facecover', 'cos', 'Night Balaclava', 1000, { desc: 'Face-covering appearance.', items: 'helmet' }),
+  P_('cos_shoulder', 'cos', 'Shoulder Chevrons insignia', 500, { desc: 'Shoulder insignia emblem.', items: 'emblem' }),
+  P_('cos_uni_variant', 'cos', 'Olive Drab uniform variant', 1000, { desc: 'Uniform color variant.', items: 'uni' }),
+  P_('cos_full_set', 'cos', 'Full uniform set', 4000, { avail: 'soon', desc: 'Uniform, helmet, vest, gloves and boots together.' }),
+  // elimination and victory effects
+  P_('fx_pixelstorm', 'cos', 'Pixel Storm', 1000, { desc: 'Elimination effect: the body shatters into rising cyan cubes.', items: 'killfx' }),
+  P_('fx_static', 'cos', 'Static Shock', 2000, { desc: 'Elimination effect: blue arcs, then a flash.', items: 'killfx' }),
+  P_('fx_emerald', 'cos', 'Emerald Burst', 2000, { desc: 'Elimination effect: a green shockwave.', items: 'killfx' }),
+  P_('fx_golden', 'cos', 'Golden Finale', 3000, { desc: 'Elimination effect: gold fireworks and coins.', items: 'killfx' }),
+  P_('fx_banner', 'cos', 'Elimination banner', 1000, { avail: 'soon', desc: 'A banner on every President kill.' }),
+  P_('fx_sound', 'cos', 'Elimination sound', 1000, { avail: 'soon', desc: 'A custom sound on kills.' }),
+  P_('fx_message', 'cos', 'Custom elimination message', 1000, { avail: 'soon', desc: 'Your own kill-feed line.' }),
+  P_('fx_victory', 'cos', 'Victory animation', 2000, { avail: 'soon', desc: 'A victory pose at the end of a battle.' }),
+  P_('fx_mvp', 'cos', 'MVP introduction animation', 3000, { avail: 'soon', desc: 'An intro when you top the scoreboard.' }),
+  // vehicle and HQ cosmetics
+  P_('cos_tank_paint', 'cos', 'Tank paint scheme', 2000, { desc: 'Tiger Armor paint.', items: 'paint' }),
+  P_('cos_heli_paint', 'cos', 'Helicopter paint scheme', 2000, { desc: 'Sky Grey paint.', items: 'paint' }),
+  P_('cos_decals', 'cos', 'Transport vehicle decals', 1000, { avail: 'soon', desc: 'Decals on trucks and jeeps.' }),
+  P_('cos_vinsignia', 'cos', 'Custom vehicle insignia', 1000, { avail: 'soon', desc: 'Your emblem on every vehicle.' }),
+  P_('cos_horn', 'cos', 'Vehicle horn sound', 1000, { avail: 'soon', desc: 'A horn for your jeep.' }),
+  P_('cos_hq_flag', 'cos', 'Headquarters flag', 1000, { desc: 'HQ Banner Green flag.', items: 'flag' }),
+  P_('cos_office_decor', 'cos', 'Presidential office decorations', 2000, { avail: 'soon', desc: 'Decorations for the office view.' }),
+  P_('cos_briefing_bg', 'cos', 'Mission briefing background', 1000, { avail: 'soon', desc: 'A custom briefing backdrop.' }),
+  P_('cos_menu_bg', 'cos', 'Custom menu background', 2000, { desc: 'Neon Grid menu theme.', items: 'menubg' }),
+  P_('cos_arctic_vpaint', 'cos', 'Arctic vehicle paint', 2000, { desc: 'Arctic Ghost vehicle paint.', items: 'paint' }),
+  P_('cos_neon_insignia', 'cos', 'Neon insignia', 1000, { desc: 'Neon Smile emblem.', items: 'emblem' }),
+  // weapons (SD or Rp)
+  ...Object.entries(NEW_WEAPONS).map(([id, W]) => P_('wpn_' + id, 'weapon', W.name, W.rp, { sd: W.sd, desc: W.desc })),
+  // bundles (fixed prices, never discounted further)
+  P_('bnd_arctic_starter', 'bundle', 'Arctic Starter Bundle', 11000, { includes: ['dlc_whiteout', 'cos_arctic_pack', 'cos_insignia'] }),
+  P_('bnd_armory', 'bundle', 'Armory Bundle', 8000, { includes: ['cos_weapon_skins', 'cos_vehicle_paint', 'cos_elite_pack'] }),
+  P_('bnd_espionage', 'bundle', 'Espionage Collection', 12000, { includes: ['dlc_shadow', 'cos_memorabilia', 'cos_presidential'] }),
+  P_('bnd_world_war', 'bundle', 'World at War Bundle', 20000, { includes: ['dlc_empires', 'dlc_forgotten'] }),
+  P_('bnd_peace', 'bundle', 'Peace & Consequences Bundle', 19000, { includes: ['dlc_lastlight', 'dlc_broken'] }),
+  P_('bnd_deepfreeze', 'bundle', 'Deepfreeze Mystery Bundle', 13000, { includes: ['dlc_deepfreeze', 'dlc_whiteout'] }),
+  P_('bnd_president', 'bundle', 'President\'s Collection', 15000, { includes: ['dlc_burden', 'cos_presidential', 'cos_hq_decor'] }),
+  P_('bnd_story', 'bundle', 'SMFA Story Collection', 68000, { includes: ['dlc_whiteout', 'dlc_shadow', 'dlc_empires', 'dlc_lastlight', 'dlc_forgotten', 'dlc_broken', 'dlc_deepfreeze', 'dlc_burden'] }),
+  P_('bnd_complete', 'bundle', 'SMFA Complete Collection', 77000, { includes: ['dlc_whiteout', 'dlc_shadow', 'dlc_empires', 'dlc_lastlight', 'dlc_forgotten', 'dlc_broken', 'dlc_deepfreeze', 'dlc_burden', 'cos_ultimate', 'cos_hq_decor'] }),
+  P_('cos_ultimate', 'cos', 'Ultimate Appearance Collection', 8000, { avail: 'soon', desc: 'The complete appearance set. Contents to be finalised.' }),
+  P_('bnd_neon', 'bundle', 'Neon Soldier Bundle', 4000, { includes: ['skin_neon', 'cos_uni_plus', 'cos_neon_insignia'] }),
+  P_('bnd_arctic_war', 'bundle', 'Arctic Warfare Bundle', 5000, { includes: ['skin_arctic', 'cos_uni_arctic', 'cos_arctic_vpaint'] }),
+  P_('bnd_fx', 'bundle', 'Elimination FX Bundle', 4000, { includes: ['fx_pixelstorm', 'fx_static', 'fx_emerald'] }),
+  P_('bnd_pres_armory', 'bundle', 'Presidential Armory Bundle', 8000, { includes: ['skin_golden', 'cos_uni_emerald', 'cos_office_decor'] }),
+  P_('bnd_ultimate_armory', 'bundle', 'SMFA Ultimate Armory', 12000, { avail: 'soon', includes: [], desc: 'Selected skins, uniforms, effects and vehicle looks. Contents to be finalised before sale.' }),
+  P_('bnd_w_recruit', 'bundle', 'Recruit Arsenal', 3000, { includes: ['wpn_p9', 'wpn_knife2', 'wpn_ar17'] }),
+  P_('bnd_w_cqc', 'bundle', 'Close-Quarters Pack', 4000, { includes: ['wpn_smg9', 'wpn_sg7', 'wpn_r45'] }),
+  P_('bnd_w_marksman', 'bundle', 'Marksman Pack', 4000, { includes: ['wpn_sr12', 'wpn_dmr6'] }),
+  P_('bnd_w_heavy', 'bundle', 'Heavy Arsenal', 5000, { includes: ['wpn_lmg40', 'wpn_br8', 'skin_rifle', 'skin_sniper'] }),
+  P_('bnd_w_all', 'bundle', 'SMFA Complete Arsenal', 10000, { includes: Object.keys(NEW_WEAPONS).map(k => 'wpn_' + k) }),
+  P_('svc_oc', 'service', 'Original-character submission', 10000, { avail: 'soon', desc: 'Submit an original character for consideration. Paying never guarantees acceptance or a release date. Opens once the review process is ready.' })
+];
+const PROD = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+const prodOf = id => PROD[id];
+// every bundle content must exist; bundles of unfinished items are not for sale
+for (const p of PRODUCTS) if (p.kind === 'bundle') { p.includes = (p.includes || []).filter(i => PROD[i]); if (p.avail === 'ok' && (!p.includes.length || p.includes.some(i => PROD[i].avail !== 'ok'))) p.avail = 'soon'; }
+const regularSum = p => (p.includes || []).reduce((s, i) => s + (PROD[i] ? PROD[i].rp : 0), 0);
+
+/* ---------- ownership ---------- */
+const localOwned = () => prof().owned;
+function owns(id) {
+  let P; try { P = PROD[id]; } catch (e) { return false; } if (!P) return false;
+  if (localOwned()['prod:' + id]) return true;
+  if (ACC.ents && ACC.ents.some(e => e.product_id === id && (!e.expires_at || new Date(e.expires_at) > new Date()))) return true;
+  if (P.kind === 'bundle' && P.includes.length && P.includes.every(owns)) return true;
+  return false;
+}
+function ownsAny(ids) { return ids.some(owns); }
+function activeTier() {
+  if (!ACC.ents) return MEMBERS.recruit;
+  let best = MEMBERS.recruit, exp = null;
+  for (const e of ACC.ents) { const m = memByProd(e.product_id); if (m && e.expires_at && new Date(e.expires_at) > new Date() && m.rank > best.rank) { best = m; exp = e.expires_at; } }
+  best.expires = exp; return best;
+}
+function tierDaysLeft() { const t = activeTier(); if (!t.expires) return 0; return Math.max(0, Math.ceil((new Date(t.expires) - Date.now()) / 86400000)); }
+function hasTier(name) { return activeTier().rank >= (MEMBERS[name] || { rank: 99 }).rank; }
+// price after membership discount (bundles and memberships are never discounted); partial bundles priced by the share you still need
+function priceOf(p) {
+  if (p.kind === 'bundle') {
+    const tot = regularSum(p); if (!tot) return { rp: p.rp, base: p.rp, partial: false, pct: 0 };
+    const need = p.includes.filter(i => !owns(i)).reduce((s, i) => s + PROD[i].rp, 0);
+    if (need === tot) return { rp: p.rp, base: p.rp, partial: false, pct: 0, saves: tot - p.rp };
+    const rp = Math.ceil(p.rp * need / tot / 500) * 500; return { rp, base: p.rp, partial: true, pct: 0, saves: need - rp };
+  }
+  const t = activeTier(), pct = p.disc ? t.disc : 0;
+  const rp = pct ? Math.ceil(p.rp * (1 - pct / 100) / 50) * 50 : p.rp;
+  return { rp, base: p.rp, pct, partial: false };
+}
+// Barracks: items tied to products or membership tiers
+{
+  const _cl = cosLock; cosLock = function (it) {
+    if (it.prod) { if (owns(it.prod)) return null; const P = PROD[it.prod]; return { text: P ? `Store: ${P.name}` : 'Store item', store: it.prod }; }
+    if (it.tier) { if (hasTier(it.tier)) return null; return { text: `${MEMBERS[it.tier].name} membership`, store: MEMBERS[it.tier].id }; }
+    return _cl.apply(this, arguments);
+  };
+  const _rb = renderBarracks; renderBarracks = function () {
+    _rb.apply(this, arguments);
+    // locked store items get a "Store" button
+    $$('#cosGrid .cos.locked').forEach((el, i) => { });
+    $$('#cosGrid .cos').forEach(el => {
+      const name = el.querySelector('b') && el.querySelector('b').textContent; const it = COS[cosTab].find(i => i.name === name); if (!it) return;
+      const lock = cosLock(it); if (lock && lock.store && !el.querySelector('[data-store]')) { const b = document.createElement('button'); b.className = 'btn small'; b.dataset.store = lock.store; b.textContent = 'Store'; b.onclick = () => openStore(lock.store, '#scr-barracks'); el.appendChild(b); }
+    });
+  };
+}
+
+// a lapsed membership or a revoked item must not stay equipped
+function enforceLocks() {
+  const P = prof(); let changed = false;
+  for (const [slot] of COS_TABS) { const it = COS[slot].find(i => i.id === P.equip[slot]); if (it && cosLock(it)) { P.equip[slot] = COS[slot][0].id; changed = true; } }
+  if (changed) { profSave(P); applyCosmetics(); }
+}
+/* ---------- the store screen ---------- */
+let stTab = 'mem', stBack = '#scr-title';
+const ST_TABS = [['mem', 'Memberships'], ['dlc', 'Story DLC'], ['bundle', 'Bundles'], ['cos', 'Cosmetics'], ['weapon', 'Weapons'], ['owned', 'Owned'], ['orders', 'Orders'], ['wall', 'Supporters']];
+function openStore(focus, back) {
+  stBack = back || '#scr-title';
+  if (focus) { const p = PROD[focus]; if (p) stTab = p.kind === 'service' ? 'cos' : p.kind; }
+  accRefreshEnts().then(() => renderStore(focus)); renderStore(focus); show('#scr-store');
+}
+function stHeader() {
+  const t = activeTier(), d = tierDaysLeft(), P = prof();
+  return `<div class="stHead"><div><b>${esc(accOn() ? accName() : 'Not logged in')}</b><small>${accOn() ? (t.rank ? `${t.name} member · ${d} day${d === 1 ? '' : 's'} left · ${t.disc}% off eligible items` : 'Recruit (free)') : 'Log in to buy with Rp and keep purchases on your account'}</small></div><div class="stSD">${P.coins.toLocaleString()} <small>SD</small></div></div>`;
+}
+function prodCard(p) {
+  const own = owns(p.id), pr = priceOf(p), soon = p.avail !== 'ok';
+  const inc = p.includes ? `<ul class="stInc">${p.includes.map(i => `<li class="${owns(i) ? 'own' : ''}">${esc(PROD[i].name)} <span>${owns(i) ? 'owned' : RPF(PROD[i].rp)}</span></li>`).join('')}</ul>` : '';
+  let price = '';
+  if (p.kind === 'bundle') price = `<div class="stPrice"><s>${RPF(regularSum(p))}</s><b>${RPF(pr.rp)}</b><small>${pr.partial ? 'adjusted for items you own' : `save ${RPF(pr.saves || 0)}`}</small></div>`;
+  else if (p.kind === 'weapon') price = `<div class="stPrice"><b>${p.sd.toLocaleString()} SD</b><small>or ${pr.pct ? `<s>${RPF(pr.base)}</s> ` : ''}${RPF(pr.rp)}${pr.pct ? ` (${pr.pct}% member discount)` : ''}</small></div>`;
+  else price = `<div class="stPrice">${pr.pct ? `<s>${RPF(pr.base)}</s>` : ''}<b>${RPF(pr.rp)}</b><small>${p.kind === 'mem' ? 'per 30 days' : pr.pct ? `${pr.pct}% member discount` : 'one-time'}</small></div>`;
+  let btn = '';
+  if (own) btn = `<span class="stOwned">Owned</span>`;
+  else if (soon) btn = `<span class="stSoon">Coming soon</span>`;
+  else if (p.kind === 'weapon') btn = `<button class="btn small primary" data-sd="${p.id}">Unlock · ${p.sd.toLocaleString()} SD</button><button class="btn small" data-buy="${p.id}">${RPF(pr.rp)}</button>`;
+  else btn = `<button class="btn small primary" data-buy="${p.id}">Buy · ${RPF(pr.rp)}</button>`;
+  const pend = pendingFor(p.id);
+  return `<div class="stCard${own ? ' own' : ''}${soon ? ' soon' : ''}"><div class="stTop"><b>${esc(p.name)}</b>${p.kind === 'dlc' ? '<i class="stTag">Story</i>' : p.kind === 'bundle' ? '<i class="stTag">Bundle</i>' : ''}</div><small>${esc(p.desc || '')}</small>${inc}${price}<div class="stBtns">${pend ? '<span class="stPend">Waiting for approval</span>' : btn}</div></div>`;
+}
+function pendingFor(id) { return (STORE.orders || []).some(o => o.product_id === id && o.status === 'pending'); }
+const STORE = { orders: [], wall: null };
+function renderStore(focus) {
+  const el = $('#stBody'); if (!el) return;
+  $('#stTabs').innerHTML = ST_TABS.map(([k, n]) => `<button class="btn small ${k === stTab ? 'primary' : ''}" data-stab="${k}">${n}</button>`).join('');
+  $('#stTop').innerHTML = stHeader();
+  let html = '';
+  if (stTab === 'mem') {
+    const cur = activeTier();
+    html += `<p class="note">Memberships are 30-day passes paid in cash or GoPay. Buying again adds 30 days; buying a higher tier upgrades you and keeps your remaining days. Membership never changes your rank, stats or missions.</p>`;
+    html += `<div class="memGrid">` + Object.values(MEMBERS).map(m => `<div class="memCard${cur.id === m.id ? ' cur' : ''}${m.rank === 4 ? ' top' : ''}"><div class="memName">${esc(m.name)}${cur.id === m.id ? '<span>CURRENT</span>' : ''}</div><div class="memPrice">${m.rp ? RPF(m.rp) + '<small>/30 days</small>' : 'Free'}</div><div class="memDisc">${m.disc}% off eligible purchases</div><ul>${m.perks.map(x => `<li>${esc(x)}</li>`).join('')}</ul>${m.rp ? (pendingFor(m.id) ? '<span class="stPend">Waiting for approval</span>' : `<button class="btn small primary" data-buy="${m.id}">${cur.rank && cur.rank < m.rank ? 'Upgrade' : cur.id === m.id ? 'Extend 30 days' : 'Join'} · ${RPF(m.rp)}</button>`) : ''}</div>`).join('') + `</div>`;
+    html += `<p class="note">Polls, screenshots, concept submissions and playtests happen in the SMFA community group; the game delivers your badge, uniforms, emblems, discount and the supporter wall.</p>`;
+  } else if (stTab === 'dlc') {
+    html += `<p class="note">Story DLCs are separate campaigns. Each goes on sale the day its missions are finished and tested; until then they are listed so you know what is coming. The main campaign is always free.</p><div class="stGrid">` + PRODUCTS.filter(p => p.kind === 'dlc').map(prodCard).join('') + `</div>`;
+  } else if (stTab === 'bundle') {
+    html += `<p class="note">Bundle prices are fixed and never discounted further. If you already own part of a bundle, its price is adjusted for the items you still need.</p><div class="stGrid">` + PRODUCTS.filter(p => p.kind === 'bundle').map(prodCard).join('') + `</div>`;
+  } else if (stTab === 'cos') {
+    const groups = [['Packs', p => /^cos_(insignia|uniform_coll|weapon_skins|vehicle_paint|elite_pack|memorabilia|presidential|hq_decor|arctic_pack|ultimate)$/.test(p.id)], ['Weapon appearance', p => /^skin_|^cos_(charm|inspect|nameplate)$/.test(p.id)], ['Uniforms and equipment', p => /^cos_(uni_|helmet_single|vest|backpack|gloves|boots|facecover|shoulder|full_set)/.test(p.id)], ['Elimination and victory effects', p => /^fx_/.test(p.id)], ['Vehicles and headquarters', p => /^cos_(tank_paint|heli_paint|decals|vinsignia|horn|hq_flag|office_decor|briefing_bg|menu_bg|arctic_vpaint|neon_insignia)$/.test(p.id)], ['Community', p => p.kind === 'service']];
+    html += `<p class="note">Cosmetics change how things look, never how hard they hit. Equip what you own in the Barracks. Member discounts apply here.</p>`;
+    for (const [name, f] of groups) { const list = PRODUCTS.filter(p => (p.kind === 'cos' || p.kind === 'service') && f(p)); if (list.length) html += `<h3>${name}</h3><div class="stGrid">${list.map(prodCard).join('')}</div>`; }
+  } else if (stTab === 'weapon') {
+    html += `<p class="note">New weapons are sidegrades, not upgrades: every one can be unlocked with Smiley Dollars earned in battle. Paying Rp only skips the grind. Switch weapons in the field with Q / E, number keys or the WPN button.</p><div class="stGrid">` + PRODUCTS.filter(p => p.kind === 'weapon').map(prodCard).join('') + `</div>`;
+  } else if (stTab === 'owned') {
+    const list = PRODUCTS.filter(p => p.kind !== 'bundle' && owns(p.id));
+    const t = activeTier();
+    html += t.rank ? `<div class="stCard own"><b>${t.name} membership</b><small>${tierDaysLeft()} days left · ${t.disc}% off eligible items</small><label class="stChk"><input type="checkbox" id="stWallOk" ${ACC.profile && ACC.profile.supporter_ok ? 'checked' : ''}> Show my name on the supporter wall</label></div>` : '';
+    html += list.length ? `<div class="stGrid">${list.map(prodCard).join('')}</div>` : `<p class="note">Nothing yet. Weapons unlocked with SD and anything the President approves will show up here.</p>`;
+  } else if (stTab === 'orders') {
+    html += `<div class="stRedeem"><b>Have a code?</b><div class="row"><input id="stCode" placeholder="SMFA-XXXX-XXXX-XXXX" maxlength="19" autocapitalize="characters"><button class="btn small primary" id="stRedeem">Redeem</button></div><small id="stCodeMsg"></small></div>`;
+    const O = STORE.orders || [];
+    html += O.length ? `<table class="stTable"><tr><th>Item</th><th>Amount</th><th>How</th><th>Status</th><th></th></tr>${O.map(o => `<tr class="${o.status}"><td>${esc(o.item_name)}</td><td>${RPF(o.amount_rp)}</td><td>${o.method === 'gopay' ? 'GoPay' : 'Cash'}</td><td>${o.status === 'pending' ? 'Waiting for the President' : o.status}</td><td>${o.status === 'pending' ? `<button class="btn small" data-cancel="${o.id}">Cancel</button>` : ''}</td></tr>`).join('')}</table>` : `<p class="note">${accOn() ? 'No orders yet.' : 'Log in to see your orders.'}</p>`;
+  } else if (stTab === 'wall') {
+    html += `<p class="note">Thank you to every Captain and General who keeps the SMFA marching. Names appear with their consent.</p>`;
+    if (!SB_ON()) html += `<p class="note">The supporter wall appears once the account server is connected.</p>`;
+    else if (!STORE.wall) { html += `<p class="note">Loading…</p>`; sbRpc('supporters').then(r => { STORE.wall = r || []; if (stTab === 'wall') renderStore(); }).catch(() => { STORE.wall = []; renderStore(); }); }
+    else html += STORE.wall.length ? `<div class="wall">${STORE.wall.map(w => `<div class="wallName ${w.tier.replace('mem_', '')}">${esc(w.username)}<small>${(memByProd(w.tier) || {}).name || ''}</small></div>`).join('')}</div>` : `<p class="note">No names yet. Be the first.</p>`;
+  }
+  el.innerHTML = html;
+  $$('[data-stab]').forEach(b => b.onclick = () => { stTab = b.dataset.stab; if (stTab === 'orders') loadOrders(); renderStore(); });
+  $$('#stBody [data-buy]').forEach(b => b.onclick = () => openBuy(b.dataset.buy));
+  $$('#stBody [data-sd]').forEach(b => b.onclick = () => buyWithSD(b.dataset.sd));
+  $$('#stBody [data-cancel]').forEach(b => b.onclick = () => cancelOrder(+b.dataset.cancel));
+  const rd = $('#stRedeem'); if (rd) rd.onclick = redeemCode;
+  const wk = $('#stWallOk'); if (wk) wk.onchange = () => { sbRpc('set_supporter', { p_ok: wk.checked }).then(() => { ACC.profile.supporter_ok = wk.checked; STORE.wall = null; accStore(); }).catch(e => toast('Could not save', e.message)); };
+  if (focus) { const c = [...el.querySelectorAll('.stCard, .memCard')].find(x => x.querySelector('[data-buy="' + focus + '"], [data-sd="' + focus + '"]')); if (c) { c.classList.add('focus'); c.scrollIntoView({ block: 'center' }); } }
+}
+function buyWithSD(id) {
+  const p = PROD[id], P = prof();
+  if (owns(id)) return;
+  if (P.coins < p.sd) { toast('Not enough SD', `${p.name} costs ${p.sd.toLocaleString()} SD. You have ${P.coins.toLocaleString()}. Earn more in any battle, or buy it for ${RPF(priceOf(p).rp)}.`); return; }
+  if (!confirm(`Unlock ${p.name} for ${p.sd.toLocaleString()} SD?`)) return;
+  P.coins -= p.sd; P.owned['prod:' + id] = true; profSave(P); refreshWeaponList(); updateProfileCard();
+  SFX.ok() && SFX.tone(0.12, 0.25, 700, 1100, 'triangle'); toast('Unlocked: ' + p.name, 'Select it in the field with the weapon keys.'); renderStore();
+}
+/* ---------- buying with Rp (cash or GoPay order) ---------- */
+let buyId = null;
+function openBuy(id) {
+  const p = PROD[id]; if (!p) return;
+  if (!SB_ON()) { toast('Store not open yet', 'The account server is not connected. Ask the President.'); return; }
+  if (!accOn()) { openLogin('#scr-store'); return; }
+  if (p.avail !== 'ok') { toast('Coming soon', 'This item is not for sale yet.'); return; }
+  if (pendingFor(id)) { toast('Already ordered', 'That item is waiting for the President\'s approval.'); return; }
+  buyId = id; const pr = priceOf(p);
+  $('#buyName').textContent = p.name; $('#buyDesc').textContent = p.desc || (p.includes ? p.includes.map(i => PROD[i].name).join(', ') : '');
+  $('#buyPrice').innerHTML = `${pr.pct || pr.partial ? `<s>${RPF(pr.base)}</s> ` : ''}<b>${RPF(pr.rp)}</b>${pr.pct ? `<small>${pr.pct}% ${activeTier().name} discount</small>` : pr.partial ? '<small>adjusted for items you own</small>' : p.kind === 'mem' ? '<small>for 30 days</small>' : ''}`;
+  $('#buyMethod').innerHTML = `<button class="opt sel" data-m="gopay"><b>GoPay</b><small>${esc(PAY_INFO.gopay)}</small></button><button class="opt" data-m="cash"><b>Cash</b><small>${esc(PAY_INFO.cash)}</small></button>`;
+  $$('#buyMethod .opt').forEach(b => b.onclick = () => { $$('#buyMethod .opt').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); });
+  $('#buyMsg').textContent = '';
+  $('#buyBox').hidden = false;
+}
+async function placeOrder() {
+  const p = PROD[buyId]; if (!p) return;
+  const m = $('#buyMethod .opt.sel').dataset.m, pr = priceOf(p);
+  $('#buyGo').disabled = true; $('#buyMsg').textContent = 'Sending your order…';
+  try {
+    await accRefreshIfNeeded();
+    await sbRpc('place_order', { p_product: p.id, p_name: p.name, p_amount: pr.rp, p_method: m });
+    $('#buyBox').hidden = true;
+    toast('Order placed', m === 'gopay' ? `Send ${RPF(pr.rp)} by GoPay and tell the President. It unlocks when approved.` : `Pay ${RPF(pr.rp)} in cash to the President. It unlocks when approved.`);
+    await loadOrders(); renderStore();
+  } catch (e) { $('#buyMsg').textContent = e.message; }
+  $('#buyGo').disabled = false;
+}
+async function loadOrders() { if (!accOn() || !SB_ON()) { STORE.orders = []; return; } try { await accRefreshIfNeeded(); STORE.orders = await sbFetch(`/rest/v1/orders?user_id=eq.${ACC.user.id}&order=created_at.desc&limit=50`); } catch (e) { } }
+async function cancelOrder(id) { try { await sbRpc('cancel_order', { p_order: id }); await loadOrders(); renderStore(); } catch (e) { toast('Could not cancel', e.message); } }
+async function redeemCode() {
+  const inp = $('#stCode'), msg = $('#stCodeMsg'); const code = (inp.value || '').trim().toUpperCase();
+  if (!code) return; if (!accOn()) { openLogin('#scr-store'); return; }
+  msg.textContent = 'Checking…';
+  try { await accRefreshIfNeeded(); const pid = await sbRpc('redeem_code', { p_code: code }); await accRefreshEnts(); const p = PROD[pid]; msg.textContent = ''; toast('Code redeemed', p ? `${p.name} is now yours.` : pid); inp.value = ''; refreshWeaponList(); applyCosmetics(); renderStore(); }
+  catch (e) { msg.textContent = e.message; }
+}
+// after approvals land, re-check entitlements now and then while the store is open
+setInterval(() => { if (!$('#scr-store').hidden && accOn()) { const n = (ACC.ents || []).length; accRefreshEnts().then(() => { if ((ACC.ents || []).length !== n) { loadOrders().then(renderStore); refreshWeaponList(); applyCosmetics(); } }); } }, 20000);
+
+/* ---------- admin: the President's desk ---------- */
+let adTab = 'orders';
+function isAdmin() { return !!(ACC.profile && ACC.profile.is_admin); }
+function openAdmin() { if (!isAdmin()) return; show('#scr-admin'); renderAdmin(); syncBundles(); }
+async function syncBundles() { try { for (const p of PRODUCTS) if (p.kind === 'bundle' && p.includes.length) await sbRpc('admin_set_bundle', { p_bundle: p.id, p_items: p.includes }); } catch (e) { console.warn('bundle sync', e.message); } }
+async function renderAdmin() {
+  const el = $('#adBody'); if (!el) return;
+  $('#adTabs').innerHTML = [['orders', 'Orders'], ['codes', 'Codes'], ['grant', 'Grant / revoke'], ['players', 'Players']].map(([k, n]) => `<button class="btn small ${k === adTab ? 'primary' : ''}" data-atab="${k}">${n}</button>`).join('');
+  $$('[data-atab]').forEach(b => b.onclick = () => { adTab = b.dataset.atab; renderAdmin(); });
+  el.innerHTML = '<p class="note">Loading…</p>';
+  try {
+    await accRefreshIfNeeded();
+    if (adTab === 'orders') {
+      const O = await sbRpc('admin_orders', { p_status: null });
+      const pend = O.filter(o => o.status === 'pending'), done = O.filter(o => o.status !== 'pending');
+      const row = o => `<tr class="${o.status}"><td>${esc(o.username)}</td><td>${esc(o.item_name)}</td><td>${RPF(o.amount_rp)}</td><td>${o.method === 'gopay' ? 'GoPay' : 'Cash'}</td><td>${new Date(o.created_at).toLocaleString()}</td><td>${o.status === 'pending' ? `<button class="btn small primary" data-ok="${o.id}">Approve</button> <button class="btn small danger" data-no="${o.id}">Reject</button>` : o.status}</td></tr>`;
+      const total = done.filter(o => o.status === 'approved').reduce((s, o) => s + o.amount_rp, 0);
+      el.innerHTML = `<h3>Waiting for you (${pend.length})</h3>${pend.length ? `<table class="stTable"><tr><th>Player</th><th>Item</th><th>Amount</th><th>How</th><th>When</th><th></th></tr>${pend.map(row).join('')}</table>` : '<p class="note">Nothing pending.</p>'}<h3>History · ${RPF(total)} approved</h3>${done.length ? `<table class="stTable"><tr><th>Player</th><th>Item</th><th>Amount</th><th>How</th><th>When</th><th>Status</th></tr>${done.map(row).join('')}</table>` : ''}`;
+      $$('[data-ok]').forEach(b => b.onclick = async () => { if (!confirm('Approve this order? The item unlocks immediately.')) return; try { await sbRpc('admin_resolve_order', { p_order: +b.dataset.ok, p_approve: true }); renderAdmin(); } catch (e) { toast('Failed', e.message); } });
+      $$('[data-no]').forEach(b => b.onclick = async () => { try { await sbRpc('admin_resolve_order', { p_order: +b.dataset.no, p_approve: false }); renderAdmin(); } catch (e) { toast('Failed', e.message); } });
+    } else if (adTab === 'codes') {
+      const sel = PRODUCTS.filter(p => p.avail === 'ok' && p.kind !== 'service').map(p => `<option value="${p.id}">${esc(p.name)} (${p.kind === 'mem' ? '30 days' : RPF(p.rp)})</option>`).join('');
+      const C = await sbRpc('admin_codes');
+      el.innerHTML = `<div class="adForm"><select id="adProd">${sel}</select><input id="adN" type="number" min="1" max="50" value="1" title="How many"><input id="adNote" placeholder="Note (who paid, how)"><input id="adValid" type="number" min="0" value="30" title="Days valid (0 = forever)"><button class="btn small primary" id="adMake">Generate</button></div><div id="adNew"></div><h3>All codes</h3><table class="stTable"><tr><th>Code</th><th>Item</th><th>Note</th><th>Made</th><th>Used by</th></tr>${C.map(c => `<tr class="${c.redeemed_by_name ? 'approved' : ''}"><td class="mono">${c.code}</td><td>${esc((PROD[c.product_id] || {}).name || c.product_id)}</td><td>${esc(c.note || '')}</td><td>${new Date(c.created_at).toLocaleDateString()}</td><td>${c.redeemed_by_name ? esc(c.redeemed_by_name) + ' · ' + new Date(c.redeemed_at).toLocaleDateString() : (c.expires_at && new Date(c.expires_at) < new Date() ? 'expired' : 'unused')}</td></tr>`).join('')}</table>`;
+      $('#adMake').onclick = async () => { try { const codes = await sbRpc('admin_make_codes', { p_product: $('#adProd').value, p_n: +$('#adN').value, p_note: $('#adNote').value, p_days_valid: +$('#adValid').value }); $('#adNew').innerHTML = `<div class="adCodes">${codes.map(c => `<span class="mono">${c}</span>`).join('')}<button class="btn small" id="adCopy">Copy</button></div>`; $('#adCopy').onclick = () => navigator.clipboard && navigator.clipboard.writeText(codes.join('\n')); } catch (e) { toast('Failed', e.message); } };
+    } else if (adTab === 'grant') {
+      const sel = PRODUCTS.filter(p => p.kind !== 'service').map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join('');
+      el.innerHTML = `<p class="note">Give an item to a player without a code (refunds, prizes, fixing mistakes) or take one back.</p><div class="adForm"><input id="adUser" placeholder="Username"><select id="adGProd">${sel}</select><button class="btn small primary" id="adGrant">Grant</button><button class="btn small danger" id="adRevoke">Revoke</button></div><p class="note" id="adGMsg"></p>`;
+      $('#adGrant').onclick = async () => { try { await sbRpc('admin_grant', { p_username: $('#adUser').value.trim(), p_product: $('#adGProd').value }); $('#adGMsg').textContent = 'Granted.'; } catch (e) { $('#adGMsg').textContent = e.message; } };
+      $('#adRevoke').onclick = async () => { if (!confirm('Revoke this item from the player?')) return; try { await sbRpc('admin_revoke', { p_username: $('#adUser').value.trim(), p_product: $('#adGProd').value }); $('#adGMsg').textContent = 'Revoked.'; } catch (e) { $('#adGMsg').textContent = e.message; } };
+    } else {
+      const P = await sbRpc('admin_players');
+      el.innerHTML = `<table class="stTable"><tr><th>Player</th><th>Joined</th><th>Last save</th><th>Membership</th><th>Items</th></tr>${P.map(p => `<tr><td>${esc(p.username)}</td><td>${new Date(p.created_at).toLocaleDateString()}</td><td>${p.save_at ? new Date(p.save_at).toLocaleString() : '—'}</td><td>${p.tier ? (memByProd(p.tier) || {}).name : '—'}</td><td>${p.owned}</td></tr>`).join('')}</table>`;
+    }
+  } catch (e) { el.innerHTML = `<p class="note">${esc(e.message)}</p>`; }
+}
+
+/* ---------- wiring ---------- */
+$('#goStore').addEventListener('click', () => { SFX.init(); openStore(null, '#scr-title'); });
+$('#stBack').addEventListener('click', () => show(stBack));
+$('#buyGo').addEventListener('click', placeOrder);
+$('#buyNo').addEventListener('click', () => { $('#buyBox').hidden = true; });
+$('#goAdmin').addEventListener('click', openAdmin);
+$('#adBack').addEventListener('click', () => show('#scr-title'));
+function updateStoreBadges() { if (!window.STORE_READY) return; $('#goAdmin').hidden = !isAdmin(); const t = activeTier(); const b = $('#memBadge'); if (b) { b.hidden = !t.rank; b.textContent = t.name.toUpperCase(); b.className = 'memBadge ' + t.name.toLowerCase(); } }
+{
+  const _upc = updateProfileCard; updateProfileCard = function () { _upc.apply(this, arguments); updateStoreBadges(); const t = activeTier(); const el = $('#profCard .pcMain b'); if (el && t.rank) el.insertAdjacentHTML('beforeend', ` <span class="memBadge ${t.name.toLowerCase()}">${t.name}</span>`); };
+  const _ra = renderAccount; renderAccount = function () { _ra.apply(this, arguments); updateStoreBadges(); };
+  const _ae = accRefreshEnts; accRefreshEnts = async function () { await _ae.apply(this, arguments); refreshWeaponList(); try { enforceLocks(); applyCosmetics(); } catch (e) { } };
+  const _sb2 = startBattle; startBattle = function () { try { enforceLocks(); } catch (e) { } return _sb2.apply(this, arguments); };
+  try { enforceLocks(); } catch (e) { }
+  window.STORE_READY = true; updateStoreBadges();
+}
+/* ================= THE LONG WAR: cutscene scripts for the 30-chapter campaign ================= */
+// Existing canon scenes keep their ids (intro, first_blood, conspiracy, codes, moreau, engineer, betrayal, reunion, quill_end, ending).
+// Choice beats: { choice: { prompt, opts: [{ t, flag, val, tally }] } } — the player's pick is saved in the campaign's story flags.
+const LW_BUNKER = { pres: { p: [0, -2.05], r: 0, a: 'sit' }, hale: { p: [1.6, 1.2], r: PI - 0.5 }, mara: { p: [-1.5, 0.6], r: PI + 0.4 } };
+const LW_BUNKER2 = { pres: { p: [0, -2.05], r: 0, a: 'sit' }, hale: { p: [1.6, 1.2], r: PI - 0.5 }, okoro: { p: [-1.6, 0.8], r: PI + 0.45 }, reyes: { p: [-0.2, 2.2], r: PI } };
+const LW_BUNKER3 = { pres: { p: [0, -2.05], r: 0, a: 'sit' }, hale: { p: [1.6, 1.2], r: PI - 0.5 }, okoro: { p: [-1.6, 0.8], r: PI + 0.45 }, brandt: { p: [-0.3, 2.4], r: PI }, reyes: { p: [1.2, 2.6], r: PI - 0.2 } };
+const est = (p, l, dur) => ({ cam: { p, l }, dur: dur || 3 });
+Object.assign(CUTSCENES, {
+  /* ---------- ACT I · EXILE ---------- */
+  ch1_brief: { title: 'Chapter 1 · The Last Ice', set: 'snowbase',
+    actors: { pres: { p: [0, 1], r: PI }, hale: { p: [-1.8, 0.2], r: PI * 0.7, prop: 'rifle' }, s1: { c: 'smfa', p: [2.4, -1.5], r: PI * 0.9, a: 'kneel' } },
+    beats: [
+      est([5, 2.6, 7], [0, 1.2, -3], 3.5),
+      { say: ['hale', 'Storm took the antenna an hour ago, sir. The perimeter has been silent since.'] },
+      { say: ['pres', 'And the supply station?'] },
+      { say: ['hale', 'A recon column found it. If they take what is in that depot, we do not last the winter.', 'angry'] },
+      { say: ['pres', 'Then we get the radio up, we hold the depot, and we bring the supply team home. All of it.'] },
+      { say: ['hale', 'The ice keeps us hidden. It also keeps us trapped.'] },
+      { say: ['pres', 'Then we stop letting it decide where we live.', 'angry'] },
+      { say: ['hale', 'That is the first sensible thing I have heard all week.', 'smile'] }
+    ] },
+  ch1_after: { title: 'Chapter 1 · Aftermath', set: 'snowbase',
+    actors: { pres: { p: [0, 1], r: PI }, hale: { p: [-1.6, 0.4], r: PI * 0.7 } },
+    beats: [
+      { say: ['hale', 'Depot is ours. The supply team made it back with frostbite and everything else intact.'] },
+      { say: ['pres', 'The radio traffic?'] },
+      { say: ['hale', 'Recovered. Someone has been watching this coast for months, sir. They know we are here.', 'sad'] },
+      { say: ['pres', 'Good. Then they will know when we leave.'] }
+    ] },
+  ch2_brief: { title: 'Chapter 2 · The World We Lost', set: 'bunker', actors: LW_BUNKER,
+    beats: [
+      est([0, 3.4, 7.5], [0, 1.6, -2], 3),
+      { say: ['pres', 'Five empires. One army of survivors. We cannot fight them all at once, so we choose where to be seen first.'] },
+      { say: ['mara', 'We do not need to defeat five empires today. We need to make one of them realise we are back.'] },
+      { say: ['pres', 'And when they come for us?'] },
+      { say: ['hale', 'We will make sure they regret being first.', 'smile'] },
+      { say: ['mara', 'A coastal city makes headlines. A desert outpost is easy. A jungle foothold hides the army while it grows. Your call, Mr. President.'] },
+      { choice: { prompt: 'Where does the SMFA land first?', opts: [
+        { t: 'The coastal city', sub: 'Make a statement. Harder fight, the world notices.', flag: 'foothold', val: 'city', tally: 'strategist' },
+        { t: 'The desert outpost', sub: 'Politically weak, quick to take. Mara\'s pick.', flag: 'foothold', val: 'desert' },
+        { t: 'The jungle', sub: 'Quiet and hidden. Hale\'s pick: useful before easy.', flag: 'foothold', val: 'jungle', tally: 'protector' }
+      ] } },
+      { say: ['pres', 'Secure the landing zone and hold it until the second wave arrives. Nobody dies for a beach.'] }
+    ] },
+  ch4_brief: { title: 'Chapter 4 · Lifeline', set: 'field',
+    actors: { pres: { p: [0, 3], r: PI }, okoro: { p: [2.2, 0.5], r: -PI * 0.8 }, hale: { p: [-2, 1.5], r: PI * 0.8 } },
+    beats: [
+      est([6, 3, 10], [0, 1, 0], 3),
+      { say: ['hale', 'This is Okoro. She pulled a captured French jeep apart and put it back together in a night.'] },
+      { say: ['okoro', 'Three trucks, one road, and an empire that wants both. Your front has fuel for two days, Mr. President.'] },
+      { say: ['pres', 'How long to get these vehicles moving?'] },
+      { say: ['okoro', 'Longer if you keep asking questions while I am working.', 'smile'] },
+      { say: ['pres', 'Get them rolling, Okoro. We will keep the road open.'] },
+      { say: ['okoro', 'You can capture another town tomorrow. You cannot fight tomorrow if your fuel is still here.'] }
+    ] },
+  ch5_brief: { title: 'Chapter 5 · The Price of the Flag', set: 'ruins',
+    actors: { pres: { p: [0, 3], r: PI }, reyes: { p: [2, 0.6], r: -PI * 0.8, prop: 'rifle' }, hale: { p: [-2, 1.2], r: PI * 0.8 } },
+    beats: [
+      est([-5, 3, 9], [0, 1, -2], 3),
+      { say: ['hale', 'The unit that burned this town is pulling back east. The people here are loading what is left onto carts.'] },
+      { say: ['reyes', 'Let me take a squad after them. They will not expect it, and they will not get another chance to do this.', 'angry'] },
+      { say: ['hale', 'And if a second column hits the town while we are chasing the first? You cannot defend a country by leaving its people behind.'] },
+      { say: ['reyes', 'You cannot defend it by letting the men who burn it walk away either.', 'angry'] },
+      { choice: { prompt: 'Your orders, Mr. President?', opts: [
+        { t: 'Protect the evacuation', sub: 'Hold the safe zone until every civilian is out. The enemy regroups.', flag: 'ch5', val: 'protect', tally: 'protector' },
+        { t: 'Pursue the enemy', sub: 'Hunt the retreating unit. The town takes damage, the enemy loses its teeth.', flag: 'ch5', val: 'pursue', tally: 'strategist' }
+      ] } }
+    ] },
+  ch5_after_protect: { title: 'Chapter 5 · Aftermath', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, reyes: { p: [2, 0.6], r: -PI * 0.8, prop: 'rifle' } },
+    beats: [
+      { say: ['reyes', 'They all got out. Every cart.'] },
+      { say: ['pres', 'And the men you wanted?'] },
+      { say: ['reyes', 'Still out there. I will see them again.', 'sad'] },
+      { say: ['pres', 'When you do, Reyes, remember who was watching you today.'] }
+    ] },
+  ch5_after_pursue: { title: 'Chapter 5 · Aftermath', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, reyes: { p: [2, 0.6], r: -PI * 0.8, prop: 'rifle' }, hale: { p: [-2, 1.2], r: PI * 0.8 } },
+    beats: [
+      { say: ['reyes', 'That column will never burn another village.', 'angry'] },
+      { say: ['hale', 'Two streets did not make it. The people are asking who is going to rebuild them.'] },
+      { say: ['pres', 'We are. Put it in the ledger, Sergeant. Every one of them.'] },
+      { say: ['hale', 'Yes, sir. It is getting to be a long ledger.', 'sad'] }
+    ] },
+  ch6_choice: { title: 'Chapter 6 · The Leak', set: 'bunker', actors: LW_BUNKER,
+    beats: [
+      { say: ['hale', 'The French embassy burned at the exact minute the guard changed. That is not luck, sir.'] },
+      { say: ['mara', 'Which is why we keep this quiet. If the staff hear there is a leak, every officer starts suspecting the next.'] },
+      { say: ['hale', 'Or they start watching each other. That might be exactly what we need.'] },
+      { choice: { prompt: 'How much does the command staff hear?', opts: [
+        { t: 'Tell them everything', sub: 'The whole staff knows there is a traitor. Trust drops, eyes open.', flag: 'ch6', val: 'open', tally: 'liberator' },
+        { t: 'Keep it in this room', sub: 'Only Hale and Mara know. Mara\'s advice.', flag: 'ch6', val: 'quiet', tally: 'strategist' }
+      ] } },
+      { say: ['pres', 'Find me the source. Whatever it costs.'] }
+    ] },
+  /* ---------- ACT II · THE PRICE OF LOYALTY ---------- */
+  ch7_brief: { title: 'Chapter 7 · Leak', set: 'bunker', actors: LW_BUNKER,
+    beats: [
+      { say: ['hale', 'Three communication posts handled the embassy traffic. Their logs were never sent to the bunker. They are still in the field.'] },
+      { say: ['mara', 'The French will have the same idea. Moreau\'s men are already in the district.'] },
+      { say: ['pres', 'Then we get there first. Recover every log, and bring them back whole.'] }
+    ] },
+  ch7_after: { title: 'Chapter 7 · Inconsistencies', set: 'bunker', actors: LW_BUNKER,
+    beats: [
+      { say: ['hale', 'The logs do not match, sir. Two posts show a transmission from the bunker that the bunker never recorded.'] },
+      { say: ['mara', 'Or a transmission someone wants us to think came from here. Moreau is clever enough to plant that.'] },
+      { say: ['pres', 'Then we ask Moreau. First the embassy. Hold what we have left there, and get the records out.'] }
+    ] },
+  ch12_brief: { title: 'Chapter 12 · The Engineer', set: 'field', actors: { pres: { p: [0, 3], r: PI }, okoro: { p: [2.2, 0.5], r: -PI * 0.8 } },
+    beats: [
+      { say: ['okoro', 'A French tank, crew gone, engine half dead. Give me ten minutes in the open and it drives for us.'] },
+      { say: ['pres', 'Ten minutes under fire, Okoro.'] },
+      { say: ['okoro', 'Then keep the fire off me. I will keep the tank on.', 'smile'] }
+    ] },
+  /* ---------- ACT III · THE BROKEN ALLIANCE ---------- */
+  betrayal_more: { title: 'Chapter 13 · Betrayal', set: 'bunker', actors: { pres: { p: [0, 0.4], r: PI }, mara: { p: [-1.2, -1.6], r: 0.3 } },
+    beats: [
+      { say: ['pres', 'You could have told me.'] },
+      { say: ['mara', 'And what would you have done? Asked the world to be kind?', 'angry'] },
+      { say: ['pres', 'I would have listened.'] },
+      { say: ['mara', 'You listened when I told you what you wanted to hear.', 'sad'] }
+    ] },
+  ch14_brief: { title: 'Chapter 14 · No One Left Behind', set: 'bunker', actors: LW_BUNKER2,
+    beats: [
+      { say: ['okoro', 'Her helicopter took the command radios with it. Half the front cannot hear us.'] },
+      { say: ['reyes', 'Then the other half goes after her. Now, while the trail is warm.', 'angry'] },
+      { say: ['okoro', 'And the front collapses while we chase one helicopter.'] },
+      { say: ['pres', 'We do both. Hold the command post until the radios are back. Then we follow the trail to wherever she left Hale.'] }
+    ] },
+  ch14_after: { title: 'Chapter 14 · The Trail', set: 'bunker', actors: LW_BUNKER2,
+    beats: [
+      { say: ['reyes', 'The escort unit broke before we reached them. They left a prisoner transfer order behind.'] },
+      { say: ['okoro', 'Gloomvania. A camp in the snow. He is alive, Mr. President. For now.'] },
+      { say: ['pres', 'Then we start with Mara\'s trail. I want to know where that helicopter was going.'] }
+    ] },
+  ch15_brief: { title: 'Chapter 15 · The Safehouse', set: 'snowbase', actors: { pres: { p: [0, 1], r: PI }, reyes: { p: [-1.8, 0.2], r: PI * 0.7, prop: 'rifle' } },
+    beats: [
+      { say: ['reyes', 'Tundra Pact ground. Koldun\'s patrols rotate every six minutes.'] },
+      { say: ['pres', 'We are not here for Koldun. Her radio logs are in that house. Get in, copy everything, get out before the patrol seals the valley.'] },
+      { say: ['reyes', 'And if she is there?'] },
+      { say: ['pres', 'Then she sees exactly how quiet we can be.'] }
+    ] },
+  ch15_after: { title: 'Chapter 15 · Promises', set: 'snowbase', actors: { pres: { p: [0, 1], r: PI }, reyes: { p: [-1.8, 0.2], r: PI * 0.7 } },
+    beats: [
+      { say: ['reyes', 'Malik promised her a seat at the table after the war. A province. A title.'] },
+      { say: ['pres', 'And in the same logs he tells his generals she is a tool to be set down when it is over.'] },
+      { say: ['reyes', 'She has read these, sir. She is still going.', 'sad'] },
+      { say: ['pres', 'Because she thinks she can steer him once he wins. Hale first. Then Mara.'] }
+    ] },
+  rescue_more: { title: 'Chapter 16 · Home', set: 'snowbase', actors: { pres: { p: [0, 1], r: PI }, hale: { p: [-1.4, 0.3], r: PI * 0.75 } },
+    beats: [
+      { say: ['pres', 'I thought I had lost you.'] },
+      { say: ['hale', 'You nearly did. Let us not make a habit of it.', 'smile'] },
+      { say: ['pres', 'Good to have you back, Sergeant.'] },
+      { say: ['hale', 'Then let us make sure nobody has to come looking for either of us again.'] }
+    ] },
+  ch18_brief: { title: 'Chapter 18 · Lifeline: Under Fire', set: 'field', actors: { pres: { p: [0, 3], r: PI }, brandt: { p: [2.2, 0.5], r: -PI * 0.8 }, okoro: { p: [-2, 1.2], r: PI * 0.8 } },
+    beats: [
+      { say: ['brandt', 'From up there the road looks like a thread, sir. Malik has put a knife on every bend of it.'] },
+      { say: ['okoro', 'This convoy is not fuel this time. It is the offensive. Lose it and we sit still for a month.'] },
+      { say: ['pres', 'Brandt keeps the sky. Okoro keeps the trucks breathing. I will keep the road.'] }
+    ] },
+  /* ---------- ACT IV · THE WORLD ON FIRE ---------- */
+  ch19_brief: { title: 'Chapter 19 · The Other Front', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, hale: { p: [-2, 1.2], r: PI * 0.8 }, brandt: { p: [2, 0.8], r: -PI * 0.8 } },
+    beats: [
+      { say: ['brandt', 'An abandoned observation post, three empires\' worth of paperwork inside. Somebody left in a hurry.'] },
+      { say: ['hale', 'Or somebody wants us to read it.'] },
+      { say: ['pres', 'Either way, we read it. Recover the documents and get out.'] }
+    ] },
+  ch19_after: { title: 'Chapter 19 · Divided', set: 'bunker', actors: LW_BUNKER3,
+    beats: [
+      { say: ['hale', 'They have been preparing for a long war for years. All five of them. Every public speech about defence was a lie.'] },
+      { say: ['brandt', 'And Malik has been feeding the other four reasons to hate each other. Border incidents, forged orders.'] },
+      { say: ['pres', 'Then beating Malik does not end this. It only removes the man holding the match.'] },
+      { say: ['okoro', 'So what does?'] },
+      { say: ['pres', 'I do not know yet. But I know who to ask.'] }
+    ] },
+  ch20_brief: { title: 'Chapter 20 · The Price of an Alliance', set: 'table',
+    actors: { pres: { p: [0, 1.7], r: PI, a: 'sit' }, hale: { p: [1.8, 2.6], r: PI - 0.3 }, margaux: { p: [0, -1.7], r: 0, a: 'sit' }, f1: { c: 'french', p: [-1.8, -2.8], r: 0.3, prop: 'rifle' } },
+    beats: [
+      est([5, 2.8, 5], [0, 1, 0], 3.5),
+      { say: ['margaux', 'Let us not waste each other\'s time, Mr. President. Malik will swallow my empire a year after he swallows yours.'] },
+      { say: ['pres', 'So you offer us help.'] },
+      { say: ['margaux', 'I offer cooperation. In return, French influence stays in every territory you reclaim from him. Advisers. Trade. Leverage.'] },
+      { say: ['hale', 'He means governors, sir.'] },
+      { say: ['margaux', 'I mean a world where France is still standing when this is over. You can have the same, or you can have pride.'] },
+      { choice: { prompt: 'The French offer. Your answer?', opts: [
+        { t: 'Accept the terms', sub: 'French forces join against Malik. France keeps influence in liberated lands.', flag: 'french', val: 'accept', tally: 'strategist' },
+        { t: 'Demand different terms', sub: 'Cooperation yes, governors no. Harder talks, cleaner outcome.', flag: 'french', val: 'renegotiate', tally: 'liberator' },
+        { t: 'Reject it', sub: 'The SMFA owes France nothing. Archer becomes a hostile rival again.', flag: 'french', val: 'reject', tally: 'conqueror' }
+      ] } }
+    ] },
+  ch20_attack: { title: 'Chapter 20 · Interrupted', set: 'table', actors: { pres: { p: [0, 1.7], r: PI }, hale: { p: [1.8, 2.6], r: PI - 0.3, prop: 'rifle' }, margaux: { p: [0, -1.7], r: 0 } },
+    beats: [
+      { shake: 0.1, say: ['hale', 'Mortars! Somebody knew where this meeting was.', 'angry'] },
+      { say: ['margaux', 'Not my men. Whoever this is wants us at each other\'s throats.'] },
+      { say: ['pres', 'Then they will be disappointed. Get the delegates to the vehicles. We hold this ground until they are clear.'] }
+    ] },
+  ch20_after_accept: { title: 'Chapter 20 · Terms', set: 'table', actors: { pres: { p: [0, 1.7], r: PI, a: 'sit' }, margaux: { p: [0, -1.7], r: 0, a: 'sit' } },
+    beats: [
+      { say: ['margaux', 'You kept my people alive under fire. Perhaps this will work after all.'] },
+      { say: ['pres', 'Your soldiers fight beside mine. Your advisers answer to the people they advise. That is the deal.'] },
+      { say: ['margaux', 'For now, Mr. President. Everything is for now.', 'smile'] }
+    ] },
+  ch20_after_renegotiate: { title: 'Chapter 20 · Terms', set: 'table', actors: { pres: { p: [0, 1.7], r: PI, a: 'sit' }, margaux: { p: [0, -1.7], r: 0, a: 'sit' } },
+    beats: [
+      { say: ['margaux', 'No governors. Trade and advisers only, and they leave when the locals say so. You drive a hard bargain for a man with one base.'] },
+      { say: ['pres', 'I drive the only bargain I can keep.'] },
+      { say: ['margaux', 'Then we have an agreement. Do not make me regret it.'] }
+    ] },
+  ch20_after_reject: { title: 'Chapter 20 · No Deal', set: 'table', actors: { pres: { p: [0, 1.7], r: PI }, margaux: { p: [0, -1.7], r: 0 } },
+    beats: [
+      { say: ['margaux', 'You turn away the only help you were ever going to get, and you do it after I bled for your meeting.', 'angry'] },
+      { say: ['pres', 'The SMFA did not come back from the ice to hand out provinces.'] },
+      { say: ['margaux', 'Then enjoy the ice, Mr. President. You will see it again.', 'angry'] }
+    ] },
+  ch21_brief: { title: 'Chapter 21 · The Quiet City', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, reyes: { p: [2, 0.6], r: -PI * 0.8 } },
+    beats: [
+      { say: ['reyes', 'Malik\'s police start the arrests at dawn. Our informant has a list of every collaborator in this city, and every patriot.'] },
+      { say: ['pres', 'We get the list and we get out. Not one more name reaches Malik than already has.'] },
+      { say: ['reyes', 'Some of the people on it are only helping us for money, sir.'] },
+      { say: ['pres', 'Then they are still people, Reyes.'] }
+    ] },
+  ch22_brief: { title: 'Chapter 22 · The Iron Line', set: 'snowbase', actors: { pres: { p: [0, 1], r: PI }, hale: { p: [-1.6, 0.4], r: PI * 0.7 }, brandt: { p: [1.8, 0.2], r: -PI * 0.7 } },
+    beats: [
+      { say: ['brandt', 'The Tundra Pact has moved an entire corps onto the supply corridor. Koldun says he is defending his border.'] },
+      { say: ['hale', 'His border is forty kilometres that way, sir.'] },
+      { say: ['pres', 'We take the crossing and we break his forward command. Then we decide what Koldun really is.'] }
+    ] },
+  ch22_after: { title: 'Chapter 22 · The Marshal', set: 'snowbase', actors: { pres: { p: [0, 1], r: PI }, hale: { p: [-1.6, 0.4], r: PI * 0.7 } },
+    beats: [
+      { say: ['hale', 'Their corps is pulling back in good order. They did not fight like men who wanted this war.'] },
+      { say: ['pres', 'Koldun prepares for everyone. He is not Malik\'s dog. He is a man who refuses to be anyone\'s.'] },
+      { choice: { prompt: 'The Pact is retreating. Orders?', opts: [
+        { t: 'Let them go', sub: 'Hold the crossing. Koldun remembers restraint.', flag: 'koldun', val: 'spare', tally: 'liberator' },
+        { t: 'Pursue and destroy', sub: 'Finish the corps while it runs. The Pact remembers that too.', flag: 'koldun', val: 'crush', tally: 'conqueror' }
+      ] } }
+    ] },
+  ch23_brief: { title: 'Chapter 23 · The Price of Silence', set: 'throne', actors: { morwen: { p: [0, -6.15], r: 0, a: 'sit', sitY: 1.0 }, pres: { p: [0.6, -2.5], r: PI + 0.15 } },
+    beats: [
+      est([0, 2.2, 6], [0, 1.6, -6], 3.5),
+      { say: ['morwen', 'My archive holds every secret the five of us ever kept from each other, Mr. President. And several you kept from yourself.'] },
+      { say: ['pres', 'Name your price.'] },
+      { say: ['morwen', 'My ministries survive your victory. All of them. In exchange, you may read what you like.'] },
+      { say: ['pres', 'I will read it. What happens to it afterwards is my decision, not yours.'] },
+      { say: ['morwen', 'Everyone says that before they open the box.', 'smile'] }
+    ] },
+  ch23_after: { title: 'Chapter 23 · The Archive', set: 'bunker', actors: LW_BUNKER3,
+    beats: [
+      { say: ['hale', 'It is all here. Massacres. Secret deals. Things the Federation did. Things the French did. Things Malik did to his own people.'] },
+      { say: ['brandt', 'And things that would set three of our allied regions on fire the day they read them.'] },
+      { say: ['okoro', 'People have a right to know what was done to them.'] },
+      { say: ['reyes', 'They have a right to be alive to read it.'] },
+      { choice: { prompt: 'What happens to the archive?', opts: [
+        { t: 'Publish everything now', sub: 'The whole truth, today. Allies and enemies alike will burn.', flag: 'archive', val: 'all', tally: 'conqueror' },
+        { t: 'Release it selectively', sub: 'Expose Malik\'s crimes first. The rest, in time and with care.', flag: 'archive', val: 'select', tally: 'strategist' },
+        { t: 'Negotiate its release', sub: 'Every government confronts its own record under an agreed process.', flag: 'archive', val: 'negotiate', tally: 'liberator' }
+      ] } }
+    ] },
+  ch24_brief: { title: 'Chapter 24 · The False Flag', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, hale: { p: [-2, 1.2], r: PI * 0.8 } },
+    beats: [
+      { say: ['hale', 'A Federation garrison was hit last night. The survivors say SMFA uniforms, SMFA rifles. Grimsby is mobilising against Gloomvania because the attackers crossed from her side.'] },
+      { say: ['pres', 'We were two hundred kilometres away.'] },
+      { say: ['hale', 'We know that. Nobody else does. The records that prove it are still at the site and the relay. If we do not get them before the Federation does, this war grows two new fronts.'] }
+    ] },
+  ch24_after: { title: 'Chapter 24 · Evidence', set: 'bunker', actors: LW_BUNKER3,
+    beats: [
+      { say: ['brandt', 'Malik\'s people staged it. Orders, uniforms, the whole thing. We have the originals.'] },
+      { choice: { prompt: 'The evidence is in your hands.', opts: [
+        { t: 'Present it to every leader', sub: 'Grimsby, Morwen, Koldun, Archer. All of them, at once, in the open.', flag: 'falseflag', val: 'expose', tally: 'liberator' },
+        { t: 'Use it as leverage', sub: 'Show each leader only what makes them need the SMFA.', flag: 'falseflag', val: 'leverage', tally: 'conqueror' }
+      ] } },
+      { say: ['hale', 'Whatever you choose, sir, Malik just lost his favourite trick.'] }
+    ] },
+  ch25_brief: { title: 'Chapter 25 · The Last Negotiation', set: 'table',
+    actors: { pres: { p: [0, 1.7], r: PI, a: 'sit' }, hale: { p: [1.8, 2.6], r: PI - 0.3 }, koldun: { p: [-1.1, -1.7], r: 0.2, a: 'sit' }, grimsby: { p: [1.1, -1.7], r: -0.2, a: 'sit' } },
+    beats: [
+      est([5, 2.8, 5], [0, 1, 0], 3.5),
+      { say: ['grimsby', 'Strength is the only thing that has ever protected the Federation. You are asking us to bet it on an army that lived in a hole in the ice.'] },
+      { say: ['koldun', 'Prepare for every enemy, and you will have every enemy. I have learned that lesson late, Mr. President. Have you?'] },
+      { say: ['pres', 'Malik is a day from his offensive. If a coalition forms against me today, he wins tomorrow, and he will come for both of you the day after.'] },
+      { say: ['hale', 'Sir. Artillery. They found the site.', 'angry'] },
+      { say: ['pres', 'Keep them talking, Sergeant. I will keep them alive.'] }
+    ] },
+  ch25_after_good: { title: 'Chapter 25 · Agreement', set: 'table', actors: { pres: { p: [0, 1.7], r: PI, a: 'sit' }, koldun: { p: [-1.1, -1.7], r: 0.2, a: 'sit' }, grimsby: { p: [1.1, -1.7], r: -0.2, a: 'sit' } },
+    beats: [
+      { say: ['koldun', 'You held the line while we argued about whether to trust you. That is an argument, in its way.'] },
+      { say: ['grimsby', 'The Federation will not join your assault. But it will not join a coalition against you either. That is as far as I go.'] },
+      { say: ['pres', 'It is far enough. Malik stands alone.'] }
+    ] },
+  ch25_after_bad: { title: 'Chapter 25 · No Agreement', set: 'table', actors: { pres: { p: [0, 1.7], r: PI }, koldun: { p: [-1.1, -1.7], r: 0.2 }, grimsby: { p: [1.1, -1.7], r: -0.2 } },
+    beats: [
+      { say: ['grimsby', 'You saved the delegates. It changes nothing. We have seen what you do with power, Mr. President.', 'angry'] },
+      { say: ['koldun', 'The Pact will watch its borders. Do not cross them.'] },
+      { say: ['pres', 'Then the SMFA finishes this alone. It always has.'] }
+    ] },
+  /* ---------- ACT V · LAST LIGHT ---------- */
+  ch27_brief: { title: 'Chapter 27 · The Gathering Storm', set: 'bunker', actors: LW_BUNKER3,
+    beats: [
+      { say: ['hale', 'Everything we have is moving on the capital. We can protect one thing properly before the storm breaks.'] },
+      { choice: { prompt: 'What does the SMFA secure first?', opts: [
+        { t: 'The supply route', sub: 'Okoro\'s choice. The army fights at full strength.', flag: 'prep', val: 'supply', tally: 'strategist' },
+        { t: 'The allied staging area', sub: 'Whoever is still with us gets a place to stand.', flag: 'prep', val: 'allies', tally: 'liberator' },
+        { t: 'The communications network', sub: 'Brandt\'s choice. Nobody gets cut off this time.', flag: 'prep', val: 'comms', tally: 'protector' }
+      ] } },
+      { say: ['pres', 'Hold it. Whatever comes down that road tonight, hold it.'] }
+    ] },
+  ch28_brief: { title: 'Chapter 28 · The Capital\'s Edge', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, hale: { p: [-2, 1.2], r: PI * 0.8 }, reyes: { p: [2, 0.6], r: -PI * 0.8, prop: 'rifle' } },
+    beats: [
+      est([-6, 4, 10], [0, 1, -4], 3.5),
+      { say: ['reyes', 'There it is. Every road in his empire ends behind that wall.'] },
+      { say: ['hale', 'Two million people behind it too, sir. Most of them have never seen the Emperor.'] },
+      { say: ['pres', 'We breach the line, we open a corridor for the civilians, and we do not stop until there is a command post inside the city. In that order.'] }
+    ] },
+  ch29_brief: { title: 'Chapter 29 · The Last Command', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, hale: { p: [-2, 1.2], r: PI * 0.8 } },
+    beats: [
+      { say: ['hale', 'His generals keep fighting because the relays keep telling them he can still win. Cut the relays and the illusion dies.'] },
+      { say: ['pres', 'And the records in that complex tell us what he planned for the day after.'] }
+    ] },
+  ch29_after: { title: 'Chapter 29 · Contingencies', set: 'ruins', actors: { pres: { p: [0, 3], r: PI }, hale: { p: [-2, 1.2], r: PI * 0.8 }, okoro: { p: [2, 0.8], r: -PI * 0.8 } },
+    beats: [
+      { say: ['okoro', 'He planned to keep fighting from the provinces even if the capital fell. There is no ministry, no council, nothing that can surrender for him.'] },
+      { say: ['hale', 'He built the whole empire around one chair.'] },
+      { choice: { prompt: 'The final assault. What is the priority?', opts: [
+        { t: 'The fastest path to Malik', sub: 'End the war today. Whatever stands tomorrow is tomorrow\'s problem.', flag: 'assault', val: 'fast', tally: 'conqueror' },
+        { t: 'Secure the transition first', sub: 'Take the ministries and the relays intact. Slower, bloodier for us, better for them.', flag: 'assault', val: 'secure', tally: 'liberator' }
+      ] } }
+    ] },
+  malik_final: { title: 'Chapter 30 · The Emperor', set: 'throne', actors: { gedago: { p: [0, -6.15], r: 0, a: 'sit', sitY: 1.0 }, pres: { p: [1.5, -3.4], r: PI + 0.45, prop: 'pistol', a: 'aim' } },
+    beats: [
+      est([0, 2.2, 4], [0, 1.6, -6], 3),
+      { say: ['gedago', 'You think taking this city will end the war?'] },
+      { say: ['pres', 'No.'] },
+      { say: ['gedago', 'Then why come?'] },
+      { say: ['pres', 'Because you made the world believe there was no other choice.'] },
+      { say: ['gedago', 'And now?', 'angry'] },
+      { say: ['pres', 'Now they get to choose.'] }
+    ] },
+  ending_liberator: { title: 'Ending · The Liberator', set: 'field', actors: { pres: { p: [0, 3], r: PI }, reyes: { p: [2, 0.6], r: -PI * 0.8 }, hale: { p: [-2, 1.2], r: PI * 0.8 }, okoro: { p: [-3.5, -1], r: PI * 0.9 } },
+    beats: [
+      est([8, 4, 12], [0, 1, 0], 4),
+      { say: ['reyes', 'So that is it? We win, and we go home?'] },
+      { say: ['pres', 'We help them build theirs first.'] },
+      { say: ['hale', 'Sounds like more work.'] },
+      { say: ['pres', 'It is.'] },
+      { say: ['hale', 'Good. Means we are still needed.', 'smile'] },
+      { say: ['okoro', 'The French and the Pact are still out there, sir. Independent. Watching.'] },
+      { say: ['pres', 'Let them watch. The SMFA is strong enough to defend itself. It does not need to rule the world to prove it.'] }
+    ] },
+  ending_conqueror: { title: 'Ending · The Conqueror', set: 'throne', actors: { pres: { p: [0, -6.15], r: 0, a: 'sit', sitY: 1.0 }, okoro: { p: [-1, -2.6], r: 0.3 }, hale: { p: [1, -2.6], r: -0.3 } },
+    beats: [
+      est([0, 2.2, 6], [0, 1.6, -6], 4),
+      { say: ['okoro', 'The front is quiet.'] },
+      { say: ['pres', 'Then we can rebuild.'] },
+      { say: ['hale', 'And if the world refuses?'] },
+      { say: ['pres', 'Then we make sure it cannot threaten us again.'] },
+      { say: ['hale', 'That is what Malik said, sir.', 'sad'] },
+      { cam: { p: [0, 1.6, -4.2], l: [0, 1.5, -6.1] }, keep: true, dur: 4 }
+    ] },
+  ending_peacemaker: { title: 'Ending · The Peacemaker', set: 'table',
+    actors: { pres: { p: [0, 1.7], r: PI, a: 'sit' }, hale: { p: [2.8, 2.3], r: PI - 0.4 }, margaux: { p: [-1.6, -1.7], r: 0.3, a: 'sit' }, koldun: { p: [0, -1.7], r: 0, a: 'sit' }, grimsby: { p: [1.6, -1.7], r: -0.3, a: 'sit' } },
+    beats: [
+      est([6, 3, 6], [0, 1, 0], 4),
+      { say: ['margaux', 'You could have taken more.'] },
+      { say: ['pres', 'I know.'] },
+      { say: ['koldun', 'And you expect us to trust this agreement?'] },
+      { say: ['pres', 'No. I expect you to test it.'] },
+      { say: ['hale', 'That is reassuring.', 'smile'] },
+      { say: ['pres', 'Peace is not a promise that nobody will fight. It is a reason to stop before they do.'] }
+    ] }
+});
+// retitle the canon scenes to their chapter numbers
+Object.assign(CUTSCENES.first_blood, { title: 'Chapter 3 · Foothold' }); Object.assign(CUTSCENES.conspiracy, { title: 'Chapter 6 · The Emperor' });
+Object.assign(CUTSCENES.codes, { title: 'Chapter 7 · Leak' }); Object.assign(CUTSCENES.moreau, { title: 'Chapter 10 · Last Words' });
+Object.assign(CUTSCENES.engineer, { title: 'Chapter 12 · The Engineer' }); Object.assign(CUTSCENES.betrayal, { title: 'Chapter 13 · Betrayal' });
+Object.assign(CUTSCENES.reunion, { title: 'Chapter 17 · Brothers' }); Object.assign(CUTSCENES.quill_end, { title: 'Chapter 26 · The Traitor' });
+Object.assign(CUTSCENES.ending, { title: 'Epilogue · Last Light' });
+/* ================= THE LONG WAR: 30-chapter campaign, choices, three endings ================= */
+/* ---------- cutscene engine: choice beats + the negotiation table set ---------- */
+{
+  const _cs = csSet; csSet = function (name, scene) {
+    if (name !== 'table') return _cs.apply(this, arguments);
+    const L = c => new THREE.MeshLambertMaterial({ color: c });
+    const flagTex = (bg, fg, txt) => { const c = document.createElement('canvas'); c.width = 128; c.height = 80; const g = c.getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, 128, 80); g.fillStyle = fg; g.font = 'bold 40px sans-serif'; g.textAlign = 'center'; g.fillText(txt, 64, 54); return new THREE.CanvasTexture(c); };
+    const B = (w, h, d, c, x, y, z) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), L(c)); o.position.set(x, y, z); scene.add(o); return o; };
+    scene.add(new THREE.HemisphereLight(0xdde8ff, 0x332a22, 0.65)); const sun = new THREE.DirectionalLight(0xffffff, 0.75); sun.position.set(5, 10, 6); scene.add(sun);
+    B(16, 0.2, 14, 0x3a3630, 0, -0.1, 0); B(16, 5, 0.3, 0x5c5248, 0, 2.5, -7); B(0.3, 5, 14, 0x55493f, -8, 2.5, 0); B(0.3, 5, 14, 0x55493f, 8, 2.5, 0); B(16, 0.3, 14, 0x2a2622, 0, 5, 0);
+    B(6.4, 0.12, 1.8, 0x4a2e1a, 0, 0.78, 0); B(6, 0.7, 1.4, 0x3a2414, 0, 0.4, 0);
+    for (const x of [-1.6, 0, 1.6]) { B(0.8, 0.5, 0.8, 0x2a2a2a, x, 0.25, -1.7); B(0.8, 0.9, 0.12, 0x2a2a2a, x, 0.95, -2.1); B(0.8, 0.5, 0.8, 0x2a2a2a, x, 0.25, 1.7); B(0.8, 0.9, 0.12, 0x2a2a2a, x, 0.95, 2.1); }
+    for (const [x, bg, txt] of [[-5.5, '#1f8f35', '>:)'], [5.5, '#1f3d94', 'FR'], [-2.4, '#b7c0c6', 'TP'], [2.4, '#55585f', 'FF']]) { B(0.06, 2.6, 0.06, 0x8a7a50, x, 1.3, -6.4); const f = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 0.65), new THREE.MeshLambertMaterial({ map: flagTex(bg, '#000', txt), side: THREE.DoubleSide })); f.position.set(x + 0.53, 2.25, -6.4); scene.add(f); }
+    const lamp = new THREE.PointLight(0xffe2b0, 1.2, 16); lamp.position.set(0, 4.2, 0); scene.add(lamp);
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 1.6), new THREE.MeshBasicMaterial({ color: 0xd6e2ea })); win.position.set(-7.84, 2.9, 2.5); win.rotation.y = PI / 2; scene.add(win);
+    scene.background = new THREE.Color(0x14120f);
+  };
+  // a choice beat shows buttons and waits; the pick lands in the campaign story flags
+  const _cn = csNext; csNext = function () {
+    const C = CS; if (C && C.waitChoice) return;
+    _cn.apply(this, arguments);
+    const C2 = CS, b = C2 && C2.S && C2.S.beats[C2.bi]; if (!b || !b.choice) { const box = $('#csChoice'); if (box) box.hidden = true; return; }
+    C2.waitChoice = true; C2.line = null; $('#csSub').hidden = true;
+    const box = $('#csChoice'); box.hidden = false;
+    box.innerHTML = `<div class="csq">${esc(b.choice.prompt)}</div>` + b.choice.opts.map((o, i) => `<button class="csopt" data-ci="${i}"><b>${esc(o.t)}</b>${o.sub ? `<small>${esc(o.sub)}</small>` : ''}</button>`).join('');
+    box.querySelectorAll('.csopt').forEach(btn => { btn.onpointerdown = e => e.stopPropagation(); btn.onclick = e => { e.stopPropagation(); const o = b.choice.opts[+btn.dataset.ci]; lwChoose(o); box.hidden = true; C2.waitChoice = false; csNext(); }; });
+  };
+  const _ce = csEnd; csEnd = function () { const box = $('#csChoice'); if (box) box.hidden = true; if (CS) CS.waitChoice = false; return _ce.apply(this, arguments); };
+  // skipping never skips a decision: the skip jumps to the next unanswered choice instead
+  $('#csSkip').addEventListener('click', e => {
+    const C = CS; if (!C || !C.S) return;
+    if (C.waitChoice) { e.stopImmediatePropagation(); return; }
+    const idx = C.S.beats.findIndex((bt, i) => i > C.bi && bt.choice);
+    if (idx >= 0) { e.stopImmediatePropagation(); C.bi = idx - 1; csNext(); }
+  }, true);
+}
+function lwChoose(o) {
+  const S = storyOf(); if (!S) return;
+  S.flags = S.flags || {}; S.tally = S.tally || { protector: 0, strategist: 0, liberator: 0, conqueror: 0 };
+  if (o.flag) S.flags[o.flag] = o.val; if (o.tally) S.tally[o.tally] = (S.tally[o.tally] || 0) + 1;
+  saveCamp();
+}
+const lwFlag = (k, d) => { const S = storyOf(); return (S && S.flags && S.flags[k]) || d; };
+
+/* ---------- the thirty chapters ---------- */
+const LW_ACTS = ['Exile', 'The Price of Loyalty', 'The Broken Alliance', 'The World on Fire', 'Last Light'];
+const CHAPTERS = [
+  null,
+  { n: 1, act: 1, title: 'The Last Ice', type: 'ops', nation: 'geda', map: 'snow', size: 'small', time: 'dawn', weather: 'snow', brief: ['ch1_brief'], after: ['ch1_after'],
+    desc: 'A storm has cut the Antarctic base off. An enemy recon force has found the supply depot.',
+    obj: ['Reach the communications station', 'Restore the perimeter', 'Defend the supply depot', 'Escort the supply team home'],
+    stages: [{ k: 'reach', at: 'mid', label: 'Reach the communications station', r: 6 }, { k: 'hold', secs: 45, label: 'Restore contact: hold the station' }, { k: 'hold', at: 'home', secs: 75, label: 'Defend the supply depot', push: true }, { k: 'return', label: 'Escort the supply team back to the base' }] },
+  { n: 2, act: 1, title: 'The World We Lost', type: 'ops', nation: 'geda', size: 'small', time: 'noon', weather: 'clear', brief: ['intro', 'ch2_brief'], mapFrom: 'foothold',
+    desc: 'The survivors choose where the SMFA returns to the world.', obj: ['Choose an initial foothold', 'Secure a landing zone', 'Hold until reinforcements arrive'],
+    stages: [{ k: 'reach', at: 'mid', label: 'Secure the landing zone', r: 8 }, { k: 'hold', secs: 90, label: 'Hold the landing zone until the second wave lands', push: true }] },
+  { n: 3, act: 1, title: 'Foothold', type: 'battle', nation: 'geda', map: 'jungle', size: 'medium', time: 'noon', weather: 'clear', after: ['first_blood'],
+    desc: 'The first flag in a free country. A hunter named Reyes is watching.', obj: ['Capture the first strategic position', 'Protect the local population', 'Drive off the remaining enemy force'], onWin: S => storyHero('reyes', true) },
+  { n: 4, act: 1, title: 'Lifeline', type: 'mission', mission: 'convoy', brief: ['ch4_brief'], desc: 'Three supply trucks must cross the desert while Malik\'s forces try to cut the new front off.', obj: ['Clear the route', 'Protect the trucks', 'At least one truck reaches the front'] },
+  { n: 5, act: 1, title: 'The Price of the Flag', type: 'ops', nation: 'geda', map: 'city', size: 'medium', time: 'dusk', weather: 'clear', brief: ['ch5_brief'], after: S => lwFlag('ch5') === 'pursue' ? ['ch5_after_pursue'] : ['ch5_after_protect'],
+    desc: 'A liberated settlement faces retaliation. Protect the evacuation, or hunt the unit responsible.', obj: ['Reach the settlement', 'Secure the evacuation route', 'Protect the safe zone, or pursue the enemy'],
+    stagesFn: () => lwFlag('ch5') === 'pursue' ? [{ k: 'reach', at: 'mid', label: 'Reach the settlement', r: 8 }, { k: 'kill', n: 20, label: 'Hunt down the retreating unit' }] : [{ k: 'reach', at: 'mid', label: 'Reach the settlement', r: 8 }, { k: 'hold', at: 'mid', secs: 120, label: 'Protect the civilian safe zone', push: true, zone: true }] },
+  { n: 6, act: 1, title: 'The Emperor', type: 'cut', brief: ['conspiracy', 'ch6_choice'], desc: 'Emperor Malik learns the SMFA has returned, and someone inside the bunker is helping him.', obj: ['Investigate the intelligence report', 'Decide how much the command staff hears'] },
+  { n: 7, act: 2, title: 'Leak', type: 'ops', nation: 'french', map: 'city', size: 'medium', time: 'night', weather: 'rain', brief: ['codes', 'ch7_brief'], after: ['ch7_after'],
+    desc: 'The embassy burned at the guard change. The communication logs that could explain it are still in the field.', obj: ['Recover the three communication logs', 'Return with the evidence'],
+    stages: [{ k: 'reach', at: 'flagA', label: 'Recover log 1 of 3', r: 5, item: true }, { k: 'reach', at: 'flagB', label: 'Recover log 2 of 3', r: 5, item: true }, { k: 'reach', at: 'enemy', label: 'Recover log 3 of 3 from the forward post', r: 5, item: true }, { k: 'return', label: 'Return to your HQ with the evidence' }] },
+  { n: 8, act: 2, title: 'The Embassy', type: 'mission', mission: 'embassy', desc: 'French forces storm the SMFA embassy. Hold it for four minutes and get the records out.', obj: ['Hold the embassy for 4 minutes', 'Protect the communications room'] },
+  { n: 9, act: 2, title: 'The General\'s Villa', type: 'mission', mission: 'villa', desc: 'Moreau\'s private records are inside his villa on the Riviera. Patience beats bullets.', obj: ['Infiltrate the villa', 'Eliminate Moreau', 'Escape with the evidence'] },
+  { n: 10, act: 2, title: 'Last Words', type: 'cut', brief: ['moreau'], desc: 'Moreau names the traitor. The President must reconsider every conversation since the ice.', obj: ['Hear Moreau\'s account'] },
+  { n: 11, act: 2, title: 'Operation Viper', type: 'mission', mission: 'decapitate', desc: 'General Petra Grauss leads the Frowny army in Egypt. Remove her from command.', obj: ['Break the outer defenses', 'Reach the command position', 'Defeat Grauss', 'Secure the command intelligence'] },
+  { n: 12, act: 2, title: 'The Engineer', type: 'ops', nation: 'french', map: 'desert', size: 'medium', time: 'noon', weather: 'clear', brief: ['ch12_brief'], after: ['engineer'],
+    desc: 'Okoro repairs a captured French tank under fire.', obj: ['Secure the repair site', 'Defend Okoro while she works', 'Escort the tank back'],
+    stages: [{ k: 'reach', at: 'mid', label: 'Secure the repair site', r: 8 }, { k: 'hold', at: 'mid', secs: 100, label: 'Defend Okoro while she repairs the tank', push: true, zone: true }, { k: 'return', label: 'Escort the tank back to SMFA lines' }], onWin: S => storyHero('okoro', true) },
+  { n: 13, act: 3, title: 'Betrayal', type: 'cut', brief: ['betrayal', 'betrayal_more'], desc: 'Mara Quill chooses Malik\'s world. She takes Hale with her.', obj: ['Witness the betrayal'], onWin: S => storyHero('hale', false) },
+  { n: 14, act: 3, title: 'No One Left Behind', type: 'ops', nation: 'geda', map: 'jungle', size: 'medium', time: 'dusk', weather: 'rain', brief: ['ch14_brief'], after: ['ch14_after'],
+    desc: 'The escape has thrown the front into chaos. Stabilise it, then follow the trail.', obj: ['Stabilise the command post', 'Recover the radios', 'Pursue the escort unit'],
+    stages: [{ k: 'hold', at: 'home', secs: 70, label: 'Stabilise the command post', push: true }, { k: 'reach', at: 'flagA', label: 'Recover the damaged radio equipment', r: 5, item: true }, { k: 'reach', at: 'enemy', label: 'Pursue the escort unit to its last position', r: 7 }, { k: 'kill', n: 12, label: 'Break the escort unit' }] },
+  { n: 15, act: 3, title: 'The Safehouse', type: 'ops', nation: 'tundra', map: 'snow', size: 'small', time: 'night', weather: 'snow', brief: ['ch15_brief'], after: ['ch15_after'],
+    desc: 'Mara\'s communications are inside a Tundra Pact safehouse. Find out where Hale is being held.', obj: ['Infiltrate the safehouse', 'Recover Mara\'s communications', 'Escape before the valley is sealed'],
+    stages: [{ k: 'reach', at: 'enemy', label: 'Reach the safehouse', r: 7 }, { k: 'reach', at: 'flagB', label: 'Recover the radio logs', r: 5, item: true }, { k: 'return', label: 'Escape to the extraction point' }], extra: { noCommander: true } },
+  { n: 16, act: 3, title: 'Bring Hale Home', type: 'mission', mission: 'rescue', after: ['rescue_more'], desc: 'Hale is held in a Gloomvanian prison camp.', obj: ['Infiltrate the camp', 'Free Hale', 'Escort him to the extraction point'] },
+  { n: 17, act: 3, title: 'Brothers', type: 'cut', brief: ['reunion'], desc: 'Brandt brings Hale home. The command staff learns what the safehouse really was.', obj: ['Return to base with Hale'], onWin: S => { storyHero('hale', true); storyHero('brandt', true); } },
+  { n: 18, act: 3, title: 'Lifeline: Under Fire', type: 'mission', mission: 'convoy', brief: ['ch18_brief'], extra: { enemyBoost: 1.45, size: 'large' }, desc: 'The convoy that carries the offensive. Malik wants it burning.', obj: ['Protect the vehicles from ambushes', 'Clear the final approach', 'Enough supplies reach the army'] },
+  { n: 19, act: 4, title: 'The Other Front', type: 'ops', nation: 'frowny', map: 'city', size: 'medium', time: 'dawn', weather: 'fog', brief: ['ch19_brief'], after: ['ch19_after'],
+    desc: 'An abandoned observation post holds the plans of five empires.', obj: ['Infiltrate the observation post', 'Recover the strategic documents', 'Escape with the evidence'],
+    stages: [{ k: 'reach', at: 'flagA', label: 'Recover documents 1 of 3', r: 5, item: true }, { k: 'reach', at: 'flagB', label: 'Recover documents 2 of 3', r: 5, item: true }, { k: 'reach', at: 'enemy', label: 'Recover documents 3 of 3', r: 5, item: true }, { k: 'return', label: 'Escape with the evidence' }] },
+  { n: 20, act: 4, title: 'The Price of an Alliance', type: 'ops', nation: 'geda', map: 'city', size: 'medium', time: 'dusk', weather: 'clear', brief: ['ch20_brief', 'ch20_attack'], after: S => ['ch20_after_' + lwFlag('french', 'reject')],
+    desc: 'Emperor Archer offers cooperation against Malik, at a price. Then the meeting comes under fire.', obj: ['Attend the diplomatic meeting', 'Answer the French proposal', 'Defend the site until the delegates are clear'],
+    stages: [{ k: 'hold', at: 'home', secs: 110, label: 'Defend the negotiation site', push: true }], extra: { noCommander: true } },
+  { n: 21, act: 4, title: 'The Quiet City', type: 'ops', nation: 'geda', map: 'city', size: 'small', time: 'night', weather: 'rain', brief: ['ch21_brief'],
+    desc: 'Malik\'s police begin their arrests at dawn. The SMFA needs the network\'s list before then.', obj: ['Reach the informant', 'Recover the intelligence', 'Extract without exposing the network'],
+    stages: [{ k: 'reach', at: 'flagB', label: 'Reach the informant', r: 5 }, { k: 'hold', at: 'flagB', secs: 30, label: 'Cover the informant while the list is copied', zone: true }, { k: 'return', label: 'Extract to your HQ' }], extra: { noCommander: true } },
+  { n: 22, act: 4, title: 'The Iron Line', type: 'ops', nation: 'tundra', map: 'snow', size: 'large', msize: 'big', time: 'noon', weather: 'snow', brief: ['ch22_brief'], after: ['ch22_after'],
+    desc: 'The Tundra Pact has moved a corps onto the supply corridor.', obj: ['Secure the approach to the corridor', 'Disable the forward command post', 'Hold the crossing'],
+    stages: [{ k: 'reach', at: 'mid', label: 'Secure the approach to the corridor', r: 10 }, { k: 'cmdr', label: 'Disable the forward command: kill the Pact commander' }, { k: 'hold', at: 'mid', secs: 80, label: 'Hold the crossing until reinforcements arrive', push: true }] },
+  { n: 23, act: 4, title: 'The Price of Silence', type: 'ops', nation: 'gloom', map: 'city', size: 'medium', time: 'night', weather: 'fog', brief: ['ch23_brief'], after: ['ch23_after'],
+    desc: 'Morwen trades her archive for her ministries. Inside is every secret of the war.', obj: ['Locate the intelligence archive', 'Secure the records', 'Escape the facility'],
+    stages: [{ k: 'reach', at: 'enemy', label: 'Locate the intelligence archive', r: 7 }, { k: 'hold', at: 'enemy', secs: 60, label: 'Secure the records while they are copied', zone: true, push: true }, { k: 'return', label: 'Escape the facility' }], extra: { noCommander: true } },
+  { n: 24, act: 4, title: 'The False Flag', type: 'ops', nation: 'frowny', map: 'desert', size: 'medium', time: 'dawn', weather: 'clear', brief: ['ch24_brief'], after: ['ch24_after'],
+    desc: 'An attack blamed on the SMFA is about to start a war between two empires.', obj: ['Investigate the attack site', 'Recover the missing records', 'Reach the communications relay'],
+    stages: [{ k: 'reach', at: 'flagA', label: 'Investigate the attack site', r: 6, item: true }, { k: 'reach', at: 'flagB', label: 'Recover the missing records', r: 5, item: true }, { k: 'reach', at: 'enemy', label: 'Reach the communications relay', r: 6 }, { k: 'hold', at: 'enemy', secs: 40, label: 'Transmit the evidence', zone: true, push: true }] },
+  { n: 25, act: 4, title: 'The Last Negotiation', type: 'ops', nation: 'geda', map: 'city', size: 'large', time: 'dusk', weather: 'storm', brief: ['ch25_brief'], after: S => [lwScore().coalition ? 'ch25_after_good' : 'ch25_after_bad'],
+    desc: 'A coalition against the SMFA is forming as Malik prepares his offensive. The talks happen under fire.', obj: ['Defend the negotiating site', 'Secure the delegates\' withdrawal', 'Finalise the agreement, or prepare for a wider war'],
+    stages: [{ k: 'hold', at: 'home', secs: 150, label: 'Keep the delegates alive while the talks continue', push: true }, { k: 'return', label: 'Secure the withdrawal route' }] },
+  { n: 26, act: 5, title: 'The Traitor', type: 'mission', mission: 'quill', after: ['quill_end'], desc: 'Mara Quill waits at the safehouse. One last chance to talk, then Operation Last Light.', obj: ['Reach Mara\'s position', 'Confront her', 'Escape the safehouse'] },
+  { n: 27, act: 5, title: 'The Gathering Storm', type: 'ops', nation: 'geda', map: 'desert', size: 'large', time: 'night', weather: 'storm', brief: ['ch27_brief'],
+    desc: 'The SMFA assembles for the assault. One thing can be protected properly before the storm.', obj: ['Select the offensive\'s support route', 'Secure the staging area', 'Defend the final supply delivery'],
+    stages: [{ k: 'reach', at: 'mid', label: 'Secure the staging area', r: 10 }, { k: 'hold', at: 'mid', secs: 100, label: 'Defend the final supply delivery', push: true, zone: true }] },
+  { n: 28, act: 5, title: 'The Capital\'s Edge', type: 'ops', nation: 'geda', map: 'city', size: 'large', msize: 'big', time: 'dawn', weather: 'rain', brief: ['ch28_brief'],
+    desc: 'The outer defenses of Malik\'s capital, and two million people behind them.', obj: ['Breach the outer defensive position', 'Secure a route into the city', 'Protect the civilian corridor', 'Establish a forward command point'],
+    stages: [{ k: 'reach', at: 'flagA', label: 'Breach the outer defensive position', r: 8 }, { k: 'hold', at: 'flagB', secs: 90, label: 'Protect the civilian corridor', zone: true, push: true, tally: 'protector' }, { k: 'reach', at: 'enemy', label: 'Establish a forward command point', r: 8 }, { k: 'hold', at: 'enemy', secs: 45, label: 'Hold the command point', zone: true, push: true }], extra: { enemyBoost: 1.3 } },
+  { n: 29, act: 5, title: 'The Last Command', type: 'ops', nation: 'geda', map: 'city', size: 'medium', time: 'night', weather: 'storm', brief: ['ch29_brief'], after: ['ch29_after'],
+    desc: 'Cut the relays that keep Malik\'s generals believing, and read what he planned for the day after.', obj: ['Infiltrate the command complex', 'Disable the relays', 'Recover the operational records', 'Reach the assault force'],
+    stages: [{ k: 'reach', at: 'flagA', label: 'Disable relay 1 of 2', r: 5, item: true }, { k: 'reach', at: 'flagB', label: 'Disable relay 2 of 2', r: 5, item: true }, { k: 'reach', at: 'enemy', label: 'Recover the operational records', r: 6, item: true }, { k: 'return', label: 'Reach the assault force' }], extra: { noCommander: true } },
+  { n: 30, act: 5, title: 'Operation Last Light', type: 'mission', mission: 'final', desc: 'The SMFA storms Malik\'s capital. The Emperor makes his stand.', obj: ['Advance through the capital\'s defenses', 'Defeat Malik\'s remaining forces', 'Confront the Emperor'] }
+];
+const LW_SIDE = [['Reyes: The Village', 'Reyes returns to where his village stood.'], ['Okoro: The Impossible Repair', 'Parts from an abandoned industrial site.'], ['Brandt: The Long Way Home', 'A damaged aircraft and stranded survivors.'], ['Hale: The Men Who Stayed', 'An old defensive line from the retreat.'], ['The Five Reports', 'Reports from each of the five empires.']];
+
+/* ---------- story state (v2) ---------- */
+function lwStory() {
+  const S = storyOf(); if (!S) return null;
+  if (!S.v2) { // migrate an older campaign to the chapter list
+    S.v2 = true; S.flags = S.flags || {}; S.tally = S.tally || { protector: 0, strategist: 0, liberator: 0, conqueror: 0 };
+    S.ch = S.done.final ? 30 : S.done.quill ? 26 : S.done.convoy && S.done.rescue ? 18 : S.done.rescue ? 17 : S.seen.betrayal ? 13 : S.done.decapitate ? 11 : S.done.villa ? 10 : S.done.embassy ? 8 : S.seen.conspiracy ? 6 : S.seen.first_blood ? 3 : 0;
+    saveCamp();
+  }
+  if (S.ch === undefined) S.ch = 0;
+  return S;
+}
+function lwScore() {
+  const S = lwStory(), f = S.flags || {}, t = S.tally || {};
+  const fr = f.french, coalition = (fr === 'accept' || fr === 'renegotiate') && f.koldun !== 'crush' && f.falseflag === 'expose';
+  let ending = 'liberator';
+  const cq = t.conqueror || 0, lib = t.liberator || 0, pr = t.protector || 0, st = t.strategist || 0;
+  if (cq >= 2 && cq >= lib && cq >= pr) ending = 'conqueror';
+  else if (coalition && (lib + pr) >= 3 && f.archive !== 'all') ending = 'peacemaker';
+  return { coalition, ending, tally: { protector: pr, strategist: st, liberator: lib, conqueror: cq } };
+}
+const lwCurrent = () => { const S = lwStory(); return S ? CHAPTERS[Math.min(30, S.ch + 1)] : null; };
+const lwDone = n => { const S = lwStory(); return S && S.ch >= n; };
+
+/* ---------- launching a chapter ---------- */
+let lwPlayingCh = 0;
+function lwPlayScenes(ids, done) {
+  const S = lwStory(); const list = (ids || []).filter(id => CUTSCENES[id]);
+  const step = () => { const id = list.shift(); if (!id) { done && done(); return; } S.seen[id] = true; saveCamp(); playCutscene(id, step); };
+  step();
+}
+function lwChapterCfg(C) {
+  const S = lwStory();
+  const map = C.mapFrom ? lwFlag(C.mapFrom, 'desert') : C.map;
+  const heroes = S.heroes.slice();
+  const cfg = { diff: CAMP.diff || 'normal', mode: CAMP.mode, hardcore: false, up: CAMP.up, enemyBoost: 1, heroes, map, enemy: C.nation, size: C.size || 'medium', msize: C.msize || 'std', time: C.time || 'noon', weather: C.weather || 'clear' };
+  if (C.type === 'ops') { cfg.mission = 'ops'; cfg.ops = (C.stagesFn ? C.stagesFn() : C.stages).map(s => Object.assign({}, s)); }
+  Object.assign(cfg, C.extra || {});
+  cfg.campaign = { mission: cfg.mission || 'battle', enemy: C.nation, chapter: C.n };
+  return cfg;
+}
+function playChapter(n) {
+  const C = CHAPTERS[n]; if (!C || !CAMP) return;
+  const S = lwStory(); lwPlayingCh = n;
+  hideScreens();
+  lwPlayScenes(C.brief, () => {
+    if (C.type === 'cut') { lwComplete(n, 'win'); show('#scr-campaign'); renderCampaign(); lwPlayAfter(); return; }
+    if (C.type === 'mission') {
+      const M = MISSIONS[C.mission];
+      const base = { diff: CAMP.diff || 'normal', mode: CAMP.mode, hardcore: false, up: CAMP.up, enemyBoost: 1, heroes: M.stealth ? [] : S.heroes.filter(h => !(C.mission === 'rescue' && h === 'hale')) };
+      startBattle(Object.assign(base, M.cfg(), C.extra || {}, { campaign: { mission: C.mission, enemy: M.cfg().enemy, chapter: n } }));
+      return;
+    }
+    startBattle(lwChapterCfg(C));
+  });
+}
+function lwComplete(n, result) {
+  const S = lwStory(); const C = CHAPTERS[n]; if (!C) return;
+  if (result !== 'win') return;
+  if (S.ch < n) S.ch = n;
+  if (C.onWin) try { C.onWin(S); } catch (e) { }
+  const after = typeof C.after === 'function' ? C.after(S) : C.after;
+  (after || []).forEach(id => { if (CUTSCENES[id]) { S.queue = S.queue.filter(q => q !== id); S.queue.push(id); } });
+  if (n === 30) { const sc = lwScore(); S.ending = sc.ending; S.queue.push('ending_' + sc.ending); S.queue.push('ending'); S.done.final = true; medalGive('story'); medalGive(sc.ending === 'peacemaker' ? 'peacemaker' : sc.ending === 'conqueror' ? 'conqueror_end' : 'liberator_end'); }
+  if (n === 29) { /* the final confrontation plays inside chapter 30 */ }
+  saveCamp();
+}
+function lwPlayAfter() { const S = lwStory(); if (S.queue.length) playStoryQueue(() => { renderCampaign(); }); }
+
+/* ---------- the "ops" mission type: reach / hold / kill / commander / return ---------- */
+function opsPos(at) {
+  const T0 = G.teams[0], T1 = G.teams[1];
+  if (Array.isArray(at)) return { x: at[0], z: at[1] };
+  if (at === 'home') return { x: T0.spawn.x, z: T0.spawn.z - 10 * (T0.spawn.z > 0 ? 1 : -1) };
+  if (at === 'enemy') { const p = vipPost(1); return { x: p.x, z: p.z }; }
+  if (at === 'flagA' || at === 'flagB') { const fs = G.flags.slice().sort((a, b) => Math.hypot(a.x - T0.spawn.x, a.z - T0.spawn.z) - Math.hypot(b.x - T0.spawn.x, b.z - T0.spawn.z)); const f = fs[at === 'flagA' ? Math.min(1, fs.length - 1) : Math.min(2, fs.length - 1)] || fs[0]; return f ? { x: f.x, z: f.z } : { x: 0, z: 0 }; }
+  return { x: (T0.hq.x + T1.hq.x) / 2, z: (T0.hq.z + T1.hq.z) / 2 };
+}
+function opsStart(i) {
+  const M = G.mis, st = G.cfg.ops[i]; M.stage = i; M.st = st; M.t0 = G.t; M.k0 = G.teams[0].kills;
+  if (!st) { misEnd('win', 'Objectives complete.', 2.5); return; }
+  let p = null;
+  if (st.k === 'reach' || st.k === 'hold') p = opsPos(st.at || 'mid'); else if (st.k === 'return') p = opsPos('home');
+  if (p) { const q = typeof godFree === 'function' ? (godFree(p.x, p.z) || p) : p; M.pt = q; misMarker(q.x, q.z, st.k === 'return' ? 0x39d353 : st.item ? 0x5aa6ff : 0xf2b33d, st.r || 6); } else { misClearMarker(); M.pt = null; }
+  if (st.push) G.enemyPush = true;
+  if (st.k === 'cmdr' && !G.commander) { st.k = 'kill'; st.n = 15; }
+  misObjective(st.label); banner(st.label.toUpperCase(), 2.2, 'var(--amber)');
+  if (st.k === 'hold' && st.zone && M.pt) { for (const sq of G.teams[0].squads) { sq.order = 'move'; sq.pt = { x: M.pt.x, z: M.pt.z }; } commanderTick(0); renderSquads(true); }
+}
+function opsTick(dt) {
+  const M = G.mis, st = M.st; if (!st) return;
+  const p = G.player && G.player.alive && !G.player.inVeh ? G.player : (G.player && G.player.alive ? G.player : null);
+  const near = M.pt && p ? Math.hypot(p.x - M.pt.x, p.z - M.pt.z) < (st.r || 6) : false;
+  if (st.k === 'reach' || st.k === 'return') {
+    if (!p) misObjective(st.label, 'Join the fight to reach it'); else misObjective(st.label, Math.round(Math.hypot(p.x - M.pt.x, p.z - M.pt.z)) + ' m');
+    if (near) { if (st.item) { M.hold = (M.hold || 0) + dt; misObjective(st.label, 'Securing… ' + Math.min(100, Math.round(M.hold / 2.5 * 100)) + '%'); if (M.hold < 2.5) return; M.hold = 0; SFX.ok() && SFX.tone(0.1, 0.3, 600, 1200, 'triangle'); } opsStart(M.stage + 1); }
+    else M.hold = 0;
+  } else if (st.k === 'hold') {
+    const left = Math.max(0, st.secs - (G.t - M.t0));
+    const friendly = M.pt ? G.units.filter(u => u.alive && u.team === 0 && Math.hypot(u.x - M.pt.x, u.z - M.pt.z) < 18).length : 1;
+    if (st.zone && friendly === 0) { M.lost = (M.lost || 0) + dt; if (M.lost > 12) { misEnd('lose', 'The position was lost. Nobody was left to hold it.'); return; } misObjective(st.label, `${Math.ceil(left)} s · NOBODY HOLDING THE ZONE`); }
+    else { M.lost = 0; misObjective(st.label, `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`); }
+    if (left <= 0) opsStart(M.stage + 1);
+  } else if (st.k === 'kill') {
+    const k = G.teams[0].kills - M.k0; misObjective(st.label, `${Math.min(k, st.n)} / ${st.n}`); if (k >= st.n) opsStart(M.stage + 1);
+  } else if (st.k === 'cmdr') { if (G.cmdrKilled) opsStart(M.stage + 1); }
+}
+{
+  const _ms = missionSetup; missionSetup = function () {
+    const c = G.cfg;
+    if (c.mission === 'ops') { G.mis = { type: 'ops', stage: 0, t0: G.t }; G.teams[1].tickets = Math.round(G.teams[1].tickets * 1.3); opsStart(0); return; }
+    return _ms.apply(this, arguments);
+  };
+  const _mt = missionTick; missionTick = function (dt) {
+    const M = G.mis; if (M && M.type === 'ops' && !M.ended && !G.over) { if (M.marker) { const k = 1 + Math.sin(G.t * 4) * 0.08; M.marker.ring.scale.set(k, 1, k); } opsTick(dt); return; }
+    // chapter 30: the Emperor speaks before he dies
+    if (M && M.type === 'final' && G.cfg.campaign && G.cfg.campaign.chapter === 30 && G.leader && G.leader.alive && !G.malikTalk && G.player && G.player.alive && Math.hypot(G.player.x - G.leader.x, G.player.z - G.leader.z) < 14) {
+      G.malikTalk = true; G.paused = true; if (document.pointerLockElement) document.exitPointerLock();
+      playCutscene('malik_final', () => { G.paused = false; $('#hud').hidden = false; });
+    }
+    return _mt.apply(this, arguments);
+  };
+  // results: chapter battles report to the chapter system, not the old mission list
+  const _cr = campaignResult; campaignResult = function (result, kills) {
+    const c = G.cfg.campaign; if (!c || c.resolved || !c.chapter) return _cr.apply(this, arguments);
+    c.resolved = true; const C = CHAPTERS[c.chapter];
+    let reward = result === 'win' ? (MISSIONS[c.mission] ? MISSIONS[c.mission].reward : 1500 + C.n * 120) : 300;
+    reward = Math.round(reward * (G.diff.reward || 1)); CAMP.chest += reward;
+    if (result === 'win') { if (MISSIONS[c.mission]) storyOf().done[c.mission] = true; if (G.leaderKilled) storyOf().leadersDead[G.leaderKilled] = true; lwComplete(c.chapter, 'win'); }
+    saveCamp(); return reward;
+  };
+  // the old territory-count triggers are retired; chapters drive the story now
+  const _sc = storyCheck; storyCheck = function () { const S = storyOf(); if (!S) return; if (!S.v2) lwStory(); saveCamp(); };
+  for (const k in MISSION_SCENE) MISSION_SCENE[k] = null;
+  // the campaign side panel: current chapter card
+  storyPanelHTML = function () {
+    const S = lwStory(); if (!S) return '';
+    const C = lwCurrent(), done = S.ch >= 30;
+    let h = `<h3>The Long War</h3>`;
+    if (done) h += `<div class="chCard done"><b>Campaign complete</b><small>Ending: ${esc({ liberator: 'The Liberator', conqueror: 'The Conqueror', peacemaker: 'The Peacemaker' }[S.ending] || 'Last Light')}. Replay any chapter from the chapter list, or keep conquering the map.</small><button class="btn small" id="chList">Chapters</button></div>`;
+    else if (C) h += `<div class="chCard"><span class="chAct">Act ${['I', 'II', 'III', 'IV', 'V'][C.act - 1]} · ${esc(LW_ACTS[C.act - 1])}</span><b>Chapter ${C.n} · ${esc(C.title)}</b><small>${esc(C.desc)}</small><ul>${(C.obj || []).map(o => `<li>${esc(o)}</li>`).join('')}</ul><div class="row" style="gap:6px;flex-wrap:wrap"><button class="btn primary small" id="chPlay">${C.type === 'cut' ? 'Watch' : 'Play'} chapter ${C.n}</button><button class="btn small" id="chList">All chapters</button></div></div>`;
+    h += `<div class="row" style="gap:6px;flex-wrap:wrap;margin-top:6px"><button class="btn small" id="storyReplay">Replay cutscenes</button><button class="btn small" id="medalsBtn2">Medals</button></div>`;
+    h += `<h3>Heroes</h3><div class="heroes">${S.heroes.length ? S.heroes.map(hh => `<span class="hero"><b>${HEROES[hh].name}</b> ${esc(HEROES[hh].desc)}</span>`).join('') : '<span class="note">None right now.</span>'}</div>`;
+    return h;
+  };
+  const _rc = renderCampaign; renderCampaign = function () {
+    _rc.apply(this, arguments);
+    const pl = $('#chPlay'); if (pl) pl.onclick = () => { const C = lwCurrent(); if (C) playChapter(C.n); };
+    const ls = $('#chList'); if (ls) ls.onclick = openChapters;
+  };
+}
+/* ---------- chapter list screen ---------- */
+function openChapters() {
+  const S = lwStory(); const el = $('#chBody');
+  const sc = lwScore();
+  let h = `<div class="chTally"><span>Protector <b>${sc.tally.protector}</b></span><span>Strategist <b>${sc.tally.strategist}</b></span><span>Liberator <b>${sc.tally.liberator}</b></span><span>Conqueror <b>${sc.tally.conqueror}</b></span></div>`;
+  for (let a = 1; a <= 5; a++) {
+    h += `<h3>Act ${['I', 'II', 'III', 'IV', 'V'][a - 1]} · ${esc(LW_ACTS[a - 1])}</h3><div class="chGrid">`;
+    for (const C of CHAPTERS.slice(1).filter(c => c.act === a)) {
+      const st = S.ch >= C.n ? 'done' : S.ch + 1 === C.n ? 'next' : 'locked';
+      const icon = C.type === 'cut' ? '🎬' : C.type === 'mission' && MISSIONS[C.mission].stealth ? '🗡' : C.type === 'mission' && C.mission === 'convoy' ? '🚚' : '★';
+      h += `<div class="chItem ${st}"><div class="chNum">${C.n}</div><div class="chTxt"><b>${icon} ${esc(C.title)}</b><small>${esc(C.desc)}</small></div>${st === 'locked' ? '<span class="chLock">Locked</span>' : `<button class="btn small ${st === 'next' ? 'primary' : ''}" data-ch="${C.n}">${st === 'done' ? 'Replay' : C.type === 'cut' ? 'Watch' : 'Play'}</button>`}</div>`;
+    }
+    h += `</div>`;
+  }
+  h += `<h3>Side stories</h3><div class="chGrid">${LW_SIDE.map(([t, d]) => `<div class="chItem locked"><div class="chNum">·</div><div class="chTxt"><b>${esc(t)}</b><small>${esc(d)}</small></div><span class="chLock">Later update</span></div>`).join('')}</div>`;
+  el.innerHTML = h;
+  $$('[data-ch]').forEach(b => b.onclick = () => playChapter(+b.dataset.ch));
+  show('#scr-story');
+}
+$('#chBack').addEventListener('click', () => { show('#scr-campaign'); renderCampaign(); });
+// new medals for the endings
+MEDALS.push({ id: 'liberator_end', name: 'The Liberator', desc: 'Finish The Long War as the Liberator.', c: '#39d353' }, { id: 'conqueror_end', name: 'The Conqueror', desc: 'Finish The Long War as the Conqueror.', c: '#ef4b4f' }, { id: 'peacemaker', name: 'The Peacemaker', desc: 'Finish The Long War with a negotiated peace.', c: '#5aa6ff' });
 /* ================= battle setup ================= */
 function startBattle(cfg) {
   SFX.init();
