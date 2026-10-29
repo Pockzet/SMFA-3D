@@ -547,6 +547,42 @@ body.mobile #csChoice{bottom:calc(6vh + 8px)}body.mobile #csChoice .csopt{paddin
 .chNum{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:800 13px var(--ui);background:#1d241c;border:1px solid var(--line2)}
 .chItem.done .chNum{background:var(--green);color:#062008}.chItem.next .chNum{background:var(--amber);color:#1a1000}
 .chTxt{flex:1;min-width:0}.chTxt b{display:block}.chTxt small{color:var(--muted);display:block;line-height:1.3}.chLock{font-size:11px;color:var(--muted);letter-spacing:.06em}
+
+/* victory animations */
+#scr-cut.va #csHint,#scr-cut.va #csVoice,#scr-cut.va #csSub,#scr-cut.va #csTitle{display:none!important}
+#vaOv{position:absolute;inset:0;pointer-events:none;z-index:3}
+#vaOv .vaBar{position:absolute;left:0;right:0;height:9vh;background:#000;transition:height .6s}
+#vaOv .vaBar.top{top:0}#vaOv .vaBar.bot{bottom:0}
+#vaOv .vaTint,#vaOv .vaFlash{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+#vaOv .vaFlash{background:#fff8e8}
+#vaOv .vaTitle{position:absolute;left:0;right:0;bottom:9vh;padding:6vh 0 3vh;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0));text-align:center;opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
+#vaOv.show .vaTitle{opacity:1;transform:none}
+#vaOv .vaTitle b{display:block;font:900 clamp(44px,9vw,96px)/1 var(--ui);letter-spacing:.12em;text-shadow:0 4px 0 rgba(0,0,0,.55),0 0 40px rgba(0,0,0,.6)}
+#vaOv .vaTitle span{display:block;margin-top:10px;font:800 clamp(14px,2.2vw,20px) var(--ui);letter-spacing:.2em;color:#fff;text-transform:uppercase;text-shadow:0 2px 6px #000}
+#vaOv .vaTitle small{display:block;margin-top:6px;font:600 13px var(--ui);color:#cfd6cf;letter-spacing:.08em;text-shadow:0 2px 6px #000}
+.cos .sw2.sym.va{font-size:22px;background:linear-gradient(160deg,#1d2a1f,#0c120d);color:#f2b33d}
+.cos .vaTier{display:block;color:var(--amber);font-size:11px;margin:2px 0 4px}
+
+/* online */
+.btn.online{border-color:#2d6a8a;background:linear-gradient(180deg,#14303e,#0e2029)}
+.onWho{display:flex;align-items:center;gap:10px;margin:6px 0 2px}.onWho b{font-size:16px}.onWho small{color:var(--muted)}
+.onActs{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 6px}
+.onJoin{display:flex;gap:6px;margin-left:auto}
+.onJoin input{width:110px;font:800 18px var(--ui);letter-spacing:.25em;text-transform:uppercase;text-align:center;background:#0d110e;border:1px solid #3a4a3c;color:var(--fg);border-radius:6px;padding:6px 8px}
+.onErr{color:var(--red);font-weight:600;margin:6px 0}
+.onRules{margin-top:12px;border-top:1px solid #243026;padding-top:8px}.onRules summary{cursor:pointer;font-weight:700;padding:4px 0}.onRules summary small{color:var(--muted);font-weight:500}
+.onBox{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:26px 12px;margin:10px 0;border:1px solid #2a3a2c;border-radius:10px;background:#0c120d}
+.onBox small{color:var(--muted)}.onBox .onNote{color:var(--amber)}
+.onCodeBig{font:900 54px/1 var(--ui);letter-spacing:.3em;padding-left:.3em;color:var(--green);text-shadow:0 0 24px rgba(57,211,83,.35);user-select:all}
+.onSpin{width:34px;height:34px;border-radius:50%;border:3px solid #2a3a2c;border-top-color:var(--green);animation:onspin 1s linear infinite}
+@keyframes onspin{to{transform:rotate(360deg)}}
+.onVs{display:flex;align-items:center;gap:22px;margin-bottom:6px}.onVs>div{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:120px}.onVs b{font-size:17px}.onVs i{font:900 22px var(--ui);color:var(--amber);font-style:normal}
+.onVs .sw,.onWho .sw{width:22px;height:22px;border-radius:5px;display:inline-block}
+.onNeed{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin:10px 0}
+#netChip{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(8,12,9,.78);border:1px solid #2a3a2c;border-radius:20px;padding:4px 12px;font:600 12px var(--ui);color:#cfd6cf;white-space:nowrap;pointer-events:none;z-index:6}
+#netChip b{color:#7fd4ff;letter-spacing:.08em;margin-right:4px}#netChip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+#netChip .dot.ok{background:var(--green)}#netChip .dot.mid{background:var(--amber)}#netChip .dot.bad{background:var(--red)}
+@media (max-width:600px){.onJoin{margin-left:0}.onVs{gap:10px}.onVs>div{min-width:90px}.onCodeBig{font-size:40px}#netChip{font-size:11px;top:44px}}
 </style>
 
 <div id="stage"></div>
@@ -663,12 +699,13 @@ body.mobile #csChoice{bottom:calc(6vh + 8px)}body.mobile #csChoice .csopt{paddin
       <button class="btn primary" id="continueBtn" hidden>Continue battle</button>
       <button class="btn primary" id="goCampaign">Campaign</button>
       <button class="btn" id="goSkirmish">Skirmish</button>
-      <button class="btn god" id="goGod">God Mode<span class="newbadge">NEW</span></button>
+      <button class="btn online" id="goOnline">Online battle</button>
+      <button class="btn god" id="goGod">God Mode</button>
       <button class="btn" id="goArcade">Arcade</button>
       <button class="btn" id="goBarracks">Barracks</button>
-      <button class="btn store" id="goStore">Store<span class="newbadge">NEW</span></button>
+      <button class="btn store" id="goStore">Store</button>
       <button class="btn god" id="goAdmin" hidden>President's Desk</button>
-      <button class="btn" id="goTutorial">Tutorial<span class="newbadge" id="tutNew">NEW</span></button>
+      <button class="btn" id="goTutorial">Tutorial</button>
       <button class="btn" id="goMedals">Medals</button>
       <button class="btn" id="goHow">How to play</button>
       <button class="btn" id="goSettings">Settings</button>
@@ -698,6 +735,15 @@ body.mobile #csChoice{bottom:calc(6vh + 8px)}body.mobile #csChoice .csopt{paddin
 </div>
 
 
+
+<!-- Online -->
+<div id="scr-online" class="screen" hidden>
+  <div class="card" style="width:min(760px,100%)">
+    <div class="row between"><h2>Online battle</h2><button class="btn small" id="onBack">Back</button></div>
+    <p class="note">Country against country. You command your army from the office or fight on the field; your opponent commands theirs.</p>
+    <div id="onBody"></div>
+  </div>
+</div>
 <!-- Login -->
 <div id="scr-login" class="screen" hidden>
   <div class="card" style="width:min(440px,100%)">
@@ -768,6 +814,7 @@ body.mobile #csChoice{bottom:calc(6vh + 8px)}body.mobile #csChoice .csopt{paddin
     <h3>Voice language</h3><div class="opts" id="st-lang"></div>
     <h3>Tutorial sergeant voice</h3><div class="opts" id="st-sarge"></div>
     <h3>Cutscene voices</h3><div class="opts" id="st-csv"></div>
+    <h3>Victory animation</h3><div class="opts" id="st-va"></div>
     <p class="note">Silent shows subtitles only. Synth plays a game-style babble. Speech reads lines aloud with your device's built-in voice. You can also switch it during a cutscene.</p>
     <h3>Kill cams</h3><div class="opts" id="st-kc"></div>
     <p class="note">Slow-motion cinematic camera for long headshots, enemy commanders and leaders, and vehicles you destroy.</p>
@@ -788,6 +835,8 @@ body.mobile #csChoice{bottom:calc(6vh + 8px)}body.mobile #csChoice .csopt{paddin
       <div><h3>Losing limbs</h3>In Realistic and Sadistic modes a heavy hit, blast or blade can tear off an arm or leg without killing you. One arm: slower reloads and wild aim. No arms: you cannot use weapons. One leg: you limp. No legs: you crawl. Every open wound bleeds until you die, so get to the <b>clinic</b> (the white building with the red cross beside your base): standing there bandages the wounds and heals you, but the limb stays lost. A <b>Medic drop</b> from the office restores limbs fully. In Sadistic mode only, stand next to a severed limb or an enemy corpse and press <kbd>E</kbd> (GRAB) to tear off a matching limb and reattach it, enemy uniform and all. Soldiers on both sides suffer the same and will crawl to their own clinic.</div>
       <div><h3>Kamikaze</h3>Press <kbd>K</kbd> (KAMIKAZE on mobile) in a jet to dive on the biggest enemy crowd and explode. On foot, <kbd>K</kbd> sends you sprinting at the nearest enemy group with a bomb; press it again to detonate early. While watching a pilot or soldier from the office, the <b>Kamikaze</b> button orders them to do it. AI soldiers and crippled AI pilots on both sides sometimes decide to go out this way on their own.</div>
       <div><h3>World campaign</h3>The campaign is the whole world. The Smiley Face Army starts in <b>Antarctica</b>. The Gedagedigedagedago Empire holds the great powers, the French Empire holds Europe, and the Frowny Federation, the Kingdom of Gloomvania and the Iron Tundra Pact split the rest. Drag and zoom the map, tap a country, and invade any country that borders yours (gold outline) or lies a short hop across the sea. Capitals (★) are big battles. Lose Antarctica and the campaign is over.</div>
+      <div><h3>Online battles</h3>Press <b>Online battle</b> on the title screen (you need to be logged in). Pick your country, then <b>Quick match</b> to be paired with anyone searching right now, or <b>Create room</b> and send the 5-letter code to a friend, who types it and presses <b>Join</b>. The host's match settings are used. Each of you commands your own army with skirmish rules: capture flags, drain the other side's reinforcements or destroy their HQ core. Matches end after 20 minutes at the latest; the stronger position wins. Leaving or losing connection for 15 seconds counts as a loss. Nukes are off online, and matches shorter than 2 minutes give no rewards.</div>
+      <div><h3>Victory animations</h3>Win a battle and your President plays a short victory scene. Choose it in <b>Barracks → Victory</b>, where every scene has a Preview button. Parade Salute is free for everyone. Plant the Flag comes with Soldier membership, Three-Point Landing with Sergeant, Don't Look Back with Captain, and The Long Corridor and The Throne Room with General. Every scene can also be unlocked in the Store with SD or Rp, and some come in bundles. Switch them off in Settings if you prefer.</div>
       <div><h3>Nuclear warhead</h3>In the campaign, buy it in the <b>Locker room</b> for $15,000. In skirmish, press <b>Buy nuke</b> in the office to buy it with $5,000 of war budget. In skirmish you can launch it whenever you like. In the campaign, the <b>Nuke</b> button only unlocks when you are losing (HQ below half, behind on tickets, or the enemy holds more flags). Type the launch code within 30 seconds; three wrong tries or running out of time locks it for 2 to 3 minutes. On success your squads fall back, and 9 seconds later the blast destroys every soldier, vehicle and building outside the two HQ bunkers. Both HQs are left badly damaged and the battle continues. One nuke per battle. Very rarely, a losing enemy saves up and nukes you: sirens give you 12 seconds to pull your troops back, and the enemy usually forgets to save its own.</div>
       <div><h3>Story</h3>The campaign tells the story of the Smiley Face Army's return from exile. As you conquer countries, 3D cutscenes play and <b>story missions</b> unlock in the campaign panel: defend the embassy, rescue a hostage, escort a convoy, kill a general, and storm the Emperor's capital. Heroes such as Reyes (sniper), Okoro (engineer) and Brandt (ace pilot) join and fight in your campaign battles. Tap or press Enter to move through a cutscene, or Skip. Replay them from the campaign panel.</div>
       <div><h3>Stealth missions</h3>Some story missions are solo assassinations. Guards have white sight cones; a <b>?</b> above a guard means they are getting suspicious. Crouch to stay hidden, approach from behind and use the knife for a silent kill. The SMG is suppressed; the sniper rifle is loud. If the alarm goes off the guards hunt you and the target runs for the exit. Kill the target, then return to the drop-off point. No alarm earns the Silent Assassin medal.</div>
@@ -949,7 +998,7 @@ body.mobile #csChoice{bottom:calc(6vh + 8px)}body.mobile #csChoice .csopt{paddin
 /* ================= SMFA 3D — core ================= */
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
-const R = Math.random;
+let _RNG = Math.random; const R = () => _RNG(); // online matches swap in a seeded generator while the map is built
 const PI = Math.PI, TAU = PI * 2;
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -9513,10 +9562,10 @@ const PAY_INFO = { gopay: 'Ask the President for the GoPay number', cash: 'Hand 
 const RPF = n => 'Rp' + Math.round(n).toLocaleString('en-US');
 const MEMBERS = {
   recruit:  { id: 'mem_recruit', name: 'Recruit', rp: 0, disc: 0, rank: 0, perks: ['Access to the base game', 'Standard cosmetics', 'Community access', 'Report bugs and suggest features', 'Earn ranks, SD and ordinary unlocks', 'The full campaign and progression'] },
-  soldier:  { id: 'mem_soldier', name: 'Soldier', rp: 2000, disc: 5, rank: 1, perks: ['Everything in Recruit', 'Soldier membership badge and nameplate', 'Development screenshots', 'Selected community polls', 'Member-only cosmetic design submissions'] },
-  sergeant: { id: 'mem_sergeant', name: 'Sergeant', rp: 3000, disc: 10, rank: 2, perks: ['Everything in Soldier', 'Extra cosmetic rewards', 'Developer notes on progress', 'Selected feedback polls', 'Submit cosmetic concepts', 'Early previews of selected features'] },
-  captain:  { id: 'mem_captain', name: 'Captain', rp: 4000, disc: 15, rank: 3, perks: ['Everything in Sergeant', 'Captain Dress uniform', 'Special membership title', 'Previews of experimental features', 'Vote on optional mission and cosmetic themes', 'Submit original-character concepts', 'Playtest invitations when organised', 'Supporter wall listing (with your consent)'] },
-  general:  { id: 'mem_general', name: 'General', rp: 5000, disc: 20, rank: 4, perks: ['Everything in Captain', 'General Dress uniform and General\'s Laurel emblem', 'Thank-you in the credits and supporter wall', 'Priority consideration for cosmetic suggestions', 'Selected development builds and playtests', 'Propose poster and insignia concepts', 'Special supporter titles'] }
+  soldier:  { id: 'mem_soldier', name: 'Soldier', rp: 2000, disc: 5, rank: 1, perks: ['Everything in Recruit', 'Soldier membership badge and nameplate', 'Victory animation: Plant the Flag', 'Development screenshots', 'Selected community polls', 'Member-only cosmetic design submissions'] },
+  sergeant: { id: 'mem_sergeant', name: 'Sergeant', rp: 3000, disc: 10, rank: 2, perks: ['Everything in Soldier', 'Extra cosmetic rewards', 'Victory animation: Three-Point Landing', 'Developer notes on progress', 'Selected feedback polls', 'Submit cosmetic concepts', 'Early previews of selected features'] },
+  captain:  { id: 'mem_captain', name: 'Captain', rp: 4000, disc: 15, rank: 3, perks: ['Everything in Sergeant', 'Captain Dress uniform', 'Victory animation: Don\'t Look Back', 'Special membership title', 'Previews of experimental features', 'Vote on optional mission and cosmetic themes', 'Submit original-character concepts', 'Playtest invitations when organised', 'Supporter wall listing (with your consent)'] },
+  general:  { id: 'mem_general', name: 'General', rp: 5000, disc: 20, rank: 4, perks: ['Everything in Captain', 'General Dress uniform and General\'s Laurel emblem', 'Victory animations: The Long Corridor and The Throne Room', 'Thank-you in the credits and supporter wall', 'Priority consideration for cosmetic suggestions', 'Selected development builds and playtests', 'Propose poster and insignia concepts', 'Special supporter titles'] }
 };
 const memByProd = id => Object.values(MEMBERS).find(m => m.id === id);
 // ---- product catalogue (all prices are the ones the President set; avail: 'ok' = buyable now, 'soon' = shown but not for sale yet) ----
@@ -9578,7 +9627,14 @@ const PRODUCTS = [
   P_('fx_banner', 'cos', 'Elimination banner', 1000, { avail: 'soon', desc: 'A banner on every President kill.' }),
   P_('fx_sound', 'cos', 'Elimination sound', 1000, { avail: 'soon', desc: 'A custom sound on kills.' }),
   P_('fx_message', 'cos', 'Custom elimination message', 1000, { avail: 'soon', desc: 'Your own kill-feed line.' }),
-  P_('fx_victory', 'cos', 'Victory animation', 2000, { avail: 'soon', desc: 'A victory pose at the end of a battle.' }),
+  // victory animations (play when you win; also unlocked by membership tiers, see VICTORY in p35.js)
+  P_('va_flag', 'cos', 'Plant the Flag', 1000, { sd: 1200, desc: 'Victory animation: the President drives the flag into the rubble as the wind picks up. Free with Soldier membership.', items: 'victory' }),
+  P_('va_landing', 'cos', 'Three-Point Landing', 2000, { sd: 2500, desc: 'Victory animation: a drop from the sky into a ground-cracking hero landing. Free with Sergeant membership.', items: 'victory' }),
+  P_('va_cool', 'cos', 'Don\'t Look Back', 2000, { sd: 2500, desc: 'Victory animation: shades on, a walk toward the camera and a huge explosion behind. No flinching. Free with Captain membership.', items: 'victory' }),
+  P_('va_corridor', 'cos', 'The Long Corridor', 3000, { sd: 4000, desc: 'Victory animation: a slow-motion stroll down a grand hall as the lights snap on and the guards salute. Free with General membership.', items: 'victory' }),
+  P_('va_throne', 'cos', 'The Throne Room', 3000, { sd: 4000, desc: 'Victory animation: up the red carpet, onto the throne, the whole hall kneels. Free with General membership.', items: 'victory' }),
+  P_('va_bullet', 'cos', 'Bullet Time', 2000, { sd: 2500, desc: 'Victory animation: time slows, the President leans back and the bullets streak past.', items: 'victory' }),
+  P_('va_sunset', 'cos', 'Into the Sunset', 1000, { sd: 1200, desc: 'Victory animation: the battle is over and the President walks off into the sunset.', items: 'victory' }),
   P_('fx_mvp', 'cos', 'MVP introduction animation', 3000, { avail: 'soon', desc: 'An intro when you top the scoreboard.' }),
   // vehicle and HQ cosmetics
   P_('cos_tank_paint', 'cos', 'Tank paint scheme', 2000, { desc: 'Tiger Armor paint.', items: 'paint' }),
@@ -9601,9 +9657,9 @@ const PRODUCTS = [
   P_('bnd_world_war', 'bundle', 'World at War Bundle', 20000, { includes: ['dlc_empires', 'dlc_forgotten'] }),
   P_('bnd_peace', 'bundle', 'Peace & Consequences Bundle', 19000, { includes: ['dlc_lastlight', 'dlc_broken'] }),
   P_('bnd_deepfreeze', 'bundle', 'Deepfreeze Mystery Bundle', 13000, { includes: ['dlc_deepfreeze', 'dlc_whiteout'] }),
-  P_('bnd_president', 'bundle', 'President\'s Collection', 15000, { includes: ['dlc_burden', 'cos_presidential', 'cos_hq_decor'] }),
+  P_('bnd_president', 'bundle', 'President\'s Collection', 15000, { includes: ['dlc_burden', 'cos_presidential', 'cos_hq_decor', 'va_throne'] }),
   P_('bnd_story', 'bundle', 'SMFA Story Collection', 68000, { includes: ['dlc_whiteout', 'dlc_shadow', 'dlc_empires', 'dlc_lastlight', 'dlc_forgotten', 'dlc_broken', 'dlc_deepfreeze', 'dlc_burden'] }),
-  P_('bnd_complete', 'bundle', 'SMFA Complete Collection', 77000, { includes: ['dlc_whiteout', 'dlc_shadow', 'dlc_empires', 'dlc_lastlight', 'dlc_forgotten', 'dlc_broken', 'dlc_deepfreeze', 'dlc_burden', 'cos_ultimate', 'cos_hq_decor'] }),
+  P_('bnd_complete', 'bundle', 'SMFA Complete Collection', 77000, { includes: ['dlc_whiteout', 'dlc_shadow', 'dlc_empires', 'dlc_lastlight', 'dlc_forgotten', 'dlc_broken', 'dlc_deepfreeze', 'dlc_burden', 'cos_ultimate', 'cos_hq_decor', 'va_flag', 'va_landing', 'va_cool', 'va_corridor', 'va_throne', 'va_bullet', 'va_sunset'] }),
   P_('cos_ultimate', 'cos', 'Ultimate Appearance Collection', 8000, { avail: 'soon', desc: 'The complete appearance set. Contents to be finalised.' }),
   P_('bnd_neon', 'bundle', 'Neon Soldier Bundle', 4000, { includes: ['skin_neon', 'cos_uni_plus', 'cos_neon_insignia'] }),
   P_('bnd_arctic_war', 'bundle', 'Arctic Warfare Bundle', 5000, { includes: ['skin_arctic', 'cos_uni_arctic', 'cos_arctic_vpaint'] }),
@@ -9627,13 +9683,19 @@ const regularSum = p => (p.includes || []).reduce((s, i) => s + (PROD[i] ? PROD[
 const localOwned = () => prof().owned;
 function owns(id) {
   let P; try { P = PROD[id]; } catch (e) { return false; } if (!P) return false;
+  if (isAdmin()) return true; // the President owns everything
   if (localOwned()['prod:' + id]) return true;
-  if (ACC.ents && ACC.ents.some(e => e.product_id === id && (!e.expires_at || new Date(e.expires_at) > new Date()))) return true;
+  const live = e => !e.expires_at || new Date(e.expires_at) > new Date();
+  if (ACC.ents && ACC.ents.some(e => e.product_id === id && live(e))) return true;
+  // items added to a bundle after it was bought still come with it
+  if (P.kind !== 'bundle' && ACC.ents && ACC.ents.some(e => live(e) && PROD[e.product_id] && PROD[e.product_id].kind === 'bundle' && PROD[e.product_id].includes.includes(id))) return true;
+  if (P.kind !== 'bundle' && PRODUCTS.some(b => b.kind === 'bundle' && localOwned()['prod:' + b.id] && b.includes.includes(id))) return true;
   if (P.kind === 'bundle' && P.includes.length && P.includes.every(owns)) return true;
   return false;
 }
 function ownsAny(ids) { return ids.some(owns); }
 function activeTier() {
+  if (isAdmin()) { MEMBERS.general.expires = null; return MEMBERS.general; }
   if (!ACC.ents) return MEMBERS.recruit;
   let best = MEMBERS.recruit, exp = null;
   for (const e of ACC.ents) { const m = memByProd(e.product_id); if (m && e.expires_at && new Date(e.expires_at) > new Date() && m.rank > best.rank) { best = m; exp = e.expires_at; } }
@@ -9687,19 +9749,19 @@ function openStore(focus, back) {
 }
 function stHeader() {
   const t = activeTier(), d = tierDaysLeft(), P = prof();
-  return `<div class="stHead"><div><b>${esc(accOn() ? accName() : 'Not logged in')}</b><small>${accOn() ? (t.rank ? `${t.name} member · ${d} day${d === 1 ? '' : 's'} left · ${t.disc}% off eligible items` : 'Recruit (free)') : 'Log in to buy with Rp and keep purchases on your account'}</small></div><div class="stSD">${P.coins.toLocaleString()} <small>SD</small></div></div>`;
+  return `<div class="stHead"><div><b>${esc(accOn() ? accName() : 'Not logged in')}</b><small>${accOn() && isAdmin() ? 'The President · every item in the store and the game is unlocked' : accOn() ? (t.rank ? `${t.name} member · ${d} day${d === 1 ? '' : 's'} left · ${t.disc}% off eligible items` : 'Recruit (free)') : 'Log in to buy with Rp and keep purchases on your account'}</small></div><div class="stSD">${P.coins.toLocaleString()} <small>SD</small></div></div>`;
 }
 function prodCard(p) {
   const own = owns(p.id), pr = priceOf(p), soon = p.avail !== 'ok';
   const inc = p.includes ? `<ul class="stInc">${p.includes.map(i => `<li class="${owns(i) ? 'own' : ''}">${esc(PROD[i].name)} <span>${owns(i) ? 'owned' : RPF(PROD[i].rp)}</span></li>`).join('')}</ul>` : '';
   let price = '';
   if (p.kind === 'bundle') price = `<div class="stPrice"><s>${RPF(regularSum(p))}</s><b>${RPF(pr.rp)}</b><small>${pr.partial ? 'adjusted for items you own' : `save ${RPF(pr.saves || 0)}`}</small></div>`;
-  else if (p.kind === 'weapon') price = `<div class="stPrice"><b>${p.sd.toLocaleString()} SD</b><small>or ${pr.pct ? `<s>${RPF(pr.base)}</s> ` : ''}${RPF(pr.rp)}${pr.pct ? ` (${pr.pct}% member discount)` : ''}</small></div>`;
+  else if (p.sd) price = `<div class="stPrice"><b>${p.sd.toLocaleString()} SD</b><small>or ${pr.pct ? `<s>${RPF(pr.base)}</s> ` : ''}${RPF(pr.rp)}${pr.pct ? ` (${pr.pct}% member discount)` : ''}</small></div>`;
   else price = `<div class="stPrice">${pr.pct ? `<s>${RPF(pr.base)}</s>` : ''}<b>${RPF(pr.rp)}</b><small>${p.kind === 'mem' ? 'per 30 days' : pr.pct ? `${pr.pct}% member discount` : 'one-time'}</small></div>`;
   let btn = '';
   if (own) btn = `<span class="stOwned">Owned</span>`;
   else if (soon) btn = `<span class="stSoon">Coming soon</span>`;
-  else if (p.kind === 'weapon') btn = `<button class="btn small primary" data-sd="${p.id}">Unlock · ${p.sd.toLocaleString()} SD</button><button class="btn small" data-buy="${p.id}">${RPF(pr.rp)}</button>`;
+  else if (p.sd) btn = `<button class="btn small primary" data-sd="${p.id}">Unlock · ${p.sd.toLocaleString()} SD</button><button class="btn small" data-buy="${p.id}">${RPF(pr.rp)}</button>`;
   else btn = `<button class="btn small primary" data-buy="${p.id}">Buy · ${RPF(pr.rp)}</button>`;
   const pend = pendingFor(p.id);
   return `<div class="stCard${own ? ' own' : ''}${soon ? ' soon' : ''}"><div class="stTop"><b>${esc(p.name)}</b>${p.kind === 'dlc' ? '<i class="stTag">Story</i>' : p.kind === 'bundle' ? '<i class="stTag">Bundle</i>' : ''}</div><small>${esc(p.desc || '')}</small>${inc}${price}<div class="stBtns">${pend ? '<span class="stPend">Waiting for approval</span>' : btn}</div></div>`;
@@ -9721,7 +9783,7 @@ function renderStore(focus) {
   } else if (stTab === 'bundle') {
     html += `<p class="note">Bundle prices are fixed and never discounted further. If you already own part of a bundle, its price is adjusted for the items you still need.</p><div class="stGrid">` + PRODUCTS.filter(p => p.kind === 'bundle').map(prodCard).join('') + `</div>`;
   } else if (stTab === 'cos') {
-    const groups = [['Packs', p => /^cos_(insignia|uniform_coll|weapon_skins|vehicle_paint|elite_pack|memorabilia|presidential|hq_decor|arctic_pack|ultimate)$/.test(p.id)], ['Weapon appearance', p => /^skin_|^cos_(charm|inspect|nameplate)$/.test(p.id)], ['Uniforms and equipment', p => /^cos_(uni_|helmet_single|vest|backpack|gloves|boots|facecover|shoulder|full_set)/.test(p.id)], ['Elimination and victory effects', p => /^fx_/.test(p.id)], ['Vehicles and headquarters', p => /^cos_(tank_paint|heli_paint|decals|vinsignia|horn|hq_flag|office_decor|briefing_bg|menu_bg|arctic_vpaint|neon_insignia)$/.test(p.id)], ['Community', p => p.kind === 'service']];
+    const groups = [['Packs', p => /^cos_(insignia|uniform_coll|weapon_skins|vehicle_paint|elite_pack|memorabilia|presidential|hq_decor|arctic_pack|ultimate)$/.test(p.id)], ['Weapon appearance', p => /^skin_|^cos_(charm|inspect|nameplate)$/.test(p.id)], ['Uniforms and equipment', p => /^cos_(uni_|helmet_single|vest|backpack|gloves|boots|facecover|shoulder|full_set)/.test(p.id)], ['Victory animations', p => /^va_/.test(p.id)], ['Elimination effects', p => /^fx_/.test(p.id)], ['Vehicles and headquarters', p => /^cos_(tank_paint|heli_paint|decals|vinsignia|horn|hq_flag|office_decor|briefing_bg|menu_bg|arctic_vpaint|neon_insignia)$/.test(p.id)], ['Community', p => p.kind === 'service']];
     html += `<p class="note">Cosmetics change how things look, never how hard they hit. Equip what you own in the Barracks. Member discounts apply here.</p>`;
     for (const [name, f] of groups) { const list = PRODUCTS.filter(p => (p.kind === 'cos' || p.kind === 'service') && f(p)); if (list.length) html += `<h3>${name}</h3><div class="stGrid">${list.map(prodCard).join('')}</div>`; }
   } else if (stTab === 'weapon') {
@@ -9756,7 +9818,7 @@ function buyWithSD(id) {
   if (P.coins < p.sd) { toast('Not enough SD', `${p.name} costs ${p.sd.toLocaleString()} SD. You have ${P.coins.toLocaleString()}. Earn more in any battle, or buy it for ${RPF(priceOf(p).rp)}.`); return; }
   if (!confirm(`Unlock ${p.name} for ${p.sd.toLocaleString()} SD?`)) return;
   P.coins -= p.sd; P.owned['prod:' + id] = true; profSave(P); refreshWeaponList(); updateProfileCard();
-  SFX.ok() && SFX.tone(0.12, 0.25, 700, 1100, 'triangle'); toast('Unlocked: ' + p.name, 'Select it in the field with the weapon keys.'); renderStore();
+  SFX.ok() && SFX.tone(0.12, 0.25, 700, 1100, 'triangle'); toast('Unlocked: ' + p.name, p.kind === 'weapon' ? 'Select it in the field with the weapon keys.' : /^va_/.test(p.id) ? 'Equip it in Barracks → Victory.' : 'Equip it in the Barracks.'); renderStore();
 }
 /* ---------- buying with Rp (cash or GoPay order) ---------- */
 let buyId = null;
@@ -10502,7 +10564,7 @@ function openChapters() {
   for (let a = 1; a <= 5; a++) {
     h += `<h3>Act ${['I', 'II', 'III', 'IV', 'V'][a - 1]} · ${esc(LW_ACTS[a - 1])}</h3><div class="chGrid">`;
     for (const C of CHAPTERS.slice(1).filter(c => c.act === a)) {
-      const st = S.ch >= C.n ? 'done' : S.ch + 1 === C.n ? 'next' : 'locked';
+      const st = S.ch >= C.n ? 'done' : S.ch + 1 === C.n ? 'next' : (typeof isAdmin === 'function' && isAdmin()) ? 'open' : 'locked';
       const icon = C.type === 'cut' ? '🎬' : C.type === 'mission' && MISSIONS[C.mission].stealth ? '🗡' : C.type === 'mission' && C.mission === 'convoy' ? '🚚' : '★';
       h += `<div class="chItem ${st}"><div class="chNum">${C.n}</div><div class="chTxt"><b>${icon} ${esc(C.title)}</b><small>${esc(C.desc)}</small></div>${st === 'locked' ? '<span class="chLock">Locked</span>' : `<button class="btn small ${st === 'next' ? 'primary' : ''}" data-ch="${C.n}">${st === 'done' ? 'Replay' : C.type === 'cut' ? 'Watch' : 'Play'}</button>`}</div>`;
     }
@@ -10532,7 +10594,7 @@ function startBattle(cfg) {
   const mk = (nat) => ({ nat: NATIONS[nat], tickets: 0, budget: 0, kills: 0, losses: 0, squads: [], sqCount: 0, pcd: {}, bleed: 0, core: 3000, coreMax: 3000 });
   G = {
     cfg, mode: MODES[cfg.mode], theme: THEMES[cfg.map], size: S, seed: cfg.seed || ((Math.random() * 1e9) | 0),
-    teams: [mk('smfa'), mk(cfg.enemy)], units: [], vehicles: [], corpses: [], proj: [], planes: [], timers: [], collapse: [], smokes: [], flags: [],
+    teams: [mk(cfg.us || 'smfa'), mk(cfg.enemy)], units: [], vehicles: [], corpses: [], proj: [], planes: [], timers: [], collapse: [], smokes: [], flags: [],
     t: 0, view: 'office', player: null, selSquad: null, armed: null, over: false, paused: false, shake: 0, dmgFlash: 0, flash: 0, thunderT: rr(5, 10),
     hour: TIMES[cfg.time].h, day: 1, vis: 78, ocam: { x: 0, z: HALF - 48, yaw: 0, dist: Math.min(130, HALF * 0.8), pitch: 0.95 }, missiles: [], decoys: [], spawnCd: {}, camYaw: PI, camPitch: 0,
     up: { hp: 1 + 0.15 * (up.armor || 0), dmg: 1 + 0.12 * (up.rifles || 0), income: 1 + 0.15 * (up.treasury || 0) },
@@ -10570,7 +10632,7 @@ function startBattle(cfg) {
   }
   if (!cfg.restore) { vipSetup(); commanderTick(0); commanderTick(1); }
   onResize(); updatePScale();
-  $('#nameUs').textContent = 'SMFA'; $('#nameThem').textContent = T1.nat.short;
+  $('#nameUs').textContent = T0.nat.short; $('#nameThem').textContent = T1.nat.short;
   $('#hud').hidden = false; $('#killfeed').innerHTML = ''; $('#captions').innerHTML = '';
   lastSquadSig = ''; mmStatic = null; blocksDirty = true;
   setView('office'); renderSquads(true); renderPowers();
@@ -10581,7 +10643,7 @@ function startBattle(cfg) {
     renderSquads(true); renderPowers(); banner('Battle resumed', 2, 'var(--green)'); return;
   }
   if (cfg.tutorial || cfg.stealth || cfg.arcade) return;
-  banner(`SMFA vs ${T1.nat.short}`, 2.5, T1.nat.css);
+  banner(`${T0.nat.short} vs ${T1.nat.short}`, 2.5, T1.nat.css);
   setTimeout(() => G && !G.over && hint(MOBILE() ? 'Tap a squad, then tap the map to send it. Join fight to take the field.' : 'Click a squad, then click the map to send it. Tab joins the fight.', 4), 2600);
 }
 function endBattle(result, why) {
@@ -10601,7 +10663,7 @@ function endBattle(result, why) {
     $('#endTitle').style.color = result === 'win' ? 'var(--green)' : 'var(--red)';
     $('#endWhy').textContent = why;
     const row = (a, b) => `<div class="stat"><span>${a}</span><b>${b}</b></div>`;
-    $('#endStats').innerHTML = row('Enemy soldiers killed', T0.kills) + row('SMFA losses', T0.losses) + row('Kills by the President', G.stats.presKills) +
+    $('#endStats').innerHTML = row('Enemy soldiers killed', T0.kills) + row(`${T0.nat.short} losses`, T0.losses) + row('Kills by the President', G.stats.presKills) +
       row('Vehicles destroyed by the President', G.stats.presVeh) + row('Flags held at the end', `${flagsHeld} / ${G.flags.length}`) + row('Battle time', `${Math.floor(G.t / 60)}m ${Math.floor(G.t % 60)}s`) +
       (G.cfg.campaign ? row('Added to war chest', '$' + reward.toLocaleString()) : '');
     $('#endBtn').textContent = G.cfg.campaign ? 'Back to campaign map' : G.cfg.tutorial ? 'Back to tutorial' : 'Back to menu';
@@ -10853,4 +10915,925 @@ $('#goCampaign').addEventListener('click', () => { SFX.init(); openCampaign(); }
 applyDevice();
 if (!window.THREE) { document.body.insertAdjacentHTML('beforeend', '<div class="screen"><div class="card"><h2>3D engine did not load</h2><p class="note">The page could not load its 3D library. Check your connection and reload.</p></div></div>'); }
 else requestAnimationFrame(frame);
+/* ================= victory animations (Barracks slot, store items, membership unlocks, playback on a win) ================= */
+// Original SMFA scenes inspired by classic movie moments. No film characters, costumes or names are used.
+const VA_DEFS = [
+  { id: 'salute', name: 'Parade Salute', desc: 'The army marches past the podium while the President salutes. Everyone has this one.', free: true, sym: '✋' },
+  { id: 'flag', name: 'Plant the Flag', desc: 'Up the rubble, flag in hand, and plant it as the wind picks up.', tier: 'soldier', prod: 'va_flag', sym: '⚑' },
+  { id: 'landing', name: 'Three-Point Landing', desc: 'A drop from the sky into a ground-cracking hero landing.', tier: 'sergeant', prod: 'va_landing', sym: '⤓' },
+  { id: 'cool', name: 'Don\'t Look Back', desc: 'A calm walk toward the camera while everything explodes behind.', tier: 'captain', prod: 'va_cool', sym: '✹' },
+  { id: 'corridor', name: 'The Long Corridor', desc: 'Slow motion down a grand hall. The lights snap on and the guards salute.', tier: 'general', prod: 'va_corridor', sym: '▥' },
+  { id: 'throne', name: 'The Throne Room', desc: 'Up the red carpet and onto the throne while the hall kneels.', tier: 'general', prod: 'va_throne', sym: '♛' },
+  { id: 'bullet', name: 'Bullet Time', desc: 'Time slows, the President leans back and the bullets streak past.', prod: 'va_bullet', sym: '➶' },
+  { id: 'sunset', name: 'Into the Sunset', desc: 'The battle is won. The President walks off into the sunset.', prod: 'va_sunset', sym: '☀' }
+];
+COS.victory = VA_DEFS.map(v => ({ id: v.id, name: v.name, desc: v.desc, va: true, vaTier: v.tier, vaProd: v.prod, free: !!v.free, sym: v.sym, _slot: 'victory' }));
+COS_TABS.push(['victory', 'Victory']);
+{ const _pd = profDefault; profDefault = () => { const p = _pd(); p.equip.victory = 'salute'; return p; }; }
+const vaEquipped = () => { const id = prof().equip.victory || 'salute'; const it = COS.victory.find(i => i.id === id); return it && !cosLock(it) ? id : 'salute'; };
+
+/* ---------- unlocks: the President owns everything; tiers and store products unlock victory animations ---------- */
+{
+  const _cl = cosLock; cosLock = function (it) {
+    if (typeof isAdmin === 'function' && isAdmin()) return null;
+    if (it && it.va) {
+      if (it.free) return null;
+      if ((it.vaTier && hasTier(it.vaTier)) || (it.vaProd && owns(it.vaProd))) return null;
+      return { text: it.vaTier ? `${MEMBERS[it.vaTier].name} membership or the Store` : 'Store', store: it.vaProd };
+    }
+    return _cl.apply(this, arguments);
+  };
+  const _sw = cosSwatch; cosSwatch = function (slot, it) { if (slot === 'victory') return `<div class="sw2 sym va">${esc(it.sym || '★')}</div>`; return _sw.apply(this, arguments); };
+  const _rb = renderBarracks; renderBarracks = function () {
+    _rb.apply(this, arguments);
+    if (cosTab !== 'victory') return;
+    $$('#cosGrid .cos').forEach(el => {
+      const name = el.querySelector('b') && el.querySelector('b').textContent; const it = COS.victory.find(i => i.name === name); if (!it || el.querySelector('[data-vaprev]')) return;
+      const b = document.createElement('button'); b.className = 'btn small'; b.dataset.vaprev = it.id; b.textContent = '▶ Preview'; b.onclick = e => { e.stopPropagation(); playVictory(it.id, null, { preview: true }); }; el.appendChild(b);
+    });
+  };
+  const _ra = renderAccount; renderAccount = function () { _ra.apply(this, arguments); try { refreshWeaponList(); } catch (e) { } };
+}
+// settings toggle
+{ const _rs = renderSettings; renderSettings = function () { _rs.apply(this, arguments); const el = $('#st-va'); if (el) optGroup('#st-va', [{ k: 'on', name: 'Play when I win' }, { k: 'off', name: 'Off' }], settings.va === 'off' ? 'off' : 'on', v => { settings.va = v; saveSettings(); }); }; }
+
+/* ---------- playback ---------- */
+let VA_BUILD = null;
+const vaHat = h => h === 'boonie' ? 'cap' : h === 'mask' ? 'helmet' : h;
+function vaChars(nat) {
+  const P = PRES_LOOK, N = NATIONS[nat] || NATIONS.smfa;
+  CHARS._vp = { name: 'The President', css: '#f2b33d', uni: P.uni, pants: P.pants, skin: P.skin, hat: vaHat(P.hat || 'shades'), hatc: P.hatc, tie: P.tie || 0x39d353, voice: 0.9, face: { brow: 0x2a1a10 } };
+  CHARS._vs = { name: 'Soldier', css: N.css, uni: N.uni, pants: N.pants, skin: N.skin || 0xe0b089, hat: vaHat(N.hat || 'helmet'), hatc: N.hatc, voice: 1 };
+}
+function playVictory(id, onDone, o) {
+  o = o || {};
+  const nat = o.nat || (G && G.teams && G.teams[0].nat ? Object.keys(NATIONS).find(k => NATIONS[k] === G.teams[0].nat) : 'smfa') || 'smfa';
+  vaChars(nat);
+  const S = VA_SCRIPTS[id] || VA_SCRIPTS.salute;
+  const def = VA_DEFS.find(v => v.id === id) || VA_DEFS[0];
+  const ctx = { nat, N: NATIONS[nat] || NATIONS.smfa, name: o.name || (typeof accOn === 'function' && accOn() ? accName() : 'The President'), title: def.name, preview: !!o.preview, why: o.why || '' };
+  VA_BUILD = { ctx, parts: [], upd: [] };
+  CUTSCENES._va = { title: '', set: 'va_' + (S.set || id), actors: S.actors(ctx), beats: [{ dur: S.dur, fx: C => vaStart(C, ctx, S), tick: (C, dt, t) => S.tl(C, t, dt, ctx) }] };
+  playCutscene('_va', () => { onDone && onDone(); });
+}
+function vaStart(C, ctx, S) {
+  C.va = Object.assign(VA_BUILD, { ts: 1, shown: false, S });
+  $('#scr-cut').classList.add('va');
+  let ov = $('#vaOv'); if (!ov) { ov = document.createElement('div'); ov.id = 'vaOv'; $('#scr-cut').appendChild(ov); }
+  ov.innerHTML = `<div class="vaTint"></div><div class="vaFlash"></div><div class="vaBar top"></div><div class="vaBar bot"></div><div class="vaTitle"><b style="color:${ctx.N.css}">VICTORY</b><span>${esc(ctx.N.short)} · ${esc(ctx.name)}</span><small>${esc(ctx.title)}</small></div>`;
+  ov.hidden = false;
+}
+function vaShowTitle(C) { if (C.va.shown) return; C.va.shown = true; $('#vaOv').classList.add('show'); vaFanfare(); }
+function vaFanfare() {
+  if (!SFX.ok()) return;
+  const n = [[392, 0], [523, 0.14], [659, 0.28], [784, 0.42], [659, 0.62], [784, 0.74]];
+  n.forEach(([f, d], i) => SFX.tone(0.13, i === n.length - 1 ? 0.7 : 0.16, f, f, 'square', d));
+  n.forEach(([f, d], i) => SFX.tone(0.08, i === n.length - 1 ? 0.75 : 0.18, f / 2, f / 2, 'triangle', d));
+}
+function vaFlash(a) { const f = $('#vaOv .vaFlash'); if (f) { f.style.transition = 'none'; f.style.opacity = a; requestAnimationFrame(() => { f.style.transition = 'opacity .6s'; f.style.opacity = 0; }); } }
+function vaTint(a, col) { const t = $('#vaOv .vaTint'); if (t) { t.style.opacity = a; if (col) t.style.background = col; } }
+{
+  const _ct = csTick; csTick = function (dt) {
+    const C = CS; if (C && C.va) { dt *= C.va.ts; vaParts(C, dt); for (const f of C.va.upd) f(dt, C); }
+    _ct(dt);
+  };
+  const _ce = csEnd; csEnd = function () {
+    const was = CS && CS.va; _ce.apply(this, arguments);
+    if (was || $('#scr-cut').classList.contains('va')) { $('#scr-cut').classList.remove('va'); const ov = $('#vaOv'); if (ov) { ov.hidden = true; ov.classList.remove('show'); ov.innerHTML = ''; } }
+  };
+}
+// camera keyframes: [[t, [px,py,pz], [lx,ly,lz]], ...] with smooth easing between keys
+function vaCam(C, keys, t) {
+  let a = keys[0], b = keys[keys.length - 1];
+  for (let i = 0; i < keys.length - 1; i++) if (t >= keys[i][0] && t <= keys[i + 1][0]) { a = keys[i]; b = keys[i + 1]; break; }
+  if (t < keys[0][0]) b = a; if (t > b[0]) a = b;
+  const k = a === b ? 0 : clamp((t - a[0]) / (b[0] - a[0]), 0, 1), e = k * k * (3 - 2 * k);
+  const L = (u, v) => [lerp(u[0], v[0], e), lerp(u[1], v[1], e), lerp(u[2], v[2], e)];
+  vaSetCam(C, L(a[1], b[1]), L(a[2], b[2]));
+}
+function vaSetCam(C, p, l) { C.camFrom = C.camTo = { p, l }; }
+const vaK = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const vaE = k => k * k * (3 - 2 * k);
+
+/* ---------- simple particles for cutscene scenes ---------- */
+const VA_GEO = {};
+function vaPart(C, o) {
+  const sc = C.scene, g = o.sphere ? (VA_GEO.s || (VA_GEO.s = new THREE.SphereGeometry(0.5, 10, 8))) : o.plane ? (VA_GEO.p || (VA_GEO.p = new THREE.PlaneGeometry(1, 1))) : (VA_GEO.b || (VA_GEO.b = new THREE.BoxGeometry(1, 1, 1)));
+  const m = new THREE.MeshBasicMaterial({ color: o.c, transparent: true, opacity: o.a === undefined ? 1 : o.a, side: o.plane ? THREE.DoubleSide : THREE.FrontSide, depthWrite: !o.add, blending: o.add ? THREE.AdditiveBlending : THREE.NormalBlending });
+  const mesh = new THREE.Mesh(g, m); mesh.position.set(o.x, o.y, o.z); const s = o.s || 0.1; mesh.scale.set(s * (o.sx || 1), s * (o.sy || 1), s * (o.sz || 1));
+  if (o.ry) mesh.rotation.y = o.ry; sc.add(mesh);
+  C.va.parts.push({ mesh, m, vx: o.vx || 0, vy: o.vy || 0, vz: o.vz || 0, g: o.g || 0, life: o.life || 1, max: o.life || 1, grow: o.grow || 0, a0: m.opacity, spin: o.spin || 0, drag: o.drag || 0, flutter: o.flutter || 0, ground: o.ground !== undefined ? o.ground : -99, ph: R() * 9 });
+}
+function vaParts(C, dt) {
+  const P = C.va.parts;
+  for (let i = P.length - 1; i >= 0; i--) {
+    const p = P[i]; p.life -= dt;
+    if (p.life <= 0) { C.scene.remove(p.mesh); p.m.dispose(); P.splice(i, 1); continue; }
+    const d = Math.max(0, 1 - p.drag * dt); p.vx *= d; p.vz *= d; p.vy = p.vy * (p.flutter ? d : 1) - p.g * dt;
+    p.mesh.position.x += (p.vx + (p.flutter ? Math.sin(p.ph + p.life * 5) * p.flutter : 0)) * dt; p.mesh.position.y += p.vy * dt; p.mesh.position.z += p.vz * dt;
+    if (p.mesh.position.y < p.ground) { p.mesh.position.y = p.ground; p.vy = 0; p.vx *= 0.5; p.vz *= 0.5; }
+    if (p.grow) p.mesh.scale.multiplyScalar(1 + p.grow * dt);
+    if (p.spin) { p.mesh.rotation.x += p.spin * dt; p.mesh.rotation.z += p.spin * 0.7 * dt; }
+    p.m.opacity = p.a0 * Math.min(1, p.life / (p.max * 0.45));
+  }
+}
+function vaDust(C, x, y, z, n, spd, col, size, grow) { for (let k = 0; k < n; k++) { const a = R() * TAU, s = rr(0.4, 1) * spd; vaPart(C, { sphere: true, c: col || 0x8a7a64, a: 0.5, x: x + Math.cos(a) * 0.3, y: y + rr(0, 0.3), z: z + Math.sin(a) * 0.3, vx: Math.cos(a) * s, vy: rr(0.3, 1.6), vz: Math.sin(a) * s, s: size || rr(0.4, 0.8), grow: grow === undefined ? 0.9 : grow, drag: 1.6, life: rr(1.2, 2.2) }); } }
+function vaFire(C, x, y, z, sc) {
+  for (let k = 0; k < 18; k++) vaPart(C, { sphere: true, add: true, c: pick([0xffd27a, 0xff9a3a, 0xff6a1a, 0xfff0b0]), x: x + rr(-1, 1) * sc, y: y + rr(0, 1.5) * sc, z: z + rr(-1, 1) * sc, vx: rr(-3, 3) * sc, vy: rr(1, 5) * sc, vz: rr(-3, 3) * sc, s: rr(1.2, 2.6) * sc, grow: 1.1, drag: 2.2, life: rr(0.6, 1.3) });
+  for (let k = 0; k < 14; k++) vaPart(C, { sphere: true, c: pick([0x2a2622, 0x3a3530, 0x1c1a18]), a: 0.75, x: x + rr(-1, 1) * sc, y: y + rr(0.5, 2) * sc, z: z + rr(-1, 1) * sc, vx: rr(-1, 1) * sc, vy: rr(1.5, 3.5) * sc, vz: rr(-1, 1) * sc, s: rr(1.4, 2.4) * sc, grow: 0.5, drag: 0.8, life: rr(2.5, 4) });
+  for (let k = 0; k < 16; k++) vaPart(C, { c: pick([0x222222, 0x3a3a38, 0x5a4a3a]), x, y: y + 0.5, z, vx: rr(-9, 9) * sc, vy: rr(4, 13) * sc, vz: rr(-9, 9) * sc, s: rr(0.12, 0.35) * sc, g: 18, spin: rr(-9, 9), life: rr(1.5, 2.6), ground: 0.05 });
+}
+
+/* ---------- character pose helpers (run after the built-in animation each frame) ---------- */
+function vaPoseLand(A, k) {
+  const [L, Rr] = A.arms, [LL, RL] = A.legs;
+  A.body.position.y = -0.55 * k; A.torso.rotation.x = 0.75 * k; A.head.rotation.x = -0.6 * k;
+  LL.hip.rotation.x = -1.55 * k; LL.knee.rotation.x = 1.75 * k; RL.hip.rotation.x = 0.35 * k; RL.knee.rotation.x = 1.9 * k;
+  Rr.sh.rotation.x = -0.25 * k; Rr.sh.rotation.z = 0.1; Rr.el.rotation.x = 0;
+  L.sh.rotation.x = 0.75 * k; L.sh.rotation.z = -0.5 * k;
+}
+function vaPoseFall(A, t) { const [L, Rr] = A.arms, [LL, RL] = A.legs; L.sh.rotation.z = -2.5; Rr.sh.rotation.z = 2.5; L.sh.rotation.x = Rr.sh.rotation.x = -0.3 + Math.sin(t * 9) * 0.1; LL.hip.rotation.x = -0.2; RL.hip.rotation.x = 0.15; LL.knee.rotation.x = 0.3; RL.knee.rotation.x = 0.2; }
+function vaPoseLean(A, k) {
+  const [L, Rr] = A.arms, [LL, RL] = A.legs;
+  A.body.position.y = -0.25 * k; LL.hip.rotation.x = RL.hip.rotation.x = -0.9 * k; LL.knee.rotation.x = RL.knee.rotation.x = 1.5 * k;
+  A.torso.rotation.x = -0.95 * k; L.sh.rotation.z = -1.3 * k; Rr.sh.rotation.z = 1.3 * k; A.head.rotation.x = 0.3 * k;
+}
+function vaPoseShades(A, k) { const Rr = A.arms[1]; Rr.sh.rotation.x = lerp(Rr.sh.rotation.x, -2.35, k); Rr.sh.rotation.z = lerp(Rr.sh.rotation.z, -0.35, k); Rr.el.rotation.x = lerp(Rr.el.rotation.x, -1.25, k); }
+function vaPoseDust(A, k) { const L = A.arms[0]; L.sh.rotation.x = lerp(L.sh.rotation.x, -1.6, k); L.sh.rotation.z = lerp(L.sh.rotation.z, 0.75, k); L.el.rotation.x = lerp(L.el.rotation.x, -1.1, k); }
+function vaPoseHonor(A) { const [L, Rr] = A.arms; L.sh.rotation.set(0.1, 0, -0.12); Rr.sh.rotation.set(0.1, 0, 0.12); L.el.rotation.set(0, 0, 0); Rr.el.rotation.set(0, 0, 0); A.torso.rotation.x = 0.3; A.head.rotation.x = 0.45; }
+// a proper hand-to-brow salute for every cutscene (the old one read as a fist pump)
+{ const _ac = animChar; animChar = function (A, dt) { _ac.apply(this, arguments); if (A.anim === 'salute') { const Rr = A.arms[1]; Rr.sh.rotation.set(-2.3, 0, 0.3); Rr.el.rotation.set(-1.6, 0, -1.0); } }; }
+function vaCoat(A, col) {
+  const m = new THREE.MeshLambertMaterial({ color: col });
+  const back = new THREE.Mesh(new THREE.BoxGeometry(0.54, 1.2, 0.04), m); back.position.set(0, 0.5, 0); const bp = new THREE.Group(); bp.position.set(0, 0.6, -0.16); bp.add(back); back.position.y = -0.6; A.torso.add(bp);
+  const flaps = [];
+  for (const s of [-1, 1]) { const g = new THREE.Group(); g.position.set(s * 0.17, 0.02, 0.15); const f = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.7, 0.03), m); f.position.y = -0.35; g.add(f); A.torso.add(g); flaps.push(g); }
+  for (const s of [-1, 1]) { const g = new THREE.Group(); g.position.set(s * 0.25, 0.02, 0); const f = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.7, 0.3), m); f.position.y = -0.35; g.add(f); A.torso.add(g); flaps.push(g); }
+  for (const s of [-1, 1]) { const c = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.14, 0.3), m); c.position.set(s * 0.17, 0.58, 0.02); c.rotation.z = s * 0.3; A.torso.add(c); }
+  A.coat = { bp, flaps };
+}
+function vaCoatSwing(A, t, spd) {
+  if (!A.coat) return; const w = Math.sin(t * 5.5), s = clamp(spd, 0, 1.5);
+  A.coat.bp.rotation.x = 0.1 + 0.32 * s + Math.abs(w) * 0.12 * s;
+  A.coat.flaps.forEach((f, i) => { f.rotation.x = (i < 2 ? -0.08 : 0.05) + w * (i % 2 ? 0.22 : -0.22) * s + 0.12 * s; });
+}
+function vaFlagTex(N) { const c = document.createElement('canvas'); c.width = 192; c.height = 120; const g = c.getContext('2d'); g.fillStyle = N.css; g.fillRect(0, 0, 192, 120); g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(0, 96, 192, 24); g.fillStyle = '#0b0d0b'; g.font = 'bold 56px sans-serif'; g.textAlign = 'center'; g.fillText(N === NATIONS.smfa ? '>:)' : N.short.slice(0, 3), 96, 74); const t = new THREE.CanvasTexture(c); return t; }
+function vaCloth(N, w, h) { const geo = new THREE.PlaneGeometry(w, h, 12, 6); geo.translate(w / 2, 0, 0); const m = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ map: vaFlagTex(N), side: THREE.DoubleSide })); m.userData.base = geo.attributes.position.array.slice(); return m; }
+function vaWave(m, t, amp) { const a = m.geometry.attributes.position, b = m.userData.base; for (let i = 0; i < a.count; i++) { const x = b[i * 3]; a.array[i * 3 + 2] = Math.sin(x * 3.2 - t * 7) * amp * x * 0.6 + Math.sin(x * 5 - t * 11 + b[i * 3 + 1] * 2) * amp * 0.12 * x; } a.needsUpdate = true; m.geometry.computeVertexNormals(); }
+
+/* ---------- sets ---------- */
+{
+  const _cs = csSet; csSet = function (name, scene) {
+    if (!/^va_/.test(name)) return _cs.apply(this, arguments);
+    const X = VA_BUILD || { ctx: { N: NATIONS.smfa }, upd: [] }, N = X.ctx.N;
+    const L = c => new THREE.MeshLambertMaterial({ color: c });
+    const B = (w, h, d, c, x, y, z, ry, rx) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), L(c)); o.position.set(x, y, z); if (ry) o.rotation.y = ry; if (rx) o.rotation.x = rx; scene.add(o); return o; };
+    const Bb = (w, h, d, c, x, y, z) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({ color: c })); o.position.set(x, y, z); scene.add(o); return o; };
+    const hemi = new THREE.HemisphereLight(0xdde8ff, 0x332a22, 0.6), sun = new THREE.DirectionalLight(0xffffff, 0.8); sun.position.set(5, 10, 6);
+    if (name !== 'va_throne') { scene.add(hemi); scene.add(sun); }
+    const pole = (x, z, h, ry) => { B(0.07, h, 0.07, 0xb0a888, x, h / 2, z); const f = vaCloth(N, 1.4, 0.85); f.position.set(x + 0.04, h - 0.5, z); f.rotation.y = ry || 0; scene.add(f); X.upd.push((dt, C) => vaWave(f, C.beatT + x, 0.18)); return f; };
+    const sky = (top, bot) => { const c = document.createElement('canvas'); c.width = 2; c.height = 256; const g = c.getContext('2d'); const gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, top); gr.addColorStop(1, bot); g.fillStyle = gr; g.fillRect(0, 0, 2, 256); scene.background = new THREE.CanvasTexture(c); };
+    X.scene = scene;
+    if (name === 'va_parade') {
+      B(90, 0.2, 90, 0x5b5f62, 0, -0.1, 0);
+      for (let k = -6; k <= 6; k++) B(0.25, 0.01, 30, 0xd8d4c8, k * 3, 0.01, 8);
+      B(4, 1, 2.4, 0x2a2c2e, 0, 0.5, -2); B(4.2, 0.08, 2.6, 0xd4a017, 0, 1.02, -2); B(1.2, 1.1, 0.5, 0x2a2c2e, 0, 1.55, -1.1); { const em = new THREE.Mesh(new THREE.PlaneGeometry(0.95, 0.6), new THREE.MeshBasicMaterial({ map: vaFlagTex(N) })); em.position.set(0, 1.6, -0.84); scene.add(em); }
+      B(22, 7, 0.4, 0x1e2124, 0, 3.5, -8); Bb(22, 0.4, 0.42, N.flag, 0, 6.6, -7.98); Bb(22, 0.4, 0.42, N.flag, 0, 0.6, -7.98);
+      const big = vaCloth(N, 6, 3.6); big.position.set(-3, 3.8, -7.7); scene.add(big); X.upd.push((dt, C) => vaWave(big, C.beatT * 0.4, 0.05));
+      for (let k = -4; k <= 4; k++) if (k) pole(k * 2.4 - 0.6, -5.5, 5);
+      for (let k = 0; k < 14; k++) { const s = k % 2 ? 1 : -1; B(rr(2, 5), rr(6, 16), rr(2, 5), pick([0x6a6e72, 0x7a7670, 0x5a5e62]), s * rr(16, 34), 4, rr(-30, -12)); }
+      sky('#6f9cc4', '#d6e4ee'); scene.fog = new THREE.Fog(0xc0d2de, 30, 90);
+    } else if (name === 'va_rubble') {
+      B(90, 0.2, 90, 0x4a4436, 0, -0.1, 0);
+      const mound = [[0, -3.2, 3.2, 0.9, 3], [0.2, -3.4, 2.2, 1.5, 2.2], [0, -3.3, 1.3, 2.0, 1.4], [-1.6, -2.6, 1.6, 0.6, 1.8], [1.5, -2.4, 1.6, 0.7, 1.6], [0, -1.6, 2.4, 0.45, 1.6]];
+      mound.forEach(([x, z, w, h, d], i) => B(w, h, d, i % 2 ? 0x6a6a66 : 0x7c7a72, x, h / 2, z, rr(-0.3, 0.3)));
+      for (let k = 0; k < 22; k++) { const a = R() * TAU, r = rr(1.2, 3.4); B(rr(0.3, 0.9), rr(0.2, 0.6), rr(0.3, 0.9), pick([0x5a5a56, 0x7a776e, 0x8a6a4a, 0x3a3a38]), Math.cos(a) * r, rr(0.1, 1.4), -3.2 + Math.sin(a) * r * 0.7, rr(0, 3), rr(-0.5, 0.5)); }
+      B(0.25, 2.2, 0.25, 0x3a3a38, -2.4, 1.1, -3.6, 0, 0.4); B(0.2, 1.6, 0.2, 0x3a3a38, 2.2, 0.8, -4, 0, -0.5);
+      for (let k = 0; k < 9; k++) { const s = k % 2 ? 1 : -1; const h = rr(3, 9); B(rr(3, 6), h, rr(3, 5), pick([0x4a4744, 0x55524c, 0x3e3c3a]), s * rr(7, 20), h / 2, rr(-22, -8), rr(0, 0.4)); }
+      const fl = new THREE.PointLight(0xff7a30, 1.4, 16); fl.position.set(-6.5, 1.2, -9); scene.add(fl); B(2.6, 0.9, 1.6, 0x2a2622, -6.5, 0.45, -9, 0.5);
+      X.upd.push((dt, C) => { fl.intensity = 1.2 + Math.sin(C.beatT * 13) * 0.25; if (R() < dt * 3) vaPart(C, { sphere: true, c: 0x2a2826, a: 0.45, x: -6.5 + rr(-0.6, 0.6), y: 1.2, z: -9, vx: rr(-0.8, -0.2), vy: rr(1.2, 2), vz: rr(-0.2, 0.2), s: rr(0.7, 1.1), grow: 0.3, life: 4 }); if (R() < dt * 10) vaPart(C, { sphere: true, add: true, c: 0xff8a3a, x: -6.5 + rr(-0.8, 0.8), y: 0.9, z: -9 + rr(-0.4, 0.4), vy: rr(1, 2), s: rr(0.3, 0.6), life: 0.6 }); });
+      sky('#3a2c38', '#c8764a'); scene.fog = new THREE.Fog(0x8a5a44, 14, 55); hemi.intensity = 0.45; sun.color.setHex(0xffb080); sun.position.set(-6, 4, -10);
+    } else if (name === 'va_crater') {
+      B(90, 0.2, 90, 0x5a5444, 0, -0.1, 0);
+      X.cracks = []; for (let k = 0; k < 9; k++) { const a = k / 9 * TAU + rr(-0.2, 0.2), l = rr(1.4, 2.6); const c = B(l, 0.02, 0.09, 0x1a1712, Math.cos(a) * l / 2, 0.005, Math.sin(a) * l / 2, -a); c.visible = false; X.cracks.push(c); }
+      const crater = new THREE.Mesh(new THREE.CircleGeometry(1.3, 28), new THREE.MeshLambertMaterial({ color: 0x2a2620 })); crater.rotation.x = -PI / 2; crater.position.y = 0.006; crater.visible = false; scene.add(crater); X.crater = crater;
+      for (let k = 0; k < 10; k++) { const s = k % 2 ? 1 : -1; const h = rr(2, 6); B(rr(2, 5), h, rr(0.6, 1.2), pick([0x6a645a, 0x5a564e]), s * rr(5, 16), h / 2, rr(-16, -6), rr(-0.3, 0.3)); }
+      const ring = new THREE.Mesh(new THREE.RingGeometry(0.8, 1.05, 40), new THREE.MeshBasicMaterial({ color: 0xffe0a0, transparent: true, opacity: 0, side: THREE.DoubleSide })); ring.rotation.x = -PI / 2; ring.position.y = 0.05; scene.add(ring); X.ring = ring;
+      X.flashL = new THREE.PointLight(0xffd0a0, 0, 12); X.flashL.position.set(0, 1, 0); scene.add(X.flashL);
+      sky('#141a28', '#4a4a5a'); scene.fog = new THREE.Fog(0x3a3c48, 14, 50); hemi.intensity = 0.5; sun.color.setHex(0xaab8ff); sun.intensity = 0.7;
+      for (let k = 0; k < 60; k++) { const st = Bb(0.06, 0.06, 0.06, 0xffffff, rr(-40, 40), rr(10, 30), rr(-45, -30)); st.material.color.setScalar(rr(0.5, 1)); }
+    } else if (name === 'va_street') {
+      B(90, 0.2, 90, 0x3a3c3e, 0, -0.1, 0); for (let k = 0; k < 12; k++) B(0.2, 0.01, 1.6, 0xd8c84a, 0, 0.01, 6 - k * 3.2);
+      for (const s of [-1, 1]) { B(2.5, 0.25, 60, 0x6a6a66, s * 5, 0.12, -10); for (let k = 0; k < 7; k++) { const h = rr(6, 14), w = rr(4, 6); const bz = 4 - k * 7; B(w, h, 6.4, pick([0x6e6a64, 0x7a746c, 0x5e5c58, 0x84786a]), s * (7 + w / 2), h / 2, bz); for (let r = 1; r < h / 2.2; r++) for (let c = 0; c < 3; c++) Bb(0.05, 0.9, 0.8, R() < 0.25 ? 0xffd890 : 0x1a1e24, s * 6.95, r * 2.2, bz - 2 + c * 2); } }
+      const car = new THREE.Group(); const cb = (w, h, d, c, x, y, z) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), L(c)); o.position.set(x, y, z); car.add(o); };
+      cb(2, 0.8, 4.2, 0x5a3a2a, 0, 0.6, 0); cb(1.8, 0.7, 2, 0x4a2e22, 0, 1.3, -0.2); for (const [a, b] of [[1, 1.4], [-1, 1.4], [1, -1.4], [-1, -1.4]]) cb(0.3, 0.6, 0.6, 0x111111, a, 0.3, b);
+      for (const [a, b] of [[0, 0.75], [0, -1.2]]) cb(1.72, 0.5, 0.05, 0x8ab0c8, 0, 1.35, b > 0 ? 0.82 : -1.22); cb(2.02, 0.12, 0.5, 0x2a1a12, 0, 0.75, 2.1); car.position.set(0.8, 0, -15); car.rotation.y = 0.5; scene.add(car); X.car = car;
+      X.boomL = new THREE.PointLight(0xff8a3a, 0, 30); X.boomL.position.set(0.8, 2, -14); scene.add(X.boomL);
+      sky('#5a6878', '#b8a48a'); scene.fog = new THREE.Fog(0x8a8478, 16, 60);
+    } else if (name === 'va_hall') {
+      const len = 34; X.lamps = [];
+      B(11, 0.2, len + 10, 0x15161a, 0, -0.1, -len / 2 + 3); B(3.2, 0.012, len + 10, 0x7a1418, 0, 0.006, -len / 2 + 3);
+      for (const s of [-1, 1]) Bb(0.06, 0.013, len + 10, 0xd4a017, s * 1.6, 0.008, -len / 2 + 3);
+      for (const s of [-1, 1]) B(0.4, 10, len + 10, 0x2a2a2e, s * 5.5, 5, -len / 2 + 3);
+      B(11, 0.3, len + 10, 0x1c1c20, 0, 10, -len / 2 + 3);
+      for (let k = 0; k * 4 < len; k++) {
+        const z = 2 - k * 4;
+        for (const s of [-1, 1]) { B(0.8, 10, 0.8, 0x4a4a50, s * 4.6, 5, z); B(1.1, 0.4, 1.1, 0xd4a017, s * 4.6, 0.2, z); B(1.1, 0.4, 1.1, 0xd4a017, s * 4.6, 9.7, z); }
+        for (const s of [-1, 1]) { const ban = Bb(1.3, 4.2, 0.04, N.flag, s * 5.28, 6, z - 2); ban.rotation.y = s * PI / 2; ban.material.color.multiplyScalar(0.7); const st = Bb(1.3, 0.25, 0.05, 0xd4a017, s * 5.27, 3.8, z - 2); st.rotation.y = s * PI / 2; }
+        const lamp = Bb(2.4, 0.12, 0.6, 0x1a1a1a, 0, 9.8, z - 2); const pool = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 3.2), new THREE.MeshBasicMaterial({ color: 0xffe9b8, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending })); pool.rotation.x = -PI / 2; pool.position.set(0, 0.02, z - 2); scene.add(pool);
+        X.lamps.push({ z: z - 2, lamp, pool, on: 0 });
+      }
+      B(6, 9, 0.4, 0x3a2a1a, 0, 4.5, -len + 1); Bb(1.8, 1.8, 0.05, N.flag, 0, 6.2, -len + 1.23); Bb(0.08, 7, 0.06, 0xd4a017, 0, 3.5, -len + 1.24);
+      X.key = new THREE.PointLight(0xffe2b0, 2.1, 18); X.key.position.set(0, 7, 0); scene.add(X.key); const fill = new THREE.PointLight(0x9ab4ff, 0.6, 14); fill.position.set(2, 3, 0); scene.add(fill); X.fill = fill;
+      hemi.intensity = 0.5; sun.intensity = 0.3; scene.background = new THREE.Color(0x07080a); scene.fog = new THREE.Fog(0x07080a, 10, 42);
+    } else if (name === 'va_throne') {
+      _cs.call(this, 'throne', scene);
+      for (const s of [-1, 1]) { const b = Bb(1.4, 3.6, 0.06, N.flag, s * 2.6, 4.2, -7.75); b.material.color.multiplyScalar(0.75); Bb(0.5, 0.5, 0.07, 0x0b0d0b, s * 2.6, 4.9, -7.71); }
+      B(2.4, 0.03, 16, 0x8a1a1e, 0, 0.03, 2); for (const s of [-1, 1]) Bb(0.06, 0.035, 16, 0xd4a017, s * 1.22, 0.035, 2);
+      X.key = new THREE.PointLight(0xffd8a0, 0.5, 10); X.key.position.set(0, 3.5, -3.5); scene.add(X.key);
+    } else if (name === 'va_range') {
+      B(90, 0.2, 90, 0x6e6e6a, 0, -0.1, 0); for (let k = -5; k <= 5; k++) B(0.1, 0.01, 40, 0x5a5a56, k * 2, 0.01, 0);
+      for (const s of [-1, 1]) B(0.6, 3, 40, 0x7a7a74, s * 9, 1.5, -4);
+      B(18, 4, 0.6, 0x6a6a64, 0, 2, -16); for (let k = 0; k < 8; k++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 1, 10), L(pick([0x2a4a7a, 0x7a2a2a, 0x3a5a2a]))); b.position.set(rr(-7, 7), 0.5, rr(-14, -8)); scene.add(b); }
+      sky('#7a8a9a', '#c8ccd0'); scene.fog = new THREE.Fog(0xb0b8c0, 16, 60);
+    } else if (name === 'va_sunset') {
+      B(160, 0.2, 160, 0x3a2e1c, 0, -0.1, -40);
+      for (let k = 0; k < 40; k++) B(rr(0.2, 0.5), rr(0.3, 0.9), rr(0.2, 0.5), 0x2a2214, rr(-30, 30), 0.3, rr(-60, 4));
+      const sunM = new THREE.Mesh(new THREE.CircleGeometry(9, 48), new THREE.MeshBasicMaterial({ color: 0xffb04a, fog: false })); sunM.position.set(0, 6, -90); scene.add(sunM);
+      { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d'); const gr = g.createRadialGradient(64, 64, 10, 64, 64, 64); gr.addColorStop(0, 'rgba(255,170,80,.75)'); gr.addColorStop(1, 'rgba(255,120,50,0)'); g.fillStyle = gr; g.fillRect(0, 0, 128, 128); const glow = new THREE.Mesh(new THREE.PlaneGeometry(46, 46), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false, fog: false })); glow.position.set(0, 6, -90.5); scene.add(glow); }
+      for (const [x, z] of [[-16, -30], [14, -24], [26, -44]]) { B(3, 1.3, 5, 0x1a1612, x, 0.65, z, rr(0, 2)); X.upd.push((dt, C) => { if (R() < dt * 2.5) vaPart(C, { sphere: true, c: 0x2a221c, a: 0.45, x: x + rr(-0.5, 0.5), y: 1.4, z, vx: 0.6, vy: rr(1, 1.8), s: rr(1, 1.8), grow: 0.35, life: 6 }); }); }
+      for (let k = 0; k < 7; k++) { const h = rr(2, 5); const o = Bb(rr(3, 7), h, rr(2, 4), 0x1a120c, rr(-50, 50), h / 2, rr(-80, -60)); o.material.fog = false; }
+      sky('#2a1a3a', '#ff9a4a'); scene.fog = new THREE.Fog(0xd07a44, 30, 110); hemi.color.setHex(0xffb080); hemi.groundColor.setHex(0x1a1008); hemi.intensity = 0.4; sun.color.setHex(0xff9a5a); sun.position.set(0, 3, -20); sun.intensity = 0.9;
+    }
+  };
+}
+
+/* ---------- the scripts (times are in scene time; C.va.ts slows the scene for slow motion) ---------- */
+const VA_SCRIPTS = {
+  salute: { set: 'parade', dur: 8,
+    actors: () => { const a = { pres: { c: '_vp', p: [0, -2.2], r: 0 } }; for (let k = 0; k < 8; k++) { a['s' + k] = { c: '_vs', p: [-8.5 - (k >> 1) * 1.7, 2.6 + (k % 2) * 1.4], r: PI / 2, prop: 'rifle' }; } return a; },
+    tl(C, t, dt) {
+      const P = C.actors.pres; P.root.position.y = 1.02;
+      for (let k = 0; k < 8; k++) C.actors['s' + k].anim = 'walk';
+      for (let k = 0; k < 8; k++) { const A = C.actors['s' + k]; A.root.position.x += 1.55 * dt; if (Math.abs(A.root.position.x) < 2.2 && t > 2) { A.head.rotation.y = -0.9; } }
+      if (t > 1.1) { P.anim = 'salute'; P.expr = 'smile'; }
+      if (t > 2.6 && !C.va.conf) { C.va.conf = 1; }
+      if (C.va.conf && R() < dt * 60) vaPart(C, { plane: true, c: pick([C.va.ctx.N.flag, 0xffffff, 0xd4a017, 0x39d353, 0xef4b4f]), x: rr(-7, 7), y: rr(6, 9), z: rr(-4, 6), vy: -rr(0.8, 1.6), s: 0.12, sy: 0.6, spin: rr(2, 6), flutter: 0.9, drag: 0.4, life: 5 });
+      vaCam(C, [[0, [0, 6.5, 17], [0, 2, -2]], [3.4, [3.2, 2.2, 6], [0, 2.4, -2]], [6, [1.1, 2.75, 0.8], [0, 2.7, -2.2]], [8, [0.9, 2.75, 0.4], [0, 2.72, -2.2]]], t);
+      if (t > 5.6) vaShowTitle(C);
+    } },
+  flag: { set: 'rubble', dur: 9,
+    actors: () => ({ pres: { c: '_vp', p: [0.1, 3.2], r: PI } }),
+    tl(C, t, dt, ctx) {
+      const P = C.actors.pres, X = C.va;
+      if (!X.pole) {
+        const g = new THREE.Group(); const pm = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 3.2, 8), new THREE.MeshLambertMaterial({ color: 0xc8c0a0 })); pm.position.y = 1.6; g.add(pm);
+        const cl = vaCloth(ctx.N, 1.5, 0.95); cl.position.set(0.03, 2.7, 0); g.add(cl); X.cloth = cl; X.pole = g; P.arms[1].el.add(g); g.position.set(0, -0.32, 0.05); g.rotation.x = 0.9;
+      }
+      vaWave(X.cloth, t, t > 4.1 ? 0.22 : 0.08);
+      const z = P.root.position.z;
+      if (t < 3.4) { P.anim = 'walk'; P.root.position.z = lerp(3.2, -2.1, vaE(t / 3.4)); P.root.position.y = clamp((1.2 - z) / 3.3, 0, 1) * 1.62; P.arms[1].sh.rotation.x = -0.6; P.arms[1].el.rotation.x = -0.4; }
+      else {
+        P.anim = 'idle'; P.root.position.y = 1.62;
+        const k = vaE(vaK(t, 3.4, 4.1)); const [L, Rr] = P.arms;
+        Rr.sh.rotation.x = lerp(-0.6, -2.7, k); Rr.el.rotation.x = lerp(-0.4, 0, k); L.sh.rotation.x = lerp(0, -2.5, k); L.sh.rotation.z = lerp(-0.08, 0.35, k);
+        if (t > 4.1 && !X.planted) { X.planted = 1; const wp = new THREE.Vector3(); X.pole.getWorldPosition(wp); P.arms[1].el.remove(X.pole); C.scene.add(X.pole); X.pole.position.set(P.root.position.x + 0.05, 1.62 + 0.15, P.root.position.z - 0.45); X.pole.rotation.set(0, PI * 0.5, 0); vaDust(C, X.pole.position.x, 1.65, X.pole.position.z, 14, 2.2, 0x8a7a64, 0.22); SFX.boom && SFX.boom(6, false); C.S.beats[0].shake = 0.06; }
+        if (X.planted) { const k2 = vaE(vaK(t, 4.3, 5)); Rr.sh.rotation.x = lerp(-2.7, -0.1, k2); L.sh.rotation.x = lerp(-2.5, 0, k2); P.root.rotation.y = lerp(PI, PI * 0.15, vaE(vaK(t, 4.6, 5.6))); if (t > 5.6) { Rr.sh.rotation.x = -2.6; Rr.sh.rotation.z = 0.4; P.expr = 'smile'; } C.S.beats[0].shake = Math.max(0, 0.06 - (t - 4.1) * 0.12); }
+      }
+      vaCam(C, [[0, [1.8, 1.5, 7.6], [0, 1.6, 1]], [3.3, [2.6, 1.1, 2.4], [0, 2.4, -2.2]], [4.4, [3.0, 0.8, 1.6], [0, 3.0, -2.6]], [6, [2.8, 1.5, 2.6], [0, 2.9, -2.4]], [9, [2.3, 1.9, 2.1], [0, 3.0, -2.5]]], t);
+      if (t > 6.2) vaShowTitle(C);
+    } },
+  landing: { set: 'crater', dur: 8,
+    actors: () => ({ pres: { c: '_vp', p: [0, 0], r: 0 } }),
+    tl(C, t, dt) {
+      const P = C.actors.pres, X = C.va, tl = 1.05;
+      if (t < tl) { const k = t / tl; P.root.position.y = 16 * (1 - k * k); P.anim = 'idle'; vaPoseFall(P, t); if (R() < dt * 40) vaPart(C, { add: true, c: 0xfff0d0, a: 0.6, x: rr(-0.2, 0.2), y: P.root.position.y + 1.5 + rr(0, 1), z: rr(-0.2, 0.2), vy: 4, s: 0.05, sy: 8, life: 0.25 }); }
+      else {
+        P.root.position.y = 0; P.anim = 'idle';
+        if (!X.hit) { X.hit = 1; vaFlash(0.75); SFX.boom && SFX.boom(4, true); X.cracks.forEach(c => c.visible = true); X.crater.visible = true; vaDust(C, 0, 0.1, 0, 34, 8, 0x9a8a6a, 0.3, 0.3); for (let k = 0; k < 18; k++) vaPart(C, { c: pick([0x5a5444, 0x3a342a, 0x6a6050]), x: rr(-0.6, 0.6), y: 0.2, z: rr(-0.6, 0.6), vx: rr(-6, 6), vy: rr(4, 10), vz: rr(-6, 6), s: rr(0.1, 0.25), g: 20, spin: rr(-8, 8), life: 2, ground: 0.05 }); X.ringT = 0; }
+        X.ringT += dt; const rk = clamp(X.ringT / 0.9, 0, 1); X.ring.scale.setScalar(1 + rk * 8); X.ring.material.opacity = (1 - rk) * 0.8; X.flashL.intensity = Math.max(0, 3 - X.ringT * 6);
+        C.S.beats[0].shake = Math.max(0, 0.12 - (t - tl) * 0.2);
+        const rise = vaE(vaK(t, 3.4, 4.8)); vaPoseLand(P, 1 - rise);
+        if (t > 4.8) { P.expr = 'smile'; P.head.rotation.x = -0.05; }
+        if (t > 5.4) { const k = vaE(vaK(t, 5.4, 6)); P.arms[1].sh.rotation.x = lerp(0, -0.25, k); P.arms[0].sh.rotation.x = 0; }
+      }
+      vaCam(C, [[0, [0.6, 0.35, 5.5], [0, 6, 0]], [1.05, [0.6, 0.4, 4.6], [0, 0.9, 0]], [3.4, [1.8, 0.5, 3.4], [0, 0.6, 0]], [5, [0.9, 1.25, 2.6], [0, 1.4, 0]], [8, [0.6, 1.65, 2.0], [0, 1.65, 0]]], t);
+      if (t > 5.2) vaShowTitle(C);
+    } },
+  cool: { set: 'street', dur: 8,
+    actors: () => ({ pres: { c: '_vp', p: [0, -6.5], r: 0 } }),
+    tl(C, t, dt) {
+      const P = C.actors.pres, X = C.va, tb = 1.4;
+      const wz = t < 5.4 ? lerp(-6.5, 1.2, t / 5.4) : 1.2; P.root.position.z = wz; P.anim = t < 5.4 ? 'walk' : 'idle';
+      X.ts = t > tb && t < tb + 1.8 ? 0.55 : 1;
+      if (t > tb && !X.boom) { X.boom = 1; vaFire(C, 0.8, 0.8, -15, 3); vaFlash(0.5); SFX.boom && SFX.boom(12, true); X.carV = { vy: 9, sp: 3 }; }
+      if (X.boom) { X.boomL.intensity = Math.max(0.3, 5 - (t - tb) * 3) + Math.sin(t * 20) * 0.2; const v = X.carV; v.vy -= 18 * dt; X.car.position.y = Math.max(0, X.car.position.y + v.vy * dt); X.car.rotation.x += v.sp * dt * (X.car.position.y > 0 ? 1 : 0); if (X.car.position.y <= 0 && v.vy < 0) v.sp = 0; if (R() < dt * 14) vaPart(C, { sphere: true, add: true, c: 0xff7a2a, x: 0.8 + rr(-1, 1), y: 0.8, z: -15 + rr(-1, 1), vy: rr(1, 3), s: rr(0.6, 1.3), life: 0.8 }); if (R() < dt * 6) vaPart(C, { sphere: true, c: 0x2a2622, a: 0.6, x: 0.8, y: 1.8, z: -15, vx: rr(-0.3, 0.3), vy: 2, s: rr(1.4, 2.2), grow: 0.3, life: 4 }); C.S.beats[0].shake = Math.max(0, 0.05 - (t - tb) * 0.03); }
+      if (t > 3.2 && t < 4.6) vaPoseShades(P, Math.sin(vaK(t, 3.2, 4.6) * PI));
+      if (t > 5.5) { P.expr = 'smile'; P.head.rotation.y = Math.sin(vaK(t, 5.5, 6.2) * PI) * 0.15; }
+      vaCam(C, [[0, [0.4, 1.55, wz + 3.6], [0, 1.4, wz - 2]], [5.4, [0.6, 1.5, 4.4], [0, 1.5, 0.6]], [8, [0.5, 1.7, 3.2], [0, 1.7, 1.2]]], t < 5.4 ? 0 : t);
+      if (t < 5.4) vaSetCam(C, [0.4 + Math.sin(t * 0.7) * 0.3, 1.5, wz + 3.4], [0, 1.45, wz - 2]);
+      if (t > 5.4) vaShowTitle(C);
+    } },
+  corridor: { set: 'hall', dur: 10.4,
+    actors: () => { const a = { pres: { c: '_vp', p: [0, 1.5], r: PI } }; for (let k = 0; k < 6; k++) { const s = k % 2 ? 1 : -1; a['g' + k] = { c: '_vs', p: [s * 2.6, -1.4 - (k >> 1) * 3.4], r: -s * PI / 2, prop: 'rifle' }; } return a; },
+    tl(C, t, dt, ctx) {
+      const P = C.actors.pres, X = C.va;
+      if (!P.coat) vaCoat(P, 0x0b0c0f);
+      X.ts = t < 7.2 ? 0.62 : 1;
+      const T1 = 6.6, z = t < T1 ? lerp(1.5, -9.2, t / T1) : -9.2; P.root.position.z = z; P.anim = t < T1 ? 'walk' : 'idle';
+      vaCoatSwing(P, P.t, t < T1 ? 1 : Math.max(0, 1 - (t - T1) * 1.5));
+      P.arms.forEach(a => { a.sh.rotation.x *= 0.55; });
+      for (const Lm of X.lamps) { if (!Lm.on && Lm.z > z - 6.5) { Lm.on = 1; Lm.lamp.material.color.setHex(0xfff1d0); SFX.ok() && SFX.tone(0.05, 0.06, 140, 90, 'square'); } if (Lm.on) Lm.pool.material.opacity = Math.min(0.32, Lm.pool.material.opacity + dt * 2.5); }
+      X.key.position.set(0, 7, z - 3); X.fill.position.set(2, 3, z + 2);
+      for (let k = 0; k < 6; k++) { const A = C.actors['g' + k]; if (A.root.position.z > z - 0.6) { A.anim = 'salute'; } }
+      if (t > T1 + 0.4) { const k = vaE(vaK(t, T1 + 0.4, T1 + 1.4)); P.head.rotation.y = -1.05 * k; P.torso.rotation.y = -0.25 * k; if (k > 0.6) P.expr = 'smile'; }
+      if (t < 2.3) vaSetCam(C, [1.25, 0.55, z + 3.4], [0, 1.6, z - 5]);
+      else if (t < 4.6) vaSetCam(C, [-0.7, 0.42, z - 2.7], [0, 1.45, z + 0.3]);
+      else if (t < T1) vaSetCam(C, [1.9, 1.25, z - 2.0], [0, 1.45, z + 0.1]);
+      else vaCam(C, [[T1, [2.2, 1.6, -7.3], [0, 1.6, -9.6]], [T1 + 1.3, [1.6, 1.78, -8.1], [0, 1.74, -9.25]], [10.4, [1.45, 1.8, -8.3], [0, 1.76, -9.25]]], t);
+      if (t > T1 + 1.3) vaShowTitle(C);
+    } },
+  throne: { set: 'throne', dur: 9.6,
+    actors: () => { const a = { pres: { c: '_vp', p: [0, 3.2], r: PI } }; for (let k = 0; k < 6; k++) { const s = k % 2 ? 1 : -1; a['g' + k] = { c: '_vs', p: [s * 1.9, 2 - (k >> 1) * 2.3], r: -s * PI / 2 }; } return a; },
+    tl(C, t, dt) {
+      const P = C.actors.pres;
+      const T1 = 5.2, z0 = 3.2, z1 = -4.7;
+      if (t < T1) { P.anim = 'walk'; P.root.position.z = lerp(z0, z1, t / T1); }
+      else if (t < T1 + 0.5) { P.anim = 'idle'; P.root.rotation.y = lerp(PI, 0, vaE(vaK(t, T1, T1 + 0.5))); }
+      else { const k = vaE(vaK(t, T1 + 0.5, T1 + 1.1)); P.root.position.z = lerp(z1, -6.15, k); P.root.position.y = lerp(0, 0.5, k); P.root.rotation.y = 0; if (k >= 1) { P.anim = 'sit'; P.sitY = 0.52; P.expr = 'smile'; const [L, Rr] = P.arms; L.sh.rotation.x = Rr.sh.rotation.x = -0.85; L.el.rotation.x = Rr.el.rotation.x = 0; L.sh.rotation.z = -0.25; Rr.sh.rotation.z = 0.25; } }
+      const z = P.root.position.z;
+      for (let k = 0; k < 6; k++) { const A = C.actors['g' + k]; if (A.root.position.z > z + 0.4 || t > T1) { A.anim = 'kneel'; vaPoseHonor(A); } }
+      if (t < 2.6) vaSetCam(C, [1.0, 1.3, z + 3.6], [0, 1.5, z - 3]);
+      else if (t < T1) vaSetCam(C, [-1.3, 0.65, Math.max(z - 3.2, -4.2)], [0, 1.6, z]);
+      else vaCam(C, [[T1, [0.5, 1.9, -2.2], [0, 1.6, -6.2]], [T1 + 1.6, [0.4, 1.7, -3.4], [0, 1.6, -6.2]], [9.6, [0, 4.2, 6.2], [0, 1.5, -5.6]]], t);
+      if (t > T1 + 1.8) vaShowTitle(C);
+    } },
+  bullet: { set: 'range', dur: 8.6,
+    actors: () => ({ pres: { c: '_vp', p: [0, 0], r: 0 } }),
+    tl(C, t, dt) {
+      const P = C.actors.pres, X = C.va;
+      const s0 = 0.9, s1 = 4.6;
+      X.ts = t > s0 && t < s1 ? 0.28 : 1; vaTint(t > s0 && t < s1 ? 0.35 : 0, 'radial-gradient(circle,rgba(40,110,170,0) 30%,rgba(20,60,120,.65))');
+      const lean = vaE(vaK(t, s0, s0 + 0.9)) * (1 - vaE(vaK(t, s1, s1 + 0.6))); vaPoseLean(P, lean);
+      if (t > s0 + 0.3 && t < s1 - 0.6 && (X.nb = (X.nb || 0) + dt) > 0.45) { X.nb = 0; const y = rr(1.45, 1.75), x = rr(-0.5, 0.5); X.bul = X.bul || []; const m = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.035, 0.22), new THREE.MeshBasicMaterial({ color: 0xffd27a })); m.position.set(x, y, 14); C.scene.add(m); X.bul.push({ m, y, x }); SFX.ok() && SFX.tone(0.04, 0.4, 300, 120, 'sine'); }
+      for (const b of X.bul || []) { b.m.position.z -= 9 * dt; if (R() < 0.6) vaPart(C, { add: true, c: 0xbfe4ff, a: 0.35, x: b.m.position.x, y: b.m.position.y, z: b.m.position.z + 0.2, s: 0.05, sz: 3, grow: 1.5, life: 0.5 }); if (!b.ring && b.m.position.z < 0.5) { b.ring = 1; const r = new THREE.Mesh(new THREE.RingGeometry(0.06, 0.085, 24), new THREE.MeshBasicMaterial({ color: 0xdff2ff, transparent: true, opacity: 0.7, side: THREE.DoubleSide })); r.position.copy(b.m.position); C.scene.add(r); let rs = 1; X.upd.push(dt2 => { rs = Math.min(4, rs + dt2 * 2.2); r.scale.setScalar(rs); r.material.opacity = Math.max(0, r.material.opacity - dt2 * 0.7); }); } }
+      if (t > s1 + 0.9) { P.anim = 'cross'; P.expr = 'smile'; }
+      const orb = vaE(vaK(t, s0, s1)) * PI * 1.25;
+      if (t < s1 + 0.4) vaSetCam(C, [Math.sin(orb) * 3.4, 1.1 + Math.sin(orb * 0.8) * 0.5, Math.cos(orb) * 3.4], [0, 1.1, 0]);
+      else vaCam(C, [[s1 + 0.4, [Math.sin(PI * 1.25) * 3.4, 1.1, Math.cos(PI * 1.25) * 3.4], [0, 1.1, 0]], [s1 + 1.6, [0.7, 1.65, 2.6], [0, 1.6, 0]], [8.6, [0.6, 1.7, 2.2], [0, 1.65, 0]]], t);
+      if (t > s1 + 1.4) vaShowTitle(C);
+    } },
+  sunset: { set: 'sunset', dur: 8.4,
+    actors: () => ({ pres: { c: '_vp', p: [0, 1.6], r: PI } }),
+    tl(C, t, dt) {
+      const P = C.actors.pres;
+      P.anim = 'walk'; P.root.position.z = lerp(1.6, -9, t / 8.4);
+      if (t < 1.4) { P.anim = 'idle'; P.root.position.z = 1.6; P.head.rotation.y = Math.sin(vaK(t, 0.2, 1.3) * PI) * 0.4; }
+      else P.root.position.z = lerp(1.6, -8, (t - 1.4) / 7);
+      vaCam(C, [[0, [0.9, 1.5, 4.2], [0, 1.5, -10]], [3, [0.4, 1.3, 5], [0, 1.6, -20]], [8.4, [0, 3.6, 7.5], [0, 2.4, -30]]], t);
+      if (t > 4.4) vaShowTitle(C);
+    } }
+};
+
+/* ---------- play it after a win ---------- */
+{
+  const _eb = endBattle; endBattle = function (result, why) {
+    const live = G && !G.over; _eb.apply(this, arguments);
+    if (!live || result !== 'win' || !G || G.cfg.tutorial || settings.va === 'off') return;
+    const g = G, id = vaEquipped(), nat = Object.keys(NATIONS).find(k => NATIONS[k] === G.teams[0].nat) || 'smfa';
+    setTimeout(() => { if (G !== g) return; if (CS && CS.S && !$('#scr-cut').hidden) return; if (document.pointerLockElement) document.exitPointerLock(); playVictory(id, null, { nat }); }, 1700);
+  };
+}
+/* ================= ONLINE: country vs country (1v1) over Supabase Realtime broadcast ================= */
+// Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
+// Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
+// The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
+const NET_VER = 'smfa3d-online-1';
+const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
+const NET = { on: false, role: null, room: null, me: null, opp: null, vis: false, applyHit: false, src: null, ev: [], trc: 0, sendT: 0, seq: 0, rx: [], lastRx: 0, pup: new Map(), pv: new Map(), vseq: 0, flags: null, ping: 0, pt: 0, pe: 0, lostWarn: false, over: false, flT: 0 };
+const NETON = () => !!(NET.on && G && G.cfg && G.cfg.online);
+const VTYPES = () => Object.keys(VSPEC);
+const nr = v => Math.round(v * 100) / 100;
+
+/* ---------- Supabase Realtime client (Phoenix protocol, vsn 1.0.0, plain WebSocket) ---------- */
+const RT = { ws: null, ref: 1, chans: {}, hb: 0, ready: null, url: '' };
+function rtUrl() { return SB_URL.replace(/^http/, 'ws') + '/realtime/v1/websocket?apikey=' + encodeURIComponent(SB_KEY) + '&vsn=1.0.0'; }
+function rtConnect() {
+  if (RT.ws && RT.ws.readyState === 1) return Promise.resolve();
+  if (RT.ready) return RT.ready;
+  RT.ready = new Promise((res, rej) => {
+    let ws; try { ws = new WebSocket(rtUrl()); } catch (e) { RT.ready = null; rej(e); return; }
+    RT.ws = ws; const to = setTimeout(() => { try { ws.close(); } catch (e) { } rej(new Error('The game server did not answer.')); }, 9000);
+    ws.onopen = () => { clearTimeout(to); RT.ready = null; clearInterval(RT.hb); RT.hb = setInterval(() => rtRaw('phoenix', 'heartbeat', {}), 25000); res(); };
+    ws.onerror = () => { };
+    ws.onclose = () => { clearTimeout(to); clearInterval(RT.hb); RT.ready = null; const was = RT.ws === ws; if (was) RT.ws = null; for (const c of Object.values(RT.chans)) { c.joined = false; c.onClose && c.onClose(); } rej(new Error('Could not connect to the game server.')); };
+    ws.onmessage = m => {
+      let d; try { d = JSON.parse(m.data); } catch (e) { return; }
+      const c = RT.chans[d.topic]; if (!c) return;
+      if (d.event === 'phx_reply' && d.ref === c.joinRef) { const ok = d.payload && d.payload.status === 'ok'; c.joined = ok; c.joinCb && c.joinCb(ok, d.payload && d.payload.response); c.joinCb = null; }
+      else if (d.event === 'broadcast' && d.payload) { const h = c.on[d.payload.event]; if (h) h(d.payload.payload || {}); }
+      else if (d.event === 'phx_error' || d.event === 'phx_close' || (d.event === 'system' && d.payload && d.payload.status === 'error')) { c.joined = false; c.onClose && c.onClose(); }
+    };
+  });
+  return RT.ready;
+}
+function rtRaw(topic, event, payload, joinRef) { if (!RT.ws || RT.ws.readyState !== 1) return false; const ref = String(RT.ref++); try { RT.ws.send(JSON.stringify({ topic, event, payload, ref, join_ref: joinRef })); } catch (e) { return false; } return ref; }
+async function rtJoin(name, on, onClose) {
+  await rtConnect();
+  const topic = 'realtime:' + name, c = RT.chans[topic] = { topic, on: on || {}, onClose, joined: false };
+  return new Promise((res, rej) => {
+    c.joinCb = (ok, resp) => ok ? res(c) : rej(new Error((resp && resp.reason) || 'The game server refused the room.'));
+    c.joinRef = rtRaw(topic, 'phx_join', { config: { broadcast: { ack: false, self: false }, presence: { key: '' }, postgres_changes: [], private: false } });
+    setTimeout(() => { if (c.joinCb) { c.joinCb = null; rej(new Error('The game server did not answer.')); } }, 8000);
+  });
+}
+function rtSend(name, event, payload) { const c = RT.chans['realtime:' + name]; if (!c || !c.joined) return false; return rtRaw(c.topic, 'broadcast', { type: 'broadcast', event, payload }, c.joinRef); }
+function rtLeave(name) { const topic = 'realtime:' + name, c = RT.chans[topic]; if (!c) return; if (c.joined) rtRaw(topic, 'phx_leave', {}, c.joinRef); delete RT.chans[topic]; }
+function rtCloseAll() { for (const t of Object.keys(RT.chans)) rtLeave(t.replace(/^realtime:/, '')); }
+
+/* ---------- lobby ---------- */
+const ONL = { st: 'idle', id: null, code: null, seekT: 0, offer: null, hello: null, msg: '', err: '' };
+const LAND_MAPS = () => Object.entries(THEMES).filter(([k, t]) => !t.water);
+function onSettings() { const s = settings.on = Object.assign({ nat: 'smfa', map: 'city', msize: 'std', size: 'medium', mode: 'normal', time: 'noon', weather: 'clear' }, settings.on || {}); if (!NATIONS[s.nat]) s.nat = 'smfa'; if (!THEMES[s.map] || THEMES[s.map].water) s.map = 'city'; if (s.time === 'cycle') s.time = 'noon'; return s; }
+function onLook() { const P = PRES_LOOK; return { uni: P.uni, pants: P.pants, skin: P.skin, hat: P.hat, hatc: P.hatc, tie: P.tie }; }
+function onMe() { const s = onSettings(); return { id: ONL.id, name: accName(), nat: s.nat, ver: NET_VER, look: onLook() }; }
+function openOnline() { onSettings(); renderOnline(); show('#scr-online'); }
+function renderOnline() {
+  const s = onSettings(), el = $('#onBody'); if (!el) return;
+  let h = '';
+  if (!SB_ON()) h = `<p class="note">Online battles need the SMFA account server, which is not set up in this copy of the game.</p>`;
+  else if (!accOn()) h = `<div class="onNeed"><p>Log in to play online. Your username is what your opponent sees.</p><button class="btn primary" id="onLogin">Log in / Create account</button></div>`;
+  else if (ONL.st !== 'idle') h = onStatusHTML();
+  else {
+    h = `<div class="onWho"><span class="sw" style="background:${NATIONS[s.nat].css}"></span><b>${esc(accName())}</b><small>fights for ${esc(NATIONS[s.nat].name)}</small></div>
+      <h3>Your country</h3><div class="opts" id="on-nat"></div>
+      <div class="onActs"><button class="btn primary" id="onQuick">Quick match</button><button class="btn" id="onCreate">Create room</button><div class="onJoin"><input id="onCode" maxlength="5" placeholder="CODE" autocomplete="off" spellcheck="false"><button class="btn" id="onJoinBtn">Join</button></div></div>
+      ${ONL.err ? `<p class="onErr">${esc(ONL.err)}</p>` : ''}
+      <details class="onRules"><summary>Match settings <small>(used when you host)</small></summary>
+      <h3>Battlefield</h3><div class="opts" id="on-map"></div>
+      <h3>Battlefield size</h3><div class="opts" id="on-msize"></div>
+      <h3>Army size</h3><div class="opts" id="on-size"></div>
+      <h3>Violence mode</h3><div class="opts" id="on-mode"></div>
+      <h3>Time of day</h3><div class="opts" id="on-time"></div>
+      <h3>Weather</h3><div class="opts" id="on-weather"></div></details>
+      <p class="note">One opponent, one battle, skirmish rules: capture flags, drain their reinforcements or destroy their HQ core. 20-minute limit. Leaving counts as a loss. Nukes are switched off online. Works best when both players have a steady connection.</p>`;
+  }
+  el.innerHTML = h;
+  const sv = k => v => { s[k] = v; saveSettings(); if (k === 'nat') renderOnline(); };
+  if ($('#on-nat')) {
+    optGroup('#on-nat', Object.entries(NATIONS).map(([k, n]) => ({ k, name: n.short, desc: n.name, sw: n.css })), s.nat, sv('nat'));
+    optGroup('#on-map', LAND_MAPS().map(([k, t]) => ({ k, name: t.name, desc: t.desc, sw: hex(t.ground) })), s.map, sv('map'));
+    optGroup('#on-msize', Object.entries(MAPSIZES).filter(([k]) => k !== 'huge').map(([k, m]) => ({ k, name: m.name, desc: m.desc })), s.msize, sv('msize'));
+    optGroup('#on-size', Object.entries(SIZES).filter(([k]) => k !== 'large').map(([k, z]) => ({ k, name: z.name, desc: z.desc })), s.size, sv('size'));
+    optGroup('#on-mode', modeItems(), s.mode, sv('mode'), k => 'm-' + k);
+    optGroup('#on-time', Object.entries(TIMES).filter(([k]) => k !== 'cycle').map(([k, z]) => ({ k, name: z.name })), s.time, sv('time'));
+    optGroup('#on-weather', Object.entries(WEATHERS).map(([k, z]) => ({ k, name: z.name })), s.weather, sv('weather'));
+    $('#onQuick').onclick = () => onQuick(); $('#onCreate').onclick = () => onCreate();
+    const ci = $('#onCode'); ci.oninput = () => { ci.value = ci.value.toUpperCase().replace(/[^A-Z]/g, ''); }; ci.onkeydown = e => { if (e.key === 'Enter') onJoin(ci.value); };
+    $('#onJoinBtn').onclick = () => onJoin(ci.value);
+  }
+  if ($('#onLogin')) $('#onLogin').onclick = () => openLogin('#scr-online');
+  if ($('#onCancel')) $('#onCancel').onclick = () => onCancel();
+}
+function onStatusHTML() {
+  const s = ONL.st, o = ONL.oppInfo;
+  let main = '';
+  if (s === 'connecting') main = `<div class="onSpin"></div><b>Connecting to the game server…</b>`;
+  else if (s === 'seeking') main = `<div class="onSpin"></div><b>Looking for an opponent…</b><small>${Math.floor((Date.now() - ONL.seekT) / 1000)} s · anyone who presses Quick match now gets paired with you</small>`;
+  else if (s === 'hosting') main = `<small>Room code</small><div class="onCodeBig">${esc(ONL.code)}</div><b>Waiting for your opponent to join…</b><small>They choose Online battle → type the code → Join</small>`;
+  else if (s === 'joining') main = `<div class="onSpin"></div><b>Joining room ${esc(ONL.code)}…</b>`;
+  else if (s === 'matched' || s === 'countdown') main = `<div class="onVs"><div><span class="sw" style="background:${NATIONS[onSettings().nat].css}"></span><b>${esc(accName())}</b><small>${esc(NATIONS[ONL.myNat || onSettings().nat].short)}</small></div><i>VS</i><div><span class="sw" style="background:${o ? NATIONS[o.nat].css : '#555'}"></span><b>${esc(o ? o.name : '?')}</b><small>${o ? esc(NATIONS[o.nat].short) : ''}</small></div></div><b>${s === 'countdown' ? `Battle starts in ${ONL.cd}…` : 'Opponent found. Setting up the battlefield…'}</b>${ONL.note ? `<small class="onNote">${esc(ONL.note)}</small>` : ''}`;
+  return `<div class="onBox">${main}</div>${ONL.err ? `<p class="onErr">${esc(ONL.err)}</p>` : ''}<div class="row" style="justify-content:center"><button class="btn small" id="onCancel">Cancel</button></div>`;
+}
+function onSet(st, extra) { Object.assign(ONL, { st }, extra || {}); if (!$('#scr-online').hidden) renderOnline(); }
+function onCancel() { if (ONL.code && (ONL.st === 'matched' || ONL.st === 'countdown')) rtSend('smfa-room-' + ONL.code, 'bye', { f: ONL.id }); onStop(); ONL.err = ''; onSet('idle'); }
+function onStop() { clearInterval(ONL.tm); ONL.tm = 0; clearTimeout(ONL.to); if (ONL.code) rtLeave('smfa-room-' + ONL.code); rtLeave('smfa-lobby'); Object.assign(ONL, { st: 'idle', code: null, offer: null, oppInfo: null, note: '', engaged: false }); }
+const onCodeGen = () => Array.from({ length: 5 }, () => 'ABCDEFGHJKLMNPQRSTUVWXYZ'[(Math.random() * 24) | 0]).join('');
+const onFail = e => { onStop(); ONL.err = (e && e.message) || 'Something went wrong.'; onSet('idle'); };
+async function onCreate(code) {
+  ONL.err = ''; ONL.id = ONL.id || Math.random().toString(36).slice(2, 10); ONL.code = code || onCodeGen(); ONL.role = 'host';
+  onSet('connecting');
+  try { await onJoinRoom(); onSet('hosting'); } catch (e) { onFail(e); }
+}
+async function onJoin(code) {
+  code = (code || '').toUpperCase(); if (!/^[A-Z]{5}$/.test(code)) { ONL.err = 'Room codes are 5 letters.'; renderOnline(); return; }
+  ONL.err = ''; ONL.id = ONL.id || Math.random().toString(36).slice(2, 10); ONL.code = code; ONL.role = 'guest';
+  onSet('joining');
+  try { await onJoinRoom(); } catch (e) { onFail(e); return; }
+  let n = 0; const hi = () => { if (ONL.st !== 'joining') return; rtSend('smfa-room-' + ONL.code, 'hello', onMe()); if (++n > 8) { onFail(new Error(`No room called ${ONL.code} is open right now. Check the code with your friend.`)); } };
+  hi(); ONL.tm = setInterval(hi, 1200);
+}
+function onJoinRoom() {
+  const room = 'smfa-room-' + ONL.code;
+  return rtJoin(room, {
+    hello: p => onGotHello(p), welcome: p => onGotWelcome(p), go: p => onGotGo(p), s: p => netRx(p), bye: p => { if (NETON()) netBye(); else if ((ONL.st === 'matched' || ONL.st === 'countdown') && p && ONL.oppInfo && p.f === ONL.oppInfo.id) onFail(new Error('Your opponent left before the battle started.')); }, full: p => { if (p.to === ONL.id && ONL.role === 'guest') onFail(new Error('That room already has two players.')); }
+  }, () => { if (NETON() && !G.over) netLost(); });
+}
+function onGotHello(p) {
+  if (ONL.role !== 'host' || !p || p.id === ONL.id) return;
+  if (ONL.oppInfo && ONL.oppInfo.id !== p.id) { rtSend('smfa-room-' + ONL.code, 'full', { to: p.id }); return; }
+  if (ONL.oppInfo && ONL.cfgOut) { rtSend('smfa-room-' + ONL.code, 'welcome', ONL.cfgOut); return; } // a repeated hello: same match, same map
+  if (p.ver !== NET_VER) { rtSend('smfa-room-' + ONL.code, 'welcome', { to: p.id, err: 'Your game version does not match the host\'s. Both players need the latest version.' }); return; }
+  const s = onSettings(); let gnat = NATIONS[p.nat] ? p.nat : 'french', note = '';
+  if (gnat === s.nat) { gnat = Object.keys(NATIONS).find(k => k !== s.nat); note = `You both picked ${NATIONS[s.nat].short}. Your opponent fights as ${NATIONS[gnat].short}.`; }
+  ONL.oppInfo = { id: p.id, name: String(p.name || 'Opponent').slice(0, 16), nat: gnat, look: p.look };
+  ONL.cfgOut = { to: p.id, seed: (Math.random() * 1e9) | 0, map: s.map, msize: s.msize, size: s.size, mode: s.mode, time: s.time, weather: s.weather, hostNat: s.nat, guestNat: gnat, host: onMe(), note: note ? `You both picked ${NATIONS[s.nat].short}, so you fight as ${NATIONS[gnat].short}.` : '' };
+  ONL.myNat = s.nat; ONL.note = note;
+  rtSend('smfa-room-' + ONL.code, 'welcome', ONL.cfgOut);
+  onSet('matched');
+  // start once the guest confirms (the guest repeats its hello until it hears the welcome)
+  clearTimeout(ONL.to); ONL.to = setTimeout(() => onStartCountdown(), 1200);
+}
+function onGotWelcome(p) {
+  if (ONL.role !== 'guest' || !p || p.to !== ONL.id || ONL.st === 'matched' || ONL.st === 'countdown') return;
+  clearInterval(ONL.tm);
+  if (p.err) { onFail(new Error(p.err)); return; }
+  ONL.cfgIn = p; ONL.myNat = p.guestNat; ONL.note = p.note;
+  ONL.oppInfo = { id: p.host.id, name: String(p.host.name || 'Host').slice(0, 16), nat: p.hostNat, look: p.host.look };
+  onSet('matched');
+}
+function onStartCountdown() {
+  if (ONL.role !== 'host' || ONL.st !== 'matched') return;
+  rtSend('smfa-room-' + ONL.code, 'go', { to: ONL.oppInfo.id, in: 3 }); rtSend('smfa-room-' + ONL.code, 'welcome', ONL.cfgOut);
+  onGotGo({ in: 3, self: true });
+}
+function onGotGo(p) {
+  if (!p.self && (ONL.role !== 'guest' || p.to !== ONL.id || !ONL.cfgIn)) return;
+  if (ONL.st === 'countdown') return;
+  clearInterval(ONL.tm); ONL.cd = p.in || 3; onSet('countdown');
+  ONL.tm = setInterval(() => { ONL.cd--; if (ONL.cd <= 0) { clearInterval(ONL.tm); ONL.tm = 0; netStart(); } else renderOnline(); }, 1000);
+}
+// quick match: everyone searching sits in one lobby; the smaller id invites the larger one into a fresh room
+async function onQuick() {
+  ONL.err = ''; ONL.id = ONL.id || Math.random().toString(36).slice(2, 10); ONL.seekT = Date.now(); ONL.engaged = false;
+  onSet('connecting');
+  try {
+    await rtJoin('smfa-lobby', {
+      seek: p => { if (ONL.st !== 'seeking' || ONL.engaged || !p || p.id === ONL.id || p.ver !== NET_VER) return; if (ONL.id < p.id) { ONL.engaged = true; const code = onCodeGen(); rtSend('smfa-lobby', 'offer', { to: p.id, from: ONL.id, code }); onLobbyHost(code); } },
+      offer: p => { if (ONL.st !== 'seeking' || ONL.engaged || !p || p.to !== ONL.id) return; ONL.engaged = true; rtLeave('smfa-lobby'); clearInterval(ONL.tm); onJoin(p.code); }
+    });
+  } catch (e) { onFail(e); return; }
+  onSet('seeking');
+  const ping = () => { if (ONL.st !== 'seeking') return; if (!ONL.engaged) rtSend('smfa-lobby', 'seek', { id: ONL.id, ver: NET_VER }); renderOnline(); };
+  ping(); ONL.tm = setInterval(ping, 1500);
+}
+async function onLobbyHost(code) {
+  clearInterval(ONL.tm); ONL.code = code; ONL.role = 'host';
+  try { await onJoinRoom(); } catch (e) { onFail(e); return; }
+  ONL.st = 'hosting'; renderOnline();
+  // if the other player never arrives, go back to searching
+  clearTimeout(ONL.to); ONL.to = setTimeout(() => { if (ONL.st === 'hosting') { rtLeave('smfa-room-' + ONL.code); ONL.code = null; ONL.engaged = false; ONL.st = 'seeking'; ONL.tm = setInterval(() => { if (ONL.st !== 'seeking') return; if (!ONL.engaged) rtSend('smfa-lobby', 'seek', { id: ONL.id, ver: NET_VER }); renderOnline(); }, 1500); renderOnline(); } }, 7000);
+}
+
+/* ---------- starting the battle ---------- */
+function netStart() {
+  const host = ONL.role === 'host', C = host ? ONL.cfgOut : ONL.cfgIn, o = ONL.oppInfo;
+  rtLeave('smfa-lobby');
+  Object.assign(NET, { on: true, role: ONL.role, room: 'smfa-room-' + ONL.code, me: ONL.id, opp: o, ev: [], trc: 0, sendT: 0, seq: 0, rx: [], lastRx: performance.now() / 1000, pup: new Map(), pv: new Map(), vseq: 0, flags: null, ping: 0, pt: 0, pe: 0, lostWarn: false, over: false, lastPup: 0 });
+  ONL.st = 'playing';
+  startBattle({ online: { role: ONL.role, opp: o }, us: host ? C.hostNat : C.guestNat, enemy: host ? C.guestNat : C.hostNat, seed: C.seed, map: C.map, msize: C.msize, size: C.size, mode: C.mode, time: C.time, weather: C.weather, diff: 'normal', skipArmy: [false, true], noCommander: true, hardcore: false });
+  if (G) { banner(`${G.teams[0].nat.short} vs ${G.teams[1].nat.short}`, 2.5, G.teams[1].nat.css); setTimeout(() => G && G.cfg.online && hint(`Online match against ${o.name}. Their army is real: they command it from their own office.`, 4), 2700); netChip(); }
+}
+function netEnd() { NET.on = false; NET.pup.clear(); NET.pv.clear(); if (ONL.code) rtLeave('smfa-room-' + ONL.code); ONL.st = 'idle'; ONL.code = null; ONL.oppInfo = null; const c = $('#netChip'); if (c) c.hidden = true; const t = $('#netTag'); if (t) t.hidden = true; }
+
+/* ---------- the guest's map is the host's map turned 180 degrees ---------- */
+{
+  const _gw = genWorld; genWorld = function () {
+    const on = G.cfg && G.cfg.online; if (!on) return _gw.apply(this, arguments);
+    const qh = QUAL.high, rng = _RNG; QUAL.high = true; _RNG = mulberry32((G.seed ^ 0x5eed5) >>> 0);
+    const guest = on.role === 'guest';
+    if (guest) G.teams.reverse();
+    try { _gw.apply(this, arguments); } finally { QUAL.high = qh; _RNG = rng; if (guest) G.teams.reverse(); }
+    if (!guest) return;
+    for (let i = 0; i < B.n; i++) { B.x[i] = -B.x[i]; B.z[i] = -B.z[i]; if (B.team[i] === 0 || B.team[i] === 1) B.team[i] = 1 - B.team[i]; }
+    for (let i = 0; i < cells.length; i++) cells[i] = [];
+    for (let i = 0; i < B.n; i++) cellRange(i, c => cells[c].push(i));
+    occ.reverse();
+    for (const T of G.teams) for (const k of ['hq', 'spawn', 'clinic']) if (T[k]) { T[k] = { x: -T[k].x, z: -T[k].z }; }
+    for (const f of G.flags) { f.x = -f.x; f.z = -f.z; }
+    for (const t of G.trees) { t.x = -t.x; t.z = -t.z; }
+    if (G.roads) G.roads = G.roads.map(([a, k]) => [a, GN - 2 - k]);
+  };
+}
+
+/* ---------- authority rules ---------- */
+const netSrc = (attacker) => NET.src !== null ? NET.src : (attacker && attacker.team !== undefined ? attacker.team : null);
+function netEv(e) { if (NET.ev.length < 400) NET.ev.push(e); }
+function netMine(id) { for (const u of G.units) if (u.id === id && !u.remote) return u; return null; }
+function netMyVeh(nid) { for (const v of G.vehicles) if (v.nid === nid && !v.remote) return v; return null; }
+const netAttId = a => !a ? -1 : a.kind === 'veh' ? (a.remote ? -1 : 1e6 + (a.nid || 0)) : a.remote ? -(a.nid + 1) : (a.id === undefined ? -1 : a.id);
+// attacker reference in a message from the other side: their unit id (>=0), their vehicle (1e6+nid), or one of my things (negative)
+function netAtt(id) { if (id === undefined || id === -1 || id === null) return null; if (id >= 1e6) return NET.pv.get(id - 1e6) || null; if (id >= 0) return NET.pup.get(id) || null; return netMine(-id - 1); }
+{
+  const _hu = hurtUnit; hurtUnit = function (u, dmg, hx, hy, hz, dx, dy, dz, part, kind, attacker, ex) {
+    if (!NETON() || NET.applyHit) return _hu.apply(this, arguments);
+    if (NET.vis) return;
+    const src = netSrc(attacker);
+    if (u.remote) {
+      if (src === 1 || kind === 'burn' || kind === 'bleed' || !u.alive) return;
+      netEv(['h', u.nid, nr(dmg), part || 'torso', kind || 'bullet', nr(dx), nr(dy), nr(dz), netAttId(attacker), ex ? [nr(ex.ex), nr(ex.ey), nr(ex.ez), nr(ex.r), nr(ex.d)] : 0]);
+      // show the hit right away; only an obvious overkill is shown as a death before the owner confirms it
+      if (dmg >= u.hp * 1.35 + 10) {
+        const k0 = G.teams[0].kills, pk = G.stats.presKills;
+        NET.applyHit = true; try { _hu.apply(this, arguments); } finally { NET.applyHit = false; }
+        if (!u.alive) { u.predT = G.t; u.predK = [G.teams[0].kills - k0, G.stats.presKills - pk]; }
+      } else {
+        if (kind !== 'explosion' && kind !== 'fire') { if (G.mode.blood > 0) bloodBurst(hx, hy, hz, dx, dy * 0.5 + 0.2, dz, 4 + dmg * 0.22, 2.5); else hitPuff(hx, hy, hz, 1, 0.95, 0.75, 4); }
+        if (attacker && attacker.isPlayer) showHitmark(false);
+      }
+      return;
+    }
+    if (src === 1) return; // the other player's weapons: their hits arrive over the network
+    return _hu.apply(this, arguments);
+  };
+  const _ku = killUnit; killUnit = function (u, part, kind, dir, attacker, ex, dmg) {
+    if (NETON() && !u.remote && !NET.vis && u.id !== undefined && !u.netNoSend) netEv(['k', u.id, part || 'torso', kind || 'bullet', nr(dir[0]), nr(dir[1]), nr(dir[2]), netAttId(attacker), ex ? [nr(ex.ex), nr(ex.ey), nr(ex.ez), nr(ex.r), nr(ex.d)] : 0, nr(dmg || 50)]);
+    return _ku.apply(this, arguments);
+  };
+  const _dv = damageVehicle; damageVehicle = function (v, d, attacker) {
+    if (!NETON() || NET.applyHit) return _dv.apply(this, arguments);
+    if (NET.vis) return;
+    const src = netSrc(attacker);
+    if (v.remote) { if (src === 1 || !v.alive) return; netEv(['vh', v.rnid, nr(d), netAttId(attacker)]); return; }
+    if (src === 1) return;
+    return _dv.apply(this, arguments);
+  };
+  const _dsv = destroyVehicle; destroyVehicle = function (v, attacker) {
+    if (NETON() && !v.remote && !NET.vis) netEv(['vd', v.nid, netAttId(attacker)]);
+    return _dsv.apply(this, arguments);
+  };
+  const _cd = coreDamage; coreDamage = function (team, d) {
+    if (!NETON() || NET.applyHit) return _cd.apply(this, arguments);
+    if (NET.vis || NET.src === 1) return;
+    if (team === 1) { netEv(['c', nr(d)]); G.teams[1].coreHitT = G.t; return; }
+    return _cd.apply(this, arguments);
+  };
+  const _ex = explode; explode = function (x, y, z, r, dmg, team, blockDmg, owner) {
+    if (!NETON()) return _ex.apply(this, arguments);
+    const prev = NET.src; NET.src = team === undefined ? null : team; try { return _ex.apply(this, arguments); } finally { NET.src = prev; }
+  };
+  const _db = destroyBlock; destroyBlock = function (i) { if (NETON() && B.alive[i] && !NET.applyB) netEv(['b', i]); return _db.apply(this, arguments); };
+  const _fp = fireProjectile; fireProjectile = function (type, x, y, z, vx, vy, vz, team, owner) {
+    if (NETON() && team === 0 && !NET.vis) netEv(['p', type, nr(x), nr(y), nr(z), nr(vx), nr(vy), nr(vz)]);
+    return _fp.apply(this, arguments);
+  };
+  const _c4 = detonateC4; detonateC4 = function (owner) { const r = _c4.apply(this, arguments); if (NETON() && r && !NET.vis) netEv(['c4']); return r; };
+  const _at = addTracer; addTracer = function (ax, ay, az, bx, by, bz, r, g, b, full) {
+    if (NETON() && !NET.vis && NET.trc < 36) { NET.trc++; netEv(['t', nr(ax), nr(ay), nr(az), nr(bx), nr(by), nr(bz), NET.shotT === G.t ? NET.shot : '', full ? 1 : 0]); }
+    return _at.apply(this, arguments);
+  };
+  const _sh = SFX.shot.bind(SFX); SFX.shot = function (d, kind) { if (NETON() && !NET.vis) { NET.shot = kind || 'rifle'; NET.shotT = G.t; } return _sh(d, kind); };
+  const _fb = flameBurst; flameBurst = function (mx, my, mz, dx, dy, dz, team, owner, tick, dmgM) {
+    if (NETON() && team === 0 && !NET.vis && G.t - NET.flT > 0.09) { NET.flT = G.t; netEv(['fl', nr(mx), nr(my), nr(mz), nr(dx), nr(dy), nr(dz)]); }
+    return _fb.apply(this, arguments);
+  };
+  const _sp = spawnPlane; spawnPlane = function (team, x, z, dx, dz) { if (NETON() && team === 0 && !NET.vis) netEv(['ap', nr(x), nr(z), nr(dx), nr(dz)]); return _sp.apply(this, arguments); };
+  const _fm = fireMissile; fireMissile = function (v, target, att) {
+    const ok = _fm.apply(this, arguments);
+    if (ok && NETON() && v.team === 0 && !NET.vis && v.nid) netEv(['ms', v.nid, target ? (target.remote ? (target.kind === 'veh' ? 'v' : 'u') : 'x') : 'x', target ? (target.rnid !== undefined ? target.rnid : target.nid !== undefined ? target.nid : -1) : -1]);
+    return ok;
+  };
+  const _df = dropFlares; dropFlares = function (v) { const ok = _df.apply(this, arguments); if (ok && NETON() && v.team === 0 && !NET.vis && v.nid) netEv(['df', v.nid]); return ok; };
+  const _up = usePower; usePower = function (team, id, x, z) {
+    if (NETON() && team === 1 && !NET.vis) return false;
+    const ok = _up.apply(this, arguments);
+    if (ok && NETON() && team === 0 && !NET.vis) netEv(['pw', id, nr(x || 0), nr(z || 0)]);
+    return ok;
+  };
+  const _mv = makeVehicle; makeVehicle = function () { const v = _mv.apply(this, arguments); if (NETON() && !NET.vis && !NET.mkPup) v.nid = ++NET.vseq; return v; };
+  const _ua = updateUnitAI; updateUnitAI = function (u) { if (u.remote) return; return _ua.apply(this, arguments); };
+  const _sep = separation; separation = function (dt) { _sep.apply(this, arguments); if (NETON()) netPuppets(dt); };
+  const _ct = commanderTick; commanderTick = function (team) { if (NETON() && team === 1) return; return _ct.apply(this, arguments); };
+  const _es = enemySpend; enemySpend = function () { if (NETON()) return; return _es.apply(this, arguments); };
+  const _uf = updateFlags; updateFlags = function (dt) { if (NETON() && NET.role === 'guest') return netGuestFlags(dt); return _uf.apply(this, arguments); };
+  const _cw = checkWin; checkWin = function () {
+    if (!NETON()) return _cw.apply(this, arguments);
+    if (G.over) return; const T = G.teams[0];
+    if (T.tickets <= 0 && !G.units.some(u => u.alive && u.team === 0 && !u.remote && !(u.isPres && G.view === 'office')) && !G.vehicles.some(v => v.alive && v.team === 0 && !v.remote)) endBattle('lose', 'Your army ran out of soldiers and reinforcements.');
+  };
+  const _eb = endBattle; endBattle = function (result, why) {
+    if (NETON() && G && !G.over && !NET.overRx) { netEv(['over', result === 'win' ? 'lose' : 'win', netWhyFor(result, why)]); netFlush(true); }
+    if (NETON() && G && !G.over && G.t < 120) { G.noReward = true; why += ' Matches shorter than 2 minutes do not earn EXP, SD or medals.'; }
+    const r = _eb.apply(this, arguments);
+    if (G && G.cfg.online) { NET.over = true; setTimeout(() => { if (!G || G.over) { rtLeave(NET.room); } }, 4000); }
+    return r;
+  };
+  const _lb = leaveBattle; leaveBattle = function () {
+    const wasOn = G && G.cfg && G.cfg.online;
+    if (wasOn && NET.on && G && !G.over) { netEv(['bye']); netFlush(true); }
+    const r = _lb.apply(this, arguments);
+    if (wasOn) netEnd();
+    return r;
+  };
+  const _br = battleRewards; battleRewards = function () { if (G && G.noReward) return grantRewards(0, 0); return _br.apply(this, arguments); };
+  const _mg = medalGive; medalGive = function () { if (G && G.noReward) return; return _mg.apply(this, arguments); };
+  const _mc = medalCount; medalCount = function () { if (G && G.noReward) return; return _mc.apply(this, arguments); };
+  const _ns = nukeState; nukeState = function () { if (NETON()) return { show: false }; return _ns.apply(this, arguments); };
+  const _sb = saveBattle; saveBattle = function () { if (NETON()) return false; return _sb.apply(this, arguments); };
+  const _tp = togglePause; togglePause = function () {
+    if (!NETON()) return _tp.apply(this, arguments);
+    if (!G || G.over) return;
+    G.netMenu = !G.netMenu; G.paused = false;
+    if (G.netMenu) { if (document.pointerLockElement) document.exitPointerLock(); keys.clear(); mouseDown = false; touchFire = false; quitConfirm(false); $('#saveBtn').hidden = true; $('#saveMsg').textContent = 'Online match: the battle keeps going while this menu is open.'; show('#scr-pause'); }
+    else hideScreens();
+  };
+  const _qc = quitConfirm; quitConfirm = function (on) { _qc.apply(this, arguments); if (NETON()) { const c = $('#quitWrap .confirm'); if (c && c.firstChild) c.firstChild.textContent = 'Leave this online match? You forfeit and your opponent wins.'; const b = $('#quitBtn'); if (b) b.textContent = 'Forfeit and leave'; } };
+  const _uv = updateVipTags; updateVipTags = function () { _uv.apply(this, arguments); netTag(); };
+}
+function netWhyFor(result, why) {
+  // the reason as the other player should read it
+  if (/HQ command core was destroyed/.test(why)) return result === 'lose' ? `The ${G.teams[0].nat.name} HQ command core was destroyed.` : 'Your HQ command core was destroyed.';
+  if (/ran out of soldiers/.test(why)) return result === 'lose' ? `${G.teams[0].nat.name} ran out of soldiers and reinforcements.` : 'Your army ran out of soldiers and reinforcements.';
+  if (/President was killed/.test(why)) return result === 'lose' ? `${NET.opp ? '' : ''}The enemy President was killed.` : 'Your President was killed.';
+  return why;
+}
+
+/* ---------- sending ---------- */
+function netTick(dt) {
+  if (!NETON()) return;
+  const now = performance.now() / 1000;
+  // scheduled in real time, so a slow frame rate does not slow the connection down
+  const since = now - (NET.sentAt || 0);
+  const urgent = NET.ev.some(e => e[0] === 'h' || e[0] === 'k' || e[0] === 'vh' || e[0] === 'over' || e[0] === 'c');
+  if (since >= NET_RATE || (urgent && since >= NET_RATE * 0.45)) { NET.sentAt = now; netFlush(false); }
+  // connection health
+  const quiet = now - NET.lastRx;
+  if (!G.over && quiet > 5 && !NET.lostWarn) { NET.lostWarn = true; hint('Waiting for your opponent\'s connection…', 4); }
+  if (!G.over && quiet > NET_TIMEOUT) { NET.overRx = true; endBattle('win', `${NET.opp.name} lost connection. The match goes to you.`); NET.overRx = false; }
+  // the host keeps the clock
+  if (NET.role === 'host' && !G.over && G.t > NET_LIMIT) {
+    const f0 = G.flags.filter(f => f.owner === 0).length, f1 = G.flags.filter(f => f.owner === 1).length, T0 = G.teams[0], T1 = G.teams[1];
+    const s0 = f0 * 1000 + T0.tickets + T0.core / 100, s1 = f1 * 1000 + T1.tickets + T1.core / 100;
+    endBattle(s0 >= s1 ? 'win' : 'lose', `Time is up after 20 minutes. ${s0 >= s1 ? 'You' : NET.opp.name} held the stronger position.`);
+  }
+  netChipTick();
+}
+function netFlush(force) {
+  if (!NET.on || !NET.room) return;
+  const U = [], V = [], RL = Object.keys(WEAP), VT = VTYPES();
+  for (const u of G.units) {
+    if (!u.alive || u.remote || u.sarge || u.dummy || u.team !== 0) continue;
+    const fl = (u.isPres ? 1 : 0) | (u.aiming ? 2 : 0) | (u.crouch ? 4 : 0) | (u.inVeh ? 8 : 0) | (u.burnUntil > G.t ? 16 : 0) | (u.isPlayer ? 32 : 0) | (u.slashT > G.t ? 64 : 0);
+    U.push([u.id, Math.round(u.x * 100), Math.round(u.y * 100), Math.round(u.z * 100), Math.round(u.yaw * 100), Math.round((u.pitch || 0) * 100), fl, Math.max(0, RL.indexOf(u.role)), Math.round(Math.max(0, u.hp)), u.inVeh && u.inVeh.nid ? u.inVeh.nid : 0, Math.round(u.maxhp)]);
+  }
+  for (const v of G.vehicles) {
+    if (!v.alive || v.remote || v.team !== 0 || !v.nid) continue;
+    V.push([v.nid, VT.indexOf(v.type), Math.round(v.x * 100), Math.round(v.y * 100), Math.round(v.z * 100), Math.round(v.yaw * 100), Math.round((v.tyaw || 0) * 100), Math.round((v.pitchV || 0) * 100), Math.round((v.roll || 0) * 100), Math.round(clamp(v.hp / v.maxhp, 0, 1) * 100), v.driver === 'player' ? 1 : 0]);
+  }
+  const T = G.teams[0], now = performance.now();
+  if (now - NET.pt > 2500) NET.pt = now;
+  const msg = { f: NET.me, q: ++NET.seq, u: U, v: V, e: NET.ev, h: [T.tickets, Math.round(T.core), T.coreMax, T.losses, Math.round(NET.pt), NET.pe] };
+  if (NET.role === 'host') msg.fl = G.flags.map(f => [Math.round(f.prog * 100), f.owner]);
+  NET.ev = []; NET.trc = 0;
+  rtSend(NET.room, 's', msg);
+}
+
+/* ---------- receiving ---------- */
+const NX = x => -x / 100; // their frame to mine: turned 180 degrees
+function netRx(m) {
+  if (!NET.on || !G || !G.cfg.online || !m || m.f !== NET.opp.id) return;
+  if (m.q <= (NET.lastQ || 0)) return; NET.lastQ = m.q;
+  const now = performance.now() / 1000; NET.lastRx = now; if (NET.lostWarn) { NET.lostWarn = false; hint('Opponent reconnected', 1.5); }
+  const H = m.h || [];
+  const T1 = G.teams[1]; T1.tickets = H[0]; if (H[3] >= 0) { T1.losses = H[3]; G.teams[0].kills = H[3]; } if (H[1] < T1.core) T1.coreHitT = G.t; T1.core = H[1]; T1.coreMax = H[2] || T1.coreMax;
+  if (H[4] && H[4] !== NET.peSeen) { NET.peSeen = H[4]; NET.pe = H[4]; }
+  if (H[5] && H[5] === Math.round(NET.pt)) NET.ping = Math.max(1, performance.now() - NET.pt);
+  if (m.fl && NET.role === 'guest') NET.flags = m.fl;
+  NET.rx.push({ at: now, u: new Map(m.u.map(a => [a[0], a])), v: new Map(m.v.map(a => [a[0], a])) }); if (NET.rx.length > 10) NET.rx.shift();
+  for (const e of m.e || []) { try { netApply(e); } catch (err) { console.warn('net event', e[0], err); } }
+}
+function netExObj(a) { return a ? { ex: -a[0], ey: a[1], ez: -a[2], r: a[3], d: a[4] } : null; }
+function netApply(e) {
+  const k = e[0];
+  if (k === 'h') { const u = netMine(e[1]); if (!u || !u.alive) return; NET.applyHit = true; try { hurtUnit(u, e[2], u.x, u.y + 1.2, u.z, -e[5], e[6], -e[7], e[3], e[4], netAtt(e[8]), netExObj(e[9])); } finally { NET.applyHit = false; } }
+  else if (k === 'k') { const p = NET.pup.get(e[1]); if (!p) return; p.confirmed = true; if (!p.alive) return; NET.applyHit = true; NET.vis = false; try { killUnit(p, e[2], e[3], [-e[4], e[5], -e[6]], netAtt(e[7]), netExObj(e[8]), e[9]); } finally { NET.applyHit = false; } }
+  else if (k === 'vh') { const v = netMyVeh(e[1]); if (v && v.alive) { NET.applyHit = true; try { damageVehicle(v, e[2], netAtt(e[3])); } finally { NET.applyHit = false; } } }
+  else if (k === 'vd') { const v = NET.pv.get(e[1]); if (v && v.alive) { NET.vis = true; try { destroyVehicle(v, netAtt(e[2])); } finally { NET.vis = false; } } }
+  else if (k === 'c') { NET.applyHit = true; try { coreDamage(0, e[1]); } finally { NET.applyHit = false; } }
+  else if (k === 'b') { if (e[1] >= 0 && e[1] < B.n && B.alive[e[1]]) { NET.applyB = true; try { destroyBlock(e[1]); } finally { NET.applyB = false; } } }
+  else if (k === 'p') { NET.vis = true; try { fireProjectile(e[1], -e[2], e[3], -e[4], -e[5], e[6], -e[7], 1, null); } finally { NET.vis = false; } }
+  else if (k === 'c4') { for (const p of G.proj) if (p.type === 'c4' && p.team === 1) p.det = true; }
+  else if (k === 't') { NET.vis = true; try { const c = G.teams[1].nat.flag, col = new THREE.Color(0xffd27a); addTracer(-e[1], e[2], -e[3], -e[4], e[5], -e[6], col.r, col.g, col.b, e[8]); muzzleFlash(-e[1], e[2], -e[3]); if (e[7]) SFX.shot(camDist(-e[1], -e[3]), e[7]); } finally { NET.vis = false; } }
+  else if (k === 'fl') { NET.vis = true; try { flameBurst(-e[1], e[2], -e[3], -e[4], e[5], -e[6], 1, null, false, 0); SFX.flame && SFX.flame(camDist(-e[1], -e[3])); } finally { NET.vis = false; } }
+  else if (k === 'ap') { NET.vis = true; try { spawnPlane(1, -e[1], -e[2], -e[3], -e[4]); const pl = G.planes[G.planes.length - 1]; if (pl) for (let j = -3; j <= 3; j++) pl.dropped.add(j); } finally { NET.vis = false; } }
+  else if (k === 'ms') { const sv = NET.pv.get(e[1]); let tg = null; if (e[2] === 'v') tg = netMyVeh(e[3]); else if (e[2] === 'u') tg = netMine(e[3]); if (sv) { sv.msl = 9; NET.vis = true; try { fireMissile(sv, tg, sv); } finally { NET.vis = false; } } }
+  else if (k === 'df') { const sv = NET.pv.get(e[1]); if (sv) { sv.flares = 9; sv.flareCd = 0; NET.vis = true; try { dropFlares(sv); } finally { NET.vis = false; } } }
+  else if (k === 'pw') netPowerFx(e[1], -e[2], -e[3]);
+  else if (k === 'over') { if (G.over) return; NET.overRx = true; try { endBattle(e[1], e[2]); } finally { NET.overRx = false; } }
+  else if (k === 'bye') netBye();
+}
+function netBye() { if (!NETON() || G.over) return; NET.overRx = true; try { endBattle('win', `${NET.opp.name} left the match. The win is yours.`); } finally { NET.overRx = false; } }
+function netLost() { if (!NETON() || G.over) return; hint('Connection to the game server dropped. Trying again…', 3); setTimeout(async () => { if (!NETON() || G.over) return; try { await rtJoin(NET.room, RT_ROOM_HANDLERS()); } catch (e) { } }, 1500); }
+const RT_ROOM_HANDLERS = () => ({ s: p => netRx(p), bye: p => netBye(p) });
+function netPowerFx(id, x, z) {
+  const T = G.teams[1], who = `<span class="ken">${esc(T.nat.short)}</span>`;
+  if (id === 'arty') { showRing(x, z, 14, 0xef4b4f, 6); feed(`${who} called artillery`); }
+  else if (id === 'air') { showRing(x, z, 10, 0xef4b4f, 5); feed(`${who} called an airstrike`); }
+  else if (id === 'squad') feed(`${who} deployed a new squad`);
+  else if (id === 'tank' || id === 'heli') feed(`${who} ${id === 'tank' ? 'tank' : 'helicopter'} deployed`);
+  else if (id === 'jet') feed(`${who} fighter jet deployed`);
+  else if (id === 'medic') { showRing(x, z, 12, 0x5aa6ff, 2); for (let k = 0; k < 30; k++) PS.add.spawn(x + rr(-10, 10), rr(0.2, 2), z + rr(-10, 10), 0, rr(0.5, 2), 0, rr(0.6, 1.2), 0.4, 0.3, 1, 0.5, 1, 0, 0, 2); }
+  else if (id === 'smoke') { G.smokes.push({ x, y: 1.6, z, r: 7.5, until: G.t + 22 }); for (let k = 0; k < 40; k++) G.timers.push({ t: G.t + k * 0.5, fn: () => { for (let j = 0; j < 6; j++) PS.soft.spawn(x + rr(-6, 6), rr(0.3, 3), z + rr(-6, 6), rr(-0.4, 0.4), rr(0, 0.3), rr(-0.4, 0.4), rr(4, 6), rr(4, 7), 0.8, 0.8, 0.82, 0.7, 0, 0.6, 2); } }); }
+}
+function netGuestFlags(dt) {
+  const F = NET.flags;
+  G.flags.forEach((f, i) => {
+    if (F && F[i]) {
+      const prog = -F[i][0] / 100, own = F[i][1] === -1 ? -1 : 1 - F[i][1];
+      if (own !== f.owner) {
+        if (own === 0) { feed(`<span class="ksm">${G.teams[0].nat.short}</span> captured flag ${f.letter}`); SFX.cap(); flagVoice(f, 0); }
+        else if (own === 1) { feed(`<span class="ken">${G.teams[1].nat.short}</span> captured flag ${f.letter}`); flagVoice(f, 1); }
+        else if (f.owner !== -1) feed(`Flag ${f.letter} neutralized`);
+        f.owner = own;
+      }
+      f.prog = prog;
+    }
+    const c = f.prog >= 0 ? G.teams[0].nat.flag : G.teams[1].nat.flag;
+    _col.setHex(0xdddddd).lerp(new THREE.Color(c), Math.abs(f.prog));
+    f.cloth.material.color.copy(_col); f.ring.material.color.copy(_col);
+    f.cloth.position.y = 1.5 + 4.7 * Math.abs(f.prog) + (f.prog === 0 ? 4.7 : 0);
+    f.cloth.rotation.y = Math.sin(G.t * 2 + f.x) * 0.25;
+  });
+}
+
+/* ---------- puppets: the other army, drawn from snapshots ---------- */
+function netPuppets(dt) {
+  const RX = NET.rx; if (!RX.length) return;
+  const rt = performance.now() / 1000 - NET_DELAY;
+  let a = RX[0], b = RX[RX.length - 1];
+  for (let i = 0; i < RX.length - 1; i++) if (RX[i].at <= rt && RX[i + 1].at >= rt) { a = RX[i]; b = RX[i + 1]; break; }
+  if (rt > b.at) a = b;
+  const k = a === b ? 1 : clamp((rt - a.at) / Math.max(0.001, b.at - a.at), 0, 1);
+  const RL = Object.keys(WEAP), VT = VTYPES(), latest = RX[RX.length - 1];
+  // vehicles first so riders can be hidden inside them
+  const seenV = new Set();
+  for (const [id, sb] of b.v) {
+    const sa = a.v.get(id) || sb; seenV.add(id);
+    let v = NET.pv.get(id);
+    if (!v) { const type = VT[sb[1]] || 'jeep'; NET.mkPup = true; try { v = makeVehicle(type, 1, NX(sb[2]), NX(sb[4]), sb[5] / 100 + PI); } finally { NET.mkPup = false; } v.remote = true; v.rnid = id; v.driver = 'net'; v.pitch = 0; if (type === 'plane') { v.msl = 0; v.flares = 0; } NET.pv.set(id, v); }
+    if (!v.alive) continue;
+    const L = (i) => lerp(sa[i], sb[i], k) / 100;
+    v.x = -L(2); v.y = L(3); v.z = -L(4); v.yaw = lerpAng(sa[5] / 100, sb[5] / 100, k) + PI; v.tyaw = lerpAng(sa[6] / 100, sb[6] / 100, k) + PI; v.pitchV = L(7); v.roll = L(8);
+    v.hp = sb[9] / 100 * v.maxhp; v.netSeen = latest.v.has(id) ? G.t : v.netSeen || G.t; v.speed = 0;
+  }
+  for (const [id, v] of NET.pv) if (v.alive && !latest.v.has(id) && G.t - (v.netSeen || 0) > 1.6) { v.alive = false; scene.remove(v.g); G.vehicles = G.vehicles.filter(o => o !== v); NET.pv.delete(id); }
+  for (const [id, sb] of b.u) {
+    const sa = a.u.get(id) || sb;
+    let u = NET.pup.get(id);
+    if (u && !u.alive && u.predT && !u.confirmed && G.t - u.predT > 1.5 && latest.u.has(id)) { NET.pup.delete(id); G.teams[1].losses--; if (u.predK) { G.teams[0].kills -= u.predK[0]; G.stats.presKills -= u.predK[1]; } u = null; } // the owner says it survived
+    if (!u) { if (u === null && NET.pup.has(id)) continue; u = netMakePup(id, sb, RL); }
+    if (!u.alive) continue;
+    const ox = u.x, oz = u.z;
+    u.x = -lerp(sa[1], sb[1], k) / 100; u.y = lerp(sa[2], sb[2], k) / 100; u.z = -lerp(sa[3], sb[3], k) / 100;
+    u.yaw = lerpAng(sa[4] / 100, sb[4] / 100, k) + PI; u.pitch = lerp(sa[5], sb[5], k) / 100;
+    const fl = sb[6]; u.aiming = !!(fl & 2); u.crouch = !!(fl & 4); if (fl & 16) u.burnUntil = G.t + 0.3; if (fl & 64) u.slashT = G.t + 0.1;
+    u.inVeh = (fl & 8) ? (NET.pv.get(sb[9]) || { netDummy: true }) : null;
+    const sp = Math.hypot(u.x - ox, u.z - oz) / Math.max(dt, 1e-3); u.speed = lerp(u.speed || 0, Math.min(sp, 9), 0.35); u.phase += dt * u.speed * 2.3;
+    u.hp = Math.max(1, sb[8]); if (sb[10]) u.maxhp = sb[10]; u.netSeen = latest.u.has(id) ? G.t : (u.netSeen || G.t);
+    u.vx = 0; u.vz = 0;
+  }
+  for (const [id, u] of NET.pup) {
+    if (u.alive && !latest.u.has(id) && G.t - (u.netSeen || 0) > 1.6) { u.alive = false; u.netGone = true; }
+    if (!u.alive && G.t - (u.netSeen || 0) > 8) NET.pup.delete(id);
+  }
+}
+const lerpAng = (a, b, k) => a + angDiff(a, b) * k;
+function netMakePup(id, s, RL) {
+  const role = RL[s[7]] || 'rifle', pres = !!(s[6] & 1);
+  const u = makeUnit(1, role, null, -s[1] / 100, -s[3] / 100, pres);
+  u.remote = true; u.nid = id; u.netSeen = G.t; u.y = s[2] / 100; u.yaw = s[4] / 100 + PI;
+  if (pres && NET.opp && NET.opp.look) { const L = NET.opp.look, c = h => new THREE.Color(h); const uni = c(L.uni), pants = c(L.pants), skin = c(L.skin || 0xe0b089), hatc = c(L.hatc || 0x050505); u.look = { uni, pants, sleeve: uni.clone().multiplyScalar(0.88), skin, hatc, hat: L.hat || 'shades', cols: [uni, pants, uni.clone().multiplyScalar(0.88), skin] }; u.netPres = true; }
+  u.maxhp = s[10] || 100; u.hp = Math.max(1, s[8]);
+  NET.pup.set(id, u); return u;
+}
+
+/* ---------- HUD bits ---------- */
+function netChip() { let c = $('#netChip'); if (!c) { c = document.createElement('div'); c.id = 'netChip'; $('#hud').appendChild(c); } c.hidden = false; netChipTick(true); }
+function netChipTick(force) {
+  if (!force && (NET.chipT = (NET.chipT || 0) + 1) % 20) return;
+  const c = $('#netChip'); if (!c || !G) return;
+  const q = performance.now() / 1000 - NET.lastRx, left = Math.max(0, NET_LIMIT - G.t);
+  const ping = NET.ping ? Math.round(NET.ping) + ' ms' : '…';
+  c.innerHTML = `<span class="dot ${q > 3 ? 'bad' : NET.ping > 260 ? 'mid' : 'ok'}"></span><b>ONLINE</b> vs ${esc(NET.opp ? NET.opp.name : '?')} · ${q > 3 ? 'reconnecting…' : ping} · ${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`;
+}
+function netTag() {
+  if (!NETON()) return; let t = $('#netTag'); const p = [...NET.pup.values()].find(u => u.alive && u.netPres && !u.inVeh);
+  if (!p || !renderer) { if (t) t.hidden = true; return; }
+  if (!t) { t = document.createElement('div'); t.id = 'netTag'; t.className = 'vipTag leader'; $('#vipTags').appendChild(t); }
+  _v3.set(p.x, p.y + 2.5, p.z); const d = _v3.distanceTo(camera.position); _v3.project(camera);
+  if (_v3.z > 1 || Math.abs(_v3.x) > 1.05 || Math.abs(_v3.y) > 1.05 || (G.view === 'field' && d > 80)) { t.hidden = true; return; }
+  const r = renderer.domElement.getBoundingClientRect(); t.hidden = false; t.textContent = '♛ ' + NET.opp.name;
+  t.style.left = (r.left + (_v3.x + 1) / 2 * r.width) + 'px'; t.style.top = (r.top + (1 - _v3.y) / 2 * r.height) + 'px';
+}
+
+/* ---------- hooks ---------- */
+{
+  const _upd = update; update = function (dt) { _upd.apply(this, arguments); if (NETON()) netTick(dt); };
+  const _nk = typeof nukeOwned === 'function' ? nukeOwned : null; if (_nk) nukeOwned = function () { if (NETON()) return false; return _nk.apply(this, arguments); };
+  if (typeof buyNuke === 'function') { const _bn = buyNuke; buyNuke = function () { if (NETON()) { hint('Nukes are switched off in online matches.', 2); return; } return _bn.apply(this, arguments); }; }
+  const _sh = show; show = function (sel) { _sh.apply(this, arguments); if (sel === '#scr-online') renderOnline(); };
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && NET.on) NET.lastRx = Math.max(NET.lastRx, performance.now() / 1000 - 4); });
+}
+$('#goOnline').addEventListener('click', () => { SFX.init(); openOnline(); });
+$('#onBack').addEventListener('click', () => { if (ONL.st !== 'idle' && ONL.st !== 'playing') onCancel(); show('#scr-title'); });
 </script>
