@@ -721,6 +721,17 @@ body.freeroam.frciv #weap,body.freeroam.frciv #cross,body.freeroam.frciv #scope{
  #rcMech{top:calc(6px + var(--st));right:auto;left:calc(184px + var(--sl));max-height:calc(100% - 110px);overflow:auto;width:min(330px,calc(100% - 270px));padding:6px 8px;gap:5px}
  #rcPitMenu{bottom:calc(120px + var(--sb))}#rcLights{top:18%}#rcLights i{width:24px;height:24px}#rcMsgs{top:26%}#rcMsgs div{font-size:12.5px;padding:4px 10px}
  .rcPBox{padding:10px 12px}.rcPBox h4{margin:8px 0 4px}}
+
+/* online free roam */
+#frNetBtn{position:absolute;top:calc(40px + var(--st));left:calc(10px + var(--sl));display:flex;align-items:center;gap:7px;padding:6px 11px;background:rgba(13,13,13,.86);border:1px solid #2c4a37;border-radius:7px;color:#cfd6cf;font:800 11.5px var(--ui);letter-spacing:.08em;cursor:pointer}
+#frNetBtn i{width:8px;height:8px;border-radius:50%;background:#6b756e}
+#frNetBtn.on{border-color:#00ff88;color:#e8f5ec}#frNetBtn.on i{background:#00ff88;box-shadow:0 0 8px #00ff88}
+#frNetBtn:hover{border-color:#00ff88}
+#hud.racing #frNetBtn{display:none}
+.vipTag.frnTag{background:rgba(13,13,13,.8);color:#00ff88;border:1px solid rgba(0,255,136,.45);font-weight:800}
+.frnCode{font:900 15px ui-monospace,monospace;letter-spacing:.12em;color:#00ff88;background:#0d150e;border:1px solid #2c4a37;border-radius:4px;padding:1px 6px}
+#rcPanel .onSpin{margin:14px auto}
+@media (max-width:600px){#frNetBtn{top:calc(96px + var(--st))}}
 </style>
 
 <div id="stage"></div>
@@ -12031,7 +12042,7 @@ function frStairs(x, z, dir, steps, w, col) { // dir: 'n' rises toward -z, 'e' t
 function frSign(text, x, y, z, ry, w, bg, fg) {
   const c = document.createElement('canvas'); c.width = 512; c.height = 128; const g = c.getContext('2d');
   g.fillStyle = bg || '#0d0d0d'; g.fillRect(0, 0, 512, 128); g.fillStyle = '#00ff88'; g.fillRect(0, 118, 512, 10);
-  g.fillStyle = fg || '#e8f5ec'; g.font = '800 60px system-ui, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, 256, 60);
+  g.fillStyle = fg || '#e8f5ec'; let fs = 60; g.font = `800 ${fs}px system-ui, sans-serif`; while (fs > 20 && g.measureText(text).width > 480) { fs -= 2; g.font = `800 ${fs}px system-ui, sans-serif`; } g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, 256, 60);
   // two single-sided faces so the text reads correctly from the back too (one plane with DoubleSide shows it mirrored)
   const geo = new THREE.PlaneGeometry(w || 6, (w || 6) / 4), mat = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c) });
   const m = new THREE.Mesh(geo, mat), back = new THREE.Mesh(geo, mat); back.rotation.y = PI; back.position.z = -0.01; m.add(back);
@@ -12691,6 +12702,8 @@ function frGenTown() {
   for (let k = 0; k < 24; k++) frBox(139.6, 0.6, -118 + k * 4, 0.6, 1.2, 4, 0x3a3a38, 1e9);
   // keep trees off the roads
   for (const [a, k] of G.roads) for (let i = 0; i < GN; i++) for (let w = 0; w < 2; w++) { const idx = a === 'x' ? (k + w) * GN + i : i * GN + (k + w); if (idx < GN * GN) occ[idx] = Math.max(occ[idx], 1); }
+  // keep the view of the race-track gate clear
+  for (let x = 108; x <= 148; x += 2) for (let z = -14; z <= 16; z += 2) { const c = frCell(x), r = frCell(z); if (c >= 0 && r >= 0 && c < GN && r < GN) occ[r * GN + c] = Math.max(occ[r * GN + c], 1); }
   // the road east to the Sorrel Ring circuit
   frBox(128, 2.5, -12, 0.4, 5, 0.4, 0x6a6c66);
   // trees and benches
@@ -12780,10 +12793,21 @@ function frHqExtras() { if (!frOn() || frRegion() !== 'hq') return; document.bod
 
 /* ---------- Port Sorrel ---------- */
 const TOWN = { airport: { x: -104, z: 99, yaw: PI }, aptIn: { x: 24, z: -32, yaw: 0 }, lobby: { x: 18, z: -24, yaw: PI }, carport: { x: 45, z: -32, yaw: PI }, toRing: 143 };
+// the east gate: the race track is its own area, reached by going through this gate
+function frRingGate() {
+  const gx = 140, M = c => new THREE.MeshLambertMaterial({ color: c });
+  for (const z of [-8, 9.5]) { const m = new THREE.Mesh(new THREE.BoxGeometry(1.2, 7.4, 1.2), M(0x1a1d1b)); m.position.set(gx, 3.7, z); scene.add(m); const s = new THREE.Mesh(new THREE.BoxGeometry(1.25, 0.5, 1.25), M(0xc0262c)); s.position.set(gx, 1.2, z); scene.add(s); }
+  const beam = new THREE.Mesh(new THREE.BoxGeometry(1, 1.1, 18.7), M(0x1a1d1b)); beam.position.set(gx, 7.0, 0.75); scene.add(beam);
+  frSign('SORREL RING  ·  RACE TRACK', gx - 0.7, 6.9, 0.75, -PI / 2, 16);
+}
+function frGoRing() {
+  if (FRX.leaving || frRegion() !== 'town') return;
+  FRX.leaving = true; frSave(); frFade(() => { frLeave(); frEnterRegion('circuit', 'town'); FRX.leaving = false; });
+}
 function frTownSetup(S, at) {
   // signs
   frSign('PORT SORREL AIRPORT', -104, 5.4, 102.2, 0, 9); frSign('HARBOR VIEW APARTMENTS', 24, 8.9, -23.7, 0, 11); frSign('SORREL MOTORS', -32, 5.4, -27.7, 0, 7, '#e8e8f0', '#2a6ab8');
-  frSign('SORREL POST', -33, 5.3, 26.2, 0, 6, '#2a2a10', '#ffe35a'); frSign('CAFE', 21, 3.2, 24.2, 0, 3.2); frSign('SORREL RING  >', 128, 5.6, -12, -PI / 2, 7); frSign('PARKING', 45, 3.9, -25.3, 0, 4);
+  frSign('SORREL POST', -33, 5.3, 26.2, 0, 6, '#2a2a10', '#ffe35a'); frSign('CAFE', 21, 3.2, 24.2, 0, 3.2); frSign('SORREL RING  >', 128, 5.6, -12, -PI / 2, 7); frRingGate(); frSign('PARKING', 45, 3.9, -25.3, 0, 4);
   { const w = new THREE.Mesh(new THREE.PlaneGeometry(22, 110), makeMat(0x1f5f86, { transparent: true, opacity: 0.92 })); w.rotation.x = -PI / 2; w.position.set(151, 0.04, -72); scene.add(w); }
   { const l = new THREE.PointLight(0xffe8c0, 0.55, 14); l.position.set(25, 7.2, -32); scene.add(l); }
   // apartment: door, furniture
@@ -12839,7 +12863,7 @@ function frBookFlight(from) {
   const to = from === 'hq' ? 'town' : 'hq', toName = FR_REGIONS[to].name, P = prof();
   frDialog(from === 'hq' ? 'SMFA Airfield · Departures' : 'Port Sorrel Airport · Departures', `Flight SM-201 to ${toName}. Ticket ${FR_PRICE.flight} SD (you have ${P.coins.toLocaleString()} SD). Board the plane for a short flight of about 2 minutes, or travel quickly and skip the journey. Flying with friends comes with online play.`, [
     [`Board the flight · ${FR_PRICE.flight} SD`, () => frPayFlight(() => { frSave(); frLeave(); const S = frData(); S.region = 'cabin'; frPut(S); frEnterRegion('cabin', null, { from, to }); })],
-    [`Quick travel · ${FR_PRICE.flight} SD`, () => frPayFlight(() => { frSave(); frLeave(); frFade(() => {}); if (to === 'hq') startFreeRoam('airport', 'hq'); else frEnterRegion('town', 'airport'); })],
+    [`Quick travel · ${FR_PRICE.flight} SD`, () => frPayFlight(() => { frSave(); frLeave(); frFade(() => {}); if (to === 'hq') startFreeRoam('airport', 'hq'); else { frEnterRegion('town', 'airport'); setTimeout(() => frToast('Welcome to Port Sorrel', 'The Sorrel Ring race track is through the gate at the east end of the main road.'), 900); } })],
     ['Not now', null]
   ]);
 }
@@ -12896,7 +12920,7 @@ function frFlightTick(dt) {
 }
 function frArrive() {
   const F = FRX.flight; FRX.flight = null; G.fp = false;
-  frFade(() => { frLeave(); if (F.to === 'hq') startFreeRoam('airport', 'hq'); else frEnterRegion('town', 'airport'); setTimeout(() => frToast('Welcome to ' + FR_REGIONS[F.to].name, 'Thank you for flying SM-201.'), 900); });
+  frFade(() => { frLeave(); if (F.to === 'hq') startFreeRoam('airport', 'hq'); else frEnterRegion('town', 'airport'); setTimeout(() => frToast('Welcome to ' + FR_REGIONS[F.to].name, F.to === 'town' ? 'Thank you for flying SM-201. The Sorrel Ring race track is through the gate at the east end of the main road.' : 'Thank you for flying SM-201.'), 900); });
 }
 
 /* ---------- apartment ---------- */
@@ -13014,6 +13038,7 @@ function frRegionPoints(region) {
       { id: 'carport', x: 54.5, z: -36.6, r: 2.4, label: 'Carport: store or take out your car', act: frCarport },
       { id: 'dealer', x: -30, z: -36.6, r: 2.6, label: 'Sorrel Motors: buy a car', act: frDealer },
       { id: 'post', x: -34, z: 21.5, r: 2.6, label: 'Sorrel Post: delivery jobs', act: frPost },
+      { id: 'ring', x: 136, z: 0.75, r: 5, label: 'Go through the gate to the Sorrel Ring race track', act: frGoRing },
       { id: 'cafe', x: 20, z: 20.4, r: 2.4, label: `Cafe: coffee and a sandwich · ${FR_PRICE.coffee} SD`, act: () => { const P = prof(); if (P.coins < FR_PRICE.coffee) { frToast('Not enough SD', 'Coffee is 5 SD.'); return; } P.coins -= FR_PRICE.coffee; profSave(P); updateProfileCard(); G.player.hp = G.player.maxhp; frToast('Lovely', 'Health restored.'); } }
     ];
     // apartment points (only useful once you own it, and only reachable then)
@@ -13066,7 +13091,7 @@ function frRegionPoints(region) {
     const r = frRegion(), p = G.player; if (!r || r === 'hq') return;
     if (r === 'town') {
       frJobTick(); frEditTick(); frCivTick(dt);
-      if (p && !p.knock) { const x = p.inVeh ? p.inVeh.x : p.x; if (x > TOWN.toRing && Math.abs((p.inVeh ? p.inVeh.z : p.z) - 1) < 14 && !FRX.leaving) { FRX.leaving = true; frSave(); frFade(() => { frLeave(); frEnterRegion('circuit', 'town'); FRX.leaving = false; }); } }
+      if (p && !p.knock) { const x = p.inVeh ? p.inVeh.x : p.x; if (x > TOWN.toRing && Math.abs((p.inVeh ? p.inVeh.z : p.z) - 1) < 14 && !FRX.leaving) frGoRing(); }
       let loc = 'Port Sorrel'; if (p) { if (p.y > 3 && p.x > 13 && p.x < 35 && p.z > -40 && p.z < -24) loc = 'Your apartment'; else if (p.x < -86 && p.z > 80) loc = 'Port Sorrel Airport'; else if (p.x > 128) loc = 'Harbor quay'; }
       $('#frLoc').textContent = loc;
     } else if (r === 'cabin') { frFlightTick(dt); $('#frLoc').textContent = 'Flight SM-201'; }
@@ -13394,7 +13419,7 @@ function rcLimits(c, dt) {
 function rcCollide(dt) {
   const C = RC.cars;
   for (let a = 0; a < C.length; a++) for (let b = a + 1; b < C.length; b++) {
-    const A = C[a], Bc = C[b]; if (A.pit || Bc.pit || A.dnf && Bc.dnf) continue;
+    const A = C[a], Bc = C[b]; if (A.pit || Bc.pit || A.dnf && Bc.dnf || (A.net && Bc.net)) continue;
     const dx = Bc.x - A.x, dz = Bc.z - A.z, d2 = dx * dx + dz * dz; if (d2 > 9 || d2 < 1e-6) continue;
     // treat each car as two circles (front and back) would be better; one 1.5 m circle is enough here
     const d = Math.sqrt(d2), nx = dx / d, nz = dz / d, pen = 3 - d;
@@ -13404,7 +13429,7 @@ function rcCollide(dt) {
       if (-rv > 9) { rcDamage(A, -rv); rcDamage(Bc, -rv);
         // the car behind that drove into the other one is to blame
         const hitter = (A.vx * nx + A.vz * nz) > (Bc.vx * -nx + Bc.vz * -nz) ? A : Bc;
-        if (RC.race && RC.phaseGreen && !hitter.collT) { hitter.collT = 1; hitter.pen += 5; rcMsg(`${hitter.name}: 5 s penalty for causing a collision`, 'red'); setTimeout(() => { hitter.collT = 0; }, 4000); } }
+        if (RC.race && RC.phaseGreen && !hitter.collT && !hitter.net) { hitter.collT = 1; hitter.pen += 5; rcMsg(`${hitter.name}: 5 s penalty for causing a collision`, 'red'); setTimeout(() => { hitter.collT = 0; }, 4000); } }
       if (A === rcMe() || Bc === rcMe()) G.shake = Math.max(G.shake, 0.5); }
   }
 }
@@ -13464,7 +13489,7 @@ function rcStep(dt) {
   const me = rcMe();
   // lights
   if (RC.race && RC.phase === 'grid') {
-    RC.lightsT += dt; RC.lights = Math.min(5, Math.floor(RC.lightsT));
+    RC.lightsT += dt; if (RC.online && typeof rcnLights === 'function') rcnLights(); RC.lights = Math.min(5, Math.floor(RC.lightsT));
     if (RC.lightsT >= RC.outAt) { RC.phase = 'green'; RC.phaseGreen = true; RC.lights = 0; rcMsg('Lights out and away we go!', 'green'); RC.cars.forEach(c => { c.lapT0 = null; c.sectT0 = RC.t; }); RC.betsLocked = true; RC.raceT0 = RC.t; }
     for (const c of RC.cars) { if (c === me) { rcInput(c, dt); if (!c.jump && Math.hypot(c.x - c.gridX, c.z - c.gridZ) > 0.8) { c.jump = true; c.pen += 5; rcMsg('Jump start! 5 second penalty', 'red'); } if (!c.jump) { c.vx *= 0.9; c.vz *= 0.9; } rcPhys(c, dt); const gd = Math.hypot(c.x - c.gridX, c.z - c.gridZ); if (gd > 1.2) { c.x = c.gridX + (c.x - c.gridX) * 1.2 / gd; c.z = c.gridZ + (c.z - c.gridZ) * 1.2 / gd; c.vx = c.vz = 0; c.u = 0; } } else { c.vx = c.vz = 0; } rcRender(c, dt); }
     return;
@@ -13472,6 +13497,7 @@ function rcStep(dt) {
   // sessions with a clock
   if (!RC.race) { RC.sessT -= dt; if (RC.sessT <= 0 && !RC.sessDone) { RC.sessDone = true; rcMsg('Chequered flag: finish your lap', 'green'); } }
   for (const c of RC.cars) {
+    if (c.net) { rcNetCar(c, dt); rcRender(c, dt); continue; } // another player's car (or the race host's AI car), drawn from network updates
     if (c.dnf) { c.vx *= 0.95; c.vz *= 0.95; c.x += c.vx * dt; c.z += c.vz * dt; rcRender(c, dt); continue; }
     if (c.waiting) { c.release -= dt; if (c.release <= 0) { c.waiting = false; c.pit = { path: [[PIT.x1, PIT.z + 2], [PIT.exitX, 199]], k: 0, comp: c.comp, crew: 'ai' }; } rcRender(c, dt); continue; }
     if (c.finished && RC.race) { c.throttle = 0.2; c.brake = c.spd > 25 ? 0.3 : 0; if (c.ai || RC.cam !== 'chase') rcAI(c, dt); c.throttle = Math.min(c.throttle, 0.25); rcPhys(c, dt); rcRender(c, dt); continue; }
@@ -13928,5 +13954,433 @@ function rcTick(dt) {
   }, true);
   addEventListener('keyup', e => RC.keys.delete(e.code), true);
   addEventListener('blur', () => RC.keys.clear());
+}
+/* ================= ROOM SERVER CLIENT (Cloudflare "smfa-rooms") ================= */
+// Every online feature (battles, shared free roam, flights with friends, online racing) goes through
+// one small room server. A room is a group of up to 8 players (2 for a battle) who pass messages to each other.
+// The server says who the host is and what time it is, so everyone's clocks line up.
+let ROOMS_URL = 'wss://smfa-rooms.yoyoyoyomikha.workers.dev';
+const ROOMS_ON = () => !!ROOMS_URL && typeof WebSocket !== 'undefined';
+const ROOM_VER = 'smfa3d-rooms-1';
+
+class Room {
+  constructor(name, opt) {
+    this.name = name; this.opt = opt || {}; this.on = Object.assign({}, this.opt.on || {});
+    this.players = new Map(); this.me = null; this.host = null; this.open = false; this.closed = false;
+    this.off = 0; this.rtt = 0; this.bestRtt = 1e9; this.lastRx = performance.now();
+  }
+  get isHost() { return !!this.me && this.host === this.me; }
+  now() { return Date.now() + this.off; }               // server clock (ms)
+  connect() {
+    return new Promise((res, rej) => {
+      const q = `?name=${encodeURIComponent((this.opt.player || 'Player').slice(0, 20))}&max=${this.opt.max || 8}`;
+      let ws; try { ws = new WebSocket(`${ROOMS_URL}/room/${encodeURIComponent(this.name)}${q}`); } catch (e) { rej(new Error('Could not reach the game server.')); return; }
+      this.ws = ws; let done = false;
+      const fail = msg => { if (done) return; done = true; clearTimeout(to); try { ws.close(); } catch (e) { } rej(new Error(msg)); };
+      const to = setTimeout(() => fail('The game server did not answer. Check your connection and try again.'), 10000);
+      ws.onmessage = ev => {
+        let m; try { m = JSON.parse(ev.data); } catch (e) { return; }
+        this.lastRx = performance.now();
+        if (m.t === 'welcome') {
+          this.me = m.id; this.host = m.host; this.off = m.now - Date.now(); this.open = true;
+          for (const p of m.players || []) this.players.set(p.id, p);
+          if (!done) { done = true; clearTimeout(to); res(this); }
+          this.hb = setInterval(() => this.raw('{"t":"hb"}'), 20000);
+          this.pingN = 0; this.pingT = setInterval(() => { this.ping(); if (++this.pingN > 3) { clearInterval(this.pingT); this.pingT = setInterval(() => this.ping(), 10000); } }, 700);
+          return;
+        }
+        if (m.t === 'pong') { const rtt = Date.now() - m.c; this.rtt = rtt; if (rtt <= this.bestRtt) { this.bestRtt = rtt; this.off = m.now + rtt / 2 - Date.now(); } return; }
+        if (m.t === 'hb') return;
+        if (m.t === 'join') { this.players.set(m.id, { id: m.id, name: m.name, j: m.j }); this.host = m.host; this.opt.onJoin && this.opt.onJoin(m); return; }
+        if (m.t === 'leave') { this.players.delete(m.id); const was = this.host; this.host = m.host; this.opt.onLeave && this.opt.onLeave(m.id, was !== m.host); return; }
+        if (m.t === 'msg' && m.d && m.d.e) { const h = this.on[m.d.e]; if (h) { try { h(m.d.p, m.from, m.now); } catch (e) { console.warn('room msg', m.d.e, e); } } }
+      };
+      ws.onerror = () => { };
+      ws.onclose = () => {
+        clearInterval(this.hb); clearInterval(this.pingT);
+        const wasOpen = this.open; this.open = false;
+        if (!done) fail(this.opt.fullMsg || 'That room is full, or the game server could not be reached.');
+        else if (wasOpen && !this.closed) this.opt.onClose && this.opt.onClose();
+      };
+    });
+  }
+  raw(s) { if (!this.ws || this.ws.readyState !== 1) return false; try { this.ws.send(s); return true; } catch (e) { return false; } }
+  ping() { this.raw(JSON.stringify({ t: 'ping', c: Date.now() })); }
+  send(e, p, to) { if (!this.open) return false; return this.raw(JSON.stringify(to ? { t: 'msg', d: { e, p }, to } : { t: 'msg', d: { e, p } })); }
+  close() { this.closed = true; this.open = false; clearInterval(this.hb); clearInterval(this.pingT); try { this.ws && this.ws.close(1000, 'bye'); } catch (e) { } }
+}
+async function roomOpen(name, opt) { const r = new Room(name, opt); await r.connect(); return r; }
+const roomCode = (n = 5) => Array.from({ length: n }, () => 'ABCDEFGHJKLMNPQRSTUVWXYZ'[(Math.random() * 24) | 0]).join('');
+function netName() { try { if (typeof accOn === 'function' && accOn()) return accName(); } catch (e) { } return settings.netName || 'Player'; }
+
+/* ---------- the online battles now use the room server (same messages as before) ---------- */
+// rtJoin / rtSend / rtLeave keep their old names so the battle code did not have to change.
+const RTR = {};
+rtConnect = function () { return ROOMS_ON() ? Promise.resolve() : Promise.reject(new Error('Online play is not available in this copy of the game.')); };
+rtJoin = async function (name, on, onClose) {
+  if (RTR[name]) { RTR[name].close(); delete RTR[name]; }
+  const r = await roomOpen(name, { player: netName(), max: name === 'smfa-lobby' ? 32 : 2, on, onClose, fullMsg: name === 'smfa-lobby' ? 'Could not reach the game server.' : 'That room already has two players, or the game server could not be reached.' });
+  RTR[name] = r; return r;
+};
+rtSend = function (name, event, payload) { const r = RTR[name]; return !!(r && r.open && r.send(event, payload)); };
+rtLeave = function (name) { const r = RTR[name]; if (r) { r.close(); delete RTR[name]; } };
+rtCloseAll = function () { for (const k of Object.keys(RTR)) rtLeave(k); };
+/* ================= ONLINE FREE ROAM: see your friends, drive around together, fly together ================= */
+// Up to 8 players share a room. Each player's game sends where they are about 6 times a second;
+// the other players are drawn as "puppets" that follow those updates. Everyone keeps their own
+// save, money and progress: the room only shares positions, cars and flights.
+const FRN = { room: null, name: null, label: '', peers: new Map(), sendT: 0, g: null, busy: false, err: '', rejoin: 0, tags: [] };
+const FRN_RATE = 1 / 6, FRN_DELAY = 0.25, FRN_PUBLIC = 5;
+const FRN_H = {}; // extra message handlers (online racing adds its own)
+const frnOn = () => !!(FRN.room && FRN.room.open);
+const frnPeer = id => { let p = FRN.peers.get(id); if (!p) { const info = FRN.room && FRN.room.players.get(id); p = { id, name: info ? info.name : 'Player', look: null, snaps: [], pup: null, veh: null, vtype: null }; FRN.peers.set(id, p); } return p; };
+
+/* ---------- joining and leaving ---------- */
+async function frnJoin(roomName, label) {
+  if (FRN.busy) return; FRN.busy = true; FRN.err = '';
+  frnLeave(true);
+  try {
+    const on = Object.assign({
+      hi: (p, from) => { const P = frnPeer(from); P.name = String((p && p.n) || P.name).slice(0, 20); P.look = p && p.look; },
+      st: (p, from) => { const P = frnPeer(from); P.snaps.push({ at: performance.now() / 1000, s: p }); if (P.snaps.length > 8) P.snaps.shift(); },
+      fl: (p, from) => frnFlightInvite(p, from)
+    }, FRN_H);
+    FRN.room = await roomOpen(roomName, {
+      player: netName(), max: 8, on,
+      fullMsg: 'That room is full (8 players) or the game server could not be reached.',
+      onJoin: m => { frnPeer(m.id).name = m.name; frnHi(m.id); frToast('Online', `${m.name} joined`); frnStatus(); },
+      onLeave: (id, hostChanged) => { const P = FRN.peers.get(id); if (P) { frToast('Online', `${P.name} left`); frnDropPeer(P); FRN.peers.delete(id); } frnStatus(); FRN_H._leave && FRN_H._leave(id, hostChanged); },
+      onClose: () => { const name = FRN.name, label = FRN.label; frnLeave(true); frToast('Online', 'Connection lost. Trying to reconnect…'); if (FRN.rejoin++ < 3) setTimeout(() => frnJoin(name, label), 2500); }
+    });
+    FRN.name = roomName; FRN.label = label; FRN.rejoin = 0;
+    frnHi(); frnStatus();
+    frToast('Online', `You joined ${label}. ${FRN.room.players.size > 1 ? `${FRN.room.players.size - 1} other player${FRN.room.players.size > 2 ? 's' : ''} here.` : 'Nobody else is here yet.'}`);
+  } catch (e) { FRN.room = null; FRN.err = e.message || 'Could not join.'; }
+  FRN.busy = false;
+  return frnOn();
+}
+async function frnJoinPublic() {
+  for (let n = 1; n <= FRN_PUBLIC; n++) { if (await frnJoin('SMFA-WORLD-' + n, 'the public world ' + n)) return true; if (!/full/i.test(FRN.err)) return false; }
+  return false;
+}
+function frnLeave(quiet) {
+  if (FRN.room) { FRN.room.close(); FRN.room = null; }
+  for (const P of FRN.peers.values()) frnDropPeer(P);
+  FRN.peers.clear(); for (const t of FRN.tags) t.hidden = true;
+  if (!quiet) { FRN.name = null; FRN.label = ''; frToast('Online', 'You are playing offline now.'); }
+  frnStatus();
+}
+function frnHi(to) { if (frnOn()) FRN.room.send('hi', { n: netName(), look: onLook(), v: ROOM_VER }, to); }
+function frnStatus() {
+  const el = $('#frNet'); if (el) el.textContent = frnOn() ? `Online · ${FRN.label} · ${FRN.room.players.size} player${FRN.room.players.size > 1 ? 's' : ''}` : 'Free roam · offline · single player · saved on this device';
+  const b = $('#frNetBtn'); if (b) { b.classList.toggle('on', frnOn()); b.innerHTML = frnOn() ? `<i></i>ONLINE · ${FRN.room.players.size}` : '<i></i>PLAY ONLINE'; }
+}
+
+/* ---------- the online menu ---------- */
+function frnMenu() {
+  if (!ROOMS_ON()) { frToast('Online', 'Online play is not available in this copy of the game.'); return; }
+  const on = frnOn(), list = on ? [...FRN.room.players.values()].sort((a, b) => a.j - b.j) : [];
+  const code = on && FRN.name.startsWith('SMFA-W-') ? FRN.name.slice(7) : '';
+  const html = on
+    ? `<p>You are in <b>${esc(FRN.label)}</b>${code ? ` · room code <b class="frnCode">${esc(code)}</b>` : ''}.</p>
+       <h4>Players here (${list.length}/8)</h4>${list.map(p => `<p class="hr">${esc(p.name)}${p.id === FRN.room.me ? ' (you)' : ''}<b>${p.id === FRN.room.host ? 'host' : ''}</b></p>`).join('')}
+       <p class="note">Everyone keeps their own save and SD. You see each other in the same area (HQ, Port Sorrel, the Sorrel Ring, or the same flight). Book a flight while others are in the same area and they are invited to fly with you. At the Sorrel Ring, Race Control can start an online race.</p>`
+    : `${typeof accOn === 'function' && accOn() ? `<p>You play as <b>${esc(accName())}</b>.</p>` : `<h4>Your name</h4><div class="rcStake"><input id="frnName" maxlength="16" value="${esc(settings.netName || '')}" placeholder="Name others see"></div>`}
+       <h4>Public world</h4><p class="note">Up to 8 players. If it is full you go to the next one.</p><div class="rcOpt"><button class="btn small primary" id="frnPub">Join the public world</button></div>
+       <h4>Private room with friends</h4><div class="rcOpt"><button class="btn small" id="frnNew">Create a room</button></div>
+       <div class="rcStake" style="margin-top:8px">Code <input id="frnCodeIn" maxlength="5" placeholder="ABCDE" autocomplete="off" spellcheck="false"><button class="btn small" id="frnJoinBtn">Join</button></div>
+       ${FRN.err ? `<p class="onErr">${esc(FRN.err)}</p>` : ''}
+       <p class="note">Online play needs an internet connection and uses the SMFA room server. It does not work inside the Claude preview page; use your own copy of the game (for example GitHub Pages).</p>`;
+  rcPanel('Play online', html, on ? [['Close', null], ['Leave online', () => frnLeave(false)]] : [['Close', null]]);
+  const nameOk = () => { const i = $('#frnName'); if (!i) return true; const v = i.value.trim().replace(/[<>&"']/g, '').slice(0, 16); if (!v) { FRN.err = 'Type a name first.'; frnMenu(); return false; } settings.netName = v; saveSettings(); return true; };
+  const go = async fn => { if (!nameOk()) return; const b = $('#rcPanel .rcPBox'); if (b) b.innerHTML = '<div class="onSpin"></div><p style="text-align:center">Connecting…</p>'; await fn(); frnMenu(); };
+  if ($('#frnPub')) $('#frnPub').onclick = () => go(frnJoinPublic);
+  if ($('#frnNew')) $('#frnNew').onclick = () => go(() => { const c = roomCode(); return frnJoin('SMFA-W-' + c, 'room ' + c); });
+  if ($('#frnJoinBtn')) {
+    const ci = $('#frnCodeIn'); ci.oninput = () => { ci.value = ci.value.toUpperCase().replace(/[^A-Z]/g, ''); };
+    const j = () => { const c = ci.value; if (!/^[A-Z]{5}$/.test(c)) { FRN.err = 'Room codes are 5 letters.'; frnMenu(); return; } go(() => frnJoin('SMFA-W-' + c, 'room ' + c)); };
+    $('#frnJoinBtn').onclick = j; ci.onkeydown = e => { if (e.key === 'Enter') j(); e.stopPropagation(); };
+  }
+  if ($('#frnName')) $('#frnName').onkeydown = e => e.stopPropagation();
+}
+
+/* ---------- sending my state ---------- */
+function frnSend() {
+  const p = G.player; if (!p) return;
+  const r = frRegion(), F = FRX.flight, v = p.inVeh && p.inVeh.alive && !p.inVeh.frPup ? p.inVeh : null;
+  const ra = typeof RC !== 'undefined' && RC.active ? 1 : 0;
+  FRN.room.send('st', {
+    r, f: r === 'cabin' && F ? (F.id || 0) : 0, rc: ra,
+    x: Math.round(p.x * 100), y: Math.round(p.y * 100), z: Math.round(p.z * 100), yw: Math.round((p.yaw || 0) * 100), c: p.crouch ? 1 : 0,
+    v: v ? [VTYPES().indexOf(v.type), Math.round(v.x * 100), Math.round(v.y * 100), Math.round(v.z * 100), Math.round(v.yaw * 100), v.carColor || 0] : 0
+  });
+}
+
+/* ---------- drawing the other players ---------- */
+function frnDropPeer(P) {
+  if (P.pup) { P.pup.alive = false; if (G) G.units = G.units.filter(u => u !== P.pup); P.pup = null; }
+  if (P.veh) { if (G) { scene.remove(P.veh.g); G.vehicles = G.vehicles.filter(v => v !== P.veh); } P.veh = null; P.vtype = null; }
+}
+function frnLook(L) {
+  if (!L) return null; const c = h => new THREE.Color(h);
+  const uni = c(L.uni), pants = c(L.pants), skin = c(L.skin || 0xe0b089), hatc = c(L.hatc || 0x050505);
+  return { uni, pants, sleeve: uni.clone().multiplyScalar(0.88), skin, hatc, hat: L.hat || 'none', cols: [uni, pants, uni.clone().multiplyScalar(0.88), skin] };
+}
+function frnPuppets(dt) {
+  if (FRN.g !== G) { FRN.g = G; for (const P of FRN.peers.values()) { P.pup = null; P.veh = null; P.vtype = null; } } // a new area was loaded: the old puppets are gone with it
+  const myR = frRegion(), myF = myR === 'cabin' && FRX.flight ? (FRX.flight.id || 0) : 0, now = performance.now() / 1000, rt = now - FRN_DELAY;
+  let tag = 0;
+  for (const P of FRN.peers.values()) {
+    const S = P.snaps; if (!S.length) continue;
+    const last = S[S.length - 1].s;
+    const here = last.r === myR && (myR !== 'cabin' || (last.f && last.f === myF)) && !last.rc && now - S[S.length - 1].at < 6;
+    if (!here) { frnDropPeer(P); continue; }
+    let a = S[0], b = S[S.length - 1];
+    for (let i = 0; i < S.length - 1; i++) if (S[i].at <= rt && S[i + 1].at >= rt) { a = S[i]; b = S[i + 1]; break; }
+    if (rt > b.at) a = b;
+    const k = a === b ? 1 : clamp((rt - a.at) / Math.max(1e-3, b.at - a.at), 0, 1), sa = a.s, sb = b.s;
+    // the car or jeep they are driving
+    const vt = sb.v ? (VTYPES()[sb.v[0]] || 'jeep') : null;
+    if (P.veh && P.vtype !== vt) { scene.remove(P.veh.g); G.vehicles = G.vehicles.filter(v => v !== P.veh); P.veh = null; P.vtype = null; }
+    if (vt && !P.veh) { P.veh = makeVehicle(vt, 0, sb.v[1] / 100, sb.v[3] / 100, sb.v[4] / 100); P.veh.driver = 'net'; P.veh.frPup = true; P.vtype = vt; if (vt === 'car' && sb.v[5]) frPaintCar(P.veh, sb.v[5]); }
+    if (P.veh) { const va = sa.v && sa.v[0] === sb.v[0] ? sa.v : sb.v, L = i => lerp(va[i], sb.v[i], k) / 100; P.veh.x = L(1); P.veh.y = L(2); P.veh.z = L(3); P.veh.yaw = lerpAng(va[4] / 100, sb.v[4] / 100, k); P.veh.speed = 0; }
+    // their body
+    if (!P.pup) {
+      const u = makeUnit(0, 'knife', null, sb.x / 100, sb.z / 100); u.remote = true; u.frPup = true; u.civ = true; u.dummy = 'net'; u.y = sb.y / 100; u.yaw = sb.yw / 100;
+      const lk = frnLook(P.look); if (lk) u.look = lk; P.pup = u;
+    }
+    const u = P.pup, ox = u.x, oz = u.z;
+    u.x = lerp(sa.x, sb.x, k) / 100; u.y = lerp(sa.y, sb.y, k) / 100; u.z = lerp(sa.z, sb.z, k) / 100; u.yaw = lerpAng(sa.yw / 100, sb.yw / 100, k);
+    u.crouch = !!sb.c; u.inVeh = P.veh || null; u.hp = u.maxhp; u.vx = u.vz = 0;
+    const sp = Math.hypot(u.x - ox, u.z - oz) / Math.max(dt, 1e-3); u.speed = lerp(u.speed || 0, Math.min(sp, 9), 0.35); u.phase += dt * u.speed * 2.3;
+    // name tag
+    const tx = P.veh ? P.veh.x : u.x, ty = (P.veh ? P.veh.y + 2.6 : u.y + 2.3), tz = P.veh ? P.veh.z : u.z;
+    if (renderer && G.view === 'field') {
+      _v3.set(tx, ty, tz); const d = _v3.distanceTo(camera.position); _v3.project(camera);
+      if (_v3.z < 1 && Math.abs(_v3.x) < 1.05 && Math.abs(_v3.y) < 1.05 && d < 90) {
+        let el = FRN.tags[tag]; if (!el) { el = document.createElement('div'); el.className = 'vipTag frnTag'; $('#vipTags').appendChild(el); FRN.tags.push(el); }
+        const r = renderer.domElement.getBoundingClientRect();
+        el.textContent = P.name; el.hidden = false; el.style.left = (r.left + (_v3.x + 1) / 2 * r.width) + 'px'; el.style.top = (r.top + (1 - _v3.y) / 2 * r.height) + 'px'; tag++;
+      }
+    }
+  }
+  for (let i = tag; i < FRN.tags.length; i++) FRN.tags[i].hidden = true;
+}
+
+/* ---------- flights with friends ---------- */
+// The person who books announces the flight; everyone in the same area gets an invitation.
+// Online flights board for 30 seconds so friends have time to get on. The flight follows the server clock,
+// so everyone on board takes off, cruises and lands at the same moment.
+const FRN_BOARD = 30;
+function frnFlightInvite(p, from) {
+  if (!p || !G || !frOn()) return;
+  const P = frnPeer(from), age = (FRN.room.now() - p.t0) / 1000;
+  if (frRegion() !== p.from || age > FRN_BOARD - 3 || (typeof RC !== 'undefined' && RC.active) || G.player.inVeh) { frToast('Online', `${P.name} is flying to ${FR_REGIONS[p.to].name}.`); return; }
+  if (G.frDlg) { frToast('Online', `${P.name} is flying to ${FR_REGIONS[p.to].name}. Close this window to be invited.`); return; }
+  frDialog('Flight with friends', `${P.name} boarded flight SM-201 to ${FR_REGIONS[p.to].name}. Join them? Ticket ${FR_PRICE.flight} SD. The plane leaves in about ${Math.max(3, Math.round(FRN_BOARD - age))} seconds.`, [
+    [`Join the flight · ${FR_PRICE.flight} SD`, () => { if ((FRN.room.now() - p.t0) / 1000 > FRN_BOARD + 60) { frToast('Too late', 'That flight has already left.'); return; } frPayFlight(() => { frSave(); frLeave(); const S = frData(); S.region = 'cabin'; frPut(S); frEnterRegion('cabin', null, { from: p.from, to: p.to, id: p.id, t0: p.t0 }); }); }],
+    ['No thanks', null]
+  ]);
+}
+{
+  // booking a flight while online makes it a shared flight
+  const _cs = frCabinSetup; frCabinSetup = function (opt) {
+    _cs.apply(this, arguments);
+    const F = FRX.flight; if (!F) return;
+    if (opt && opt.id && frnOn()) { F.id = opt.id; F.t0 = opt.t0; }
+    else if (frnOn() && [...FRN.peers.values()].some(P => P.snaps.length && P.snaps[P.snaps.length - 1].s.r === F.from)) {
+      F.id = roomCode(6); F.t0 = FRN.room.now(); FRN.room.send('fl', { id: F.id, from: F.from, to: F.to, t0: F.t0 });
+      frToast('Flight with friends', 'Players in the same area have been invited. Boarding takes 30 seconds.');
+    }
+    if (F.t0) { F.online = true; FL_T.boarding = FRN_BOARD; } else FL_T.boarding = 14;
+  };
+  const _ft = frFlightTick; frFlightTick = function (dt) {
+    const F = FRX.flight;
+    if (F && F.online && frnOn() && !F.skipped) { const want = (FRN.room.now() - F.t0) / 1000; F.t = Math.max(0, want - dt); }
+    const r = _ft.apply(this, arguments);
+    const q = $('#frObjQ'); if (FRX.flight && FRX.flight.online && q && !q.dataset.frn) { q.dataset.frn = 1; const old = q.onclick; q.onclick = () => { if (FRX.flight) FRX.flight.skipped = true; old && old(); }; }
+    return r;
+  };
+}
+
+/* ---------- hooks ---------- */
+{
+  const _ft = frTick; frTick = function (dt) {
+    const r = _ft.apply(this, arguments);
+    if (frnOn() && G && frOn()) {
+      const now = performance.now() / 1000;
+      if (now - FRN.sendT >= FRN_RATE) { FRN.sendT = now; frnSend(); }
+      frnPuppets(dt);
+      if ((FRN.stT = (FRN.stT || 0) + dt) > 2) { FRN.stT = 0; frnStatus(); }
+    }
+    return r;
+  };
+  // other players cannot be hurt, knocked over or driven away by you
+  const _hu = hurtUnit; hurtUnit = function (u) { if (u && u.frPup) return; return _hu.apply(this, arguments); };
+  const _nv = nearVehicle; nearVehicle = function (p) { const v = _nv.apply(this, arguments); if (v && v.frPup) { let best = null, bd = 1e9; for (const o of G.vehicles) { if (!o.alive || o.team !== 0 || o.driver === 'player' || o.frPup) continue; if (isAir(o) && o.y > 3) continue; const d = Math.hypot(o.x - p.x, o.z - p.z); if (d < o.rad + 2.5 && d < bd) { bd = d; best = o; } } return best; } return v; };
+  // the online button on the free-roam screen
+  const _hb = frHudBuild; frHudBuild = function () {
+    _hb.apply(this, arguments);
+    if (!$('#frNetBtn')) { const b = document.createElement('button'); b.id = 'frNetBtn'; b.className = 'pe'; b.onclick = () => frnMenu(); $('#frHud').appendChild(b); }
+    frnStatus();
+  };
+  // going back to the title screen or into a normal battle ends the online session
+  const _sb = startBattle; startBattle = function (cfg) { if (frnOn() && !(cfg && cfg.freeroam)) frnLeave(true); return _sb.apply(this, arguments); };
+  const _sh = show; show = function (sel) { if (sel === '#scr-title' && FRN.room) frnLeave(true); return _sh.apply(this, arguments); };
+}
+/* ================= ONLINE RACING at the Sorrel Ring ================= */
+// One player opens an online race at Race Control; everyone else in the same online room who is at the
+// circuit gets an invitation. Each player drives their own car on their own computer and sends where it is
+// about 12 times a second. The player who opened the race also drives the computer cars and sends theirs.
+// The start lights follow the room server's clock, so everyone gets "lights out" at the same moment.
+const RCN = { lobby: null, wait: null, sendT: 0 };
+const RCN_RATE = 1 / 12, RCN_DELAY = 0.15, RCN_LIVERY = [0x00ff88, 0xff5a5a, 0x5aa6ff, 0xf2b33d, 0xb36bff, 0xff8a3d, 0xf4f4f4, 0x3dd6d0];
+const rcnHere = () => frOn() && frRegion() === 'circuit';
+
+/* ---------- opening a race (the race host) ---------- */
+function rcnOpen() {
+  if (!frnOn()) return;
+  const st = settings.rc = Object.assign({ laps: 5, diff: 'pro', tyre: 'M', assist: { tc: true, abs: true, line: true, auto: true, help: true } }, settings.rc || {});
+  RCN.lobby = { id: roomCode(6), laps: [3, 5, 10].includes(+st.laps) ? +st.laps : 5, diff: st.diff || 'pro', ai: true, joined: new Map([[FRN.room.me, netName()]]) };
+  rcnInvite(); rcnLobbyPanel();
+  clearInterval(RCN.invT); RCN.invT = setInterval(() => { if (!RCN.lobby || !frnOn()) { clearInterval(RCN.invT); return; } rcnInvite(); }, 4000);
+}
+function rcnInvite() { const L = RCN.lobby; if (L && frnOn()) FRN.room.send('rcInv', { id: L.id, laps: L.laps, diff: L.diff, ai: L.ai, n: L.joined.size }); }
+function rcnLobbyPanel() {
+  const L = RCN.lobby; if (!L) return;
+  const og = (k, items) => `<div class="rcOpt" data-k="${k}">${items.map(([v, l]) => `<button class="btn small ${L[k] === v ? 'primary' : ''}" data-v="${v}">${l}</button>`).join('')}</div>`;
+  rcPanel('Online race · Sorrel Ring', `<p>Players at the circuit in your online room are invited. Up to 8 players.</p>
+    <h4>Drivers (${L.joined.size}/8)</h4>${[...L.joined.values()].map((n, i) => `<p class="hr">${esc(n)}<b>${i === 0 ? 'race host' : 'ready'}</b></p>`).join('')}
+    <h4>Race length</h4>${og('laps', [[3, '3 laps'], [5, '5 laps'], [10, '10 laps']])}
+    <h4>Computer drivers</h4>${og('ai', [[true, 'Fill the grid to 10 cars'], [false, 'Players only']])}
+    <h4>Computer driver level</h4>${og('diff', [['rookie', 'Rookie'], ['pro', 'Pro'], ['ace', 'Ace']])}
+    <p class="note">Online races are dry, race-only (no practice or qualifying). Each player uses their own tyre and assist settings from Race Control. Rewards work like single-player races (8 paid races a day). The race cannot be paused.</p>`,
+    [['Start the race', () => rcnGo()], ['Cancel', () => rcnCancel()]]);
+  $$('#rcPanel .rcOpt[data-k] button').forEach(b => b.onclick = () => { const k = b.parentElement.dataset.k; L[k] = k === 'laps' ? +b.dataset.v : k === 'ai' ? b.dataset.v === 'true' : b.dataset.v; rcnInvite(); rcnLobbyPanel(); });
+}
+function rcnCancel() { if (RCN.lobby && frnOn()) FRN.room.send('rcX', { id: RCN.lobby.id }); RCN.lobby = null; clearInterval(RCN.invT); }
+function rcnGo() {
+  const L = RCN.lobby; if (!L || !frnOn()) return; clearInterval(RCN.invT); RCN.lobby = null;
+  const humans = [...L.joined.entries()].slice(0, 8), cars = [];
+  humans.forEach(([pid, name], k) => { const T = RC_TEAMS[k % RC_TEAMS.length]; cars.push({ pid, name, team: T.id, teamName: T.name, col: RCN_LIVERY[k], col2: 0x0d0d0d }); });
+  if (L.ai) {
+    const base = { rookie: 0.875, pro: 0.925, ace: 0.965 }[L.diff] || 0.925, pool = [];
+    for (const T of RC_TEAMS) for (const dn of T.drivers) if (dn !== 'YOU') pool.push([T, dn]);
+    for (const [T, dn] of pool) { if (cars.length >= 10) break; cars.push({ pid: null, name: dn, team: T.id, teamName: T.name, col: T.col, col2: T.col2, pace: clamp(base + (RC_SKILL[dn] || 0) + rr(-0.006, 0.006), 0.8, 1.0), comp: pick(['M', 'M', 'S', 'H']) }); }
+  }
+  // the AI cars start at the front, the players behind them in the order they joined
+  const order = [...cars.filter(c => !c.pid), ...cars.filter(c => c.pid)];
+  const spec = { id: L.id, laps: L.laps, diff: L.diff, host: FRN.room.me, cars: order, out: FRN.room.now() + 9000 + Math.round(rr(400, 2200)) };
+  FRN.room.send('rcGo', spec);
+  rcnStart(spec);
+}
+
+/* ---------- joining (everyone else) ---------- */
+FRN_H.rcInv = (p, from) => {
+  if (!p || !rcnHere() || RC.active || RCN.lobby) return;
+  if (RCN.wait && RCN.wait.id === p.id) { RCN.wait.info = p; return; }
+  if (RCN.seen === p.id || G.frDlg) return; RCN.seen = p.id;
+  const P = frnPeer(from);
+  frDialog('Online race', `${P.name} is starting an online race: ${p.laps} laps${p.ai ? ' with computer drivers' : ', players only'}. Join as a driver?`, [
+    ['Join the race', () => { RCN.wait = { id: p.id, host: from, info: p }; FRN.room.send('rcIn', { id: p.id, n: netName() }, from); rcPanel('Online race', `<div class="onSpin"></div><p style="text-align:center">Waiting for <b>${esc(P.name)}</b> to start the race…</p>`, [['Leave', () => { FRN.room.send('rcOut', { id: p.id }, from); RCN.wait = null; }]]); }],
+    ['Not now', null]
+  ]);
+};
+FRN_H.rcIn = (p, from) => { const L = RCN.lobby; if (!L || p.id !== L.id || L.joined.size >= 8) return; L.joined.set(from, String(p.n || frnPeer(from).name).slice(0, 20)); rcnInvite(); rcnLobbyPanel(); };
+FRN_H.rcOut = (p, from) => { const L = RCN.lobby; if (!L || p.id !== L.id) return; L.joined.delete(from); rcnLobbyPanel(); };
+FRN_H.rcX = (p, from) => { if (RCN.wait && RCN.wait.id === p.id) { RCN.wait = null; $('#rcPanel').hidden = true; frToast('Online race', 'The race was cancelled.'); } };
+FRN_H.rcGo = (p, from) => {
+  if (!p || !RCN.wait || RCN.wait.id !== p.id) return;
+  RCN.wait = null; $('#rcPanel').hidden = true;
+  if (!p.cars.some(c => c.pid === FRN.room.me)) { frToast('Online race', 'The race started without you (it was full).'); return; }
+  rcnStart(p);
+};
+FRN_H.rcS = (p, from) => {
+  const O = RC.online; if (!O || !p || p.id !== O.id) return;
+  const at = performance.now() / 1000;
+  for (const a of p.cs || []) { const c = RC.cars.find(x => x.netIdx === a[0]); if (!c || !c.net) continue; c.snaps = c.snaps || []; c.snaps.push({ at, a }); if (c.snaps.length > 8) c.snaps.shift(); c.netSeen = at; }
+};
+FRN_H._leave = (id) => {
+  if (RCN.lobby && RCN.lobby.joined.delete(id)) rcnLobbyPanel();
+  if (RCN.wait && RCN.wait.host === id) { RCN.wait = null; $('#rcPanel').hidden = true; frToast('Online race', 'The race host left.'); }
+};
+
+/* ---------- running the race ---------- */
+function rcnStart(spec) {
+  const st = settings.rc = Object.assign({ tyre: 'M', assist: { tc: true, abs: true, line: true, auto: true, help: true } }, settings.rc || {});
+  const opt = { session: 'race', laps: spec.laps, diff: spec.diff, weather: 'dry', tyre: st.tyre === 'I' || st.tyre === 'W' ? 'M' : st.tyre, assist: Object.assign({ tc: true, abs: true, line: true, auto: true, help: true }, st.assist || {}) };
+  if (G.cfg.weather === 'rain') { RC.pendingOnline = spec; frSave(); frLeave(); frEnterRegion('circuit', 'paddock', { weather: 'clear' }); return; }
+  rcClear();
+  const me = FRN.room.me, iHost = spec.host === me;
+  RC.active = true; RC.role = 'driver'; RC.opt = opt; RC.msgs = []; RC.fastest = null; RC.sectAll = [Infinity, Infinity, Infinity]; RC.wet = 0;
+  RC.assist = Object.assign({}, opt.assist); RC.cam = 'chase'; RC.follow = 0;
+  RC.online = { id: spec.id, host: spec.host, out: spec.out, iHost };
+  RC_VPROF = { base: rcProfile(1.62) };
+  spec.cars.forEach((s, k) => {
+    const mine = s.pid === me, aiHere = !s.pid && iHost;
+    const c = rcMakeCar({ name: s.name, team: s.team, teamName: s.teamName, col: s.col, col2: s.col2, num: String(k + 1), ai: !mine, pace: s.pace || 1, comp: mine ? opt.tyre : (s.comp || 'M'), stopAt: rr(0.58, 0.72), prof: 'base' });
+    c.netIdx = k; c.pid = s.pid; c.net = !mine && !aiHere; c.crewTime = () => (c.fw > 0 ? 3.2 : 0) + rr(2.2, 3.0);
+    RC.cars.push(c);
+  });
+  RC_TEAMS.forEach((T, k) => { PIT.boxes[k] = PIT.x0 + 24 + k * 34; }); RC.cars.forEach(c => { c.box = RC_TEAMS.findIndex(T => T.id === c.team); });
+  for (const c of RC.cars) c.fuel = (opt.laps + 1.5) * 2.0;
+  rcHudBuild();
+  RC.grid = RC.cars.slice();
+  rcBeginSession('race');
+  rcMsg(`Online race: ${spec.cars.filter(c => c.pid).length} players, ${opt.laps} laps. Good luck!`, 'green');
+  if (document.pointerLockElement) document.exitPointerLock();
+}
+// the start lights follow the server clock
+function rcnLights() { const O = RC.online; if (!O || !frnOn()) return; RC.outAt = 6; RC.lightsT = 6 - (O.out - FRN.room.now()) / 1000; }
+function rcNetCar(c, dt) {
+  const S = c.snaps; if (!S || !S.length) return;
+  const now = performance.now() / 1000, rt = now - RCN_DELAY;
+  let a = S[0], b = S[S.length - 1];
+  for (let i = 0; i < S.length - 1; i++) if (S[i].at <= rt && S[i + 1].at >= rt) { a = S[i]; b = S[i + 1]; break; }
+  if (rt > b.at) a = b;
+  const k = a === b ? 1 : clamp((rt - a.at) / Math.max(1e-3, b.at - a.at), 0, 1), A = a.a, Bv = b.a;
+  const ox = c.x, oz = c.z;
+  c.x = lerp(A[1], Bv[1], k) / 100; c.z = lerp(A[2], Bv[2], k) / 100; c.yaw = lerpAng(A[3] / 100, Bv[3] / 100, k);
+  c.vx = (c.x - ox) / Math.max(dt, 1e-3); c.vz = (c.z - oz) / Math.max(dt, 1e-3); if (Math.hypot(c.vx, c.vz) > 120) c.vx = c.vz = 0;
+  c.spd = Bv[4] / 10; c.u = c.spd; c.steer = (Bv[13] || 0) / 100; rcNearest(c);
+  c.lap = Bv[5]; c.prog = Bv[6]; c.comp = Object.keys(TYRES)[Bv[7]] || c.comp;
+  const fl = Bv[8]; c.pit = fl & 1 ? { net: true } : null;
+  c.best = Bv[10] ? Bv[10] / 1000 : Infinity; c.pen = Bv[11] || 0; c.stops = Bv[12] || 0;
+  if ((fl & 2) && !c.finished && RC.race) { c.finished = true; c.finT = (RC.raceT0 || RC.t) + Bv[9] / 1000; RC.leaderDone = true; if (!RC.leaderMsg) { RC.leaderMsg = true; rcMsg(`Chequered flag! ${c.name} finishes`, 'green'); } }
+  if ((fl & 4) && !c.dnf) { c.dnf = true; c.dnfWhy = 'Retired'; }
+  if (RC.fastest === null || (isFinite(c.best) && c.best < RC.fastest.t)) if (isFinite(c.best)) RC.fastest = { t: c.best, car: c };
+  // nothing heard for 8 seconds: that player has gone
+  if (!c.dnf && !c.finished && now - (c.netSeen || now) > 8) { c.dnf = true; c.dnfWhy = c.pid ? 'Disconnected' : 'Race host left'; rcMsg(`${c.name}: ${c.dnfWhy.toLowerCase()}`, 'amber'); }
+}
+function rcnSend() {
+  const O = RC.online; if (!O || !frnOn()) return;
+  const cs = [];
+  for (const c of RC.cars) {
+    if (c.net) continue;
+    const fl = (c.pit ? 1 : 0) | (c.finished ? 2 : 0) | (c.dnf ? 4 : 0);
+    cs.push([c.netIdx, Math.round(c.x * 100), Math.round(c.z * 100), Math.round(c.yaw * 100), Math.round((c.spd || 0) * 10), c.lap, c.prog, Object.keys(TYRES).indexOf(c.comp), fl, c.finished ? Math.round((c.finT - (RC.raceT0 || 0)) * 1000) : 0, isFinite(c.best) ? Math.round(c.best * 1000) : 0, c.pen, c.stops, Math.round((c.steer || 0) * 100)]);
+  }
+  FRN.room.send('rcS', { id: O.id, cs });
+}
+{
+  // Race Control offers single-player or online when other players are in your room
+  const _sp = rcSetupPanel; rcSetupPanel = function (role) {
+    if (role === 'driver' && frnOn() && FRN.room.players.size > 1 && !RC.active) {
+      frDialog('Race Control', 'Race on your own against computer drivers, or open an online race for the players in your room?', [
+        ['Online race with players here', () => rcnOpen()], ['Single-player race', () => _sp.call(this, role)], ['Not now', null]]);
+      return;
+    }
+    return _sp.apply(this, arguments);
+  };
+  const _tk = rcTick; rcTick = function (dt) {
+    const r = _tk.apply(this, arguments);
+    if (RC.active && RC.online && frnOn()) { const now = performance.now() / 1000; if (now - RCN.sendT >= RCN_RATE) { RCN.sendT = now; rcnSend(); } }
+    return r;
+  };
+  const _cl = rcClear; rcClear = function () { const r = _cl.apply(this, arguments); RC.online = null; RC.leaderMsg = false; return r; };
+  // a wet circuit is reloaded dry before an online race starts
+  const _rs = rcSetup; rcSetup = function () { const r = _rs.apply(this, arguments); if (RC.pendingOnline) { const s = RC.pendingOnline; RC.pendingOnline = null; setTimeout(() => { if (frRegion() === 'circuit') rcnStart(s); }, 60); } return r; };
+  // an online race keeps going for everyone, so it cannot be paused
+  const _tp = togglePause; togglePause = function () { if (RC.active && RC.online && G && !G.paused) { hint('Online races cannot be paused. Leave from the results screen, or press Esc again to open the menu.', 2.5); if (RCN.pauseAsk && performance.now() - RCN.pauseAsk < 2500) { RCN.pauseAsk = 0; return _tp.apply(this, arguments); } RCN.pauseAsk = performance.now(); return; } return _tp.apply(this, arguments); };
 }
 </script>
