@@ -702,6 +702,7 @@ body.freeroam.frciv #weap,body.freeroam.frciv #cross,body.freeroam.frciv #scope{
 .rcBoard{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 #rcTouch{position:absolute;right:calc(12px + var(--sr));bottom:calc(150px + var(--sb));display:flex;flex-direction:column;gap:8px;pointer-events:auto}
 #rcTouch[hidden]{display:none}
+#rcHud:has(#rcMech:not([hidden])) #rcHelp{left:calc(10px + 160px + 12px + var(--sl));transform:none;max-width:calc(100% - 560px);overflow:hidden;text-overflow:ellipsis}
 #rcTouch button{min-width:66px;min-height:48px;border-radius:10px;border:1px solid #2c4a37;background:rgba(14,16,15,.88);color:#e8f5ec;font:800 12px var(--ui);touch-action:none}
 #rcTouch button:active{background:#00ff88;color:#0d0d0d}
 #rcTouch .row{display:flex;gap:6px;justify-content:flex-end}
@@ -13349,6 +13350,8 @@ function rcPitTick(c, dt) {
   if (P.stopT !== undefined) {
     c.vx = c.vz = 0; c.spd = 0; c.throttle = 0;
     if (P.crew === 'player') { P.stopT += dt; return; }
+    // a friend is doing this stop from their own computer; if they do not answer, the team's own crew finishes it
+    if (P.crew === 'remote') { P.stopT += dt; if (P.stopT > 16) { rcMsg('No answer from your pit crew: the spare crew finishes the stop', 'amber'); rcPitDone(c, P.stopT); } return; }
     P.stopT += dt;
     if (P.stopT >= P.need) rcPitDone(c, P.stopT);
     return;
@@ -13360,7 +13363,7 @@ function rcPitTick(c, dt) {
   c.spd = lerp(c.spd, sp, Math.min(1, dt * 2)); c.vx = Math.sin(c.yaw) * c.spd; c.vz = Math.cos(c.yaw) * c.spd; c.x += c.vx * dt; c.z += c.vz * dt; c.r = 0; c.u = c.spd;
   rcNearest(c);
   if (d < (tgt[2] === 'stop' ? 0.8 : 4)) {
-    if (tgt[2] === 'stop') { P.stopT = 0; P.need = c.crewTime(); c.x = tgt[0]; c.z = tgt[1]; if (P.crew === 'player') rcMechStopStart(c); if (c === rcMe()) rcMsg('Box! Crew working…', 'green'); }
+    if (tgt[2] === 'stop') { P.stopT = 0; P.need = c.crewTime(); c.x = tgt[0]; c.z = tgt[1]; if (P.crew === 'player') rcMechStopStart(c); if (P.crew === 'remote' && typeof rcnPitStart === 'function') rcnPitStart(c); if (c === rcMe()) rcMsg(P.crew === 'remote' ? 'Box! Your pit crew is working…' : 'Box! Crew working…', 'green'); }
     else if (++P.k >= path.length) { c.pit = null; c.yaw = PI / 2; const v = Math.max(c.spd, 20); c.vx = Math.sin(c.yaw) * v; c.vz = Math.cos(c.yaw) * v; c.r = 0; rcNearest(c); if (c === rcMe()) rcMsg('Pit exit. Blend in carefully.', 'green'); }
   }
 }
@@ -13373,7 +13376,7 @@ function rcPitDone(c, time) {
 }
 function rcEnterPit(c) {
   const comp = c.boxReq || 'M'; c.boxReq = null;
-  const crew = (RC.role === 'mech' && c.name === 'Max Corin' && c.ai) ? 'player' : 'ai';
+  const crew = (RC.role === 'mech' && !RC.online && c.name === 'Max Corin' && c.ai) ? 'player' : (RC.online && c === rcMe() && typeof rcnHasCrew === 'function' && rcnHasCrew()) ? 'remote' : 'ai';
   c.pit = { path: rcPitPath(c), k: 0, comp, crew };
 }
 
@@ -13558,7 +13561,7 @@ function rcRaceEnd() {
   rcSave(S);
   const betTxt = rcBetSettle(order);
   const rows = order.map((c, k) => { const gap = c.dnf ? (c.dnfWhy || 'DNF') : k === 0 ? rcFmt(c.finT - (RC.raceT0 || 0)) : (c.lap < w.lap ? `+${w.lap - c.lap} lap${w.lap - c.lap > 1 ? 's' : ''}` : '+' + (c.finT - w.finT).toFixed(3)); return `<tr class="${c === me ? 'me' : ''}"><td>${c.dnf ? 'DNF' : k + 1}</td><td><i style="background:#${new THREE.Color(c.col).getHexString()}"></i>${esc(c.name)}</td><td>${esc(c.teamName)}</td><td>${gap}</td><td>${rcFmt(c.best)}${RC.fastest && RC.fastest.car === c ? ' <b class="pur">FL</b>' : ''}</td><td>${c.stops}</td><td>${c.pen ? '+' + c.pen + 's' : ''}</td><td>${c.dnf ? '' : PTS[k] || 0}</td></tr>`; }).join('');
-  const head = me ? `You finished ${me.dnf ? 'DNF' : 'P' + (order.indexOf(me) + 1)}.${reward}` : RC.role === 'mech' ? `Max Corin finished ${order.find(c => c.name === 'Max Corin').dnf ? 'DNF' : 'P' + (order.findIndex(c => c.name === 'Max Corin') + 1)}. Your stops: ${RC.mechStops || 0}, average ${RC.mechStops ? (RC.mechTime / RC.mechStops).toFixed(2) + ' s' : '—'}.` : 'Race finished.';
+  const head = me ? `You finished ${me.dnf ? 'DNF' : 'P' + (order.indexOf(me) + 1)}.${reward}` : RC.role === 'mech' ? `${rcMechCar().name} finished ${rcMechCar().dnf ? 'DNF' : 'P' + (order.indexOf(rcMechCar()) + 1)}. Your stops: ${RC.mechStops || 0}, average ${RC.mechStops ? (RC.mechTime / RC.mechStops).toFixed(2) + ' s' : '—'}.` : 'Race finished.';
   rcPanel('Race results · Sorrel Ring', `<p class="rcHead">${esc(head)}${betTxt ? ' ' + esc(betTxt) : ''}</p><table class="rcRes"><tr><th>P</th><th>Driver</th><th>Team</th><th>Time / gap</th><th>Best lap</th><th>Stops</th><th>Pen.</th><th>Pts</th></tr>${rows}</table><p class="note">Times include penalties. Points go to the Sorrel Cup standings on the records board.</p>`, [['Back to the paddock', () => { RC.ending = false; rcClear(); }]]);
 }
 function rcClear() {
@@ -13704,7 +13707,9 @@ function rcPitMenu() {
 function rcBox(ty) { const me = rcMe(); if (!me || me.pit) return; me.boxReq = ty; $('#rcPitMenu').hidden = true; rcMsg(`Box, box: ${TYRES[ty].name} tyres at the end of this lap`, 'green'); }
 
 /* ---------- mechanic (pit crew) role ---------- */
+const rcMechCar = () => RC.mechCar || RC.cars.find(x => x.name === 'Max Corin') || RC.cars[0];
 function rcMechPanel() {
+  if (RC.online && typeof rcnMechPanel === 'function') return rcnMechPanel();
   const c = RC.cars.find(x => x.name === 'Max Corin'), el = $('#rcMech'); if (!c) return;
   if (c.pit && c.pit.stopT !== undefined && c.pit.crew === 'player') return rcMechStopTick(c);
   el.hidden = false;
@@ -13725,12 +13730,12 @@ function rcMechStopStart(c) {
 }
 function rcMechStopTick(c) {
   const S = RC.stop, el = $('#rcMech'); if (!S) return; el.hidden = false;
-  S.t = c.pit.stopT;
+  S.t = S.net ? (performance.now() - S.t0) / 1000 + S.pen : c.pit.stopT;
   // jacks up, four wheels off and on: even a perfect crew needs about 1.9 s
   const ready = S.wheels.every(w => w.done) && (!S.wing || S.wing.held >= 1) && S.t >= RC_MINSTOP;
   // a car coming down the pit lane behind you makes the release unsafe
   const unsafe = RC.cars.some(o => o !== c && o.pit && o.pit.stopT === undefined && Math.abs(o.z - PIT.z) < 4 && o.x < c.x && o.x > c.x - 26);
-  el.innerHTML = `<div class="mh"><b>PIT STOP · Max Corin</b><small>${S.t.toFixed(1)} s · fit ${TYRES[c.pit.comp].name} tyres</small></div>
+  el.innerHTML = `<div class="mh"><b>PIT STOP · ${esc(c.name)}</b><small>${S.t.toFixed(1)} s · fit ${TYRES[S.comp || c.pit.comp].name} tyres</small></div>
     <div class="ms">${S.wheels.map((w, k) => { const pos = (Math.sin(w.ph) + 1) / 2; return `<div class="wg ${w.done ? 'done' : ''}"><small>${['FL', 'FR', 'RL', 'RR'][k]} · key ${k + 1}</small><div class="bar"><span class="zone"></span><i style="left:${(pos * 100).toFixed(1)}%"></i></div>${w.miss ? `<em>${w.miss} miss</em>` : ''}</div>`; }).join('')}</div>
     ${S.wing ? `<div class="wgW">Front wing: hold 5 <div class="bar"><i class="fill" style="width:${Math.round(S.wing.held * 100)}%"></i></div></div>` : ''}
     <div class="mrel ${ready ? (unsafe ? 'red' : 'green') : ''}">${ready ? (unsafe ? 'CAR COMING — WAIT' : 'SPACE: RELEASE') : S.wheels.every(w => w.done) && (!S.wing || S.wing.held >= 1) ? 'Jack down…' : 'Finish every wheel'}</div>`;
@@ -13739,15 +13744,15 @@ function rcMechStopTick(c) {
   if (S.t > 14 && !S.released) { S.wheels.forEach(w => w.done = true); if (S.wing) S.wing.held = 1; rcMechRelease(c, false); }
 }
 function rcMechKey(code) {
-  const S = RC.stop; if (!S || !S.c.pit || S.c.pit.stopT === undefined) return;
+  const S = RC.stop; if (!S || (!S.net && (!S.c.pit || S.c.pit.stopT === undefined))) return;
   const k = { Digit1: 0, Digit2: 1, Digit3: 2, Digit4: 3 }[code];
-  if (k !== undefined) { const w = S.wheels[k]; if (w.done) return; const pos = (Math.sin(w.ph) + 1) / 2; if (pos > 0.4 && pos < 0.6) { w.done = true; SFX.ok() && SFX.tone(0.12, 0.08, 1200, 900, 'square'); } else { w.miss++; S.c.pit.stopT += 0.6; SFX.ok() && SFX.tone(0.1, 0.12, 200, 150, 'sawtooth'); } }
+  if (k !== undefined) { const w = S.wheels[k]; if (w.done) return; const pos = (Math.sin(w.ph) + 1) / 2; if (pos > 0.4 && pos < 0.6) { w.done = true; SFX.ok() && SFX.tone(0.12, 0.08, 1200, 900, 'square'); } else { w.miss++; if (S.net) S.pen += 0.6; else S.c.pit.stopT += 0.6; SFX.ok() && SFX.tone(0.1, 0.12, 200, 150, 'sawtooth'); } }
   if (code === 'Space') { const ready = S.wheels.every(w => w.done) && (!S.wing || S.wing.held >= 1) && S.t >= RC_MINSTOP; if (!ready) return; const unsafe = RC.cars.some(o => o !== S.c && o.pit && o.pit.stopT === undefined && Math.abs(o.z - PIT.z) < 4 && o.x < S.c.x && o.x > S.c.x - 26); rcMechRelease(S.c, unsafe); }
 }
 function rcMechRelease(c, unsafe) {
   const S = RC.stop; if (!S || S.released) return; S.released = true;
-  c.pit.unsafe = unsafe; const t = c.pit.stopT; RC.mechStops = (RC.mechStops || 0) + 1; RC.mechTime = (RC.mechTime || 0) + t;
-  rcPitDone(c, t); RC.stop = null; $('#rcMech').innerHTML = ''; RC.mechT = 0;
+  const t = S.net ? S.t : c.pit.stopT; RC.mechStops = (RC.mechStops || 0) + 1; RC.mechTime = (RC.mechTime || 0) + t;
+  if (S.net) rcnRelease(c, t, unsafe); else { c.pit.unsafe = unsafe; rcPitDone(c, t); } RC.stop = null; $('#rcMech').innerHTML = ''; RC.mechT = 0;
   rcMsg(t < 2.6 ? `Great stop! ${t.toFixed(2)} s` : t < 4 ? `Stop ${t.toFixed(2)} s` : `Slow stop: ${t.toFixed(2)} s`, t < 2.6 ? 'purple' : t < 4 ? 'green' : 'amber');
 }
 
@@ -13947,7 +13952,7 @@ function rcTick(dt) {
       const n = RC.cars.length;
       if (e.code === 'KeyE' || e.code === 'ArrowRight') RC.follow = (RC.follow + 1) % n;
       if (e.code === 'KeyQ' || e.code === 'ArrowLeft') RC.follow = (RC.follow - 1 + n) % n;
-      if (e.code === 'KeyL') { const tgt = RC.role === 'mech' ? RC.cars.find(c => c.name === 'Max Corin') : (RC.order || RC.cars)[0]; RC.follow = RC.cars.indexOf(tgt); }
+      if (e.code === 'KeyL') { const tgt = RC.role === 'mech' ? rcMechCar() : (RC.order || RC.cars)[0]; RC.follow = RC.cars.indexOf(tgt); }
       if (e.code === 'KeyB' && RC.order) { let best = 1, bg = 1e9; for (let k = 1; k < RC.order.length; k++) { const g = RC.order[k - 1].prog - RC.order[k].prog; if (g < bg && !RC.order[k].pit) { bg = g; best = k; } } RC.follow = RC.cars.indexOf(RC.order[best]); }
       if (RC.role === 'mech') rcMechKey(e.code);
     }
@@ -14241,16 +14246,23 @@ const rcnHere = () => frOn() && frRegion() === 'circuit';
 function rcnOpen() {
   if (!frnOn()) return;
   const st = settings.rc = Object.assign({ laps: 5, diff: 'pro', tyre: 'M', assist: { tc: true, abs: true, line: true, auto: true, help: true } }, settings.rc || {});
-  RCN.lobby = { id: roomCode(6), laps: [3, 5, 10].includes(+st.laps) ? +st.laps : 5, diff: st.diff || 'pro', ai: true, joined: new Map([[FRN.room.me, netName()]]) };
+  RCN.lobby = { id: roomCode(6), laps: [3, 5, 10].includes(+st.laps) ? +st.laps : 5, diff: st.diff || 'pro', ai: true, joined: new Map([[FRN.room.me, { name: netName(), role: 'driver' }]]) };
   rcnInvite(); rcnLobbyPanel();
   clearInterval(RCN.invT); RCN.invT = setInterval(() => { if (!RCN.lobby || !frnOn()) { clearInterval(RCN.invT); return; } rcnInvite(); }, 4000);
 }
-function rcnInvite() { const L = RCN.lobby; if (L && frnOn()) FRN.room.send('rcInv', { id: L.id, laps: L.laps, diff: L.diff, ai: L.ai, n: L.joined.size }); }
+const rcnDrivers = L => [...L.joined.entries()].filter(([, j]) => j.role === 'driver');
+function rcnInvite() {
+  const L = RCN.lobby; if (!L || !frnOn()) return;
+  const crewed = [...L.joined.values()].filter(j => j.role === 'mech').map(j => j.for);
+  FRN.room.send('rcInv', { id: L.id, laps: L.laps, diff: L.diff, ai: L.ai, d: rcnDrivers(L).map(([pid, j]) => [pid, j.name]), c: crewed });
+}
 function rcnLobbyPanel() {
   const L = RCN.lobby; if (!L) return;
   const og = (k, items) => `<div class="rcOpt" data-k="${k}">${items.map(([v, l]) => `<button class="btn small ${L[k] === v ? 'primary' : ''}" data-v="${v}">${l}</button>`).join('')}</div>`;
-  rcPanel('Online race · Sorrel Ring', `<p>Players at the circuit in your online room are invited. Up to 8 players.</p>
-    <h4>Drivers (${L.joined.size}/8)</h4>${[...L.joined.values()].map((n, i) => `<p class="hr">${esc(n)}<b>${i === 0 ? 'race host' : 'ready'}</b></p>`).join('')}
+  rcPanel('Online race · Sorrel Ring', `<p>Players at the circuit in your online room are invited. They can drive (up to 8), be a driver's pit crew, or watch from the grandstand.</p>
+    <h4>Drivers (${rcnDrivers(L).length}/8)</h4>${rcnDrivers(L).map(([pid, j]) => `<p class="hr">${esc(j.name)}<b>${pid === FRN.room.me ? 'race host' : 'ready'}</b></p>`).join('')}
+    ${[...L.joined.values()].some(j => j.role === 'mech') ? `<h4>Pit crews</h4>${[...L.joined.values()].filter(j => j.role === 'mech').map(j => `<p class="hr">${esc(j.name)}<b>crew for ${esc((L.joined.get(j.for) || {}).name || '?')}</b></p>`).join('')}` : ''}
+    ${[...L.joined.values()].some(j => j.role === 'spec') ? `<h4>Spectators</h4>${[...L.joined.values()].filter(j => j.role === 'spec').map(j => `<p class="hr">${esc(j.name)}<b>watching</b></p>`).join('')}` : ''}
     <h4>Race length</h4>${og('laps', [[3, '3 laps'], [5, '5 laps'], [10, '10 laps']])}
     <h4>Computer drivers</h4>${og('ai', [[true, 'Fill the grid to 10 cars'], [false, 'Players only']])}
     <h4>Computer driver level</h4>${og('diff', [['rookie', 'Rookie'], ['pro', 'Pro'], ['ace', 'Ace']])}
@@ -14261,7 +14273,7 @@ function rcnLobbyPanel() {
 function rcnCancel() { if (RCN.lobby && frnOn()) FRN.room.send('rcX', { id: RCN.lobby.id }); RCN.lobby = null; clearInterval(RCN.invT); }
 function rcnGo() {
   const L = RCN.lobby; if (!L || !frnOn()) return; clearInterval(RCN.invT); RCN.lobby = null;
-  const humans = [...L.joined.entries()].slice(0, 8), cars = [];
+  const humans = rcnDrivers(L).slice(0, 8).map(([pid, j]) => [pid, j.name]), cars = [];
   humans.forEach(([pid, name], k) => { const T = RC_TEAMS[k % RC_TEAMS.length]; cars.push({ pid, name, team: T.id, teamName: T.name, col: RCN_LIVERY[k], col2: 0x0d0d0d }); });
   if (L.ai) {
     const base = { rookie: 0.875, pro: 0.925, ace: 0.965 }[L.diff] || 0.925, pool = [];
@@ -14270,7 +14282,9 @@ function rcnGo() {
   }
   // the AI cars start at the front, the players behind them in the order they joined
   const order = [...cars.filter(c => !c.pid), ...cars.filter(c => c.pid)];
-  const spec = { id: L.id, laps: L.laps, diff: L.diff, host: FRN.room.me, cars: order, out: FRN.room.now() + 9000 + Math.round(rr(400, 2200)) };
+  const crews = [...L.joined.entries()].filter(([, j]) => j.role === 'mech' && humans.some(h => h[0] === j.for)).map(([pid, j]) => ({ pid, for: j.for, name: j.name }));
+  const specs = [...L.joined.entries()].filter(([, j]) => j.role === 'spec').map(([pid]) => pid);
+  const spec = { id: L.id, laps: L.laps, diff: L.diff, host: FRN.room.me, cars: order, crews, specs, out: FRN.room.now() + 12000 + Math.round(rr(400, 2200)) };
   FRN.room.send('rcGo', spec);
   rcnStart(spec);
 }
@@ -14280,20 +14294,37 @@ FRN_H.rcInv = (p, from) => {
   if (!p || !rcnHere() || RC.active || RCN.lobby) return;
   if (RCN.wait && RCN.wait.id === p.id) { RCN.wait.info = p; return; }
   if (RCN.seen === p.id || G.frDlg) return; RCN.seen = p.id;
-  const P = frnPeer(from);
-  frDialog('Online race', `${P.name} is starting an online race: ${p.laps} laps${p.ai ? ' with computer drivers' : ', players only'}. Join as a driver?`, [
-    ['Join the race', () => { RCN.wait = { id: p.id, host: from, info: p }; FRN.room.send('rcIn', { id: p.id, n: netName() }, from); rcPanel('Online race', `<div class="onSpin"></div><p style="text-align:center">Waiting for <b>${esc(P.name)}</b> to start the race…</p>`, [['Leave', () => { FRN.room.send('rcOut', { id: p.id }, from); RCN.wait = null; }]]); }],
-    ['Not now', null]
-  ]);
+  const P = frnPeer(from), ask = (role, forPid, txt) => {
+    RCN.wait = { id: p.id, host: from, info: p, role };
+    FRN.room.send('rcIn', { id: p.id, n: netName(), role, for: forPid }, from);
+    rcPanel('Online race', `<div class="onSpin"></div><p style="text-align:center">${txt}<br>Waiting for <b>${esc(P.name)}</b> to start the race…</p>`, [['Leave', () => { FRN.room.send('rcOut', { id: p.id }, from); RCN.wait = null; }]]);
+  };
+  const free = (p.d || []).filter(([pid]) => !(p.c || []).includes(pid));
+  const opts = [];
+  if ((p.d || []).length < 8) opts.push(['Drive', () => ask('driver', null, 'You will drive.')]);
+  if (free.length === 1) opts.push([`Pit crew for ${free[0][1]}`, () => ask('mech', free[0][0], `You are ${free[0][1]}'s pit crew.`)]);
+  else if (free.length > 1) opts.push(['Pit crew…', () => frDialog('Pit crew', 'Whose pit crew do you want to be?', [...free.map(([pid, n]) => [n, () => ask('mech', pid, `You are ${n}'s pit crew.`)]), ['Back', null]])]);
+  opts.push(['Watch (spectator)', () => ask('spec', null, 'You will watch from the grandstand. You can make optional predictions with in-game SD before the start.')]);
+  opts.push(['Not now', null]);
+  frDialog('Online race', `${P.name} is starting an online race: ${p.laps} laps${p.ai ? ' with computer drivers' : ', players only'}. Drive, be a driver's pit crew, or watch?`, opts);
 };
-FRN_H.rcIn = (p, from) => { const L = RCN.lobby; if (!L || p.id !== L.id || L.joined.size >= 8) return; L.joined.set(from, String(p.n || frnPeer(from).name).slice(0, 20)); rcnInvite(); rcnLobbyPanel(); };
+FRN_H.rcIn = (p, from) => {
+  const L = RCN.lobby; if (!L || p.id !== L.id) return;
+  const role = ['driver', 'mech', 'spec'].includes(p.role) ? p.role : 'driver', name = String(p.n || frnPeer(from).name).slice(0, 20);
+  if (role === 'driver' && rcnDrivers(L).length >= 8) return;
+  if (role === 'mech' && (!L.joined.has(p.for) || L.joined.get(p.for).role !== 'driver' || [...L.joined.values()].some(j => j.role === 'mech' && j.for === p.for))) { FRN.room.send('rcX', { id: L.id, why: 'That driver already has a pit crew.' }, from); return; }
+  L.joined.set(from, { name, role, for: role === 'mech' ? p.for : null }); rcnInvite(); rcnLobbyPanel();
+};
 FRN_H.rcOut = (p, from) => { const L = RCN.lobby; if (!L || p.id !== L.id) return; L.joined.delete(from); rcnLobbyPanel(); };
-FRN_H.rcX = (p, from) => { if (RCN.wait && RCN.wait.id === p.id) { RCN.wait = null; $('#rcPanel').hidden = true; frToast('Online race', 'The race was cancelled.'); } };
+FRN_H.rcX = (p, from) => { if (RCN.wait && RCN.wait.id === p.id) { RCN.wait = null; $('#rcPanel').hidden = true; frToast('Online race', (p && p.why) || 'The race was cancelled.'); } };
 FRN_H.rcGo = (p, from) => {
   if (!p || !RCN.wait || RCN.wait.id !== p.id) return;
   RCN.wait = null; $('#rcPanel').hidden = true;
-  if (!p.cars.some(c => c.pid === FRN.room.me)) { frToast('Online race', 'The race started without you (it was full).'); return; }
-  rcnStart(p);
+  const me = FRN.room.me;
+  if (p.cars.some(c => c.pid === me)) rcnStart(p, 'driver');
+  else if ((p.crews || []).some(c => c.pid === me)) rcnStart(p, 'mech');
+  else if ((p.specs || []).includes(me)) rcnStart(p, 'spec');
+  else frToast('Online race', 'The race started without you (it was full).');
 };
 FRN_H.rcS = (p, from) => {
   const O = RC.online; if (!O || !p || p.id !== O.id) return;
@@ -14306,20 +14337,23 @@ FRN_H._leave = (id) => {
 };
 
 /* ---------- running the race ---------- */
-function rcnStart(spec) {
+function rcnStart(spec, role) {
+  role = role || 'driver';
   const st = settings.rc = Object.assign({ tyre: 'M', assist: { tc: true, abs: true, line: true, auto: true, help: true } }, settings.rc || {});
   const opt = { session: 'race', laps: spec.laps, diff: spec.diff, weather: 'dry', tyre: st.tyre === 'I' || st.tyre === 'W' ? 'M' : st.tyre, assist: Object.assign({ tc: true, abs: true, line: true, auto: true, help: true }, st.assist || {}) };
-  if (G.cfg.weather === 'rain') { RC.pendingOnline = spec; frSave(); frLeave(); frEnterRegion('circuit', 'paddock', { weather: 'clear' }); return; }
+  if (G.cfg.weather === 'rain') { RC.pendingOnline = { spec, role }; frSave(); frLeave(); frEnterRegion('circuit', 'paddock', { weather: 'clear' }); return; }
   rcClear();
   const me = FRN.room.me, iHost = spec.host === me;
-  RC.active = true; RC.role = 'driver'; RC.opt = opt; RC.msgs = []; RC.fastest = null; RC.sectAll = [Infinity, Infinity, Infinity]; RC.wet = 0;
-  RC.assist = Object.assign({}, opt.assist); RC.cam = 'chase'; RC.follow = 0;
-  RC.online = { id: spec.id, host: spec.host, out: spec.out, iHost };
+  RC.active = true; RC.role = role; RC.opt = opt; RC.msgs = []; RC.fastest = null; RC.sectAll = [Infinity, Infinity, Infinity]; RC.wet = 0;
+  RC.assist = role === 'driver' ? Object.assign({}, opt.assist) : null; RC.cam = role === 'spec' ? 'tv' : 'chase'; RC.follow = 0;
+  const myCrew = (spec.crews || []).find(c => c.for === me), myJob = (spec.crews || []).find(c => c.pid === me);
+  RC.online = { id: spec.id, host: spec.host, out: spec.out, iHost, crew: myCrew ? myCrew.pid : null, crewName: myCrew ? myCrew.name : '', mechFor: myJob ? myJob.for : null };
   RC_VPROF = { base: rcProfile(1.62) };
   spec.cars.forEach((s, k) => {
     const mine = s.pid === me, aiHere = !s.pid && iHost;
     const c = rcMakeCar({ name: s.name, team: s.team, teamName: s.teamName, col: s.col, col2: s.col2, num: String(k + 1), ai: !mine, pace: s.pace || 1, comp: mine ? opt.tyre : (s.comp || 'M'), stopAt: rr(0.58, 0.72), prof: 'base' });
     c.netIdx = k; c.pid = s.pid; c.net = !mine && !aiHere; c.crewTime = () => (c.fw > 0 ? 3.2 : 0) + rr(2.2, 3.0);
+    if (s.pid && !mine) c.pace = 0.935; // a guess for the fictional prediction odds; players drive their own cars
     RC.cars.push(c);
   });
   RC_TEAMS.forEach((T, k) => { PIT.boxes[k] = PIT.x0 + 24 + k * 34; }); RC.cars.forEach(c => { c.box = RC_TEAMS.findIndex(T => T.id === c.team); });
@@ -14327,7 +14361,9 @@ function rcnStart(spec) {
   rcHudBuild();
   RC.grid = RC.cars.slice();
   rcBeginSession('race');
-  rcMsg(`Online race: ${spec.cars.filter(c => c.pid).length} players, ${opt.laps} laps. Good luck!`, 'green');
+  if (role === 'mech') { RC.mechCar = RC.cars.find(c => c.pid === RC.online.mechFor) || null; RC.follow = Math.max(0, RC.cars.indexOf(RC.mechCar)); rcMsg(`You are ${RC.mechCar ? RC.mechCar.name : 'your driver'}'s pit crew. Radio calls and the pit stop are yours.`, 'green'); }
+  else if (role === 'spec') rcMsg('You are watching. C changes camera, Q/E change car, L follows the leader.', 'green');
+  else rcMsg(`Online race: ${spec.cars.filter(c => c.pid).length} players, ${opt.laps} laps.${RC.online.crew ? ` ${RC.online.crewName} is your pit crew.` : ''} Good luck!`, 'green');
   if (document.pointerLockElement) document.exitPointerLock();
 }
 // the start lights follow the server clock
@@ -14346,6 +14382,7 @@ function rcNetCar(c, dt) {
   c.lap = Bv[5]; c.prog = Bv[6]; c.comp = Object.keys(TYRES)[Bv[7]] || c.comp;
   const fl = Bv[8]; c.pit = fl & 1 ? { net: true } : null;
   c.best = Bv[10] ? Bv[10] / 1000 : Infinity; c.pen = Bv[11] || 0; c.stops = Bv[12] || 0;
+  if (Bv.length > 14) { const w = Bv[14] / 100; c.wear = [w, w, w, w]; c.fuel = Bv[15] / 10; c.fw = Bv[16] / 100; const t = Bv[17]; c.temp = [t, t, t, t]; }
   if ((fl & 2) && !c.finished && RC.race) { c.finished = true; c.finT = (RC.raceT0 || RC.t) + Bv[9] / 1000; RC.leaderDone = true; if (!RC.leaderMsg) { RC.leaderMsg = true; rcMsg(`Chequered flag! ${c.name} finishes`, 'green'); } }
   if ((fl & 4) && !c.dnf) { c.dnf = true; c.dnfWhy = 'Retired'; }
   if (RC.fastest === null || (isFinite(c.best) && c.best < RC.fastest.t)) if (isFinite(c.best)) RC.fastest = { t: c.best, car: c };
@@ -14358,7 +14395,7 @@ function rcnSend() {
   for (const c of RC.cars) {
     if (c.net) continue;
     const fl = (c.pit ? 1 : 0) | (c.finished ? 2 : 0) | (c.dnf ? 4 : 0);
-    cs.push([c.netIdx, Math.round(c.x * 100), Math.round(c.z * 100), Math.round(c.yaw * 100), Math.round((c.spd || 0) * 10), c.lap, c.prog, Object.keys(TYRES).indexOf(c.comp), fl, c.finished ? Math.round((c.finT - (RC.raceT0 || 0)) * 1000) : 0, isFinite(c.best) ? Math.round(c.best * 1000) : 0, c.pen, c.stops, Math.round((c.steer || 0) * 100)]);
+    cs.push([c.netIdx, Math.round(c.x * 100), Math.round(c.z * 100), Math.round(c.yaw * 100), Math.round((c.spd || 0) * 10), c.lap, c.prog, Object.keys(TYRES).indexOf(c.comp), fl, c.finished ? Math.round((c.finT - (RC.raceT0 || 0)) * 1000) : 0, isFinite(c.best) ? Math.round(c.best * 1000) : 0, c.pen, c.stops, Math.round((c.steer || 0) * 100), Math.round((c.wear[0] + c.wear[1] + c.wear[2] + c.wear[3]) * 25), Math.round((c.fuel || 0) * 10), Math.round((c.fw || 0) * 100), Math.round((c.temp[0] + c.temp[1] + c.temp[2] + c.temp[3]) / 4)]);
   }
   FRN.room.send('rcS', { id: O.id, cs });
 }
@@ -14377,10 +14414,47 @@ function rcnSend() {
     if (RC.active && RC.online && frnOn()) { const now = performance.now() / 1000; if (now - RCN.sendT >= RCN_RATE) { RCN.sendT = now; rcnSend(); } }
     return r;
   };
-  const _cl = rcClear; rcClear = function () { const r = _cl.apply(this, arguments); RC.online = null; RC.leaderMsg = false; return r; };
+  const _cl = rcClear; rcClear = function () { const r = _cl.apply(this, arguments); RC.online = null; RC.leaderMsg = false; RC.mechCar = null; RC.mechStops = 0; RC.mechTime = 0; return r; };
   // a wet circuit is reloaded dry before an online race starts
-  const _rs = rcSetup; rcSetup = function () { const r = _rs.apply(this, arguments); if (RC.pendingOnline) { const s = RC.pendingOnline; RC.pendingOnline = null; setTimeout(() => { if (frRegion() === 'circuit') rcnStart(s); }, 60); } return r; };
+  const _rs = rcSetup; rcSetup = function () { const r = _rs.apply(this, arguments); if (RC.pendingOnline) { const s = RC.pendingOnline; RC.pendingOnline = null; setTimeout(() => { if (frRegion() === 'circuit') rcnStart(s.spec, s.role); }, 60); } return r; };
   // an online race keeps going for everyone, so it cannot be paused
   const _tp = togglePause; togglePause = function () { if (RC.active && RC.online && G && !G.paused) { hint('Online races cannot be paused. Leave from the results screen, or press Esc again to open the menu.', 2.5); if (RCN.pauseAsk && performance.now() - RCN.pauseAsk < 2500) { RCN.pauseAsk = 0; return _tp.apply(this, arguments); } RCN.pauseAsk = performance.now(); return; } return _tp.apply(this, arguments); };
+}
+
+/* ---------- online pit crew ---------- */
+// The driver's computer runs the car. When the driver stops in the box it tells the pit crew's computer,
+// the crew does the stop mini-game there, and sends back the stop time and whether the release was safe.
+function rcnHasCrew() { const O = RC.online; return !!(O && O.crew && frnOn() && FRN.room.players.has(O.crew)); }
+function rcnPitStart(c) { const O = RC.online; if (!rcnHasCrew()) { c.pit.crew = 'ai'; return; } FRN.room.send('rcPit', { id: O.id, idx: c.netIdx, comp: c.pit.comp, fw: c.fw > 0 ? 1 : 0 }, O.crew); }
+function rcnRelease(c, t, unsafe) { const O = RC.online; if (O && frnOn() && c.pid) FRN.room.send('rcRel', { id: O.id, t: Math.round(t * 100) / 100, unsafe: !!unsafe }, c.pid); rcMsg(t < 2.6 ? `Great stop! ${t.toFixed(2)} s` : t < 4 ? `Stop ${t.toFixed(2)} s` : `Slow stop: ${t.toFixed(2)} s`, t < 2.6 ? 'purple' : t < 4 ? 'green' : 'amber'); }
+FRN_H.rcPit = (p, from) => {
+  const O = RC.online; if (!O || RC.role !== 'mech' || !p || p.id !== O.id || RC.stop) return;
+  const c = RC.cars.find(x => x.netIdx === p.idx); if (!c || c !== RC.mechCar) return;
+  c.fw = p.fw ? 1 : 0; rcMechStopStart(c); Object.assign(RC.stop, { net: true, t0: performance.now(), pen: 0, comp: p.comp, driver: from });
+  rcMsg(`${c.name} is in the box: ${TYRES[p.comp].name} tyres. Keys 1–4 in the green band, then Space.`, 'green');
+};
+FRN_H.rcRel = (p, from) => {
+  const O = RC.online, me = rcMe(); if (!O || !p || p.id !== O.id || !me || !me.pit || me.pit.crew !== 'remote' || me.pit.stopT === undefined) return;
+  me.pit.unsafe = !!p.unsafe; rcPitDone(me, +p.t || me.pit.stopT);
+};
+FRN_H.rcRad = (p, from) => {
+  const O = RC.online, me = rcMe(); if (!O || !p || p.id !== O.id || !me) return;
+  const who = frnPeer(from).name;
+  if (p.k === 'box') { const n = Object.keys(TYRES).indexOf(p.ty) + 1; rcMsg(`Radio (${who}): box this lap for ${TYRES[p.ty].name} tyres. Press P, then ${n}, to come in.`, 'green'); }
+  else if (p.k === 'stay') rcMsg(`Radio (${who}): stay out, stay out.`, '');
+  else if (p.k === 'pace') rcMsg(`Radio (${who}): ${{ push: 'push now, everything you have', normal: 'normal pace', save: 'look after the tyres' }[p.m] || ''}`, '');
+};
+function rcnMechPanel() {
+  const c = RC.mechCar, el = $('#rcMech'); if (!c) return;
+  if (RC.stop) return rcMechStopTick(RC.stop.c);
+  el.hidden = false;
+  if ((RC.mechT = (RC.mechT || 0) - 1) > 0) return; RC.mechT = 6;
+  const pos = (RC.order || []).indexOf(c) + 1, w = Math.round((1 - c.wear[0]) * 100), O = RC.online, send = (k, extra) => frnOn() && c.pid && FRN.room.send('rcRad', Object.assign({ id: O.id, k }, extra || {}), c.pid);
+  el.innerHTML = `<div class="mh"><b>Pit wall · ${esc(c.name)}</b><small>You are their pit crew · P${pos || '–'} · lap ${Math.max(1, c.lap)}/${RC.opt.laps}${c.dnf ? ' · out of the race' : ''}</small></div>
+    <div class="mr"><span>Tyres <b style="color:${TYRES[c.comp].col}">${TYRES[c.comp].name}</b> · ${w}% left · ${Math.round(c.temp[0])}°</span><span>Fuel <b>${(c.fuel || 0).toFixed(1)} kg</b></span><span>Wing <b>${c.fw ? Math.round(c.fw * 100) + '% damaged' : 'OK'}</b></span><span>Stops <b>${c.stops}</b></span></div>
+    <div class="mb">${c.pit ? '<em>In the pit lane</em>' : Object.entries(TYRES).map(([k, T]) => `<button class="btn small" data-rad="box" data-ty="${k}" style="border-color:${T.col}">Radio: box · ${T.name}</button>`).join('') + '<button class="btn small" data-rad="stay">Radio: stay out</button>'}</div>
+    <div class="mb">${['push', 'normal', 'save'].map(k => `<button class="btn small" data-rad="pace" data-m="${k}">${{ push: 'Push', normal: 'Normal pace', save: 'Save tyres' }[k]}</button>`).join('')}</div>
+    <p class="note" style="margin:0;font-size:11.5px;color:#a8b4ab">Your radio calls appear on the driver's screen; they decide when to come in. When they stop in the box, the pit stop is yours: keys 1–4 in the green band, hold 5 for a new wing, Space to release.</p>`;
+  el.querySelectorAll('[data-rad]').forEach(b => b.onclick = () => { const k = b.dataset.rad; if (k === 'box') send('box', { ty: b.dataset.ty }); else if (k === 'pace') send('pace', { m: b.dataset.m }); else send('stay'); rcMsg(`Radio sent to ${c.name}`, ''); RC.mechT = 0; });
 }
 </script>
