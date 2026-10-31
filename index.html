@@ -12194,7 +12194,7 @@ function startFreeRoam(at) {
   frHudBuild();
   // put the President on the ground
   deployPresident();
-  const spot = at === 'cmd' ? FR_SPOTS.cmdRet : S.pos || FR_SPOTS.start;
+  const spot = at === 'cmd' ? FR_SPOTS.cmdRet : at === 'start' ? FR_SPOTS.start : S.pos || FR_SPOTS.start;
   frPlace(spot.x, spot.z, spot.yaw !== undefined ? spot.yaw : PI, spot.y);
   banner('SMFA HEADQUARTERS', 2.5, '#00ff88');
   G.timers.push({ t: G.t + 2.8, fn: () => { if (!frOn()) return; const s2 = frLoad(); if (!s2.seen.welcome) { s2.seen.welcome = true; store.set(FR_KEY, s2); frToast('Welcome home, Mr. President', 'Walk with W A S D, Shift sprints, Space jumps. Walk up to glowing spots and press E. Sergeant Hale at the training grounds has your first mission.'); } } });
@@ -12452,7 +12452,7 @@ function frTick(dt) {
   $('#endBtn').addEventListener('click', () => { if (FR.resume) { const at = FR.resumeAt; FR.resume = false; FR.resumeAt = null; setTimeout(() => { startFreeRoam('cmd'); if (at === 'naval' && G) frPlace(100, -14, PI / 2); }, 30); } });
   $('#quitWrap').addEventListener('click', e => { if (e.target && e.target.id === 'quitYes' && FR.resume && !frOn()) { FR.resume = false; } });
 }
-$('#goFree').addEventListener('click', () => startFreeRoam());
+$('#goFree').addEventListener('click', () => startFreeRoam('start', 'hq'));
 /* ================= RAGDOLL UPGRADES: joint limits, hit reactions, and knockdowns you get up from ================= */
 // The game already had Verlet ragdolls (15 points joined by distance sticks) for the dead.
 // This adds: knees and elbows that only bend the right way, bodies that cannot fold through themselves,
@@ -12928,7 +12928,7 @@ function frArrive() {
 function frBuyApartment() {
   const S = frData(), P = prof();
   if (S.apt.owned) { frToast('It is yours', 'Your apartment is upstairs. Take the stairs by the west wall.'); return; }
-  frDialog('Harbor View Apartments', `A one-bedroom apartment on the upper floor, furnished, with a parking space in the carport. Price ${FR_PRICE.apt.toLocaleString()} SD. You have ${P.coins.toLocaleString()} SD. You can rearrange the furniture, buy more, sleep there and use it as your spawn point.`, [
+  frDialog('Harbor View Apartments', `A one-bedroom apartment on the upper floor, furnished, with a parking space in the carport. Price ${FR_PRICE.apt.toLocaleString()} SD. You have ${P.coins.toLocaleString()} SD. You can rearrange the furniture, buy more, and sleep there.`, [
     [`Buy for ${FR_PRICE.apt.toLocaleString()} SD`, () => {
       const P2 = prof(), S2 = frData(); if (S2.apt.owned) return;
       if (P2.coins < FR_PRICE.apt) { frToast('Not enough SD', `You need ${(FR_PRICE.apt - P2.coins).toLocaleString()} more SD. Delivery jobs, missions and battles pay SD.`); return; }
@@ -12960,9 +12960,9 @@ function frCatalogue() {
 }
 function frBed() {
   const S = frData();
-  frDialog('Bed', S.apt.spawn ? 'This is your spawn point: free roam starts here.' : 'Make this apartment your spawn point? Free roam will start here instead of where you last were.', [
+  // free roam always starts at headquarters; the bed is for resting
+  frDialog('Bed', 'Your own bed. A good night\'s sleep restores your health and skips to the morning.', [
     ['Sleep until morning', () => frFade(() => { G.hour = 7; const p = G.player; if (p) { p.hp = p.maxhp; } frToast('Good morning', 'Fully rested.'); })],
-    [S.apt.spawn ? 'Stop spawning here' : 'Set as my spawn point', () => { const S2 = frData(); S2.apt.spawn = !S2.apt.spawn; frPut(S2); frToast(S2.apt.spawn ? 'Spawn point set' : 'Spawn point cleared', S2.apt.spawn ? 'Free roam now starts in your apartment.' : 'Free roam starts where you last were.'); }],
     ['Cancel', null]
   ]);
 }
@@ -13043,7 +13043,7 @@ function frRegionPoints(region) {
       { id: 'cafe', x: 20, z: 20.4, r: 2.4, label: `Cafe: coffee and a sandwich · ${FR_PRICE.coffee} SD`, act: () => { const P = prof(); if (P.coins < FR_PRICE.coffee) { frToast('Not enough SD', 'Coffee is 5 SD.'); return; } P.coins -= FR_PRICE.coffee; profSave(P); updateProfileCard(); G.player.hp = G.player.maxhp; frToast('Lovely', 'Health restored.'); } }
     ];
     // apartment points (only useful once you own it, and only reachable then)
-    pts.push({ id: 'bed', x: 30.5, z: -32.6, y: APT.y, r: 2.2, label: 'Bed: sleep or set spawn point', act: frBed, apt: 'bed' });
+    pts.push({ id: 'bed', x: 30.5, z: -32.6, y: APT.y, r: 2.2, label: 'Bed: sleep', act: frBed, apt: 'bed' });
     pts.push({ id: 'cat', x: 30.8, z: -29.2, y: APT.y, r: 2.0, label: 'Laptop: furniture catalogue', act: frCatalogue, apt: 'desk' });
     pts.push({ id: 'furn', x: 0, z: 0, y: APT.y, r: 1.6, label: 'Move furniture', act: () => { if (FRX.edit) frEditEnd(); else if (FRX.near) frEditStart(FRX.near); }, dynamic: true });
     return pts;
@@ -13867,13 +13867,31 @@ function rcBuildTrack() {
   { const geo = new THREE.BoxGeometry(0.45, 0.8, 0.4), mat = new THREE.MeshLambertMaterial({ color: 0xffffff }), N = 900, im = new THREE.InstancedMesh(geo, mat, N);
     for (let k = 0; k < N; k++) { const r = k % 7, x = -114 + Math.floor(k / 7) * 1.15 + rr(-0.2, 0.2); _m4.makeTranslation(x, 1.3 + r * 0.8, 222 + r * 1.6); im.setMatrixAt(k, _m4); im.setColorAt(k, _col.setHSL(R(), 0.6, rr(0.35, 0.65))); }
     scene.add(im); RC.crowd = im; }
-  frSign('SORREL RING', -40, 12.5, 235, PI, 18); frSign('RACE CONTROL', -6, 9.8, 149.2, 0, 6); frSign('PADDOCK  ·  SMFA MOTORSPORT', -60, 4, 136.5, PI, 12);
+  frSign('SORREL RING', -40, 12.5, 235, PI, 18); frSign('RACE CONTROL', -6, 9.8, 149.2, 0, 6); frSign('PADDOCK  ·  SMFA MOTORSPORT', -86, 5.2, 133, PI, 10);
 }
 function rcSetup(S, at) {
-  rcBuildTrack();
+  rcBuildTrack(); rcExitGate();
   if (RC.pending) { const P = RC.pending; RC.pending = null; frPlace(-6, 141, PI); setTimeout(() => { if (frRegion() === 'circuit') rcStart(P.role, P.opt); }, 60); return; }
   const spot = at === 'town' || at === 'paddock' || !S.rpos.circuit ? { x: -60, z: 145, yaw: 0 } : S.rpos.circuit;
   frPlace(spot.x, spot.z, spot.yaw, spot.y);
+  if (at === 'town') setTimeout(() => frRegion() === 'circuit' && frToast('Sorrel Ring', 'Race Control is ahead on the right. The exit gate (back to Port Sorrel or SMFA HQ) is right behind you.'), 2600);
+}
+// the way out: a gate at the north end of the paddock, right behind where you arrive
+function rcExitAsk() {
+  if (RC.active) { frToast('Sorrel Ring', 'Finish or leave the session first.'); return; }
+  frDialog('Sorrel Ring · exit', 'Where do you want to go? Both are free.', [
+    ['Drive back to Port Sorrel', () => { frSave(); frFade(() => { frLeave(); frEnterRegion('town', 'ring'); }); }],
+    ['Go straight to SMFA HQ', () => { frSave(); frFade(() => { frLeave(); startFreeRoam('start', 'hq'); }); }],
+    ['Stay at the circuit', null]
+  ]);
+}
+function rcExitGate() {
+  const gz = 123.5, M = c => new THREE.MeshLambertMaterial({ color: c });
+  for (const x of [-69, -51]) { const m = new THREE.Mesh(new THREE.BoxGeometry(1.2, 7.4, 1.2), M(0x1a1d1b)); m.position.set(x, 3.7, gz); scene.add(m); const s = new THREE.Mesh(new THREE.BoxGeometry(1.25, 0.5, 1.25), M(0x00c070)); s.position.set(x, 1.2, gz); scene.add(s); }
+  const beam = new THREE.Mesh(new THREE.BoxGeometry(18.7, 1.1, 1), M(0x1a1d1b)); beam.position.set(-60, 7.0, gz); scene.add(beam);
+  frSign('EXIT  ·  PORT SORREL  ·  SMFA HQ', -60, 6.9, gz + 0.7, 0, 16, '#0d0d0d', '#00ff88');
+  // a glowing ring on the ground marks the spot
+  const r = new THREE.Mesh(new THREE.RingGeometry(3.2, 3.8, 40), new THREE.MeshBasicMaterial({ color: 0x00ff88, transparent: true, opacity: 0.75, side: THREE.DoubleSide, depthWrite: false })); r.rotation.x = -PI / 2; r.position.set(-60, 0.06, 126); scene.add(r); RC.exitRing = r;
 }
 function rcPoints() {
   return [
@@ -13881,7 +13899,7 @@ function rcPoints() {
     { id: 'rc_mech', x: PIT.x0 + 24, z: 173, r: 3.2, label: 'SMFA Racing garage: join the pit crew', act: () => rcSetupPanel('mech') },
     { id: 'rc_watch', x: -40, z: 219.5, r: 4, label: 'Grandstand: watch a race (predictions optional)', act: () => rcSetupPanel('spec') },
     { id: 'rc_board', x: -82, z: 137.8, r: 2.6, label: 'Records board, Sorrel Cup standings and history', act: rcBoard },
-    { id: 'rc_exit', x: -60, z: 128, r: 3, label: 'Drive back to Port Sorrel', act: () => { frSave(); frFade(() => { frLeave(); frEnterRegion('town', 'ring'); }); } }
+    { id: 'rc_exit', x: -60, z: 126, r: 5.5, label: 'Exit: leave the Sorrel Ring', act: rcExitAsk }
   ];
 }
 function rcSetupPanel(role) {
