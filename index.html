@@ -733,6 +733,7 @@ body.freeroam.frciv #weap,body.freeroam.frciv #cross,body.freeroam.frciv #scope{
 .frnCode{font:900 15px ui-monospace,monospace;letter-spacing:.12em;color:#00ff88;background:#0d150e;border:1px solid #2c4a37;border-radius:4px;padding:1px 6px}
 #rcPanel .onSpin{margin:14px auto}
 @media (max-width:600px){#frNetBtn{top:calc(96px + var(--st))}}
+.sdPack .sdCoin{width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff2b8,#f2b33d 55%,#b8860b);color:#3a2a00;font:900 17px var(--ui);display:flex;align-items:center;justify-content:center;margin:8px 0 6px;box-shadow:0 0 18px rgba(242,179,61,.35)}
 </style>
 
 <div id="stage"></div>
@@ -14475,4 +14476,345 @@ function rcnMechPanel() {
     <p class="note" style="margin:0;font-size:11.5px;color:#a8b4ab">Your radio calls appear on the driver's screen; they decide when to come in. When they stop in the box, the pit stop is yours: keys 1–4 in the green band, hold 5 for a new wing, Space to release.</p>`;
   el.querySelectorAll('[data-rad]').forEach(b => b.onclick = () => { const k = b.dataset.rad; if (k === 'box') send('box', { ty: b.dataset.ty }); else if (k === 'pace') send('pace', { m: b.dataset.m }); else send('stay'); rcMsg(`Radio sent to ${c.name}`, ''); RC.mechT = 0; });
 }
+/* ================= more victory animations, more kill effects, Smiley Dollar packs, the President's unlimited SD ================= */
+
+/* ---------- store products ---------- */
+// SD packs are paid in cash or GoPay like every other Rp item and are added once the President approves the order.
+// 1 SD is worth about Rp1 elsewhere in the store (a 2,000 SD weapon also costs Rp2,000), and bigger packs add a bonus.
+const SD_PACKS = [
+  { id: 'sd_1000', sd: 1000, rp: 1000, bonus: 0 },
+  { id: 'sd_5500', sd: 5500, rp: 5000, bonus: 10 },
+  { id: 'sd_12000', sd: 12000, rp: 10000, bonus: 20 },
+  { id: 'sd_32500', sd: 32500, rp: 25000, bonus: 30 }
+];
+const NEW_PRODS = [
+  ...SD_PACKS.map(s => P_(s.id, 'sd', `${s.sd.toLocaleString('en-US')} Smiley Dollars`, s.rp, { sdAmt: s.sd, disc: false, desc: s.bonus ? `${s.bonus}% bonus compared with the smallest pack.` : 'The starter pack.' })),
+  P_('va_fireworks', 'cos', 'Fireworks Finale', 2000, { sd: 2500, desc: 'Victory animation: arms up on the podium while the night sky fills with fireworks, ending in a giant >:) Free with Sergeant membership.', items: 'victory' }),
+  P_('va_flyover', 'cos', 'Flyover', 2000, { sd: 2500, desc: 'Victory animation: three jets roar low over the runway trailing smoke in your colours. Free with Captain membership.', items: 'victory' }),
+  P_('va_extract', 'cos', 'Extraction', 3000, { sd: 4000, desc: 'Victory animation: a helicopter swoops onto the rooftop and lifts the President away on the ladder. Free with General membership.', items: 'victory' }),
+  P_('va_monument', 'cos', 'The Monument', 3000, { sd: 4000, desc: 'Victory animation: the cover flies off a golden statue and the President salutes beside it. Free with General membership.', items: 'victory' }),
+  P_('va_dance', 'cos', 'Victory Dance', 1000, { sd: 1200, desc: 'Victory animation: the President dances on the podium while the troops clap along.', items: 'victory' }),
+  P_('fx_ice', 'cos', 'Deep Freeze', 2000, { sd: 2500, desc: 'Elimination effect: frozen solid in a block of ice, then shattered.', items: 'killfx' }),
+  P_('fx_ash', 'cos', 'Ashes', 2000, { sd: 2500, desc: 'Elimination effect: the body crumbles into ash and drifts away.', items: 'killfx' }),
+  P_('fx_balloons', 'cos', 'Balloon Party', 1000, { sd: 1200, desc: 'Elimination effect: a bunch of balloons carries the body off into the sky.', items: 'killfx' }),
+  P_('fx_rainbow', 'cos', 'Rainbow', 2000, { sd: 2500, desc: 'Elimination effect: a rainbow arcs over the fallen.', items: 'killfx' })
+];
+for (const p of NEW_PRODS) { PRODUCTS.push(p); PROD[p.id] = p; }
+{ const b = PROD.bnd_complete; if (b) for (const id of ['va_fireworks', 'va_flyover', 'va_extract', 'va_monument', 'va_dance', 'fx_ice', 'fx_ash', 'fx_balloons', 'fx_rainbow']) if (!b.includes.includes(id)) b.includes.push(id); }
+{ const b = PROD.bnd_fx; if (b) for (const id of ['fx_ice', 'fx_ash', 'fx_balloons', 'fx_rainbow']) if (!b.includes.includes(id)) b.includes.push(id); }
+// SD packs can be bought again and again, so they are never "owned"
+{ const _ow = owns; owns = function (id) { const p = PROD[id]; if (p && p.kind === 'sd') return false; return _ow.apply(this, arguments); }; }
+
+/* ---------- the Store tab for SD ---------- */
+ST_TABS.splice(1, 0, ['sdbuy', 'Smiley Dollars']);
+{
+  const _rs = renderStore; renderStore = function (focus) {
+    _rs.apply(this, arguments);
+    if (stTab !== 'sdbuy') return;
+    const el = $('#stBody'); if (!el) return;
+    const inf = isAdmin();
+    el.innerHTML = `<p class="note">Smiley Dollars (SD) buy weapons, cosmetics, victory animations, flights, cars and more. You also earn them for free in every battle, race and job. A pack is paid in cash or GoPay like any other order and the SD are added to your balance as soon as the President approves it (open the game or the Store while logged in).</p>
+      ${inf ? '<p class="note"><b>You are the President: your SD balance is unlimited.</b></p>' : ''}
+      <div class="stGrid">${SD_PACKS.map(s => { const p = PROD[s.id], pend = pendingFor(s.id); return `<div class="stCard sdPack"><div class="stTop"><b>${s.sd.toLocaleString('en-US')} SD</b>${s.bonus ? `<i class="stTag">+${s.bonus}%</i>` : ''}</div><div class="sdCoin">SD</div><small>${esc(p.desc)}</small><div class="stPrice"><b>${RPF(s.rp)}</b><small>one-time</small></div><div class="stBtns">${pend ? '<span class="stPend">Waiting for the President</span>' : inf ? '<span class="stOwned">Unlimited</span>' : `<button class="btn small primary" data-buy="${s.id}">Buy · ${RPF(s.rp)}</button>`}</div></div>`; }).join('')}</div>
+      <p class="note">Only one order per pack can wait for approval at a time. Approved packs appear under Orders.</p>`;
+    $$('#stBody [data-buy]').forEach(b => b.onclick = () => openBuy(b.dataset.buy));
+  };
+  // SD packs are not offered as gift codes or manual grants (a code can only be used once per item, which does not fit a pack you can buy again)
+  const _ra = typeof renderAdmin === 'function' ? renderAdmin : null;
+  if (_ra) renderAdmin = function () { const r = _ra.apply(this, arguments); const strip = () => $$('#adProd option, #adGProd option').forEach(o => { if (/^sd_/.test(o.value)) o.remove(); }); strip(); setTimeout(strip, 400); setTimeout(strip, 1500); return r; };
+}
+
+/* ---------- adding approved SD packs to the balance (each approved order once) ---------- */
+let sdCreditBusy = false;
+async function sdCredit() {
+  if (sdCreditBusy || typeof accOn !== 'function' || !accOn() || !SB_ON()) return;
+  sdCreditBusy = true;
+  try {
+    await loadOrders();
+    const O = (STORE.orders || []).filter(o => o.status === 'approved' && PROD[o.product_id] && PROD[o.product_id].kind === 'sd');
+    const P = prof(); P.sdOrders = P.sdOrders || [];
+    let add = 0; const got = [];
+    for (const o of O) { if (P.sdOrders.includes(o.id)) continue; P.sdOrders.push(o.id); add += PROD[o.product_id].sdAmt; got.push(PROD[o.product_id].name); }
+    if (add) { P.coins += add; P.sdOrders = P.sdOrders.slice(-200); profSave(P); updateProfileCard(); toast('Smiley Dollars added', `+${add.toLocaleString('en-US')} SD (${got.join(', ')}). Thank you!`); SFX.ok() && SFX.tone(0.12, 0.3, 700, 1200, 'triangle'); if (!$('#scr-store').hidden) renderStore(); }
+  } catch (e) { }
+  sdCreditBusy = false;
+}
+setTimeout(sdCredit, 4000); setInterval(sdCredit, 120000);
+{ const _os = openStore; openStore = function () { const r = _os.apply(this, arguments); sdCredit(); return r; }; }
+
+/* ---------- the President: unlimited SD ---------- */
+// The President's real balance is kept as it is; while logged in as the President the game simply never runs out.
+const SD_INF = 999999999;
+{
+  const _pr = prof; prof = function () { const p = _pr.apply(this, arguments); if (typeof isAdmin === 'function' && isAdmin()) { p._realCoins = p.coins; p.coins = SD_INF; p._inf = true; } return p; };
+  const _ps = profSave; profSave = function (p) { if (p && p._inf) { const q = Object.assign({}, p); q.coins = p._realCoins; delete q._inf; delete q._realCoins; return _ps.call(this, q); } return _ps.apply(this, arguments); };
+  const sdTxt = () => '∞ SD';
+  const _pc = updateProfileCard; updateProfileCard = function () { const r = _pc.apply(this, arguments); if (isAdmin()) { const el = $('#profileCard') || document.querySelector('.pcMain'); if (el) el.querySelectorAll('*').forEach(n => { if (n.childNodes.length === 1 && n.firstChild.nodeType === 3 && /999,999,999/.test(n.textContent)) n.textContent = n.textContent.replace(/999,999,999( SD)?/, '∞ SD'); }); } return r; };
+  const _sh = stHeader; stHeader = function () { const h = _sh.apply(this, arguments); return isAdmin() ? h.replace(/999,999,999/g, '∞') : h; };
+  const _rb = renderBarracks; renderBarracks = function () { const r = _rb.apply(this, arguments); const c = $('#cosCoins'); if (c && isAdmin()) c.textContent = c.textContent.replace(/999,999,999 SD/, sdTxt()); return r; };
+  const fix = () => { if (!isAdmin()) return; const f = $('#frSD'); if (f && /999,999,999/.test(f.textContent)) f.textContent = sdTxt(); };
+  if (typeof frTick === 'function') { const _ft = frTick; frTick = function () { const r = _ft.apply(this, arguments); fix(); return r; }; }
+  // dialogs and toasts that mention the balance
+  const swap = s => typeof s === 'string' ? s.replace(/999,999,999( SD)?/g, 'unlimited SD') : s;
+  if (typeof frDialog === 'function') { const _fd = frDialog; frDialog = function (who, text, opts) { return _fd.call(this, who, swap(text), opts); }; }
+  const _to = toast; toast = function (a, b) { return _to.call(this, swap(a), swap(b)); };
+}
+
+/* ---------- new kill effects ---------- */
+addCos('killfx', [
+  { id: 'smiley', name: 'Smiley Stamp', desc: 'A glowing >:) rises over the fallen.', coins: 600 },
+  { id: 'ice', name: 'Deep Freeze', desc: 'Frozen solid in a block of ice, then shattered.', prod: 'fx_ice' },
+  { id: 'ash', name: 'Ashes', desc: 'The body crumbles into ash and drifts away.', prod: 'fx_ash' },
+  { id: 'balloons', name: 'Balloon Party', desc: 'A bunch of balloons carries the body off into the sky.', prod: 'fx_balloons' },
+  { id: 'rainbow', name: 'Rainbow', desc: 'A rainbow arcs over the fallen.', prod: 'fx_rainbow' }
+]);
+{
+  const _sw = cosSwatch; cosSwatch = function (slot, it) { if (slot === 'killfx') { const m = { smiley: '>:)', ice: '❄', ash: '♨', balloons: '🎈', rainbow: '◠' }[it.id]; if (m) return `<div class="sw2 sym">${m}</div>`; } return _sw.apply(this, arguments); };
+  const KFX_NEW = ['smiley', 'ice', 'ash', 'balloons', 'rainbow'];
+  let smileTex = null;
+  const smile = () => { if (smileTex) return smileTex; const c = document.createElement('canvas'); c.width = 256; c.height = 128; const g = c.getContext('2d'); g.font = '900 96px system-ui, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.shadowColor = '#39ff8a'; g.shadowBlur = 22; g.fillStyle = '#7dffb4'; g.fillText('>:)', 128, 66); g.fillText('>:)', 128, 66); smileTex = new THREE.CanvasTexture(c); return smileTex; };
+  const _pk = playKillFx; playKillFx = function (fx, x, y, z, rd, corpse) {
+    if (!KFX_NEW.includes(fx)) return _pk.apply(this, arguments);
+    const F = { fx, x, y, z, t: 0, rd, corpse, meshes: [] };
+    if (fx === 'smiley') { for (let k = 0; k < 30; k++) PS.add.spawn(x, y + 0.6, z, rr(-3, 3), rr(1, 5), rr(-3, 3), rr(0.5, 1), rr(0.08, 0.16), 0.3, 1, 0.55, 1, 3, 0, 2); try { SFX.tone(0.1, 0.35, 500, 900, 'square'); } catch (e) { } }
+    if (fx === 'rainbow') { const cols = [[1, 0.2, 0.2], [1, 0.55, 0.1], [1, 0.95, 0.2], [0.2, 0.9, 0.3], [0.2, 0.6, 1], [0.35, 0.3, 0.95], [0.75, 0.35, 1]]; for (let b = 0; b < 7; b++) { const r = 2.6 - b * 0.18; for (let k = 0; k <= 24; k++) { const a = k / 24 * PI; PS.add.spawn(x + Math.cos(a) * r, y - 0.6 + Math.sin(a) * r, z, 0, 0.15, 0, rr(1.4, 1.9), 0.14, cols[b][0], cols[b][1], cols[b][2], 0.9, 0, 0.2, 2); } } for (let k = 0; k < 24; k++) PS.crisp.spawn(x, y, z, rr(-2, 2), rr(2, 5), rr(-2, 2), rr(0.8, 1.4), 0.07, 1, 1, 1, 1, 6, 0, 0); try { SFX.tone(0.08, 0.6, 600, 1300, 'sine'); } catch (e) { } return; }
+    if (fx === 'ice') { try { SFX.tone(0.1, 0.3, 1800, 900, 'triangle'); } catch (e) { } }
+    if (fx === 'balloons') { try { SFX.tone(0.08, 0.25, 900, 1200, 'sine'); } catch (e) { } }
+    G_KFX.push(F);
+  };
+  const _kt = killFxTick; killFxTick = function (dt) {
+    G_KFX = G_KFX.filter(F => {
+      if (!KFX_NEW.includes(F.fx)) return true;
+      F.t += dt; const t = F.t, rd = F.rd, done = () => { for (const m of F.meshes) { scene.remove(m); if (m.geometry) m.geometry.dispose(); if (m.material) m.material.dispose(); } return false; };
+      // the middle of the body (from the ragdoll if there is one)
+      let cx = F.x, cy = F.y, cz = F.z; if (rd) { cx = cy = cz = 0; for (let k = 0; k < rd.n; k++) { cx += rd.p[k * 3]; cy += rd.p[k * 3 + 1]; cz += rd.p[k * 3 + 2]; } cx /= rd.n; cy /= rd.n; cz /= rd.n; }
+      if (F.fx === 'smiley') {
+        if (!F.meshes.length) { const m = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 1.1), new THREE.MeshBasicMaterial({ map: smile(), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false })); scene.add(m); F.meshes.push(m); }
+        const m = F.meshes[0]; m.position.set(F.x, F.y + 0.8 + t * 1.6, F.z); m.quaternion.copy(camera.quaternion); m.scale.setScalar(0.6 + Math.min(1, t * 3) * 0.6); m.material.opacity = t < 1.2 ? 1 : Math.max(0, 1 - (t - 1.2) * 2);
+        return t < 1.7 ? true : done();
+      }
+      if (F.fx === 'ice') {
+        if (rd) rd.frozen = true;
+        if (!F.meshes.length) { const m = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.1, 2.2), new THREE.MeshLambertMaterial({ color: 0xa8e0ff, transparent: true, opacity: 0, emissive: 0x2a5a7a, depthWrite: false })); m.position.set(cx, Math.max(0.55, cy), cz); if (rd) { const dx = rd.p[0] - rd.p[6 * 3], dz = rd.p[2] - rd.p[6 * 3 + 2]; m.rotation.y = Math.atan2(dx, dz); } scene.add(m); F.meshes.push(m); }
+        const m = F.meshes[0]; m.material.opacity = Math.min(0.62, t * 2.4);
+        if (R() < 0.4) PS.add.spawn(cx + rr(-0.6, 0.6), cy + rr(-0.3, 0.6), cz + rr(-0.6, 0.6), 0, rr(0.1, 0.5), 0, 0.5, 0.06, 0.8, 0.95, 1, 1, 0, 0, 2);
+        if (t > 1.15) {
+          for (let k = 0; k < 26; k++) spawnDebris(cx + rr(-0.5, 0.5), Math.max(0.3, cy) + rr(-0.4, 0.5), cz + rr(-0.8, 0.8), rr(-5, 5), rr(2, 7), rr(-5, 5), rr(0.1, 0.3), rr(0.1, 0.3), rr(0.1, 0.3), 0.65, 0.88, 1, 3, 0);
+          for (let k = 0; k < 20; k++) PS.soft.spawn(cx, cy, cz, rr(-2, 2), rr(0, 2), rr(-2, 2), rr(0.4, 0.8), rr(0.3, 0.6), 0.85, 0.95, 1, 0.6, 0, 1.2, 2);
+          if (F.corpse) F.corpse.hideAt = G.t; try { SFX.tone(0.12, 0.25, 2400, 600, 'sawtooth'); } catch (e) { }
+          return done();
+        }
+        return true;
+      }
+      if (F.fx === 'ash') {
+        if (rd) rd.frozen = true;
+        if (rd) for (let j = 0; j < 3; j++) { const k = Math.floor(R() * rd.n) * 3; PS.soft.spawn(rd.p[k], rd.p[k + 1], rd.p[k + 2], rr(0.3, 1.2), rr(0.4, 1.4), rr(-0.4, 0.4), rr(1, 2), rr(0.12, 0.3), 0.18, 0.17, 0.16, 0.8, -0.3, 0.6, 2); }
+        if (R() < 0.6) PS.add.spawn(cx + rr(-0.5, 0.5), cy + rr(-0.4, 0.4), cz + rr(-0.5, 0.5), rr(-0.3, 0.3), rr(0.5, 1.5), rr(-0.3, 0.3), 0.6, 0.05, 1, 0.5, 0.15, 1, 0, 0, 2);
+        if (t > 0.95) { if (F.corpse) F.corpse.hideAt = G.t; for (let k = 0; k < 30; k++) PS.soft.spawn(cx + rr(-0.6, 0.6), cy + rr(-0.4, 0.4), cz + rr(-0.6, 0.6), rr(0.5, 2), rr(0.2, 1.2), rr(-0.6, 0.6), rr(1.5, 3), rr(0.2, 0.45), 0.2, 0.19, 0.18, 0.7, -0.2, 0.8, 2); return done(); }
+        return true;
+      }
+      if (F.fx === 'balloons') {
+        if (!F.meshes.length) {
+          const cols = [0xff4a5a, 0x3aa0ff, 0xffd23a, 0x39d353, 0xb36bff];
+          for (let k = 0; k < 5; k++) { const b = new THREE.Mesh(new THREE.SphereGeometry(0.32, 12, 10), new THREE.MeshLambertMaterial({ color: cols[k], emissive: cols[k], emissiveIntensity: 0.15 })); b.scale.y = 1.2; b.userData.o = [Math.cos(k / 5 * TAU) * 0.45, 1.6 + (k % 2) * 0.35, Math.sin(k / 5 * TAU) * 0.45]; scene.add(b); F.meshes.push(b); }
+          const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(30), 3)); const s = new THREE.LineSegments(sg, new THREE.LineBasicMaterial({ color: 0xeeeeee })); scene.add(s); F.meshes.push(s); F.str = s;
+        }
+        const lift = Math.min(1, t * 1.5) * 2.4 * dt, sway = Math.sin(t * 2.2) * 0.4 * dt;
+        let hx = F.x, hy = F.y + 0.6 + t * 1.6, hz = F.z;
+        if (rd) { rd.frozen = true; for (let k = 0; k < rd.n; k++) { rd.p[k * 3 + 1] += lift * (1 - (k > 6 ? 0.15 : 0)); rd.p[k * 3] += sway; } hx = rd.p[0]; hy = rd.p[1]; hz = rd.p[2]; }
+        const pos = F.str.geometry.attributes.position.array;
+        for (let k = 0; k < 5; k++) { const b = F.meshes[k], o = b.userData.o; b.position.set(hx + o[0] + Math.sin(t * 1.7 + k) * 0.08, hy + o[1], hz + o[2]); pos.set([hx, hy + 0.1, hz, b.position.x, b.position.y - 0.36, b.position.z], k * 6); }
+        F.str.geometry.attributes.position.needsUpdate = true;
+        if (t > 4.2) { for (const b of F.meshes.slice(0, 5)) for (let j = 0; j < 8; j++) PS.crisp.spawn(b.position.x, b.position.y, b.position.z, rr(-2, 2), rr(-1, 2), rr(-2, 2), 0.6, 0.06, b.material.color.r, b.material.color.g, b.material.color.b, 1, 4, 0, 0); if (F.corpse) F.corpse.hideAt = G.t; return done(); }
+        return true;
+      }
+      return false;
+    });
+    return _kt.apply(this, arguments);
+  };
+}
+
+/* ---------- new victory animations ---------- */
+VA_DEFS.push(
+  { id: 'fireworks', name: 'Fireworks Finale', desc: 'Arms up on the podium while the night sky fills with fireworks, ending in a giant >:)', tier: 'sergeant', prod: 'va_fireworks', sym: '✺' },
+  { id: 'flyover', name: 'Flyover', desc: 'Three jets roar low over the runway trailing smoke in your colours.', tier: 'captain', prod: 'va_flyover', sym: '✈' },
+  { id: 'extract', name: 'Extraction', desc: 'A helicopter swoops onto the rooftop and lifts the President away on the ladder.', tier: 'general', prod: 'va_extract', sym: '⇡' },
+  { id: 'monument', name: 'The Monument', desc: 'The cover flies off a golden statue and the President salutes beside it.', tier: 'general', prod: 'va_monument', sym: '♜' },
+  { id: 'dance', name: 'Victory Dance', desc: 'The President dances on the podium while the troops clap along.', prod: 'va_dance', sym: '♫' }
+);
+for (const v of VA_DEFS.slice(-5)) COS.victory.push({ id: v.id, name: v.name, desc: v.desc, va: true, vaTier: v.tier, vaProd: v.prod, free: false, sym: v.sym, _slot: 'victory' });
+
+// small helpers for the new scenes
+function vaBurst(C, x, y, z, cols, n, spd) {
+  for (let k = 0; k < (n || 70); k++) { const u = rr(-1, 1), a = R() * TAU, r = Math.sqrt(1 - u * u), s = (spd || 7) * rr(0.75, 1); vaPart(C, { sphere: true, add: true, c: pick(cols), x, y, z, vx: r * Math.cos(a) * s, vy: u * s, vz: r * Math.sin(a) * s, g: 2.4, drag: 1.1, s: rr(0.12, 0.2), life: rr(1.3, 2.0) }); }
+  vaPart(C, { sphere: true, add: true, c: 0xffffff, a: 0.9, x, y, z, s: 1.2, grow: 3, life: 0.25 });
+}
+function vaJet() {
+  const g = new THREE.Group(), M = c => new THREE.MeshLambertMaterial({ color: c });
+  const b = (w, h, d, c, x, y, z) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), M(c)); m.position.set(x, y, z); g.add(m); };
+  b(0.9, 0.75, 7, 0x6a7078, 0, 0, 0); b(0.5, 0.45, 1.4, 0x5a6068, 0, 0, 3.9); b(7.6, 0.14, 2.2, 0x5e646c, 0, -0.05, -0.4); b(2.8, 0.12, 1.1, 0x5e646c, 0, 0, -3.1); b(0.12, 1.5, 1.2, 0x5e646c, 0, 0.8, -3.0); b(0.6, 0.35, 1.3, 0x1a2a3a, 0, 0.45, 1.6);
+  return g;
+}
+function vaHeli(col) {
+  const g = new THREE.Group(), M = c => new THREE.MeshLambertMaterial({ color: c });
+  const b = (w, h, d, c, x, y, z, p) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), M(c)); m.position.set(x, y, z); (p || g).add(m); return m; };
+  b(2.2, 2.0, 4.6, col, 0, 0, 0); b(1.9, 1.2, 1.6, 0x1a2a3a, 0, 0.3, 2.0); b(0.5, 0.5, 5.2, col, 0, 0.4, -4.6); b(0.12, 1.4, 0.9, col, 0, 1.0, -7.0);
+  for (const s of [-1, 1]) { b(0.12, 0.12, 4.2, 0x222222, s * 1.1, -1.5, 0); b(0.12, 0.6, 0.12, 0x222222, s * 1.1, -1.2, 1.2); b(0.12, 0.6, 0.12, 0x222222, s * 1.1, -1.2, -1.2); }
+  const rotor = new THREE.Group(); rotor.position.y = 1.25; g.add(rotor); b(11, 0.06, 0.4, 0x1a1a1a, 0, 0, 0, rotor); b(0.4, 0.06, 11, 0x1a1a1a, 0, 0, 0, rotor);
+  g.userData.rotor = rotor; return g;
+}
+{
+  const _cs = csSet; csSet = function (name, scene) {
+    if (!['va_night', 'va_runway', 'va_roof', 'va_plaza'].includes(name)) return _cs.apply(this, arguments);
+    const X = VA_BUILD || { ctx: { N: NATIONS.smfa }, upd: [] }, N = X.ctx.N; X.scene = scene;
+    const L = c => new THREE.MeshLambertMaterial({ color: c });
+    const B = (w, h, d, c, x, y, z, ry) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), L(c)); o.position.set(x, y, z); if (ry) o.rotation.y = ry; scene.add(o); return o; };
+    const Bb = (w, h, d, c, x, y, z) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({ color: c })); o.position.set(x, y, z); scene.add(o); return o; };
+    const sky = (top, bot) => { const c = document.createElement('canvas'); c.width = 2; c.height = 256; const g = c.getContext('2d'); const gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, top); gr.addColorStop(1, bot); g.fillStyle = gr; g.fillRect(0, 0, 2, 256); scene.background = new THREE.CanvasTexture(c); };
+    const hemi = new THREE.HemisphereLight(0xdde8ff, 0x332a22, 0.6), sun = new THREE.DirectionalLight(0xffffff, 0.8); sun.position.set(5, 10, 6); scene.add(hemi); scene.add(sun);
+    const pole = (x, z, h) => { B(0.07, h, 0.07, 0xb0a888, x, h / 2, z); const f = vaCloth(N, 1.4, 0.85); f.position.set(x + 0.04, h - 0.5, z); scene.add(f); X.upd.push((dt, C) => vaWave(f, C.beatT + x, 0.18)); };
+    if (name === 'va_night') {
+      B(90, 0.2, 90, 0x2a2c30, 0, -0.1, 0); for (let k = -6; k <= 6; k++) B(0.2, 0.01, 30, 0x4a4c50, k * 3, 0.01, 6);
+      B(4, 1, 2.4, 0x1e2022, 0, 0.5, -2); B(4.2, 0.08, 2.6, 0xd4a017, 0, 1.02, -2);
+      { const em = new THREE.Mesh(new THREE.PlaneGeometry(0.95, 0.6), new THREE.MeshBasicMaterial({ map: vaFlagTex(N) })); em.position.set(0, 0.6, -0.79); scene.add(em); }
+      for (let k = 0; k < 16; k++) { const s = k % 2 ? 1 : -1, h = rr(6, 18); const o = B(rr(3, 6), h, rr(3, 6), 0x101218, s * rr(10, 34), h / 2, rr(-38, -14)); for (let w = 0; w < 6; w++) if (R() < 0.5) Bb(0.4, 0.5, 0.05, 0xffd890, o.position.x + rr(-1, 1), rr(1, h - 1), o.position.z + o.geometry.parameters.depth / 2 + 0.03); }
+      for (let k = -3; k <= 3; k++) if (k) pole(k * 2.6, -4.5, 4.5);
+      for (let k = 0; k < 90; k++) { const st = Bb(0.07, 0.07, 0.07, 0xffffff, rr(-60, 60), rr(18, 50), rr(-70, -45)); st.material.color.setScalar(rr(0.4, 1)); }
+      X.glow = new THREE.PointLight(0xffe0b0, 0, 40); X.glow.position.set(0, 14, -12); scene.add(X.glow);
+      const spot = new THREE.PointLight(0xffe8c8, 1.1, 12); spot.position.set(0, 4, 2); scene.add(spot);
+      sky('#03050c', '#1a2238'); scene.fog = new THREE.Fog(0x0a0e1a, 30, 95); hemi.intensity = 0.32; sun.intensity = 0.25; sun.color.setHex(0x8aa0ff);
+    } else if (name === 'va_runway') {
+      B(200, 0.2, 200, 0x5a6a44, 0, -0.1, -40); B(14, 0.03, 160, 0x2e3032, 0, 0.01, -40);
+      for (let k = 0; k < 18; k++) B(0.5, 0.02, 4, 0xe8e8e0, 0, 0.03, 30 - k * 9);
+      for (const s of [-1, 1]) for (let k = 0; k < 14; k++) Bb(0.18, 0.18, 0.18, 0xffe080, s * 7.2, 0.1, 30 - k * 10);
+      for (const [x, z] of [[-22, -10], [-24, -34], [24, -20]]) { B(14, 7, 12, 0x6a6e72, x, 3.5, z); B(14.4, 0.6, 12.4, 0x4a4e52, x, 7.2, z); }
+      B(3, 12, 3, 0x7a7670, 18, 6, 8); B(5, 3, 5, 0x3a4a5a, 18, 13.5, 8);
+      pole(-3, -1.5, 5); pole(3, -1.5, 5);
+      X.jets = [vaJet(), vaJet(), vaJet()]; X.jets.forEach(j => { j.position.set(0, -50, -300); scene.add(j); });
+      sky('#4f86c6', '#d8e8f4'); scene.fog = new THREE.Fog(0xc8dcea, 60, 240);
+    } else if (name === 'va_roof') {
+      B(18, 0.4, 18, 0x4a4c50, 0, -0.2, 0); for (const [x, z, w, d] of [[0, 9, 18, 0.4], [0, -9, 18, 0.4], [9, 0, 0.4, 18], [-9, 0, 0.4, 18]]) B(w, 1, d, 0x3a3c40, x, 0.5, z);
+      { const pad = new THREE.Mesh(new THREE.CircleGeometry(3.4, 32), new THREE.MeshLambertMaterial({ color: 0x2a2c30 })); pad.rotation.x = -PI / 2; pad.position.set(0, 0.01, -2); scene.add(pad); const r = new THREE.Mesh(new THREE.RingGeometry(3.1, 3.4, 40), new THREE.MeshBasicMaterial({ color: 0xffd23a, side: THREE.DoubleSide })); r.rotation.x = -PI / 2; r.position.set(0, 0.02, -2); scene.add(r); Bb(0.35, 0.02, 2.2, 0xffffff, -0.7, 0.03, -2); Bb(0.35, 0.02, 2.2, 0xffffff, 0.7, 0.03, -2); Bb(1.4, 0.02, 0.35, 0xffffff, 0, 0.03, -2); }
+      for (let k = 0; k < 28; k++) { const a = R() * TAU, r = rr(16, 60), h = rr(10, 50); const o = B(rr(5, 12), h, rr(5, 12), pick([0x2a2c34, 0x343640, 0x24262c]), Math.cos(a) * r, h / 2 - 40, Math.sin(a) * r - 10); for (let w = 0; w < 8; w++) if (R() < 0.5) Bb(0.6, 0.8, 0.05, 0xffc880, o.position.x + rr(-2, 2), o.position.y + rr(-h / 2 + 1, h / 2 - 1), o.position.z + o.geometry.parameters.depth / 2 + 0.03); }
+      B(1.2, 2.4, 1.2, 0x5a5c60, 6.5, 1.2, 6.5); B(2.6, 1.4, 1.8, 0x6a6c70, -6, 0.7, 6);
+      X.heli = vaHeli(new THREE.Color(N.uni).multiplyScalar(0.7).getHex()); X.heli.position.set(0, 30, -40); scene.add(X.heli);
+      const lad = new THREE.Group(); for (const s of [-0.22, 0.22]) { const r = new THREE.Mesh(new THREE.BoxGeometry(0.04, 6, 0.04), L(0xc8b88a)); r.position.set(s, -3, 0); lad.add(r); } for (let k = 0; k < 12; k++) { const st = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.04, 0.04), L(0xc8b88a)); st.position.set(0, -0.3 - k * 0.5, 0); lad.add(st); }
+      lad.position.set(0.4, -1.6, 0); X.heli.add(lad); X.ladder = lad; lad.visible = false;
+      sky('#28304a', '#e88a5a'); scene.fog = new THREE.Fog(0xb07a6a, 40, 140); hemi.color.setHex(0xffc0a0); hemi.intensity = 0.5; sun.color.setHex(0xffa070); sun.position.set(-8, 6, -12);
+    } else if (name === 'va_plaza') {
+      B(90, 0.2, 90, 0xb8b0a0, 0, -0.1, 0); for (let k = -7; k <= 7; k++) B(0.06, 0.01, 30, 0x9a9282, k * 2, 0.01, 2);
+      B(2.6, 2, 2.6, 0x8a8478, 0, 1, -3); B(3, 0.25, 3, 0x9a9488, 0, 2.1, -3); B(3.2, 0.25, 3.2, 0x7a746a, 0, 0.12, -3);
+      // the golden statue: a blocky President saluting
+      const st = new THREE.Group(), gold = new THREE.MeshLambertMaterial({ color: 0xd4a017, emissive: 0x3a2a00 });
+      const gb = (w, h, d, x, y, z, rz, rx) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), gold); m.position.set(x, y, z); if (rz) m.rotation.z = rz; if (rx) m.rotation.x = rx; st.add(m); };
+      gb(0.34, 1.1, 0.34, -0.22, 0.55, 0); gb(0.34, 1.1, 0.34, 0.22, 0.55, 0); gb(0.9, 1.0, 0.5, 0, 1.6, 0); gb(0.45, 0.48, 0.45, 0, 2.38, 0); gb(0.55, 0.12, 0.55, 0, 2.66, 0);
+      gb(0.24, 0.9, 0.24, -0.58, 1.65, 0, -0.08); gb(0.24, 0.62, 0.24, 0.62, 2.15, 0.12, 0.9, -0.2); gb(0.22, 0.5, 0.22, 0.42, 2.45, 0.22, -0.6, -0.6);
+      st.position.set(0, 2.22, -3); st.scale.setScalar(1.15); scene.add(st); X.statue = st;
+      const cover = new THREE.Mesh(new THREE.BoxGeometry(1.6, 3.4, 1.1), new THREE.MeshLambertMaterial({ color: 0x8a1a1e, transparent: true })); cover.position.set(0, 2.22 + 1.7, -3); scene.add(cover); X.cover = cover;
+      for (let k = -2; k <= 2; k++) if (k) pole(k * 3.2, -6.5, 5);
+      for (let k = 0; k < 10; k++) { const s = k % 2 ? 1 : -1; const tr = new THREE.Mesh(new THREE.ConeGeometry(1.2, 3.4, 7), L(0x3a6a3a)); tr.position.set(s * rr(8, 16), 2.2, rr(-14, 4)); scene.add(tr); B(0.3, 0.8, 0.3, 0x5a4028, tr.position.x, 0.4, tr.position.z); }
+      for (let k = 0; k < 8; k++) { const s = k % 2 ? 1 : -1, h = rr(6, 14); B(rr(4, 8), h, rr(4, 7), pick([0xa8a090, 0x9a9282, 0xb0a898]), s * rr(14, 30), h / 2, rr(-30, -14)); }
+      sky('#7aa6d0', '#e8eef2'); scene.fog = new THREE.Fog(0xd8e2ea, 30, 100);
+    }
+  };
+}
+Object.assign(VA_SCRIPTS, {
+  fireworks: { set: 'night', dur: 9.2,
+    actors: () => { const a = { pres: { c: '_vp', p: [0, -2], r: 0 } }; for (let k = 0; k < 6; k++) a['s' + k] = { c: '_vs', p: [-3.75 + k * 1.5, 3 + (k % 2) * 0.8], r: PI }; return a; },
+    tl(C, t, dt, ctx) {
+      const P = C.actors.pres, X = C.va; P.root.position.y = 1.02;
+      if (t > 1.0) { P.anim = 'handsup'; P.expr = 'smile'; P.arms[0].sh.rotation.z += Math.sin(t * 5) * 0.12; P.arms[1].sh.rotation.z -= Math.sin(t * 5 + 1) * 0.12; }
+      for (let k = 0; k < 6; k++) { const A = C.actors['s' + k]; if (t > 1.6) { A.anim = 'fist'; A.root.position.y = Math.max(0, Math.sin(t * 6 + k)) * 0.12; } }
+      const cols = [ctx.N.flag, 0xffffff, 0xd4a017, 0x39d353, 0xef4b4f, 0x5aa6ff];
+      X.fw = X.fw || [1.3, 1.9, 2.5, 3.0, 3.4, 3.9, 4.4, 4.8].map(at => ({ at, x: rr(-14, 14), y: rr(13, 21), z: rr(-26, -16), done: false, up: false }));
+      for (const f of X.fw) {
+        if (!f.up && t > f.at - 0.7) { f.up = true; vaPart(C, { sphere: true, add: true, c: 0xffd8a0, x: f.x, y: 0.5, z: f.z, vy: (f.y - 0.5) / 0.7, s: 0.15, life: 0.7 }); }
+        if (!f.done && t > f.at) { f.done = true; vaBurst(C, f.x, f.y, f.z, [pick(cols), pick(cols), 0xffffff], 80, rr(6, 9)); X.glow.position.set(f.x, f.y, f.z); X.glowT = 1; SFX.boom && SFX.boom(30, false); }
+      }
+      // the finale: a giant >:) drawn in green sparks
+      if (!X.face && t > 5.4) {
+        X.face = 1; const cx = 0, cy = 17, cz = -22, put = (x, y) => vaPart(C, { sphere: true, add: true, c: 0x39ff6a, x: cx + x, y: cy + y, z: cz, vx: x * 0.15, vy: y * 0.15 - 0.2, s: 0.28, g: 0.25, drag: 0.4, life: 2.8 });
+        for (let k = 0; k <= 10; k++) { const u = k / 10; put(-7 + u * 2.2, 2.6 - u * 1.6); put(-7 + u * 2.2, -0.6 + u * 1.6); }
+        for (const y of [1.4, -0.4]) for (let k = 0; k < 4; k++) put(-1.4 + rr(-0.25, 0.25), y + rr(-0.25, 0.25));
+        for (let k = 0; k <= 16; k++) { const a = -1.25 + k / 16 * 2.5; put(1.6 + Math.cos(a) * 3.4, Math.sin(a) * 3.4); }
+        vaBurst(C, cx, cy, cz, [0xffffff], 40, 4); X.glow.position.set(cx, cy, cz); X.glowT = 1.6; SFX.boom && SFX.boom(20, true);
+      }
+      if (X.glowT > 0) { X.glowT -= dt; X.glow.intensity = Math.max(0, X.glowT) * 3; }
+      vaCam(C, [[0, [0, 3.2, 15], [0, 4, -8]], [3, [2.6, 1.9, 8], [0, 8, -14]], [5.2, [0, 2.2, 9.5], [0, 12, -18]], [9.2, [0, 2.4, 10], [0, 13, -20]]], t);
+      if (t > 6.2) vaShowTitle(C);
+    } },
+  flyover: { set: 'runway', dur: 8.4,
+    actors: () => ({ pres: { c: '_vp', p: [0, 0], r: 0 } }),
+    tl(C, t, dt, ctx) {
+      const P = C.actors.pres, X = C.va, t0 = 0.4, v = 70, cols = [ctx.N.flag, 0xffffff, 0xd4a017];
+      const z = -170 + (t - t0) * v;
+      X.jets.forEach((j, k) => { const off = [[-6, -5], [0, 0], [6, -5]][k]; j.position.set(off[0], 22, z + off[1]); if (t > t0 && z > -170 && z < 160 && R() < 0.9) vaPart(C, { sphere: true, c: cols[k], a: 0.85, x: j.position.x, y: 22, z: j.position.z - 3.6, s: rr(0.7, 1.0), grow: 0.55, drag: 0.4, life: 5.5 }); });
+      if (!X.roar && z > -40) { X.roar = 1; SFX.ok() && SFX.tone(0.16, 2.2, 160, 50, 'sawtooth'); C.S.beats[0].shake = 0.05; }
+      if (X.roar) C.S.beats[0].shake = Math.max(0, 0.05 - (t - 2.4) * 0.03);
+      P.anim = 'idle';
+      const look = vaE(vaK(t, 1.2, 2.2)) * (1 - vaE(vaK(t, 3.4, 4.2))); P.head.rotation.x = -0.75 * look;
+      if (t > 3.8) { P.anim = 'salute'; P.expr = 'smile'; }
+      vaCam(C, [[0, [2.4, 1.0, 5.2], [0, 5, -40]], [2.2, [1.6, 0.7, 3.4], [0, 24, -6]], [3.4, [1.6, 0.8, 3.2], [0, 22, 24]], [4.6, [1.8, 1.6, 4.0], [0, 1.6, 0]], [8.4, [1.2, 1.7, 3.0], [0, 1.65, 0]]], t);
+      if (t > 4.8) vaShowTitle(C);
+    } },
+  extract: { set: 'roof', dur: 9.4,
+    actors: () => ({ pres: { c: '_vp', p: [0, 5], r: PI } }),
+    tl(C, t, dt) {
+      const P = C.actors.pres, X = C.va, H = X.heli;
+      H.userData.rotor.rotation.y += dt * 30;
+      // the helicopter comes in and hovers above the pad
+      const k1 = vaE(vaK(t, 0, 2.8)); H.position.set(0, lerp(30, 6.6, k1), lerp(-40, -1.9, k1)); H.rotation.x = lerp(0.25, 0, k1);
+      if (t > 2.2) X.ladder.visible = true;
+      if (t < 3.0 && t > 1.6 && R() < dt * 30) vaDust(C, rr(-3, 3), 0.1, -2 + rr(-3, 3), 1, 4, 0x8a8a84, 0.35, 0.5);
+      // the President walks over, grabs the ladder, and is lifted away
+      if (t < 2.8) { P.anim = 'walk'; P.root.position.z = lerp(5, -1.0, t / 2.8); P.root.position.x = lerp(0, 0.4, t / 2.8); }
+      else if (t < 3.6) { P.anim = 'idle'; P.root.rotation.y = lerp(PI, PI * 1.05, vaK(t, 2.8, 3.6)); const Rr = P.arms[1]; Rr.sh.rotation.x = -2.9 * vaE(vaK(t, 2.9, 3.4)); }
+      else {
+        const k2 = vaK(t, 3.6, 9.4), e = k2 * k2;
+        H.position.y = 6.6 + e * 40; H.position.z = -1.9 - e * 60; H.rotation.x = -0.15 * Math.min(1, k2 * 4);
+        P.anim = 'idle'; P.root.position.set(0.4, H.position.y - 6.65, H.position.z + 0.85); P.root.rotation.y = 0;
+        const [L, Rr] = P.arms; Rr.sh.rotation.x = -3.0; L.sh.rotation.z = -2.2 + Math.sin(t * 6) * 0.5; L.el.rotation.z = -0.4; P.expr = 'smile';
+        P.legs[0].hip.rotation.x = -0.3; P.legs[1].knee.rotation.x = 0.5;
+      }
+      vaCam(C, [[0, [3.2, 1.8, 7.5], [0, 1.6, 0]], [2.8, [3.4, 1.6, 3.6], [0.4, 2.6, -1.2]], [4.2, [3.4, 2.2, 4.2], [0.4, 3.2, -1.2]], [6.5, [2.6, 3.0, 7.0], [0.4, 11, -10]], [9.4, [1.6, 3.2, 8.0], [0.4, 26, -30]]], t);
+      if (t > 5.4) vaShowTitle(C);
+    } },
+  monument: { set: 'plaza', dur: 9.4,
+    actors: () => ({ pres: { c: '_vp', p: [-1.8, 7], r: PI } }),
+    tl(C, t, dt, ctx) {
+      const P = C.actors.pres, X = C.va;
+      // the cover flies off
+      if (t > 1.6) { const k = vaK(t, 1.6, 3.0); X.cover.position.y = 2.22 + 1.7 + k * 6; X.cover.position.x = k * 3; X.cover.rotation.z = k * 2.2; X.cover.material.opacity = 1 - k; if (!X.rev) { X.rev = 1; vaFlash(0.35); SFX.ok() && SFX.tone(0.12, 0.8, 520, 1040, 'triangle'); } }
+      if (X.rev && R() < dt * 25) vaPart(C, { sphere: true, add: true, c: pick([0xffe08a, 0xffffff, 0xd4a017]), x: rr(-1, 1), y: 2.4 + rr(0, 3.2), z: -3 + rr(-0.6, 0.8), vy: rr(0.2, 0.8), s: 0.06, life: 1.2 });
+      if (t > 2.4 && !X.conf) X.conf = 1;
+      if (X.conf && t < 7 && R() < dt * 40) vaPart(C, { plane: true, c: pick([ctx.N.flag, 0xffffff, 0xd4a017, 0xef4b4f, 0x39d353]), x: rr(-6, 6), y: rr(7, 9), z: rr(-6, 4), vy: -rr(0.8, 1.5), s: 0.12, sy: 0.6, spin: rr(2, 6), flutter: 0.9, drag: 0.4, life: 5 });
+      // the President walks up and salutes beside it
+      const T1 = 4.0;
+      if (t < T1) { P.anim = 'walk'; P.root.position.z = lerp(7, -0.6, t / T1); P.root.position.x = lerp(-1.8, 1.9, t / T1); P.root.rotation.y = PI - 0.45; }
+      else { P.anim = 'idle'; P.root.position.set(1.9, 0, -0.6); P.root.rotation.y = lerp(PI - 0.45, 0, vaE(vaK(t, T1, T1 + 0.6))); if (t > T1 + 0.7) { P.anim = 'salute'; P.expr = 'smile'; } }
+      vaCam(C, [[0, [0, 2.2, 13], [0, 3, -3]], [1.6, [0, 2.6, 8.5], [0, 3.6, -3]], [3.4, [-2.5, 1.9, 6], [0.4, 3.2, -3]], [5.2, [3.8, 2.4, 7.6], [0.6, 3.0, -2.4]], [9.4, [3.4, 2.5, 6.8], [0.6, 3.0, -2.4]]], t);
+      if (t > 5.4) vaShowTitle(C);
+    } },
+  dance: { set: 'parade', dur: 8,
+    actors: () => { const a = { pres: { c: '_vp', p: [0, -2.2], r: 0 } }; for (let k = 0; k < 6; k++) a['s' + k] = { c: '_vs', p: [-3.75 + k * 1.5, 2.2 + (k % 2) * 0.9], r: PI }; return a; },
+    tl(C, t, dt, ctx) {
+      const P = C.actors.pres, X = C.va; P.root.position.y = 1.02; P.anim = 'idle'; P.expr = 'smile';
+      const b = t * 2.2 * PI, s = Math.sin(b), c2 = Math.cos(b), [L, Rr] = P.arms, [LL, RL] = P.legs;
+      const move = Math.floor(t / 2) % 3;
+      if (t > 0.6) {
+        P.body.position.y = Math.abs(s) * 0.12; P.root.rotation.y = Math.sin(b * 0.5) * 0.35;
+        if (move === 0) { L.sh.rotation.z = -1.8 - s * 0.6; Rr.sh.rotation.z = 1.8 - s * 0.6; L.el.rotation.z = -0.8; Rr.el.rotation.z = 0.8; }
+        else if (move === 1) { L.sh.rotation.x = -1.4 + s * 0.8; Rr.sh.rotation.x = -1.4 - s * 0.8; L.el.rotation.x = Rr.el.rotation.x = -1.2; P.torso.rotation.z = s * 0.12; }
+        else { Rr.sh.rotation.z = 2.7; Rr.el.rotation.z = 0.3 + c2 * 0.3; L.sh.rotation.z = -0.4; L.sh.rotation.x = -0.6 + s * 0.4; P.head.rotation.z = s * 0.2; }
+        LL.hip.rotation.x = -Math.max(0, s) * 0.5; LL.knee.rotation.x = Math.max(0, s) * 0.8; RL.hip.rotation.x = -Math.max(0, -s) * 0.5; RL.knee.rotation.x = Math.max(0, -s) * 0.8;
+      }
+      // the troops clap along
+      for (let k = 0; k < 6; k++) { const A = C.actors['s' + k]; A.anim = 'idle'; const cl = Math.abs(Math.sin(t * 2.2 * PI + k * 0.3)); A.arms[0].sh.rotation.x = A.arms[1].sh.rotation.x = -1.25; A.arms[0].sh.rotation.z = 0.35 * cl; A.arms[1].sh.rotation.z = -0.35 * cl; A.arms[0].el.rotation.x = A.arms[1].el.rotation.x = -0.5; }
+      if ((X.beat = (X.beat || 0) + dt) > 1 / 2.2) { X.beat = 0; SFX.ok() && SFX.tone(0.05, 0.08, (X.bn = ((X.bn || 0) + 1) % 4) === 0 ? 220 : 330, 110, 'square'); }
+      if (t > 1 && R() < dt * 50) vaPart(C, { plane: true, c: pick([ctx.N.flag, 0xffffff, 0xd4a017, 0x39d353, 0xef4b4f, 0x5aa6ff]), x: rr(-7, 7), y: rr(6, 9), z: rr(-4, 6), vy: -rr(0.8, 1.6), s: 0.12, sy: 0.6, spin: rr(2, 6), flutter: 0.9, drag: 0.4, life: 5 });
+      const orb = t * 0.22;
+      vaSetCam(C, [Math.sin(orb) * 6.5, 2.4, 4.2 + Math.cos(orb) * 3], [0, 2.1, -2]);
+      if (t > 4.4) vaShowTitle(C);
+    } }
+});
 </script>
