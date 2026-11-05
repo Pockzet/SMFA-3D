@@ -2355,6 +2355,9 @@ function bmPutM(m, col) { const n = m.userData.n; if (n >= m.userData.cap) retur
 // BMC is the model set used for the body being drawn: the normal one, or (with the HD add-on) the detailed set for
 // soldiers close to the camera. Far soldiers keep the light models so big battles stay smooth.
 let BMC = BM;
+// add-ons can reshape bodies (height, build, gender) when drawing them. Nothing here changes gameplay.
+let BODY = null, CUR_L = null;
+const bmPart = k => (BMC.pick && BMC.pick(k, CUR_L)) || BMC.parts[k];
 function bmPick(P) { const H = BM.hd; if (!H || !H.on) return BM; const dx = P[0] - camera.position.x, dy = P[1] - camera.position.y, dz = P[2] - camera.position.z; return dx * dx + dy * dy + dz * dz < H.near * H.near ? H : BM; }
 const bmSets = () => BM.hd && BM.hd.on ? [BM, BM.hd] : [BM];
 function bmBegin() { for (const S of bmSets()) for (const g of [S.parts, S.hats, S.guns, S.extraM || {}]) for (const k in g) g[k].userData.n = 0; }
@@ -2921,37 +2924,38 @@ function renderBodies() {
       const a = S[0] * 3, b = S[1] * 3;
       segMatrix(P[a], P[a + 1], P[a + 2], P[b], P[b + 1], P[b + 2], S[2], S[3], sx, sy, sz, S[2] * 0.4);
       const c = cols[S[4]]; _col.setRGB(c.r * dark, c.g * dark, c.b * dark);
-      const mk = SEG_MODEL[s]; if (mk) { bmPutM(BMC.parts[mk], _col); continue; }
+      const mk = SEG_MODEL[s]; if (mk) { bmPutM(bmPart(mk), _col); continue; }
       pm.setMatrixAt(n, _m4); pm.setColorAt(n, _col); n++;
     }
     if (!BM.on) return;
     // hands (skin) at the end of each forearm, boots at the end of each shin
     const skin = cols[3];
-    for (const [si, e, k] of [[2, 4, 3], [4, 6, 5]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const E = e * 3, K = k * 3; bmFrame(P[E] - P[K], P[E + 1] - P[K + 1], P[E + 2] - P[K + 2], sx, sy, sz); const hs = 0.095; bmPut(BMC.parts.hand, _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[E] + _by[0] * 0.035, P[E + 1] + _by[1] * 0.035, P[E + 2] + _by[2] * 0.035, _col.setRGB(skin.r * dark, skin.g * dark, skin.b * dark)); }
-    for (const [si, f, k] of [[6, 8, 7], [8, 10, 9]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const F = f * 3, K = k * 3; bmFrame(P[F] - P[K], P[F + 1] - P[K + 1], P[F + 2] - P[K + 2], sx, sy, sz); bmPut(BMC.parts.boot, _bx[0] * 0.15, _bx[1] * 0.15, _bx[2] * 0.15, _by[0] * 0.2, _by[1] * 0.2, _by[2] * 0.2, _bz[0] * 0.17, _bz[1] * 0.17, _bz[2] * 0.17, P[F] - _by[0] * 0.04, P[F + 1] - _by[1] * 0.04, P[F + 2] - _by[2] * 0.04, _col.setRGB(0.16 * dark + 0.1, 0.15 * dark + 0.09, 0.13 * dark + 0.08)); }
+    for (const [si, e, k] of [[2, 4, 3], [4, 6, 5]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const E = e * 3, K = k * 3; bmFrame(P[E] - P[K], P[E + 1] - P[K + 1], P[E + 2] - P[K + 2], sx, sy, sz); const hs = 0.095; bmPut(bmPart('hand'), _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[E] + _by[0] * 0.035, P[E + 1] + _by[1] * 0.035, P[E + 2] + _by[2] * 0.035, _col.setRGB(skin.r * dark, skin.g * dark, skin.b * dark)); }
+    for (const [si, f, k] of [[6, 8, 7], [8, 10, 9]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const F = f * 3, K = k * 3; bmFrame(P[F] - P[K], P[F + 1] - P[K + 1], P[F + 2] - P[K + 2], sx, sy, sz); bmPut(bmPart('boot'), _bx[0] * 0.15, _bx[1] * 0.15, _bx[2] * 0.15, _by[0] * 0.2, _by[1] * 0.2, _by[2] * 0.2, _bz[0] * 0.17, _bz[1] * 0.17, _bz[2] * 0.17, P[F] - _by[0] * 0.04, P[F + 1] - _by[1] * 0.04, P[F + 2] - _by[2] * 0.04, _col.setRGB(0.16 * dark + 0.1, 0.15 * dark + 0.09, 0.13 * dark + 0.08)); }
   };
   // head (and hat) frame: up from the neck to the head, side from the body
   const putHead = (P, sx, sy, sz, skin, hat, hatc) => {
     bmFrame(P[0] - P[3], P[1] - P[4], P[2] - P[5], sx, sy, sz); const hs = 0.3;
     // side x up = forward, so the face (+z in the model) looks the way the body faces
-    bmPut(BMC.parts.head, _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[0], P[1], P[2], skin);
+    bmPut(bmPart('head'), _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[0], P[1], P[2], skin);
     const hm2 = hat && BMC.hats[hat]; if (hm2) bmPut(hm2, _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[0], P[1], P[2], hatc);
-    if (BMC.extra) for (const X of BMC.extra) if (!X.when || X.when(hat)) bmPut(X.m, _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[0], P[1], P[2], X.col);
+    if (BMC.extra) for (const X of BMC.extra) if (!X.when || X.when(hat, CUR_L)) bmPut(X.m, _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[0], P[1], P[2], typeof X.col === 'function' ? X.col(CUR_L) : X.col);
   };
   if (BM.on) bmBegin();
   for (const u of G.units) {
     if ((!u.alive && !u.arrested) || u.inVeh) continue;
     if (G.view === 'field' && u === (G.player || G.spec) && (G.aimFP || G.fp || G.spec)) continue;
-    const P = u.pts, L = u.look;
+    const L = u.look; CUR_L = L;
+    const P = BODY ? BODY.adjust(u.pts, L, u.y) : u.pts, SG = BODY ? BODY.segs(SEGS, L) : SEGS;
     BMC = bmPick(P);
     const lx = Math.cos(u.yaw), lz = -Math.sin(u.yaw);
     if (u.limbs && missingLimbs(u).length) {
-      const miss = missingLimbs(u), segs = SEGS.map((s, i) => { const m = miss.find(l => LIMB_SEGS[l].includes(i)); return m ? [s[0], s[1], 0, s[3], s[4], s[5]] : s; });
+      const miss = missingLimbs(u), segs = SG.map((s, i) => { const m = miss.find(l => LIMB_SEGS[l].includes(i)); return m ? [s[0], s[1], 0, s[3], s[4], s[5]] : s; });
       // reattached enemy limbs wear the enemy's colours
       const cols = L.cols.slice(); if (u.limbCol) for (const l in u.limbCol) if (u.limbCol[l] && has(u, l)) { const col = u.limbCol[l]; LIMB_SEGS[l].forEach(si => { segs[si] = segs[si].slice(); segs[si][4] = 4 + (si % 2); }); cols[4] = col; cols[5] = col.clone().multiplyScalar(0.88); }
       writeSegs(P, segs, cols, 1, lx, 0, lz);
       for (const l of miss) { const r = LIMB_ROOT[l] * 3, bld = u.bandaged && u.bandaged[l]; segMatrix(P[r], P[r + 1] + 0.02, P[r + 2], P[r] + (l.endsWith('Leg') ? 0 : (l === 'lArm' ? 0.05 : -0.05)), P[r + 1] - (l.endsWith('Leg') ? 0.1 : 0.04), P[r + 2], l.endsWith('Leg') ? 0.17 : 0.13, l.endsWith('Leg') ? 0.17 : 0.13, lx, 0, lz); pm.setMatrixAt(n, _m4); pm.setColorAt(n, _col.setHex(bld ? 0xd8d2c0 : 0x6a0a0e)); n++; if (n >= maxP) break; }
-    } else writeSegs(P, SEGS, L.cols, 1, lx, 0, lz);
+    } else writeSegs(P, SG, L.cols, 1, lx, 0, lz);
     if (u.armor) { segMatrix(P[3] * 0.92 + P[6] * 0.08, P[4] * 0.92 + P[7] * 0.08, P[5] * 0.92 + P[8] * 0.08, P[3] * 0.3 + P[6] * 0.7, P[4] * 0.3 + P[7] * 0.7, P[5] * 0.3 + P[8] * 0.7, 0.41 + 0.02 * u.armor, 0.26 + 0.02 * u.armor, lx, 0, lz); pm.setMatrixAt(n, _m4); pm.setColorAt(n, _col.setHex(0x30342b)); n++; }
     if (BM.on) putHead(P, lx, 0, lz, L.skin, L.hat, L.hatc);
     else if (h < maxH) { _m4.makeTranslation(P[0], P[1], P[2]); hm.setMatrixAt(h, _m4); hm.setColorAt(h, L.skin); h++; }
@@ -3006,9 +3010,10 @@ function renderBodies() {
   }
   for (const c of G.corpses) {
     const rd = c.rd; if (!rd || (c.hideAt && G.t > c.hideAt)) continue;
-    const P = rd.p, lx = P[33] - P[36], ly = P[34] - P[37], lz = P[35] - P[38];
+    CUR_L = rd.look;
+    const P = BODY ? BODY.adjust(rd.p, rd.look, null) : rd.p, lx = P[33] - P[36], ly = P[34] - P[37], lz = P[35] - P[38];
     BMC = bmPick(P);
-    writeSegs(P, rd.segs, rd.look.cols, 0.78, lx, ly, lz);
+    writeSegs(P, BODY ? BODY.segs(rd.segs, rd.look) : rd.segs, rd.look.cols, 0.78, lx, ly, lz);
     if (G.limbs.length && !G._limbsDrawn) { n = renderLimbs(pm, n, maxP); G._limbsDrawn = true; }
     if (rd.bones || rd.ribs || rd.rope) n = renderGore(rd, pm, n, maxP);
     if (!rd.noHead && BM.on) putHead(P, lx, ly, lz, _col.copy(rd.look.skin).multiplyScalar(0.8), null);
@@ -16715,9 +16720,12 @@ function rcGodTourGo() {
 // everyone else. It is sold for Rp only (not SD), and the President owns it like every store item.
 const HD_FILE = 'smfa-hd.js';
 P_ && (() => {
-  const p = P_('hd_pack', 'addon', 'HD Realistic Graphics', 10000, { disc: false, desc: 'Realistic models for the whole game, made in Blender: soldiers with real proportions, faces and hands; detailed weapons, tanks, jeeps, helicopters, jets and cars; buildings with brick, concrete and plaster that crack as they take damage, real windows and doors; detailed trees, rubble and ground. A separate download of about 2 MB. Bought with Rp only (not with SD).' });
+  const p = P_('hd_pack', 'addon', 'HD Realistic Graphics', 10000, { disc: false, desc: 'Realistic models for the whole game, made in Blender: soldiers with real proportions, faces and hands; detailed weapons, tanks, jeeps, helicopters, jets and cars; buildings with brick, concrete and plaster that crack as they take damage, real windows and doors; detailed trees, rubble and ground. A separate download of about 2 MB. Bought with Rp only (not with SD). Included free with General membership.' });
   PRODUCTS.push(p); PROD[p.id] = p;
 })();
+// General members get the add-on included while their membership lasts
+{ const _ow = owns; owns = function (id) { if (id === 'hd_pack') { try { if (activeTier().rank >= 4) return true; } catch (e) { } } return _ow.apply(this, arguments); }; }
+if (MEMBERS.general && !MEMBERS.general.perks.some(x => /HD Realistic/.test(x))) MEMBERS.general.perks.push('HD Realistic Graphics add-on included');
 ST_TABS.splice(ST_TABS.findIndex(t => t[0] === 'owned'), 0, ['addon', 'Add-ons']);
 {
   const _rs = renderStore; renderStore = function (focus) {
@@ -16731,7 +16739,7 @@ ST_TABS.splice(ST_TABS.findIndex(t => t[0] === 'owned'), 0, ['addon', 'Add-ons']
         <ul><li>Detailed soldiers are used close to the camera (within about 30 m); far-away soldiers keep the light models so big battles stay smooth.</li>
         <li>Everything still breaks the same way: walls crack as they are hit, then fall apart into concrete chunks, and windows shatter.</li>
         <li>It needs a stronger phone or a computer. Older phones may get warm or slower; you can switch it off in Settings at any time.</li>
-        <li>Downloaded once (about 2 MB), then kept by your browser.</li></ul>
+        <li>Downloaded once (about 2 MB), then kept by your browser.</li><li>Soldiers come in different heights and builds (slim, average, muscular), and about one in four is a woman.</li><li>Free while you have General membership.</li></ul>
         ${own ? `<p class="hdState">${HD.loaded ? '✓ Downloaded and ' + (settings.hd === false ? 'switched off' : 'switched on') : HD.err ? '⚠ ' + esc(HD.err) : HD.busy ? 'Downloading…' : 'Owned · it downloads the next time it is needed'}</p>` : ''}</div>`;
     $$('#stBody [data-buy]').forEach(b => b.onclick = () => openBuy(b.dataset.buy));
   };
