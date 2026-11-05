@@ -226,7 +226,7 @@ var SMFA_HD_MODELS = {"hd_torso":{"s":1.7639698477126376e-05,"n":2324,"p":"z0Irk
   const _bbm = buildBlockMesh; buildBlockMesh = function () {
     const r = _bbm.apply(this, arguments);
     if (!on() || !blockMesh) return r;
-    const n = Math.max(1, B.n), a = new Float32Array(n * 2);
+    const n = Math.max(1, blockMesh.instanceMatrix.count, B.n), a = new Float32Array(n * 2);
     for (let i = 0; i < B.n; i++) { a[i * 2] = surfOf(i); a[i * 2 + 1] = 0; }
     blockMesh.geometry = blockMesh.geometry.clone();
     blockMesh.geometry.setAttribute('aHd', new THREE.InstancedBufferAttribute(a, 2));
@@ -236,7 +236,7 @@ var SMFA_HD_MODELS = {"hd_torso":{"s":1.7639698477126376e-05,"n":2324,"p":"z0Irk
   };
   const _bi = blockInst; blockInst = function (i) {
     const r = _bi.apply(this, arguments);
-    const at = blockMesh && blockMesh.geometry.attributes.aHd; if (at && i < at.count) { at.setY(i, B.alive[i] ? 1 - Math.max(0, Math.min(1, B.hp[i] / B.mhp[i])) : 0); at.needsUpdate = true; }
+    const at = blockMesh && blockMesh.geometry.attributes.aHd; if (at && i < at.count) { if (i < B.n) at.setX(i, surfOf(i)); at.setY(i, B.alive[i] ? 1 - Math.max(0, Math.min(1, B.hp[i] / B.mhp[i])) : 0); at.needsUpdate = true; }
     return r;
   };
   // windows (frame + glass) in the gaps between a sill block and a lintel block; door frames under lone lintels; cornices on top
