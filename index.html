@@ -16393,12 +16393,12 @@ const RCG = { open: false, tgt: null, inv: true, boom: false, slow: 1, oil: [], 
 {
   const card = $('#scr-skirmish .card'), note = $('#skNote');
   note.insertAdjacentHTML('afterend', `<div id="skKindBox"><h3>Sandbox</h3><div class="opts" id="sk-kind"></div></div>
-    <div id="skF1" hidden><h3>Track</h3><div class="opts" id="skf-track"></div><h3>Race length</h3><div class="opts" id="skf-laps"></div>
-    <h3>Opponents</h3><div class="opts" id="skf-diff"></div><h3>Weather</h3><div class="opts" id="skf-weather"></div><h3>Starting tyres</h3><div class="opts" id="skf-tyre"></div></div>`);
+    <div id="skF1" hidden><h3>Format</h3><div class="opts" id="skf-fmt"></div><div id="skfNatBox"><h3>Your country</h3><div class="opts" id="skf-nat"></div></div><div id="skfTrkBox"><h3>Track</h3><div class="opts" id="skf-track"></div></div><h3>Race length</h3><div class="opts" id="skf-laps"></div>
+    <h3>Opponents</h3><div class="opts" id="skf-diff"></div><div id="skfWxBox"><h3>Weather</h3><div class="opts" id="skf-weather"></div></div><h3>Starting tyres</h3><div class="opts" id="skf-tyre"></div></div>`);
   const battleBits = () => [...card.children].filter(el => el !== note && el.id !== 'skKindBox' && el.id !== 'skF1' && !el.classList.contains('between') && !el.querySelector('#sk-start'));
   const _rs = renderSkirmish; renderSkirmish = function () {
     _rs.apply(this, arguments);
-    const s = settings.sk, f = s.f1 = Object.assign({ track: 'sorrel', laps: 5, diff: 'pro', weather: 'dry', tyre: 'M' }, s.f1 || {});
+    const s = settings.sk, f = s.f1 = Object.assign({ track: 'sorrel', laps: 5, diff: 'pro', weather: 'dry', tyre: 'M', fmt: 'race', nat: 'idn' }, s.f1 || {});
     const kind = skGod ? (s.godKind || 'battle') : 'battle';
     $('#skKindBox').hidden = !skGod; $('#skF1').hidden = kind !== 'f1';
     battleBits().forEach(el => { el.style.display = kind === 'f1' ? 'none' : ''; });
@@ -16406,13 +16406,17 @@ const RCG = { open: false, tgt: null, inv: true, boom: false, slow: 1, oil: [], 
     optGroup('#sk-kind', [{ k: 'battle', name: 'Battle', desc: 'Armies, smite, dismember, spawn' }, { k: 'f1', name: 'F1 race', desc: 'Crash cars, burst tyres, change speeds' }], kind, v => { s.godKind = v; saveSettings(); renderSkirmish(); });
     if (kind === 'f1') {
       const save = k => v => { f[k] = k === 'laps' ? +v : v; saveSettings(); };
+      optGroup('#skf-fmt', RC_GOD_FMTS.map(([k, name, desc]) => ({ k, name, desc })), f.fmt, v => { f.fmt = v; saveSettings(); renderSkirmish(); });
+      optGroup('#skf-nat', RC_NATIONS.map(N => ({ k: N.id, name: N.name, sw: '#' + new THREE.Color(N.col).getHexString() })), f.nat, save('nat'));
+      $('#skfNatBox').hidden = f.fmt !== 'wc'; $('#skfTrkBox').hidden = f.fmt !== 'race'; $('#skfWxBox').hidden = f.fmt !== 'race';
       optGroup('#skf-track', RC_TRACK_IDS.map(id => ({ k: id, name: RC_TRACKS[id].name, desc: { sorrel: 'Fast parkland', street: 'Tight city walls', desert: 'Sand and hairpins', snow: 'Snowy mountain', night: 'Night race' }[id] })), f.track, save('track'));
       optGroup('#skf-laps', [3, 5, 10, 20].map(n => ({ k: String(n), name: n + ' laps' })), String(f.laps), save('laps'));
       optGroup('#skf-diff', [{ k: 'rookie', name: 'Rookie' }, { k: 'pro', name: 'Pro' }, { k: 'ace', name: 'Ace' }], f.diff, save('diff'));
       optGroup('#skf-weather', [{ k: 'dry', name: 'Dry' }, { k: 'wet', name: 'Wet' }], f.weather, save('weather'));
       optGroup('#skf-tyre', Object.entries(TYRES).map(([k, T]) => ({ k, name: T.name })), f.tyre, save('tyre'));
       $('#skNote').innerHTML = 'An F1 race where <b>you are the god</b>. Press <b>⚡ GOD</b> (or <b>G</b>) during the race to crash cars, burst tyres, make any car faster or slower, spill oil, bring the rain, slow down time and more. <b>Penalties never count for you.</b> Nothing is saved and no SD, EXP or achievements are earned.';
-      $('#sk-start').textContent = 'Enter the F1 sandbox';
+      $('#sk-start').textContent = f.fmt === 'race' ? 'Enter the F1 sandbox' : '⚡ Start the ' + (RC_GOD_FMTS.find(x => x[0] === f.fmt) || [, 'tournament'])[1];
+      if (f.fmt !== 'race') $('#skNote').innerHTML += ' <b>Tournament:</b> you keep your god powers in every round. The standings live only in this sandbox: they are thrown away when you leave and never touch your real championship.';
     }
   };
   // runs before the battle start handler (window capture comes first)
@@ -16424,6 +16428,9 @@ const RCG = { open: false, tgt: null, inv: true, boom: false, slow: 1, oil: [], 
 }
 function rcGodStart() {
   SFX.init();
+  const fm = (settings.sk.f1 || {}).fmt || 'race';
+  if (fm !== 'race') return rcGodTourStart(fm);
+  RCG.inTour = false;
   const f = settings.sk.f1 = Object.assign({ track: 'sorrel', laps: 5, diff: 'pro', weather: 'dry', tyre: 'M' }, settings.sk.f1 || {}), st = settings.rc = Object.assign({ assist: { tc: true, abs: true, line: true, auto: true, help: true, esc: true } }, settings.rc || {});
   const opt = { session: 'race', laps: f.laps, diff: f.diff, weather: f.weather, tyre: f.weather === 'wet' && !TYRES[f.tyre].wet ? 'I' : f.tyre, track: f.track, assist: Object.assign({ esc: true }, st.assist), god: true };
   RCG.open = false; RCG.tgt = null; RCG.inv = true; RCG.boom = false; RCG.slow = 1;
@@ -16443,7 +16450,7 @@ function rcGodStart() {
     const p = $('#rcPanel'), bb = p && p.querySelector('.rcPB'), head = p && p.querySelector('.rcHead');
     if (head) head.textContent = head.textContent.replace(/\s*\+\d+ SD, \+\d+ EXP\.|\s*\+\d+ EXP\.|\s*No SD for this race[^.]*\./g, '');
     if (head) head.insertAdjacentHTML('afterend', '<p class="rcTourLine">⚡ God Mode sandbox: nothing from this race is saved and no SD or EXP is paid.</p>');
-    if (bb) { const b = document.createElement('button'); b.className = 'btn'; b.textContent = '⚡ Race again (sandbox)'; b.onclick = () => { p.hidden = true; RC.ending = false; rcClear(); rcStart('driver', Object.assign({}, opt)); }; bb.insertBefore(b, bb.lastChild); }
+    if (bb && !RC.tourWas) { const b = document.createElement('button'); b.className = 'btn'; b.textContent = '⚡ Race again (sandbox)'; b.onclick = () => { p.hidden = true; RC.ending = false; rcClear(); rcStart('driver', Object.assign({}, opt)); }; bb.insertBefore(b, bb.lastChild); }
     return r;
   };
   const _msg = rcMsg; rcMsg = function (t) {
@@ -16641,5 +16648,55 @@ function rcGodPanel() {
     const h = $('#rcHelp'); if (h && !/ G god/.test(h.textContent)) h.textContent += ' · G god powers';
   };
   const _bs = rcBeginSession; rcBeginSession = function () { const r = _bs.apply(this, arguments); if (rcGodOn() && RC.race) { RCG.tgt = null; rcMsg('⚡ God Mode: press G (or ⚡ GOD) for your powers. Penalties never count for you.', 'purple'); } return r; };
+}
+
+/* ---------- tournaments in God Mode ---------- */
+// While a God Mode tournament runs, the racing records the game reads and writes are a throw-away copy in memory,
+// so the sandbox can have its own standings without touching your real season, cups or World Cup.
+const RC_GOD_FMTS = [['race', 'Single race', 'Pick a track'], ['season', 'Season', '5 rounds, every track'], ['jumay', 'Jumay Water Cup', '3 races'], ['neon', 'Neon Nights Cup', '3 races'], ['fire', 'Fire & Ice Cup', '3 races'], ['wc', 'World Cup', '12 countries, knockout']];
+RCG.store = null; RCG.inTour = false;
+{
+  const _ld = rcLoad, _sv = rcSave;
+  const sb = () => RCG.store && (RCG.inTour || rcGodOn());
+  rcLoad = function () { if (!sb()) return _ld.apply(this, arguments); return Object.assign({ races: 0, wins: 0, podiums: 0, best: {}, hist: [], bets: [], cup: {}, cupTeams: {}, day: '', today: 0, livery: 0x00ff88 }, JSON.parse(JSON.stringify(RCG.store))); };
+  rcSave = function (S) { if (!sb()) return _sv.apply(this, arguments); RCG.store = JSON.parse(JSON.stringify(S)); };
+  // the "Next round" button after each race goes through here
+  const _tg = rcTourGo; rcTourGo = function () { if (RCG.inTour) return rcGodTourGo(); return _tg.apply(this, arguments); };
+  // opening the normal racing menus ends the sandbox tournament
+  const end = () => { if (RCG.inTour && !RC.active) { RCG.inTour = false; RCG.store = null; } };
+  const _a = rcSetupPanel; rcSetupPanel = function () { end(); return _a.apply(this, arguments); };
+  const _b = rcTourPanel; rcTourPanel = function () { end(); return _b.apply(this, arguments); };
+  const _c = rcBoard; rcBoard = function () { end(); return _c.apply(this, arguments); };
+  const _d = rcLeaderboard; rcLeaderboard = function () { end(); return _d.apply(this, arguments); };
+  const _lv = leaveBattle; leaveBattle = function () { RCG.inTour = false; RCG.store = null; return _lv.apply(this, arguments); };
+}
+function _rcRealLoad() { const was = RCG.inTour, st = RCG.store; RCG.inTour = false; RCG.store = null; try { return rcLoad(); } finally { RCG.inTour = was; RCG.store = st; } }
+function rcGodTourStart(fm) {
+  const f = settings.sk.f1, real = _rcRealLoad();
+  RCG.open = false; RCG.tgt = null; RCG.inv = true; RCG.boom = false; RCG.slow = 1;
+  RCG.store = { livery: real.livery, roster: Object.assign({}, real.roster || {}), dead: Object.assign({}, real.dead || {}) }; RCG.inTour = true;
+  const kind = fm === 'season' ? 'season' : fm === 'wc' ? 'wc' : 'cup';
+  rcTourNew(kind, kind === 'cup' ? fm : kind, f.laps, f.diff, f.nat || 'idn');
+  rcGodTourGo();
+}
+function rcGodTourGo() {
+  const S = rcLoad(), T = S.tour; if (!T || T.done) return;
+  const f = settings.sk.f1 || {}, st = settings.rc = Object.assign({ tyre: 'M', assist: { tc: true, abs: true, line: true, auto: true, help: true, esc: true } }, settings.rc || {});
+  const wet = !!T.wet[T.round], track = T.rounds[T.round];
+  const opt = { session: 'race', laps: T.laps, diff: T.diff, weather: wet ? 'wet' : 'dry', tyre: wet ? 'I' : (f.tyre && !TYRES[f.tyre].wet ? f.tyre : 'M'), assist: Object.assign({ esc: true }, st.assist), track, god: true };
+  if (T.kind === 'wc') opt.entrants = rcWcEntrants(T);
+  RC.tourRun = { kind: T.kind, round: T.round, started: T.started };
+  if (G) G.paused = false;
+  if (G && frOn() && frRegion() === 'circuit') { rcClear(); rcStart('driver', opt); return; }
+  RC.pending = { role: 'driver', opt }; RC.trackNext = track;
+  frEnterRegion('circuit', 'paddock', { weather: wet ? 'rain' : 'clear', track });
+}
+// show where you are in the sandbox tournament when each race starts
+{
+  const _bs = rcBeginSession; rcBeginSession = function (mode) {
+    const r = _bs.apply(this, arguments);
+    if (rcGodOn() && RCG.inTour && mode === 'race') { const T = rcLoad().tour; if (T) rcMsg(`⚡ ${T.name} · ${T.kind === 'wc' ? RC_WC.stages[T.wc.stage] : 'round ' + (T.round + 1) + ' of ' + T.rounds.length}`, 'purple'); }
+    return r;
+  };
 }
 </script>
