@@ -830,8 +830,76 @@ body.controller #touch,body.controller #rcTouch{display:none!important}
 
 .hdInfo{margin-top:12px;background:#101411;border:1px solid #26382c;border-radius:8px;padding:10px 14px;font-size:13px;color:#cfd8d1}
 .hdInfo b{color:#fff}.hdInfo ul{margin:6px 0 0;padding-left:18px;line-height:1.5}.hdInfo .hdState{margin:8px 0 0;color:#00ff88;font-weight:700}
+
+/* ---------- free roam: furniture catalogue and family panel ---------- */
+#frCat,#famPanel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.55);z-index:5}
+#frCat[hidden],#famPanel[hidden]{display:none}
+.fcBox,.famBox{width:min(760px,100%);max-height:calc(100% - 24px);display:flex;flex-direction:column;background:#151715;border:1px solid #2c4a37;border-top:3px solid #00ff88;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.65);overflow:hidden}
+.famBox{width:min(520px,100%);padding:16px 18px;overflow:auto;gap:8px}
+.fcHead,.famHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.fcHead{padding:14px 16px 10px}
+.fcHead small,.famHead small,.famBox>small{color:#00ff88;font-weight:800;letter-spacing:.12em;font-size:11px;display:block}
+.fcHead b{display:block;font-size:17px;color:#fff;margin-top:2px}.fcHead span,.famHead span{font-size:12.5px;color:#9aa89e}
+.famHead h3,.famBox h3{margin:2px 0 2px;font-size:19px;color:#fff}
+.fcTabs{display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none}
+.fcTabs button{flex:none;padding:7px 12px;border-radius:99px;border:1px solid #2c4a37;background:#1c201c;color:#cfd8cf;font:600 13px var(--ui)}
+.fcTabs button.on{background:#00ff88;color:#0d0d0d;border-color:#00ff88}
+.fcGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:4px 16px 8px;overflow-y:auto;min-height:0}
+.fcCard{display:flex;flex-direction:column;gap:4px;padding:10px;border:1px solid #263329;border-radius:9px;background:#1b1f1b}
+.fcCard b{font-size:13.5px;color:#eef5ee;line-height:1.25}.fcCard small{font-size:11.5px;color:#8ea58a;min-height:15px}
+.fcCard button{margin-top:auto}.fcCard button[disabled]{opacity:.45;cursor:default}
+.fcSw{display:flex;gap:3px;height:22px;margin-bottom:2px}.fcSw i{flex:1;border-radius:4px;border:1px solid rgba(255,255,255,.08)}
+.fcNote,.famNote{margin:0;padding:8px 16px 14px;font-size:12.5px;color:#9aa89e;line-height:1.45}
+.famNote{padding:4px 0}
+.famRow{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid #263329;border-radius:9px;background:#1b1f1b}
+.famRow i{width:26px;height:26px;border-radius:50%;flex:none;border:2px solid rgba(255,255,255,.15)}
+.famRow b{display:block;font-size:14px;color:#fff}.famRow small{font-size:12px;color:#9aa89e}
+.famMood{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center;font-size:12.5px;color:#9aa89e}
+.famMood b{color:#ffd84a;text-align:right}.famBar{grid-column:1/-1;height:7px;border-radius:99px;background:#0e130f;border:1px solid #23402a;overflow:hidden}.famBar i{display:block;height:100%;background:linear-gradient(90deg,#f2b33d,#39d353)}
+.famBtns{display:flex;gap:8px;flex-wrap:wrap}
+.famBox h4{margin:8px 0 0;font-size:12px;letter-spacing:.1em;color:#00ff88;text-transform:uppercase}
+.famLbl{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:#9aa89e;margin-top:6px}
+.famLbl input{font:600 16px var(--ui);padding:10px 12px;border-radius:8px;border:1px solid #2c4a37;background:#0e130f;color:#fff;user-select:text;-webkit-user-select:text}
+.famSex{display:flex;gap:8px;margin:6px 0 4px}
+#frTurn{position:absolute;left:50%;bottom:calc(24% + 52px);transform:translateX(-50%)}
+#frTurn[hidden]{display:none}
+#famBtn{position:absolute;top:14px;left:calc(50% + 230px);pointer-events:auto}
+@media (max-width:1100px){#famBtn{left:auto;right:120px}}
+@media (max-width:600px){#famBtn{top:96px;right:12px}.fcGrid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- loading screen ---------- */
+#ldScr{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:#050805;
+  background-image:radial-gradient(ellipse at 50% 42%,rgba(57,211,83,.10),transparent 60%),linear-gradient(rgba(57,211,83,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(57,211,83,.045) 1px,transparent 1px);
+  background-size:100% 100%,40px 40px,40px 40px;opacity:1;transition:opacity .45s ease;pointer-events:auto;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+#ldScr.off{opacity:0;pointer-events:none}
+#ldScr[hidden]{display:none}
+#ldScr .ldBox{width:min(520px,100%);text-align:center}
+#ldScr .ldSmile{font-family:var(--display);font-size:clamp(64px,16vw,112px);line-height:1;color:var(--green);text-shadow:0 0 34px rgba(57,211,83,.45);animation:ldPulse 1.6s ease-in-out infinite}
+@keyframes ldPulse{50%{text-shadow:0 0 12px rgba(57,211,83,.25);transform:scale(.97)}}
+#ldScr .ldTitle{font-family:var(--display);font-size:clamp(24px,6vw,36px);letter-spacing:.04em;margin:10px 0 2px;color:#eaf5e6;text-transform:uppercase}
+#ldScr .ldSub{color:var(--muted);font-size:14px;min-height:20px}
+#ldScr .ldBar{position:relative;height:8px;margin:26px 0 10px;border-radius:99px;background:#122016;border:1px solid #23402a;overflow:hidden}
+#ldScr .ldFill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:99px;background:linear-gradient(90deg,#1f8f35,#39d353 70%,#9dffb1);box-shadow:0 0 14px rgba(57,211,83,.6);transition:width .35s ease}
+#ldScr .ldBar.indef .ldFill{width:34% !important;animation:ldSlide 1.1s ease-in-out infinite}
+@keyframes ldSlide{0%{left:-34%}100%{left:100%}}
+#ldScr .ldRow{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#b9cbb5;font-variant-numeric:tabular-nums}
+#ldScr .ldTip{margin-top:28px;padding:12px 14px;border:1px solid #1d3322;border-radius:10px;background:rgba(14,22,15,.8);font-size:14px;line-height:1.45;color:#cfdccb;text-align:left;min-height:62px}
+#ldScr .ldTip b{color:var(--green);font-weight:700;letter-spacing:.06em;font-size:11px;display:block;margin-bottom:3px}
+#ldScr .ldSkip{margin-top:14px}
+@media (prefers-reduced-motion:reduce){#ldScr .ldSmile{animation:none}#ldScr .ldBar.indef .ldFill{animation-duration:2.4s}}
 </style>
 
+<div id="ldScr" role="status" aria-live="polite">
+  <div class="ldBox">
+    <div class="ldSmile">&gt;:)</div>
+    <div class="ldTitle" id="ldTitle">SMFA 3D</div>
+    <div class="ldSub" id="ldSub">Loading the game…</div>
+    <div class="ldBar indef" id="ldBar"><div class="ldFill" id="ldFill"></div></div>
+    <div class="ldRow"><span id="ldStep">Starting up</span><span id="ldPct"></span></div>
+    <div class="ldTip" id="ldTip"><b>TIP</b><span id="ldTipT">You are the President. Command from the office, or join the fight yourself.</span></div>
+    <button class="btn small ldSkip" id="ldSkip" hidden>Continue without waiting</button>
+  </div>
+</div>
 <div id="stage"></div>
 
 <div id="hud" hidden>
@@ -945,6 +1013,7 @@ body.controller #touch,body.controller #rcTouch{display:none!important}
     <div class="menu-col">
       <button class="btn primary" id="continueBtn" hidden>Continue battle</button>
       <button class="btn free" id="goFree">Free roam: headquarters</button>
+      <button class="btn free" id="goHome" hidden>Free roam: go home</button>
       <button class="btn primary" id="goCampaign">Campaign</button>
       <button class="btn" id="goSkirmish">Skirmish</button>
       <button class="btn online" id="goOnline">Online battle</button>
@@ -1563,13 +1632,19 @@ function blockSurface(mat) {
 }
 function buildBlockMesh() {
   const geo = new THREE.BoxGeometry(1, 1, 1);
-  blockMesh = new THREE.InstancedMesh(geo, blockSurface(makeMat(0xffffff)), Math.max(1, B.n));
+  // spare room for blocks added after the map is built (furniture, doors), otherwise they would never be drawn
+  const cap = Math.max(1, Math.min(MAXB, B.n + 4000));
+  blockMesh = new THREE.InstancedMesh(geo, blockSurface(makeMat(0xffffff)), cap);
   blockMesh.frustumCulled = false; blockMesh.castShadow = QUAL.high; blockMesh.receiveShadow = QUAL.high;
   for (let i = 0; i < B.n; i++) blockInst(i);
+  for (let i = B.n; i < cap; i++) blockMesh.setMatrixAt(i, ZERO_M);
+  blockMesh.count = Math.max(1, B.n);
   blockMesh.instanceMatrix.needsUpdate = true; if (blockMesh.instanceColor) blockMesh.instanceColor.needsUpdate = true;
   scene.add(blockMesh);
 }
-function flushBlocks() { blockMesh.instanceMatrix.needsUpdate = true; if (blockMesh.instanceColor) blockMesh.instanceColor.needsUpdate = true; }
+function flushBlocks() {
+  if (blockMesh.count < B.n) { let lim = blockMesh.instanceMatrix.count; const A = blockMesh.geometry.attributes; for (const k in A) if (A[k].isInstancedBufferAttribute) lim = Math.min(lim, A[k].count); blockMesh.count = Math.max(blockMesh.count, Math.min(B.n, lim)); }
+  blockMesh.instanceMatrix.needsUpdate = true; if (blockMesh.instanceColor) blockMesh.instanceColor.needsUpdate = true; }
 function rayAABB(ox, oy, oz, dx, dy, dz, i) {
   let tmin = -1e9, tmax = 1e9;
   const mins = [B.x[i] - B.sx[i] / 2, B.y[i] - B.sy[i] / 2, B.z[i] - B.sz[i] / 2], maxs = [B.x[i] + B.sx[i] / 2, B.y[i] + B.sy[i] / 2, B.z[i] + B.sz[i] / 2];
@@ -2403,8 +2478,7 @@ function makeUnit(team, role, squad, x, z, pres) {
 }
 function poseUnit(u) {
   const c = Math.cos(u.yaw), s = Math.sin(u.yaw), P = u.pts;
-  const k = clamp(u.speed / 4, 0, 1), sw = Math.sin(u.phase) * k, cw = Math.cos(u.phase);
-  const bob = Math.abs(Math.sin(u.phase)) * 0.05 * k;
+  const k = clamp(u.speed / 4, 0, 1);
   const lean = 0.08 * k;
   const crawl = u.limbs && legsLeft(u) === 0, oneLeg = u.limbs && legsLeft(u) === 1 && !crawl;
   const crouch = crawl ? 0 : u.crouch ? 0.35 : (oneLeg ? 0.18 : 0);
@@ -2415,27 +2489,64 @@ function poseUnit(u) {
     for (let i = 0; i < 15; i++) { const lx = L[i][0], ly = L[i][1], lz = L[i][2], j = i * 3; P[j] = u.x + lx * c + lz * s; P[j + 1] = u.y + ly; P[j + 2] = u.z - lx * s + lz * c; }
     return;
   }
-  // small extra motion: recoil kick after a shot, the reload hand, breathing when standing, hip sway and knee lift when walking
+  // small extra motion: recoil kick after a shot, the reload hand, breathing when standing, hip sway when walking
   const kick = u.kickT ? clamp(1 - (G.t - u.kickT) / 0.13, 0, 1) * (u.role === 'shotgun' || u.role === 'rocket' || u.role === 'marksman' ? 1.6 : 1) : 0;
   const rel = u.reloadT > 0 ? Math.sin(Math.min(1, u.reloadT) * PI) : 0, breathe = (1 - k) * Math.sin(G.t * 2.1 + (u.id || 0)) * 0.008;
-  const sway = Math.cos(u.phase) * 0.025 * k;
+  // gait: our own step phase, advanced by the real ground speed with a stride that grows with speed,
+  // so the planted foot does not slide. Feet are placed first, then the knees are solved from the leg lengths (knees bend forward).
+  const gdt = clamp(G.t - (u._gt === undefined ? G.t : u._gt), 0, 0.1); u._gt = G.t;
+  const spd = Math.max(0, u.speed || 0), stride = clamp(0.75 + 0.35 * spd, 0.9, 2.6);
+  if (u._gph === undefined) u._gph = u.phase || 0;
+  u._gph += spd * gdt / stride * TAU;
+  const run = clamp((spd - 2.4) / 2, 0, 1), gk = clamp(spd / 1.2, 0, 1), A = Math.min(0.48, stride / 4) * gk, ph = u._gph;
+  const bob = ((Math.abs(Math.cos(ph)) * 0.035 - 0.02) * gk - run * 0.06) * (1 - (crouch ? 1 : 0));
+  const sway = Math.cos(ph) * 0.025 * gk;
+  const sc = u.sc || 1, armsFree = !!u.civ;
+  const LP = poseUnit.L || (poseUnit.L = new Float32Array(45));
   for (let i = 0; i < 15; i++) {
     let lx = REST[i][0], ly = REST[i][1], lz = REST[i][2];
-    if (i === 7) { lz += sw * 0.25 + Math.max(0, cw) * 0.07 * k; } else if (i === 8) { lz += sw * 0.45; ly += Math.max(0, cw) * 0.14 * k; }
-    else if (i === 9) { lz -= sw * 0.25 - Math.max(0, -cw) * 0.07 * k; } else if (i === 10) { lz -= sw * 0.45; ly += Math.max(0, -cw) * 0.14 * k; }
+    if (i >= 7 && i <= 10) { LP[i * 3] = lx; LP[i * 3 + 1] = ly; LP[i * 3 + 2] = lz; continue; } // legs are solved below
     if (i === 2 || i === 13 || i === 14) lx += sway;
-    if (i === 5) { lx = -0.22; ly = 1.2; lz = 0.18; } else if (i === 6) { lx = -0.1; ly = 1.29; lz = 0.38; }
-    else if (i === 3) { lx = 0.19; ly = 1.21; lz = 0.27; } else if (i === 4) { lx = 0.03; ly = 1.31; lz = 0.56; }
-    if (u.role === 'rocket' && (i === 4 || i === 6)) { ly += 0.12; }
-    if (!u.aiming && (i >= 3 && i <= 6)) { ly -= 0.12; lz -= 0.06; }
-    if (kick && i >= 3 && i <= 6) { lz -= 0.07 * kick; ly += 0.02 * kick; } else if (kick && (i === 11 || i === 12 || i === 0)) lz -= 0.03 * kick;
-    if (rel && (i === 3 || i === 4)) { lz -= 0.22 * rel; ly -= 0.14 * rel; lx -= 0.06 * rel; }
+    if (armsFree && i >= 3 && i <= 6) {
+      // no gun: arms hang and swing against the legs
+      const sd = i <= 4 ? 1 : -1, sw2 = Math.sin(ph + (sd > 0 ? PI : 0)) * (0.16 + 0.12 * run) * gk;
+      if (i === 3 || i === 5) { lx = 0.235 * sd; ly = 1.16 + run * 0.03; lz = sw2 * 0.45 - 0.02 - run * 0.08; }
+      else { lx = 0.23 * sd; ly = 0.9 + run * 0.12 + Math.abs(sw2) * 0.12; lz = sw2 + 0.04 + run * 0.06; }
+    } else {
+      if (i === 5) { lx = -0.22; ly = 1.2; lz = 0.18; } else if (i === 6) { lx = -0.1; ly = 1.29; lz = 0.38; }
+      else if (i === 3) { lx = 0.19; ly = 1.21; lz = 0.27; } else if (i === 4) { lx = 0.03; ly = 1.31; lz = 0.56; }
+      if (u.role === 'rocket' && (i === 4 || i === 6)) { ly += 0.12; }
+      if (!u.aiming && (i >= 3 && i <= 6)) { ly -= 0.12; lz -= 0.06; }
+      if (kick && i >= 3 && i <= 6) { lz -= 0.07 * kick; ly += 0.02 * kick; } else if (kick && (i === 11 || i === 12 || i === 0)) lz -= 0.03 * kick;
+      if (rel && (i === 3 || i === 4)) { lz -= 0.22 * rel; ly -= 0.14 * rel; lx -= 0.06 * rel; }
+    }
     if (breathe && (i <= 1 || i >= 11 || (i >= 3 && i <= 6))) ly += breathe * (i <= 1 ? 1 : 0.7);
     if (u.slashT > G.t && (i === 5 || i === 6)) { lz += i === 6 ? 0.35 : 0.15; ly += 0.1; lx += 0.12; }
     if (u.burnUntil > G.t && i >= 3 && i <= 6) { ly += 0.55 + Math.sin(G.t * 20 + i) * 0.1; lz -= 0.1; }
-    if (i <= 6 || i >= 11) { ly += bob - crouch; lz += (ly > 0.9 ? lean * (ly - 0.9) * 1.4 : 0); }
-    if (crouch && (i === 7 || i === 9)) { lz += 0.35; ly -= 0.1; } else if (crouch && (i === 13 || i === 14)) { ly -= 0; }
-    const j = i * 3; P[j] = u.x + lx * c + lz * s; P[j + 1] = u.y + ly; P[j + 2] = u.z - lx * s + lz * c;
+    ly += bob - crouch; lz += (ly > 0.9 ? (lean + run * 0.06) * (ly - 0.9) * 1.4 : 0);
+    LP[i * 3] = lx; LP[i * 3 + 1] = ly; LP[i * 3 + 2] = lz;
+  }
+  // legs: foot path (planted and sliding back, then lifted and swung forward), knee from two-bone IK
+  const LT = 0.435, LS = 0.44;
+  for (const [hp, kn, ft, off] of [[13, 7, 8, 0], [14, 9, 10, PI]]) {
+    const q = ph + off, cq = Math.cos(q);
+    const hx = LP[hp * 3], hy = LP[hp * 3 + 1], hz = LP[hp * 3 + 2];
+    const lift = (Math.max(0, cq) ** 1.5 * (0.11 + 0.1 * run) + run * 0.22 * Math.max(0, Math.cos(q + 1.1)) ** 2) * gk;
+    const fx = REST[ft][0] + sway * 0.4, fy = REST[ft][1] + lift, fz = A * Math.sin(q) + (crouch ? 0.06 : 0);
+    let dx = fx - hx, dy = fy - hy, dz = fz - hz; const d = Math.hypot(dx, dy, dz) || 1e-4; dx /= d; dy /= d; dz /= d;
+    let kx, ky, kz;
+    if (d >= LT + LS - 1e-4) { const t = LT; kx = hx + dx * t; ky = hy + dy * t; kz = hz + dz * t + 0.01; }
+    else {
+      const a = (LT * LT - LS * LS + d * d) / (2 * d), h = Math.sqrt(Math.max(0, LT * LT - a * a));
+      // bend direction: forward (+z) with the along-leg part removed
+      let nx = -dx * dz, ny = -dy * dz, nz = 1 - dz * dz; const nl = Math.hypot(nx, ny, nz) || 1; nx /= nl; ny /= nl; nz /= nl;
+      kx = hx + dx * a + nx * h; ky = hy + dy * a + ny * h; kz = hz + dz * a + nz * h;
+    }
+    LP[kn * 3] = kx; LP[kn * 3 + 1] = ky; LP[kn * 3 + 2] = kz; LP[ft * 3] = fx; LP[ft * 3 + 1] = fy; LP[ft * 3 + 2] = fz;
+  }
+  for (let i = 0; i < 15; i++) {
+    const lx = LP[i * 3] * sc, ly = LP[i * 3 + 1] * sc, lz = LP[i * 3 + 2] * sc, j = i * 3;
+    P[j] = u.x + lx * c + lz * s; P[j + 1] = u.y + ly; P[j + 2] = u.z - lx * s + lz * c;
   }
 }
 function unitAimDir(u) { const cp = Math.cos(u.pitch); return [Math.sin(u.yaw) * cp, Math.sin(u.pitch), Math.cos(u.yaw) * cp]; }
@@ -2913,6 +3024,12 @@ function muzzleFlash(x, y, z) {
 }
 
 /* ---------- body rendering ---------- */
+// children and other smaller people: limb widths scaled (cached per look)
+function segsScaled(S, L) {
+  if (!L || !L.ws || L.ws === 1) return S;
+  if (L._wsSrc === S && L._wsOut) return L._wsOut;
+  const w = L.ws; L._wsSrc = S; L._wsOut = S.map(s => [s[0], s[1], s[2] * w, s[3] * w, s[4], s[5]]); return L._wsOut;
+}
 function renderBodies() {
   let n = 0, h = 0, rn = 0;
   const office = G.view === 'office';
@@ -2930,12 +3047,12 @@ function renderBodies() {
     if (!BM.on) return;
     // hands (skin) at the end of each forearm, boots at the end of each shin
     const skin = cols[3];
-    for (const [si, e, k] of [[2, 4, 3], [4, 6, 5]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const E = e * 3, K = k * 3; bmFrame(P[E] - P[K], P[E + 1] - P[K + 1], P[E + 2] - P[K + 2], sx, sy, sz); const hs = 0.095; bmPut(bmPart('hand'), _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[E] + _by[0] * 0.035, P[E + 1] + _by[1] * 0.035, P[E + 2] + _by[2] * 0.035, _col.setRGB(skin.r * dark, skin.g * dark, skin.b * dark)); }
-    for (const [si, f, k] of [[6, 8, 7], [8, 10, 9]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const F = f * 3, K = k * 3; bmFrame(P[F] - P[K], P[F + 1] - P[K + 1], P[F + 2] - P[K + 2], sx, sy, sz); bmPut(bmPart('boot'), _bx[0] * 0.15, _bx[1] * 0.15, _bx[2] * 0.15, _by[0] * 0.2, _by[1] * 0.2, _by[2] * 0.2, _bz[0] * 0.17, _bz[1] * 0.17, _bz[2] * 0.17, P[F] - _by[0] * 0.04, P[F + 1] - _by[1] * 0.04, P[F + 2] - _by[2] * 0.04, _col.setRGB(0.16 * dark + 0.1, 0.15 * dark + 0.09, 0.13 * dark + 0.08)); }
+    for (const [si, e, k] of [[2, 4, 3], [4, 6, 5]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const E = e * 3, K = k * 3; bmFrame(P[E] - P[K], P[E + 1] - P[K + 1], P[E + 2] - P[K + 2], sx, sy, sz); const hs = 0.095 * (CUR_L && CUR_L.ws || 1); bmPut(bmPart('hand'), _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[E] + _by[0] * 0.035, P[E + 1] + _by[1] * 0.035, P[E + 2] + _by[2] * 0.035, _col.setRGB(skin.r * dark, skin.g * dark, skin.b * dark)); }
+    for (const [si, f, k] of [[6, 8, 7], [8, 10, 9]]) { const S = segs[si]; if (!S || S[2] <= 0) continue; const F = f * 3, K = k * 3; bmFrame(P[F] - P[K], P[F + 1] - P[K + 1], P[F + 2] - P[K + 2], sx, sy, sz); const bw = CUR_L && CUR_L.ws || 1; bmPut(bmPart('boot'), _bx[0] * 0.15 * bw, _bx[1] * 0.15 * bw, _bx[2] * 0.15 * bw, _by[0] * 0.2 * bw, _by[1] * 0.2 * bw, _by[2] * 0.2 * bw, _bz[0] * 0.17 * bw, _bz[1] * 0.17 * bw, _bz[2] * 0.17 * bw, P[F] - _by[0] * 0.04, P[F + 1] - _by[1] * 0.04, P[F + 2] - _by[2] * 0.04, _col.setRGB(0.16 * dark + 0.1, 0.15 * dark + 0.09, 0.13 * dark + 0.08)); }
   };
   // head (and hat) frame: up from the neck to the head, side from the body
   const putHead = (P, sx, sy, sz, skin, hat, hatc) => {
-    bmFrame(P[0] - P[3], P[1] - P[4], P[2] - P[5], sx, sy, sz); const hs = 0.3;
+    bmFrame(P[0] - P[3], P[1] - P[4], P[2] - P[5], sx, sy, sz); const hs = 0.3 * (CUR_L && CUR_L.hs || 1);
     // side x up = forward, so the face (+z in the model) looks the way the body faces
     bmPut(bmPart('head'), _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[0], P[1], P[2], skin);
     const hm2 = hat && BMC.hats[hat]; if (hm2) bmPut(hm2, _bx[0] * hs, _bx[1] * hs, _bx[2] * hs, _by[0] * hs, _by[1] * hs, _by[2] * hs, _bz[0] * hs, _bz[1] * hs, _bz[2] * hs, P[0], P[1], P[2], hatc);
@@ -2946,7 +3063,7 @@ function renderBodies() {
     if ((!u.alive && !u.arrested) || u.inVeh) continue;
     if (G.view === 'field' && u === (G.player || G.spec) && (G.aimFP || G.fp || G.spec)) continue;
     const L = u.look; CUR_L = L;
-    const P = BODY ? BODY.adjust(u.pts, L, u.y) : u.pts, SG = BODY ? BODY.segs(SEGS, L) : SEGS;
+    const P = BODY ? BODY.adjust(u.pts, L, u.y) : u.pts, SG = segsScaled(BODY ? BODY.segs(SEGS, L) : SEGS, L);
     BMC = bmPick(P);
     const lx = Math.cos(u.yaw), lz = -Math.sin(u.yaw);
     if (u.limbs && missingLimbs(u).length) {
@@ -16719,7 +16836,7 @@ function rcGodTourGo() {
 // The detailed models are a separate download (smfa-hd.js, next to index.html) so the game stays small for
 // everyone else. It is sold for Rp only (not SD), and the President owns it like every store item.
 const HD_FILE = 'smfa-hd.js';
-const HD_VER = '8c855097'; // replaced at build time with a fingerprint of smfa-hd.js, so browsers fetch the new file after every update
+const HD_VER = 'c11150a9'; // replaced at build time with a fingerprint of smfa-hd.js, so browsers fetch the new file after every update
 P_ && (() => {
   const p = P_('hd_pack', 'addon', 'HD Realistic Graphics', 10000, { disc: false, desc: 'Realistic models for the whole game, made in Blender: soldiers with real proportions, faces and hands; detailed weapons, tanks, jeeps, helicopters, jets and cars; buildings with brick, concrete and plaster that crack as they take damage, real windows and doors; detailed trees, rubble and ground. A separate download of about 2 MB. Bought with Rp only (not with SD). Included free with General membership.' });
   PRODUCTS.push(p); PROD[p.id] = p;
@@ -16772,4 +16889,1323 @@ setTimeout(() => { if (hdWanted()) hdLoad(); }, 600);
     $('#st-hdN').textContent = settings.hd === false ? 'Off. The change shows from the next battle, race or cutscene.' : HD.loaded ? 'On. The change shows from the next battle, race or cutscene.' : HD.err ? HD.err : 'Downloading the add-on…';
   };
 }
+/* ================= FREE ROAM EXPANSION: homes for sale, lots more furniture, a bigger Port Sorrel and Corvane City ================= */
+// Homes: a studio and a house with a garden in Port Sorrel (plus the old Harbor View apartment), a family
+// apartment and a penthouse in Corvane City. Each home keeps its own furniture. Your "main home" is where you
+// wake up and where your family lives. Everything is single player and saved on this device (and your account).
+
+/* ---------- furniture ---------- */
+// parts: [x, y, z, sx, sy, sz, colour] in metres, y measured from the floor. Front of an item is +z.
+// seats: [x, y, z] where someone sits (facing +z); beds: [x, y, z] where someone lies (head toward -z).
+const FCAT = { living: 'Living room', bed: 'Bedroom', kitchen: 'Kitchen & dining', bath: 'Bathroom', kids: 'Kids', garden: 'Garden', fun: 'Fun & decor' };
+Object.assign(FURN.bed, { name: 'Double bed', cat: 'bed', sd: 350, use: 'sleep', beds: [[-0.45, 0.62, -0.1], [0.45, 0.62, -0.1]] });
+Object.assign(FURN.sofa, { cat: 'living', sd: 300, use: 'sit', seats: [[-0.65, 0.5, 0.05], [0, 0.5, 0.05], [0.65, 0.5, 0.05]] });
+Object.assign(FURN.table, { cat: 'living', sd: 90 });
+Object.assign(FURN.tv, { cat: 'living', sd: 250, use: 'tv' });
+Object.assign(FURN.kitchen, { cat: 'kitchen', sd: 400, use: 'cook' });
+Object.assign(FURN.desk, { cat: 'living', sd: 220, use: 'laptop' });
+Object.assign(FURN.plant, { cat: 'living' }); Object.assign(FURN.lamp, { cat: 'living' }); Object.assign(FURN.rug, { cat: 'living' });
+Object.assign(FURN.shelf, { cat: 'living' }); Object.assign(FURN.flag, { cat: 'fun' }); Object.assign(FURN.arcade, { cat: 'fun', use: 'play' });
+FURN.bed.parts.push([0, 0.7, 1.45, 2, 0.5, 0.08, 0x4a3a2a]);
+Object.assign(FURN, {
+  // living room
+  armchair: { name: 'Armchair', cat: 'living', sd: 160, use: 'sit', seats: [[0, 0.5, 0.05]], parts: [[0, 0.25, 0, 0.95, 0.5, 0.9, 0x6a3a2a], [0, 0.72, -0.36, 0.95, 0.5, 0.2, 0x6a3a2a], [0.42, 0.6, 0, 0.12, 0.3, 0.9, 0x5a3022], [-0.42, 0.6, 0, 0.12, 0.3, 0.9, 0x5a3022]] },
+  sofaL: { name: 'Corner sofa', cat: 'living', sd: 650, use: 'sit', seats: [[-0.7, 0.5, 0.05], [0.1, 0.5, 0.05], [0.9, 0.5, 0.05]], parts: [[0, 0.25, 0, 3, 0.5, 1, 0x3a4a5a], [0, 0.72, -0.4, 3, 0.55, 0.22, 0x3a4a5a], [1.1, 0.25, 0.9, 0.8, 0.5, 1.2, 0x3a4a5a]] },
+  beanbag: { name: 'Beanbag', cat: 'living', sd: 70, use: 'sit', seats: [[0, 0.32, 0.05]], parts: [[0, 0.2, 0, 0.85, 0.4, 0.85, 0xc84a3a], [0, 0.45, -0.25, 0.7, 0.35, 0.3, 0xc84a3a]] },
+  tvBig: { name: 'Big-screen TV', cat: 'living', sd: 900, use: 'tv', parts: [[0, 0.25, 0, 2.4, 0.5, 0.5, 0x1e1e1e], [0, 1.2, 0, 2.3, 1.3, 0.07, 0x0a0a0a], [0, 1.2, 0.04, 2.1, 1.1, 0.01, 0x1a2a3a]] },
+  fireplace: { name: 'Fireplace', cat: 'living', sd: 700, parts: [[0, 0.55, 0, 1.8, 1.1, 0.55, 0x8a6a5a], [0, 1.15, 0, 2, 0.12, 0.65, 0xd8d0c4], [0, 0.4, 0.2, 0.9, 0.55, 0.2, 0x1a1210], [0, 0.3, 0.25, 0.5, 0.2, 0.1, 0xff8a2a]] },
+  aquarium: { name: 'Aquarium', cat: 'living', sd: 550, parts: [[0, 0.4, 0, 1.4, 0.8, 0.5, 0x2a2a2a], [0, 1.15, 0, 1.36, 0.7, 0.46, 0x3a8ab8], [0.2, 1.1, 0.24, 0.12, 0.08, 0.01, 0xff8a2a], [-0.3, 1.25, 0.24, 0.1, 0.06, 0.01, 0xffd84a]] },
+  bookcase: { name: 'Tall bookcase', cat: 'living', sd: 260, parts: [[0, 1.1, 0, 1.2, 2.2, 0.4, 0x4a321c], [0, 0.6, 0.05, 1.05, 0.3, 0.3, 0x8a3a3a], [0, 1.2, 0.05, 1.05, 0.3, 0.3, 0x3a5a8a], [0, 1.8, 0.05, 1.05, 0.3, 0.3, 0x5a7a3a]] },
+  piano: { name: 'Piano', cat: 'living', sd: 1200, use: 'piano', parts: [[0, 0.65, 0, 1.5, 1.3, 0.6, 0x141414], [0, 0.78, 0.4, 1.4, 0.06, 0.25, 0xf0f0e8], [0, 0.82, 0.48, 1.4, 0.03, 0.08, 0x141414], [0, 0.25, 0.85, 0.8, 0.5, 0.35, 0x141414]] },
+  // bedroom
+  bedSingle: { name: 'Single bed', cat: 'bed', sd: 200, use: 'sleep', beds: [[0, 0.6, -0.1]], parts: [[0, 0.22, 0, 1.1, 0.44, 2.1, 0x6a4a2c], [0, 0.5, 0, 1.0, 0.12, 2.0, 0xdfe8f0], [0, 0.6, -0.8, 0.8, 0.12, 0.35, 0xffffff], [0, 0.55, 0.3, 1.04, 0.06, 1.2, 0x3a6aa8]] },
+  wardrobe: { name: 'Wardrobe', cat: 'bed', sd: 280, parts: [[0, 1.05, 0, 1.4, 2.1, 0.6, 0x7a5a3a], [0, 1.05, 0.31, 0.02, 2, 0.01, 0x3a2a1a], [0.12, 1.1, 0.32, 0.04, 0.2, 0.02, 0xc8b070], [-0.12, 1.1, 0.32, 0.04, 0.2, 0.02, 0xc8b070]] },
+  dresser: { name: 'Dresser and mirror', cat: 'bed', sd: 230, parts: [[0, 0.45, 0, 1.3, 0.9, 0.5, 0xd8cfc0], [0, 1.45, -0.2, 0.9, 1.0, 0.05, 0xa8c0d0]] },
+  nightstand: { name: 'Nightstand', cat: 'bed', sd: 60, parts: [[0, 0.28, 0, 0.5, 0.56, 0.45, 0x7a5a3a], [0, 0.72, 0, 0.18, 0.3, 0.18, 0xffe8b0]] },
+  // kitchen and dining
+  fridge: { name: 'Fridge', cat: 'kitchen', sd: 320, use: 'snack', parts: [[0, 0.95, 0, 0.8, 1.9, 0.7, 0xe8e8e8], [0.3, 1.2, 0.36, 0.04, 0.5, 0.03, 0x8a8a8a]] },
+  stove: { name: 'Stove and oven', cat: 'kitchen', sd: 380, use: 'cook', parts: [[0, 0.45, 0, 0.8, 0.9, 0.65, 0xd8d8d8], [0, 0.91, 0, 0.78, 0.03, 0.62, 0x1a1a1a], [0, 0.4, 0.33, 0.6, 0.45, 0.02, 0x2a2a2a]] },
+  sink: { name: 'Kitchen sink', cat: 'kitchen', sd: 150, parts: [[0, 0.45, 0, 1.2, 0.9, 0.65, 0xd8d4cc], [0, 0.88, 0, 0.6, 0.06, 0.42, 0x9aa4ac], [0, 1.05, -0.25, 0.05, 0.3, 0.05, 0xb8bcc0]] },
+  dining: { name: 'Dining table (4 seats)', cat: 'kitchen', sd: 420, use: 'eat', seats: [[-0.45, 0.47, -0.95], [0.45, 0.47, -0.95], [-0.45, 0.47, 0.95, PI], [0.45, 0.47, 0.95, PI]],
+    parts: [[0, 0.74, 0, 1.8, 0.06, 1.0, 0x8a6a4a], [0, 0.36, 0, 1.6, 0.72, 0.8, 0x6a4a2c], [-0.45, 0.23, -0.95, 0.45, 0.46, 0.45, 0x5a3a22], [0.45, 0.23, -0.95, 0.45, 0.46, 0.45, 0x5a3a22], [-0.45, 0.23, 0.95, 0.45, 0.46, 0.45, 0x5a3a22], [0.45, 0.23, 0.95, 0.45, 0.46, 0.45, 0x5a3a22], [-0.45, 0.72, -1.15, 0.45, 0.5, 0.06, 0x5a3a22], [0.45, 0.72, -1.15, 0.45, 0.5, 0.06, 0x5a3a22], [-0.45, 0.72, 1.15, 0.45, 0.5, 0.06, 0x5a3a22], [0.45, 0.72, 1.15, 0.45, 0.5, 0.06, 0x5a3a22]] },
+  diningBig: { name: 'Family dining table (6 seats)', cat: 'kitchen', sd: 640, use: 'eat', seats: [[-0.75, 0.47, -0.95], [0, 0.47, -0.95], [0.75, 0.47, -0.95], [-0.75, 0.47, 0.95, PI], [0, 0.47, 0.95, PI], [0.75, 0.47, 0.95, PI]],
+    parts: [[0, 0.74, 0, 2.6, 0.06, 1.0, 0xd8cfc0], [0, 0.36, 0, 2.4, 0.72, 0.8, 0x9a8a7a], ...[-0.75, 0, 0.75].flatMap(x => [[x, 0.23, -0.95, 0.45, 0.46, 0.45, 0x3a3a3a], [x, 0.23, 0.95, 0.45, 0.46, 0.45, 0x3a3a3a]])] },
+  stools: { name: 'Bar stools', cat: 'kitchen', sd: 120, use: 'sit', seats: [[-0.4, 0.75, 0], [0.4, 0.75, 0]], parts: [[-0.4, 0.37, 0, 0.35, 0.74, 0.35, 0x2a2a2a], [0.4, 0.37, 0, 0.35, 0.74, 0.35, 0x2a2a2a]] },
+  coffee: { name: 'Coffee machine', cat: 'kitchen', sd: 140, use: 'snack', parts: [[0, 0.45, 0, 0.7, 0.9, 0.55, 0xd8d4cc], [0, 1.1, 0, 0.35, 0.4, 0.3, 0x2a2a2a]] },
+  // bathroom
+  bathtub: { name: 'Bathtub', cat: 'bath', sd: 450, use: 'wash', parts: [[0, 0.28, 0, 0.85, 0.56, 1.8, 0xf0f0f0], [0, 0.5, 0, 0.65, 0.04, 1.6, 0x8ac0d8], [0, 0.75, -0.85, 0.06, 0.4, 0.06, 0xb8bcc0]] },
+  shower: { name: 'Shower', cat: 'bath', sd: 380, use: 'wash', parts: [[0, 0.05, 0, 1, 0.1, 1, 0xe8e8e8], [0, 1.1, -0.48, 1, 2.1, 0.05, 0xd8e8f0], [-0.48, 1.1, 0, 0.05, 2.1, 1, 0xd8e8f0], [0, 2.0, -0.3, 0.2, 0.05, 0.2, 0xb8bcc0]] },
+  toilet: { name: 'Toilet', cat: 'bath', sd: 160, parts: [[0, 0.22, 0.05, 0.42, 0.44, 0.6, 0xf4f4f4], [0, 0.6, -0.22, 0.45, 0.5, 0.18, 0xf4f4f4]] },
+  basin: { name: 'Wash basin', cat: 'bath', sd: 140, parts: [[0, 0.42, 0, 0.6, 0.84, 0.45, 0xd8d0c4], [0, 0.86, 0, 0.5, 0.06, 0.38, 0xf4f4f4], [0, 1.4, -0.2, 0.55, 0.65, 0.04, 0xa8c0d0]] },
+  // kids
+  crib: { name: 'Baby crib', cat: 'kids', sd: 240, use: 'crib', beds: [[0, 0.62, 0]], kid: true, parts: [[0, 0.45, 0, 0.75, 0.08, 1.3, 0xf0f0f0], [0, 0.55, 0, 0.68, 0.1, 1.22, 0xd8e8f8], [0.36, 0.55, 0, 0.04, 1.1, 1.3, 0xf0f0f0], [-0.36, 0.55, 0, 0.04, 1.1, 1.3, 0xf0f0f0], [0, 0.55, 0.64, 0.75, 1.1, 0.04, 0xf0f0f0], [0, 0.55, -0.64, 0.75, 1.1, 0.04, 0xf0f0f0]] },
+  bunk: { name: 'Bunk bed', cat: 'kids', sd: 420, use: 'sleep', beds: [[0, 0.55, -0.1], [0, 1.85, -0.1]], kid: true, parts: [[0, 0.22, 0, 1.1, 0.44, 2.1, 0x3a6aa8], [0, 0.5, 0, 1.0, 0.12, 2.0, 0xe8f0f8], [0, 1.5, 0, 1.1, 0.12, 2.1, 0x3a6aa8], [0, 1.62, 0, 1.0, 0.12, 2.0, 0xe8f0f8], [0.52, 1.0, 1.0, 0.08, 2.0, 0.08, 0x2a4a78], [-0.52, 1.0, 1.0, 0.08, 2.0, 0.08, 0x2a4a78], [0.52, 1.0, -1.0, 0.08, 2.0, 0.08, 0x2a4a78], [-0.52, 1.0, -1.0, 0.08, 2.0, 0.08, 0x2a4a78]] },
+  toybox: { name: 'Toy box', cat: 'kids', sd: 90, use: 'play', kid: true, parts: [[0, 0.25, 0, 0.9, 0.5, 0.5, 0xe8b84a], [0.2, 0.56, 0, 0.2, 0.15, 0.2, 0xc8302a], [-0.15, 0.58, 0.05, 0.16, 0.2, 0.16, 0x3a8ad8]] },
+  playmat: { name: 'Play mat', cat: 'kids', sd: 60, flat: true, use: 'play', kid: true, parts: [[0, 0.02, 0, 2, 0.04, 2, 0x5ac88a], [0.5, 0.05, 0.5, 0.5, 0.02, 0.5, 0xf0d040]] },
+  rocking: { name: 'Rocking horse', cat: 'kids', sd: 130, use: 'play', kid: true, parts: [[0, 0.08, 0, 0.3, 0.08, 1.0, 0x8a5a3a], [0, 0.45, 0, 0.25, 0.3, 0.7, 0xd8c8a0], [0, 0.72, 0.38, 0.22, 0.35, 0.2, 0xd8c8a0]] },
+  kidsTable: { name: 'Kids table and chairs', cat: 'kids', sd: 110, use: 'sit', kid: true, seats: [[-0.45, 0.3, -0.6], [0.45, 0.3, -0.6]], parts: [[0, 0.45, 0, 1.0, 0.05, 0.7, 0xf0f0f0], [0, 0.22, 0, 0.9, 0.42, 0.6, 0x5ab8e8], [-0.45, 0.15, -0.6, 0.32, 0.3, 0.32, 0xe85a5a], [0.45, 0.15, -0.6, 0.32, 0.3, 0.32, 0xf0c040]] },
+  dollhouse: { name: 'Dollhouse', cat: 'kids', sd: 160, use: 'play', kid: true, parts: [[0, 0.35, 0, 0.9, 0.7, 0.45, 0xf0d8e8], [0, 0.85, 0, 0.95, 0.3, 0.5, 0xc84a6a]] },
+  trainset: { name: 'Toy train set', cat: 'kids', sd: 120, flat: true, use: 'play', kid: true, parts: [[0, 0.02, 0, 1.8, 0.03, 1.2, 0x6a5a4a], [0.4, 0.08, 0.3, 0.3, 0.12, 0.15, 0xc8302a], [0.05, 0.08, 0.3, 0.3, 0.12, 0.15, 0x2a6ac8]] },
+  // garden (also fine indoors)
+  bbq: { name: 'Barbecue grill', cat: 'garden', sd: 260, use: 'bbq', parts: [[0, 0.45, 0, 0.9, 0.9, 0.55, 0x2a2a2a], [0, 0.95, 0, 0.95, 0.1, 0.6, 0x4a4a4a], [0, 1.15, -0.25, 0.95, 0.4, 0.06, 0x2a2a2a]] },
+  gardenSet: { name: 'Garden table and parasol', cat: 'garden', sd: 300, use: 'sit', seats: [[-0.75, 0.47, 0, -PI / 2], [0.75, 0.47, 0, PI / 2]], parts: [[0, 0.72, 0, 1.0, 0.05, 1.0, 0xf0f0f0], [0, 0.36, 0, 0.12, 0.72, 0.12, 0xb8bcc0], [0, 1.6, 0, 0.06, 1.8, 0.06, 0xb8bcc0], [0, 2.4, 0, 2.4, 0.08, 2.4, 0x3a8a6a], [-0.75, 0.23, 0, 0.45, 0.46, 0.45, 0xf0f0f0], [0.75, 0.23, 0, 0.45, 0.46, 0.45, 0xf0f0f0]] },
+  swing: { name: 'Swing set', cat: 'garden', sd: 380, use: 'swing', kid: true, seats: [[-0.55, 0.5, 0], [0.55, 0.5, 0]], parts: [[0, 2.1, 0, 2.6, 0.12, 0.12, 0xc8302a], [-1.25, 1.05, 0.5, 0.1, 2.1, 0.1, 0xc8302a], [-1.25, 1.05, -0.5, 0.1, 2.1, 0.1, 0xc8302a], [1.25, 1.05, 0.5, 0.1, 2.1, 0.1, 0xc8302a], [1.25, 1.05, -0.5, 0.1, 2.1, 0.1, 0xc8302a], [-0.55, 0.45, 0, 0.5, 0.05, 0.25, 0x2a2a2a], [0.55, 0.45, 0, 0.5, 0.05, 0.25, 0x2a2a2a]] },
+  trampoline: { name: 'Trampoline', cat: 'garden', sd: 340, use: 'bounce', kid: true, parts: [[0, 0.4, 0, 2.6, 0.06, 2.6, 0x1a1a1a], [0, 0.2, 0, 2.8, 0.4, 0.1, 0x3a7ac8], [0, 0.2, 1.35, 2.8, 0.4, 0.1, 0x3a7ac8], [0, 0.2, -1.35, 2.8, 0.4, 0.1, 0x3a7ac8]] },
+  sandbox: { name: 'Sandbox', cat: 'garden', sd: 150, flat: true, use: 'play', kid: true, parts: [[0, 0.12, 0, 2, 0.24, 2, 0x8a6a4a], [0, 0.2, 0, 1.8, 0.1, 1.8, 0xe8d8a0]] },
+  lounger: { name: 'Sun lounger', cat: 'garden', sd: 140, use: 'sit', seats: [[0, 0.4, 0.2]], parts: [[0, 0.3, 0, 0.7, 0.1, 1.9, 0xf0f0f0], [0, 0.55, -0.8, 0.7, 0.5, 0.1, 0xf0f0f0]] },
+  hedge: { name: 'Hedge', cat: 'garden', sd: 50, parts: [[0, 0.6, 0, 2, 1.2, 0.7, 0x3a6a2a]] },
+  flowers: { name: 'Flower bed', cat: 'garden', sd: 70, parts: [[0, 0.12, 0, 2, 0.24, 0.8, 0x6a4a2c], [-0.5, 0.35, 0, 0.4, 0.25, 0.4, 0xe85a8a], [0.1, 0.35, 0.1, 0.4, 0.25, 0.4, 0xf0d040], [0.6, 0.35, -0.1, 0.4, 0.25, 0.4, 0xa85ae8]] },
+  pool: { name: 'Paddling pool', cat: 'garden', sd: 180, flat: true, use: 'play', kid: true, parts: [[0, 0.15, 0, 2.4, 0.3, 2.4, 0x3a8ad8], [0, 0.28, 0, 2.1, 0.04, 2.1, 0x8ad8f0]] },
+  bench: { name: 'Garden bench', cat: 'garden', sd: 110, use: 'sit', seats: [[-0.45, 0.47, 0.05], [0.45, 0.47, 0.05]], parts: [[0, 0.45, 0, 1.6, 0.08, 0.5, 0x8a6a4a], [0, 0.22, 0, 1.5, 0.44, 0.4, 0x3a3a3a], [0, 0.75, -0.22, 1.6, 0.5, 0.06, 0x8a6a4a]] },
+  lampPost: { name: 'Garden lamp', cat: 'garden', sd: 90, parts: [[0, 1.0, 0, 0.1, 2.0, 0.1, 0x2a2a2a], [0, 2.05, 0, 0.3, 0.3, 0.3, 0xffe8b0]] },
+  // fun and decor
+  poolTable: { name: 'Pool table', cat: 'fun', sd: 900, use: 'play', parts: [[0, 0.4, 0, 1.4, 0.8, 2.5, 0x4a2e1a], [0, 0.82, 0, 1.25, 0.04, 2.35, 0x1a6a3a]] },
+  foosball: { name: 'Table football', cat: 'fun', sd: 450, use: 'play', parts: [[0, 0.45, 0, 0.8, 0.9, 1.4, 0x3a3a3a], [0, 0.92, 0, 0.7, 0.04, 1.3, 0x2a8a4a]] },
+  drums: { name: 'Drum kit', cat: 'fun', sd: 700, use: 'drums', parts: [[0, 0.3, 0, 0.6, 0.6, 0.45, 0xc8302a], [-0.55, 0.6, 0.15, 0.4, 0.3, 0.4, 0xc8302a], [0.55, 0.6, 0.15, 0.4, 0.3, 0.4, 0xc8302a], [0.75, 1.1, -0.1, 0.5, 0.03, 0.5, 0xd8b84a], [0, 0.25, -0.65, 0.4, 0.5, 0.4, 0x2a2a2a]] },
+  gaming: { name: 'Gaming setup', cat: 'fun', sd: 1500, use: 'laptop', parts: [[0, 0.37, 0, 1.6, 0.74, 0.75, 0x1a1a1a], [-0.45, 1.05, -0.15, 0.7, 0.45, 0.04, 0x0a0a0a], [0.45, 1.05, -0.15, 0.7, 0.45, 0.04, 0x0a0a0a], [0, 0.78, 0.15, 0.5, 0.03, 0.18, 0x39d353], [0, 0.3, 0.75, 0.6, 0.6, 0.6, 0x2a2a2a]] },
+  trophies: { name: 'Trophy cabinet', cat: 'fun', sd: 600, parts: [[0, 0.9, 0, 1.4, 1.8, 0.45, 0x3a2a1a], [-0.3, 1.25, 0.1, 0.18, 0.35, 0.18, 0xe8c040], [0.25, 1.2, 0.1, 0.2, 0.25, 0.2, 0xc0c0c8], [0, 0.65, 0.1, 0.2, 0.3, 0.2, 0xe8c040]] },
+  painting: { name: 'Painting', cat: 'fun', sd: 180, parts: [[0, 1.5, 0, 1.4, 0.9, 0.05, 0x5a3a22], [0, 1.5, 0.03, 1.25, 0.75, 0.01, 0x4a8ab8], [0.2, 1.4, 0.04, 0.5, 0.3, 0.01, 0x6aa84a]] },
+  globe: { name: 'Globe', cat: 'fun', sd: 120, parts: [[0, 0.4, 0, 0.15, 0.8, 0.15, 0x4a321c], [0, 0.95, 0, 0.5, 0.5, 0.5, 0x3a7ab8]] },
+  telescope: { name: 'Telescope', cat: 'fun', sd: 340, parts: [[0, 0.6, 0, 0.5, 1.2, 0.5, 0x2a2a2a], [0, 1.3, 0.2, 0.15, 0.15, 0.9, 0xd8d8d8]] },
+  punchbag: { name: 'Punching bag', cat: 'fun', sd: 160, use: 'play', parts: [[0, 1.0, 0, 0.45, 1.1, 0.45, 0xa82a2a], [0, 2.2, 0, 0.05, 1.2, 0.05, 0x8a8a8a]] }
+});
+for (const k in FURN) { const D = FURN[k]; if (!D.cat) D.cat = 'living'; if (D.sd === 0) D.sd = 100; }
+
+/* ---------- homes ---------- */
+// area: inside floor space (x0..x1, z0..z1 at floor height y). Furniture can be placed anywhere in it (and in the garden).
+const HOMES = {
+  studio: { name: 'Gull Lane Studio', region: 'town', price: 1200, cap: 1, rooms: 'Studio with a bathroom', desc: 'A cosy studio on Market Street. Room for you and a partner.',
+    area: { x0: -189.7, x1: -174.3, z0: 16.3, z1: 27.7, y: 0.04 }, sale: { x: -182, z: 31 }, spawn: { x: -181, z: 24, yaw: 0 } },
+  harbor: { name: 'Harbor View Apartment', region: 'town', price: 2500, cap: 2, rooms: '1 bedroom', desc: 'The upstairs apartment at Harbor View with a carport space. Room for you, a partner and a baby.',
+    area: { x0: APT.x0, x1: APT.x1, z0: APT.z0, z1: APT.z1, y: APT.y }, sale: { x: 22, z: -28.6 }, spawn: { x: 26, z: -31, yaw: 0 } },
+  house: { name: '3 Orchard Hill', region: 'town', price: 15000, cap: 5, rooms: '3 bedrooms, garden', desc: 'A family house with three bedrooms, a big kitchen and a fenced garden in the Orchard Hill suburb.',
+    area: { x0: -29.7, x1: -8.3, z0: -195.7, z1: -180.3, y: 0.04 }, garden: { x0: -29.5, x1: -8.5, z0: -179.5, z1: -166.5, y: 0 }, sale: { x: -23, z: -163.5 }, spawn: { x: -19, z: -183, yaw: PI } },
+  family: { name: 'Corvane Residences 3B', region: 'city', price: 9000, cap: 4, rooms: '3 bedrooms', desc: 'A modern three-bedroom apartment on the third floor of Corvane Residences, with city views.',
+    area: { x0: 40.2, x1: 63.8, z0: -79.8, z1: -60.2, y: 12.15 }, sale: { x: 58, z: -65.2 }, spawn: { x: 52, z: -62.6, yaw: PI }, lobby: { x: 52, z: -61.3 }, lift: { x: 52, z: -61.2 } },
+  penthouse: { name: 'Skyline Tower Penthouse', region: 'city', price: 40000, cap: 5, rooms: '4 bedrooms, top floor', desc: 'The whole top floor of Skyline Tower: four bedrooms, a huge living room and windows all around.',
+    area: { x0: -77.8, x1: -54.2, z0: 42.2, z1: 65.8, y: 60.15 }, sale: { x: -60, z: 62.8 }, spawn: { x: -66, z: 63.4, yaw: PI }, lobby: { x: -66, z: 64.7 }, lift: { x: -66, z: 64.8 } }
+};
+// default furniture (world coordinates); the Harbor View list is the original one
+const HOME_DEF = {
+  studio: [['bed', -186.6, 18, 0], ['nightstand', -184.6, 16.8, 0], ['wardrobe', -188.9, 22, PI / 2], ['kitchen', -189.2, 26, PI / 2], ['fridge', -186, 27.2, PI], ['sofa', -180.8, 22.6, PI], ['tv', -180.8, 16.7, 0], ['table', -180.8, 20.3, 0], ['desk', -176, 26.9, PI], ['toilet', -175, 16.9, 0], ['basin', -177.2, 16.7, 0], ['shower', -175.2, 19.6, -PI / 2]],
+  harbor: APT_DEFAULT.map(a => a.slice()),
+  house: [['bed', -26.2, -193.8, 0], ['nightstand', -28.6, -194.9, 0], ['wardrobe', -23.4, -195.1, 0], ['bunk', -18.6, -194.2, 0], ['toybox', -16.2, -195.2, 0], ['bedSingle', -11.6, -194.4, 0], ['dresser', -9.2, -195.2, 0],
+    ['sofaL', -26, -184.5, PI], ['tvBig', -26, -188.8, 0], ['rug', -26, -186.5, 0], ['diningBig', -18.4, -184.6, 0], ['kitchen', -18.6, -188.4, 0], ['fridge', -16.2, -188.6, 0], ['stove', -21.1, -188.6, 0],
+    ['bathtub', -9.2, -183.2, 0], ['toilet', -11.6, -180.9, PI], ['basin', -12.8, -186.3, 0], ['desk', -29, -181.4, PI / 2],
+    ['bbq', -12, -177.6, PI], ['gardenSet', -18, -174, 0], ['swing', -26, -171, 0], ['flowers', -10, -168, 0]],
+  family: [['bed', 44.2, -77.9, 0], ['wardrobe', 46.6, -79.1, 0], ['bunk', 50.4, -78.1, 0], ['toybox', 53, -79.2, 0], ['bedSingle', 58.4, -78.3, 0], ['nightstand', 60.2, -79.3, 0],
+    ['sofaL', 45, -64.4, PI], ['tvBig', 45, -71.5, 0], ['table', 45, -67.5, 0], ['dining', 53.5, -68.5, PI / 2], ['kitchen', 41, -69, PI / 2], ['fridge', 41, -66.4, PI / 2], ['stove', 41, -71.4, PI / 2],
+    ['bathtub', 62.6, -65.4, 0], ['toilet', 60, -61.2, PI], ['basin', 62.9, -62.7, -PI / 2], ['desk', 58, -71.2, 0], ['plant', 47.8, -61, 0]],
+  penthouse: [['bed', -75.4, 44.4, 0], ['wardrobe', -73, 42.8, 0], ['bunk', -69.9, 43.5, 0], ['toybox', -67.3, 42.7, 0], ['bunk', -64, 43.5, 0], ['toybox', -61.4, 42.7, 0], ['bedSingle', -57.6, 43.5, 0], ['nightstand', -55.3, 42.7, 0],
+    ['sofaL', -72, 59, PI], ['tvBig', -72, 53.2, 0], ['rug', -72, 56, 0], ['piano', -76.9, 62.5, PI / 2], ['diningBig', -64, 57.6, 0], ['kitchen', -64, 50.5, 0], ['fridge', -61.4, 50.5, 0], ['stove', -66.6, 50.5, 0],
+    ['bathtub', -54.9, 52.9, 0], ['toilet', -54.7, 50.2, -PI / 2], ['shower', -57.4, 49.7, 0], ['basin', -57.6, 55.1, PI], ['poolTable', -60, 62, PI / 2], ['gaming', -77.3, 51, PI / 2], ['aquarium', -70, 65.4, PI], ['plant', -54.9, 65.2, 0]]
+
+};
+
+/* ---------- building helpers ---------- */
+// a straight wall along x (at z = c) or along z (at x = c), from a0 to a1, with doors and windows cut into it
+function frWall(axis, c, a0, a1, y0, h, t, col, ops) {
+  ops = (ops || []).slice().sort((a, b) => a.at - b.at); let cur = Math.min(a0, a1); const end = Math.max(a0, a1), made = [];
+  const seg = (s0, s1, yb, yt, cc) => { if (s1 - s0 < 0.04 || yt - yb < 0.04) return -1; const m = (s0 + s1) / 2, L = s1 - s0, hh = yt - yb, ym = yb + hh / 2; const i = axis === 'x' ? frBox(m, ym, c, L, hh, t, cc || col, 1e9) : frBox(c, ym, m, t, hh, L, cc || col, 1e9); made.push(i); return i; };
+  for (const o of ops) {
+    const w = o.w || (o.k === 'door' ? 1.3 : 1.6), s0 = o.at - w / 2, s1 = o.at + w / 2;
+    seg(cur, s0, y0, y0 + h);
+    if (o.k === 'door') { seg(s0, s1, y0 + 2.25, y0 + h); if (o.lock) o.blk = axis === 'x' ? frBox(o.at, y0 + 1.12, c, w, 2.24, t * 0.6, o.lockCol || 0x4a2e1a, 1e9) : frBox(c, y0 + 1.12, o.at, t * 0.6, 2.24, w, o.lockCol || 0x4a2e1a, 1e9); }
+    else { seg(s0, s1, y0, y0 + (o.sill || 0.95)); seg(s0, s1, y0 + (o.top || 2.25), y0 + h); }
+    cur = s1;
+  }
+  seg(cur, end, y0, y0 + h);
+  return made;
+}
+// a box room: four outer walls (thickness t, centred on the given lines) with openings per side
+function frRoomBox(x0, z0, x1, z1, y0, h, t, col, op) {
+  op = op || {};
+  frWall('x', z0, x0 - t / 2, x1 + t / 2, y0, h, t, col, op.n); frWall('x', z1, x0 - t / 2, x1 + t / 2, y0, h, t, col, op.s);
+  frWall('z', x0, z0 + t / 2, z1 - t / 2, y0, h, t, col, op.w); frWall('z', x1, z0 + t / 2, z1 - t / 2, y0, h, t, col, op.e);
+}
+function frFloor(x0, z0, x1, z1, y, col, thick) { const th = thick || 0.04; return frBox((x0 + x1) / 2, y - th / 2, (z0 + z1) / 2, x1 - x0, th, z1 - z0, col, 1e9, 1); }
+// trees placed by the base map get cleared where new buildings go
+function frClearTrees(x0, z0, x1, z1) {
+  for (let i = 0; i < B.n; i++) if (B.kind[i] === 3 && B.alive[i] && B.x[i] > x0 && B.x[i] < x1 && B.z[i] > z0 && B.z[i] < z1) { B.alive[i] = 0; const t = G.trees[B.extra[i]]; if (t) t.s = 0.0001; }
+  const a = frCell(x0), b = frCell(z0), c = frCell(x1), d = frCell(z1); markArea(Math.max(0, a), Math.max(0, b), Math.min(GN, c) - Math.max(0, a) + 1, Math.min(GN, d) - Math.max(0, b) + 1, 2);
+}
+// glass-and-concrete tower made of horizontal bands (cheap: two blocks per 4 m floor)
+function frTower(cx, cz, w, d, levels, glass, band, opt) {
+  opt = opt || {}; frClearTrees(cx - w / 2 - 2, cz - d / 2 - 2, cx + w / 2 + 2, cz + d / 2 + 2);
+  const skip = opt.skip || {};
+  for (let l = opt.from || 0; l < levels; l++) {
+    if (skip[l]) continue;
+    const y = l * 4;
+    frBox(cx, y + 0.6, cz, w, 1.2, d, band, 1e9);
+    frBox(cx, y + 2.6, cz, w - 0.5, 2.8, d - 0.5, glass, 1e9);
+    if (w > 10) for (let k = -1; k <= 1; k += 2) frBox(cx + k * (w / 2 - 0.3), y + 2.6, cz, 0.6, 2.8, d, band, 1e9); // corner piers
+  }
+  if (!opt.noCap) frBox(cx, levels * 4 + 0.3, cz, w + 0.4, 0.6, d + 0.4, band, 1e9);
+  if (opt.crown) frBox(cx, levels * 4 + 1.8, cz, w * 0.5, 2.4, d * 0.5, band, 1e9);
+}
+// windows every few metres along a wall, skipping spots listed in `not`
+function frWins(a0, a1, step, w, not) { const o = []; for (let a = a0 + step / 2; a < a1 - 0.5; a += step) if (!(not || []).some(n => Math.abs(n - a) < (w + 1.6) / 2)) o.push({ at: a, w }); return o; }
+const FRX2 = { doors: {}, homeFurn: {}, gates: [], civ: [] };
+
+/* ---------- Port Sorrel: new districts around the old town ---------- */
+FR_REGIONS.town.msize = 'huge';
+function frGenTownMore() {
+  const C = { cream: 0xd8c8a4, peach: 0xd89a7a, blue: 0x7a9ab8, mint: 0x9ac8a8, yellow: 0xd8c86a, white: 0xe8e4dc, roof: 0x8a3a2a, roof2: 0x3a4a5a, brick: 0x9a5a44, wood: 0x8a6a4a };
+  // new roads: Market Street (west), Orchard Road (south), Park Road (north)
+  G.roads.push(['z', frCell(-160) - 1], ['x', frCell(-160) - 1]);
+  for (const [a, k] of G.roads.slice(-2)) { for (let i = 0; i < GN; i++) for (let w = -1; w < 3; w++) { const kk = k + w; if (kk < 0 || kk >= GN) continue; const idx = a === 'x' ? kk * GN + i : i * GN + kk; occ[idx] = Math.max(occ[idx], 1); } }
+  for (const [a, k] of G.roads.slice(-2)) { const c = cellX(k) + 1; if (a === 'x') frClearTrees(-HALF, c - 4, HALF, c + 4); else frClearTrees(c - 4, -HALF, c + 4, HALF); }
+  frClearTrees(-4, -HALF, 4, HALF); // the main road north to the city
+
+  /* WEST: Market Street (x around -170): studio, furniture store, diner */
+  frClearTrees(-198, 10, -152, 34);
+  {
+    const H = HOMES.studio.area, y = 0, t = 0.3, h = 3.2, col = C.peach;
+    frFloor(H.x0, H.z0, H.x1, H.z1, y + 0.04, 0xa8784a);
+    const door = { at: -182, k: 'door', lock: true };
+    frRoomBox(H.x0 - t / 2, H.z0 - t / 2, H.x1 + t / 2, H.z1 + t / 2, y, h, t, col, { n: [{ at: -183.2, w: 1.6 }], s: [door, { at: -186.6, w: 1.6 }, { at: -177.4, w: 1.4 }], w: [{ at: 19.2, w: 1.4 }], e: [{ at: 24.4, w: 1.6 }] });
+    FRX2.doors.studio = door.blk;
+    frWall('z', -178, H.z0, 21, y, h, 0.22, 0xe8e4dc); frWall('x', 21, -178, H.x1, y, h, 0.22, 0xe8e4dc, [{ at: -176.1, k: 'door' }]);
+    frBox(-182, h - 0.03, 22, 15.4, 0.06, 11.4, 0xf0ece4, 1e9, 1); frBox(-182, h + 0.15, 22, 16.2, 0.3, 12.2, C.roof2, 1e9); frBox(-182, h + 0.38, 28.1, 16.4, 0.16, 0.3, 0x2a6a4a, 1e9);
+  }
+  frClearTrees(-198, -52, -132, 80);
+  frHouse(-196, -30, 9, 6, 2, C.white, { doors: [['e', 2, 2]], roof: C.roof2, trim: 0x39d353, windows: true }); // Sorrel Home furniture store
+  frBox(-186, 0.5, -24, 0.8, 1, 3, 0x6a4a2c);
+  frHouse(-196, 40, 8, 6, 1, C.yellow, { doors: [['e', 2, 2]], roof: C.roof, windows: true }); // Gull's Diner
+  frHouse(-196, 66, 7, 5, 2, C.blue, { doors: [['e', 2]], roof: C.roof2, windows: true });
+  frHouse(-196, -50, 7, 5, 1, C.mint, { doors: [['e', 2]], roof: C.roof, windows: true });
+  frHouse(-150, 44, 7, 5, 1, C.cream, { doors: [['w', 2]], roof: C.roof, windows: true });
+  frHouse(-150, -36, 8, 6, 2, C.peach, { doors: [['w', 2]], roof: C.roof2, windows: true });
+
+  /* SOUTH: Orchard Hill suburb (z around -175) with the house for sale */
+  frClearTrees(-34, -199, -4, -162);
+  {
+    const H = HOMES.house.area, y = 0, t = 0.3, h = 3.2, col = 0xe8dcc8;
+    frFloor(H.x0, H.z0, H.x1, H.z1, y + 0.04, 0x9a6a3a);
+    const door = { at: -19, k: 'door', lock: true };
+    frRoomBox(H.x0 - t / 2, H.z0 - t / 2, H.x1 + t / 2, H.z1 + t / 2, y, h, t, col, { n: [{ at: -26.2, w: 1.6 }, { at: -19, w: 1.6 }, { at: -11.9, w: 1.6 }], s: [door, { at: -26, w: 2.2 }, { at: -15.6, w: 1.4 }], w: [{ at: -186.5, w: 1.8 }], e: [{ at: -192.4, w: 1.4 }, { at: -183.4, w: 1.0, sill: 1.4 }] });
+    FRX2.doors.house = door.blk;
+    const iw = 0xf0ece4;
+    frWall('z', -22.6, H.z0, -189.5, y, h, 0.22, iw); frWall('z', -15.4, H.z0, -189.5, y, h, 0.22, iw);
+    frWall('x', -189.5, H.x0, H.x1, y, h, 0.22, iw, [{ at: -25.2, k: 'door' }, { at: -20.4, k: 'door' }, { at: -13.4, k: 'door' }]);
+    frWall('x', -186.8, -14.2, H.x1, y, h, 0.22, iw); frWall('z', -14.2, -186.8, H.z1, y, h, 0.22, iw, [{ at: -183.6, k: 'door' }]);
+    frBox(-19, h - 0.03, -188, 21.4, 0.06, 15.4, 0xf4f0ea, 1e9, 1); frBox(-19, h + 0.15, -188, 22.6, 0.3, 16.6, C.roof, 1e9);
+    for (let k = 0; k < 6; k++) frBox(-19, h + 0.45 + k * 0.32, -188, 22.6 - k * 3.4, 0.32, 16.6 - k * 2.6, C.roof, 1e9); // stepped roof
+    // garden fence with a gate on the street side
+    const G0 = HOMES.house.garden, fc = 0xe8e4dc;
+    frWall('z', -29.85, -180, -166.15, 0, 1.0, 0.12, fc); frWall('z', -8.15, -180, -166.15, 0, 1.0, 0.12, fc);
+    frWall('x', -166, -29.9, -8.1, 0, 1.0, 0.12, fc, [{ at: -23, k: 'door', w: 2 }]);
+  }
+  // neighbours (not for sale)
+  [[-112, -196], [-92, -196], [-48, -196], [8, -196], [28, -196], [70, -196], [90, -196], [-112, -150], [-90, -150], [-45, -150], [10, -150], [30, -150], [75, -150], [100, -150]].forEach(([x, z], k) => {
+    frClearTrees(x - 3, z - 3, x + 16, z + 14);
+    frHouse(x, z, 6 + (k % 2), 5, 1 + (k % 3 === 0 ? 1 : 0), [C.cream, C.peach, C.blue, C.mint, C.yellow, C.white][k % 6], { doors: [[z < -170 ? 's' : 'n', 2]], roof: k % 2 ? C.roof : C.roof2, windows: true });
+  });
+
+  /* NORTH: Sorrel Park (west of the road) and the Family Centre (east) */
+  frClearTrees(-100, 140, -6, 198); frClearTrees(6, 140, 70, 198);
+  // park paths, pond, playground
+  frBox(-50, 0.02, 168, 80, 0.04, 2.5, 0xc8b88a, 1e9, 1); frBox(-50, 0.02, 168, 2.5, 0.04, 50, 0xc8b88a, 1e9, 1);
+  frBox(-78, 0.03, 182, 16, 0.06, 10, 0x2a6a9a, 1e9, 1);
+  frBox(-30, 0.03, 180, 18, 0.06, 14, 0xd8c08a, 1e9, 1); // playground sand
+  const PG = FRX2.play = [];
+  // swings
+  for (const [x, z] of [[-35, 176]]) { frBox(x, 2.2, z, 4.4, 0.14, 0.14, 0xc8302a); for (const s of [-2.1, 2.1]) for (const q of [-0.6, 0.6]) frBox(x + s, 1.1, z + q, 0.12, 2.2, 0.12, 0xc8302a); for (const s of [-1, 1]) { frBox(x + s, 0.5, z, 0.6, 0.06, 0.3, 0x2a2a2a); PG.push({ x: x + s, z: z + 0.9, k: 'swing', sx: x + s, sz: z }); } }
+  // slide
+  frBox(-26, 1.0, 177, 1.0, 2.0, 1.0, 0x3a7ac8); frBox(-26, 0.9, 179.2, 0.8, 0.12, 3.4, 0xf0c040, 1e9, 1); for (let k = 0; k < 4; k++) frBox(-26, 0.25 + k * 0.5, 175.9 - k * 0.0, 0.8, 0.12, 0.4, 0x3a7ac8);
+  PG.push({ x: -26, z: 181.5, k: 'slide' });
+  // climbing frame and roundabout
+  for (const [x, z] of [[-30, 184], [-27.6, 184], [-30, 186.4], [-27.6, 186.4]]) frBox(x, 1.0, z, 0.12, 2.0, 0.12, 0xe85a2a);
+  frBox(-28.8, 2.0, 185.2, 2.6, 0.12, 2.6, 0xe85a2a); PG.push({ x: -28.8, z: 188, k: 'climb' });
+  frBox(-36, 0.25, 186, 2.4, 0.2, 2.4, 0x5ac88a, 1e9, 1); PG.push({ x: -36, z: 186, k: 'spin' });
+  // benches
+  for (const [x, z] of [[-42, 172], [-52, 172], [-42, 164], [-20, 172], [-72, 172]]) { frBox(x, 0.45, z, 1.6, 0.08, 0.5, 0x8a6a4a); frBox(x, 0.22, z, 1.4, 0.44, 0.4, 0x3a3a3a); }
+  // Family Centre
+  frHouse(20, 150, 10, 7, 2, 0xe8d8e8, { doors: [['n', 4, 2]], roof: 0x6a4a8a, trim: 0xf0c040, windows: true });
+  frBox(30, 0.5, 157, 3, 1, 0.8, 0x8a6a4a);
+  // the city road: a big sign over the north end of the main road
+  for (const x of [-8, 8]) frBox(x, 3.6, 193, 1, 7.2, 1, 0x2a2e2a);
+  frBox(0, 7.0, 193, 17, 1, 1, 0x2a2e2a);
+  // the sea now reaches the eastern edge
+  frClearTrees(140, -HALF, HALF, HALF);
+  // ice cream kiosk on the quay
+  frBox(132, 1.2, -40, 3, 2.4, 2.2, 0xf0e8e0); frBox(132, 2.6, -40, 3.6, 0.3, 2.8, 0xe85a8a);
+}
+
+/* ---------- Corvane City ---------- */
+FR_REGIONS.city = { name: 'Corvane City', theme: 'fr_city', msize: 'big' };
+Object.defineProperty(THEMES, 'fr_city', { enumerable: false, value: { name: 'Corvane City', desc: 'The big city', ground: 0x5a6250, ground2: 0x50584a, blocks: [0x8a8c86], roof: 0x3a3c3a, density: 0, trees: 0, treeType: 'round', fog: 0xbcc6cc, roads: true } });
+const CITY = { arrive: { x: 30, z: -138, yaw: 0 }, plaza: { x: 0, z: -10, yaw: 0 }, toTown: -146 };
+function frGenCity() {
+  occ = new Uint8Array(GN * GN); cells = []; for (let i = 0; i < GN * GN; i++) cells.push([]); B.n = 0;
+  G.teams[0].hq = { x: 0, z: -900 }; G.teams[0].spawn = { x: 0, z: -10 }; G.teams[0].clinic = { x: 0, z: -10 };
+  G.teams[1].hq = { x: 0, z: -950 }; G.teams[1].spawn = { x: 0, z: -950 }; G.teams[1].clinic = { x: 0, z: -950 };
+  G.flags = []; G.trees = []; G.landmarks = 0;
+  G.roads = [-90, -30, 30, 90].flatMap(v => [['z', frCell(v) - 1], ['x', frCell(v) - 1]]);
+  for (const [a, k] of G.roads) for (let i = 0; i < GN; i++) for (let w = 0; w < 2; w++) { const idx = a === 'x' ? (k + w) * GN + i : i * GN + (k + w); if (idx < GN * GN) occ[idx] = Math.max(occ[idx], 1); }
+  const glass = [0x5a7a8a, 0x4a6a7a, 0x6a8a9a, 0x3a5a6a, 0x7a8a8a, 0x5a6a7a], band = [0xb8b8b0, 0x9a9a94, 0xd8d4cc, 0x8a8a84];
+  // sidewalks around every block
+  for (const v of [-90, -30, 30, 90]) { frBox(v - 3.2, 0.06, 0, 1.6, 0.12, 2 * HALF - 2, 0xa8a8a0, 1e9, 1); frBox(v + 3.2, 0.06, 0, 1.6, 0.12, 2 * HALF - 2, 0xa8a8a0, 1e9, 1); frBox(0, 0.06, v - 3.2, 2 * HALF - 2, 0.12, 1.6, 0xa8a8a0, 1e9, 1); frBox(0, 0.06, v + 3.2, 2 * HALF - 2, 0.12, 1.6, 0xa8a8a0, 1e9, 1); }
+  // central plaza with a fountain
+  frBox(0, 0.05, 0, 52, 0.1, 52, 0xc8c0b0, 1e9, 1);
+  frBox(0, 0.3, 10, 9, 0.6, 9, 0xd8d4cc, 1e9); frBox(0, 0.62, 10, 8, 0.05, 8, 0x3a8ab8, 1e9, 1); frBox(0, 1.6, 10, 1.2, 2.4, 1.2, 0xd8d4cc, 1e9); frBox(0, 2.9, 10, 2.4, 0.3, 2.4, 0xd8d4cc, 1e9);
+  for (const [x, z] of [[-18, -18], [18, -18], [-18, 18], [18, 18], [-20, 0], [20, 0]]) { frBox(x, 0.4, z, 2.4, 0.8, 2.4, 0x8a8a84, 1e9); const i = addBlock(x, 3, z, 0.5, 4.4, 0.5, 0x5a4028, 3, 70); if (i >= 0) { B.extra[i] = G.trees.length; G.trees.push({ x, z, h: 4.4, s: 1.1 }); } }
+  for (const [x, z, ry] of [[-10, -4, 0], [10, -4, 0], [-10, 22, 0], [10, 22, 0]]) { frBox(x, 0.45, z, 1.8, 0.08, 0.5, 0x8a6a4a); frBox(x, 0.22, z, 1.6, 0.44, 0.4, 0x3a3a3a); }
+  markArea(frCell(-26), frCell(-26), 26, 26, 2);
+  // Corvane Residences: lobby, two solid floors, your apartment on the third floor, five more floors
+  {
+    const x0 = 40, x1 = 64, z0 = -80, z1 = -60, t = 0.4, bandC = 0xd8d4cc, wall = 0xe8e4dc;
+    frClearTrees(x0 - 3, z0 - 3, x1 + 3, z1 + 3);
+    frFloor(x0, z0, x1, z1, 0.06, 0x8a8a84);
+    frRoomBox(x0, z0, x1, z1, 0, 4, t, wall, { s: [{ at: 46, k: 'door', w: 2.4 }, { at: 58, w: 3 }], w: [{ at: -70, w: 4 }], e: [{ at: -70, w: 4 }] });
+    frBox(52, 1.1, -60.25, 2.2, 2.2, 0.1, 0xb8bcc0, 1e9, 1); // lift doors (lobby)
+    frBox(58, 0.5, -64, 2.4, 1, 0.8, 0x4a3a2a); // concierge desk
+    frTower(52, -70, 24, 20, 3, glass[0], bandC, { from: 1, noCap: true });
+    // the apartment floor
+    const H = HOMES.family.area, y = 12;
+    frBox(52, y + 0.075, -70, 24, 0.15, 20, 0xa8784a, 1e9, 1);
+    frRoomBox(x0, z0, x1, z1, y, 4, t, wall, { n: frWins(x0, x1, 4, 2.4), s: frWins(x0, x1, 4, 2.4, [52, 60]), w: frWins(z0, z1, 4, 2.4), e: frWins(z0, z1, 4, 2.4) });
+    frBox(52, y + 1.25, -60.25, 2.2, 2.2, 0.1, 0xb8bcc0, 1e9, 1); // lift doors (apartment)
+    const iw = 0xf0ece4;
+    frWall('z', 48.1, H.z0, -73.6, y, 4, 0.22, iw); frWall('z', 55.9, H.z0, -73.6, y, 4, 0.22, iw);
+    frWall('x', -73.6, H.x0, H.x1, y, 4, 0.22, iw, [{ at: 46.6, k: 'door' }, { at: 52, k: 'door' }, { at: 60.2, k: 'door' }]);
+    frWall('x', -67.2, 57.6, H.x1, y, 4, 0.22, iw); frWall('z', 57.6, -67.2, H.z1, y, 4, 0.22, iw, [{ at: -64.2, k: 'door' }]);
+    frTower(52, -70, 24, 20, 9, glass[0], bandC, { from: 4 });
+  }
+  // Skyline Tower: lobby, fourteen floors, the penthouse on top
+  {
+    const x0 = -78, x1 = -54, z0 = 42, z1 = 66, t = 0.4, bandC = 0x2a2c2e, wall = 0xd8d8d4;
+    frClearTrees(x0 - 3, z0 - 3, x1 + 3, z1 + 3);
+    frFloor(x0, z0, x1, z1, 0.06, 0x6a6a64);
+    frRoomBox(x0, z0, x1, z1, 0, 4, t, 0x3a3c3e, { s: [{ at: -72, k: 'door', w: 2.4 }, { at: -59, w: 4 }], e: [{ at: 54, w: 4 }] });
+    frBox(-66, 1.1, 65.75, 2.2, 2.2, 0.1, 0xd8c070, 1e9, 1); frBox(-60, 0.5, 62, 2.4, 1, 0.8, 0x1a1a1a);
+    frTower(-66, 54, 24, 24, 15, 0x2a4a6a, bandC, { from: 1, noCap: true });
+    const H = HOMES.penthouse.area, y = 60;
+    frBox(-66, y + 0.075, 54, 24, 0.15, 24, 0x7a5a3e, 1e9, 1); frBox(-66, y + 3.95, 54, 23.6, 0.1, 23.6, 0xe8e4dc, 1e9, 1);
+    frRoomBox(x0, z0, x1, z1, y, 4, t, wall, { n: frWins(x0, x1, 3, 2.6), s: frWins(x0, x1, 3, 2.6, [-66]), w: frWins(z0, z1, 3, 2.6), e: frWins(z0, z1, 3, 2.6) });
+    frBox(-66, y + 1.25, 65.75, 2.2, 2.2, 0.1, 0xd8c070, 1e9, 1);
+    const iw = 0xf4f0ea;
+    for (const x of [-71.9, -66.0, -60.1]) frWall('z', x, H.z0, 48.6, y, 4, 0.22, iw);
+    frWall('x', 48.6, H.x0, H.x1, y, 4, 0.22, iw, [{ at: -73.4, k: 'door' }, { at: -67.5, k: 'door' }, { at: -61.6, k: 'door' }, { at: -58.9, k: 'door', w: 1.1 }]);
+    frWall('x', 56, -58.6, H.x1, y, 4, 0.22, iw); frWall('z', -58.6, 48.6, 56, y, 4, 0.22, iw, [{ at: 52.6, k: 'door' }]);
+    frBox(-66, 64.3, 54, 24.4, 0.6, 24.4, bandC, 1e9); frBox(-66, 66, 54, 10, 3, 10, bandC, 1e9);
+  }
+  // Corvane Cinema, Bean There cafe, Metro Home furniture store (north of the plaza)
+  frClearTrees(-30, 32, 30, 88);
+  frHouse(-26, 40, 13, 9, 3, 0x3a2a4a, { doors: [['n', 5, 3]], roof: 0x1a1a1a, trim: 0xe8c040, windows: false });
+  frHouse(4, 40, 8, 6, 1, 0xd89a7a, { doors: [['n', 3, 2]], roof: 0x5a3a2a, windows: true });
+  frHouse(4, 62, 10, 8, 2, 0xe8e4dc, { doors: [['n', 4, 2]], roof: 0x2a6a4a, trim: 0x39d353, windows: true });
+  // the rest of the skyline
+  const towers = [[-75, -75, 20, 20, 12], [-45, -48, 16, 16, 18], [-12, -62, 22, 24, 9], [15, -60, 14, 14, 15], [80, -48, 10, 14, 6], [-60, 0, 26, 30, 20], [60, -12, 24, 16, 11], [60, 16, 24, 16, 7], [-42, 80, 12, 12, 5], [60, 60, 24, 24, 16],
+    ...[-120, 120].flatMap(x => [-120, -60, 0, 60, 120].map((z, k) => [x, z, 18, 20, 3 + ((k * 7 + (x > 0 ? 3 : 0)) % 4)])), ...[-60, 0, 60].flatMap(x => [[x, -120, 20, 18, 4 + (x === 0 ? 2 : 0)], [x, 120, 20, 18, 5]])];
+  towers.forEach(([x, z, w, d, lv], k) => { if (Math.abs(x - 30) < 12 && z < -100) return; frTower(x, z, w, d, lv, glass[k % glass.length], band[k % band.length], { crown: lv > 14 }); });
+  // the road back to Port Sorrel
+  for (const x of [22, 38]) frBox(x, 3.6, -143, 1, 7.2, 1, 0x2a2e2a);
+  frBox(30, 7.0, -143, 17, 1, 1, 0x2a2e2a);
+}
+{
+  const _gw = genWorld; genWorld = function () {
+    const r = frRegion();
+    if (r === 'city') return frGenCity();
+    const res = _gw.apply(this, arguments);
+    if (r === 'town') frGenTownMore();
+    return res;
+  };
+}
+
+/* ---------- save data: homes ---------- */
+{
+  const _fd = frData; frData = function () {
+    const S = _fd.apply(this, arguments);
+    S.homes = S.homes || {};
+    if (S.apt.owned && !(S.homes.harbor && S.homes.harbor.owned)) S.homes.harbor = { owned: true, furn: S.apt.furn || null };
+    if (S.home === undefined) S.home = S.apt.owned ? 'harbor' : null;
+    return S;
+  };
+}
+const frOwnsHome = (S, id) => !!(S.homes[id] && S.homes[id].owned);
+const frHomesIn = r => Object.keys(HOMES).filter(id => HOMES[id].region === r);
+const FURN_MAX = { studio: 30, harbor: 30, house: 70, family: 50, penthouse: 70 };
+// which owned home (and which part: inside or garden) is this point in?
+function frHomeAt(x, z, y) {
+  const r = frRegion(); if (!r) return null; const S = FRX2.S || frData();
+  for (const id of frHomesIn(r)) {
+    const H = HOMES[id]; if (!frOwnsHome(S, id)) continue;
+    const A = H.area; if (Math.abs(y - A.y) < 1.6 && x > A.x0 && x < A.x1 && z > A.z0 && z < A.z1) return { id, part: 'in', A };
+    const Gd = H.garden; if (Gd && Math.abs(y - Gd.y) < 1.6 && x > Gd.x0 && x < Gd.x1 && z > Gd.z0 && z < Gd.z1) return { id, part: 'garden', A: Gd };
+  }
+  return null;
+}
+
+/* ---------- furniture that belongs to a home ---------- */
+furnBuild = function (id, x, z, ry, home) {
+  const D = FURN[id], H = HOMES[home || 'harbor'], F = { id, blocks: [], home: home || 'harbor' };
+  const y = frFurnY(F, x, z);
+  for (const [px, py, pz, sx, sy, sz, col] of D.parts) F.blocks.push(addBlock(x, y + py, z, sx, sy, sz, col, 1, 1e9));
+  return F;
+};
+function frFurnY(F, x, z) { const H = HOMES[F.home], Gd = H.garden; if (Gd && x > Gd.x0 - 0.5 && x < Gd.x1 + 0.5 && z > Gd.z0 - 0.5 && z < Gd.z1 + 0.5) return Gd.y; return H.area.y; }
+furnPlace = function (F, x, z, ry) {
+  const D = FURN[F.id], c = Math.cos(ry), s = Math.sin(ry), y = frFurnY(F, x, z);
+  F.x = x; F.z = z; F.ry = ry; F.y = y;
+  D.parts.forEach(([px, py, pz, sx, sy, sz], k) => {
+    const wx = x + px * c + pz * s, wz = z - px * s + pz * c, q = Math.abs(Math.round(ry / (PI / 2))) % 2 === 1;
+    const i = F.blocks[k]; if (i < 0) return; B.sx[i] = q ? sz : sx; B.sz[i] = q ? sx : sz; blockMove(i, wx, y + py, wz);
+  });
+};
+// seat / bed spots of a piece of furniture in world space: [x, y, z, yaw]
+function frFurnSpots(F, kind) {
+  const D = FURN[F.id], L = kind === 'beds' ? D.beds : D.seats; if (!L) return [];
+  const c = Math.cos(F.ry || 0), s = Math.sin(F.ry || 0);
+  return L.map(([px, py, pz, fy]) => [F.x + px * c + pz * s, F.y + py, F.z - px * s + pz * c, (F.ry || 0) + (fy || 0)]);
+}
+function frFurnRemove(F) { for (const i of F.blocks) if (i >= 0) { B.alive[i] = 0; blockInst(i); } FRX.furn = FRX.furn.filter(f => f !== F); G.blockFlush = true; }
+function frHomeLights() {
+  // one warm light per home in this area; it only shines while you are inside (so the light count never changes)
+  FRX2.lights = [];
+  for (const id of frHomesIn(frRegion())) { const A = HOMES[id].area, l = new THREE.PointLight(0xffe2b8, 0, Math.max(A.x1 - A.x0, A.z1 - A.z0) * 1.1); l.position.set((A.x0 + A.x1) / 2, A.y + 2.7, (A.z0 + A.z1) / 2); scene.add(l); FRX2.lights.push({ id, l }); }
+}
+function frBuildHomes(S) {
+  const r = frRegion();
+  for (const id of frHomesIn(r)) {
+    if (!frOwnsHome(S, id)) continue;
+    const d = FRX2.doors[id]; if (d !== undefined && d >= 0) { B.alive[d] = 0; blockInst(d); }
+    const list = S.homes[id].furn || HOME_DEF[id].map(([fid, x, z, ry]) => ({ id: fid, x, z, ry }));
+    for (const f of list) { if (!FURN[f.id]) continue; const F = furnBuild(f.id, f.x, f.z, f.ry || 0, id); furnPlace(F, f.x, f.z, f.ry || 0); FRX.furn.push(F); }
+  }
+  if (r === 'town' && frOwnsHome(S, 'harbor') && FRX.aptDoor >= 0) { B.alive[FRX.aptDoor] = 0; blockInst(FRX.aptDoor); }
+  flushBlocks();
+}
+frFurnSave = function () {
+  const S = frData(), r = frRegion();
+  for (const id of frHomesIn(r)) { if (!frOwnsHome(S, id)) continue; S.homes[id].furn = FRX.furn.filter(F => F.home === id).map(F => ({ id: F.id, x: +F.x.toFixed(2), z: +F.z.toFixed(2), ry: +(F.ry || 0).toFixed(3) })); }
+  if (S.homes.harbor && S.homes.harbor.furn) S.apt.furn = S.homes.harbor.furn;
+  frPut(S);
+};
+frEditStart = function (F) { FRX.edit = { F, ry: F.ry || 0 }; frToast('Moving: ' + FURN[F.id].name, MOBILE() ? 'Walk to move it. Tap Turn to rotate, Place to put it down.' : 'Walk to move it, R turns it, E puts it down.'); };
+frEditTick = function () {
+  const E = FRX.edit, p = G.player; if (!E || !p) return;
+  const H = HOMES[E.F.home], here = frHomeAt(p.x, p.z, p.y);
+  const A = here && here.id === E.F.home ? here.A : H.area;
+  const d = 1.9, x = clamp(Math.round((p.x + Math.sin(G.camYaw) * d) * 4) / 4, A.x0 + 0.6, A.x1 - 0.6), z = clamp(Math.round((p.z + Math.cos(G.camYaw) * d) * 4) / 4, A.z0 + 0.6, A.z1 - 0.6);
+  furnPlace(E.F, x, z, E.ry);
+};
+
+/* ---------- using furniture ---------- */
+const FRF = { use: () => false, sleep: () => {}, out: () => {} }; // the family system hooks in here (p51)
+const FUSE = {
+  sleep: ['Sleep until morning', F => frSleep(F)], sit: ['Sit down', F => frSit(F)], tv: ['Watch TV', F => frUseFx(F, 'tv')], cook: ['Cook a meal', F => frUseFx(F, 'cook')],
+  eat: ['Have a meal at the table', F => frUseFx(F, 'eat')], snack: ['Grab a snack', F => frUseFx(F, 'snack')], wash: ['Freshen up', F => frUseFx(F, 'wash')], laptop: ['Furniture catalogue', () => frCatOpen()],
+  play: ['Play', F => frUseFx(F, 'play')], piano: ['Play the piano', F => frUseFx(F, 'piano')], drums: ['Play the drums', F => frUseFx(F, 'drums')], bbq: ['Have a barbecue', F => frUseFx(F, 'bbq')],
+  bounce: ['Bounce', F => frUseFx(F, 'play')], swing: ['Swing', F => frSit(F)], crib: ['Check the crib', F => frUseFx(F, 'crib')]
+};
+function frFurnMenu(F) {
+  const D = FURN[F.id], opts = [];
+  if (D.use && FUSE[D.use]) opts.push([FUSE[D.use][0], () => FUSE[D.use][1](F)]);
+  opts.push(['Move it', () => frEditStart(F)]);
+  opts.push([`Sell it · +${Math.floor(D.sd / 2)} SD`, () => { frFurnRemove(F); frFurnSave(); const P = prof(); P.coins += Math.floor(D.sd / 2); profSave(P); updateProfileCard(); frToast('Sold', `${D.name} sold for ${Math.floor(D.sd / 2)} SD.`); }]);
+  opts.push(['Cancel', null]);
+  frDialog(D.name, `${HOMES[F.home].name}. ${D.use ? 'Use it, move it or sell it.' : 'Move it or sell it.'}`, opts);
+}
+function frUseFx(F, k) {
+  const p = G.player, fam = FRF.use(k, F);
+  const T = { tv: ['TV time', 'You catch the news and a cooking show.'], cook: ['Dinner is ready', 'Home cooking. Health restored.'], eat: ['Mealtime', 'A proper meal at the table. Health restored.'], snack: ['Snack', 'Much better.'], wash: ['Fresh', 'Clean and ready for the day. Health restored.'],
+    play: ['Fun', 'That was fun.'], piano: ['Music', 'You play a little tune.'], drums: ['Rock on', 'The neighbours will remember that.'], bbq: ['Barbecue', 'Burgers and corn on the grill. Health restored.'], crib: ['The crib', 'Nobody is sleeping in it right now.'] }[k] || ['Done', ''];
+  if (k === 'cook' || k === 'eat' || k === 'wash' || k === 'bbq') { if (p) p.hp = p.maxhp; } else if (k === 'snack' && p) p.hp = Math.min(p.maxhp, p.hp + 50);
+  if (k === 'piano' || k === 'drums') { if (SFX.ok()) [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => SFX.tone(0.07, 0.25, f, f, k === 'drums' ? 'square' : 'triangle'), i * 180)); }
+  if (k === 'tv' || k === 'eat' || k === 'bbq') { frFade(() => { G.hour = (G.hour + 1) % 24; }); }
+  if (!fam || fam === true) frToast(T[0], T[1]);
+}
+function frSit(F) {
+  const p = G.player; if (!p) return;
+  const spots = frFurnSpots(F, 'seats'); if (!spots.length) return;
+  let best = spots[0], bd = 1e9; for (const s of spots) { const d = Math.hypot(s[0] - p.x, s[2] - p.z); if (d < bd && !(FRX2.taken && FRX2.taken.has(s))) { bd = d; best = s; } }
+  p.sit = { x: best[0], z: best[2], y: F.y, h: best[1] - F.y, yaw: best[3], swing: FURN[F.id].use === 'swing', t0: G.t };
+  frToast('Sitting', MOBILE() ? 'Tap Stand up, or move, to get up.' : 'Press E or move to stand up.');
+}
+function frSitTick() {
+  const p = G.player; if (!p || !p.sit) return;
+  const S0 = p.sit, moving = keys.has('KeyW') || keys.has('KeyS') || keys.has('KeyA') || keys.has('KeyD') || keys.has('ArrowUp') || keys.has('ArrowDown') || (joy.id !== null && Math.hypot(joy.x, joy.y) > 0.3);
+  if (moving && G.t - S0.t0 > 0.4 || p.inVeh || !p.alive) { frStand(); return; }
+  p.x = S0.x; p.z = S0.z; p.y = S0.y; p.vy = 0; p.pose = S0.swing ? 'swing' : 'sit'; p.poseH = S0.h; p.poseYaw = S0.yaw;
+}
+function frStand() { const p = G.player; if (!p || !p.sit) return; const S0 = p.sit; p.sit = null; p.pose = null; p.x = S0.x + Math.sin(S0.yaw) * 0.7; p.z = S0.z + Math.cos(S0.yaw) * 0.7; }
+function frSleep() {
+  frDialog('Bed', 'A good night\'s sleep restores your health and skips to the morning.' + (FRF.sleepNote ? ' ' + FRF.sleepNote() : ''), [
+    ['Sleep until morning', () => frFade(() => { G.hour = 7; const p = G.player; if (p) { p.hp = p.maxhp; } const msg = FRF.sleep(); frToast('Good morning', msg || 'Fully rested.'); })],
+    ['Cancel', null]]);
+}
+frBed = frSleep;
+
+/* ---------- buying and choosing homes ---------- */
+function frHomeSale(id) {
+  const S = frData(), P = prof(), H = HOMES[id];
+  const cap = H.cap === 1 ? 'Room for you and one more person.' : `Room for you and ${H.cap} more people.`;
+  if (!frOwnsHome(S, id)) {
+    frDialog(H.name, `${H.desc} ${H.rooms}. ${cap} Price ${H.price.toLocaleString()} SD. You have ${P.coins.toLocaleString()} SD.`, [
+      [`Buy for ${H.price.toLocaleString()} SD`, () => {
+        const P2 = prof(), S2 = frData(); if (frOwnsHome(S2, id)) return;
+        if (P2.coins < H.price) { frToast('Not enough SD', `You need ${(H.price - P2.coins).toLocaleString()} more SD. Delivery jobs, missions and battles pay SD.`); return; }
+        P2.coins -= H.price; profSave(P2); updateProfileCard();
+        S2.homes[id] = { owned: true, furn: null, boughtAt: Date.now() }; if (id === 'harbor') { S2.apt.owned = true; S2.apt.boughtAt = Date.now(); }
+        const first = !S2.home; if (first) S2.home = id; frPut(S2); FRX2.S = S2;
+        frBuildHomes({ homes: { [id]: S2.homes[id] } });
+        if (typeof vaFanfare === 'function') vaFanfare();
+        frToast('Home sweet home', first ? `${H.name} is yours and is now your main home. You wake up here and your family lives here.` : `${H.name} is yours. Open the door, or use the sale desk to make it your main home.`);
+      }], ['Just looking', null]]);
+    return;
+  }
+  const isMain = S.home === id;
+  frDialog(H.name, `You own this home. ${H.rooms}. ${cap} ${isMain ? 'It is your main home: you wake up here and your family lives here.' : 'Your main home is ' + (S.home ? HOMES[S.home].name : 'not set') + '.'}`, [
+    ...(isMain ? [] : [['Make this my main home', () => { const S2 = frData(); S2.home = id; frPut(S2); FRX2.S = S2; FRF.moved && FRF.moved(id); frToast('Moved in', `${H.name} is now your main home.${S2.fam && (S2.fam.partner || (S2.fam.kids || []).length) ? ' Your family moves here too.' : ''}`); }]]),
+    ['Close', null]]);
+}
+frBuyApartment = () => frHomeSale('harbor');
+function frLift(id, up) {
+  const S = frData(), H = HOMES[id];
+  if (up && !frOwnsHome(S, id)) { frToast('Residents only', `The lift needs a resident key. Ask at the desk about ${H.name}.`); return; }
+  frFade(() => { if (up) frPlace(H.spawn.x, H.spawn.z, H.spawn.yaw, H.area.y); else frPlace(H.lobby.x, H.lobby.z - 1.6 * Math.sign(H.lobby.z - (H.area.z0 + H.area.z1) / 2), H.spawn.yaw, 0); banner(up ? H.name : 'Lobby', 1.4, '#00ff88'); FRF.lift && FRF.lift(id, up); });
+}
+
+/* ---------- furniture catalogue ---------- */
+const FCAT_STATE = { tab: 'living', home: null };
+function frCatOpen(home) {
+  const S = frData(), p = G.player, here = p && frHomeAt(p.x, p.z, p.y);
+  const id = home || (here && here.id) || S.home;
+  if (!id || !frOwnsHome(S, id)) { frToast('No home yet', 'Buy a home first. Look for the sale desks and For Sale signs.'); return; }
+  FCAT_STATE.home = id;
+  if (document.pointerLockElement) document.exitPointerLock();
+  keys.clear(); mouseDown = false; G.paused = true; G.frDlg = true;
+  let el = $('#frCat'); if (!el) { el = document.createElement('div'); el.id = 'frCat'; el.className = 'pe'; $('#frHud').appendChild(el); }
+  frCatRender(); el.hidden = false;
+}
+function frCatClose() { const el = $('#frCat'); if (el) el.hidden = true; G.paused = false; G.frDlg = false; }
+function frCatRender() {
+  const el = $('#frCat'), S = frData(), P = prof(), id = FCAT_STATE.home, H = HOMES[id];
+  const n = FRX.furn.filter(F => F.home === id).length, stored = frRegion() !== H.region ? (S.homes[id].furn || HOME_DEF[id]).length : n;
+  const items = Object.entries(FURN).filter(([k, D]) => D.cat === FCAT_STATE.tab).sort((a, b) => a[1].sd - b[1].sd);
+  const sw = D => { const c = [...new Set(D.parts.map(q => q[6]))].slice(0, 3); return c.map(x => `<i style="background:#${x.toString(16).padStart(6, '0')}"></i>`).join(''); };
+  el.innerHTML = `<div class="fcBox"><div class="fcHead"><div><small>FURNITURE CATALOGUE</small><b>Delivered to ${esc(H.name)}</b><span>${stored} of ${FURN_MAX[id]} items · ${P.coins.toLocaleString()} SD</span></div><button class="btn small" id="fcX">Close</button></div>
+    <div class="fcTabs">${Object.entries(FCAT).map(([k, v]) => `<button class="${k === FCAT_STATE.tab ? 'on' : ''}" data-fc="${k}">${v}</button>`).join('')}</div>
+    <div class="fcGrid">${items.map(([k, D]) => `<div class="fcCard"><div class="fcSw">${sw(D)}</div><b>${esc(D.name)}</b><small>${D.use ? esc(FUSE[D.use] ? FUSE[D.use][0] : '') : 'Decoration'}${D.kid ? ' · kids' : ''}</small><button class="btn small ${P.coins >= D.sd ? 'primary' : ''}" data-buy="${k}" ${P.coins >= D.sd && stored < FURN_MAX[id] ? '' : 'disabled'}>${D.sd.toLocaleString()} SD</button></div>`).join('')}</div>
+    <p class="fcNote">${frRegion() === H.region ? 'New items appear in the middle of the home. Press E on any item to use, move or sell it.' : 'Your home is in ' + FR_REGIONS[H.region].name + '. New items wait for you there.'}</p></div>`;
+  el.querySelector('#fcX').onclick = frCatClose;
+  el.querySelectorAll('[data-fc]').forEach(b => b.onclick = () => { FCAT_STATE.tab = b.dataset.fc; frCatRender(); });
+  el.querySelectorAll('[data-buy]').forEach(b => b.onclick = () => frCatBuy(b.dataset.buy));
+}
+function frCatBuy(k) {
+  const D = FURN[k], P = prof(), id = FCAT_STATE.home, H = HOMES[id], S = frData();
+  if (P.coins < D.sd) { frToast('Not enough SD', `${D.name} costs ${D.sd} SD.`); return; }
+  P.coins -= D.sd; profSave(P); updateProfileCard();
+  const A = D.cat === 'garden' && H.garden ? H.garden : H.area, x = (A.x0 + A.x1) / 2, z = (A.z0 + A.z1) / 2;
+  if (frRegion() === H.region) {
+    const F = furnBuild(k, x, z, 0, id); furnPlace(F, x, z, 0); FRX.furn.push(F); flushBlocks(); frFurnSave();
+    frCatClose(); const p = G.player, here = p && frHomeAt(p.x, p.z, p.y);
+    if (here && here.id === id) frEditStart(F); else frToast('Delivered: ' + D.name, `It is waiting in the middle of ${H.name}.`);
+  } else {
+    S.homes[id].furn = (S.homes[id].furn || HOME_DEF[id].map(([fid, fx, fz, ry]) => ({ id: fid, x: fx, z: fz, ry }))).concat([{ id: k, x, z, ry: 0 }]); frPut(S);
+    frToast('Ordered: ' + D.name, `Delivered to ${H.name} in ${FR_REGIONS[H.region].name}.`); frCatRender();
+  }
+}
+addEventListener('keydown', e => { if (e.code === 'Escape' && $('#frCat') && !$('#frCat').hidden) { e.preventDefault(); e.stopImmediatePropagation(); frCatClose(); } }, true);
+
+/* ---------- people walking around the new areas ---------- */
+function frCivMake(x, z, k, wps) {
+  const looks = [[0x7a3a3a, 0x2a2a3a], [0x3a5a8a, 0x3a3a3a], [0xd8c86a, 0x4a3a2a], [0x6a8a5a, 0x2a2a2a], [0xe8e4dc, 0x3a4a6a], [0x8a5a8a, 0x2a2a2a], [0x2a6a6a, 0x5a4a3a], [0xc87a3a, 0x3a3a3a], [0x2a2a2a, 0x2a2a3a], [0xb83a5a, 0x2a2a2a]];
+  const u = makeUnit(0, 'knife', null, x, z); u.dummy = 'civ'; u.civ = true;
+  const L = looks[k % looks.length], c = h => new THREE.Color(h), skin = c([0xe0b089, 0xc68e5e, 0x8a5a3a, 0xf0c7a4, 0xa86a4a][k % 5]);
+  u.look = { uni: c(L[0]), pants: c(L[1]), sleeve: c(L[0]).multiplyScalar(0.88), skin, hatc: c(0x3a2a1a), hat: ['none', 'cap', 'none', 'none', 'beret'][k % 5], cols: [c(L[0]), c(L[1]), c(L[0]).multiplyScalar(0.88), skin] };
+  u.wps = wps; u.wp = (k * 3) % wps.length; u.civSpeed = rr(1.1, 1.6); FRX2.civ.push(u); return u;
+}
+function frCiv2Tick(dt) {
+  for (const u of FRX2.civ) {
+    if (!u.alive) continue; if (u.knock) { knockTick(u); continue; } if (u.getUpT > G.t || u.hold) { u.speed = 0; continue; }
+    const t = u.wps[u.wp]; const dx = t[0] - u.x, dz = t[1] - u.z, d = Math.hypot(dx, dz);
+    if (d < 2) { u.wp = (u.wp + 1 + ((R() * 3) | 0)) % u.wps.length; continue; }
+    const a = Math.atan2(dx, dz); u.yaw += angDiff(u.yaw, a) * Math.min(1, dt * 4);
+    const sp = moveUnit(u, u.yaw, u.civSpeed, dt); u.speed = sp; u.phase += sp * dt * 2.6; u.aiming = false;
+    if (sp < 0.2) { u.stuckT = (u.stuckT || 0) + dt; if (u.stuckT > 2) { u.wp = (u.wp + 1) % u.wps.length; u.stuckT = 0; } } else u.stuckT = 0;
+  }
+}
+const WP_TOWN2 = { west: [[-164, -40], [-164, 0], [-164, 40], [-156, 70], [-172, 46], [-172, -24], [-164, 30]], south: [[-60, -164], [-20, -164], [20, -164], [60, -164], [-4, -180], [4, -140]], north: [[-4, 140], [-30, 168], [-50, 168], [-50, 150], [-20, 176], [26, 147], [4, 186]] };
+const WP_CITY = [[-26, -26], [26, -26], [26, 26], [-26, 26], [-34, -34], [-34, 34], [34, 34], [34, -34], [-86, -34], [86, -34], [86, 34], [-86, 34], [-34, -86], [34, -86], [-34, 86], [34, 86], [0, -20], [-12, 30], [12, 36]];
+
+/* ---------- region set-up ---------- */
+{
+  const _ts = frTownSetup; frTownSetup = function (S, at) {
+    // the old code builds the Harbor View furniture and puts you in your apartment; homes are handled here now
+    const S1 = Object.assign({}, S, { apt: Object.assign({}, S.apt, { furn: [], spawn: false, owned: frOwnsHome(S, 'harbor') }) });
+    _ts.call(this, S1, at);
+    FRX2.S = S; FRX2.civ = []; frBuildHomes(S); frHomeLights();
+    frSign('GULL LANE STUDIO', -182, 3.0, 28.1, 0, 6); frSign('SORREL HOME · FURNITURE', -178.8, 3.6, -24, PI / 2, 8, '#e8f5ec', '#1f8f45'); frSign("GULL'S DINER", -180.8, 2.6, 46, PI / 2, 5, '#2a2a10', '#ffe35a');
+    frSign(frOwnsHome(S, 'house') ? '3 ORCHARD HILL' : '3 ORCHARD HILL · FOR SALE', -23, 1.6, -165.8, 0, 6, '#f0f0e8', '#8a3a2a'); frSign('SORREL PARK', -50, 2.4, 193.5, PI, 6); frSign('FAMILY CENTRE', 30, 4.6, 150.8, PI, 7, '#f0e8f0', '#6a4a8a');
+    frSign('CORVANE CITY  ^', 0, 7.0, 192.4, PI, 9); frSign('ICE CREAM', 132, 3.1, -38.55, 0, 3.2, '#fff0f4', '#e85a8a');
+    // more people in the new streets
+    let k = 0; for (const key of ['west', 'south', 'north']) for (let i = 0; i < 4; i++) { const w = WP_TOWN2[key][(i * 2) % WP_TOWN2[key].length]; frCivMake(w[0] + rr(-3, 3), w[1] + rr(-3, 3), k++, WP_TOWN2[key]); }
+    if (at === 'home' && S.home && HOMES[S.home].region === 'town') { const H = HOMES[S.home]; frPlace(H.spawn.x, H.spawn.z, H.spawn.yaw, H.area.y); }
+    if (at === 'city') frPlace(0, 182, PI);
+    FRF.region && FRF.region('town', S, at);
+  };
+}
+function frCitySetup(S, at) {
+  FRX2.S = S; FRX2.civ = [];
+  frBuildHomes(S); frHomeLights(); frCarSpawn(S);
+  frSign('CORVANE RESIDENCES', 52, 4.6, -59.75, 0, 9, '#f0f0e8', '#2a4a6a'); frSign('SKYLINE TOWER', -66, 4.6, 66.25, 0, 9, '#111', '#e8c040');
+  frSign('CORVANE CINEMA', -13, 6.6, 40.75, PI, 9, '#1a1020', '#e8c040'); frSign('BEAN THERE', 12, 2.7, 40.75, PI, 5, '#2a1a10', '#f0d8b0'); frSign('METRO HOME', 14, 4.6, 62.75, PI, 6, '#f0f0e8', '#1f8f45');
+  frSign('PORT SORREL  v', 30, 7.0, -142.4, 0, 9); frSign('CORVANE PLAZA', 0, 3.5, 5.35, 0, 4.5);
+  for (let k = 0; k < 18; k++) { const w = WP_CITY[k % WP_CITY.length]; frCivMake(w[0] + rr(-3, 3), w[1] + rr(-3, 3), k, WP_CITY); }
+  let spot = S.rpos.city || CITY.plaza;
+  if (at === 'town') spot = CITY.arrive;
+  else if (at === 'home' && S.home && HOMES[S.home].region === 'city') { const H = HOMES[S.home]; spot = { x: H.spawn.x, z: H.spawn.z, yaw: H.spawn.yaw, y: H.area.y }; }
+  frPlace(spot.x, spot.z, spot.yaw || 0, spot.y);
+  { const l = new THREE.PointLight(0xfff0d8, 0.5, 18); l.position.set(-66, 63, 54); scene.add(l); const l2 = new THREE.PointLight(0xfff0d8, 0.5, 16); l2.position.set(52, 15, -70); scene.add(l2); }
+  FRF.region && FRF.region('city', S, at);
+}
+{
+  const _er = frEnterRegion; frEnterRegion = function (region, at, opt) {
+    const r = _er.apply(this, arguments);
+    if (region === 'city' && G && frRegion() === 'city') { frCitySetup(frData(), at); FR.pts = frRegionPoints('city'); }
+    return r;
+  };
+  const _sf = startFreeRoam; startFreeRoam = function (at, region) {
+    if (!at && !region) { const S = frData(); if (S.home) { region = HOMES[S.home].region; at = 'home'; } }
+    if (region === 'city') { frEnterRegion('city', at); return; }
+    return _sf.call(this, at, region);
+  };
+  // a car can be parked in town or in the city
+  const _cs = frCarSpawn; frCarSpawn = function (S) {
+    if (!S.car || !S.car.owned || S.car.stored) return;
+    if ((S.car.region || 'town') !== frRegion()) return;
+    return _cs.apply(this, arguments);
+  };
+  const _cp = frCarport; frCarport = function () {
+    const S = frData();
+    if (S.car && S.car.owned && (S.car.region || 'town') !== 'town') {
+      frDialog('Harbor View carport', 'Your car is parked in Corvane City.', [['Bring it back here', () => { const S2 = frData(); Object.assign(S2.car, { region: 'town', stored: false, x: TOWN.carport.x, z: TOWN.carport.z, yaw: TOWN.carport.yaw }); frPut(S2); frCarSpawn(S2); frToast('Ready', 'Your car is in the carport.'); }], ['Leave it there', null]]);
+      return;
+    }
+    return _cp.apply(this, arguments);
+  };
+  const _fs = frSave; frSave = function () {
+    const r = _fs.apply(this, arguments);
+    const rg = frRegion();
+    if (rg === 'city' && FRX.car) { const S = frData(); if (S.car && S.car.owned) { Object.assign(S.car, { x: FRX.car.x, z: FRX.car.z, yaw: FRX.car.yaw, hp: FRX.car.alive ? FRX.car.hp : 0, region: 'city' }); frPut(S); } }
+    return r;
+  };
+}
+// town <-> city by the north road; your car comes along if you drive
+function frTravel(dest) {
+  if (FRX.leaving) return;
+  FRX.leaving = true; const p = G.player, inCar = p && p.inVeh && p.inVeh === FRX.car, from = frRegion();
+  frSave();
+  const S = frData();
+  if (inCar && S.car) { const A = dest === 'city' ? CITY.arrive : { x: 4, z: 180, yaw: PI }; Object.assign(S.car, { region: dest, x: A.x + 4, z: A.z + 2, yaw: A.yaw, stored: false }); }
+  S.rpos[dest] = null; frPut(S);
+  FRF.out && FRF.out(dest);
+  frFade(() => { frLeave(); frEnterRegion(dest, from); FRX.leaving = false; if (inCar) setTimeout(() => frToast('Your car', 'It is parked right next to you.'), 900); });
+}
+frRegionPoints = (prev => function (region) {
+  const S = frData();
+  if (region === 'town') {
+    const pts = prev.apply(this, arguments).filter(q => !['bed', 'cat', 'furn', 'realtor'].includes(q.id));
+    pts.push({ id: 'furn', x: 0, z: 0, y: 0, r: 1.6, label: '', act: () => {}, dynamic: true });
+    pts.push({ id: 'sale_harbor', x: 22, z: -28.6, r: 2.4, label: 'Harbor View Apartments: lobby desk', act: () => frHomeSale('harbor') });
+    pts.push({ id: 'sale_studio', x: -182, z: 30.5, r: 2.4, label: 'Gull Lane Studio: for sale', act: () => frHomeSale('studio') });
+    pts.push({ id: 'sale_house', x: -23, z: -164, r: 2.6, label: '3 Orchard Hill: for sale', act: () => frHomeSale('house') });
+    pts.push({ id: 'shopH', x: -184.6, z: -24, r: 2.4, label: 'Sorrel Home: furniture catalogue', act: () => frCatOpen() });
+    pts.push({ id: 'diner', x: -178.4, z: 46, r: 2.6, label: "Gull's Diner: a hot meal · 8 SD", act: () => frBuyFood("Gull's Diner", 8, 'diner') });
+    pts.push({ id: 'icecream', x: 132, z: -38.2, r: 2.4, label: 'Ice cream · 3 SD', act: () => frBuyFood('Ice cream kiosk', 3, 'icecream') });
+    return pts;
+  }
+  if (region === 'city') {
+    const H1 = HOMES.family, H2 = HOMES.penthouse;
+    return [
+      { id: 'furn', x: 0, z: 0, y: 0, r: 1.6, label: '', act: () => {}, dynamic: true },
+      { id: 'sale_family', x: H1.sale.x, z: H1.sale.z, r: 2.4, label: 'Corvane Residences: concierge', act: () => frHomeSale('family') },
+      { id: 'liftUp_family', x: H1.lift.x, z: H1.lift.z - 0.6, r: 1.8, label: 'Lift up to apartment 3B', act: () => frLift('family', true) },
+      { id: 'liftDn_family', x: H1.lift.x, z: H1.lift.z - 0.6, y: H1.area.y, r: 1.8, label: 'Lift down to the lobby', act: () => frLift('family', false) },
+      { id: 'sale_penthouse', x: H2.sale.x, z: H2.sale.z, r: 2.4, label: 'Skyline Tower: front desk', act: () => frHomeSale('penthouse') },
+      { id: 'liftUp_penthouse', x: H2.lift.x, z: H2.lift.z - 0.6, r: 1.8, label: 'Lift up to the penthouse', act: () => frLift('penthouse', true) },
+      { id: 'liftDn_penthouse', x: H2.lift.x, z: H2.lift.z - 0.6, y: H2.area.y, r: 1.8, label: 'Lift down to the lobby', act: () => frLift('penthouse', false) },
+      { id: 'cinema', x: -13, z: 38.6, r: 2.8, label: 'Corvane Cinema: watch a film · 8 SD', act: () => frBuyFood('Corvane Cinema', 8, 'cinema') },
+      { id: 'cafe2', x: 12, z: 38.6, r: 2.4, label: 'Bean There: coffee and cake · 5 SD', act: () => frBuyFood('Bean There', 5, 'cafe') },
+      { id: 'shopM', x: 14, z: 60.6, r: 2.4, label: 'Metro Home: furniture catalogue', act: () => frCatOpen() },
+      { id: 'fountain', x: 0, z: 4.6, r: 2.6, label: 'Fountain: toss a coin · 1 SD', act: () => frBuyFood('Corvane Plaza', 1, 'fountain') }
+    ];
+  }
+  return prev.apply(this, arguments);
+})(frRegionPoints);
+function frBuyFood(where, price, kind) {
+  const fam = FRF.treat ? FRF.treat(kind, price, where) : null; if (fam) return;
+  const P = prof(); if (P.coins < price) { frToast('Not enough SD', `That costs ${price} SD.`); return; }
+  P.coins -= price; profSave(P); updateProfileCard();
+  const p = G.player;
+  const T = { diner: ['Lovely', 'A hot meal. Health restored.'], icecream: ['Ice cream', 'Strawberry and vanilla.'], cinema: ['What a film', 'Two hours of explosions and a happy ending.'], cafe: ['Lovely', 'Coffee and cake. Health restored.'], fountain: ['Make a wish', 'Plop.'] }[kind] || ['Thanks', ''];
+  if (kind === 'diner' || kind === 'cafe') { if (p) p.hp = p.maxhp; }
+  if (kind === 'cinema') frFade(() => { G.hour = (G.hour + 2) % 24; });
+  frToast(T[0], T[1]);
+}
+{
+  // furniture: E opens a small menu (use, move, sell); while moving, E puts it down; sitting: E stands up
+  const _fn = frNearest; frNearest = function () {
+    const r = frRegion(), p = G.player;
+    if ((r === 'town' || r === 'city') && p && p.alive) {
+      const fp = FR.pts.find(q => q.id === 'furn');
+      if (fp && p.sit) { fp.x = p.x; fp.z = p.z; fp.y = p.y; fp.label = 'Stand up'; fp.act = frStand; return fp; }
+      if (fp && FRX.edit) { fp.x = p.x; fp.z = p.z; fp.y = p.y; fp.label = `Put down the ${FURN[FRX.edit.F.id].name.toLowerCase()}${MOBILE() ? '' : ' (R turns it)'}`; fp.act = frEditEnd; return fp; }
+      const base = _fn.apply(this, arguments); if (base && base.id !== 'furn') return base;
+      const here = frHomeAt(p.x, p.z, p.y);
+      if (here && fp) {
+        let best = null, bd = 2.1;
+        for (const F of FRX.furn) { if (F.home !== here.id) continue; const D = FURN[F.id]; const rad = Math.max(...D.parts.map(q => Math.max(q[3], q[5]))) / 2; const d = Math.hypot(F.x - p.x, F.z - p.z) - rad * 0.6; if (d < bd) { bd = d; best = F; } }
+        if (best) { FRX.near = best; const D = FURN[best.id]; fp.x = p.x; fp.z = p.z; fp.y = p.y; fp.label = D.use && FUSE[D.use] ? `${D.name}: ${FUSE[D.use][0].toLowerCase()}, move or sell` : `${D.name}: move or sell`; fp.act = () => frFurnMenu(best); return fp; }
+      }
+      return null;
+    }
+    return _fn.apply(this, arguments);
+  };
+  // the HQ resident, kept in sync: the old apartment code reads S.apt
+  const _ft = frTick; frTick = function (dt) {
+    _ft.apply(this, arguments);
+    const r = frRegion(), p = G.player; if (r !== 'town' && r !== 'city') return;
+    frSitTick(); frCiv2Tick(dt);
+    if (r === 'city') { frEditTick(); FRX2.cityT = (FRX2.cityT || 0) - dt; }
+    if (p && !p.knock && !FRX.leaving) {
+      const x = p.inVeh ? p.inVeh.x : p.x, z = p.inVeh ? p.inVeh.z : p.z;
+      if (r === 'town' && z > 191 && Math.abs(x) < 9) frTravel('city');
+      if (r === 'city' && z < CITY.toTown && Math.abs(x - 30) < 9) frTravel('town');
+    }
+    if (p) {
+      const here = frHomeAt(p.x, p.z, p.y); let loc = null;
+      if (here) loc = HOMES[here.id].name + (here.part === 'garden' ? ' · garden' : '');
+      else if (r === 'town') { if (p.x < -150) loc = 'Market Street'; else if (p.z < -150) loc = 'Orchard Hill'; else if (p.z > 140 && p.x < 0) loc = 'Sorrel Park'; else if (p.z > 140) loc = 'North Road'; }
+      else if (r === 'city') { if (p.y > 50) loc = 'Skyline Tower'; else if (p.y > 8) loc = 'Corvane Residences'; else if (Math.abs(p.x) < 27 && Math.abs(p.z) < 27) loc = 'Corvane Plaza'; else loc = 'Corvane City'; }
+      if (loc) $('#frLoc').textContent = loc;
+      const night = G.hour >= 19 || G.hour < 7, inside = here && here.part === 'in';
+      for (const L of FRX2.lights || []) L.l.intensity = inside && here.id === L.id ? (night ? 1.0 : 0.35) : 0;
+      let tb = $('#frTurn'); if (!tb) { tb = document.createElement('button'); tb.id = 'frTurn'; tb.className = 'btn small pe'; tb.textContent = 'Turn it'; tb.onclick = () => { if (FRX.edit) FRX.edit.ry = (FRX.edit.ry + PI / 2) % TAU; }; $('#frHud').appendChild(tb); }
+      tb.hidden = !FRX.edit;
+    }
+  };
+  // R turns furniture in the city too (the town already has this)
+  addEventListener('keydown', e => { if (e.code === 'KeyR' && FRX.edit && frRegion() === 'city') { e.preventDefault(); e.stopImmediatePropagation(); FRX.edit.ry = (FRX.edit.ry + PI / 2) % TAU; } }, true);
+  // respawning in the city after being knocked out
+  const _pd = presDown; presDown = function () {
+    const r = frRegion(); if (r !== 'city') return _pd.apply(this, arguments);
+    banner('You were knocked out', 2.5, 'var(--red)');
+    G.timers.push({ t: G.t + 3, fn: () => { if (frRegion() !== 'city') return; frFade(() => { deployPresident(); G.player.civ = true; frPlace(CITY.plaza.x, CITY.plaza.z, 0); }); } });
+  };
+  // the city is a safe area, like the town
+  const _pf = playerFire; playerFire = function () { if (frRegion() === 'city') return; return _pf.apply(this, arguments); };
+}
+/* ================= FREE ROAM FAMILY: friends, a partner, marriage, kids who grow up, and things to do together ================= */
+// Everything here is single player and saved with free roam. Family members are computer characters.
+
+/* ---------- poses: sitting, lying down, playing (also used for the President sitting down) ---------- */
+function poseLocal(kind, h, t, sc) {
+  const H = h / sc, sw = Math.sin(t * 2.4), up = Math.abs(Math.sin(t * 3.2));
+  const kneeY = H + 0.05, footY = Math.max(0.06, kneeY - 0.44), footZ = 0.36 + (kneeY - 0.44 > 0.06 ? 0 : 0);
+  if (kind === 'sit' || kind === 'swing') {
+    const L = [[0, H + 0.68, -0.05], [0, H + 0.5, -0.06], [0, H + 0.02, -0.12], [0.24, H + 0.25, -0.02], [0.18, H + 0.1, 0.22], [-0.24, H + 0.25, -0.02], [-0.18, H + 0.1, 0.22],
+      [0.12, kneeY, 0.32], [0.12, footY, footZ], [-0.12, kneeY, 0.32], [-0.12, footY, footZ], [0.2, H + 0.47, -0.08], [-0.2, H + 0.47, -0.08], [0.1, H + 0.02, -0.1], [-0.1, H + 0.02, -0.1]];
+    if (kind === 'swing') { const dz = sw * 0.45 / sc, dy = (1 - Math.cos(t * 2.4)) * 0.12 / sc; for (const q of L) { q[2] += dz; q[1] += dy; } L[3] = [0.24, H + 0.6, -0.05 + dz]; L[4] = [0.22, H + 0.9, -0.02 + dz]; L[5] = [-0.24, H + 0.6, -0.05 + dz]; L[6] = [-0.22, H + 0.9, -0.02 + dz]; L[8][2] += sw * 0.15; L[10][2] += sw * 0.15; }
+    return L;
+  }
+  if (kind === 'sitfloor') {
+    return [[0, H + 0.68, -0.05], [0, H + 0.5, -0.06], [0, H + 0.04, -0.1], [0.24, H + 0.27, 0], [0.2, H + 0.12, 0.25], [-0.24, H + 0.27, 0], [-0.2, H + 0.12, 0.25],
+      [0.14, H + 0.12, 0.42], [0.1, H + 0.04, 0.8], [-0.14, H + 0.12, 0.42], [-0.1, H + 0.04, 0.8], [0.2, H + 0.47, -0.08], [-0.2, H + 0.47, -0.08], [0.1, H + 0.04, -0.08], [-0.1, H + 0.04, -0.08]];
+  }
+  if (kind === 'lie') {
+    const y = H + 0.08, br = Math.sin(t * 1.3) * 0.006;
+    return [[0, y + 0.06, -0.8], [0, y + 0.05 + br, -0.62], [0, y + 0.04, -0.12], [0.25, y + 0.03, -0.38], [0.22, y + 0.03, -0.12], [-0.25, y + 0.03, -0.38], [-0.22, y + 0.03, -0.12],
+      [0.11, y + 0.06, 0.3], [0.11, y + 0.02, 0.74], [-0.11, y + 0.06, 0.3], [-0.11, y + 0.02, 0.74], [0.2, y + 0.05 + br, -0.6], [-0.2, y + 0.05 + br, -0.6], [0.1, y + 0.04, -0.12], [-0.1, y + 0.04, -0.12]];
+  }
+  // standing kinds: play (cheer and hop), bounce (trampoline), wave
+  const hop = kind === 'bounce' ? H + up * 0.7 / sc : kind === 'play' ? up * 0.12 / sc : 0, bend = kind === 'bounce' ? 0 : 0.02;
+  const L = REST.map(q => [q[0], q[1] + hop, q[2]]);
+  L[7][2] += bend; L[9][2] += bend;
+  if (kind === 'play' || kind === 'bounce') { const a = Math.sin(t * 6.4) * 0.1; L[3] = [0.28, 1.5 + hop, 0.02]; L[4] = [0.3, 1.78 + hop + a, 0.05]; L[5] = [-0.28, 1.5 + hop, 0.02]; L[6] = [-0.3, 1.78 + hop - a, 0.05]; }
+  if (kind === 'wave') { L[5] = [-0.3, 1.55, 0.05]; L[6] = [-0.36 + Math.sin(t * 8) * 0.12, 1.85, 0.08]; L[3] = [0.235, 1.16, 0]; L[4] = [0.23, 0.9, 0.04]; }
+  return L;
+}
+{
+  const _pu = poseUnit; poseUnit = function (u) {
+    if (!u.pose) return _pu.apply(this, arguments);
+    const sc = u.sc || 1, yaw = u.poseYaw !== undefined && u.pose !== 'play' && u.pose !== 'wave' ? u.poseYaw : u.yaw, c = Math.cos(yaw), s = Math.sin(yaw), P = u.pts;
+    const L = poseLocal(u.pose, u.poseH || 0.45, G.t + (u.id || 0) * 0.37, sc);
+    for (let i = 0; i < 15; i++) { const lx = L[i][0] * sc, ly = L[i][1] * sc, lz = L[i][2] * sc, j = i * 3; P[j] = u.x + lx * c + lz * s; P[j + 1] = u.y + ly; P[j + 2] = u.z - lx * s + lz * c; }
+  };
+}
+
+/* ---------- people ---------- */
+const STAGES = { baby: { name: 'baby', sc: 0.36, hs: 0.74, ws: 0.48, spd: 0 }, toddler: { name: 'toddler', sc: 0.5, hs: 0.8, ws: 0.6, spd: 0.9 }, child: { name: 'child', sc: 0.68, hs: 0.87, ws: 0.72, spd: 1.3 }, teen: { name: 'teen', sc: 0.9, hs: 0.95, ws: 0.9, spd: 1.4 }, adult: { name: 'adult', sc: 1, hs: 1, ws: 1, spd: 1.4 } };
+const AGE_AT = { toddler: 3, child: 7, teen: 14, adult: 21 }; // family days (nights slept at home)
+const stageOf = ad => ad >= AGE_AT.adult ? 'adult' : ad >= AGE_AT.teen ? 'teen' : ad >= AGE_AT.child ? 'child' : ad >= AGE_AT.toddler ? 'toddler' : 'baby';
+const HAIRS = [0x241810, 0x3a2414, 0x5a3a20, 0x8a5a2a, 0xc89a5a, 0x101010, 0x6a3018];
+const SKINS = [0xf0c7a4, 0xe0b089, 0xc68e5e, 0xa86a4a, 0x8a5a3a];
+const SINGLES = [
+  { id: 'lena', name: 'Lena Hart', fem: true, region: 'town', skin: 0xf0c7a4, hair: 0x8a5a2a, shirt: 0x3a7ab8, pants: 0x2a2a3a, wps: [[14, 26], [24, 26], [6, 40], [30, 0], [10, 0]], line: 'Lena runs the bakery stall on Saturdays and knows everyone in town.' },
+  { id: 'maya', name: 'Maya Brooks', fem: true, region: 'town', skin: 0xc68e5e, hair: 0x101010, shirt: 0xb83a5a, pants: 0x2a2a2a, wps: [[-30, 168], [-45, 160], [-20, 176], [-50, 150], [-4, 160]], line: 'Maya teaches at Sorrel Primary and spends her afternoons in the park.' },
+  { id: 'daniel', name: 'Daniel Shore', fem: false, region: 'town', skin: 0xe0b089, hair: 0x3a2414, shirt: 0x5a7a4a, pants: 0x3a3a2a, wps: [[126, -50], [126, -20], [120, -80], [110, -40], [126, -60]], line: 'Daniel fixes boats down at the harbour quay.' },
+  { id: 'theo', name: 'Theo Marsh', fem: false, region: 'town', skin: 0xa86a4a, hair: 0x101010, shirt: 0xd8c86a, pants: 0x2a2a3a, wps: [[-164, -30], [-170, 40], [-164, 10], [-156, -10], [-170, 52]], line: 'Theo designs furniture for Sorrel Home on Market Street.' },
+  { id: 'sofia', name: 'Sofia Reyes', fem: true, region: 'city', skin: 0xe0b089, hair: 0x241810, shirt: 0xe8e4dc, pants: 0x3a4a6a, wps: [[-10, -6], [10, -6], [12, 34], [-12, 34], [0, 24]], line: 'Sofia is an architect; she helped design Skyline Tower.' },
+  { id: 'nina', name: 'Nina Kova', fem: true, region: 'city', skin: 0xf0c7a4, hair: 0xc89a5a, shirt: 0x6a3a8a, pants: 0x2a2a2a, wps: [[34, -34], [34, -86], [60, -34], [86, -34], [34, -60]], line: 'Nina is a nurse at Corvane General and loves old films.' },
+  { id: 'omar', name: 'Omar Reid', fem: false, region: 'city', skin: 0x8a5a3a, hair: 0x101010, shirt: 0x2a6a6a, pants: 0x2a2a3a, wps: [[-34, 34], [-34, 86], [-60, 34], [-86, 34], [-34, 60]], line: 'Omar is a chef who is opening his own restaurant soon.' },
+  { id: 'jonah', name: 'Jonah Pike', fem: false, region: 'city', skin: 0xf0c7a4, hair: 0x5a3a20, shirt: 0xc87a3a, pants: 0x3a3a3a, wps: [[-26, -26], [26, -26], [26, 26], [-26, 26], [0, -20]], line: 'Jonah plays guitar on the plaza and writes songs about the sea.' }
+];
+const KID_NAMES = { f: ['Ava', 'Lily', 'Mia', 'Zara', 'Emma', 'Nora', 'Isla', 'Ruby', 'Aisha', 'Sara', 'Leila', 'Hana'], m: ['Leo', 'Sam', 'Noah', 'Eli', 'Omar', 'Finn', 'Max', 'Kai', 'Rafi', 'Theo', 'Adam', 'Ben'] };
+const FAM = { units: [], singles: [], walkWith: null, walkT: 0, walkGain: 0, playT: 0 };
+function frFam(S) {
+  S = S || frData();
+  S.fam = Object.assign({ partner: null, dating: null, friends: {}, cd: {}, kids: [], babyDue: false, days: 0, nights: { d: '', n: 0 }, happy: 70, out: false, actDay: '', adopt: null }, S.fam || {});
+  return S.fam;
+}
+function frFamSave(S) { frPut(S); FRX2.S = S; }
+const famSize = F => (F.partner ? 1 : 0) + F.kids.length;
+const famCap = S => S.home ? HOMES[S.home].cap : 0;
+const friendLevel = n => n >= 100 ? 'Best friend' : n >= 60 ? 'Close friend' : n >= 30 ? 'Friend' : n >= 10 ? 'Acquaintance' : 'Stranger';
+const moodOf = h => h >= 80 ? 'Very happy' : h >= 60 ? 'Happy' : h >= 40 ? 'Okay' : h >= 20 ? 'A bit bored' : 'Missing you';
+function frPersonLook(d, stage) {
+  const c = h => new THREE.Color(h), skin = c(d.skin), shirt = c(d.shirt), pants = c(d.pants);
+  const L = { uni: shirt, pants, sleeve: shirt.clone().multiplyScalar(0.9), skin, hatc: c(0x2a2a2a), cols: [shirt, pants, shirt.clone().multiplyScalar(0.9), skin] };
+  // HD add-on: these settings pick the right face, body and hair; the standard models show long hair for girls and women
+  L.phys = { fem: !!d.fem, h: 1, build: 'avg', face: (d.name || '').length % 2, hairC: c(d.hair || 0x3a2414) };
+  L._hat = 'none';
+  Object.defineProperty(L, 'hat', { configurable: true, enumerable: true, get() { return this._hat === 'none' && this.phys && this.phys.fem && BMC === BM ? 'hair' : this._hat; }, set(v) { this._hat = v; } });
+  const st = STAGES[stage || 'adult']; L.hs = st.hs; L.ws = st.ws;
+  return L;
+}
+function frPersonUnit(d, stage, x, z, y) {
+  const u = makeUnit(0, 'knife', null, x, z); u.dummy = 'civ'; u.civ = true; u.y = y || 0;
+  u.look = frPersonLook(d, stage); u.sc = STAGES[stage || 'adult'].sc; u.stage = stage || 'adult';
+  u.hero = 'fam'; u.vipName = d.name.split(' ')[0]; u.person = d; u.yaw = R() * TAU; poseUnit(u);
+  return u;
+}
+
+/* ---------- spawning family and townspeople when an area loads ---------- */
+FRF.region = function (r, S, at) {
+  const F = frFam(S); FAM.units = []; FAM.singles = []; FAM.walkWith = null;
+  // townspeople you can befriend (your partner lives with you instead)
+  for (const d of SINGLES) {
+    if (d.region !== r || (F.partner && F.partner.id === d.id)) continue;
+    const w = d.wps[0]; const u = frPersonUnit(d, 'adult', w[0] + rr(-2, 2), w[1] + rr(-2, 2)); u.single = d.id; u.wps = d.wps; u.wp = 1; u.civSpeed = rr(1.05, 1.35); FAM.singles.push(u);
+  }
+  frFamSpawn(S);
+};
+function frFamMembers(F) {
+  const out = [];
+  if (F.partner) out.push({ key: 'partner', d: F.partner, stage: 'adult' });
+  F.kids.forEach((k, i) => out.push({ key: 'kid' + i, d: k, stage: stageOf(k.ad), kid: k }));
+  return out;
+}
+function frFamSpawn(S) {
+  for (const u of FAM.units) { u.alive = false; u.hp = 0; } FAM.units = [];
+  const F = frFam(S), r = frRegion(), p = G.player; if (!p) return;
+  const home = S.home && HOMES[S.home], atHome = home && home.region === r;
+  frFamMembers(F).forEach((m, i) => {
+    const outNow = F.out && m.stage !== 'baby';
+    if (!outNow && !atHome) return;
+    let x, z, y;
+    if (outNow) { const a = G.camYaw + PI + (i - 1) * 0.6; x = p.x + Math.sin(a) * (1.6 + i * 0.5); z = p.z + Math.cos(a) * (1.6 + i * 0.5); y = p.y; }
+    else { const A = home.area; x = rr(A.x0 + 1.5, A.x1 - 1.5); z = rr(A.z0 + 1.5, A.z1 - 1.5); y = A.y; }
+    const u = frPersonUnit(m.d, m.stage, x, z, y); u.fam = m.key; u.famI = i; u.mode = outNow ? 'follow' : 'home'; u.homeId = S.home; u.st = 'idle'; u.stT = rr(0.5, 3);
+    if (m.stage === 'baby') { u.vipName = m.d.name + ' (baby)'; }
+    FAM.units.push(u);
+  });
+}
+FRF.moved = () => frFamSpawn(frData());
+FRF.lift = () => { const p = G.player; for (const u of FAM.units) if (u.mode === 'follow' || u.single) { u.x = p.x + rr(-1.2, 1.2); u.z = p.z + rr(-1.2, 1.2); u.y = p.y; u.pose = null; } };
+
+/* ---------- family AI ---------- */
+function frSpotsAt(homeId, kind) {
+  const out = [];
+  for (const F of FRX.furn) { if (F.home !== homeId) continue; const D = FURN[F.id]; if (kind === 'beds' && D.beds) frFurnSpots(F, 'beds').forEach(s => out.push({ s, F, D })); if (kind === 'seats' && D.seats) frFurnSpots(F, 'seats').forEach(s => out.push({ s, F, D })); if (kind === 'use' && D.use) out.push({ F, D }); }
+  return out;
+}
+function frFamPick(u) {
+  const H = HOMES[u.homeId]; if (!H) return null;
+  const night = G.hour >= 22 || G.hour < 7, kid = u.stage !== 'adult', taken = new Set(FAM.units.filter(v => v !== u && v.tgt).map(v => v.tgt.key));
+  const free = L => L.filter(o => !taken.has(o.key));
+  if (night || u.stage === 'baby' && R() < 0.6) {
+    let beds = frSpotsAt(u.homeId, 'beds').map(o => ({ ...o, key: o.s.join(',') }));
+    if (u.stage === 'baby') { const cr = beds.filter(o => o.D.use === 'crib'); if (cr.length) beds = cr; } else beds = beds.filter(o => o.D.use !== 'crib');
+    const pref = free(beds.filter(o => !!o.D.kid === kid)), any = free(beds);
+    const b = (pref.length ? pref : any)[(R() * (pref.length || any.length)) | 0];
+    if (b) return { x: b.s[0], z: b.s[2], y: b.F.y, pose: 'lie', h: b.s[1] - b.F.y, yaw: b.s[3], key: b.key, snap: true, dur: night ? 999 : rr(25, 50) };
+  }
+  if (u.stage === 'baby') { const A = H.area; return { x: rr(A.x0 + 2, A.x1 - 2), z: rr(A.z0 + 2, A.z1 - 2), y: A.y, pose: 'sitfloor', h: 0, yaw: R() * TAU, key: 'floor' + u.id, snap: true, dur: rr(20, 40) }; }
+  const roll = R();
+  if (kid && roll < 0.45) {
+    const toys = frSpotsAt(u.homeId, 'use').filter(o => o.D.kid && o.D.use !== 'crib' && o.D.use !== 'sleep').map(o => ({ ...o, key: 'toy' + o.F.blocks[0] }));
+    const t = free(toys)[(R() * free(toys).length) | 0];
+    if (t) { const sw = t.D.use === 'swing' ? frFurnSpots(t.F, 'seats')[0] : null; if (sw) return { x: sw[0], z: sw[2], y: t.F.y, pose: 'swing', h: sw[1] - t.F.y, yaw: sw[3], key: t.key, snap: true, dur: rr(15, 30), walkTo: { x: sw[0] + Math.sin(sw[3]) * 1.1, z: sw[2] + Math.cos(sw[3]) * 1.1 } };
+      if (t.D.use === 'bounce') return { x: t.F.x, z: t.F.z, y: t.F.y, pose: 'bounce', h: 0.43, yaw: R() * TAU, key: t.key, snap: true, dur: rr(10, 20), walkTo: { x: t.F.x + 1.8, z: t.F.z } };
+      return { x: t.F.x + Math.sin(t.F.ry || 0) * 1.0, z: t.F.z + Math.cos(t.F.ry || 0) * 1.0, y: t.F.y, pose: t.D.flat ? 'sitfloor' : 'play', h: 0, yaw: (t.F.ry || 0) + PI, key: t.key, dur: rr(12, 25) }; }
+  }
+  if (roll < 0.75) {
+    const seats = frSpotsAt(u.homeId, 'seats').filter(o => o.D.use !== 'swing' && (kid || !o.D.kid)).map(o => ({ ...o, key: o.s.join(',') }));
+    const s = free(seats)[(R() * free(seats).length) | 0];
+    if (s) return { x: s.s[0], z: s.s[2], y: s.F.y, pose: 'sit', h: s.s[1] - s.F.y, yaw: s.s[3], key: s.key, snap: true, dur: rr(20, 45), walkTo: { x: s.s[0] + Math.sin(s.s[3]) * 0.8, z: s.s[2] + Math.cos(s.s[3]) * 0.8 } };
+  }
+  if (!kid && roll < 0.88) {
+    const k = frSpotsAt(u.homeId, 'use').filter(o => o.D.use === 'cook')[0];
+    if (k) return { x: k.F.x + Math.sin(k.F.ry || 0) * 0.85, z: k.F.z + Math.cos(k.F.ry || 0) * 0.85, y: k.F.y, pose: null, yaw: (k.F.ry || 0) + PI, key: 'cook', dur: rr(10, 20) };
+  }
+  const here = frHomeAt(u.x, u.z, u.y), A = here && here.part === 'garden' ? HOMES[u.homeId].garden : H.area;
+  return { x: rr(A.x0 + 1, A.x1 - 1), z: rr(A.z0 + 1, A.z1 - 1), y: A.y, pose: null, yaw: R() * TAU, key: 'w' + u.id, dur: rr(4, 10) };
+}
+function frWalk(u, tx, tz, spd, dt) {
+  const dx = tx - u.x, dz = tz - u.z, d = Math.hypot(dx, dz);
+  if (d < 0.35) { u.speed = 0; return true; }
+  const a = Math.atan2(dx, dz); u.yaw += angDiff(u.yaw, a) * Math.min(1, dt * 6);
+  const ang = u.detour > G.t ? u.yaw + u.detourA : u.yaw;
+  const sp = moveUnit(u, ang, Math.min(spd, d / Math.max(dt, 1e-3)), dt); u.speed = sp;
+  if (sp < spd * 0.25) { u.stuck = (u.stuck || 0) + dt; if (u.stuck > 0.8 && !(u.detour > G.t)) { u.detour = G.t + 0.9; u.detourA = (R() < 0.5 ? 1 : -1) * rr(0.9, 1.6); } } else u.stuck = Math.max(0, (u.stuck || 0) - dt);
+  return false;
+}
+function frFamTick(dt) {
+  const p = G.player; if (!p) return;
+  const S = FRX2.S || frData(), F = frFam(S);
+  let fi = 0;
+  for (const u of FAM.units) {
+    if (!u.alive) continue; u.aiming = false;
+    if (u.knock) { knockTick(u); continue; }
+    if (u.mode === 'follow') {
+      u.pose = null;
+      if (p.inVeh) { u.inVeh = p.inVeh; u.x = p.inVeh.x; u.z = p.inVeh.z; u.y = p.inVeh.y || 0; continue; }
+      if (u.inVeh) { u.inVeh = null; const a = (p.inVeh || p).yaw + PI / 2 + fi * 0.5; u.x = p.x + Math.sin(a) * 1.4; u.z = p.z + Math.cos(a) * 1.4; u.y = p.y; }
+      if (u.playUntil > G.t && u.playAt) { const pa = u.playAt; if (frWalk(u, pa.x, pa.z, 3, dt) || u.stuck > 3) { u.x = pa.sx !== undefined ? pa.sx : pa.x; u.z = pa.sz !== undefined ? pa.sz : pa.z; u.pose = pa.k === 'swing' ? 'swing' : 'play'; u.poseH = 0.5; u.poseYaw = 0; u.speed = 0; } u.phase += u.speed * dt * 2.6 / u.sc; continue; }
+      const back = 1.5 + fi * 0.75, side = (fi % 2 ? 1 : -1) * (0.5 + 0.2 * fi), fy = G.camYaw;
+      const tx = p.x - Math.sin(fy) * back + Math.cos(fy) * side, tz = p.z - Math.cos(fy) * back - Math.sin(fy) * side, d = Math.hypot(tx - u.x, tz - u.z);
+      if (d > 28 || Math.abs(u.y - p.y) > 2.5) { u.x = tx; u.z = tz; u.y = p.y; }
+      const st = STAGES[u.stage]; const spd = d > 5 ? Math.max(3.4, Math.hypot(p.vx || 0, p.vz || 0) + 0.6) * (u.stage === 'adult' || u.stage === 'teen' ? 1 : 0.9) : d > 1.4 ? Math.max(1.3, st.spd) : 0;
+      if (spd) frWalk(u, tx, tz, spd, dt); else { u.speed = 0; u.yaw += angDiff(u.yaw, Math.atan2(p.x - u.x, p.z - u.z)) * Math.min(1, dt * 3); }
+      u.y = topAt(u.x, u.z, u.y + 0.3) || p.y; if (Math.abs(u.y - p.y) > 1.2 && Math.abs(p.y) > 1) u.y = p.y;
+      u.phase += u.speed * dt * 2.6 / u.sc; fi++;
+      continue;
+    }
+    // at home
+    u.stT -= dt;
+    if (u.st === 'idle' && u.stT <= 0) { u.tgt = frFamPick(u); u.st = u.tgt ? 'go' : 'idle'; u.stT = 2; u.stuck = 0; u.goT = 0; u.pose = null; }
+    else if (u.st === 'go') {
+      const T = u.tgt, W = T.walkTo || T; u.goT += dt;
+      const arrived = u.stage === 'baby' || frWalk(u, W.x, W.z, STAGES[u.stage].spd || 1.2, dt);
+      if (arrived || u.goT > 9) { u.st = 'do'; u.stT = T.dur; u.speed = 0; if (T.snap || u.goT > 9) { u.x = T.x; u.z = T.z; } u.y = T.y; u.pose = T.pose; u.poseH = T.h; u.poseYaw = T.yaw; if (!T.pose) u.yaw = T.yaw; }
+      u.phase += u.speed * dt * 2.6 / (u.sc || 1);
+    } else if (u.st === 'do') {
+      u.speed = 0;
+      const night = G.hour >= 22 || G.hour < 7;
+      if (u.stT <= 0 || (u.tgt && u.tgt.pose === 'lie' && !night && u.stage !== 'baby' && u.stT > 60)) { const T = u.tgt; if (T && T.pose && T.walkTo) { u.x = T.walkTo.x; u.z = T.walkTo.z; } else if (T && T.pose === 'lie') { u.x += Math.cos(T.yaw) * 1.1; u.z -= Math.sin(T.yaw) * 1.1; } u.pose = null; u.tgt = null; u.st = 'idle'; u.stT = rr(1, 4); }
+    }
+  }
+  // townspeople wander; one can walk with you
+  for (const u of FAM.singles) {
+    if (!u.alive) continue; u.aiming = false; if (u.knock) { knockTick(u); continue; }
+    if (FAM.walkWith === u) {
+      if (p.inVeh) { u.inVeh = p.inVeh; u.x = p.inVeh.x; u.z = p.inVeh.z; continue; } if (u.inVeh) { u.inVeh = null; u.x = p.x + 1.2; u.z = p.z; u.y = p.y; }
+      const tx = p.x + Math.cos(G.camYaw) * 0.9, tz = p.z - Math.sin(G.camYaw) * 0.9, d = Math.hypot(tx - u.x, tz - u.z);
+      if (d > 28 || Math.abs(u.y - p.y) > 2.5) { u.x = tx; u.z = tz; u.y = p.y; }
+      if (d > 1.0) frWalk(u, tx, tz, d > 5 ? 4 : 1.5, dt); else { u.speed = 0; u.yaw += angDiff(u.yaw, G.camYaw) * Math.min(1, dt * 3); }
+      u.y = topAt(u.x, u.z, u.y + 0.3) || p.y; if (Math.abs(u.y - p.y) > 1.2 && Math.abs(p.y) > 1) u.y = p.y;
+      u.phase += u.speed * dt * 2.6;
+      const moving = Math.hypot(p.vx || 0, p.vz || 0) > 0.8 || p.inVeh;
+      if (moving) { FAM.walkT += dt; if (FAM.walkT > 15 && FAM.walkGain < 12) { FAM.walkT = 0; FAM.walkGain += 2; frFriend(u.single, 2, true); } }
+      if (G.t > FAM.walkEnd) { frToast(u.person.name, 'That was a lovely walk. See you around!'); FAM.walkWith = null; }
+      continue;
+    }
+    if (u.talkT > G.t) { u.speed = 0; u.yaw += angDiff(u.yaw, Math.atan2(p.x - u.x, p.z - u.z)) * Math.min(1, dt * 4); continue; }
+    const t = u.wps[u.wp]; if (frWalk(u, t[0], t[1], u.civSpeed, dt) || u.stuck > 3) { u.wp = (u.wp + 1) % u.wps.length; u.stuck = 0; }
+    u.phase += u.speed * dt * 2.6;
+  }
+}
+
+/* ---------- friends and dating ---------- */
+function frFriend(id, n, quiet) {
+  const S = frData(), F = frFam(S); const before = F.friends[id] || 0;
+  F.friends[id] = clamp(before + n, 0, 100); frFamSave(S);
+  const d = SINGLES.find(q => q.id === id);
+  if (!quiet || friendLevel(before) !== friendLevel(F.friends[id])) frToast(d.name, `${friendLevel(F.friends[id])} · ${F.friends[id]} of 100`);
+  return F.friends[id];
+}
+function frCool(key, sec) { const S = frData(), F = frFam(S), now = Date.now(); if ((F.cd[key] || 0) > now) return Math.ceil((F.cd[key] - now) / 1000); F.cd[key] = now + sec * 1000; frFamSave(S); return 0; }
+function frTalkSingle(u) {
+  const d = u.person, S = frData(), F = frFam(S), pts = F.friends[d.id] || 0, dating = F.dating === d.id, married = !!F.partner;
+  u.talkT = G.t + 8;
+  const P = prof(), opts = [];
+  opts.push(['Chat', () => { const w = frCool('chat_' + d.id, 40); if (w) { frToast(d.name, `You chatted a moment ago. Try again in ${w} s.`); return; } frFriend(d.id, 4); }]);
+  opts.push([`Buy them a coffee · 5 SD`, () => { if (prof().coins < 5) { frToast('Not enough SD', 'A coffee costs 5 SD.'); return; } const w = frCool('coffee_' + d.id, 90); if (w) { frToast(d.name, `Still finishing the last one. Try again in ${w} s.`); return; } const P2 = prof(); P2.coins -= 5; profSave(P2); updateProfileCard(); frFriend(d.id, 8); }]);
+  opts.push([`Give a small gift · 25 SD`, () => { if (prof().coins < 25) { frToast('Not enough SD', 'A gift costs 25 SD.'); return; } const w = frCool('gift_' + d.id, 150); if (w) { frToast(d.name, `You just gave them something. Try again in ${w} s.`); return; } const P2 = prof(); P2.coins -= 25; profSave(P2); updateProfileCard(); frFriend(d.id, 10); }]);
+  if (FAM.walkWith === u) opts.push(['Say goodbye for now', () => { FAM.walkWith = null; frToast(d.name, 'See you soon!'); }]);
+  else opts.push(['Go for a walk together', () => { FAM.walkWith = u; FAM.walkT = 0; FAM.walkGain = 0; FAM.walkEnd = G.t + 180; frToast(d.name, 'Sure! Lead the way. Walking, driving and eating out together all count.'); }]);
+  if (!married && !dating && !F.dating && pts >= 60) opts.push(['Ask them out', () => { const S2 = frData(), F2 = frFam(S2); F2.dating = d.id; frFamSave(S2); frToast(d.name, 'I was hoping you would ask! We are now dating.'); }]);
+  if (dating && pts >= 100) opts.push(['Propose', () => frPropose(u)]);
+  opts.push(['Bye', null]);
+  const status = married ? `${friendLevel(pts)} (${pts}/100). You are married to ${F.partner.name}.` : dating ? `Dating · ${pts}/100${pts >= 100 ? ' · ready for the big question' : ' · reach 100 to propose'}.` : `${friendLevel(pts)} · ${pts}/100${pts >= 60 && !F.dating ? ' · you could ask them out' : pts < 60 ? ' · at 60 you can ask them out' : ''}.`;
+  frDialog(d.name, `${d.line} ${status}`, opts);
+}
+function frPropose(u) {
+  const S = frData(), F = frFam(S), d = u.person;
+  if (!S.home) { frToast(d.name, 'We would need a home together first. Buy one and make it your main home.'); return; }
+  if (famSize(F) + 1 > famCap(S)) { frToast('No room', `${HOMES[S.home].name} has no room for one more. A bigger home fixes that.`); return; }
+  frDialog(d.name, `You take out a ring. "${d.name.split(' ')[0]}, will you marry me?"`, [
+    ['"Yes!"', () => {
+      frFade(() => {
+        const S2 = frData(), F2 = frFam(S2);
+        F2.partner = { id: d.id, name: d.name, fem: d.fem, skin: d.skin, hair: d.hair, shirt: d.shirt, pants: d.pants, since: Date.now() }; F2.dating = null; F2.happy = 90; F2.friends[d.id] = 100;
+        frFamSave(S2);
+        if (FAM.walkWith === u) FAM.walkWith = null; u.alive = false; u.hp = 0; FAM.singles = FAM.singles.filter(v => v !== u);
+        F2.out = true; frFamSave(S2); frFamSpawn(S2);
+        banner('JUST MARRIED!', 3, '#ffd84a'); if (typeof vaFanfare === 'function') vaFanfare();
+        frToast('Congratulations!', `${d.name} has moved into ${HOMES[S2.home].name} and is with you now. Open the Family panel (J) to see your family.`);
+      });
+    }]]);
+}
+
+/* ---------- talking to family ---------- */
+function frTalkFam(u) {
+  const S = frData(), F = frFam(S), m = frFamMembers(F).find(q => q.key === u.fam); if (!m) return;
+  const d = m.d, opts = [], who = m.key === 'partner' ? `${d.name} · your partner` : `${d.name} · ${STAGES[m.stage].name}`;
+  if (m.stage === 'baby') { frDialog(who, `${d.name.split(' ')[0]} smiles and grabs your finger.`, [['Cuddle', () => frFamHappy(3, 'cuddle_' + m.key, 60, 'Aww.')], ['Bye', null]]); return; }
+  opts.push([m.key === 'partner' ? 'Chat' : 'Play together', () => frFamHappy(m.key === 'partner' ? 3 : 5, 'talk_' + m.key, 60, m.key === 'partner' ? 'You talk about your day.' : `${d.name.split(' ')[0]} had a great time.`)]);
+  if (u.mode === 'home') opts.push(['Come with me', () => frFamOut(true, u)]);
+  else opts.push(['Go home for now', () => frFamOut(false, u)]);
+  if (m.key === 'partner' && !F.babyDue && famSize(F) < famCap(S)) opts.push(['Have a baby', () => { const S2 = frData(), F2 = frFam(S2); F2.babyDue = true; frFamSave(S2); frToast('A baby is on the way!', 'The baby arrives after the next night\'s sleep at home.'); }]);
+  opts.push(['Bye', null]);
+  const extra = m.key === 'partner' ? `Family mood: ${moodOf(F.happy)}.` : `Age: ${STAGES[m.stage].name}${m.stage !== 'adult' ? ` (next step after ${Math.max(1, AGE_AT[nextStage(m.stage)] - m.kid.ad)} more nights)` : ''}.`;
+  frDialog(who, extra, opts);
+}
+const nextStage = s => ({ baby: 'toddler', toddler: 'child', child: 'teen', teen: 'adult' })[s] || 'adult';
+function frFamHappy(n, key, cd, msg) {
+  if (key) { const w = frCool(key, cd); if (w) { frToast('Not now', `Try again in ${w} s.`); return false; } }
+  const S = frData(), F = frFam(S); F.happy = clamp(F.happy + n, 0, 100); F.actDay = frDay(); frFamSave(S);
+  if (msg) frToast(msg, `Family mood: ${moodOf(F.happy)}`);
+  return true;
+}
+function frFamOut(on, only) {
+  const S = frData(), F = frFam(S);
+  if (on && !frFamMembers(F).length) { frToast('Family', 'You do not have a family yet. Befriend someone in town, or visit the Family Centre.'); return; }
+  F.out = on; frFamSave(S);
+  if (on) {
+    // members at home in this area start following; if home is elsewhere they arrive by taxi
+    let n = 0; for (const u of FAM.units) if (u.stage !== 'baby') { u.mode = 'follow'; u.pose = null; u.tgt = null; n++; }
+    if (!n) frFamSpawn(S);
+    frToast('Family', F.kids.some(k => stageOf(k.ad) === 'baby') ? 'Everyone is coming with you. Babies stay home with a sitter.' : 'Everyone is coming with you.');
+  } else {
+    const home = S.home && HOMES[S.home];
+    for (const u of FAM.units) { if (u.mode !== 'follow') continue; if (home && home.region === frRegion()) { u.mode = 'home'; u.st = 'idle'; u.stT = 0; const A = home.area; u.x = rr(A.x0 + 1.5, A.x1 - 1.5); u.z = rr(A.z0 + 1.5, A.z1 - 1.5); u.y = A.y; u.inVeh = null; } else { u.alive = false; u.hp = 0; } }
+    FAM.units = FAM.units.filter(u => u.alive);
+    frToast('Family', home ? `They headed home to ${home.name}.` : 'They headed home.');
+  }
+}
+
+/* ---------- kids: babies, adoption, growing up ---------- */
+FRF.sleepNote = () => { const F = frFam(); return F.babyDue ? 'The baby arrives in the morning!' : ''; };
+FRF.sleep = function () {
+  const S = frData(), F = frFam(S), msgs = [], today = frDay();
+  if (F.nights.d !== today) F.nights = { d: today, n: 0 };
+  const counts = S.home && frHomeAt(G.player.x, G.player.z, G.player.y) && frHomeAt(G.player.x, G.player.z, G.player.y).id === S.home;
+  if (counts && F.nights.n < 3) {
+    F.nights.n++; F.days++;
+    for (const k of F.kids) { const a = stageOf(k.ad); k.ad++; const b = stageOf(k.ad); if (a !== b) msgs.push(`${k.name} is now ${b === 'adult' ? 'an adult' : 'a ' + b}!`); }
+    if (F.actDay && F.actDay !== today && famSize(F)) F.happy = clamp(F.happy - 4, 0, 100);
+  } else if (counts) msgs.push('Kids grow up after up to 3 nights a day.');
+  let baby = false;
+  if (F.babyDue && counts) { F.babyDue = false; baby = true; }
+  frFamSave(S);
+  if (baby) setTimeout(() => frNameBaby(), 700);
+  if (msgs.length || baby) setTimeout(() => frFamSpawn(frData()), 600);
+  return baby ? 'The baby has arrived!' + (msgs.length ? ' ' + msgs.join(' ') : '') : msgs.join(' ') || (counts ? 'Fully rested.' : 'Fully rested. (Sleep in your main home for family days to count.)');
+};
+function frNameBaby(adopt) {
+  const sex = R() < 0.5 ? 'f' : 'm', S = frData(), F = frFam(S), P0 = F.partner;
+  frPanelOpen(`<small>${adopt ? 'ADOPTION' : 'A NEW BABY'}</small><h3>${adopt ? 'Welcome home' : 'It\'s a baby!'}</h3>
+    <label class="famLbl">Name<input id="famName" maxlength="20" value="${KID_NAMES[sex][(R() * 12) | 0]}"></label>
+    <div class="famSex"><button class="btn small ${sex === 'f' ? 'primary' : ''}" data-sex="f">Girl</button><button class="btn small ${sex === 'm' ? 'primary' : ''}" data-sex="m">Boy</button></div>
+    <button class="btn primary" id="famOk">Welcome to the family</button>`);
+  let s = sex; const el = $('#famPanel');
+  el.querySelectorAll('[data-sex]').forEach(b => b.onclick = () => { s = b.dataset.sex; el.querySelectorAll('[data-sex]').forEach(q => q.classList.toggle('primary', q === b)); });
+  el.querySelector('#famOk').onclick = () => {
+    const name = (el.querySelector('#famName').value || '').trim().slice(0, 20) || KID_NAMES[s][0];
+    const S2 = frData(), F2 = frFam(S2), par = F2.partner;
+    const skin = par ? (R() < 0.5 ? par.skin : SKINS[(R() * SKINS.length) | 0]) : SKINS[(R() * SKINS.length) | 0], hair = par && R() < 0.6 ? par.hair : HAIRS[(R() * HAIRS.length) | 0];
+    F2.kids.push({ id: 'k' + Date.now(), name, fem: s === 'f', skin, hair, shirt: [0xe85a5a, 0x5ab8e8, 0xf0c040, 0x5ac88a, 0xa85ae8, 0xe88a3a][F2.kids.length % 6], pants: 0x3a4a6a, ad: 0, born: Date.now() });
+    F2.happy = clamp(F2.happy + 15, 0, 100); frFamSave(S2); frPanelClose(); frFamSpawn(S2);
+    if (typeof vaFanfare === 'function') vaFanfare(); frToast('Welcome, ' + name + '!', `${name} is home in ${HOMES[S2.home].name}.`);
+  };
+}
+function frAdoptList() {
+  const S = frData(), F = frFam(S), today = frDay();
+  if (!F.adopt || F.adopt.day !== today) {
+    const list = []; for (let i = 0; i < 3; i++) { const fem = R() < 0.5, st = ['toddler', 'child', 'child', 'teen'][(R() * 4) | 0]; list.push({ name: KID_NAMES[fem ? 'f' : 'm'][(R() * 12) | 0], fem, st, skin: SKINS[(R() * SKINS.length) | 0], hair: HAIRS[(R() * HAIRS.length) | 0], shirt: [0xe85a5a, 0x5ab8e8, 0xf0c040, 0x5ac88a, 0xa85ae8, 0xe88a3a][(R() * 6) | 0] }); }
+    F.adopt = { day: today, list }; frFamSave(S);
+  }
+  return F.adopt.list;
+}
+function frFamilyCentre() {
+  const S = frData(), F = frFam(S), list = frAdoptList();
+  if (!S.home) { frDialog('Family Centre', 'We help children find loving homes. You will need a home of your own first; once you have one, come back and meet the children.', [['Okay', null]]); return; }
+  const room = famCap(S) - famSize(F);
+  if (room <= 0) { frDialog('Family Centre', `${HOMES[S.home].name} has no free room right now (it fits ${famCap(S)} besides you). A bigger home makes room for more children.`, [['Okay', null]]); return; }
+  frDialog('Family Centre', `These children are looking for a family today. Adoption is free. Your home has room for ${room} more.`, [
+    ...list.map((k, i) => [`${k.name} · ${k.fem ? 'girl' : 'boy'}, ${k.st}`, () => {
+      const S2 = frData(), F2 = frFam(S2); if (famCap(S2) - famSize(F2) <= 0) return; const j = F2.adopt.list.findIndex(q => q.name === k.name && q.st === k.st); if (j < 0) return;
+      F2.kids.push({ id: 'k' + Date.now(), name: k.name, fem: k.fem, skin: k.skin, hair: k.hair, shirt: k.shirt, pants: 0x3a4a6a, ad: AGE_AT[k.st], adopted: Date.now() });
+      F2.adopt.list.splice(j, 1); F2.happy = clamp(F2.happy + 12, 0, 100); frFamSave(S2); frFamSpawn(S2);
+      if (typeof vaFanfare === 'function') vaFanfare(); frToast('Welcome, ' + k.name + '!', `${k.name} is waiting for you at ${HOMES[S2.home].name}.`);
+    }]), ['Not today', null]]);
+}
+
+/* ---------- doing things together ---------- */
+const followers = () => FAM.units.filter(u => u.alive && u.mode === 'follow');
+FRF.treat = function (kind, price, where) {
+  const fol = followers(), date = FAM.walkWith && FAM.walkWith.alive ? FAM.walkWith : null;
+  if (!fol.length && !date) return null;
+  const n = 1 + fol.length + (date ? 1 : 0), cost = price * n, P = prof();
+  if (P.coins < cost) { frToast('Not enough SD', `${n} people × ${price} SD = ${cost} SD.`); return true; }
+  P.coins -= cost; profSave(P); updateProfileCard();
+  const gain = { cinema: 14, icecream: 8, diner: 10, cafe: 10, fountain: 5 }[kind] || 6;
+  if (kind === 'diner' || kind === 'cafe') { const p = G.player; if (p) p.hp = p.maxhp; }
+  const go = () => {
+    if (fol.length) frFamHappy(gain, null, 0, null);
+    if (date) frFriend(date.single, Math.round(gain * 0.8));
+    const names = [...fol.map(u => u.person.name.split(' ')[0]), ...(date ? [date.person.name.split(' ')[0]] : [])];
+    const T = { cinema: 'You all watched a film', icecream: 'Ice cream for everyone', diner: 'A meal together', cafe: 'Coffee and cake together', fountain: 'Family photo by the fountain' }[kind] || 'Fun together';
+    frToast(T, `With ${names.join(', ')} · ${cost} SD${fol.length ? ` · family mood: ${moodOf(frFam().happy)}` : ''}`);
+    if (kind === 'fountain') banner('SAY CHEESE!', 1.6, '#ffd84a');
+  };
+  if (kind === 'cinema') frFade(() => { G.hour = (G.hour + 2) % 24; go(); }); else go();
+  return true;
+};
+FRF.use = function (kind, F) {
+  const here = FAM.units.filter(u => u.alive && u.mode === 'home' && u.homeId === F.home && u.stage !== 'baby');
+  if (!here.length || !['tv', 'eat', 'cook', 'bbq', 'play', 'piano'].includes(kind)) return false;
+  // everyone gathers: sit around the TV or the table
+  const seats = frSpotsAt(F.home, 'seats').filter(o => kind === 'tv' ? o.D.cat === 'living' : (kind === 'eat' || kind === 'cook') ? o.D.use === 'eat' : true).map(o => ({ ...o, key: o.s.join(',') }));
+  here.forEach((u, i) => { const s = seats[i]; if (s) { u.tgt = { x: s.s[0], z: s.s[2], y: s.F.y, pose: 'sit', h: s.s[1] - s.F.y, yaw: s.s[3], key: s.key, snap: true, dur: 40 }; u.x = s.s[0]; u.z = s.s[2]; u.y = s.F.y; u.pose = 'sit'; u.poseH = u.tgt.h; u.poseYaw = s.s[3]; u.st = 'do'; u.stT = 40; } });
+  const gain = { tv: 5, eat: 8, cook: 8, bbq: 10, play: 6, piano: 4 }[kind];
+  const ok = frFamHappy(gain, 'home_' + kind, 120, null);
+  const T = { tv: 'Family TV night', eat: 'Family dinner', cook: 'Dinner for everyone', bbq: 'Family barbecue', play: 'Playtime', piano: 'A family sing-along' }[kind];
+  frToast(T, ok ? `Family mood: ${moodOf(frFam().happy)}` : 'You did this a moment ago; it still counts as time together.');
+  return 'done';
+};
+function frPlayground() {
+  const kids = followers().filter(u => u.stage !== 'adult');
+  if (!kids.length) { frToast('Sorrel Park playground', 'Bring the kids along (Family panel, J) and they will play here.'); return; }
+  const PG = FRX2.play || [];
+  kids.forEach((u, i) => { const q = PG[i % PG.length]; u.playAt = q; u.playUntil = G.t + 25; });
+  frFamHappy(10, 'playground', 150, 'Playground time');
+}
+// driving the family around makes them happy too
+function frFamDriveTick(dt) {
+  const p = G.player; if (!p || !p.inVeh || !followers().length) return;
+  FAM.driveT = (FAM.driveT || 0) + dt; if (FAM.driveT > 30) { FAM.driveT = 0; const S = frData(), F = frFam(S); if ((F.driveGain || 0) < 10 || F.driveDay !== frDay()) { if (F.driveDay !== frDay()) { F.driveDay = frDay(); F.driveGain = 0; } F.driveGain += 2; F.happy = clamp(F.happy + 2, 0, 100); F.actDay = frDay(); frFamSave(S); } }
+}
+
+/* ---------- the Family panel (J) ---------- */
+function frPanelOpen(html) {
+  if (document.pointerLockElement) document.exitPointerLock();
+  keys.clear(); mouseDown = false; G.paused = true; G.frDlg = true;
+  let el = $('#famPanel'); if (!el) { el = document.createElement('div'); el.id = 'famPanel'; el.className = 'pe'; $('#frHud').appendChild(el); }
+  el.innerHTML = `<div class="famBox">${html}</div>`; el.hidden = false;
+}
+function frPanelClose() { const el = $('#famPanel'); if (el) el.hidden = true; G.paused = false; G.frDlg = false; }
+function frFamPanel() {
+  const S = frData(), F = frFam(S), H = S.home && HOMES[S.home], mem = frFamMembers(F);
+  const row = m => { const st = m.stage, a = m.kid ? m.kid.ad : null; return `<div class="famRow"><i style="background:#${m.d.shirt.toString(16).padStart(6, '0')}"></i><div><b>${esc(m.d.name)}</b><small>${m.key === 'partner' ? 'Partner' : (m.d.fem ? 'Daughter' : 'Son') + ' · ' + STAGES[st].name}${a !== null && st !== 'adult' ? ` · grows up in ${AGE_AT[nextStage(st)] - a} nights` : ''}</small></div></div>`; };
+  const friends = SINGLES.filter(d => (F.friends[d.id] || 0) > 0 && !(F.partner && F.partner.id === d.id)).map(d => `<div class="famRow"><i style="background:#${d.shirt.toString(16).padStart(6, '0')}"></i><div><b>${esc(d.name)}</b><small>${F.dating === d.id ? 'Dating' : friendLevel(F.friends[d.id])} · ${F.friends[d.id]}/100 · ${FR_REGIONS[d.region].name}</small></div></div>`).join('');
+  frPanelOpen(`<div class="famHead"><div><small>FAMILY</small><h3>${H ? esc(H.name) : 'No home yet'}</h3><span>${H ? `${famSize(F)} of ${H.cap} places used · ${FR_REGIONS[H.region].name}` : 'Buy a home to start a family.'}</span></div><button class="btn small" id="famX">Close</button></div>
+    ${mem.length ? `<div class="famMood"><span>Family mood</span><b>${moodOf(F.happy)}</b><div class="famBar"><i style="width:${F.happy}%"></i></div></div>${mem.map(row).join('')}` : `<p class="famNote">${F.dating ? `You are dating ${esc(SINGLES.find(d => d.id === F.dating).name)}. Reach 100 friendship to propose.` : 'Befriend people around Port Sorrel and Corvane City (walk up and press E). At 60 you can ask someone out; at 100 you can propose. You can also adopt at the Family Centre in Sorrel Park.'}</p>`}
+    ${F.babyDue ? '<p class="famNote">A baby is on the way: sleep at home tonight.</p>' : ''}
+    <div class="famBtns">${mem.length ? `<button class="btn primary" id="famOut">${F.out ? 'Send everyone home' : 'Bring everyone with me'}</button>` : ''}${H ? `<button class="btn" id="famTaxi">Taxi home · 15 SD</button>` : ''}</div>
+    ${friends ? `<h4>Friends</h4>${friends}` : ''}
+    <p class="famNote">Kids grow up one step after a few nights' sleep in your main home: baby, toddler, child, teen, adult (up to 3 nights count each day). Days out, meals, films, TV nights and the playground keep everyone happy.</p>`);
+  $('#famX').onclick = frPanelClose;
+  const ob = $('#famOut'); if (ob) ob.onclick = () => { frPanelClose(); frFamOut(!F.out); };
+  const tx = $('#famTaxi'); if (tx) tx.onclick = () => { frPanelClose(); frTaxiHome(); };
+}
+
+function frTaxiHome() {
+  const S = frData(), H = S.home && HOMES[S.home]; if (!H) return;
+  const P = prof(); if (P.coins < 15) { frToast('Not enough SD', 'A taxi home costs 15 SD.'); return; }
+  P.coins -= 15; profSave(P); updateProfileCard();
+  if (H.region === frRegion()) { frFade(() => { frPlace(H.spawn.x, H.spawn.z, H.spawn.yaw, H.area.y); FRF.lift(); banner(H.name, 1.6, '#00ff88'); }); return; }
+  frSave(); frFade(() => { frLeave(); frEnterRegion(H.region, 'home'); });
+}
+
+/* ---------- hooks ---------- */
+{
+  const _fn = frNearest; frNearest = function () {
+    const r = frRegion(), p = G.player;
+    if ((r === 'town' || r === 'city') && p && p.alive && !p.inVeh && !p.sit && !FRX.edit) {
+      let best = null, bd = 1.9;
+      for (const u of [...FAM.units, ...FAM.singles]) { if (!u.alive || u.inVeh || Math.abs(u.y - p.y) > 1.5) continue; const d = Math.hypot(u.x - p.x, u.z - p.z); if (d < bd) { bd = d; best = u; } }
+      if (best) {
+        const q = FAM.pt || (FAM.pt = { id: 'person', r: 3 }); q.x = p.x; q.z = p.z; q.y = p.y;
+        q.label = best.single ? `Talk to ${best.person.name}` : `Talk to ${best.person.name.split(' ')[0]}`; q.act = () => best.single ? frTalkSingle(best) : frTalkFam(best); return q;
+      }
+    }
+    return _fn.apply(this, arguments);
+  };
+  frRegionPoints = (prev => function (region) {
+    const pts = prev.apply(this, arguments);
+    if (region === 'town') { pts.push({ id: 'famctr', x: 30, z: 155.4, r: 2.6, label: 'Family Centre: adoption', act: frFamilyCentre }); pts.push({ id: 'playground', x: -31, z: 179, r: 5, label: 'Sorrel Park playground: play together', act: frPlayground }); }
+    return pts;
+  })(frRegionPoints);
+  const _ft = frTick; frTick = function (dt) {
+    _ft.apply(this, arguments);
+    const r = frRegion(); if (r !== 'town' && r !== 'city') return;
+    frFamTick(dt); frFamDriveTick(dt);
+    const b = $('#famBtn'); if (b) b.hidden = false;
+  };
+  const _fl = frLeave; frLeave = function () { const b = $('#famBtn'); if (b) b.hidden = true; FAM.units = []; FAM.singles = []; FAM.walkWith = null; return _fl.apply(this, arguments); };
+  const _hb = frHudBuild; frHudBuild = function () {
+    _hb.apply(this, arguments);
+    if (!$('#famBtn')) { const b = document.createElement('button'); b.id = 'famBtn'; b.className = 'btn small pe'; b.textContent = MOBILE() ? 'Family' : 'Family (J)'; b.onclick = frFamPanel; $('#frHud').appendChild(b); }
+    $('#famBtn').hidden = true;
+  };
+  addEventListener('keydown', e => {
+    if (!frOn() || G.view !== 'field') return;
+    const r = frRegion(); if (r !== 'town' && r !== 'city') return;
+    if (e.code === 'KeyJ' && !e.repeat) { e.preventDefault(); if ($('#famPanel') && !$('#famPanel').hidden) frPanelClose(); else if (!G.paused) frFamPanel(); }
+    if (e.code === 'Escape' && $('#famPanel') && !$('#famPanel').hidden) { e.preventDefault(); e.stopImmediatePropagation(); frPanelClose(); }
+  }, true);
+  // family and friends are never hurt; a car only knocks them over
+  const _hu = hurtUnit; hurtUnit = function (u) { if (u && (u.fam || u.single) && frOn()) return; return _hu.apply(this, arguments); };
+}
+// title screen: a button straight to your main home once you have one
+$('#goHome').addEventListener('click', () => startFreeRoam());
+setInterval(() => { const b = $('#goHome'), t = $('#scr-title'); if (!b || !t || t.hidden) return; try { const S = frData(); b.hidden = !S.home; if (S.home) b.textContent = 'Free roam: go home (' + HOMES[S.home].name + ')'; } catch (e) { } }, 1000);
+/* ================= LOADING SCREEN (opening the game, battles, travelling, HD download) ================= */
+// One full-screen panel with the >:) logo, a progress bar, what is happening right now and a rotating tip.
+// Battles build their map in one go, so the panel covers the first frames while the graphics warm up.
+const LD_TIPS = [
+  'Free roam: buy a home in Port Sorrel or Corvane City, then make it yours with the furniture catalogue.',
+  'Befriend people in town by chatting, sharing a coffee and going for walks. Close friends can become your partner.',
+  'Kids grow up one step after a few nights of sleep in your own bed: baby, toddler, child, teen, then adult.',
+  'Take your family out: the playground in Sorrel Park, ice cream at the harbour, a meal at the cafe or a film in the city.',
+  'Bigger homes have room for a bigger family. A studio fits two people; the penthouse fits six.',
+  'Press E (or Y on a controller) to talk to people and use things.',
+  'In your home, press E next to furniture to move it. R turns it.',
+  'Drive your car with the family: they ride along and get in and out with you.',
+  'The road at the north end of Port Sorrel goes to Corvane City.',
+  'Sorrel Post pays SD for deliveries. Faster deliveries earn a bonus.',
+  'The HD Realistic Graphics add-on can be switched on or off in Settings at any time.',
+  'In battle, the office view lets you command every squad at once.',
+  'Crouching makes you a smaller target. Your soldiers crouch behind cover on their own.',
+  'Medics heal wounded soldiers; send a medic drop to a squad in trouble.',
+  'God Mode has an F1 sandbox: cause crashes, burst tyres and change everyone\'s speed.',
+  'The Sorrel Ring race track is through the gate at the east end of Port Sorrel.',
+  'Your progress saves on this device, and to your account when you are logged in.'
+];
+const LD = { on: false, t0: 0, tipT: 0, tipI: (Math.random() * LD_TIPS.length) | 0, waitHD: false, hideTimer: 0, raf: 0 };
+const ldEl = id => document.getElementById(id);
+function ldTip(next) { if (next) LD.tipI = (LD.tipI + 1) % LD_TIPS.length; const t = ldEl('ldTipT'); if (t) t.textContent = LD_TIPS[LD.tipI]; }
+function ldShow(title, sub) {
+  const el = ldEl('ldScr'); if (!el) return;
+  clearTimeout(LD.hideTimer); el.hidden = false; el.classList.remove('off');
+  if (!LD.on) { LD.t0 = performance.now(); ldTip(true); }
+  LD.on = true; ldEl('ldTitle').textContent = title || 'SMFA 3D'; ldEl('ldSub').textContent = sub || '';
+  ldEl('ldSkip').hidden = true; ldProgress(null, 'Loading');
+}
+function ldProgress(p, step) {
+  const bar = ldEl('ldBar'), fill = ldEl('ldFill'); if (!bar) return;
+  if (p === null || p === undefined) { bar.classList.add('indef'); ldEl('ldPct').textContent = ''; }
+  else { bar.classList.remove('indef'); fill.style.width = Math.round(clamp(p, 0, 1) * 100) + '%'; ldEl('ldPct').textContent = Math.round(clamp(p, 0, 1) * 100) + '%'; }
+  if (step !== undefined) ldEl('ldStep').textContent = step;
+}
+function ldHide(delay) {
+  const el = ldEl('ldScr'); if (!el) return;
+  clearTimeout(LD.hideTimer);
+  LD.hideTimer = setTimeout(() => { LD.on = false; el.classList.add('off'); setTimeout(() => { if (!LD.on) el.hidden = true; }, 480); }, delay || 0);
+}
+// wait until the game has drawn a few frames (shaders compiled, models on the GPU), at least `minMs` after the panel appeared
+function ldAfterFrames(n, minMs, done) {
+  let k = 0; cancelAnimationFrame(LD.raf);
+  const tick = () => {
+    k++; ldProgress(0.8 + 0.2 * Math.min(1, k / n), k < n ? 'Preparing the graphics' : 'Ready');
+    if (k < n || performance.now() - LD.t0 < minMs) { LD.raf = requestAnimationFrame(tick); return; }
+    if (done) done(); else ldHide(120);
+  };
+  LD.raf = requestAnimationFrame(tick);
+}
+setInterval(() => { if (LD.on && performance.now() - LD.tipT > 5200) { LD.tipT = performance.now(); ldTip(true); } }, 1000);
+
+/* ---------- battles, races, missions and free roam areas ---------- */
+function ldTitleFor(cfg) {
+  if (!cfg) return ['SMFA 3D', ''];
+  if (cfg.freeroam) {
+    const r = cfg.freeroam === true ? 'hq' : cfg.freeroam, R0 = (typeof FR_REGIONS !== 'undefined' && FR_REGIONS[r]) || null;
+    return [R0 ? R0.name : 'Free roam', r === 'cabin' ? 'Boarding the flight' : r === 'circuit' ? 'Race track' : 'Free roam'];
+  }
+  const th = THEMES[cfg.map], m = MODES[cfg.mode];
+  const what = cfg.tutorial ? 'Tutorial' : cfg.campaign || cfg.camp ? 'Campaign' : cfg.arcade ? 'Arcade' : cfg.online || cfg.net ? 'Online battle' : cfg.god ? 'God Mode' : 'Battle';
+  const tm = TIMES && TIMES[cfg.time] ? TIMES[cfg.time].name || '' : '';
+  return [th ? th.name : 'Battlefield', [what, m && m.name, tm].filter(Boolean).join(' · ')];
+}
+{
+  const _sb = startBattle; startBattle = function (cfg) {
+    const [t, s] = ldTitleFor(cfg); ldShow(t, s); ldProgress(0.3, 'Building the map');
+    let r;
+    try { r = _sb.apply(this, arguments); }
+    catch (e) { ldHide(0); throw e; }
+    ldProgress(0.8, 'Preparing the graphics');
+    ldAfterFrames(4, 900);
+    return r;
+  };
+}
+
+/* ---------- HD add-on: download with a progress bar ---------- */
+// The file is fetched in pieces so we can show how much has arrived, then run as a script. If that is
+// not possible here (opened from a file, or the page does not allow it), the plain script tag is used.
+HD.pct = 0; HD.got = 0; HD.size = 0;
+hdLoad = function () {
+  if (HD.loaded || HD.busy || window.SMFA_HD) { if (window.SMFA_HD) HD.loaded = true; return; }
+  HD.busy = true; HD.err = ''; HD.pct = 0; HD.got = 0;
+  const url = HD_FILE + '?v=' + HD_VER;
+  const plain = () => {
+    const s = document.createElement('script'); s.src = url; s.async = true;
+    s.onload = () => { HD.busy = false; HD.loaded = !!window.SMFA_HD; HD.pct = 1; if (!HD.loaded) HD.err = 'The HD file did not load correctly.'; };
+    s.onerror = () => { HD.busy = false; HD.err = `Could not download the HD add-on. Make sure ${HD_FILE} is uploaded next to index.html.`; s.remove(); };
+    document.head.appendChild(s);
+  };
+  if (!/^https?:/.test(location.protocol) || !window.fetch || !window.ReadableStream) return plain();
+  fetch(url).then(async res => {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    HD.size = +res.headers.get('content-length') || 2634567;
+    const rd = res.body.getReader(), parts = [];
+    for (;;) { const { done, value } = await rd.read(); if (done) break; parts.push(value); HD.got += value.length; HD.pct = Math.min(0.99, HD.got / HD.size); }
+    const blob = new Blob(parts, { type: 'application/javascript' }), bu = URL.createObjectURL(blob);
+    const s = document.createElement('script'); s.src = bu; s.async = true;
+    s.onload = () => { URL.revokeObjectURL(bu); HD.busy = false; HD.loaded = !!window.SMFA_HD; HD.pct = 1; if (!HD.loaded) HD.err = 'The HD file did not load correctly.'; };
+    s.onerror = () => { URL.revokeObjectURL(bu); s.remove(); plain(); };
+    document.head.appendChild(s);
+  }).catch(() => { HD.busy = true; plain(); });
+};
+// the Settings note shows the download progress
+setInterval(() => { const n = document.getElementById('st-hdN'); if (n && HD.busy && !n.hidden) n.textContent = `Downloading the add-on… ${Math.round(HD.pct * 100)}%`; }, 400);
+
+/* ---------- opening the game ---------- */
+function ldBoot() {
+  ldProgress(0.7, 'Loading fonts');
+  const fontsReady = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]) : Promise.resolve();
+  fontsReady.then(() => {
+    ldProgress(0.9, 'Almost there');
+    const finish = () => { ldProgress(1, 'Ready'); ldHide(250); };
+    // owners with HD switched on: wait for the add-on (with a way to skip)
+    setTimeout(() => {
+      if (!hdWanted() || HD.loaded) return finish();
+      if (!HD.busy && !HD.err) hdLoad();
+      ldEl('ldSub').textContent = 'Downloading HD Realistic Graphics';
+      const sk = ldEl('ldSkip'); sk.hidden = false; sk.textContent = 'Continue without waiting'; sk.onclick = finish;
+      const iv = setInterval(() => {
+        if (!LD.on) { clearInterval(iv); return; }
+        if (HD.loaded || HD.err) { clearInterval(iv); if (HD.err) ldEl('ldSub').textContent = HD.err; setTimeout(finish, HD.err ? 1800 : 0); return; }
+        const mb = x => (x / 1048576).toFixed(1);
+        ldProgress(HD.pct, HD.size ? `HD graphics · ${mb(HD.got)} of ${mb(HD.size)} MB` : 'HD graphics');
+      }, 150);
+    }, 700); // gives a logged-in account a moment to come back, so we know if the add-on is owned
+  });
+}
+LD.on = true; LD.t0 = performance.now(); ldTip(false);
+if (document.readyState === 'complete') ldBoot(); else addEventListener('load', ldBoot);
 </script>
