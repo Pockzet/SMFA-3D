@@ -793,6 +793,40 @@ body.controller #touch,body.controller #rcTouch{display:none!important}
 #rcDead[hidden]{display:none}
 #rcDead b{font:900 18px var(--ui);color:#fff}#rcDead span{font-size:13px;color:#c8c8c8;line-height:1.45}
 @media (max-width:640px){.rcTourGrid{grid-template-columns:1fr}.rcAch{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* God Mode F1 sandbox */
+#rcGodBtn{position:absolute;top:calc(10px + var(--st));left:50%;transform:translateX(-50%);font:800 13px var(--ui);letter-spacing:.08em;padding:7px 14px;border-radius:5px;border:1px solid #c79a2c;background:linear-gradient(180deg,#3a2c08,#1d1604);color:#ffd86b;box-shadow:0 0 12px rgba(242,179,61,.35);z-index:3}
+#rcGodBtn[hidden]{display:none}
+#rcGodBtn.on{background:linear-gradient(180deg,#f2b33d,#b07c14);color:#1a1000}
+#rcGodPanel{position:absolute;z-index:4;top:calc(132px + var(--st));right:calc(10px + var(--sr, 0px));width:min(330px,calc(100% - 20px));max-height:calc(100% - 300px - var(--st) - var(--sb));min-height:180px;overflow-y:auto;background:rgba(14,12,6,.96);border:1px solid #8a6d1c;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.6);font-size:12.5px;color:#f3ead2;touch-action:pan-y}
+#rcGodPanel[hidden]{display:none}
+#rcGodPanel .gpHead{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:8px 10px 6px;background:linear-gradient(180deg,#2a1f06,#17120a);border-bottom:1px solid #5a4614}
+#rcGodPanel .gpHead b{font:800 14px var(--ui);letter-spacing:.12em;color:#ffd86b}
+#rcGodPanel .gpX{background:none;border:1px solid #5a4614;color:#ffd86b;border-radius:4px;width:28px;height:26px;font-size:14px}
+#rcGodPanel h5{margin:9px 10px 4px;font:800 10.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:#d9b44a}
+#rcGodPanel .rgT{display:grid;grid-template-columns:30px 1fr 30px;align-items:center;gap:6px;padding:8px 10px 4px}
+#rcGodPanel .rgT div{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+#rcGodPanel .rgT b{font:800 14px var(--ui);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#rcGodPanel .rgT small{color:#c8b88a;font-size:11px}
+#rcGodPanel button{font:700 12px var(--ui);color:#f3ead2;background:rgba(255,255,255,.04);border:1px solid #4a3a12;border-radius:5px;padding:7px 6px;cursor:pointer;text-align:left;line-height:1.2}
+#rcGodPanel button:hover{border-color:#c79a2c;background:rgba(242,179,61,.1)}
+#rcGodPanel .rgT button{text-align:center;padding:6px 0}
+#rcGodPanel .rgRow{display:flex;flex-wrap:wrap;gap:4px;padding:0 10px}
+#rcGodPanel .rgRow.col{flex-direction:column}
+#rcGodPanel .rgRow button.sm{flex:1 1 auto;text-align:center;padding:6px 7px}
+#rcGodPanel .rgGrid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:0 10px}
+#rcGodPanel button.sel{background:#f2b33d;color:#1a1000;border-color:#f2b33d}
+#rcGodPanel button.red{border-color:#8a2a1a;background:rgba(200,40,20,.16)}
+#rcGodPanel button.grn{border-color:#2a6a3a;background:rgba(0,200,100,.1)}
+#rcGodPanel button.tg{display:grid;grid-template-columns:16px 1fr;column-gap:8px;align-items:center}
+#rcGodPanel button.tg i{grid-row:span 2;width:14px;height:14px;border-radius:3px;border:1px solid #c79a2c}
+#rcGodPanel button.tg.on i{background:#f2b33d;box-shadow:inset 0 0 0 2px #1a1000}
+#rcGodPanel button.tg small{grid-column:2;color:#b8a878;font-weight:500;font-size:11px}
+#rcGodPanel .rgNote{display:block;padding:5px 10px 8px;color:#a8996c;font-size:11px;line-height:1.35}
+#rcTower.god .tr{cursor:pointer}#rcTower.god .tr:hover{background:rgba(242,179,61,.12)}
+#rcTower .tr.tgt{box-shadow:inset 3px 0 0 #ffd23a;background:rgba(242,179,61,.16)}
+#skKindBox[hidden],#skF1[hidden]{display:none}
+@media (max-height:500px){#rcGodPanel{top:calc(56px + var(--st));max-height:calc(100% - 170px - var(--st) - var(--sb))}}
 </style>
 
 <div id="stage"></div>
@@ -16347,4 +16381,265 @@ function rcLeaderboard(tab) {
 
 // while the SNN news is on screen the race behind it does not need drawing (saves the phone's GPU)
 { const _fr = frame; frame = function (now) { if (RC_NEWS && G && G.paused && !$('#scr-cut').hidden) { requestAnimationFrame(frame); lastT = now; return; } return _fr.apply(this, arguments); }; }
+/* ================= GOD MODE F1: a racing sandbox ================= */
+// Started from the God Mode button (choose "F1 race" instead of "Battle"). You drive, and the ⚡ GOD panel lets you
+// crash cars, burst tyres, change any car's speed, spill oil, change the weather and time, and more.
+// Penalties never apply to you, nothing is saved, and no SD, EXP or achievements are earned.
+
+const rcGodOn = () => !!(RC.active && RC.opt && RC.opt.god);
+const RCG = { open: false, tgt: null, inv: true, boom: false, slow: 1, oil: [], marker: null, gPrev: false, msg: '' };
+
+/* ---------- the God Mode setup screen: Battle or F1 race ---------- */
+{
+  const card = $('#scr-skirmish .card'), note = $('#skNote');
+  note.insertAdjacentHTML('afterend', `<div id="skKindBox"><h3>Sandbox</h3><div class="opts" id="sk-kind"></div></div>
+    <div id="skF1" hidden><h3>Track</h3><div class="opts" id="skf-track"></div><h3>Race length</h3><div class="opts" id="skf-laps"></div>
+    <h3>Opponents</h3><div class="opts" id="skf-diff"></div><h3>Weather</h3><div class="opts" id="skf-weather"></div><h3>Starting tyres</h3><div class="opts" id="skf-tyre"></div></div>`);
+  const battleBits = () => [...card.children].filter(el => el !== note && el.id !== 'skKindBox' && el.id !== 'skF1' && !el.classList.contains('between') && !el.querySelector('#sk-start'));
+  const _rs = renderSkirmish; renderSkirmish = function () {
+    _rs.apply(this, arguments);
+    const s = settings.sk, f = s.f1 = Object.assign({ track: 'sorrel', laps: 5, diff: 'pro', weather: 'dry', tyre: 'M' }, s.f1 || {});
+    const kind = skGod ? (s.godKind || 'battle') : 'battle';
+    $('#skKindBox').hidden = !skGod; $('#skF1').hidden = kind !== 'f1';
+    battleBits().forEach(el => { el.style.display = kind === 'f1' ? 'none' : ''; });
+    if (skGod && s.special && s.special !== 'none') { $('#skRulesH').hidden = true; $('#sk-rules').hidden = true; }
+    optGroup('#sk-kind', [{ k: 'battle', name: 'Battle', desc: 'Armies, smite, dismember, spawn' }, { k: 'f1', name: 'F1 race', desc: 'Crash cars, burst tyres, change speeds' }], kind, v => { s.godKind = v; saveSettings(); renderSkirmish(); });
+    if (kind === 'f1') {
+      const save = k => v => { f[k] = k === 'laps' ? +v : v; saveSettings(); };
+      optGroup('#skf-track', RC_TRACK_IDS.map(id => ({ k: id, name: RC_TRACKS[id].name, desc: { sorrel: 'Fast parkland', street: 'Tight city walls', desert: 'Sand and hairpins', snow: 'Snowy mountain', night: 'Night race' }[id] })), f.track, save('track'));
+      optGroup('#skf-laps', [3, 5, 10, 20].map(n => ({ k: String(n), name: n + ' laps' })), String(f.laps), save('laps'));
+      optGroup('#skf-diff', [{ k: 'rookie', name: 'Rookie' }, { k: 'pro', name: 'Pro' }, { k: 'ace', name: 'Ace' }], f.diff, save('diff'));
+      optGroup('#skf-weather', [{ k: 'dry', name: 'Dry' }, { k: 'wet', name: 'Wet' }], f.weather, save('weather'));
+      optGroup('#skf-tyre', Object.entries(TYRES).map(([k, T]) => ({ k, name: T.name })), f.tyre, save('tyre'));
+      $('#skNote').innerHTML = 'An F1 race where <b>you are the god</b>. Press <b>⚡ GOD</b> (or <b>G</b>) during the race to crash cars, burst tyres, make any car faster or slower, spill oil, bring the rain, slow down time and more. <b>Penalties never count for you.</b> Nothing is saved and no SD, EXP or achievements are earned.';
+      $('#sk-start').textContent = 'Enter the F1 sandbox';
+    }
+  };
+  // runs before the battle start handler (window capture comes first)
+  addEventListener('click', e => {
+    if (!e.target.closest || !e.target.closest('#sk-start') || !skGod || (settings.sk.godKind || 'battle') !== 'f1') return;
+    e.stopImmediatePropagation(); e.preventDefault();
+    rcGodStart();
+  }, true);
+}
+function rcGodStart() {
+  SFX.init();
+  const f = settings.sk.f1 = Object.assign({ track: 'sorrel', laps: 5, diff: 'pro', weather: 'dry', tyre: 'M' }, settings.sk.f1 || {}), st = settings.rc = Object.assign({ assist: { tc: true, abs: true, line: true, auto: true, help: true, esc: true } }, settings.rc || {});
+  const opt = { session: 'race', laps: f.laps, diff: f.diff, weather: f.weather, tyre: f.weather === 'wet' && !TYRES[f.tyre].wet ? 'I' : f.tyre, track: f.track, assist: Object.assign({ esc: true }, st.assist), god: true };
+  RCG.open = false; RCG.tgt = null; RCG.inv = true; RCG.boom = false; RCG.slow = 1;
+  RC.pending = { role: 'driver', opt }; RC.trackNext = f.track;
+  frEnterRegion('circuit', 'paddock', { weather: f.weather === 'wet' ? 'rain' : 'clear', track: f.track });
+}
+
+/* ---------- nothing counts: no rewards, no career, no achievements, no penalties for you ---------- */
+{
+  const _gr = grantRewards; grantRewards = function () { if (rcGodOn()) return; return _gr.apply(this, arguments); };
+  const _ach = rcAch; rcAch = function () { if (rcGodOn()) return; return _ach.apply(this, arguments); };
+  const _re = rcRaceEnd; rcRaceEnd = function () {
+    if (!rcGodOn() || RC.ending) return _re.apply(this, arguments);
+    const keep = store.get(RACE_KEY, null), opt = RC.opt;
+    const r = _re.apply(this, arguments);
+    store.set(RACE_KEY, keep); // the sandbox leaves your racing records exactly as they were
+    const p = $('#rcPanel'), bb = p && p.querySelector('.rcPB'), head = p && p.querySelector('.rcHead');
+    if (head) head.textContent = head.textContent.replace(/\s*\+\d+ SD, \+\d+ EXP\.|\s*\+\d+ EXP\.|\s*No SD for this race[^.]*\./g, '');
+    if (head) head.insertAdjacentHTML('afterend', '<p class="rcTourLine">⚡ God Mode sandbox: nothing from this race is saved and no SD or EXP is paid.</p>');
+    if (bb) { const b = document.createElement('button'); b.className = 'btn'; b.textContent = '⚡ Race again (sandbox)'; b.onclick = () => { p.hidden = true; RC.ending = false; rcClear(); rcStart('driver', Object.assign({}, opt)); }; bb.insertBefore(b, bb.lastChild); }
+    return r;
+  };
+  const _msg = rcMsg; rcMsg = function (t) {
+    const me = rcMe();
+    if (rcGodOn() && me && (/^Jump start|^Track limits|lap time deleted|^Car reset to the track/.test(t) || (t.startsWith(me.name + ':') && /penalty/i.test(t)))) return;
+    return _msg.apply(this, arguments);
+  };
+}
+
+/* ---------- your god powers inside the race physics ---------- */
+{
+  // each car can run faster or slower than real time (x0 freezes it)
+  const _ph = rcPhys; rcPhys = function (c, dt) {
+    if (rcGodOn()) {
+      const m = c.godMul === undefined ? 1 : c.godMul;
+      if (m === 0) { c.vx = c.vz = 0; c.r = 0; c.spd = 0; c.u = 0; rcNearest(c); return; }
+      // oil: a car that drives over it gets thrown sideways once
+      for (const o of RCG.oil) { if (c.oilHit === o) continue; if ((c.x - o.x) ** 2 + (c.z - o.z) ** 2 < 10 && c.spd > 8) { c.oilHit = o; c.r += (R() < 0.5 ? -1 : 1) * rr(2.4, 3.6); if (c === rcMe() || c === rcFollowCar()) G.shake = Math.max(G.shake, 0.4); } }
+      return _ph.call(this, c, dt * m);
+    }
+    return _ph.apply(this, arguments);
+  };
+  const _dm = rcDamage; rcDamage = function (c, imp, other) {
+    if (rcGodOn()) {
+      if (RCG.inv && c === rcMe()) { if (c === rcMe()) G.shake = Math.max(G.shake, 0.5); return; }
+      if (RCG.boom && imp > 12 && !c.wreck) { rcExplode(c, Math.max(imp, RC_BOOM.sure), other); return; }
+    }
+    return _dm.apply(this, arguments);
+  };
+  // invincible: you can be blown up, but you always get up and drive on
+  const _fate = rcFate; rcFate = function (ev, car) {
+    if (rcGodOn() && RCG.inv && car === rcMe()) { let e = ev.cars.find(x => x.car === car); if (!e) { e = { car, name: car.name, team: car.teamName, col: car.col, col2: car.col2, me: true, fate: 'unhurt' }; ev.cars.push(e); } return e; }
+    return _fate.apply(this, arguments);
+  };
+  const _sc = rcScorch; rcScorch = function (c) {
+    if (rcGodOn() && RCG.inv && c === rcMe()) return;
+    c.g.traverse(o => { if (o.material && o.material.color && o.userData.c0 === undefined) o.userData.c0 = o.material.color.getHex(); });
+    return _sc.apply(this, arguments);
+  };
+  const _ex = rcExplode; rcExplode = function (c) {
+    const r = _ex.apply(this, arguments);
+    const me = rcMe();
+    if (rcGodOn() && RCG.inv && me && (me.dnf || me.wreck)) { me.dnf = false; me.wreck = false; me.burnT = 0; me.dnfWhy = null; me.wreckT = undefined; RC.meDead = false; const d = $('#rcDead'); if (d) d.hidden = true; }
+    return r;
+  };
+  const _yd = rcYouDied; rcYouDied = function () { if (rcGodOn() && RCG.inv) return; return _yd.apply(this, arguments); };
+  // time control, the G key, penalties wiped, endless fuel, the target marker
+  const _tk = rcTick; rcTick = function (dt) {
+    if (!rcGodOn()) { if (RCG.marker) RCG.marker.visible = false; $('#rcGodBtn') && ($('#rcGodBtn').hidden = true); return _tk.apply(this, arguments); }
+    const g = RC.keys.has('KeyG'); if (g && !RCG.gPrev) rcGodToggle(); RCG.gPrev = g;
+    const r = _tk.call(this, dt * RCG.slow);
+    const me = rcMe();
+    if (me) { me.pen = 0; me.warn = 0; me.jump = true; me.inval = false; me.collT = 0; me.fuel = Math.max(me.fuel, 3); }
+    if (RCG.tgt && (!RC.cars.includes(RCG.tgt))) RCG.tgt = null;
+    if (!RCG.tgt) RCG.tgt = rcGodAhead() || me || RC.cars[0];
+    rcGodMarker(dt);
+    for (const o of RCG.oil) { o.t -= dt; if (o.t < 3 && o.m) o.m.material.opacity = 0.7 * o.t / 3; if (o.t <= 0 && o.m) { scene.remove(o.m); o.m = null; } }
+    RCG.oil = RCG.oil.filter(o => o.t > 0);
+    return r;
+  };
+  const _cl = rcClear; rcClear = function () {
+    for (const o of RCG.oil) if (o.m) scene.remove(o.m); RCG.oil = []; RCG.open = false; RCG.slow = 1;
+    const p = $('#rcGodPanel'); if (p) p.hidden = true; const b = $('#rcGodBtn'); if (b) b.hidden = true;
+    if (RCG.marker) RCG.marker.visible = false;
+    return _cl.apply(this, arguments);
+  };
+}
+function rcGodAhead() { const me = rcMe(), O = RC.order || RC.cars; if (!me) return O[0]; const k = O.indexOf(me); return O.slice(0, Math.max(0, k)).reverse().find(c => !c.gone) || O.find(c => c !== me && !c.gone) || null; }
+function rcGodMarker(dt) {
+  if (!RCG.marker) {
+    const g = new THREE.Group(), m = new THREE.MeshBasicMaterial({ color: 0xffd23a, transparent: true, opacity: 0.95, depthTest: false });
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(0.45, 0.9, 4), m); cone.rotation.x = PI; g.add(cone);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.06, 6, 20), m); ring.rotation.x = PI / 2; ring.position.y = 0.55; g.add(ring);
+    g.renderOrder = 999; scene.add(g); RCG.marker = g;
+  }
+  if (!RCG.marker.parent) scene.add(RCG.marker);
+  const c = RCG.tgt; RCG.marker.visible = !!(c && !c.gone && c !== rcMe());
+  if (RCG.marker.visible) { RCG.marker.position.set(c.x, 2.4 + Math.sin(performance.now() / 250) * 0.15, c.z); RCG.marker.rotation.y += dt * 3; }
+}
+
+/* ---------- the powers ---------- */
+const rcGodName = c => c === rcMe() ? 'you' : c.name;
+function rcGodSay(t) { RCG.msg = t; rcMsg('⚡ ' + t, 'purple'); }
+function rcGodPlace(c, i, off) {
+  const T = TRK, k = (i + T.n) % T.n; off = off === undefined ? T.line[k] : off;
+  c.x = T.x[k] + T.nx[k] * off; c.z = T.z[k] + T.nz[k] * off; c.yaw = T.h[k]; c.r = 0;
+  const v = Math.max(c.spd, 25); c.vx = Math.sin(c.yaw) * v; c.vz = Math.cos(c.yaw) * v; c.i = k; rcNearest(c);
+}
+function rcGodRevive(c, quiet) {
+  const wasOut = c.dnf || c.gone;
+  c.dnf = false; c.dnfWhy = null; c.wreck = false; c.gone = false; c.burnT = 0; c.wreckT = undefined; c.burst = null; c.overT = null; c.fw = 0; c.fwMsg = false;
+  c.temp = c.temp.map(() => 90); c.wear = [0, 0, 0, 0]; c.fuel = Math.max(c.fuel, 10); c.g.visible = true; rcCarFix(c);
+  c.g.traverse(o => { if (o.userData.c0 !== undefined && o.material) { o.material.color.setHex(o.userData.c0); delete o.userData.c0; } });
+  if (c.wheels) c.wheels.forEach(W => { W.w.visible = true; });
+  if (wasOut) { if (c.x > 4000 || Math.abs(c.d || 0) > TRK.W) rcGodPlace(c, c.i || 0); c.finished = false; }
+  if (!quiet) rcGodSay(`${c === rcMe() ? 'Your car is' : c.name + ' is'} fixed${wasOut ? ' and back in the race' : ''}`);
+}
+const RC_GOD_ACTS = {
+  boom: c => { if (c.gone) return; if (c.wreck) { rcGodRevive(c, true); } rcExplode(c, RC_BOOM.sure + 6, null); rcGodSay(`${rcGodName(c)} blown up`); },
+  crash: c => {
+    // aim the car at the nearest other car and launch it
+    let best = null, bd = 1e9; for (const o of RC.cars) { if (o === c || o.gone || o.pit) continue; const d = Math.hypot(o.x - c.x, o.z - c.z); if (d < bd) { bd = d; best = o; } }
+    if (!best) return; if (bd > 60) { const i = (best.i - 6 + TRK.n) % TRK.n; rcGodPlace(c, i, (TRK.line[i] || 0) + 0.5); bd = 12; }
+    const dx = best.x - c.x, dz = best.z - c.z, d = Math.hypot(dx, dz) || 1, v = 62; c.vx = dx / d * v + (best.vx || 0); c.vz = dz / d * v + (best.vz || 0); c.yaw = Math.atan2(dx, dz); c.r = 0;
+    rcGodSay(`${rcGodName(c)} sent flying into ${best === rcMe() ? 'you' : best.name}`);
+  },
+  burst: c => { if (c.gone) return; const free = [0, 1, 2, 3].filter(k => !(c.burst && c.burst[k])); if (!free.length) return; rcBurst(c, pick(free)); },
+  burst4: c => { if (c.gone) return; for (let k = 0; k < 4; k++) rcBurst(c, k); },
+  hot: c => { if (c.gone) return; c.temp = c.temp.map(t => Math.max(t, 146)); rcGodSay(`${rcGodName(c)}'s tyres heated to 146 °C`); },
+  spin: c => { c.r += (R() < 0.5 ? -1 : 1) * 5; rcGodSay(`${rcGodName(c)} spun round`); },
+  boost: c => { const f = 40; c.vx += Math.sin(c.yaw) * f; c.vz += Math.cos(c.yaw) * f; rcGodSay(`${rcGodName(c)} got a rocket boost`); },
+  oil: c => {
+    const x = c.x - Math.sin(c.yaw) * 4, z = c.z - Math.cos(c.yaw) * 4;
+    const m = new THREE.Mesh(new THREE.CircleGeometry(2.2, 20), new THREE.MeshBasicMaterial({ color: 0x0a0a0c, transparent: true, opacity: 0.7, depthWrite: false })); m.rotation.x = -PI / 2; m.position.set(x, 0.06, z); scene.add(m);
+    RCG.oil.push({ x, z, t: 40, m }); rcGodSay(`Oil spilled behind ${rcGodName(c)}`);
+  },
+  front: c => { const L = (RC.order || RC.cars).find(o => !o.gone && o !== c); if (!L) return; rcGodPlace(c, L.i + 15); c.lap = Math.max(c.lap, L.lap); c.relPrev = ((c.i - TRK.s0) + TRK.n) % TRK.n; rcGodSay(`${rcGodName(c)} moved to the front`); },
+  back: c => { const O = (RC.order || RC.cars).filter(o => !o.gone && !o.dnf && o !== c), L = O[O.length - 1]; if (!L) return; rcGodPlace(c, L.i - 12); c.lap = Math.min(c.lap, L.lap); c.relPrev = ((c.i - TRK.s0) + TRK.n) % TRK.n; rcGodSay(`${rcGodName(c)} sent to the back`); },
+  fix: c => rcGodRevive(c),
+  out: c => { if (c === rcMe() && RCG.inv) { rcGodSay('You are invincible: turn that off first'); return; } c.dnf = true; c.dnfWhy = 'Retired by God'; c.vx *= 0.3; c.vz *= 0.3; rcGodSay(`${rcGodName(c)} retired from the race`); }
+};
+const RC_GOD_ALL = {
+  bigone: () => { const L = RC.cars.filter(c => !c.gone && !c.dnf && c !== rcMe()).sort(() => R() - 0.5).slice(0, 3); L.forEach((c, k) => setTimeout(() => rcGodOn() && rcExplode(c, RC_BOOM.sure + 4, null), k * 450)); rcGodSay('The Big One: three cars explode'); },
+  tyres: () => { RC.cars.forEach(c => { if (!c.gone && c !== rcMe()) rcBurst(c, (Math.random() * 4) | 0); }); rcGodSay('Every other car loses a tyre'); },
+  fast: () => { RC.cars.forEach(c => { if (c !== rcMe()) c.godMul = 1.5; }); rcGodSay('All other cars at 1.5× speed'); },
+  slow: () => { RC.cars.forEach(c => { if (c !== rcMe()) c.godMul = 0.5; }); rcGodSay('All other cars at half speed'); },
+  normal: () => { RC.cars.forEach(c => { c.godMul = 1; }); rcGodSay('All cars back to normal speed'); },
+  rain: () => { RC.wet = RC.wet ? 0 : 1; rcGodSay(RC.wet ? 'Rain: the track is wet and slippery (dry tyres struggle)' : 'The track is dry again'); },
+  fixall: () => { RC.cars.forEach(c => rcGodRevive(c, true)); rcGodSay('Every car fixed and back in the race'); },
+  oilall: () => { for (let k = 0; k < 8; k++) { const i = (Math.random() * TRK.n) | 0, x = TRK.x[i] + TRK.nx[i] * rr(-4, 4), z = TRK.z[i] + TRK.nz[i] * rr(-4, 4); const m = new THREE.Mesh(new THREE.CircleGeometry(2.2, 20), new THREE.MeshBasicMaterial({ color: 0x0a0a0c, transparent: true, opacity: 0.7, depthWrite: false })); m.rotation.x = -PI / 2; m.position.set(x, 0.06, z); scene.add(m); RCG.oil.push({ x, z, t: 60, m }); } rcGodSay('Oil spilled in 8 places around the lap'); },
+  go: () => { if (RC.race && RC.phase === 'grid') { RC.lightsT = RC.outAt; rcGodSay('Lights out now!'); } },
+  finish: () => { const O = RC.order || RC.cars; O.forEach(c => { if (!c.dnf && !c.finished) { c.finished = true; c.finT = RC.t + O.indexOf(c) * 0.4; } }); RC.leaderDone = true; rcGodSay('Chequered flag waved'); }
+};
+
+/* ---------- the panel ---------- */
+function rcGodToggle() { RCG.open = !RCG.open; rcGodPanel(); }
+function rcGodBuild() {
+  const hud = $('#rcHud'); if (!hud) return;
+  if (!$('#rcGodBtn')) {
+    const b = document.createElement('button'); b.id = 'rcGodBtn'; b.className = 'pe'; b.innerHTML = '⚡ GOD'; b.title = 'God powers (G)';
+    b.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); rcGodToggle(); SFX.click && SFX.click(); }); hud.appendChild(b);
+    const p = document.createElement('div'); p.id = 'rcGodPanel'; p.className = 'pe'; p.hidden = true; hud.appendChild(p);
+    p.addEventListener('pointerdown', e => e.stopPropagation());
+    // choose a car by clicking its row in the timing tower
+    $('#rcTower').addEventListener('click', e => { if (!rcGodOn()) return; const row = e.target.closest('.tr'); if (!row) return; const k = [...$$('#rcTower .tr')].indexOf(row), c = (RC.order || RC.cars)[k]; if (c) { RCG.tgt = c; rcGodPanel(); } });
+  }
+}
+function rcGodPanel() {
+  rcGodBuild(); const p = $('#rcGodPanel'); if (!p) return;
+  p.hidden = !(RCG.open && rcGodOn()); $('#rcGodBtn').classList.toggle('on', !p.hidden);
+  if (p.hidden) return;
+  const c = RCG.tgt || rcMe(), O = RC.order || RC.cars, pos = O.indexOf(c) + 1, me = rcMe();
+  const st = !c ? '' : c.gone ? 'cleared away' : c.wreck ? 'wrecked' : c.dnf ? 'out of the race' : c.pit ? 'in the pits' : `${Math.round(Math.abs(c.u || c.spd || 0) * 3.6)} km/h`;
+  const mul = c && c.godMul !== undefined ? c.godMul : 1;
+  const B = (act, label, cls) => `<button class="${cls || ''}" data-ga="${act}">${label}</button>`;
+  p.innerHTML = `<div class="gpHead"><b>⚡ GOD · F1</b><button class="gpX" data-ga="close" aria-label="Close">✕</button></div>
+    <div class="rgT"><button data-gt="-1" aria-label="Previous car">◀</button><div><b>${c ? esc(c === me ? 'You' : c.name) : '—'}</b><small>${c ? `P${pos} · ${esc(c.teamName)} · ${st}` : ''}</small></div><button data-gt="1" aria-label="Next car">▶</button></div>
+    <div class="rgRow">${B('tgtAhead', 'Car ahead of me', 'sm')}${B('tgtMe', 'Me', 'sm')}${B('tgtLead', 'Leader', 'sm')}</div>
+    <small class="rgNote">Or click a driver in the timing tower. The gold arrow shows who you picked.</small>
+    <h5>This car</h5>
+    <div class="rgGrid">${B('boom', '💥 Explode', 'red')}${B('crash', '🎯 Crash into nearest')}${B('burst', '🛞 Burst a tyre')}${B('burst4', '🛞×4 Burst all')}${B('hot', '🔥 Overheat tyres')}${B('spin', '🌀 Spin out')}${B('boost', '🚀 Rocket boost')}${B('oil', '🛢 Oil behind it')}${B('front', '⏩ To the front')}${B('back', '⏪ To the back')}${B('fix', '🔧 Fix / revive', 'grn')}${B('out', '🏳 Retire it')}</div>
+    <h5>Speed of this car</h5>
+    <div class="rgRow">${[0, 0.5, 1, 1.5, 2, 3].map(m => `<button class="sm ${mul === m ? 'sel' : ''}" data-gm="${m}">${m === 0 ? 'Freeze' : m + '×'}</button>`).join('')}</div>
+    <h5>Whole race</h5>
+    <div class="rgGrid">${B('all:bigone', '☄ The Big One', 'red')}${B('all:tyres', '🛞 Everyone loses a tyre')}${B('all:oilall', '🛢 Oil everywhere')}${B('all:rain', RC.wet ? '☀ Dry track' : '🌧 Make it rain')}${B('all:fast', '⏫ Others 1.5×')}${B('all:slow', '⏬ Others ½×')}${B('all:normal', '⏺ Normal speeds')}${B('all:fixall', '🔧 Fix every car', 'grn')}${RC.race && RC.phase === 'grid' ? B('all:go', '🚦 Lights out now') : B('all:finish', '🏁 End the race')}</div>
+    <h5>Time</h5>
+    <div class="rgRow">${[0.25, 0.5, 1, 2].map(s => `<button class="sm ${RCG.slow === s ? 'sel' : ''}" data-gs="${s}">${s === 1 ? 'Normal' : s < 1 ? 'Slow-mo ' + s + '×' : 'Fast ' + s + '×'}</button>`).join('')}</div>
+    <h5>Rules</h5>
+    <div class="rgRow col"><button class="tg ${RCG.inv ? 'on' : ''}" data-gg="inv"><i></i>Invincible me <small>you never crash out, die or burst from damage</small></button>
+    <button class="tg ${RCG.boom ? 'on' : ''}" data-gg="boom"><i></i>Explosive crashes <small>every real hit makes a car explode</small></button></div>
+    <small class="rgNote">Penalties, track limits and jump starts never count for you. Press G to close.</small>`;
+  p.querySelectorAll('[data-ga]').forEach(b => b.onclick = () => {
+    const a = b.dataset.ga, t = RCG.tgt || rcMe();
+    if (a === 'close') { RCG.open = false; }
+    else if (a === 'tgtAhead') RCG.tgt = rcGodAhead() || t; else if (a === 'tgtMe') RCG.tgt = rcMe() || t; else if (a === 'tgtLead') RCG.tgt = (RC.order || RC.cars).find(o => !o.gone) || t;
+    else if (a.startsWith('all:')) RC_GOD_ALL[a.slice(4)]();
+    else if (t && RC_GOD_ACTS[a]) RC_GOD_ACTS[a](t);
+    rcGodPanel();
+  });
+  p.querySelectorAll('[data-gt]').forEach(b => b.onclick = () => { const L = RC.order || RC.cars, i = L.indexOf(RCG.tgt); RCG.tgt = L[(i + +b.dataset.gt + L.length) % L.length]; rcGodPanel(); });
+  p.querySelectorAll('[data-gm]').forEach(b => b.onclick = () => { const t = RCG.tgt || rcMe(); if (!t) return; t.godMul = +b.dataset.gm; rcGodSay(`${rcGodName(t)} at ${t.godMul === 0 ? 'a standstill (frozen)' : t.godMul + '× speed'}`); rcGodPanel(); });
+  p.querySelectorAll('[data-gs]').forEach(b => b.onclick = () => { RCG.slow = +b.dataset.gs; rcGodSay(RCG.slow === 1 ? 'Time back to normal' : RCG.slow < 1 ? `Slow motion (${RCG.slow}×)` : `Time at ${RCG.slow}×`); rcGodPanel(); });
+  p.querySelectorAll('[data-gg]').forEach(b => b.onclick = () => { const k = b.dataset.gg; RCG[k] = !RCG[k]; rcGodPanel(); });
+}
+// keep the panel's numbers fresh, show the button, highlight the chosen car in the tower
+{
+  const _ht = rcHudTick; rcHudTick = function () {
+    _ht.apply(this, arguments);
+    const on = rcGodOn(); rcGodBuild();
+    const b = $('#rcGodBtn'); if (b) b.hidden = !on;
+    const tw = $('#rcTower'); if (tw) tw.classList.toggle('pe', on), tw.classList.toggle('god', on);
+    if (!on) return;
+    const k = (RC.order || RC.cars).indexOf(RCG.tgt); $$('#rcTower .tr').forEach((r, i) => r.classList.toggle('tgt', i === k));
+    if (RCG.open && (RCG.refT = (RCG.refT || 0) + 1) % 5 === 0) { const q = $('#rcGodPanel .rgT small'); const c = RCG.tgt; if (q && c) { const st = c.gone ? 'cleared away' : c.wreck ? 'wrecked' : c.dnf ? 'out of the race' : c.pit ? 'in the pits' : `${Math.round(Math.abs(c.u || c.spd || 0) * 3.6)} km/h`; q.textContent = `P${(RC.order || RC.cars).indexOf(c) + 1} · ${c.teamName} · ${st}`; } }
+    const h = $('#rcHelp'); if (h && !/ G god/.test(h.textContent)) h.textContent += ' · G god powers';
+  };
+  const _bs = rcBeginSession; rcBeginSession = function () { const r = _bs.apply(this, arguments); if (rcGodOn() && RC.race) { RCG.tgt = null; rcMsg('⚡ God Mode: press G (or ⚡ GOD) for your powers. Penalties never count for you.', 'purple'); } return r; };
+}
 </script>
