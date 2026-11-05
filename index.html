@@ -16719,6 +16719,7 @@ function rcGodTourGo() {
 // The detailed models are a separate download (smfa-hd.js, next to index.html) so the game stays small for
 // everyone else. It is sold for Rp only (not SD), and the President owns it like every store item.
 const HD_FILE = 'smfa-hd.js';
+const HD_VER = '8c855097'; // replaced at build time with a fingerprint of smfa-hd.js, so browsers fetch the new file after every update
 P_ && (() => {
   const p = P_('hd_pack', 'addon', 'HD Realistic Graphics', 10000, { disc: false, desc: 'Realistic models for the whole game, made in Blender: soldiers with real proportions, faces and hands; detailed weapons, tanks, jeeps, helicopters, jets and cars; buildings with brick, concrete and plaster that crack as they take damage, real windows and doors; detailed trees, rubble and ground. A separate download of about 2 MB. Bought with Rp only (not with SD). Included free with General membership.' });
   PRODUCTS.push(p); PROD[p.id] = p;
@@ -16751,7 +16752,7 @@ const hdWanted = () => typeof owns === 'function' && owns('hd_pack') && settings
 function hdLoad() {
   if (HD.loaded || HD.busy || window.SMFA_HD) { if (window.SMFA_HD) HD.loaded = true; return; }
   HD.busy = true; HD.err = '';
-  const s = document.createElement('script'); s.src = HD_FILE + '?v=1'; s.async = true;
+  const s = document.createElement('script'); s.src = HD_FILE + '?v=' + HD_VER; s.async = true;
   s.onload = () => { HD.busy = false; HD.loaded = !!window.SMFA_HD; if (!HD.loaded) HD.err = 'The HD file did not load correctly.'; };
   s.onerror = () => { HD.busy = false; HD.err = `Could not download the HD add-on. Make sure ${HD_FILE} is uploaded next to index.html.`; s.remove(); };
   document.head.appendChild(s);
