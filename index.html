@@ -895,6 +895,29 @@ body.controller #touch,body.controller #rcTouch{display:none!important}
 .dlcInfo .btn{align-self:flex-start}
 .dlcDiff{display:flex;align-items:center;gap:8px;margin:10px 0 12px;flex-wrap:wrap}.dlcDiff span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px}
 
+/* ---------- online powers, troll kit, President Slayer ---------- */
+#pwHud{position:absolute;left:12px;top:calc(96px + var(--st));display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;max-width:min(520px,calc(100% - 24px));z-index:4}
+#pwHud[hidden]{display:none}
+.pwChips{display:flex;flex-wrap:wrap;gap:4px;width:100%}
+.pwChips span{font:700 10.5px var(--ui);letter-spacing:.06em;text-transform:uppercase;color:#1a1200;background:linear-gradient(180deg,#ffe27a,#d4a017);border-radius:99px;padding:3px 8px}
+#pwHud .btn{background:#2a2108;border-color:#d4a017;color:#ffe9a8}#pwHud .btn.cd{opacity:.55}
+#pwHud kbd{background:#d4a017;color:#140e00;border-radius:3px;padding:0 4px;font:800 10px var(--ui);margin-left:4px}
+#pwMenu{width:100%;max-height:calc(100vh - 300px);overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;padding:8px;background:rgba(14,12,6,.92);border:1px solid #6a5418;border-radius:10px}
+#pwMenu[hidden]{display:none}
+.pwT{position:relative;text-align:left;padding:8px 9px;border-radius:8px;border:1px solid #4a3c14;background:#1c1708;color:#ffe9a8;font:600 12px var(--ui)}
+.pwT b{display:block;font-size:12.5px;padding-right:38px}.pwT small{display:block;color:#c8b98a;font-size:11px;line-height:1.3;margin-top:2px}
+.pwT i{position:absolute;right:7px;top:7px;font-style:normal;font-size:10px;color:#9ad870}.pwT.cd{opacity:.5}.pwT.cd i{color:#ffb070}
+.pwT.harm{border-color:#7a3a18}.pwT.harm b{color:#ffb38a}
+.pwW{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px}.pwW .btn{text-transform:capitalize}
+#pwSet{margin-top:14px}.pwGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.pwOpt{position:relative;text-align:left;padding:10px 12px;border-radius:9px;border:1px solid var(--line);background:#0d130d;color:var(--fg)}
+.pwOpt b{display:block;font-size:13.5px}.pwOpt small{display:block;font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+.pwOpt i{position:absolute;right:10px;top:9px;font-style:normal;font:800 10px var(--ui);letter-spacing:.08em;color:var(--muted)}
+.pwOpt.on{border-color:#d4a017;background:#1a1606}.pwOpt.on i{color:#ffd84a}
+.slayerBadge{display:inline-block;margin-top:6px;padding:3px 9px;border-radius:99px;background:linear-gradient(180deg,#ffe27a,#d4a017);color:#1a1200;font:800 11px var(--ui);letter-spacing:.06em}
+.dlcGore small{flex-basis:100%;color:var(--muted);font-size:12px}
+@media (max-width:700px){#pwHud{top:calc(120px + var(--st))}#pwMenu{grid-template-columns:1fr 1fr}.pwChips{display:none}}
+
 /* ---------- loading screen ---------- */
 #ldScr{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:#050805;
   background-image:radial-gradient(ellipse at 50% 42%,rgba(57,211,83,.10),transparent 60%),linear-gradient(rgba(57,211,83,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(57,211,83,.045) 1px,transparent 1px);
@@ -15515,7 +15538,7 @@ function gpField(b, press, rel, lx, ly, rx, ry, v, dt) {
   if (press(GB.LB)) gpTap('KeyG');           // grenade
   if (press(GB.RB)) cycleWeapon(1);          // next weapon
   if (press(GB.UP)) gpTap('KeyV');           // first / third person
-  if (press(GB.DOWN)) gpTap('KeyQ');         // take cover
+  if (press(GB.DOWN)) { if (G && G.fp && G.player && !G.player.inVeh && typeof vmInspect === 'function') vmInspect(); else gpTap('KeyQ'); } // inspect in first person, otherwise take cover
   if (press(GB.LEFT)) gpTap('KeyF');         // rally squads
   if (press(GB.RIGHT)) gpTap('Tab');         // office (map)
   if (press(GB.R3)) gpTap('KeyZ');           // flop over
@@ -16864,7 +16887,7 @@ function rcGodTourGo() {
 // The detailed models are a separate download (smfa-hd.js, next to index.html) so the game stays small for
 // everyone else. It is sold for Rp only (not SD), and the President owns it like every store item.
 const HD_FILE = 'smfa-hd.js';
-const HD_VER = 'c11150a9'; // replaced at build time with a fingerprint of smfa-hd.js, so browsers fetch the new file after every update
+const HD_VER = 'ba7dd232'; // replaced at build time with a fingerprint of smfa-hd.js, so browsers fetch the new file after every update
 P_ && (() => {
   const p = P_('hd_pack', 'addon', 'HD Realistic Graphics', 10000, { disc: false, desc: 'Realistic models for the whole game, made in Blender: soldiers with real proportions, faces and hands; detailed weapons, tanks, jeeps, helicopters, jets and cars; buildings with brick, concrete and plaster that crack as they take damage, real windows and doors; detailed trees, rubble and ground. A separate download of about 2 MB. Bought with Rp only (not with SD). Included free with General membership.' });
   PRODUCTS.push(p); PROD[p.id] = p;
@@ -18138,7 +18161,7 @@ function vmCancelTrick() { VMX.trick = null; VMX.idle = 0; }
       VMX.rel.total = Math.max(VMX.rel.total, u.reloadT);
     } else VMX.rel = null;
     // idle tricks: stand still in first person for a while
-    const busy = !!VMX.rel || u.ads || mouseDown || touchFire || keys.size > 0 || (joy.id !== null) || Math.abs(u.speed || 0) > 0.3 || G.spec || u.slashT > G.t || (G.vmKick || 0) > 0.05;
+    const busy = !!VMX.rel || u.ads || mouseDown || touchFire || [...keys].some(k => k !== 'KeyI') || (joy.id !== null) || Math.abs(u.speed || 0) > 0.3 || G.spec || u.slashT > G.t || (G.vmKick || 0) > 0.05;
     if (busy) { vmCancelTrick(); } else if (!VMX.trick) {
       VMX.idle += dt;
       const list = VM_TRICKS[cls];
@@ -18886,6 +18909,255 @@ dlcRegister({
       stages: [{ k: 'reach', at: 'mid', label: 'Clear the road to the airfield', r: 10 }, { k: 'kill', n: 20, label: 'Break the last attack' }, { k: 'hold', at: 'home', secs: 60, label: 'Hold the airfield while the planes load', push: true }, { k: 'return', label: 'Board the last plane' }] }
   ]
 });
+/* ================= INSPECT BUTTON · DLC GORE · ONLINE: SADISTIC BY DEFAULT, PRESIDENT POWERS, TROLLS, PRESIDENT SLAYER ================= */
+
+/* ---------- inspect your gun: I on a keyboard, D-pad down on a controller (in first person), INSPECT on touch ---------- */
+function vmInspect() {
+  if (!G || G.view !== 'field' || G.paused || !vm || !vm.visible) return;
+  const u = G.player; if (!u || u.reloadT > 0) return;
+  const cls = vmClassOf(u), list = VM_TRICKS[cls]; if (!list) return;
+  let name = list[(Math.random() * list.length) | 0]; if (list.length > 1 && VMX.lastTrick === name) name = list[(list.indexOf(name) + 1) % list.length];
+  VMX.lastTrick = name; VMX.trick = { name, t: 0, len: VM_ANIMS.trick[name].len, cls }; VMX.idle = 0;
+}
+addEventListener('keydown', e => { if (e.code === 'KeyI' && !e.repeat && G && G.view === 'field' && !G.paused && !(typeof frOn === 'function' && frOn() && G.frDlg)) { vmInspect(); } });
+{
+  const t = document.getElementById('tbtn-pov');
+  if (t && !document.getElementById('tbtn-insp')) { const b = document.createElement('button'); b.className = 'tb pe'; b.id = 'tbtn-insp'; b.textContent = 'INSPECT'; t.after(b); tbtn('tbtn-insp', () => vmInspect()); }
+  // the old "coming soon" store listing is gone: inspecting is free for everyone
+  const ix = PRODUCTS.findIndex(p => p.id === 'cos_inspect'); if (ix >= 0) PRODUCTS.splice(ix, 1);
+}
+
+/* ---------- DLC: pick the gore level ---------- */
+{
+  const _cfg = dlcCfg; dlcCfg = function (id) { const c = _cfg.apply(this, arguments); c.mode = dlcData(id).mode || 'normal'; return c; };
+  const _r = dlcRender; dlcRender = function () {
+    _r.apply(this, arguments);
+    if (!DLC.view) return; const row = document.querySelector('#dlcBody .dlcDiff'); if (!row) return;
+    const S = dlcData(DLC.view), cur = S.mode || 'normal';
+    row.insertAdjacentHTML('afterend', `<div class="dlcDiff dlcGore"><span>Gore</span>${Object.values(MODES).map(m => `<button class="btn small ${cur === m.key ? 'primary' : ''}" data-gore="${m.key}" title="${esc(m.desc)}">${esc(m.name)}</button>`).join('')}<small>${esc(MODES[cur].desc)}</small></div>`);
+    document.querySelectorAll('[data-gore]').forEach(b => b.onclick = () => { const S2 = dlcData(DLC.view); S2.mode = b.dataset.gore; dlcPut(DLC.view, S2); dlcRender(); });
+  };
+}
+
+/* ---------- online battles: Sadistic is the standard gore ---------- */
+{
+  const _os = onSettings; onSettings = function () { const s = _os.apply(this, arguments); if (!settings.onSadistic) { settings.onSadistic = true; s.mode = 'sadistic'; saveSettings(); } return s; };
+}
+
+/* ---------- President powers (online battles) ---------- */
+// The President has all of them. Anyone who beats a powered-up President earns one at random (up to 3).
+const PWR = {
+  armor: { name: 'Tank Armor', desc: 'Take 5× less damage and slowly heal.' },
+  dmg: { name: 'Huge Damage', desc: 'Every weapon does 3× damage.' },
+  ammo: { name: 'Endless Ammo', desc: 'Unlimited ammo and grenades, no reloading.' },
+  speed: { name: 'Super Speed', desc: 'Run twice as fast and jump much higher.' },
+  wrath: { name: 'President\'s Wrath', desc: 'H (or the WRATH button): a lightning strike where you aim. Every 20 s.' },
+  troll: { name: 'Troll Kit', desc: 'T (or the TROLL button): weather, flips, quakes, big heads, banana slips, super bounce and butterfingers.' }
+};
+const pwrOwned = () => { if (isAdmin()) return Object.keys(PWR); const P = prof(); return (P.pwrs || []).filter(k => PWR[k]); };
+const pwrList = () => pwrOwned().filter(k => !(settings.pwrOff || {})[k]);
+const pwrOn = k => !!(G && G.cfg && G.cfg.online && typeof NETON === 'function' && NETON() && G.pw && G.pw[k]);
+const PW = { wrathT: 0, trollT: {}, lastHurt: 0, flipT: 0, open: false };
+// what the other player sees about you
+{ const _me = onMe; onMe = function () { const m = _me.apply(this, arguments); const P = prof(); m.pres = isAdmin(); m.pw = pwrList(); m.slayer = P.slayer || 0; if (m.slayer && !/Slayer/.test(m.name)) m.name = m.name + ' ★ President Slayer'; return m; }; }
+// powers switch on when an online match starts
+{
+  const _ns = netStart; netStart = function () {
+    const r = _ns.apply(this, arguments);
+    if (G && G.cfg.online) {
+      G.pw = {}; for (const k of pwrList()) G.pw[k] = true; PW.wrathT = 0; PW.trollT = {}; PW.open = false; NET.byeWin = false;
+      const o = NET.opp || {};
+      if (Object.keys(G.pw).length) setTimeout(() => G && hint(`${isAdmin() ? 'President' : 'Your'} powers active: ${Object.keys(G.pw).map(k => PWR[k].name).join(', ')}.`, 4.5), 5200);
+      if (o.pres && o.pw && o.pw.length) setTimeout(() => G && banner('THE PRESIDENT HAS POWERS ON', 3, '#ffd84a'), 3000);
+      pwHud();
+    }
+    return r;
+  };
+}
+// damage taken and dealt
+{
+  const _hu = hurtUnit; hurtUnit = function (u, dmg, hx, hy, hz, dx, dy, dz, part, kind, attacker) {
+    if (G && G.pw) {
+      if (u === G.player && pwrOn('armor')) { dmg /= 5; PW.lastHurt = G.t; }
+      else if (attacker && attacker === G.player && u.team !== 0 && pwrOn('dmg')) dmg *= 3;
+      arguments[1] = dmg;
+    }
+    return _hu.apply(this, arguments);
+  };
+  const _dv = damageVehicle; damageVehicle = function (v, dmg, attacker) { if (G && G.pw && attacker === G.player && pwrOn('dmg') && v.team !== 0) arguments[1] = dmg * 3; return _dv.apply(this, arguments); };
+}
+// every frame: ammo, healing, speed, cooldowns
+{
+  const _up = update; update = function (dt) {
+    const p = G && G.player, ox = p ? p.x : 0, oz = p ? p.z : 0, ovy = p ? p.vy || 0 : 0;
+    _up.apply(this, arguments);
+    if (!G || !G.pw || !p || !p.alive) return;
+    if (pwrOn('ammo') && p.mag && WEAP[p.weapon] && !WEAP[p.weapon].melee) { p.mag[p.weapon] = WEAP[p.weapon].mag; p.reloadT = 0; p.nades = Math.max(p.nades || 0, 3); }
+    if (pwrOn('armor') && G.t - PW.lastHurt > 3 && p.hp < p.maxhp) p.hp = Math.min(p.maxhp, p.hp + p.maxhp * 0.04 * dt);
+    if (pwrOn('speed') && !p.inVeh && !p.knock) {
+      const nx = p.x + (p.x - ox) * 0.9, nz = p.z + (p.z - oz) * 0.9;
+      if (Math.hypot(p.x - ox, p.z - oz) < 1 && !blockedAt(nx, nz, p.y, 0.3, 1.5)) { p.x = nx; p.z = nz; }
+      if ((p.vy || 0) > ovy + 2.5 && (p.vy || 0) > 3) p.vy *= 1.9; // a jump just started: make it a big one
+    }
+    pwHudTick();
+  };
+}
+// President's Wrath: lightning where you aim
+function pwWrath() {
+  if (!pwrOn('wrath') || !G.player || !G.player.alive || G.view !== 'field') return;
+  if (G.t < PW.wrathT) { hint(`Wrath ready in ${Math.ceil(PW.wrathT - G.t)} s`, 1.2); return; }
+  const a = aimPoint(220); PW.wrathT = G.t + 20;
+  pwBolt(a.x, a.z); G.flash = 1; G.shake = Math.max(G.shake, 0.6);
+  explode(a.x, Math.max(0, topAt(a.x, a.z, a.y + 1)), a.z, 9, 420, 0, 40, G.player);
+  netEv(['pw', 'wrath', nr(a.x), nr(a.z)]);
+  banner('PRESIDENT\'S WRATH', 1.6, '#ffd84a');
+}
+function pwBolt(x, z) {
+  const pts = [], n = 9; let px = x, pz = z;
+  for (let k = 0; k <= n; k++) { const y = 60 - k * 60 / n; pts.push(new THREE.Vector3(px, y, pz)); px = x + rr(-2.5, 2.5) * (1 - k / n); pz = z + rr(-2.5, 2.5) * (1 - k / n); }
+  const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xfff6c0 })); scene.add(line);
+  const l = new THREE.PointLight(0xfff0b0, 5, 60); l.position.set(x, 8, z); scene.add(l);
+  G.timers.push({ t: G.t + 0.35, fn: () => { scene.remove(line); scene.remove(l); } });
+  try { SFX.ok() && SFX.burst(0.6 * settings.vol, 1.4, 300, 0.4, 'lowpass'); } catch (e) { }
+}
+{ const _pf = netPowerFx; netPowerFx = function (id, x, z) { if (id === 'wrath') { pwBolt(x, z); G.flash = 1; NET.vis = true; try { explode(x, Math.max(0, topAt(x, z, 2)), z, 9, 0, 1, 0, null); } finally { NET.vis = false; } feed(`<span class="ken">${esc(G.teams[1].nat.short)}</span> called down the President's Wrath`); return; } return _pf.apply(this, arguments); }; }
+
+/* ---------- the Troll Kit ---------- */
+const TROLLS = [
+  { id: 'weather', name: 'Weather control', sub: 'Thunderstorm, rain, snow or fog for everyone', cd: 8 },
+  { id: 'flip', name: 'Upside down', sub: 'Flips their screen for 6 s', cd: 15 },
+  { id: 'quake', name: 'Earthquake + smiley rain', sub: 'Shakes their camera, rains >:) from the sky', cd: 15 },
+  { id: 'bighead', name: 'Big heads', sub: 'Their soldiers get huge heads for 30 s', cd: 20 },
+  { id: 'banana', name: 'Banana slip', sub: 'Their soldiers where you aim slip and fall over', cd: 12, harm: true },
+  { id: 'bounce', name: 'Super bounce', sub: 'Launches their soldiers where you aim into the sky', cd: 18, harm: true },
+  { id: 'butter', name: 'Butterfingers', sub: 'They drop their magazine and must reload', cd: 14, harm: true }
+];
+function pwTroll(id, arg) {
+  if (!pwrOn('troll')) return; const T = TROLLS.find(t => t.id === id); if (!T) return;
+  if ((PW.trollT[id] || 0) > G.t) { hint(`${T.name} ready in ${Math.ceil(PW.trollT[id] - G.t)} s`, 1.2); return; }
+  PW.trollT[id] = G.t + T.cd;
+  const a = aimPoint(220); let ax = a.x, az = a.z;
+  if (id === 'weather') arg = arg || ['storm', 'rain', 'snow', 'fog', 'clear'][(Math.random() * 5) | 0];
+  netEv(['tr', id, nr(ax), nr(az), arg || 0]);
+  trollFx(id, ax, az, arg, false);
+  feed(`You used <b>${esc(T.name)}</b>${id === 'weather' ? ': ' + arg : ''}`);
+  pwMenu(false);
+}
+// mine = this screen belongs to the victim
+function trollFx(id, x, z, arg, mine) {
+  const myUnits = () => G.units.filter(u => u.alive && !u.remote && u.team === 0 && !u.inVeh), theirs = () => G.units.filter(u => u.alive && u.remote);
+  if (id === 'weather') pwWeather(arg);
+  else if (id === 'flip' && mine) { const st = document.getElementById('stage'); st.style.transition = 'transform .35s'; st.style.transform = Math.random() < 0.5 ? 'scaleY(-1)' : 'scaleX(-1)'; clearTimeout(PW.flipT); PW.flipT = setTimeout(() => { st.style.transform = ''; }, 6000); }
+  else if (id === 'quake') {
+    const vict = mine ? myUnits() : theirs(); const c = vict.length ? vict.reduce((s, u) => ({ x: s.x + u.x / vict.length, z: s.z + u.z / vict.length }), { x: 0, z: 0 }) : { x: 0, z: 0 };
+    if (mine) { G.quakeUntil = G.t + 5; }
+    pwSmileys(mine && G.player ? G.player.x : c.x, mine && G.player ? G.player.z : c.z);
+  } else if (id === 'bighead') {
+    const vict = mine ? myUnits().concat(G.player && G.player.alive ? [G.player] : []) : theirs();
+    for (const u of vict) { const L = u.look; if (!L || L._bigT) continue; L._hs0 = L.hs; L.hs = 3.2; L._bigT = 1; G.timers.push({ t: G.t + 30, fn: () => { L.hs = L._hs0; L._bigT = 0; } }); }
+  } else if (id === 'banana' || id === 'bounce') {
+    // peels / springs show on both screens; only the owner of the soldiers knocks them over (that keeps both games in sync)
+    for (let k = 0; k < (id === 'banana' ? 14 : 6); k++) { const px = x + rr(-6, 6), pz = z + rr(-6, 6); PS.crisp.spawn(px, Math.max(0, topAt(px, pz, 2)) + 0.1, pz, 0, id === 'bounce' ? 6 : 0.5, 0, 6, 0.25, 1, id === 'banana' ? 0.85 : 0.3, id === 'banana' ? 0.1 : 1, 1, 0, 0, 0); }
+    if (mine) for (const u of myUnits()) { const d = Math.hypot(u.x - x, u.z - z); if (d > (id === 'banana' ? 10 : 12)) continue; if (id === 'banana') knockDown(u, [rr(-3, 3), 4, rr(-3, 3)], 1.0); else knockDown(u, [(u.x - x) * 0.6, 26, (u.z - z) * 0.6], 1.5); }
+  } else if (id === 'butter' && mine) {
+    const p = G.player; if (p && p.alive && !p.inVeh && p.mag && WEAP[p.weapon] && !WEAP[p.weapon].melee) { p.mag[p.weapon] = 0; p.reloadT = 3; }
+    banner('BUTTERFINGERS!', 2, '#ffd84a'); hint('The President made you drop your magazine.', 2.4);
+  }
+  if (mine) { const T = TROLLS.find(t => t.id === id); feed(`<span class="ken">The President</span> trolled you: <b>${esc(T ? T.name : id)}</b>`); }
+}
+function pwWeather(w) {
+  if (!G || !['storm', 'rain', 'snow', 'fog', 'clear'].includes(w)) return;
+  G.cfg.weather = w;
+  const wet = w === 'storm' || w === 'rain' || w === 'snow';
+  if (wet && !rain) initRain(QUAL.high ? 1800 : 900);
+  if (!wet && rain) { scene.remove(rain.m); rain = null; }
+  if (rain) { rain.m.material.color.setHex(w === 'snow' ? 0xffffff : 0xaab8c8); rain.m.material.opacity = w === 'snow' ? 0.8 : 0.45; for (let k = 0; k < rain.n; k++) rain.v[k] = w === 'snow' ? rr(3, 6) : rr(26, 34); }
+  try { SFX.rainOn(w === 'storm' || w === 'rain', w === 'storm' ? 0.12 : 0.07); } catch (e) { }
+  if (w === 'storm') G.flash = 1;
+  banner(w === 'clear' ? 'THE SKY CLEARS' : w.toUpperCase() + '!', 1.6, '#9ad8ff');
+}
+function pwSmileys(cx, cz) {
+  if (!PW.smTex) { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d'); g.fillStyle = '#39d353'; g.beginPath(); g.arc(64, 64, 60, 0, TAU); g.fill(); g.fillStyle = '#062a10'; g.font = '900 54px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('>:)', 64, 68); PW.smTex = new THREE.CanvasTexture(c); }
+  const list = [];
+  for (let k = 0; k < 40; k++) { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: PW.smTex, transparent: true })); const sz = rr(1.5, 4); s.scale.set(sz, sz, 1); s.position.set(cx + rr(-30, 30), rr(25, 70), cz + rr(-30, 30)); s.userData.v = rr(8, 16); scene.add(s); list.push(s); }
+  PW.smileys = (PW.smileys || []).concat(list);
+  G.timers.push({ t: G.t + 7, fn: () => { for (const s of list) scene.remove(s); PW.smileys = (PW.smileys || []).filter(s => !list.includes(s)); } });
+}
+{
+  const _ap = netApply; netApply = function (e) { if (e && e[0] === 'tr') { trollFx(e[1], -e[2], -e[3], e[4], true); return; } return _ap.apply(this, arguments); };
+  const _up = update; update = function (dt) {
+    _up.apply(this, arguments);
+    if (!G) return;
+    if (G.quakeUntil > G.t) G.shake = Math.max(G.shake || 0, 0.9);
+    if (PW.smileys) for (const s of PW.smileys) { s.position.y = Math.max(0.8, s.position.y - s.userData.v * dt); s.material.rotation += dt * 2; }
+  };
+  const _lb = leaveBattle; leaveBattle = function () { const st = document.getElementById('stage'); if (st) st.style.transform = ''; PW.smileys = []; pwMenu(false); const h = document.getElementById('pwHud'); if (h) h.hidden = true; return _lb.apply(this, arguments); };
+  addEventListener('keydown', e => {
+    if (!G || !G.pw || G.paused || G.view !== 'field' || e.repeat) return;
+    if (e.code === 'KeyH') { e.preventDefault(); pwWrath(); }
+    else if (e.code === 'KeyT') { e.preventDefault(); pwMenu(!PW.open); }
+    else if (PW.open && /^Digit[1-7]$/.test(e.code)) { e.preventDefault(); e.stopImmediatePropagation(); pwTroll(TROLLS[+e.code.slice(5) - 1].id); }
+  }, true);
+}
+function pwHud() {
+  let h = document.getElementById('pwHud');
+  if (!h) { h = document.createElement('div'); h.id = 'pwHud'; h.className = 'pe'; document.getElementById('hud').appendChild(h); }
+  const on = G && G.pw ? Object.keys(G.pw) : [];
+  h.hidden = !on.length; if (!on.length) return;
+  h.innerHTML = `<div class="pwChips">${on.map(k => `<span title="${esc(PWR[k].desc)}">${esc(PWR[k].name)}</span>`).join('')}</div>${on.includes('wrath') ? '<button class="btn small" id="pwWrathB">WRATH <kbd>H</kbd></button>' : ''}${on.includes('troll') ? '<button class="btn small" id="pwTrollB">TROLL <kbd>T</kbd></button>' : ''}<div id="pwMenu" hidden></div>`;
+  const wb = document.getElementById('pwWrathB'); if (wb) wb.onclick = pwWrath;
+  const tb = document.getElementById('pwTrollB'); if (tb) tb.onclick = () => pwMenu(!PW.open);
+}
+function pwMenu(open) {
+  PW.open = !!open; const m = document.getElementById('pwMenu'); if (!m) return;
+  if (PW.open && document.pointerLockElement) document.exitPointerLock();
+  m.hidden = !PW.open; if (!PW.open) return;
+  m.innerHTML = TROLLS.map((t, i) => `<button class="pwT ${t.harm ? 'harm' : ''}" data-tr="${t.id}"><b>${i + 1}. ${esc(t.name)}</b><small>${esc(t.sub)}</small><i data-cd="${t.id}"></i></button>`).join('') +
+    `<div class="pwW">${['storm', 'rain', 'snow', 'fog', 'clear'].map(w => `<button class="btn small" data-w="${w}">${w}</button>`).join('')}</div>`;
+  m.querySelectorAll('[data-tr]').forEach(b => b.onclick = () => pwTroll(b.dataset.tr));
+  m.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { PW.trollT.weather = 0; pwTroll('weather', b.dataset.w); });
+}
+function pwHudTick() {
+  const wb = document.getElementById('pwWrathB'); if (wb) { const l = PW.wrathT - G.t; wb.classList.toggle('cd', l > 0); wb.firstChild.textContent = l > 0 ? `WRATH ${Math.ceil(l)}s ` : 'WRATH '; }
+  if (PW.open) document.querySelectorAll('#pwMenu [data-cd]').forEach(i => { const l = (PW.trollT[i.dataset.cd] || 0) - G.t; i.textContent = l > 0 ? Math.ceil(l) + ' s' : 'ready'; i.parentElement.classList.toggle('cd', l > 0); });
+}
+
+/* ---------- beating the President: medal, 25,000 SD, gold skin, badge, a power ---------- */
+MEDALS.push({ id: 'pres_slayer', name: 'President Slayer', desc: 'Beat the President online while his powers were on.', c: '#ffd84a' });
+{ const p = P_('skin_slayer', 'cos', 'Slayer Gold', 0, { avail: 'earn', desc: 'Earned by beating the President online.' }); PROD[p.id] = p; }
+addCos('gunskin', [{ id: 'slayer', name: 'Slayer Gold', col: 0xffcc33, glow: true, prod: 'skin_slayer' }]);
+{ const _nb = netBye; netBye = function () { if (typeof NET !== 'undefined') NET.byeWin = true; return _nb.apply(this, arguments); }; }
+{
+  const _eb = endBattle; endBattle = function (result) {
+    const o = G && !G.over && G.cfg.online && typeof NET !== 'undefined' ? NET.opp : null, bye = typeof NET !== 'undefined' && NET.byeWin;
+    const r = _eb.apply(this, arguments);
+    if (o && result === 'win' && o.pres && o.pw && o.pw.length && !bye && !isAdmin()) setTimeout(pwSlayerReward, 2900);
+    return r;
+  };
+}
+function pwSlayerReward() {
+  const P = prof(); P.slayer = (P.slayer || 0) + 1; P.owned = P.owned || {}; P.owned['prod:skin_slayer'] = true;
+  P.pwrs = P.pwrs || []; const left = Object.keys(PWR).filter(k => !P.pwrs.includes(k)); let got = null;
+  if (P.pwrs.length < 3 && left.length) { got = left[(Math.random() * left.length) | 0]; P.pwrs.push(got); }
+  profSave(P);
+  if (typeof medalGive === 'function') medalGive('pres_slayer');
+  if (typeof grantRewards === 'function') grantRewards(5000, 25000, 'President Slayer');
+  if (typeof updateProfileCard === 'function') updateProfileCard();
+  toast('YOU BEAT THE PRESIDENT!', `+25,000 SD, the Slayer Gold gun skin and the President Slayer badge.${got ? ` New power: ${PWR[got].name}. It works in online battles.` : P.pwrs.length >= 3 ? ' You already have 3 President powers.' : ''}`);
+}
+// badge on the profile card
+{ const _pc = updateProfileCard; updateProfileCard = function () { const r = _pc.apply(this, arguments); try { const P = prof(), el = document.getElementById('profCard'); if (P.slayer && el && !el.querySelector('.slayerBadge')) el.insertAdjacentHTML('beforeend', `<span class="slayerBadge">★ President Slayer${P.slayer > 1 ? ' ×' + P.slayer : ''}</span>`); } catch (e) { } return r; }; }
+// the Online screen: switch your powers on or off before a match
+{
+  const _ro = renderOnline; renderOnline = function () {
+    _ro.apply(this, arguments);
+    const own = pwrOwned(); if (!own.length) return;
+    const scr = document.getElementById('scr-online'), card = scr && scr.querySelector('.card'); if (!card || card.querySelector('#pwSet')) return;
+    const off = settings.pwrOff || {};
+    card.insertAdjacentHTML('beforeend', `<div id="pwSet"><h3>${isAdmin() ? 'President powers' : 'Your President powers'}</h3><p class="note">${isAdmin() ? 'Only in online battles. Anyone who beats you while any of these are on earns a medal, 25,000 SD, a gold gun skin and one of your powers.' : 'Earned by beating the President. They work in online battles.'}</p><div class="pwGrid">${own.map(k => `<button class="pwOpt ${off[k] ? '' : 'on'}" data-pw="${k}"><b>${esc(PWR[k].name)}</b><small>${esc(PWR[k].desc)}</small><i>${off[k] ? 'Off' : 'On'}</i></button>`).join('')}</div></div>`);
+    card.querySelectorAll('[data-pw]').forEach(b => b.onclick = () => { settings.pwrOff = settings.pwrOff || {}; settings.pwrOff[b.dataset.pw] = !settings.pwrOff[b.dataset.pw]; saveSettings(); const s = document.getElementById('pwSet'); if (s) s.remove(); renderOnline(); });
+  };
+}
 /* ================= LOADING SCREEN (opening the game, battles, travelling, HD download) ================= */
 // One full-screen panel with the >:) logo, a progress bar, what is happening right now and a rotating tip.
 // Battles build their map in one go, so the panel covers the first frames while the graphics warm up.
