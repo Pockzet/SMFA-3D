@@ -962,6 +962,12 @@ body.rplOn #hud,body.rplOn #rcHud,body.rplOn .toast,body.rplOn #pwHud{visibility
 #rplSkip{position:absolute;right:max(16px,env(safe-area-inset-right));bottom:max(6px,calc(4.5vh - 16px));z-index:2}
 .rplTap{position:absolute;left:50%;bottom:max(10px,calc(4.5vh - 8px));transform:translateX(-50%);font:600 12px system-ui;color:rgba(255,255,255,.6);white-space:nowrap}
 @media (max-width:560px){#rplWho{font-size:14px}#rplWho small{display:none}.rplTap{display:none}#rplImp{font-size:12px;top:calc(9vh + 46px)}}
+/* new version / version mismatch bar */
+#updBar{position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top));transform:translateX(-50%);z-index:200;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;width:min(620px,calc(100% - 24px));padding:10px 12px;border-radius:12px;background:rgba(14,22,40,.96);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 28px rgba(0,0,0,.45);color:#eef3ff;font:500 13px/1.35 system-ui,sans-serif}
+#updBar[hidden]{display:none}
+#updBar.new{border-color:#3ad86a}#updBar.warn{border-color:#ffd23a}
+#updBar b{font-weight:800;flex:1 1 100%}#updBar span{flex:1 1 220px;color:#c8d4f0}
+.onVer{margin:14px 0 0;font-size:12px;color:var(--mut,#9aa6bf)}.onVer b{font-family:ui-monospace,monospace;color:inherit;font-weight:700}.onVer a{color:#3ad86a}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -11967,7 +11973,9 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const NET_VER = 'smfa3d-online-1';
+const BUILD_ID = '5531c770'; // replaced at build time with a fingerprint of the game code
+// online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
+const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
 const NET = { on: false, role: null, room: null, me: null, opp: null, vis: false, applyHit: false, src: null, ev: [], trc: 0, sendT: 0, seq: 0, rx: [], lastRx: 0, pup: new Map(), pv: new Map(), vseq: 0, flags: null, ping: 0, pt: 0, pe: 0, lostWarn: false, over: false, flT: 0 };
 const NETON = () => !!(NET.on && G && G.cfg && G.cfg.online);
@@ -12095,7 +12103,7 @@ function onGotHello(p) {
   if (p.ver !== NET_VER) { rtSend('smfa-room-' + ONL.code, 'welcome', { to: p.id, err: 'Your game version does not match the host\'s. Both players need the latest version.' }); return; }
   const s = onSettings(); let gnat = NATIONS[p.nat] ? p.nat : 'french', note = '';
   if (gnat === s.nat) { gnat = Object.keys(NATIONS).find(k => k !== s.nat); note = `You both picked ${NATIONS[s.nat].short}. Your opponent fights as ${NATIONS[gnat].short}.`; }
-  ONL.oppInfo = { id: p.id, name: String(p.name || 'Opponent').slice(0, 16), nat: gnat, look: p.look };
+  ONL.oppInfo = { id: p.id, name: String(p.name || 'Opponent').slice(0, 16), nat: gnat, look: p.look, pres: !!p.pres, pw: Array.isArray(p.pw) ? p.pw.slice(0, 6) : [], slayer: p.slayer || 0 };
   ONL.cfgOut = { to: p.id, seed: (Math.random() * 1e9) | 0, map: s.map, msize: s.msize, size: s.size, mode: s.mode, time: s.time, weather: s.weather, hostNat: s.nat, guestNat: gnat, host: onMe(), note: note ? `You both picked ${NATIONS[s.nat].short}, so you fight as ${NATIONS[gnat].short}.` : '' };
   ONL.myNat = s.nat; ONL.note = note;
   rtSend('smfa-room-' + ONL.code, 'welcome', ONL.cfgOut);
@@ -12128,7 +12136,7 @@ async function onQuick() {
   onSet('connecting');
   try {
     await rtJoin('smfa-lobby', {
-      seek: p => { if (ONL.st !== 'seeking' || ONL.engaged || !p || p.id === ONL.id || p.ver !== NET_VER) return; if (ONL.id < p.id) { ONL.engaged = true; const code = onCodeGen(); rtSend('smfa-lobby', 'offer', { to: p.id, from: ONL.id, code }); onLobbyHost(code); } },
+      seek: p => { if (p && p.id !== ONL.id && p.ver && p.ver !== NET_VER && ONL.st === 'seeking') onVerMismatch(); if (ONL.st !== 'seeking' || ONL.engaged || !p || p.id === ONL.id || p.ver !== NET_VER) return; if (ONL.id < p.id) { ONL.engaged = true; const code = onCodeGen(); rtSend('smfa-lobby', 'offer', { to: p.id, from: ONL.id, code }); onLobbyHost(code); } },
       offer: p => { if (ONL.st !== 'seeking' || ONL.engaged || !p || p.to !== ONL.id) return; ONL.engaged = true; rtLeave('smfa-lobby'); clearInterval(ONL.tm); onJoin(p.code); }
     });
   } catch (e) { onFail(e); return; }
@@ -19514,6 +19522,48 @@ function rplFromNews(st, C) {
   try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) { }
   rplStart(st, C, () => { r.render = rnd; cut.hidden = false; if (CS === Cx && CS.S) csNext(); });
   if (!RPL) { r.render = rnd; cut.hidden = false; }
+}
+/* ================= game version: same build for online play, and "a new version is out" ================= */
+// Browsers keep an old copy of the page for a while after an update. Two players on different copies used to
+// be paired anyway, and the older copy silently ignored anything new (like the President's powers).
+const UPD = { latest: null, checking: false, shown: false, misT: 0 };
+function updBar(html, cls) {
+  let el = $('#updBar');
+  if (!el) { el = document.createElement('div'); el.id = 'updBar'; document.body.appendChild(el); }
+  el.className = cls || ''; el.innerHTML = html; el.hidden = false;
+  const r = el.querySelector('[data-reload]'); if (r) r.onclick = () => updReload();
+  const x = el.querySelector('[data-close]'); if (x) x.onclick = () => { el.hidden = true; };
+}
+function updReload() { try { const u = new URL(location.href); u.searchParams.set('v', UPD.latest || Date.now().toString(36)); location.replace(u.toString()); } catch (e) { location.reload(); } }
+async function updCheck() {
+  if (UPD.checking || !/^https?:$/.test(location.protocol) || /claude\.ai|claudeusercontent/.test(location.hostname) || BUILD_ID === 'BUILDID') return UPD.latest;
+  UPD.checking = true;
+  try {
+    const u = location.href.split('#')[0], r = await fetch(u + (u.includes('?') ? '&' : '?') + 'chk=' + Date.now(), { cache: 'no-store' });
+    if (r.ok) { const m = (await r.text()).match(/BUILD_ID = '([0-9a-f]{8})'/); if (m) UPD.latest = m[1]; }
+  } catch (e) { } finally { UPD.checking = false; }
+  if (UPD.latest && UPD.latest !== BUILD_ID && !UPD.shown) { UPD.shown = true; updBar(`<b>A new version of SMFA 3D is out.</b><span>Reload to get it. Online battles only work when both players have the newest version.</span><button class="btn small primary" data-reload>Reload now</button><button class="btn small" data-close>Later</button>`, 'new'); }
+  return UPD.latest;
+}
+// someone in the lobby is on another build: tell the player what to do instead of searching forever
+function onVerMismatch() {
+  const now = performance.now(); if (now - UPD.misT < 20000) return; UPD.misT = now;
+  updCheck().then(latest => {
+    const behind = latest && latest !== BUILD_ID;
+    updBar(behind ? `<b>Your game is out of date.</b><span>Another player is waiting on the newest version. Reload to play them.</span><button class="btn small primary" data-reload>Reload now</button>`
+      : `<b>A player with a different game version is searching.</b><span>Their copy is older. Ask them to reload the page (pull down to refresh, or Ctrl+F5) so you can play each other.</span><button class="btn small" data-close>OK</button>`, behind ? 'new' : 'warn');
+  });
+}
+{
+  // the online screen shows the version so both players can compare, and checks for a newer copy
+  const _ro = renderOnline; renderOnline = function () {
+    const r = _ro.apply(this, arguments), el = $('#onBody');
+    if (el && !el.querySelector('.onVer')) el.insertAdjacentHTML('beforeend', `<p class="onVer">Game version <b>${esc(BUILD_ID)}</b> · both players need the same version${UPD.latest && UPD.latest !== BUILD_ID ? ` · <a href="#" data-reload>a newer version is out: reload</a>` : ''}</p>`);
+    const a = el && el.querySelector('.onVer [data-reload]'); if (a) a.onclick = e => { e.preventDefault(); updReload(); };
+    return r;
+  };
+  const _oo = openOnline; openOnline = function () { const r = _oo.apply(this, arguments); updCheck().then(() => { if (!$('#scr-online').hidden) renderOnline(); }); return r; };
+  setTimeout(updCheck, 6000); setInterval(() => { if (!G || G.paused || G.over) updCheck(); }, 10 * 60 * 1000);
 }
 /* ================= LOADING SCREEN (opening the game, battles, travelling, HD download) ================= */
 // One full-screen panel with the >:) logo, a progress bar, what is happening right now and a rotating tip.
