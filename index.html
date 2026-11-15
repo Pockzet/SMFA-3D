@@ -1258,6 +1258,62 @@ body.mobile #orders .btn{flex:0 0 auto;white-space:nowrap;min-height:40px}
 .vipTag.coTag{background:rgba(6,20,8,.82);border:1px solid var(--green);color:#d8ffe0;font-weight:700}
 body.coguest #powers,body.coguest #squads,body.coguest #orders,body.coguest #fpowers,body.coguest #fpowersM,body.coguest #tbtn-radio{display:none!important}
 body.coguest #dock::before{content:"Co-op: the party leader commands the army. You fight on foot.";display:block;align-self:center;padding:8px 12px;border-radius:6px;background:rgba(6,10,6,.78);border:1px solid var(--line2);color:var(--fg);font:600 13px var(--ui);pointer-events:none}
+/* ---------- Records and rankings (v61) ---------- */
+.ic-cup{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 4h10v5a5 5 0 0 1-10 0z'/%3E%3Cpath d='M7 6H4v1.5A3.5 3.5 0 0 0 7.5 11M17 6h3v1.5a3.5 3.5 0 0 1-3.5 3.5'/%3E%3Cpath d='M12 14v4M8.5 20.5h7M9.5 18h5'/%3E%3C/svg%3E")}
+#scr-records .card{width:min(900px,100%)}
+.recTabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+.recBar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:12px}.recBar .note{margin:0;flex:1 1 240px}
+.recBar .seg{display:inline-flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden;flex:0 0 auto}
+.recBar .seg button{background:none;border:0;padding:9px 14px;min-height:40px;font:700 13px var(--ui);letter-spacing:.04em;color:var(--fg)}
+.recBar .seg button.on{background:var(--green);color:#062008}
+.recList{display:flex;flex-direction:column;gap:6px}
+.recRow{display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;align-items:center;gap:12px;min-height:50px;padding:6px 16px 6px 8px;border:1px solid var(--line2);border-radius:8px;background:var(--panel2)}
+.recRow.me{border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.recRank{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;font:800 15px var(--ui);background:#1a261b;color:var(--muted)}
+.recRank.g{background:#f2b33d;color:#2a1c00}.recRank.s{background:#c9d2d6;color:#1c2226}.recRank.b{background:#c98a52;color:#2a1500}
+.recName{font:700 16px var(--ui);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.recName em{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-style:normal;margin-left:6px}
+.recRow small{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.recVal{font:800 17px var(--ui);font-variant-numeric:tabular-nums;color:var(--amber);white-space:nowrap;min-width:72px;text-align:right}
+.recEmpty{padding:26px 0;text-align:center;max-width:none!important}.recFoot{margin-top:14px!important}
+@media (max-width:560px){.recRow{grid-template-columns:40px minmax(0,1fr) auto;padding-right:12px}.recRow small{display:none}.recBar .seg{flex:1 1 100%}.recBar .seg button{flex:1}.recBar .note{flex:1 1 100%}
+  .recTabs{flex-wrap:nowrap;overflow-x:auto;margin-right:-16px;padding:0 16px 6px 0;scrollbar-width:none}.recTabs::-webkit-scrollbar{display:none}.recTabs .btn{flex:0 0 auto;white-space:nowrap}}
+/* ---------- The World: the online campaign (v62) ---------- */
+#scr-world .card{width:min(1320px,100%)}
+#scr-world .camp{grid-template-columns:minmax(0,1.7fr) minmax(320px,1fr)}
+#scr-world .mapbox{border-radius:8px;border-color:var(--line2)}
+.wmhint{position:absolute;left:8px;bottom:8px;padding:3px 8px;border-radius:4px;background:rgba(6,10,6,.72);color:var(--muted);font-size:11.5px;pointer-events:none}
+.wlCard{border:1px solid var(--line2);border-radius:8px;background:var(--panel2);padding:14px 16px;margin-bottom:10px}
+.wlCard h3{margin:0 0 8px!important;font:700 17px var(--ui)!important;letter-spacing:.02em!important;text-transform:none!important;color:var(--fg)!important}
+.wlCard .note{margin:0 0 10px}.wlCard .row{flex-wrap:nowrap}.wlCard .tin{flex:1;min-height:42px;font-size:15px}
+.wlMine{border-color:var(--green)}
+.wlHead{display:flex;align-items:center;gap:10px;margin-bottom:10px}.wlHead h3{margin:0!important;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:20px!important}
+.wlHead i,.wlHeld i,.wlRow>i{width:14px;height:14px;border-radius:3px;flex:0 0 auto;display:inline-block}
+.wlStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.wlStats div{border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:rgba(0,0,0,.2);min-width:0}
+.wlStats small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.wlStats b{display:block;font:800 22px var(--ui);font-variant-numeric:tabular-nums;color:var(--amber)}
+.wlStats em{display:block;color:var(--muted);font-size:12px;font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wlUp{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(255,255,255,.06)}
+.wlUp div{flex:1;min-width:0}.wlUp b{font-size:14.5px}.wlUp b i{font-style:normal;color:var(--green);font-weight:600;font-size:12.5px;margin-left:6px}
+.wlUp small{display:block;color:var(--muted);font-size:12.5px}.wlUp em{color:var(--muted);font-style:normal;font-size:12px}
+.wlUp .btn{min-width:104px;min-height:38px;color:var(--amber)}.wlCard .btn[disabled]{opacity:.42;pointer-events:none}
+.wlShield{color:#9fd0ff!important}
+.wlOcc{border:1px solid #6b2a2a;border-radius:6px;background:rgba(239,75,79,.08);padding:10px 12px}
+.wlOcc b{color:#ffb3b3;font-size:15.5px}.wlOcc p{margin:4px 0 8px;font-size:13.5px;line-height:1.45}.wlOcc small{display:block;color:var(--muted);font-size:12.5px;margin:4px 0 10px}
+.wlOcc .row{flex-wrap:wrap}.wlOcc .btn{flex:1;min-height:42px}
+.wlBar{height:8px;border-radius:4px;background:#1a261b;overflow:hidden}.wlBar i{display:block;height:100%;background:var(--green)}
+.wlPick{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}.wlPick span{color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}.wlPick b{font-size:17px}.wlPick em{color:var(--red);font-style:normal;font-size:12.5px}
+.wlHeld{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:0 0 10px;font-size:14px;color:#cfd9c9}
+.wlGo{width:100%;min-height:48px;font-size:15px}
+.wlTabs{display:flex;gap:6px;margin:14px 0 10px}.wlTabs .btn{flex:1;padding:9px 6px}
+.wlRow{display:grid;grid-template-columns:36px 14px minmax(0,1fr) auto;align-items:center;gap:10px;min-height:50px;padding:5px 14px 5px 8px;border:1px solid var(--line2);border-radius:8px;background:var(--panel2);margin-bottom:6px;cursor:pointer}
+.wlRow.me{border-color:var(--green)}.wlRow span{min-width:0}.wlRow span>b{font-size:15px}.wlRow small{display:block;color:var(--muted);font-size:12px}
+.wlRow em{font:700 10.5px var(--ui);letter-spacing:.08em;text-transform:uppercase;font-style:normal;margin-left:6px;color:var(--green)}
+.wlRow em.war{color:var(--red)}.wlRow em.peace{color:#9fd0ff}.wlRow em.ally{color:var(--amber)}
+.wlActs{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 10px;padding:0 4px}
+.wlOffer{border:1px solid var(--line2);border-radius:8px;background:var(--panel2);padding:10px 14px;margin-bottom:6px}.wlOffer p{margin:0 0 8px;font-size:14px;line-height:1.45}
+.wlLog{margin:0;padding:8px 2px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13.5px;line-height:1.45;color:#cfd9c9}.wlLog small{display:block;color:var(--muted);font-size:11.5px}
+@media (max-width:760px){#scr-world .camp{grid-template-columns:1fr}.wlStats b{font-size:19px}}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -1391,11 +1447,12 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
         <button class="lbTile ic-grid" id="lbModes">Modes</button>
         <button class="lbTile ic-person" id="goBarracks">Barracks</button>
         <button class="lbTile ic-bag" id="goStore">Store</button>
-        <button class="lbTile ic-globe" id="goOnline">Online</button>
+        <button class="lbTile ic-globe" id="goWorld">World</button>
       </nav>
       <section class="lbMis" id="lbMis" aria-label="Missions"></section>
       <nav class="lbLinks" aria-label="More">
         <button class="ic-cap" id="goTutorial">Tutorial</button>
+        <button class="ic-cup" id="goRecords">Records</button>
         <button class="ic-medal" id="goMedals">Medals</button>
         <button class="ic-help" id="goHow">How to play</button>
         <button class="ic-key" id="goSaves">Save codes</button>
@@ -1437,6 +1494,7 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
       <div class="menu-col lbGrid">
         <button class="lbMode ic-flag" id="goCampaign" data-d="The Long War: 30 chapters, your choices, three endings.">Campaign</button>
         <button class="lbMode ic-cross" id="goSkirmish" data-d="One battle, your rules: map, enemy, size and violence level.">Skirmish</button>
+        <button class="lbMode ic-globe" id="goOnline" data-d="One against one: your army against another player's, live.">Online battle</button>
         <button class="lbMode ic-stick" id="goArcade" data-d="Waves, King of the Hill, Tank Brawl and Dogfight Arena.">Arcade</button>
         <button class="lbMode ic-pin" id="goFree" data-d="Walk the headquarters, drive, fly, and visit the towns and the circuit.">Free roam: headquarters</button>
         <button class="lbMode ic-house" id="goHome" data-d="Straight to your own front door." hidden>Free roam: go home</button>
@@ -1577,6 +1635,8 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
       <div><h3>Online battles</h3>Press <b>Online battle</b> on the title screen (you need to be logged in). Pick your country, then <b>Quick match</b> to be paired with anyone searching right now, or <b>Create room</b> and send the 5-letter code to a friend, who types it and presses <b>Join</b>. The host's match settings are used. Each of you commands your own army with skirmish rules: capture flags, drain the other side's reinforcements or destroy their HQ core. Matches end after 20 minutes at the latest; the stronger position wins. Leaving or losing connection for 15 seconds counts as a loss. Nukes are off online, and matches shorter than 2 minutes give no rewards.</div>
       <div><h3>Party and friends</h3>Press the <b>Party</b> button at the top right of the lobby. Type a name, then <b>Create a party</b> and give the 5-letter code to your friends, or type their code and press <b>Join</b>. A party holds up to 4 players. The player who has been in the party longest is the leader: when the leader chooses <b>Co-op battle</b> or <b>Free roam together</b>, everyone's game goes there. Add friends' names to the <b>Friends</b> list to see who is online and to invite them to your party. Names are nicknames, not accounts.</div>
       <div><h3>Co-op battle</h3>In a party of two to four, the leader chooses <b>Co-op battle</b>: everyone fights the computer on the same map. The leader's Skirmish settings are used (map, difficulty, violence mode), and the enemy gets stronger with every extra player. The leader commands the army from the office as usual. The other players press <b>Join the fight</b> and fight on foot beside that army: they cannot command squads, call powers or drive vehicles yet. If you fall you can join again after 20 seconds. The battle is won or lost for everyone together, and each player earns their own EXP and SD. If the leader leaves, the battle ends.</div>
+      <div><h3>Records</h3>Press <b>Records</b> on the lobby. While you are logged in, your best results are sent automatically: highest wave, arcade scores, most kills in one battle, fastest Skirmish win, fastest lap on each track, total EXP and the largest empire in the World. Each board has an all-time list and one for this week (it starts again every Monday). <b>Overall</b> adds up your places on every board. <b>Friends</b> shows only the names on your friends list. When you pass someone, or someone beats your record, you are told on the lobby.</div>
+      <div><h3>The World</h3>Press <b>World</b> on the lobby (you need to be logged in). Choose a free country on the map as your homeland and give it any name. Gold and soldiers arrive every hour, also while you are away, up to a limit. Gold buys <b>Economy</b>, <b>Army</b> and <b>Defences</b>. Soldiers are spent on invasions: tap a country next to your land and press <b>Invade</b>, then win the battle to take it. Countries no player holds belong to the computer nations. Tap another player in the list to declare war, offer peace (24 hours without attacks), an alliance, a trade deal, or to send gold. If your <b>homeland</b> is taken you are occupied: the rest of your empire is lost. Win it back with an <b>uprising</b> battle (every 20 minutes), by offering gold for independence, or by holding out, because resistance grows by itself and reaches 100% in about a day. Once free, everything starts again from the beginning, with 12 hours of protection.</div>
       <div><h3>Victory animations</h3>Win a battle and your President plays a short victory scene. Choose it in <b>Barracks → Victory</b>, where every scene has a Preview button. Parade Salute is free for everyone. Plant the Flag comes with Soldier membership, Three-Point Landing with Sergeant, Don't Look Back with Captain, and The Long Corridor and The Throne Room with General. Every scene can also be unlocked in the Store with SD or Rp, and some come in bundles. Switch them off in Settings if you prefer.</div>
       <div><h3>Nuclear warhead</h3>In the campaign, buy it in the <b>Locker room</b> for $15,000. In skirmish, press <b>Buy nuke</b> in the office to buy it with $5,000 of war budget. In skirmish you can launch it whenever you like. In the campaign, the <b>Nuke</b> button only unlocks when you are losing (HQ below half, behind on tickets, or the enemy holds more flags). Type the launch code within 30 seconds; three wrong tries or running out of time locks it for 2 to 3 minutes. On success your squads fall back, and 9 seconds later the blast destroys every soldier, vehicle and building outside the two HQ bunkers. Both HQs are left badly damaged and the battle continues. One nuke per battle. Very rarely, a losing enemy saves up and nukes you: sirens give you 12 seconds to pull your troops back, and the enemy usually forgets to save its own.</div>
       <div><h3>Story</h3>The campaign tells the story of the Smiley Face Army's return from exile. As you conquer countries, 3D cutscenes play and <b>story missions</b> unlock in the campaign panel: defend the embassy, rescue a hostage, escort a convoy, kill a general, and storm the Emperor's capital. Heroes such as Reyes (sniper), Okoro (engineer) and Brandt (ace pilot) join and fight in your campaign battles. Tap or press Enter to move through a cutscene, or Skip. Replay them from the campaign panel.</div>
@@ -1705,6 +1765,21 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 </div>
 <div id="scr-medals" class="screen page" hidden>
   <div class="card"><div class="row between"><h2>Medals <small class="note" id="medalCount"></small></h2><button class="btn small" id="medalsBack">Back</button></div><div class="medalGrid" id="medalGrid"></div></div>
+</div>
+<div id="scr-world" class="screen page" hidden>
+  <div class="card">
+    <div class="row between"><h2>The World</h2><button class="btn small" data-back>Back</button></div>
+    <div class="camp wld">
+      <div class="mapbox"><svg id="wldMap" viewBox="0 0 1000 520" aria-label="World map"></svg><div class="wmctl"><button class="btn small" id="wldIn" aria-label="Zoom in">+</button><button class="btn small" id="wldOut" aria-label="Zoom out">−</button><button class="btn small" id="wldFit" aria-label="Whole world">⤢</button><button class="btn small" id="wldHome" aria-label="My homeland">◎</button></div><div class="wmhint">Drag to pan · scroll or pinch to zoom · tap a country</div></div>
+      <div class="side" id="wldSide"></div>
+    </div>
+  </div>
+</div>
+<div id="scr-records" class="screen page" hidden>
+  <div class="card"><div class="row between"><h2>Records</h2><button class="btn small" data-back>Back</button></div>
+    <p class="note">Best results of every player with an account. Beat a friend and you both hear about it.</p>
+    <div id="recBody"></div>
+  </div>
 </div>
 <div id="scr-arcade" class="screen page" hidden>
   <div class="card"><div class="row between"><h2>Arcade</h2><button class="btn small" data-back>Back</button></div>
@@ -12391,7 +12466,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = 'bd6a6a0a'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = 'c42d068e'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21437,6 +21512,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '61', date: '2026-11-15', name: 'Records and the World', items: ['Records: your best results are kept on boards that every player with an account shares. There is an all-time list, one for this week, an overall ranking and a Friends filter. You are told when you pass someone or when your record is beaten.', 'The World, a new online campaign: found your own country on the shared world map, name it, and make it grow. Gold and soldiers arrive every hour, also while you are away.', 'Invade the countries next to yours, declare war, sign peace, form alliances, make trade deals or send gold to other players.', 'If your homeland is taken you are occupied. Win it back with an uprising, with gold, or by holding out; then everything starts again from the beginning.', 'The World tile replaces Online on the lobby. One-against-one online battles are now under Modes.'] },
   { v: '60', date: '2026-11-15', name: 'Co-op battle', items: ['A party of two to four can now fight the computer together: the leader chooses Co-op battle on the Party screen.', 'The leader commands the army with their Skirmish settings. The other players join the fight on foot beside it, each as their own President, with their name above them.', 'The enemy gets stronger with every extra player. Everyone wins or loses together and earns their own EXP and SD.', 'First version: guests cannot command squads, call powers or drive vehicles yet.'] },
   { v: '59', date: '2026-11-15', name: 'Party and friends', items: ['A Party button on the lobby: start a party, share the 5-letter code, and up to four players are in it together.', 'The party leader can take everyone into free roam at once: same city, same room.', 'A friends list shows who is online, and you can invite an online friend into your party.', 'This is the first part of playing together. Co-op battles are next and are not in the game yet.'] },
   { v: '58', date: '2026-11-15', name: 'More Bahasa Indonesia', items: ['In Bahasa Indonesia the Store, How to play, the Barracks, Medals, the Campaign panel and every option card are now translated, and so are the short messages during a battle.', 'Names stay as they are: medals, items, weapons, maps and countries. The story and the tutorial are still in English.', 'Pause, the results screen, the account screen and the chapter list have the same look as the other screens.'] },
@@ -21572,7 +21648,7 @@ const I18N = {
     'The Long War': 'The Long War', 'Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.': 'Tiga puluh bab dalam lima babak. Pilihan Anda menentukan akhir perang: Sang Pembebas, Sang Penakluk, atau Sang Pendamai.',
     'World event': 'Peristiwa dunia', 'Break the treaty?': 'Langgar perjanjian?', 'Attack anyway': 'Tetap serang', 'Keep the peace': 'Jaga perdamaian', 'Cutscenes': 'Cutscene',
     'Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.': 'Buka perlengkapan dengan naik level lewat EXP, membelinya dengan Smiley Dollars (SD), atau meraih medali. Keduanya didapat di setiap battle.',
-    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
+    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
     // what's new
     'The lobby': 'Lobi', 'Lighter battles': 'Battle lebih ringan', 'Game health': 'Kesehatan game', 'Hit feel': 'Rasa pukulan', 'Real people and car damage': 'Orang realistis dan kerusakan mobil', 'Online version lock': 'Kunci versi online', 'F1 polish and replays': 'Polesan F1 dan replay'
   }
@@ -21818,6 +21894,25 @@ Object.assign(I18N.id, {
   'Co-op battle: the battle keeps going while this menu is open.': 'Battle co-op: battle terus berjalan selama menu ini terbuka.',
   'The leader started a game. Open Party on the lobby to join.': 'Pemimpin sudah memulai permainan. Buka Party di lobi untuk ikut.', "Join the party's game": 'Ikut permainan party', 'The leader has already started. Join them now.': 'Pemimpin sudah mulai. Ikut sekarang.',
   "The party leader's game is in the background. The battle waits for them.": 'Game pemimpin party sedang di latar belakang. Battle menunggu mereka.',
+  // records and the world
+  'Records': 'Rekor', 'World': 'Dunia', 'The World': 'Dunia', 'Online battle': 'Battle online', "One against one: your army against another player's, live.": 'Satu lawan satu: pasukan Anda melawan pasukan pemain lain, langsung.',
+  'Best results of every player with an account. Beat a friend and you both hear about it.': 'Hasil terbaik setiap pemain yang punya akun. Kalahkan teman, dan kalian berdua diberi tahu.',
+  'Overall': 'Keseluruhan', 'Kills in one battle': 'Kill dalam satu battle', 'Fastest victory': 'Kemenangan tercepat', 'Experience': 'Pengalaman', 'Largest empire': 'Kerajaan terbesar',
+  'All time': 'Sepanjang masa', 'This week': 'Minggu ini', 'Everyone': 'Semua', 'you': 'Anda', 'New record': 'Rekor baru', 'Rival passed': 'Rival terlewati', 'Record beaten': 'Rekor dikalahkan',
+  'Nobody is on this board yet. Be the first.': 'Belum ada siapa pun di papan ini. Jadilah yang pertama.', 'Nobody has set a result this week yet. Be the first.': 'Belum ada hasil minggu ini. Jadilah yang pertama.',
+  'None of your friends is on this board yet.': 'Belum ada teman Anda di papan ini.', 'Your friends list is empty. Add friends on the Party screen.': 'Daftar teman Anda kosong. Tambahkan teman di layar Party.',
+  'Your results are sent automatically while you are logged in. The week starts on Monday.': 'Hasil Anda dikirim otomatis selama Anda masuk. Minggu dimulai hari Senin.', 'Log in to put your own results on the boards. Without an account you can still look.': 'Masuk untuk menaruh hasil Anda di papan. Tanpa akun Anda tetap bisa melihat.',
+  'Your country': 'Negara Anda', 'Found your country': 'Dirikan negara Anda', 'Found it': 'Dirikan', 'Homeland': 'Tanah air', 'Name of your country': 'Nama negara Anda', 'Gold': 'Emas', 'Countries': 'Negara',
+  'Economy': 'Ekonomi', 'Army': 'Tentara', 'Defences': 'Pertahanan', '+40 gold an hour per level': '+40 emas per jam tiap level', 'More soldiers, stronger troops in battle': 'Lebih banyak prajurit, pasukan lebih kuat di battle', 'Invaders face a stronger army': 'Penyerang menghadapi pasukan yang lebih kuat',
+  'Log in to found a country of your own. Without an account you can look at the map and the news.': 'Masuk untuk mendirikan negara Anda sendiri. Tanpa akun Anda bisa melihat peta dan berita.',
+  'Tap a country on the map that no player holds (capitals of the computer nations cannot be chosen). It becomes your homeland, with whatever name you give it.': 'Ketuk negara di peta yang belum dikuasai pemain (ibu kota negara komputer tidak bisa dipilih). Negara itu menjadi tanah air Anda, dengan nama apa pun yang Anda beri.',
+  'Your empire is gone and your income is halved. Win the homeland back and you start again from the beginning.': 'Kerajaan Anda hilang dan pemasukan Anda dipotong setengah. Rebut kembali tanah air, lalu Anda mulai lagi dari awal.',
+  'Start an uprising': 'Mulai pemberontakan', 'Offer gold for independence': 'Tawarkan emas untuk kemerdekaan', 'Not next to your land. You can only invade a neighbour of a country you hold.': 'Tidak bersebelahan dengan wilayah Anda. Anda hanya bisa menyerang tetangga dari negara yang Anda kuasai.',
+  'Offers': 'Tawaran', 'News': 'Berita', 'Declare war': 'Nyatakan perang', 'Break alliance': 'Putuskan aliansi', 'Offer peace': 'Tawarkan damai', 'Offer alliance': 'Tawarkan aliansi', 'Offer trade': 'Tawarkan dagang', 'Send 100 gold': 'Kirim 100 emas', 'Show on map': 'Lihat di peta', 'Let them go': 'Bebaskan',
+  'Accept': 'Terima', 'Decline': 'Tolak', 'Withdraw': 'Tarik kembali', 'at war': 'berperang', 'peace': 'damai', 'ally': 'sekutu', 'trade': 'dagang', 'online now': 'sedang online', 'Yours': 'Milik Anda', 'Back to the world': 'Kembali ke Dunia',
+  'No open offers. Tap a country in the Countries list to offer peace, an alliance or trade.': 'Tidak ada tawaran terbuka. Ketuk sebuah negara di daftar Negara untuk menawarkan damai, aliansi atau dagang.', 'Nothing has happened yet.': 'Belum terjadi apa-apa.', 'No countries yet. Be the first to found one.': 'Belum ada negara. Jadilah yang pertama mendirikan.',
+  'The world is not on the account server yet. The President needs to run the world SQL file once.': 'Dunia belum ada di server akun. Presiden perlu menjalankan file SQL dunia satu kali.', 'The records tables are not on the account server yet. The President needs to run the records SQL file once.': 'Tabel rekor belum ada di server akun. Presiden perlu menjalankan file SQL rekor satu kali.',
+  'Drag to pan · scroll or pinch to zoom · tap a country': 'Seret untuk menggeser · gulir atau cubit untuk zoom · ketuk sebuah negara',
   // pause, end of battle
   'Save battle': 'Simpan battle', 'Retreat to menu': 'Mundur ke menu', 'VICTORY': 'MENANG', 'DEFEAT': 'KALAH', '▶ Watch highlights': '▶ Tonton cuplikan', 'Full replay': 'Tayangan ulang penuh', 'Battle saved': 'Battle tersimpan',
   // battle messages
@@ -21880,6 +21975,12 @@ I18N.pat.push(
   [/^Play chapter (\d+)$/, m => `Mainkan bab ${m[1]}`],
   [/^People will call you "(.+)"\.$/, m => `Orang akan memanggil Anda "${m[1]}".`],
   [/^Co-op with (.+)\. You command the army; they fight beside it\.$/, m => `Co-op bersama ${m[1]}. Anda memerintah pasukan; mereka bertempur di sampingnya.`],
+  [/^Countries \((\d+)\)$/, m => `Negara (${m[1]})`], [/^Offers \((\d+)\)$/, m => `Tawaran (${m[1]})`],
+  [/^Invade (.+) · (\d+) soldiers$/, m => `Serang ${m[1]} · ${m[2]} prajurit`], [/^([\d,.]+) gold$/, m => `${m[1]} emas`], [/^\+([\d,.]+) an hour$/, m => `+${m[1]} per jam`], [/^of ([\d,.]+)$/, m => `dari ${m[1]}`], [/^level (\d+)$/, m => `level ${m[1]}`],
+  [/^Occupied by (.+)$/, m => `Diduduki oleh ${m[1]}`], [/^occupied by (.+)$/, m => `diduduki oleh ${m[1]}`], [/^Uprising in (\d+) min$/, m => `Pemberontakan dalam ${m[1]} mnt`],
+  [/^Resistance (\d+)%\. It grows by itself, and at 100% you are free\. A lost uprising still adds 20%\.$/, m => `Perlawanan ${m[1]}%. Tumbuh dengan sendirinya, dan pada 100% Anda merdeka. Pemberontakan yang gagal tetap menambah 20%.`],
+  [/^You passed (.+) on (.+)$/, m => `Anda melewati ${m[1]} di ${i18nT(m[2])}`], [/^(.+) beat your (.+) record: (.+)$/, m => `${m[1]} mengalahkan rekor ${i18nT(m[2])} Anda: ${m[3]}`],
+  [/^(.+) is yours$/, m => `${m[1]} sekarang milik Anda`], [/^The invasion of (.+) failed$/, m => `Serangan ke ${m[1]} gagal`], [/^Offer sent to (.+)$/, m => `Tawaran dikirim ke ${m[1]}`],
   [/^(.+) joined$/, m => `${m[1]} bergabung`],
   [/^(.+) invites you to a party$/, m => `${m[1]} mengundang Anda ke party`],
   [/^Invitation sent to (.+)$/, m => `Undangan dikirim ke ${m[1]}`],
@@ -21936,6 +22037,8 @@ I18N.how = {
   'Mobile': ['HP', 'Stik kiri untuk bergerak. WPN membuka daftar senjata. Seret sisi kanan layar untuk melihat. Tahan FIRE (bisa diseret untuk membidik). RADIO membuka kekuatan yang jatuh di titik bidik Anda. Di kantor, seret untuk menggeser, cubit untuk zoom, putar dengan dua jari untuk memutar, ketuk untuk memilih dan memberi perintah.'],
   'Party and friends': ['Party dan teman', 'Tekan tombol <b>Party</b> di kanan atas lobi. Ketik nama, lalu <b>Buat party</b> dan berikan kode 5 huruf ke teman Anda, atau ketik kode mereka dan tekan <b>Gabung</b>. Satu party memuat sampai 4 pemain. Pemain yang paling lama di party menjadi pemimpin: saat pemimpin memilih <b>Battle co-op</b> atau <b>Jelajah bebas bersama</b>, game semua anggota ikut ke sana. Tambahkan nama teman ke daftar <b>Teman</b> untuk melihat siapa yang online dan mengundang mereka ke party Anda. Nama hanyalah nama panggilan, bukan akun.'],
   'Co-op battle': ['Battle co-op', 'Di party berisi dua sampai empat pemain, pemimpin memilih <b>Battle co-op</b>: semua melawan komputer di peta yang sama. Pengaturan Pertempuran bebas milik pemimpin yang dipakai (peta, tingkat kesulitan, tingkat kekerasan), dan musuh makin kuat untuk setiap pemain tambahan. Pemimpin memerintah pasukan dari kantor seperti biasa. Pemain lain menekan <b>Join the fight</b> dan bertempur berjalan kaki di samping pasukan itu: mereka belum bisa memerintah regu, memanggil kekuatan atau mengendarai kendaraan. Kalau gugur, Anda bisa turun lagi setelah 20 detik. Battle dimenangkan atau kalah bersama-sama, dan setiap pemain mendapat EXP dan SD masing-masing. Kalau pemimpin keluar, battle berakhir.'],
+  'Records': ['Rekor', 'Tekan <b>Rekor</b> di lobi. Selama Anda masuk, hasil terbaik Anda dikirim otomatis: gelombang tertinggi, skor arcade, kill terbanyak dalam satu battle, kemenangan Pertempuran bebas tercepat, putaran tercepat di tiap sirkuit, total EXP dan kerajaan terbesar di Dunia. Setiap papan punya daftar sepanjang masa dan daftar minggu ini (mulai lagi setiap Senin). <b>Keseluruhan</b> menjumlahkan peringkat Anda di semua papan. <b>Teman</b> hanya menampilkan nama di daftar teman Anda. Saat Anda melewati seseorang, atau rekor Anda dikalahkan, Anda diberi tahu di lobi.'],
+  'The World': ['Dunia', 'Tekan <b>Dunia</b> di lobi (Anda harus sudah masuk). Pilih negara yang masih bebas di peta sebagai tanah air dan beri nama apa saja. Emas dan prajurit datang setiap jam, juga saat Anda tidak bermain, sampai batas tertentu. Emas membeli <b>Ekonomi</b>, <b>Tentara</b> dan <b>Pertahanan</b>. Prajurit dipakai untuk menyerang: ketuk negara di sebelah wilayah Anda dan tekan <b>Serang</b>, lalu menangkan battle untuk merebutnya. Negara yang tidak dikuasai pemain adalah milik negara komputer. Ketuk pemain lain di daftar untuk menyatakan perang, menawarkan damai (24 jam tanpa serangan), aliansi, perjanjian dagang, atau mengirim emas. Kalau <b>tanah air</b> Anda direbut, Anda diduduki: sisa kerajaan Anda hilang. Rebut kembali dengan battle <b>pemberontakan</b> (setiap 20 menit), dengan menawarkan emas untuk kemerdekaan, atau dengan bertahan, karena perlawanan tumbuh sendiri dan mencapai 100% dalam kira-kira sehari. Setelah merdeka, semuanya mulai lagi dari awal, dengan perlindungan 12 jam.'],
   'Violence modes': ['Tingkat kekerasan', '<b>Normal</b>: hanya tubuh terlempar, tanpa darah. <b>Brutal</b>: Normal ditambah darah. <b>Realistis</b>: nyawa dua kali lipat, grafis lebih baik, anggota tubuh putus dengan tulang terlihat, genangan darah, dan organ dari ledakan jarak dekat. <b>Sadis</b>: Realistis dengan fisika gore lebih berat, lebih banyak organ, rusuk terlihat dan isi perut terburai. Semuanya fiksi.']
 };
 function i18nHow() {
@@ -22696,5 +22799,309 @@ function coTags() {
   };
   // a player who leaves the party in the middle of a battle takes their soldier with them
   const _pr = ptRender; ptRender = function () { if (COON() && CO.room) for (const id of [...CO.rx.keys()]) if (!CO.room.players.has(id)) coDropPeer(id); return _pr.apply(this, arguments); };
+}
+
+/* ================= RECORDS AND RANKINGS =================
+   Every logged-in player has one best result per board (highest wave, fastest lap on each track, and so on).
+   The game sends a result to the account server after a battle, a race or an arcade round; the server keeps
+   it only if it is better, and keeps a separate best for the current week. The Records screen shows each
+   board, an overall ranking (points for places on every board) and a filter for the names on your friends list.
+   The numbers are sent by the player's own game, so they are for friendly rivalry, not for prizes. */
+const RKD = { board: 'overall', week: false, friends: false, rows: null, err: '', busy: false, rivT: 0, cache: {} };
+const RKD_BOARDS = [
+  { k: 'overall', name: 'Overall', unit: 'pts', d: '10 points for 1st place on a board, then 8, 6, 5, 4, 3, 2, and 1 for everyone else on it.' },
+  { k: 'arc_waves', name: 'Waves', unit: 'wave', d: 'Highest wave reached in Arcade: Waves.' },
+  { k: 'arc_koth', name: 'King of the Hill', unit: 'pts', d: 'Most points in one King of the Hill match.' },
+  { k: 'arc_tank', name: 'Tank Brawl', unit: 'kills', d: 'Most tank kills in one Tank Brawl.' },
+  { k: 'arc_dogfight', name: 'Dogfight Arena', unit: 'kills', d: 'Most planes shot down in one Dogfight Arena.' },
+  { k: 'battle_kills', name: 'Kills in one battle', unit: 'kills', d: 'Most enemies killed by the President personally in one battle.' },
+  { k: 'battle_fast', name: 'Fastest victory', unit: 'time', d: 'Fastest Skirmish win on a Medium or Large army, Normal difficulty or harder.' },
+  { k: 'level', name: 'Experience', unit: 'exp', d: 'Total EXP earned.' }
+];
+const recBoards = () => RKD_BOARDS.concat(typeof RC_TRACKS !== 'undefined' ? Object.keys(RC_TRACKS).map(id => ({ k: 'lap_' + id, name: 'Lap: ' + RC_TRACKS[id].name, unit: 'lap', d: 'Fastest valid lap in a dry race on this track.' })) : [])
+  .concat([{ k: 'world_countries', name: 'Largest empire', unit: 'countries', d: 'Most countries held at one time in the online world.' }]);
+const recBoard = k => recBoards().find(b => b.k === k) || { k, name: k, unit: '' };
+function recFmt(b, v) {
+  if (b.unit === 'lap') { const m = Math.floor(v / 60), s = v - m * 60; return (m ? m + ':' + (s < 10 ? '0' : '') : '') + s.toFixed(3); }
+  if (b.unit === 'time') { const m = Math.floor(v / 60), s = Math.round(v - m * 60); return m + ':' + (s < 10 ? '0' : '') + s; }
+  return Math.round(v).toLocaleString();
+}
+const recCan = () => SB_ON() && accOn();
+// send one result. Nothing happens for a player who is not logged in.
+async function recSubmit(board, value) {
+  if (!recCan() || !(value > 0) || !isFinite(value)) return null;
+  try {
+    await accRefreshIfNeeded(); const r = await sbRpc('submit_record', { p_board: board, p_value: value, p_build: BUILD_ID });
+    if (r && r.improved) {
+      const b = recBoard(board); RKD.cache = {};
+      toast('New record', `${b.name}: ${recFmt(b, value)} · place ${r.rank} of ${r.total}`);
+      for (const n of (r.passed || []).slice(0, 3)) setTimeout(() => toast('Rival passed', `You passed ${n} on ${b.name}`), 900);
+    }
+    return r;
+  } catch (e) { return null; }
+}
+// who beat one of my records since I last looked (asked on the lobby, at most every few minutes)
+async function recRivals() {
+  if (!recCan() || Date.now() - RKD.rivT < 240000) return; RKD.rivT = Date.now();
+  try { const list = await sbRpc('my_rivals'); (list || []).slice(0, 3).forEach((x, i) => { const b = recBoard(x.board); setTimeout(() => toast('Record beaten', `${x.by} beat your ${b.name} record: ${recFmt(b, x.value)}`), 600 + i * 1500); }); } catch (e) { }
+}
+async function recLoad() {
+  const key = RKD.board + (RKD.week ? ':w' : ''); RKD.err = '';
+  if (!SB_ON()) { RKD.rows = []; RKD.err = 'Records need the SMFA account server, which is not set up in this copy of the game.'; recRender(); return; }
+  if (RKD.cache[key] && Date.now() - RKD.cache[key].at < 30000) { RKD.rows = RKD.cache[key].rows; recRender(); return; }
+  RKD.busy = true; RKD.rows = null; recRender();
+  try {
+    if (accOn()) await accRefreshIfNeeded();
+    const rows = RKD.board === 'overall' ? await sbRpc('get_overall', { p_week: RKD.week, p_limit: 50 }) : await sbRpc('get_board', { p_board: RKD.board, p_week: RKD.week, p_limit: 50 });
+    RKD.rows = rows || []; RKD.cache[key] = { at: Date.now(), rows: RKD.rows };
+  } catch (e) { RKD.rows = []; RKD.err = /function|schema|not find/i.test(e.message) ? 'The records tables are not on the account server yet. The President needs to run the records SQL file once.' : 'Could not load the records: ' + e.message; }
+  RKD.busy = false; if (key === RKD.board + (RKD.week ? ':w' : '')) recRender();
+}
+function recRender() {
+  const el = $('#recBody'); if (!el) return; const B = recBoard(RKD.board), all = recBoards();
+  let rows = RKD.rows || []; const fr = new Set((settings.friends || []).map(f => String(f).toLowerCase()));
+  if (RKD.friends) rows = rows.filter(r => r.me || fr.has(String(r.username).toLowerCase()));
+  const medal = r => r === 1 ? ' g' : r === 2 ? ' s' : r === 3 ? ' b' : '';
+  el.innerHTML = `<div class="recTabs">${all.map(b => `<button class="btn small${b.k === RKD.board ? ' primary' : ''}" data-b="${b.k}">${esc(b.name)}</button>`).join('')}</div>
+    <div class="recBar"><div class="seg"><button data-w="0" class="${RKD.week ? '' : 'on'}">All time</button><button data-w="1" class="${RKD.week ? 'on' : ''}">This week</button></div>
+      <div class="seg"><button data-f="0" class="${RKD.friends ? '' : 'on'}">Everyone</button><button data-f="1" class="${RKD.friends ? 'on' : ''}">Friends</button></div>
+      <p class="note">${esc(B.d || '')}</p></div>
+    ${RKD.err ? `<p class="onErr">${esc(RKD.err)}</p>` : ''}
+    ${RKD.busy ? '<div class="onSpin" style="margin:30px auto"></div>' : rows.length ? `<div class="recList">${rows.map((r, i) => `<div class="recRow${r.me ? ' me' : ''}"><b class="recRank${medal(RKD.friends ? i + 1 : +r.rank)}">${RKD.friends ? i + 1 : r.rank}</b><span class="recName">${esc(r.username)}${r.me ? ' <em>you</em>' : ''}</span>${RKD.board === 'overall' ? `<small>${r.firsts} first place${+r.firsts === 1 ? '' : 's'} · ${r.boards} board${+r.boards === 1 ? '' : 's'}</small><b class="recVal">${(+r.points).toLocaleString()} pts</b>` : `<small>${new Date(r.at).toLocaleDateString()}</small><b class="recVal">${recFmt(B, +r.value)}</b>`}</div>`).join('')}</div>`
+      : RKD.err ? '' : `<p class="note recEmpty">${RKD.friends ? (fr.size ? 'None of your friends is on this board yet.' : 'Your friends list is empty. Add friends on the Party screen.') : RKD.week ? 'Nobody has set a result this week yet. Be the first.' : 'Nobody is on this board yet. Be the first.'}</p>`}
+    <p class="note recFoot">${accOn() ? 'Your results are sent automatically while you are logged in. The week starts on Monday.' : 'Log in to put your own results on the boards. Without an account you can still look.'}</p>`;
+  el.querySelectorAll('[data-b]').forEach(b => b.onclick = () => { RKD.board = b.dataset.b; recLoad(); });
+  el.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { RKD.week = b.dataset.w === '1'; recLoad(); });
+  el.querySelectorAll('[data-f]').forEach(b => b.onclick = () => { RKD.friends = b.dataset.f === '1'; recRender(); });
+  if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+{
+  if ($('#goRecords')) $('#goRecords').addEventListener('click', () => { show('#scr-records'); recLoad(); });
+  // results worth keeping
+  const _af = arcFinish; arcFinish = function () { const A = G && G.arc, was = A && A.done, mode = A && A.mode, sc = G && G.arcScore; const r = _af.apply(this, arguments); if (A && !was && mode && sc > 0 && !(G.cfg && G.cfg.god)) recSubmit('arc_' + mode, sc); return r; };
+  const _re = rcRaceEnd; rcRaceEnd = function () { const r = _re.apply(this, arguments); try { const me = rcMe(); if (me && isFinite(me.best) && !RC.wet && TRK && TRK.id) recSubmit('lap_' + TRK.id, Math.round(me.best * 1000) / 1000); } catch (e) { } return r; };
+  const _eb = endBattle; endBattle = function (result) {
+    const g = G, fresh = g && !g.over; const r = _eb.apply(this, arguments);
+    if (fresh && g.over && g.cfg && !g.cfg.god && !g.cfg.tutorial && !g.cfg.freeroam && !g.noReward) {
+      const c = g.cfg; if (g.stats.presKills > 0) recSubmit('battle_kills', g.stats.presKills);
+      const plain = !c.campaign && !c.camp && !c.arcade && !c.coop && !c.online && !c.stealth && !c.dlc && !c.world;
+      if (result === 'win' && plain && (c.size === 'medium' || c.size === 'large') && ['normal', 'hard', 'nightmare'].includes(c.diff || 'normal') && !c.enemyBoost) recSubmit('battle_fast', Math.round(g.t));
+      try { setTimeout(() => recSubmit('level', prof().xp), 4000); } catch (e) { }
+    }
+    return r;
+  };
+  const _sh = show; show = function (sel) { const r = _sh.apply(this, arguments); if (sel === '#scr-title') setTimeout(recRivals, 2500); return r; };
+}
+
+/* ================= THE WORLD: the online campaign =================
+   Every logged-in player can found one country on the shared world map, give it a name, and make it grow:
+   income and soldiers build up every hour (also while away), gold buys upgrades, soldiers are spent on
+   invasions. Countries not held by a player belong to the computer nations.
+   A player whose homeland is taken is "occupied": the rest of their empire is lost, and they win the homeland
+   back by an uprising battle, by paying for independence, or simply by holding out (about a day). After that
+   everything starts again from the beginning.
+   Players can declare war, sign peace, form alliances, make trade deals and send gold.
+   All rules live on the account server (server/smfa3d_supabase_world.sql). This file only asks and shows.
+   Battles against other players' countries are fought against the computer for now, using the defender's
+   defence level; live player-against-player battles for the world are not built yet. */
+const WL = { st: null, sel: null, tab: 'land', open: '', err: '', busy: false, loaded: 0, poll: 0, back: false, vb: { x: 0, y: 0, w: 1000, h: 520 }, built: false, sent: {} };
+const WL_COL = ['#39d353', '#5aa6ff', '#f2b33d', '#ef4b4f', '#c77dff', '#3ad6c5', '#ff8fb1', '#b8e04a', '#ff9d4d', '#8ea0ff', '#e0d36a', '#6fe0a0'];
+const wlMe = () => WL.st && WL.st.me;
+const wlPlayer = n => WL.st ? WL.st.players.find(p => p.name === n) : null;
+const wlOwner = id => (WL.st && WL.st.countries[id]) || '';
+const wlMine = id => !!wlMe() && wlOwner(id) === wlMe().name;
+const wlNear = id => { const t = TBY[id]; return !!t && t.adj.some(a => wlMine(a)); };
+const wlHomeOf = id => WL.st ? WL.st.players.find(p => p.home === id) : null;
+const wlNpc = t => NATIONS[t.owner === 'smfa' ? 'geda' : t.owner] ? (t.owner === 'smfa' ? 'geda' : t.owner) : Object.keys(NATIONS).find(k => k !== 'smfa');
+function wlCost(id) { const t = TBY[id]; if (!t) return 0; if (wlOwner(id)) return 40; return Math.round((t.size === 'small' ? 20 : t.size === 'large' ? 45 : 30) * (t.cap ? 1.5 : 1)); }
+
+async function wlCall(fn, args, quiet) {
+  if (!SB_ON()) return null;
+  try { if (accOn()) await accRefreshIfNeeded(); const r = await sbRpc(fn, args || {}); if (r && r.ok === false) { WL.err = r.err || 'That did not work.'; if (!quiet) wlRender(); return r; } return r; }
+  catch (e) { WL.err = /function|schema|not find|relation/i.test(e.message) ? 'The world is not on the account server yet. The President needs to run the world SQL file once.' : 'Could not reach the world: ' + e.message; if (!quiet) wlRender(); return null; }
+}
+async function wlLoad(quiet) {
+  if (!SB_ON()) { WL.err = 'The world needs the SMFA account server, which is not set up in this copy of the game.'; wlRender(); return; }
+  if (!quiet) { WL.busy = true; wlRender(); }
+  const before = WL.err; if (!quiet) WL.err = '';
+  const st = await wlCall('world_state', {}, true);
+  WL.busy = false; if (st && st.players) { WL.st = st; WL.loaded = Date.now(); if (quiet) WL.err = before; if (!WL.sel) WL.sel = st.me ? st.me.home : (TERRS.find(t => t.name === 'Indonesia') || TERRS[0]).id; }
+  wlPaint(); wlRender();
+}
+async function wlDo(fn, args) { WL.err = ''; const r = await wlCall(fn, args); if (r && r.ok !== false) await wlLoad(true); return r; }
+
+/* ---------- the map ---------- */
+function wlSetVB() { const s = $('#wldMap'); if (s) s.setAttribute('viewBox', `${WL.vb.x} ${WL.vb.y} ${WL.vb.w} ${WL.vb.h}`); }
+function wlZoom(f, cx, cy) { const V = WL.vb, nw = clamp(V.w * f, 50, 1000), k = nw / V.w; V.x = cx - (cx - V.x) * k; V.y = cy - (cy - V.y) * k; V.w = nw; V.h = nw * 0.52; V.x = clamp(V.x, -V.w * 0.3, 1000 - V.w * 0.7); V.y = clamp(V.y, -V.h * 0.3, 520 - V.h * 0.7); wlSetVB(); }
+function wlFocus(id, w) { const t = TBY[id]; if (!t) return; const V = WL.vb; V.w = w || 300; V.h = V.w * 0.52; V.x = t.x - V.w / 2; V.y = t.y - V.h / 2; wlZoom(1, t.x, t.y); }
+function wlBuild() {
+  const svg = $('#wldMap'); if (!svg || WL.built) return; WL.built = true;
+  svg.innerHTML = `<rect x="-600" y="-400" width="2200" height="1400" fill="#0b1b26"/><g id="wldC">${TERRS.map(t => `<path class="cty" data-t="${t.id}" d="${t.d}" vector-effect="non-scaling-stroke"><title>${esc(t.name)}</title></path>`).join('')}</g><g id="wldM"></g>`;
+  const pt = e => { const r = svg.getBoundingClientRect(); return [WL.vb.x + (e.clientX - r.left) / r.width * WL.vb.w, WL.vb.y + (e.clientY - r.top) / r.height * WL.vb.h]; };
+  const pts = new Map(); let drag = null, pinch = null;
+  svg.addEventListener('pointerdown', e => { svg.setPointerCapture(e.pointerId); pts.set(e.pointerId, [e.clientX, e.clientY]); if (pts.size === 1) drag = { x: e.clientX, y: e.clientY, vx: WL.vb.x, vy: WL.vb.y, moved: false, tgt: e.target }; else if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), w: WL.vb.w, mid: pt({ clientX: (a[0] + b[0]) / 2, clientY: (a[1] + b[1]) / 2 }) }; drag = null; } });
+  svg.addEventListener('pointermove', e => {
+    if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, [e.clientX, e.clientY]);
+    if (pinch && pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); wlZoom(clamp(pinch.w * pinch.d / Math.max(10, d), 50, 1000) / WL.vb.w, pinch.mid[0], pinch.mid[1]); return; }
+    if (!drag) return; const r = svg.getBoundingClientRect(), dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 5) drag.moved = true;
+    if (drag.moved) { WL.vb.x = drag.vx - dx / r.width * WL.vb.w; WL.vb.y = drag.vy - dy / r.height * WL.vb.h; wlZoom(1, 0, 0); }
+  });
+  const up = e => { const d = drag; pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (d && !d.moved && pts.size === 0) { const el = d.tgt.closest && d.tgt.closest('[data-t]'); if (el) { WL.sel = el.dataset.t; WL.err = ''; wlPaint(); wlRender(); } } if (pts.size === 0) drag = null; };
+  svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
+  svg.addEventListener('wheel', e => { e.preventDefault(); const p = pt(e); wlZoom(e.deltaY > 0 ? 1.18 : 0.85, p[0], p[1]); }, { passive: false });
+  $('#wldIn').onclick = () => wlZoom(0.7, WL.vb.x + WL.vb.w / 2, WL.vb.y + WL.vb.h / 2);
+  $('#wldOut').onclick = () => wlZoom(1.4, WL.vb.x + WL.vb.w / 2, WL.vb.y + WL.vb.h / 2);
+  $('#wldFit').onclick = () => { WL.vb = { x: 0, y: 0, w: 1000, h: 520 }; wlSetVB(); };
+  $('#wldHome').onclick = () => wlFocus(wlMe() ? wlMe().home : WL.sel, 300);
+  wlSetVB();
+}
+function wlPaint() {
+  const g = $('#wldC'); if (!g) return; const me = wlMe(), free = me && !me.occupier;
+  for (const p of g.children) {
+    const id = p.dataset.t, t = TBY[id], own = wlOwner(id), pl = own && wlPlayer(own), mine = wlMine(id), sel = WL.sel === id;
+    p.setAttribute('fill', pl ? WL_COL[pl.color % WL_COL.length] : NATIONS[wlNpc(t)].css);
+    p.setAttribute('fill-opacity', pl ? '0.95' : '0.3');
+    const att = free && !mine && wlNear(id);
+    p.setAttribute('stroke', sel ? '#ffffff' : mine ? '#eaffea' : att ? '#f2b33d' : pl ? '#0b1b26' : '#0b1b26');
+    p.setAttribute('stroke-width', sel ? 2.6 : mine ? 1.6 : att ? 1.4 : 0.6);
+  }
+  // a star on every player's homeland
+  const m = $('#wldM'); if (m && WL.st) m.innerHTML = WL.st.players.map(p => { const t = TBY[p.home]; return t ? `<text x="${t.x}" y="${t.y + 3}" text-anchor="middle" font-size="9" fill="${p.occupier ? '#ef4b4f' : '#fff'}" stroke="#000" stroke-width="0.4" pointer-events="none">${p.occupier ? '✖' : '★'}</text>` : ''; }).join('');
+}
+
+/* ---------- the side panel ---------- */
+const wlNum = v => Math.round(v || 0).toLocaleString();
+function wlNews(l) {
+  const c = l.country && TBY[l.country] ? TBY[l.country].name : '', a = `<b>${esc(l.a)}</b>`, nat = k => NATIONS[k] ? NATIONS[k].short : k, b = `<b>${esc(NATIONS[l.b] ? nat(l.b) : l.b)}</b>`;
+  switch (l.kind) {
+    case 'join': return `${a} was founded in ${esc(c)}`;
+    case 'rename': return `${a} is now called ${b}`;
+    case 'conquered': return `${a} took ${esc(c)} from ${b}`;
+    case 'colony_taken': return `${a} took the colony ${esc(c)} from ${b}`;
+    case 'repelled': return `${b} held ${esc(c)} against ${a}`;
+    case 'colonized': return `${a} fell: its homeland ${esc(c)} is occupied by ${b}`;
+    case 'uprising_lost': return `An uprising in ${a} was put down by ${b}`;
+    case 'free': return `${a} is free again${l.n === 1 ? ' after an uprising' : l.n === 2 ? ': it paid ' + b + ' for independence' : l.n === 3 ? ': ' + b + ' let it go' : ': the occupation could not be held'}`;
+    case 'war': return `${a} declared war on ${b}`;
+    case 'betrayal': return `${a} broke its alliance with ${b} and declared war`;
+    case 'peace': return `${a} and ${b} signed a peace treaty`;
+    case 'alliance': return `${a} and ${b} formed an alliance`;
+    case 'trade': return `${a} and ${b} agreed a trade deal`;
+    case 'gift': return `${a} sent ${wlNum(l.n)} gold to ${b}`;
+  }
+  return esc(l.kind);
+}
+const wlAgo = at => { const s = Math.max(0, (Date.now() - new Date(at).getTime()) / 1000); return s < 90 ? 'just now' : s < 5400 ? Math.round(s / 60) + ' min ago' : s < 129600 ? Math.round(s / 3600) + ' h ago' : Math.round(s / 86400) + ' d ago'; };
+function wlRender() {
+  const el = $('#wldSide'); if (!el || $('#scr-world').hidden) return;
+  const st = WL.st, me = wlMe(), t = TBY[WL.sel]; let h = '';
+  if (WL.err) h += `<p class="onErr">${esc(WL.err)}</p>`;
+  if (!st) { el.innerHTML = h + (WL.busy ? '<div class="onSpin" style="margin:30px auto"></div>' : ''); return; }
+  // my country
+  if (!accOn()) h += `<div class="wlCard"><h3>Your country</h3><p class="note">Log in to found a country of your own. Without an account you can look at the map and the news.</p><button class="btn primary" id="wlLogin">Log in / Create account</button></div>`;
+  else if (!me) {
+    const ok = t && !t.cap && !wlOwner(t.id) && !wlHomeOf(t.id);
+    h += `<div class="wlCard"><h3>Found your country</h3><p class="note">Tap a country on the map that no player holds (capitals of the computer nations cannot be chosen). It becomes your homeland, with whatever name you give it.</p>
+      <div class="wlPick"><span>Homeland</span><b>${t ? esc(t.name) : 'none'}</b>${t && !ok ? `<em>${t.cap ? 'a capital' : 'taken'}</em>` : ''}</div>
+      <div class="row"><input class="tin" id="wlName" maxlength="24" placeholder="Name of your country"><button class="btn primary" id="wlJoin"${ok ? '' : ' disabled'}>Found it</button></div></div>`;
+  } else {
+    const up = (k, label, lvl, what) => `<div class="wlUp"><div><b>${label} <i>level ${lvl}</i></b><small>${what}</small></div>${lvl >= 10 ? '<em>max</em>' : `<button class="btn small" data-up="${k}"${me.gold >= 300 * lvl * lvl && !me.occupier ? '' : ' disabled'}>${wlNum(300 * lvl * lvl)} gold</button>`}</div>`;
+    h += `<div class="wlCard wlMine"><div class="wlHead"><i style="background:${WL_COL[me.color % WL_COL.length]}"></i><h3>${esc(me.name)}</h3><button class="btn small" id="wlRename">Rename</button></div>
+      <div class="wlStats"><div><small>Gold</small><b>${wlNum(me.gold)}</b><em>+${wlNum(me.income)} an hour</em></div><div><small>Soldiers</small><b>${wlNum(me.army)}</b><em>of ${wlNum(me.cap)}</em></div><div><small>Countries</small><b>${me.countries}</b><em>${TBY[me.home] ? esc(TBY[me.home].name) : ''}</em></div></div>
+      ${me.occupier ? `<div class="wlOcc"><b>Occupied by ${esc(me.occupier)}</b><p>Your empire is gone and your income is halved. Win the homeland back and you start again from the beginning.</p>
+        <div class="wlBar"><i style="width:${me.resist}%"></i></div><small>Resistance ${me.resist}%. It grows by itself, and at 100% you are free. A lost uprising still adds 20%.</small>
+        <div class="row"><button class="btn primary" id="wlRise"${me.uprising_in > 0 ? ' disabled' : ''}>${me.uprising_in > 0 ? `Uprising in ${Math.ceil(me.uprising_in / 60)} min` : 'Start an uprising'}</button><button class="btn" id="wlBuy">Offer gold for independence</button></div></div>`
+        : `${me.shield ? `<p class="note wlShield">Protected from invasion until ${new Date(me.shield).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' })}. Invading someone ends the protection.</p>` : ''}
+        ${up('econ', 'Economy', me.econ, '+40 gold an hour per level')}${up('mil', 'Army', me.mil, 'More soldiers, stronger troops in battle')}${up('def', 'Defences', me.def, 'Invaders face a stronger army')}`}</div>`;
+  }
+  // the selected country
+  if (t) {
+    const own = wlOwner(t.id), pl = own && wlPlayer(own), home = wlHomeOf(t.id), mine = wlMine(t.id), cost = wlCost(t.id);
+    let act = '';
+    if (me && !me.occupier && !mine) {
+      if (!wlNear(t.id)) act = `<p class="note">Not next to your land. You can only invade a neighbour of a country you hold.</p>`;
+      else if (pl && (pl.rel === 'peace' || pl.rel === 'alliance')) act = `<p class="note">${pl.rel === 'peace' ? 'You have a peace treaty with' : 'You are allied with'} ${esc(pl.name)}.</p>`;
+      else if (pl && pl.shield) act = `<p class="note">${esc(pl.name)} is protected from invasion for now.</p>`;
+      else act = `<button class="btn primary wlGo" id="wlAttack"${me.army >= cost ? '' : ' disabled'}>Invade ${esc(t.name)} · ${cost} soldiers</button>${me.army < cost ? `<p class="note">You have ${wlNum(me.army)} soldiers. More arrive every hour.</p>` : pl && pl.rel !== 'war' ? `<p class="note">Invading means war with ${esc(pl.name)}.</p>` : ''}`;
+    }
+    h += `<div class="wlCard"><h3>${esc(t.name)}${t.cap ? ' ★' : ''}</h3><p class="wlHeld">${pl ? `<i style="background:${WL_COL[pl.color % WL_COL.length]}"></i>${mine ? 'Yours' : 'Held by ' + esc(pl.name)}${home && home.name !== own ? ` · homeland of ${esc(home.name)}, occupied` : home ? ' · homeland' : ''}${pl && !mine ? ` · defences level ${pl.def}` : ''}` : `<i style="background:${NATIONS[wlNpc(t)].css}"></i>${esc(NATIONS[wlNpc(t)].name || NATIONS[wlNpc(t)].short)} · computer nation`}</p>${act}</div>`;
+  }
+  // tabs
+  const tabs = [['land', `Countries (${st.players.length})`], ['deals', `Offers${st.offers.filter(o => !o.mine).length ? ' (' + st.offers.filter(o => !o.mine).length + ')' : ''}`], ['news', 'News']];
+  h += `<div class="wlTabs">${tabs.map(([k, n]) => `<button class="btn small${WL.tab === k ? ' primary' : ''}" data-tab="${k}">${n}</button>`).join('')}</div>`;
+  if (WL.tab === 'land') {
+    h += st.players.length ? st.players.map((p, i) => {
+      const open = WL.open === p.name && me && !p.me, rel = p.rel === 'war' ? '<em class="war">at war</em>' : p.rel === 'peace' ? '<em class="peace">peace</em>' : p.rel === 'alliance' ? '<em class="ally">ally</em>' : '';
+      const mineCol = me && p.occupier === me.name;
+      return `<div class="wlRow${p.me ? ' me' : ''}" data-p="${esc(p.name)}"><b class="recRank${i === 0 ? ' g' : i === 1 ? ' s' : i === 2 ? ' b' : ''}">${i + 1}</b><i style="background:${WL_COL[p.color % WL_COL.length]}"></i><span><b>${esc(p.name)}</b>${p.me ? ' <em>you</em>' : ''}${rel}${p.trade ? '<em class="ally">trade</em>' : ''}<small>${p.occupier ? 'occupied by ' + esc(p.occupier) : p.online ? 'online now' : ''}</small></span><b class="recVal">${p.countries}</b></div>
+        ${open ? `<div class="wlActs">${mineCol ? `<button class="btn small" data-act="release">Let them go</button>` : ''}${p.rel !== 'war' && p.rel !== 'peace' ? `<button class="btn small danger" data-act="war">${p.rel === 'alliance' ? 'Break alliance' : 'Declare war'}</button>` : ''}${p.rel === 'war' ? `<button class="btn small" data-act="peace">Offer peace</button>` : ''}${p.rel !== 'war' && p.rel !== 'alliance' ? `<button class="btn small" data-act="alliance">Offer alliance</button>` : ''}${p.rel !== 'war' && !p.trade ? `<button class="btn small" data-act="trade">Offer trade</button>` : ''}<button class="btn small" data-act="gift">Send 100 gold</button><button class="btn small" data-act="see">Show on map</button></div>` : ''}`;
+    }).join('') : `<p class="note">No countries yet. Be the first to found one.</p>`;
+  } else if (WL.tab === 'deals') {
+    const what = o => o.kind === 'peace' ? 'a peace treaty (24 hours without attacks)' : o.kind === 'alliance' ? 'an alliance (+10% income each, no attacks)' : o.kind === 'trade' ? 'a trade deal (+15% income each for 48 hours)' : `${wlNum(o.gold)} gold for their independence`;
+    h += st.offers.length ? st.offers.map(o => `<div class="wlOffer"><p>${o.mine ? `You offered <b>${esc(o.to)}</b> ${what(o).replace('their', 'your')}` : `<b>${esc(o.from)}</b> offers ${what(o)}`}</p><div class="row">${o.mine ? `<button class="btn small" data-ans="${o.id}:0">Withdraw</button>` : `<button class="btn small primary" data-ans="${o.id}:1">Accept</button><button class="btn small" data-ans="${o.id}:0">Decline</button>`}</div></div>`).join('') : `<p class="note">No open offers. Tap a country in the Countries list to offer peace, an alliance or trade.</p>`;
+  } else h += st.log.length ? st.log.map(l => `<p class="wlLog"><small>${wlAgo(l.at)}</small>${wlNews(l)}</p>`).join('') : `<p class="note">Nothing has happened yet.</p>`;
+  el.innerHTML = h;
+  const on = (sel, fn) => { const e = el.querySelector(sel); if (e) e.onclick = fn; };
+  el.querySelectorAll('input').forEach(i => { i.onkeydown = e => e.stopPropagation(); });
+  on('#wlLogin', () => openLogin('#scr-world'));
+  on('#wlJoin', () => wlDo('world_join', { p_name: $('#wlName').value, p_home: WL.sel }));
+  on('#wlRename', () => { const box = el.querySelector('.wlHead'); box.innerHTML = `<input class="tin" id="wlNewName" maxlength="24" value="${esc(me.name)}"><button class="btn small primary" id="wlRenOk">Save · 200 gold</button>`; const i = $('#wlNewName'); i.onkeydown = e => e.stopPropagation(); i.focus(); $('#wlRenOk').onclick = () => wlDo('world_rename', { p_name: i.value }); });
+  el.querySelectorAll('[data-up]').forEach(b => b.onclick = () => wlDo('world_upgrade', { p_kind: b.dataset.up }));
+  on('#wlAttack', () => wlAttack(WL.sel));
+  on('#wlRise', () => wlAttack(null));
+  on('#wlBuy', () => { const g = Math.min(Math.floor(me.gold), Math.max(100, Math.round(me.gold / 2))); wlDo('world_offer', { p_name: me.occupier, p_kind: 'independence', p_gold: g }).then(r => { if (r && r.ok !== false) { toast('The World', `You offered ${me.occupier} ${wlNum(g)} gold for your independence`); WL.tab = 'deals'; wlRender(); } }); });
+  el.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { WL.tab = b.dataset.tab; wlRender(); });
+  el.querySelectorAll('.wlRow').forEach(r => r.onclick = () => { const n = r.dataset.p; WL.open = WL.open === n ? '' : n; const p = wlPlayer(n); if (p && (!me || p.me)) { WL.sel = p.home; wlFocus(p.home, 300); wlPaint(); } wlRender(); });
+  el.querySelectorAll('[data-act]').forEach(b => b.onclick = e => {
+    e.stopPropagation(); const n = WL.open, a = b.dataset.act, p = wlPlayer(n); if (!p) return;
+    if (a === 'see') { WL.sel = p.home; wlFocus(p.home, 300); wlPaint(); wlRender(); }
+    else if (a === 'war') wlDo('world_war', { p_name: n });
+    else if (a === 'release') wlDo('world_release', { p_name: n });
+    else if (a === 'gift') wlDo('world_offer', { p_name: n, p_kind: 'gift', p_gold: 100 });
+    else wlDo('world_offer', { p_name: n, p_kind: a, p_gold: 0 }).then(r => { if (r && r.ok !== false) toast('The World', `Offer sent to ${n}`); });
+  });
+  el.querySelectorAll('[data-ans]').forEach(b => b.onclick = () => { const [id, yes] = b.dataset.ans.split(':'); wlDo('world_answer', { p_offer: +id, p_accept: yes === '1' }); });
+  if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+
+/* ---------- battles ---------- */
+// ask the server for an invasion (or an uprising when id is null), then play it
+async function wlAttack(id) {
+  WL.err = ''; const r = await wlCall(id ? 'world_attack' : 'world_uprising', id ? { p_country: id } : {});
+  if (!r || r.ok === false) return;
+  const me = wlMe(), cid = id || me.home, t = TBY[cid], L = r.mil || 1, def = r.def || 1, pvp = r.kind !== 'npc';
+  let size = r.kind === 'uprising' ? 'small' : (t.size || 'medium'); if (size === 'large' && MOBILE()) size = 'medium';
+  const weather = t.theme === 'snow' ? pick(['snow', 'clear', 'fog']) : t.theme === 'desert' ? pick(['clear', 'clear', 'fog']) : pick(['clear', 'clear', 'rain', 'fog']);
+  WL.back = true;
+  startBattle({ msize: t.tiny || size === 'small' ? 'std' : 'big', diff: pvp && def >= 7 ? 'hard' : 'normal', mode: (settings.sk && settings.sk.mode) || 'normal', map: t.theme, enemy: NATIONS[r.npc] && r.npc !== 'smfa' ? r.npc : wlNpc(t), size, time: 'cycle', weather, hardcore: false,
+    up: { armor: Math.floor(L / 3), rifles: Math.floor((L - 1) / 3), recruit: Math.floor(L / 4), tanks: L >= 5 ? 1 : 0, air: L >= 8 ? 1 : 0 },
+    enemyBoost: pvp ? 1 + 0.07 * (def - 1) : t.cap ? 1.25 : 1,
+    world: { battle: r.battle, at: Date.now(), country: t.name, kind: r.kind, defender: r.defender || '' } });
+  if (G) setTimeout(() => { if (G && G.cfg.world && !G.over) banner(r.kind === 'uprising' ? `Uprising against ${r.defender}` : pvp ? `${me.name} invades ${t.name}, held by ${r.defender}` : `${me.name} invades ${t.name}`, 3.5, 'var(--amber)'); }, 2800);
+}
+// tell the server how it ended. The server refuses an answer that comes too soon after the start, so wait if needed.
+function wlReport(w, win) {
+  if (!w || WL.sent[w.battle]) return; WL.sent[w.battle] = true;
+  const wait = Math.max(0, 47000 - (Date.now() - w.at));
+  setTimeout(async () => {
+    const r = await wlCall('world_result', { p_battle: w.battle, p_win: !!win }, true);
+    if (r && r.ok !== false) toast('The World', w.kind === 'uprising' ? (win ? 'Your homeland is free. You start again from the beginning.' : 'The uprising failed, but the resistance grows.') : win ? `${w.country} is yours` : `The invasion of ${w.country} failed`);
+    else if (r && r.err) toast('The World', r.err);
+    if (!$('#scr-world').hidden) wlLoad(true);
+  }, wait);
+}
+function wlOpen() { show('#scr-world'); wlBuild(); wlPaint(); wlRender(); wlLoad(!!WL.st); if (wlMe() && !WL.focused) { WL.focused = true; wlFocus(wlMe().home, 420); } }
+{
+  if ($('#goWorld')) $('#goWorld').addEventListener('click', () => { SFX.init(); wlOpen(); });
+  const _eb = endBattle; endBattle = function (result) { const g = G, fresh = g && !g.over; const r = _eb.apply(this, arguments); if (fresh && g.over && g.cfg && g.cfg.world) { wlReport(g.cfg.world, result === 'win'); setTimeout(() => { if (G === g) $('#endBtn').textContent = 'Back to the world'; }, 2700); } return r; };
+  const _lb = leaveBattle; leaveBattle = function () { if (G && G.cfg && G.cfg.world && !G.over) wlReport(G.cfg.world, false); return _lb.apply(this, arguments); };
+  // after a world battle the player goes back to the world, not to the lobby
+  const _sh = show; show = function (sel) {
+    if (sel === '#scr-title' && WL.back) { WL.back = false; const r = _sh.call(this, '#scr-world'); wlBuild(); wlPaint(); wlRender(); wlLoad(true); return r; }
+    if (!(G && G.cfg && G.cfg.world)) WL.back = false;
+    return _sh.apply(this, arguments);
+  };
+  // while the World screen is open, look again every 25 seconds
+  setInterval(() => { const s = $('#scr-world'); if (s && !s.hidden && SB_ON() && Date.now() - WL.loaded > 24000 && !document.hidden) wlLoad(true); }, 5000);
 }
 </script>
