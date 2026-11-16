@@ -1314,6 +1314,49 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 .wlOffer{border:1px solid var(--line2);border-radius:8px;background:var(--panel2);padding:10px 14px;margin-bottom:6px}.wlOffer p{margin:0 0 8px;font-size:14px;line-height:1.45}
 .wlLog{margin:0;padding:8px 2px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13.5px;line-height:1.45;color:#cfd9c9}.wlLog small{display:block;color:var(--muted);font-size:11.5px}
 @media (max-width:760px){#scr-world .camp{grid-template-columns:1fr}.wlStats b{font-size:19px}}
+
+.wlAcc{font-size:12.5px!important;margin:-2px 0 10px!important}.wlAcc b{color:var(--fg)}
+/* ---------- The World 2: flags, blocs, ministers (v63) ---------- */
+.wlFlag{display:inline-block;flex:0 0 auto;border-radius:2px;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.4)}
+.wlRow{grid-template-columns:36px 21px minmax(0,1fr) auto}
+.wlHead .wlFlag{width:33px;height:22px}.wlHeld .wlFlag,.wlMembers .wlFlag,.wlBlocRow .wlFlag{width:21px;height:14px}
+.wlTitle{flex:1;min-width:0}.wlTitle h3{margin:0!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:20px!important}
+.wlTitle em{display:block;color:var(--amber);font-size:12.5px;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wlTitle small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.wlHead .btn.small{padding:7px 10px}
+.wlMotto{margin:-4px 0 10px;color:var(--amber);font-style:italic;font-size:13.5px}
+.wlRole{border:1px solid #2d6a8a;border-radius:6px;background:rgba(90,166,255,.07);padding:10px 12px;margin-bottom:10px}
+.wlRole b{display:block;color:#9fd0ff;font-size:14.5px}.wlRole span{display:block;font-size:13px;color:#cfd9c9;margin:3px 0 8px;line-height:1.45}
+.wlMins{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 0 10px}.wlMins small{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-right:4px}
+.wlMins span{display:inline-flex;align-items:center;gap:4px;padding:3px 4px 3px 9px;border:1px solid var(--line2);border-radius:20px;font-size:12.5px}
+.wlX{background:none;border:0;color:var(--muted);font-size:15px;line-height:1;width:22px;height:22px;border-radius:50%}.wlX:hover{background:rgba(239,75,79,.2);color:#ffb3b3}
+.wlOr{margin:10px 0 0!important;font-size:12.5px!important}
+.wlRev{color:var(--amber)!important;margin-top:6px!important}
+.wlWarn{color:#ffb3b3!important;font-size:12.5px!important;margin:0 4px 8px!important}
+.wlJoinRow{margin:-4px 4px 10px}
+.wlSub{margin:16px 0 8px!important}
+.wlFlagEd{border:1px solid var(--line2);border-radius:8px;background:rgba(0,0,0,.22);padding:12px;margin-bottom:10px}
+.wlFlagPrev{display:flex;justify-content:center;margin-bottom:10px}.wlFlagPrev .wlFlag{width:120px;height:80px;border-radius:4px}
+.wlFE{margin-bottom:10px}.wlFE small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.wlChips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.wlChip{display:grid;place-items:center;min-width:40px;height:32px;padding:0 6px;border:1px solid var(--line2);border-radius:6px;background:var(--panel2);color:var(--fg);font-size:16px}
+.wlChip.on{border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}.wlChip .wlFlag{width:30px;height:20px}
+.wlEm{font-family:'Segoe UI Symbol','Noto Sans Symbols',var(--ui);font-weight:800}
+.wlSlot{width:34px;height:34px;border-radius:6px;border:2px solid var(--line2)}.wlSlot.on{border-color:#fff;box-shadow:0 0 0 2px var(--green)}
+.wlSw{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.25)}.wlSw:hover{transform:scale(1.12)}
+.wlSep{width:1px;height:26px;background:var(--line2);margin:0 4px}
+.wlFlagEd .tin{width:100%;min-height:42px}.wlFlagEd .row{flex-wrap:wrap}
+.wlCase{border-color:var(--amber)}.wlCase h3{color:var(--amber)!important}
+.wlReason{margin:0 0 8px;padding:8px 12px;border-left:3px solid var(--amber);background:rgba(242,179,61,.07);font-style:italic;font-size:14px;line-height:1.45}
+.wlBloc{border-color:#8a6d1c}.wlMembers{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.wlMembers span{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 6px;border:1px solid var(--line2);border-radius:20px;font-size:13px;font-weight:600}
+.wlLeave small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}.wlLeave textarea{width:100%;min-height:72px;resize:vertical}
+.wlBlocRow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:9px 2px;border-bottom:1px solid rgba(255,255,255,.06)}.wlBlocRow b{font-size:14.5px;min-width:110px}
+.wlBlocRow span{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;color:#cfd9c9}
+.wlRules{margin-top:12px!important;font-size:12.5px!important}
+.wlTabs .btn{padding:9px 4px;font-size:12px}
+@media (max-width:420px){.wlTabs .btn{font-size:11px;letter-spacing:.04em}}
+.wlTabs .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}.wlTabs .btn i{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:rgba(255,255,255,.12);font:800 11px/18px var(--ui)}.wlTabs .btn i.hot{background:var(--amber);color:#2a1c00}.wlTabs .btn.primary i{background:rgba(0,0,0,.2)}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -1637,6 +1680,7 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
       <div><h3>Co-op battle</h3>In a party of two to four, the leader chooses <b>Co-op battle</b>: everyone fights the computer on the same map. The leader's Skirmish settings are used (map, difficulty, violence mode), and the enemy gets stronger with every extra player. The leader commands the army from the office as usual. The other players press <b>Join the fight</b> and fight on foot beside that army: they cannot command squads, call powers or drive vehicles yet. If you fall you can join again after 20 seconds. The battle is won or lost for everyone together, and each player earns their own EXP and SD. If the leader leaves, the battle ends.</div>
       <div><h3>Records</h3>Press <b>Records</b> on the lobby. While you are logged in, your best results are sent automatically: highest wave, arcade scores, most kills in one battle, fastest Skirmish win, fastest lap on each track, total EXP and the largest empire in the World. Each board has an all-time list and one for this week (it starts again every Monday). <b>Overall</b> adds up your places on every board. <b>Friends</b> shows only the names on your friends list. When you pass someone, or someone beats your record, you are told on the lobby.</div>
       <div><h3>The World</h3>Press <b>World</b> on the lobby (you need to be logged in). Choose a free country on the map as your homeland and give it any name. Gold and soldiers arrive every hour, also while you are away, up to a limit. Gold buys <b>Economy</b>, <b>Army</b> and <b>Defences</b>. Soldiers are spent on invasions: tap a country next to your land and press <b>Invade</b>, then win the battle to take it. Countries no player holds belong to the computer nations. Tap another player in the list to declare war, offer peace (24 hours without attacks), an alliance, a trade deal, or to send gold. If your <b>homeland</b> is taken you are occupied: the rest of your empire is lost. Win it back with an <b>uprising</b> battle (every 20 minutes), by offering gold for independence, or by holding out, because resistance grows by itself and reaches 100% in about a day. Once free, everything starts again from the beginning, with 12 hours of protection.</div>
+      <div><h3>Flags, blocs and ministers</h3>Press <b>Flag</b> on your country to design its flag (pattern, three colours, an emblem) and write a motto; every player sees it on the map. A <b>bloc</b> is a named alliance of up to 8 countries (founding one costs 500 gold): members cannot attack each other and earn 5% more income for every other member. Declaring war on a member is <b>betrayal</b>: you are thrown out, fined 30% of your gold, banned from blocs for 3 days, at war with every member (who attack you at half cost for 3 days), and up to half of your conquests go to them. To leave a bloc peacefully, write your reason for <b>the Court</b>: if a member attacked you or declined 3 of your offers you leave at once; otherwise the other members vote within 24 hours, and a rejected reason costs 30% of your gold and a 3-day ban. You can also serve another country as a <b>minister</b> (up to 4 per country): you give up your own country, share theirs, and can invade and start uprisings for it, while deals, upgrades and the flag stay with the President. Big moments, such as a war declared, peace signed or a homeland lost, play as a short scene the next time you open the World.</div>
       <div><h3>Victory animations</h3>Win a battle and your President plays a short victory scene. Choose it in <b>Barracks → Victory</b>, where every scene has a Preview button. Parade Salute is free for everyone. Plant the Flag comes with Soldier membership, Three-Point Landing with Sergeant, Don't Look Back with Captain, and The Long Corridor and The Throne Room with General. Every scene can also be unlocked in the Store with SD or Rp, and some come in bundles. Switch them off in Settings if you prefer.</div>
       <div><h3>Nuclear warhead</h3>In the campaign, buy it in the <b>Locker room</b> for $15,000. In skirmish, press <b>Buy nuke</b> in the office to buy it with $5,000 of war budget. In skirmish you can launch it whenever you like. In the campaign, the <b>Nuke</b> button only unlocks when you are losing (HQ below half, behind on tickets, or the enemy holds more flags). Type the launch code within 30 seconds; three wrong tries or running out of time locks it for 2 to 3 minutes. On success your squads fall back, and 9 seconds later the blast destroys every soldier, vehicle and building outside the two HQ bunkers. Both HQs are left badly damaged and the battle continues. One nuke per battle. Very rarely, a losing enemy saves up and nukes you: sirens give you 12 seconds to pull your troops back, and the enemy usually forgets to save its own.</div>
       <div><h3>Story</h3>The campaign tells the story of the Smiley Face Army's return from exile. As you conquer countries, 3D cutscenes play and <b>story missions</b> unlock in the campaign panel: defend the embassy, rescue a hostage, escort a convoy, kill a general, and storm the Emperor's capital. Heroes such as Reyes (sniper), Okoro (engineer) and Brandt (ace pilot) join and fight in your campaign battles. Tap or press Enter to move through a cutscene, or Skip. Replay them from the campaign panel.</div>
@@ -12466,7 +12510,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = 'c42d068e'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = 'a5556d76'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21512,6 +21556,8 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '63', date: '2026-11-16', name: 'Flags, blocs and ministers', items: ['Design your country\'s flag (pattern, three colours, an emblem) and give it a motto. Every country\'s flag now flies on its homeland on the World map.', 'Blocs: named alliances of up to 8 countries. Members cannot attack each other and earn more income together. Betraying a member is punished at once: thrown out, fined, banned, at war with every member, and stripped of conquests.', 'The Court: to leave a bloc you write a reason. The facts decide first; otherwise the other members vote within 24 hours.', 'Ministers: serve a friend\'s country instead of your own. Ministers can invade for it; the President keeps the deals, upgrades and flag.', 'Wars, peace treaties, a fallen homeland and other big moments now play as a short 3D scene.'] },
+  { v: '62', date: '2026-11-15', name: 'Your country on every device', items: ['Your country in the World belongs to your account: log in with the same username and password on any browser, phone or computer and you play the same country.', 'The World now loads your country straight after you log in, and shows which account it is saved to.'] },
   { v: '61', date: '2026-11-15', name: 'Records and the World', items: ['Records: your best results are kept on boards that every player with an account shares. There is an all-time list, one for this week, an overall ranking and a Friends filter. You are told when you pass someone or when your record is beaten.', 'The World, a new online campaign: found your own country on the shared world map, name it, and make it grow. Gold and soldiers arrive every hour, also while you are away.', 'Invade the countries next to yours, declare war, sign peace, form alliances, make trade deals or send gold to other players.', 'If your homeland is taken you are occupied. Win it back with an uprising, with gold, or by holding out; then everything starts again from the beginning.', 'The World tile replaces Online on the lobby. One-against-one online battles are now under Modes.'] },
   { v: '60', date: '2026-11-15', name: 'Co-op battle', items: ['A party of two to four can now fight the computer together: the leader chooses Co-op battle on the Party screen.', 'The leader commands the army with their Skirmish settings. The other players join the fight on foot beside it, each as their own President, with their name above them.', 'The enemy gets stronger with every extra player. Everyone wins or loses together and earns their own EXP and SD.', 'First version: guests cannot command squads, call powers or drive vehicles yet.'] },
   { v: '59', date: '2026-11-15', name: 'Party and friends', items: ['A Party button on the lobby: start a party, share the 5-letter code, and up to four players are in it together.', 'The party leader can take everyone into free roam at once: same city, same room.', 'A friends list shows who is online, and you can invite an online friend into your party.', 'This is the first part of playing together. Co-op battles are next and are not in the game yet.'] },
@@ -21648,7 +21694,7 @@ const I18N = {
     'The Long War': 'The Long War', 'Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.': 'Tiga puluh bab dalam lima babak. Pilihan Anda menentukan akhir perang: Sang Pembebas, Sang Penakluk, atau Sang Pendamai.',
     'World event': 'Peristiwa dunia', 'Break the treaty?': 'Langgar perjanjian?', 'Attack anyway': 'Tetap serang', 'Keep the peace': 'Jaga perdamaian', 'Cutscenes': 'Cutscene',
     'Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.': 'Buka perlengkapan dengan naik level lewat EXP, membelinya dengan Smiley Dollars (SD), atau meraih medali. Keduanya didapat di setiap battle.',
-    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
+    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
     // what's new
     'The lobby': 'Lobi', 'Lighter battles': 'Battle lebih ringan', 'Game health': 'Kesehatan game', 'Hit feel': 'Rasa pukulan', 'Real people and car damage': 'Orang realistis dan kerusakan mobil', 'Online version lock': 'Kunci versi online', 'F1 polish and replays': 'Polesan F1 dan replay'
   }
@@ -21904,7 +21950,7 @@ Object.assign(I18N.id, {
   'Your results are sent automatically while you are logged in. The week starts on Monday.': 'Hasil Anda dikirim otomatis selama Anda masuk. Minggu dimulai hari Senin.', 'Log in to put your own results on the boards. Without an account you can still look.': 'Masuk untuk menaruh hasil Anda di papan. Tanpa akun Anda tetap bisa melihat.',
   'Your country': 'Negara Anda', 'Found your country': 'Dirikan negara Anda', 'Found it': 'Dirikan', 'Homeland': 'Tanah air', 'Name of your country': 'Nama negara Anda', 'Gold': 'Emas', 'Countries': 'Negara',
   'Economy': 'Ekonomi', 'Army': 'Tentara', 'Defences': 'Pertahanan', '+40 gold an hour per level': '+40 emas per jam tiap level', 'More soldiers, stronger troops in battle': 'Lebih banyak prajurit, pasukan lebih kuat di battle', 'Invaders face a stronger army': 'Penyerang menghadapi pasukan yang lebih kuat',
-  'Log in to found a country of your own. Without an account you can look at the map and the news.': 'Masuk untuk mendirikan negara Anda sendiri. Tanpa akun Anda bisa melihat peta dan berita.',
+  'Log in to found a country of your own, or to play the country you already made on another browser or device. Without an account you can look at the map and the news.': 'Masuk untuk mendirikan negara Anda sendiri, atau untuk memainkan negara yang sudah Anda buat di browser atau perangkat lain. Tanpa akun Anda bisa melihat peta dan berita.',
   'Tap a country on the map that no player holds (capitals of the computer nations cannot be chosen). It becomes your homeland, with whatever name you give it.': 'Ketuk negara di peta yang belum dikuasai pemain (ibu kota negara komputer tidak bisa dipilih). Negara itu menjadi tanah air Anda, dengan nama apa pun yang Anda beri.',
   'Your empire is gone and your income is halved. Win the homeland back and you start again from the beginning.': 'Kerajaan Anda hilang dan pemasukan Anda dipotong setengah. Rebut kembali tanah air, lalu Anda mulai lagi dari awal.',
   'Start an uprising': 'Mulai pemberontakan', 'Offer gold for independence': 'Tawarkan emas untuk kemerdekaan', 'Not next to your land. You can only invade a neighbour of a country you hold.': 'Tidak bersebelahan dengan wilayah Anda. Anda hanya bisa menyerang tetangga dari negara yang Anda kuasai.',
@@ -21913,6 +21959,20 @@ Object.assign(I18N.id, {
   'No open offers. Tap a country in the Countries list to offer peace, an alliance or trade.': 'Tidak ada tawaran terbuka. Ketuk sebuah negara di daftar Negara untuk menawarkan damai, aliansi atau dagang.', 'Nothing has happened yet.': 'Belum terjadi apa-apa.', 'No countries yet. Be the first to found one.': 'Belum ada negara. Jadilah yang pertama mendirikan.',
   'The world is not on the account server yet. The President needs to run the world SQL file once.': 'Dunia belum ada di server akun. Presiden perlu menjalankan file SQL dunia satu kali.', 'The records tables are not on the account server yet. The President needs to run the records SQL file once.': 'Tabel rekor belum ada di server akun. Presiden perlu menjalankan file SQL rekor satu kali.',
   'Drag to pan · scroll or pinch to zoom · tap a country': 'Seret untuk menggeser · gulir atau cubit untuk zoom · ketuk sebuah negara',
+  // the world 2: flags, blocs, ministers
+  'Flag': 'Bendera', 'Pattern': 'Pola', 'Colours': 'Warna', 'Emblem': 'Lambang', 'Motto': 'Semboyan', 'Up to 48 characters': 'Sampai 48 karakter', 'Save flag and motto': 'Simpan bendera dan semboyan',
+  'Plain': 'Polos', 'Two bands': 'Dua pita', 'Three bands': 'Tiga pita', 'Three columns': 'Tiga kolom', 'Cross': 'Salib', 'Diagonal': 'Diagonal', 'Stripes and canton': 'Garis dan kanton',
+  'You are a minister': 'Anda seorang menteri', 'Leave the government': 'Keluar dari pemerintahan', 'Confirm: leave the government': 'Konfirmasi: keluar dari pemerintahan', 'Ministers': 'Menteri', 'Government': 'Pemerintahan',
+  'Join as minister': 'Gabung sebagai menteri', 'Confirm: ask to join': 'Konfirmasi: minta bergabung', 'Betray the bloc': 'Khianati blok', 'Confirm: betray the bloc': 'Konfirmasi: khianati blok', 'revenge': 'balas dendam',
+  'Blocs': 'Blok', 'Your bloc': 'Blok Anda', 'Found a bloc': 'Dirikan blok', 'Name of the bloc': 'Nama blok', 'All blocs': 'Semua blok', 'No blocs yet.': 'Belum ada blok.', 'Leave the bloc': 'Keluar dari blok', 'Send to the Court': 'Kirim ke Pengadilan',
+  'Why do you want to leave?': 'Mengapa Anda ingin keluar?', '10 to 300 characters': '10 sampai 300 karakter', 'Good reason': 'Alasan baik', 'Bad reason': 'Alasan buruk', 'You have voted.': 'Anda sudah memilih.', 'Join': 'Gabung',
+  'Members cannot attack each other, and each earns 5% more income for every other member.': 'Anggota tidak bisa saling menyerang, dan masing-masing mendapat 5% pemasukan lebih untuk setiap anggota lain.',
+  'A named alliance of up to 8 countries. Members cannot attack each other and earn 5% more income for every other member. Invite countries from the Countries list.': 'Aliansi bernama berisi sampai 8 negara. Anggota tidak bisa saling menyerang dan mendapat 5% pemasukan lebih untuk setiap anggota lain. Undang negara dari daftar Negara.',
+  'The Court looks at the facts first: if a member attacked you, or declined 3 of your offers, you leave at once. Otherwise the other members vote within 24 hours. A rejected reason costs 30% of your gold and a 3-day ban from blocs.': 'Pengadilan melihat fakta lebih dulu: kalau seorang anggota menyerang Anda, atau menolak 3 tawaran Anda, Anda langsung keluar. Kalau tidak, anggota lain memilih dalam 24 jam. Alasan yang ditolak dikenai 30% emas Anda dan larangan masuk blok selama 3 hari.',
+  'Betraying your bloc (declaring war on a member) is punished at once: thrown out, fined 30% of your gold, banned from blocs for 3 days, at war with every member, who attack you at half cost for 3 days, and up to half of your conquests go to them.': 'Mengkhianati blok (menyatakan perang pada anggota) langsung dihukum: dikeluarkan, didenda 30% emas, dilarang masuk blok selama 3 hari, berperang dengan semua anggota yang menyerang Anda dengan setengah biaya selama 3 hari, dan sampai separuh wilayah taklukan Anda diberikan kepada mereka.',
+  'Revenge on a betrayer: half the soldiers, and their defences count 2 levels lower.': 'Balas dendam pada pengkhianat: setengah prajurit, dan pertahanan mereka dihitung 2 level lebih rendah.',
+  "Or serve a friend's country as a minister: press Join as minister on it in the Countries list.": 'Atau abdikan diri di negara teman sebagai menteri: tekan Gabung sebagai menteri di daftar Negara.',
+  'Only the President can answer.': 'Hanya Presiden yang bisa menjawab.', 'The Court': 'Pengadilan', 'The facts settle it: you have left the bloc.': 'Faktanya jelas: Anda sudah keluar dari blok.', 'Your reason is with the Court. The other members vote within 24 hours.': 'Alasan Anda sedang di Pengadilan. Anggota lain memilih dalam 24 jam.',
   // pause, end of battle
   'Save battle': 'Simpan battle', 'Retreat to menu': 'Mundur ke menu', 'VICTORY': 'MENANG', 'DEFEAT': 'KALAH', '▶ Watch highlights': '▶ Tonton cuplikan', 'Full replay': 'Tayangan ulang penuh', 'Battle saved': 'Battle tersimpan',
   // battle messages
@@ -21977,10 +22037,14 @@ I18N.pat.push(
   [/^Co-op with (.+)\. You command the army; they fight beside it\.$/, m => `Co-op bersama ${m[1]}. Anda memerintah pasukan; mereka bertempur di sampingnya.`],
   [/^Countries \((\d+)\)$/, m => `Negara (${m[1]})`], [/^Offers \((\d+)\)$/, m => `Tawaran (${m[1]})`],
   [/^Invade (.+) · (\d+) soldiers$/, m => `Serang ${m[1]} · ${m[2]} prajurit`], [/^([\d,.]+) gold$/, m => `${m[1]} emas`], [/^\+([\d,.]+) an hour$/, m => `+${m[1]} per jam`], [/^of ([\d,.]+)$/, m => `dari ${m[1]}`], [/^level (\d+)$/, m => `level ${m[1]}`],
+  [/^Saved to your account (.+)\. Log in with the same username and password on any browser or device to play this country there\.$/, m => `Tersimpan di akun ${m[1]}. Masuk dengan nama pengguna dan kata sandi yang sama di browser atau perangkat mana pun untuk memainkan negara ini di sana.`],
   [/^Occupied by (.+)$/, m => `Diduduki oleh ${m[1]}`], [/^occupied by (.+)$/, m => `diduduki oleh ${m[1]}`], [/^Uprising in (\d+) min$/, m => `Pemberontakan dalam ${m[1]} mnt`],
   [/^Resistance (\d+)%\. It grows by itself, and at 100% you are free\. A lost uprising still adds 20%\.$/, m => `Perlawanan ${m[1]}%. Tumbuh dengan sendirinya, dan pada 100% Anda merdeka. Pemberontakan yang gagal tetap menambah 20%.`],
   [/^You passed (.+) on (.+)$/, m => `Anda melewati ${m[1]} di ${i18nT(m[2])}`], [/^(.+) beat your (.+) record: (.+)$/, m => `${m[1]} mengalahkan rekor ${i18nT(m[2])} Anda: ${m[3]}`],
   [/^(.+) is yours$/, m => `${m[1]} sekarang milik Anda`], [/^The invasion of (.+) failed$/, m => `Serangan ke ${m[1]} gagal`], [/^Offer sent to (.+)$/, m => `Tawaran dikirim ke ${m[1]}`],
+  [/^Invite to (.+)$/, m => `Undang ke ${m[1]}`], [/^The Court: (.+) wants to leave$/, m => `Pengadilan: ${m[1]} ingin keluar`], [/^Found it · 500 gold$/, () => 'Dirikan · 500 emas'],
+  [/^(.+) asks to join your government as a minister(.*)\.$/, m => `${m[1]} minta bergabung dengan pemerintahan Anda sebagai menteri${m[2] ? ' (ia melepaskan negaranya sendiri)' : ''}.`],
+  [/^Invitation sent to (.+)$/, m => `Undangan dikirim ke ${m[1]}`], [/^Request sent to (.+)$/, m => `Permintaan dikirim ke ${m[1]}`],
   [/^(.+) joined$/, m => `${m[1]} bergabung`],
   [/^(.+) invites you to a party$/, m => `${m[1]} mengundang Anda ke party`],
   [/^Invitation sent to (.+)$/, m => `Undangan dikirim ke ${m[1]}`],
@@ -22039,6 +22103,7 @@ I18N.how = {
   'Co-op battle': ['Battle co-op', 'Di party berisi dua sampai empat pemain, pemimpin memilih <b>Battle co-op</b>: semua melawan komputer di peta yang sama. Pengaturan Pertempuran bebas milik pemimpin yang dipakai (peta, tingkat kesulitan, tingkat kekerasan), dan musuh makin kuat untuk setiap pemain tambahan. Pemimpin memerintah pasukan dari kantor seperti biasa. Pemain lain menekan <b>Join the fight</b> dan bertempur berjalan kaki di samping pasukan itu: mereka belum bisa memerintah regu, memanggil kekuatan atau mengendarai kendaraan. Kalau gugur, Anda bisa turun lagi setelah 20 detik. Battle dimenangkan atau kalah bersama-sama, dan setiap pemain mendapat EXP dan SD masing-masing. Kalau pemimpin keluar, battle berakhir.'],
   'Records': ['Rekor', 'Tekan <b>Rekor</b> di lobi. Selama Anda masuk, hasil terbaik Anda dikirim otomatis: gelombang tertinggi, skor arcade, kill terbanyak dalam satu battle, kemenangan Pertempuran bebas tercepat, putaran tercepat di tiap sirkuit, total EXP dan kerajaan terbesar di Dunia. Setiap papan punya daftar sepanjang masa dan daftar minggu ini (mulai lagi setiap Senin). <b>Keseluruhan</b> menjumlahkan peringkat Anda di semua papan. <b>Teman</b> hanya menampilkan nama di daftar teman Anda. Saat Anda melewati seseorang, atau rekor Anda dikalahkan, Anda diberi tahu di lobi.'],
   'The World': ['Dunia', 'Tekan <b>Dunia</b> di lobi (Anda harus sudah masuk). Pilih negara yang masih bebas di peta sebagai tanah air dan beri nama apa saja. Emas dan prajurit datang setiap jam, juga saat Anda tidak bermain, sampai batas tertentu. Emas membeli <b>Ekonomi</b>, <b>Tentara</b> dan <b>Pertahanan</b>. Prajurit dipakai untuk menyerang: ketuk negara di sebelah wilayah Anda dan tekan <b>Serang</b>, lalu menangkan battle untuk merebutnya. Negara yang tidak dikuasai pemain adalah milik negara komputer. Ketuk pemain lain di daftar untuk menyatakan perang, menawarkan damai (24 jam tanpa serangan), aliansi, perjanjian dagang, atau mengirim emas. Kalau <b>tanah air</b> Anda direbut, Anda diduduki: sisa kerajaan Anda hilang. Rebut kembali dengan battle <b>pemberontakan</b> (setiap 20 menit), dengan menawarkan emas untuk kemerdekaan, atau dengan bertahan, karena perlawanan tumbuh sendiri dan mencapai 100% dalam kira-kira sehari. Setelah merdeka, semuanya mulai lagi dari awal, dengan perlindungan 12 jam.'],
+  'Flags, blocs and ministers': ['Bendera, blok dan menteri', 'Tekan <b>Bendera</b> di negara Anda untuk merancang benderanya (pola, tiga warna, lambang) dan menulis semboyan; semua pemain melihatnya di peta. <b>Blok</b> adalah aliansi bernama berisi sampai 8 negara (mendirikannya seharga 500 emas): anggota tidak bisa saling menyerang dan mendapat 5% pemasukan lebih untuk setiap anggota lain. Menyatakan perang pada anggota adalah <b>pengkhianatan</b>: Anda dikeluarkan, didenda 30% emas, dilarang masuk blok selama 3 hari, berperang dengan semua anggota (yang menyerang Anda dengan setengah biaya selama 3 hari), dan sampai separuh wilayah taklukan Anda diberikan kepada mereka. Untuk keluar dari blok secara damai, tulis alasan Anda untuk <b>Pengadilan</b>: kalau seorang anggota menyerang Anda atau menolak 3 tawaran Anda, Anda langsung keluar; kalau tidak, anggota lain memilih dalam 24 jam, dan alasan yang ditolak dikenai 30% emas serta larangan 3 hari. Anda juga bisa mengabdi pada negara lain sebagai <b>menteri</b> (sampai 4 per negara): Anda melepaskan negara sendiri, berbagi negara mereka, dan bisa menyerang serta memulai pemberontakan untuknya, sedangkan perjanjian, peningkatan dan bendera tetap urusan Presiden. Momen besar, seperti perang dinyatakan, perdamaian ditandatangani atau tanah air jatuh, diputar sebagai adegan pendek saat Anda membuka Dunia berikutnya.'],
   'Violence modes': ['Tingkat kekerasan', '<b>Normal</b>: hanya tubuh terlempar, tanpa darah. <b>Brutal</b>: Normal ditambah darah. <b>Realistis</b>: nyawa dua kali lipat, grafis lebih baik, anggota tubuh putus dengan tulang terlihat, genangan darah, dan organ dari ledakan jarak dekat. <b>Sadis</b>: Realistis dengan fisika gore lebih berat, lebih banyak organ, rusuk terlihat dan isi perut terburai. Semuanya fiksi.']
 };
 function i18nHow() {
@@ -22926,7 +22991,7 @@ async function wlLoad(quiet) {
   const before = WL.err; if (!quiet) WL.err = '';
   const st = await wlCall('world_state', {}, true);
   WL.busy = false; if (st && st.players) { WL.st = st; WL.loaded = Date.now(); if (quiet) WL.err = before; if (!WL.sel) WL.sel = st.me ? st.me.home : (TERRS.find(t => t.name === 'Indonesia') || TERRS[0]).id; }
-  wlPaint(); wlRender();
+  wlPaint(); wlRender(); if (st && st.players) try { wlScene(st); } catch (e) { console.warn('world scene', e); }
 }
 async function wlDo(fn, args) { WL.err = ''; const r = await wlCall(fn, args); if (r && r.ok !== false) await wlLoad(true); return r; }
 
@@ -22965,9 +23030,35 @@ function wlPaint() {
     p.setAttribute('stroke', sel ? '#ffffff' : mine ? '#eaffea' : att ? '#f2b33d' : pl ? '#0b1b26' : '#0b1b26');
     p.setAttribute('stroke-width', sel ? 2.6 : mine ? 1.6 : att ? 1.4 : 0.6);
   }
-  // a star on every player's homeland
-  const m = $('#wldM'); if (m && WL.st) m.innerHTML = WL.st.players.map(p => { const t = TBY[p.home]; return t ? `<text x="${t.x}" y="${t.y + 3}" text-anchor="middle" font-size="9" fill="${p.occupier ? '#ef4b4f' : '#fff'}" stroke="#000" stroke-width="0.4" pointer-events="none">${p.occupier ? '✖' : '★'}</text>` : ''; }).join('');
+  // each player's flag on their homeland (a red cross over it while it is occupied)
+  const m = $('#wldM'); if (m && WL.st) m.innerHTML = WL.st.players.map(p => { const t = TBY[p.home]; if (!t) return ''; const w = 12, h = 8;
+    return `<g pointer-events="none"><line x1="${t.x - w / 2}" y1="${t.y - h / 2}" x2="${t.x - w / 2}" y2="${t.y + h / 2 + 3}" stroke="#2a2a2a" stroke-width="0.7"/>${wlFlagSvg(wlFlagOf(p), w, h, t.x - w / 2, t.y - h / 2)}${p.occupier ? `<text x="${t.x}" y="${t.y + 0.5}" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#ef4b4f" stroke="#000" stroke-width="0.5" font-weight="800">✖</text>` : ''}</g>`; }).join('');
 }
+
+/* ---------- flags ---------- */
+const WL_FLAG_P = [['plain', 'Plain'], ['h2', 'Two bands'], ['h3', 'Three bands'], ['v3', 'Three columns'], ['cross', 'Cross'], ['diag', 'Diagonal'], ['canton', 'Stripes and canton']];
+const WL_FLAG_E = [['', 'None'], ['star', '★'], ['smile', '>:)'], ['crown', '♛'], ['sun', '☀'], ['moon', '☾'], ['anchor', '⚓'], ['bolt', '⚡'], ['skull', '☠']];
+const WL_FLAG_C = ['#c8102e', '#e8590c', '#f2b33d', '#ffd400', '#39d353', '#0b7a3b', '#3ad6c5', '#5aa6ff', '#1f3d94', '#7a3fc0', '#ff8fb1', '#ffffff', '#9aa3a8', '#111111'];
+const wlFlagOf = p => { const f = p && p.flag; return f && f.p && Array.isArray(f.c) && f.c.length === 3 ? f : { p: 'h2', c: [WL_COL[((p && p.color) || 0) % WL_COL.length], '#0b120c', '#ffffff'], e: '' }; };
+// a flag as SVG, drawn in a 30 x 20 box
+function wlFlagSvg(f, w, h, x, y) {
+  const [a, b, c] = f.c.map(v => /^#[0-9a-f]{6}$/i.test(v) ? v : '#888888'), R = (rx, ry, rw, rh, col) => `<rect x="${rx}" y="${ry}" width="${rw}" height="${rh}" fill="${col}"/>`;
+  let s = '';
+  switch (f.p) {
+    case 'h2': s = R(0, 0, 30, 10, a) + R(0, 10, 30, 10, b); break;
+    case 'h3': s = R(0, 0, 30, 7, a) + R(0, 6.66, 30, 7, b) + R(0, 13.33, 30, 6.67, c); break;
+    case 'v3': s = R(0, 0, 10, 20, a) + R(10, 0, 10, 20, b) + R(20, 0, 10, 20, c); break;
+    case 'cross': s = R(0, 0, 30, 20, a) + R(8, 0, 6, 20, b) + R(0, 7, 30, 6, b) + R(9.5, 0, 3, 20, c) + R(0, 8.5, 30, 3, c); break;
+    case 'diag': s = `<polygon points="0,0 30,0 0,20" fill="${a}"/><polygon points="30,0 30,20 0,20" fill="${b}"/><polygon points="25,0 30,0 5,20 0,20" fill="${c}"/>`; break;
+    case 'canton': for (let i = 0; i < 5; i++) s += R(0, i * 4, 30, 4, i % 2 ? b : a); s += R(0, 0, 13, 10, c); break;
+    default: s = R(0, 0, 30, 20, a);
+  }
+  const em = { star: '★', smile: '>:)', crown: '♛', sun: '☀', moon: '☾', anchor: '⚓', bolt: '⚡', skull: '☠' }[f.e];
+  if (em) { const inC = f.p === 'canton', cx = inC ? 6.5 : f.p === 'cross' ? 11 : 15, cy = inC ? 5 : 10, fs = inC ? 7 : f.e === 'smile' ? 7 : 11, col = inC ? (c === '#ffffff' ? '#111' : '#fff') : '#fff';
+    s += `<text x="${cx}" y="${cy}" font-size="${fs}" text-anchor="middle" dominant-baseline="central" fill="${col}" stroke="rgba(0,0,0,.45)" stroke-width="${f.e === 'smile' ? 0.5 : 0.35}" font-weight="800" font-family="Segoe UI Symbol,Noto Sans Symbols,sans-serif">${esc(em)}</text>`; }
+  return `<svg class="wlFlag" ${x !== undefined ? `x="${x}" y="${y}" ` : ''}width="${w}" height="${h}" viewBox="0 0 30 20" preserveAspectRatio="none" aria-hidden="true">${s}<rect x="0.15" y="0.15" width="29.7" height="19.7" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="0.3"/></svg>`;
+}
+const wlFlagFor = name => wlFlagSvg(wlFlagOf(wlPlayer(name)), 21, 14);
 
 /* ---------- the side panel ---------- */
 const wlNum = v => Math.round(v || 0).toLocaleString();
@@ -22988,6 +23079,18 @@ function wlNews(l) {
     case 'alliance': return `${a} and ${b} formed an alliance`;
     case 'trade': return `${a} and ${b} agreed a trade deal`;
     case 'gift': return `${a} sent ${wlNum(l.n)} gold to ${b}`;
+    case 'bloc_new': return `${a} founded the bloc ${b}`;
+    case 'bloc_join': return `${a} joined the bloc ${b}`;
+    case 'bloc_rename': return `The bloc ${a} is now called ${b}`;
+    case 'bloc_betray': return `${a} betrayed the ${b}: thrown out, fined, at war with every member${l.n ? ` and stripped of ${l.n} countr${l.n === 1 ? 'y' : 'ies'}` : ''}`;
+    case 'bloc_case': return `${a} asked the Court to leave the ${b}`;
+    case 'bloc_leave_good': return `The Court let ${a} leave the ${b}`;
+    case 'bloc_leave_bad': return `The Court rejected ${a}'s reason for leaving the ${b}: fined ${wlNum(l.n)} gold and banned from blocs for 3 days`;
+    case 'bloc_end': return `The bloc ${a} has dissolved`;
+    case 'minister': return `${a} joined the government of ${b} as a minister`;
+    case 'minister_left': return `${a} left the government of ${b}`;
+    case 'minister_dismissed': return `${b} dismissed its minister ${a}`;
+    case 'dissolved': return `${a} is no more: its leader now serves ${b}`;
   }
   return esc(l.kind);
 }
@@ -22998,21 +23101,28 @@ function wlRender() {
   if (WL.err) h += `<p class="onErr">${esc(WL.err)}</p>`;
   if (!st) { el.innerHTML = h + (WL.busy ? '<div class="onSpin" style="margin:30px auto"></div>' : ''); return; }
   // my country
-  if (!accOn()) h += `<div class="wlCard"><h3>Your country</h3><p class="note">Log in to found a country of your own. Without an account you can look at the map and the news.</p><button class="btn primary" id="wlLogin">Log in / Create account</button></div>`;
+  if (!accOn()) h += `<div class="wlCard"><h3>Your country</h3><p class="note">Log in to found a country of your own, or to play the country you already made on another browser or device. Without an account you can look at the map and the news.</p><button class="btn primary" id="wlLogin">Log in / Create account</button></div>`;
   else if (!me) {
     const ok = t && !t.cap && !wlOwner(t.id) && !wlHomeOf(t.id);
     h += `<div class="wlCard"><h3>Found your country</h3><p class="note">Tap a country on the map that no player holds (capitals of the computer nations cannot be chosen). It becomes your homeland, with whatever name you give it.</p>
       <div class="wlPick"><span>Homeland</span><b>${t ? esc(t.name) : 'none'}</b>${t && !ok ? `<em>${t.cap ? 'a capital' : 'taken'}</em>` : ''}</div>
-      <div class="row"><input class="tin" id="wlName" maxlength="24" placeholder="Name of your country"><button class="btn primary" id="wlJoin"${ok ? '' : ' disabled'}>Found it</button></div></div>`;
+      <div class="row"><input class="tin" id="wlName" maxlength="24" placeholder="Name of your country"><button class="btn primary" id="wlJoin"${ok ? '' : ' disabled'}>Found it</button></div>
+      <p class="note wlOr">${st.my_request ? `Waiting for <b>${esc(st.my_request)}</b> to accept you as a minister.` : 'Or serve a friend\'s country as a minister: press <b>Join as minister</b> on it in the Countries list.'}</p></div>`;
   } else {
     const up = (k, label, lvl, what) => `<div class="wlUp"><div><b>${label} <i>level ${lvl}</i></b><small>${what}</small></div>${lvl >= 10 ? '<em>max</em>' : `<button class="btn small" data-up="${k}"${me.gold >= 300 * lvl * lvl && !me.occupier ? '' : ' disabled'}>${wlNum(300 * lvl * lvl)} gold</button>`}</div>`;
-    h += `<div class="wlCard wlMine"><div class="wlHead"><i style="background:${WL_COL[me.color % WL_COL.length]}"></i><h3>${esc(me.name)}</h3><button class="btn small" id="wlRename">Rename</button></div>
+    const pres = me.role !== 'minister', mins = me.ministers || [];
+    h += `<div class="wlCard wlMine"><div class="wlHead">${wlFlagSvg(wlFlagOf(me), 33, 22)}<div class="wlTitle"><h3>${esc(me.name)}</h3>${me.motto ? `<em>“${esc(me.motto)}”</em>` : ''}</div>${pres ? `<button class="btn small" id="wlFlagBtn">Flag</button><button class="btn small" id="wlRename">Rename</button>` : ''}</div>
+      ${pres ? '' : `<div class="wlRole"><b>You are a minister</b><span>President ${esc(me.president || '')}. You can invade and start uprisings for this country; deals, upgrades and the flag are the President's.</span><button class="btn small" id="wlQuit">Leave the government</button></div>`}
+      ${WL.flagEdit && pres ? wlFlagEditor(me) : ''}
       <div class="wlStats"><div><small>Gold</small><b>${wlNum(me.gold)}</b><em>+${wlNum(me.income)} an hour</em></div><div><small>Soldiers</small><b>${wlNum(me.army)}</b><em>of ${wlNum(me.cap)}</em></div><div><small>Countries</small><b>${me.countries}</b><em>${TBY[me.home] ? esc(TBY[me.home].name) : ''}</em></div></div>
+      <p class="note wlAcc">Saved to your account <b>${esc(accName())}</b>. Log in with the same username and password on any browser or device to play this country there.</p>
+      ${pres && mins.length ? `<div class="wlMins"><small>Ministers</small>${mins.map(n => `<span>${esc(n)}<button class="wlX" data-dismiss="${esc(n)}" aria-label="Dismiss ${esc(n)}">×</button></span>`).join('')}</div>` : !pres ? `<div class="wlMins"><small>Government</small><span>${esc(me.president || '')} · President</span>${mins.map(n => `<span>${esc(n)}</span>`).join('')}</div>` : ''}
       ${me.occupier ? `<div class="wlOcc"><b>Occupied by ${esc(me.occupier)}</b><p>Your empire is gone and your income is halved. Win the homeland back and you start again from the beginning.</p>
         <div class="wlBar"><i style="width:${me.resist}%"></i></div><small>Resistance ${me.resist}%. It grows by itself, and at 100% you are free. A lost uprising still adds 20%.</small>
-        <div class="row"><button class="btn primary" id="wlRise"${me.uprising_in > 0 ? ' disabled' : ''}>${me.uprising_in > 0 ? `Uprising in ${Math.ceil(me.uprising_in / 60)} min` : 'Start an uprising'}</button><button class="btn" id="wlBuy">Offer gold for independence</button></div></div>`
+        <div class="row"><button class="btn primary" id="wlRise"${me.uprising_in > 0 ? ' disabled' : ''}>${me.uprising_in > 0 ? `Uprising in ${Math.ceil(me.uprising_in / 60)} min` : 'Start an uprising'}</button>${pres ? '<button class="btn" id="wlBuy">Offer gold for independence</button>' : ''}</div></div>`
         : `${me.shield ? `<p class="note wlShield">Protected from invasion until ${new Date(me.shield).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' })}. Invading someone ends the protection.</p>` : ''}
         ${up('econ', 'Economy', me.econ, '+40 gold an hour per level')}${up('mil', 'Army', me.mil, 'More soldiers, stronger troops in battle')}${up('def', 'Defences', me.def, 'Invaders face a stronger army')}`}</div>`;
+    if (!pres) h = h.replace(/<button class="btn small" data-up="[a-z]+"[^>]*>[^<]*<\/button>/g, '');
   }
   // the selected country
   if (t) {
@@ -23020,25 +23130,32 @@ function wlRender() {
     let act = '';
     if (me && !me.occupier && !mine) {
       if (!wlNear(t.id)) act = `<p class="note">Not next to your land. You can only invade a neighbour of a country you hold.</p>`;
-      else if (pl && (pl.rel === 'peace' || pl.rel === 'alliance')) act = `<p class="note">${pl.rel === 'peace' ? 'You have a peace treaty with' : 'You are allied with'} ${esc(pl.name)}.</p>`;
+      else if (pl && (pl.rel === 'peace' || pl.rel === 'alliance')) act = `<p class="note">${pl.rel === 'peace' ? 'You have a peace treaty with' : st.bloc && pl.bloc === st.bloc.name ? 'You are in the same bloc as' : 'You are allied with'} ${esc(pl.name)}.</p>`;
       else if (pl && pl.shield) act = `<p class="note">${esc(pl.name)} is protected from invasion for now.</p>`;
-      else act = `<button class="btn primary wlGo" id="wlAttack"${me.army >= cost ? '' : ' disabled'}>Invade ${esc(t.name)} · ${cost} soldiers</button>${me.army < cost ? `<p class="note">You have ${wlNum(me.army)} soldiers. More arrive every hour.</p>` : pl && pl.rel !== 'war' ? `<p class="note">Invading means war with ${esc(pl.name)}.</p>` : ''}`;
+      else act = `<button class="btn primary wlGo" id="wlAttack"${me.army >= wlCostFor(t.id) ? '' : ' disabled'}>Invade ${esc(t.name)} · ${wlCostFor(t.id)} soldiers</button>${pl && pl.grudge ? `<p class="note wlRev">Revenge on a betrayer: half the soldiers, and their defences count 2 levels lower.</p>` : ''}${me.army < wlCostFor(t.id) ? `<p class="note">You have ${wlNum(me.army)} soldiers. More arrive every hour.</p>` : pl && pl.rel !== 'war' ? `<p class="note">Invading means war with ${esc(pl.name)}.</p>` : ''}`;
     }
-    h += `<div class="wlCard"><h3>${esc(t.name)}${t.cap ? ' ★' : ''}</h3><p class="wlHeld">${pl ? `<i style="background:${WL_COL[pl.color % WL_COL.length]}"></i>${mine ? 'Yours' : 'Held by ' + esc(pl.name)}${home && home.name !== own ? ` · homeland of ${esc(home.name)}, occupied` : home ? ' · homeland' : ''}${pl && !mine ? ` · defences level ${pl.def}` : ''}` : `<i style="background:${NATIONS[wlNpc(t)].css}"></i>${esc(NATIONS[wlNpc(t)].name || NATIONS[wlNpc(t)].short)} · computer nation`}</p>${act}</div>`;
+    h += `<div class="wlCard"><h3>${esc(t.name)}${t.cap ? ' ★' : ''}</h3><p class="wlHeld">${pl ? `${wlFlagFor(pl.name)}${mine ? 'Yours' : 'Held by ' + esc(pl.name)}${pl.bloc ? ` · ${esc(pl.bloc)}` : ''}${home && home.name !== own ? ` · homeland of ${esc(home.name)}, occupied` : home ? ' · homeland' : ''}${pl && !mine ? ` · defences level ${pl.def}` : ''}` : `<i style="background:${NATIONS[wlNpc(t)].css}"></i>${esc(NATIONS[wlNpc(t)].name || NATIONS[wlNpc(t)].short)} · computer nation`}</p>${pl && pl.motto && !mine ? `<p class="wlMotto">“${esc(pl.motto)}”</p>` : ''}${act}</div>`;
   }
   // tabs
-  const tabs = [['land', `Countries (${st.players.length})`], ['deals', `Offers${st.offers.filter(o => !o.mine).length ? ' (' + st.offers.filter(o => !o.mine).length + ')' : ''}`], ['news', 'News']];
-  h += `<div class="wlTabs">${tabs.map(([k, n]) => `<button class="btn small${WL.tab === k ? ' primary' : ''}" data-tab="${k}">${n}</button>`).join('')}</div>`;
+  const nOff = st.offers.filter(o => !o.mine).length + (st.join_requests || []).length, nBloc = (st.bloc_invites || []).length + (st.cases || []).filter(c => !c.voted).length;
+  const tabs = [['land', 'Countries', st.players.length, false], ['blocs', 'Blocs', nBloc, true], ['deals', 'Offers', nOff, true], ['news', 'News', 0, false]];
+  h += `<div class="wlTabs">${tabs.map(([k, n, c, hot]) => `<button class="btn small${WL.tab === k ? ' primary' : ''}" data-tab="${k}">${n}${c ? `<i class="${hot ? 'hot' : ''}">${c}</i>` : ''}</button>`).join('')}</div>`;
   if (WL.tab === 'land') {
     h += st.players.length ? st.players.map((p, i) => {
-      const open = WL.open === p.name && me && !p.me, rel = p.rel === 'war' ? '<em class="war">at war</em>' : p.rel === 'peace' ? '<em class="peace">peace</em>' : p.rel === 'alliance' ? '<em class="ally">ally</em>' : '';
-      const mineCol = me && p.occupier === me.name;
-      return `<div class="wlRow${p.me ? ' me' : ''}" data-p="${esc(p.name)}"><b class="recRank${i === 0 ? ' g' : i === 1 ? ' s' : i === 2 ? ' b' : ''}">${i + 1}</b><i style="background:${WL_COL[p.color % WL_COL.length]}"></i><span><b>${esc(p.name)}</b>${p.me ? ' <em>you</em>' : ''}${rel}${p.trade ? '<em class="ally">trade</em>' : ''}<small>${p.occupier ? 'occupied by ' + esc(p.occupier) : p.online ? 'online now' : ''}</small></span><b class="recVal">${p.countries}</b></div>
-        ${open ? `<div class="wlActs">${mineCol ? `<button class="btn small" data-act="release">Let them go</button>` : ''}${p.rel !== 'war' && p.rel !== 'peace' ? `<button class="btn small danger" data-act="war">${p.rel === 'alliance' ? 'Break alliance' : 'Declare war'}</button>` : ''}${p.rel === 'war' ? `<button class="btn small" data-act="peace">Offer peace</button>` : ''}${p.rel !== 'war' && p.rel !== 'alliance' ? `<button class="btn small" data-act="alliance">Offer alliance</button>` : ''}${p.rel !== 'war' && !p.trade ? `<button class="btn small" data-act="trade">Offer trade</button>` : ''}<button class="btn small" data-act="gift">Send 100 gold</button><button class="btn small" data-act="see">Show on map</button></div>` : ''}`;
+      const open = WL.open === p.name && !p.me && !!(me || accOn()), rel = p.rel === 'war' ? '<em class="war">at war</em>' : p.rel === 'peace' ? '<em class="peace">peace</em>' : p.rel === 'alliance' ? '<em class="ally">ally</em>' : '';
+      const mineCol = me && p.occupier === me.name, pres = !me || me.role !== 'minister', mate = st.bloc && p.bloc === st.bloc.name, sub = [p.bloc ? esc(p.bloc) : '', p.ministers ? `${p.ministers} minister${p.ministers > 1 ? 's' : ''}` : '', p.occupier ? 'occupied by ' + esc(p.occupier) : p.online ? 'online now' : ''].filter(Boolean).join(' · ');
+      const acts = !open ? '' : !me || !pres ? `<button class="btn small" data-act="see">Show on map</button>` : `${mineCol ? `<button class="btn small" data-act="release">Let them go</button>` : ''}${p.rel !== 'war' && p.rel !== 'peace' ? `<button class="btn small danger" data-act="${mate ? 'betray' : 'war'}">${mate ? (WL.confirm === 'betray:' + p.name ? 'Confirm: betray the bloc' : 'Betray the bloc') : p.rel === 'alliance' ? 'Break alliance' : 'Declare war'}</button>` : ''}${p.rel === 'war' ? `<button class="btn small" data-act="peace">Offer peace</button>` : ''}${p.rel !== 'war' && p.rel !== 'alliance' ? `<button class="btn small" data-act="alliance">Offer alliance</button>` : ''}${p.rel !== 'war' && !p.trade ? `<button class="btn small" data-act="trade">Offer trade</button>` : ''}${st.bloc && !p.bloc && p.rel !== 'war' ? `<button class="btn small" data-act="invite">Invite to ${esc(st.bloc.name)}</button>` : ''}<button class="btn small" data-act="gift">Send 100 gold</button><button class="btn small" data-act="see">Show on map</button>`;
+      const betrayWarn = open && WL.confirm === 'betray:' + p.name ? `<p class="note wlWarn">Betraying the ${esc(st.bloc.name)} is punished at once: you are thrown out, fined 30% of your gold, banned from blocs for 3 days, at war with every member (they attack you at half cost), and up to half of your conquests go to them. Press again to confirm.</p>` : '';
+      return `<div class="wlRow${p.me ? ' me' : ''}" data-p="${esc(p.name)}"><b class="recRank${i === 0 ? ' g' : i === 1 ? ' s' : i === 2 ? ' b' : ''}">${i + 1}</b>${wlFlagFor(p.name)}<span><b>${esc(p.name)}</b>${p.me ? ' <em>you</em>' : ''}${rel}${p.trade ? '<em class="ally">trade</em>' : ''}${p.grudge ? '<em class="war">revenge</em>' : ''}<small>${sub}</small></span><b class="recVal">${p.countries}</b></div>
+        ${open ? `<div class="wlActs">${acts}</div>${betrayWarn}` : ''}${p.me || !me && !accOn() || me && me.role === 'minister' || !open ? '' : `<div class="wlJoinRow">${WL.confirm === 'join:' + p.name ? `<p class="note wlWarn">${me ? `You give up ${esc(me.name)}: its lands go back to the computer nations and you serve ${esc(p.name)} as a minister.` : `You serve ${esc(p.name)} as a minister.`} Press again to send the request.</p>` : ''}<button class="btn small" data-act="join">${WL.confirm === 'join:' + p.name ? 'Confirm: ask to join' : 'Join as minister'}</button></div>`}`;
     }).join('') : `<p class="note">No countries yet. Be the first to found one.</p>`;
+  } else if (WL.tab === 'blocs') {
+    h += wlBlocsHtml(st, me);
   } else if (WL.tab === 'deals') {
     const what = o => o.kind === 'peace' ? 'a peace treaty (24 hours without attacks)' : o.kind === 'alliance' ? 'an alliance (+10% income each, no attacks)' : o.kind === 'trade' ? 'a trade deal (+15% income each for 48 hours)' : `${wlNum(o.gold)} gold for their independence`;
-    h += st.offers.length ? st.offers.map(o => `<div class="wlOffer"><p>${o.mine ? `You offered <b>${esc(o.to)}</b> ${what(o).replace('their', 'your')}` : `<b>${esc(o.from)}</b> offers ${what(o)}`}</p><div class="row">${o.mine ? `<button class="btn small" data-ans="${o.id}:0">Withdraw</button>` : `<button class="btn small primary" data-ans="${o.id}:1">Accept</button><button class="btn small" data-ans="${o.id}:0">Decline</button>`}</div></div>`).join('') : `<p class="note">No open offers. Tap a country in the Countries list to offer peace, an alliance or trade.</p>`;
+    const pres = me && me.role !== 'minister';
+    h += (st.join_requests || []).map(r => `<div class="wlOffer"><p><b>${esc(r.name)}</b> asks to join your government as a minister${r.has_country ? ' (they give up their own country)' : ''}.</p><div class="row"><button class="btn small primary" data-jr="${r.id}:1">Accept</button><button class="btn small" data-jr="${r.id}:0">Decline</button></div></div>`).join('');
+    h += st.offers.length ? st.offers.map(o => `<div class="wlOffer"><p>${o.mine ? `You offered <b>${esc(o.to)}</b> ${what(o).replace('their', 'your')}` : `<b>${esc(o.from)}</b> offers ${what(o)}`}</p><div class="row">${o.mine ? `<button class="btn small" data-ans="${o.id}:0">Withdraw</button>` : pres ? `<button class="btn small primary" data-ans="${o.id}:1">Accept</button><button class="btn small" data-ans="${o.id}:0">Decline</button>` : '<small class="note">Only the President can answer.</small>'}</div></div>`).join('') : (st.join_requests || []).length ? '' : `<p class="note">No open offers. Tap a country in the Countries list to offer peace, an alliance or trade.</p>`;
   } else h += st.log.length ? st.log.map(l => `<p class="wlLog"><small>${wlAgo(l.at)}</small>${wlNews(l)}</p>`).join('') : `<p class="note">Nothing has happened yet.</p>`;
   el.innerHTML = h;
   const on = (sel, fn) => { const e = el.querySelector(sel); if (e) e.onclick = fn; };
@@ -23051,17 +23168,151 @@ function wlRender() {
   on('#wlRise', () => wlAttack(null));
   on('#wlBuy', () => { const g = Math.min(Math.floor(me.gold), Math.max(100, Math.round(me.gold / 2))); wlDo('world_offer', { p_name: me.occupier, p_kind: 'independence', p_gold: g }).then(r => { if (r && r.ok !== false) { toast('The World', `You offered ${me.occupier} ${wlNum(g)} gold for your independence`); WL.tab = 'deals'; wlRender(); } }); });
   el.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { WL.tab = b.dataset.tab; wlRender(); });
-  el.querySelectorAll('.wlRow').forEach(r => r.onclick = () => { const n = r.dataset.p; WL.open = WL.open === n ? '' : n; const p = wlPlayer(n); if (p && (!me || p.me)) { WL.sel = p.home; wlFocus(p.home, 300); wlPaint(); } wlRender(); });
+  el.querySelectorAll('.wlRow').forEach(r => r.onclick = () => { const n = r.dataset.p; WL.open = WL.open === n ? '' : n; WL.confirm = ''; const p = wlPlayer(n); if (p && (!me || p.me)) { WL.sel = p.home; wlFocus(p.home, 300); wlPaint(); } wlRender(); });
   el.querySelectorAll('[data-act]').forEach(b => b.onclick = e => {
     e.stopPropagation(); const n = WL.open, a = b.dataset.act, p = wlPlayer(n); if (!p) return;
     if (a === 'see') { WL.sel = p.home; wlFocus(p.home, 300); wlPaint(); wlRender(); }
     else if (a === 'war') wlDo('world_war', { p_name: n });
+    else if (a === 'betray' || a === 'join') { const key = a + ':' + n; if (WL.confirm !== key) { WL.confirm = key; wlRender(); return; } WL.confirm = ''; if (a === 'betray') wlDo('world_war', { p_name: n }); else wlDo('world_join_country', { p_name: n }).then(r => { if (r && r.ok !== false) toast('The World', `Request sent to ${n}`); }); }
+    else if (a === 'invite') wlDo('world_bloc_invite', { p_name: n }).then(r => { if (r && r.ok !== false) toast('The World', `Invitation sent to ${n}`); });
     else if (a === 'release') wlDo('world_release', { p_name: n });
     else if (a === 'gift') wlDo('world_offer', { p_name: n, p_kind: 'gift', p_gold: 100 });
     else wlDo('world_offer', { p_name: n, p_kind: a, p_gold: 0 }).then(r => { if (r && r.ok !== false) toast('The World', `Offer sent to ${n}`); });
   });
   el.querySelectorAll('[data-ans]').forEach(b => b.onclick = () => { const [id, yes] = b.dataset.ans.split(':'); wlDo('world_answer', { p_offer: +id, p_accept: yes === '1' }); });
+  el.querySelectorAll('[data-jr]').forEach(b => b.onclick = () => { const [id, yes] = b.dataset.jr.split(':'); wlDo('world_join_answer', { p_req: +id, p_accept: yes === '1' }); });
+  el.querySelectorAll('[data-dismiss]').forEach(b => b.onclick = () => wlDo('world_minister_dismiss', { p_name: b.dataset.dismiss }));
+  on('#wlQuit', () => { if (WL.confirm !== 'quit') { WL.confirm = 'quit'; b0 = $('#wlQuit'); b0.textContent = 'Confirm: leave the government'; return; } WL.confirm = ''; wlDo('world_minister_leave', {}); });
+  on('#wlFlagBtn', () => { WL.flagEdit = !WL.flagEdit; if (WL.flagEdit) WL.fd = JSON.parse(JSON.stringify(wlFlagOf(me))); WL.fdSlot = 0; wlRender(); });
+  wlFlagWire(el, me);
+  wlBlocsWire(el, st);
   if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+let b0 = null;
+// what an invasion costs here (the server has the final word)
+function wlCostFor(id) { const own = wlOwner(id), pl = own && wlPlayer(own); return pl && pl.grudge ? 20 : wlCost(id); }
+
+/* ---------- flag editor ---------- */
+function wlFlagEditor(me) {
+  const f = WL.fd || wlFlagOf(me), slot = WL.fdSlot || 0;
+  return `<div class="wlFlagEd"><div class="wlFlagPrev">${wlFlagSvg(f, 120, 80)}</div>
+    <div class="wlFE"><small>Pattern</small><div class="wlChips">${WL_FLAG_P.map(([k, n]) => `<button class="wlChip${f.p === k ? ' on' : ''}" data-fp="${k}" title="${n}">${wlFlagSvg({ p: k, c: f.c, e: '' }, 30, 20)}</button>`).join('')}</div></div>
+    <div class="wlFE"><small>Colours</small><div class="wlChips">${f.c.map((c, i) => `<button class="wlSlot${slot === i ? ' on' : ''}" data-fs="${i}" style="background:${c}" aria-label="Colour ${i + 1}"></button>`).join('')}<span class="wlSep"></span>${WL_FLAG_C.map(c => `<button class="wlSw" data-fc="${c}" style="background:${c}" aria-label="${c}"></button>`).join('')}</div></div>
+    <div class="wlFE"><small>Emblem</small><div class="wlChips">${WL_FLAG_E.map(([k, g]) => `<button class="wlChip wlEm${(f.e || '') === k ? ' on' : ''}" data-fe="${k}">${esc(g)}</button>`).join('')}</div></div>
+    <div class="wlFE"><small>Motto</small><input class="tin" id="wlMotto" maxlength="48" placeholder="Up to 48 characters" value="${esc(WL.fdMotto !== undefined ? WL.fdMotto : me.motto || '')}"></div>
+    <div class="row"><button class="btn primary" id="wlFlagSave">Save flag and motto</button><button class="btn" id="wlFlagCancel">Cancel</button></div></div>`;
+}
+function wlFlagWire(el, me) {
+  if (!WL.flagEdit || !me) return; const f = WL.fd; if (!f) return;
+  const keepMotto = () => { const i = $('#wlMotto'); if (i) WL.fdMotto = i.value; };
+  el.querySelectorAll('[data-fp]').forEach(b => b.onclick = () => { keepMotto(); f.p = b.dataset.fp; wlRender(); });
+  el.querySelectorAll('[data-fs]').forEach(b => b.onclick = () => { keepMotto(); WL.fdSlot = +b.dataset.fs; wlRender(); });
+  el.querySelectorAll('[data-fc]').forEach(b => b.onclick = () => { keepMotto(); f.c[WL.fdSlot || 0] = b.dataset.fc; wlRender(); });
+  el.querySelectorAll('[data-fe]').forEach(b => b.onclick = () => { keepMotto(); f.e = b.dataset.fe; wlRender(); });
+  const sv = $('#wlFlagSave'); if (sv) sv.onclick = async () => { keepMotto(); const r = await wlDo('world_flag', { p_flag: f, p_motto: WL.fdMotto !== undefined ? WL.fdMotto : me.motto || '' }); if (r && r.ok !== false) { WL.flagEdit = false; WL.fdMotto = undefined; wlLoad(true); } };
+  const cc = $('#wlFlagCancel'); if (cc) cc.onclick = () => { WL.flagEdit = false; WL.fdMotto = undefined; wlRender(); };
+}
+
+/* ---------- blocs and the Court ---------- */
+function wlBlocsHtml(st, me) {
+  const pres = me && me.role !== 'minister', B = st.bloc; let h = '';
+  const facts = f => { const a = (f && f.attacked_by) || []; return [a.length ? `attacked by ${a.map(esc).join(', ')}` : 'no member attacked them', `${(f && f.declined) || 0} of their offers declined`, `in the bloc for ${(f && f.days) || 0} days`].join(' · '); };
+  for (const c of (st.cases || [])) h += `<div class="wlCard wlCase"><h3>The Court: ${esc(c.who)} wants to leave</h3><p class="wlReason">“${esc(c.reason)}”</p><p class="note">Facts: ${facts(c.facts)}. A good reason lets them go freely; a bad one costs them 30% of their gold and a 3-day ban from blocs. The Court decides when every member has voted, or after 24 hours. No votes or a tie means the reason is accepted.</p>
+    ${c.voted ? '<p class="note"><b>You have voted.</b></p>' : `<div class="row"><button class="btn small primary" data-vote="${c.id}:1">Good reason</button><button class="btn small danger" data-vote="${c.id}:0">Bad reason</button></div>`}</div>`;
+  for (const i of (st.bloc_invites || [])) h += `<div class="wlOffer"><p><b>${esc(i.from)}</b> invites you to join the bloc <b>${esc(i.bloc)}</b>.</p><div class="row">${pres ? `<button class="btn small primary" data-binv="${i.id}:1">Join</button><button class="btn small" data-binv="${i.id}:0">Decline</button>` : ''}</div></div>`;
+  if (B) {
+    h += `<div class="wlCard wlBloc"><div class="wlHead"><div class="wlTitle"><small>Your bloc</small><h3>${esc(B.name)}</h3></div>${pres ? '<button class="btn small" id="wlBRen">Rename</button>' : ''}</div>
+      <div class="wlMembers">${(B.members || []).map(n => `<span>${wlFlagFor(n)}${esc(n)}</span>`).join('')}</div>
+      <p class="note">Members cannot attack each other, and each earns 5% more income for every other member.</p>
+      ${B.case ? `<p class="note wlShield">Your request to leave is with the Court (${B.case.votes} vote${B.case.votes === 1 ? '' : 's'} so far). It is decided within 24 hours of ${new Date(B.case.at).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' })}.</p>`
+        : pres ? (WL.leaving ? `<div class="wlLeave"><small>Why do you want to leave?</small><textarea class="tin" id="wlReason" maxlength="300" rows="3" placeholder="10 to 300 characters"></textarea><p class="note">The Court looks at the facts first: if a member attacked you, or declined 3 of your offers, you leave at once. Otherwise the other members vote within 24 hours. A rejected reason costs 30% of your gold and a 3-day ban from blocs.</p><div class="row"><button class="btn danger" id="wlLeaveGo">Send to the Court</button><button class="btn" id="wlLeaveNo">Cancel</button></div></div>` : '<button class="btn small" id="wlLeaveAsk">Leave the bloc</button>') : ''}</div>`;
+  } else if (pres) {
+    h += me.ban ? `<div class="wlCard"><h3>Blocs</h3><p class="note">The Court has banned you from blocs until ${new Date(me.ban).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' })}.</p></div>`
+      : `<div class="wlCard"><h3>Found a bloc</h3><p class="note">A named alliance of up to 8 countries. Members cannot attack each other and earn 5% more income for every other member. Invite countries from the Countries list.</p><div class="row"><input class="tin" id="wlBName" maxlength="24" placeholder="Name of the bloc"><button class="btn primary" id="wlBNew"${me.gold >= 500 ? '' : ' disabled'}>Found it · 500 gold</button></div></div>`;
+  }
+  h += `<h3 class="wlSub">All blocs</h3>` + ((st.blocs || []).length ? st.blocs.map(b => `<div class="wlBlocRow"><b>${esc(b.name)}</b><span>${(b.members || []).map(n => `${wlFlagFor(n)}${esc(n)}`).join(' ')}</span></div>`).join('') : '<p class="note">No blocs yet.</p>');
+  h += `<p class="note wlRules">Betraying your bloc (declaring war on a member) is punished at once: thrown out, fined 30% of your gold, banned from blocs for 3 days, at war with every member, who attack you at half cost for 3 days, and up to half of your conquests go to them.</p>`;
+  return h;
+}
+function wlBlocsWire(el, st) {
+  const on = (sel, fn) => { const e = el.querySelector(sel); if (e) e.onclick = fn; };
+  el.querySelectorAll('[data-vote]').forEach(b => b.onclick = () => { const [id, g] = b.dataset.vote.split(':'); wlDo('world_bloc_vote', { p_case: +id, p_good: g === '1' }); });
+  el.querySelectorAll('[data-binv]').forEach(b => b.onclick = () => { const [id, y] = b.dataset.binv.split(':'); wlDo('world_bloc_answer', { p_invite: +id, p_accept: y === '1' }); });
+  on('#wlBNew', () => wlDo('world_bloc_create', { p_name: $('#wlBName').value }));
+  on('#wlBRen', () => { const hd = el.querySelector('.wlBloc .wlHead'); hd.innerHTML = `<input class="tin" id="wlBNewName" maxlength="24" value="${esc(st.bloc.name)}"><button class="btn small primary" id="wlBRenOk">Save</button>`; const i = $('#wlBNewName'); i.onkeydown = e => e.stopPropagation(); i.focus(); $('#wlBRenOk').onclick = () => wlDo('world_bloc_rename', { p_name: i.value }); });
+  on('#wlLeaveAsk', () => { WL.leaving = true; wlRender(); });
+  on('#wlLeaveNo', () => { WL.leaving = false; wlRender(); });
+  on('#wlLeaveGo', async () => { const r = await wlDo('world_bloc_leave', { p_reason: $('#wlReason').value }); if (r && r.ok !== false) { WL.leaving = false; toast('The Court', r.verdict === 'good' ? 'The facts settle it: you have left the bloc.' : 'Your reason is with the Court. The other members vote within 24 hours.'); wlRender(); } });
+  const ta = $('#wlReason'); if (ta) ta.onkeydown = e => e.stopPropagation();
+}
+
+/* ---------- big moments: short 3D scenes ---------- */
+// After each load, the newest news about my country is checked; the most important new event plays once as a scene.
+function wlScene(st) {
+  const me = st && st.me; if (!me || !accOn() || !Array.isArray(st.log) || !st.log.length || typeof playCutscene !== 'function') return;
+  const key = 'wlSeen:' + (ACC.user && ACC.user.id || accName()), top = Math.max(...st.log.map(l => +l.id || 0));
+  let seen = 0; try { seen = +(store.get(key, 0)) || 0; } catch (e) { }
+  const save = () => { try { store.set(key, top); } catch (e) { } };
+  if (!seen) { save(); return; }                          // first visit on this device: nothing old is replayed
+  if (top <= seen) return;
+  if ((G && !G.over) || $('#scr-world').hidden || (CS && CS.raf && !$('#scr-cut').hidden)) return;
+  const mine = st.log.filter(l => +l.id > seen), M = me.name, bloc = st.bloc && st.bloc.name;
+  const pick = (kind, test) => mine.find(l => l.kind === kind && test(l));
+  const ev = pick('colonized', l => l.a === M) || pick('free', l => l.a === M) || pick('bloc_betray', l => l.a === M) || pick('bloc_betray', l => l.b === bloc)
+    || pick('war', l => l.a === M || l.b === M) || pick('betrayal', l => l.a === M || l.b === M) || pick('peace', l => l.a === M || l.b === M)
+    || pick('bloc_new', l => l.a === M) || pick('bloc_join', l => l.a === M || l.b === bloc) || pick('minister', l => l.b === M) || pick('alliance', l => l.a === M || l.b === M);
+  save(); if (!ev) return;
+  const other = ev.a === M ? ev.b : ev.a, home = TBY[me.home] ? TBY[me.home].name : M, cut = wlCut(ev, M, other, home, bloc);
+  if (!cut) return;
+  CUTSCENES.wl_now = cut; playCutscene('wl_now', () => { delete CUTSCENES.wl_now; });
+}
+function wlCut(ev, M, other, home, bloc) {
+  CHARS.wl_env = { name: `${other} envoy`, css: '#9fd0ff', uni: 0x2b3442, pants: 0x1e2430, skin: 0xd9a77f, hat: 'hair', hatc: 0x2a1a10, voice: 0.95, face: { brow: 0x2a1a10 } };
+  const est = (p, l, dur) => ({ cam: { p, l }, dur: dur || 3 }), office = { pres: { p: [0, -2.05], r: 0, a: 'sit' }, hale: { p: [1.6, 1.2], r: PI - 0.5 } };
+  const envoy = { pres: { p: [0.9, 0], r: -PI / 2 }, env: { c: 'wl_env', p: [-0.9, 0], r: PI / 2 }, hale: { p: [1.9, -1.6], r: -0.6 } };
+  switch (ev.kind) {
+    case 'war': case 'betrayal':
+      return ev.a === M ? { title: `${M} declares war`, set: 'office', mood: 'war', actors: office, beats: [est([0, 3.4, 7.5], [0, 1.6, -2], 3),
+          { say: ['hale', `The declaration is drafted, Mr. President. ${other} will read it within the hour.`] },
+          { say: ['pres', `Then let them read it. ${M} is at war with ${other}.`, 'angry'] },
+          { say: ['hale', 'Every unit is on alert. We move when you say.'], act: { hale: 'salute' } }] }
+        : { title: `${other} declares war`, set: 'office', mood: 'war', actors: office, beats: [est([0, 3.4, 7.5], [0, 1.6, -2], 3),
+          { say: ['hale', `Sir. ${other} has declared war on ${M}.`, 'angry'] },
+          { say: ['pres', 'They chose this. Man the borders, and wake the generals.', 'angry'] },
+          { say: ['hale', 'With pleasure, sir.'], act: { hale: 'salute' } }] };
+    case 'peace':
+      return { title: 'A peace treaty', set: 'office', mood: 'light', actors: envoy, beats: [est([0, 2.4, 5.5], [0, 1.4, 0], 3),
+        { say: ['env', `${other} accepts. Twenty-four hours without a single shot fired, Mr. President.`] },
+        { say: ['pres', 'Then let us both keep our hands off the trigger for one day.', 'smile'] },
+        { say: ['hale', 'I will tell the troops. They will complain about the quiet.', 'smile'] }] };
+    case 'bloc_new': case 'bloc_join': case 'alliance': {
+      const name = ev.kind === 'alliance' ? `an alliance with ${other}` : `the ${ev.b}`;
+      return { title: ev.kind === 'bloc_new' ? `The ${ev.b} is founded` : ev.kind === 'alliance' ? 'A new alliance' : `${ev.a} joins the ${ev.b}`, set: 'office', mood: 'light', actors: envoy, beats: [est([0, 2.4, 5.5], [0, 1.4, 0], 3),
+        { say: ['env', ev.kind === 'bloc_join' && ev.a !== M ? `${ev.a} has signed, Mr. President. One more flag at the table.` : `It is signed, Mr. President. Welcome to ${name}.`] },
+        { say: ['pres', 'Together we are harder to ignore. Let us make sure nobody tries.', 'smile'] }] };
+    }
+    case 'bloc_betray':
+      return ev.a === M ? { title: 'Thrown out of the bloc', set: 'office', mood: 'sad', actors: office, beats: [est([0, 3.4, 7.5], [0, 1.6, -2], 3),
+          { say: ['hale', `The ${ev.b} has thrown us out, sir. The fine is paid, every member is at war with us${ev.n ? `, and they took ${ev.n} of our countries` : ''}.`, 'sad'] },
+          { say: ['pres', 'Then they will learn what we do without a treaty to hold us back.', 'angry'] }] }
+        : { title: 'Betrayal', set: 'office', mood: 'war', actors: office, beats: [est([0, 3.4, 7.5], [0, 1.6, -2], 3),
+          { say: ['hale', `${ev.a} has betrayed the ${ev.b}, sir. The Court threw them out and fined them. Every member is at war with them now.`, 'angry'] },
+          { say: ['pres', 'And for three days they fall cheaply. Make them regret it.', 'angry'] }] };
+    case 'colonized':
+      return { title: `${home} has fallen`, set: 'ruins', mood: 'sad', actors: { pres: { p: [0, 0.6], r: PI, a: 'kneel' }, hale: { p: [-1.6, 0.4], r: PI * 0.7 } }, beats: [est([4, 2.2, 6], [0, 1, -1], 3.5),
+        { say: ['hale', `${other} holds ${home}, sir. Everything else we built is gone.`, 'sad'] },
+        { say: ['pres', 'Then we start with what is left. Us.', 'angry'] },
+        { say: ['hale', 'The people are already whispering about an uprising.'] }] };
+    case 'free':
+      return { title: `${home} is free`, set: 'field', mood: 'light', actors: { pres: { p: [0, 1], r: PI }, hale: { p: [-1.8, 0.2], r: PI * 0.7 }, s1: { c: 'smfa', p: [2, 0.4], r: PI * 0.9 } }, beats: [est([5, 2.6, 7], [0, 1.2, -3], 3),
+        { say: ['hale', `${home} is ours again, sir!`, 'smile'], act: { s1: 'salute' } },
+        { say: ['pres', 'We start again from nothing. We have done it before.', 'smile'] }] };
+    case 'minister':
+      return { title: 'A new minister', set: 'office', mood: 'light', actors: envoy, beats: [est([0, 2.4, 5.5], [0, 1.4, 0], 3),
+        { say: ['hale', `${ev.a} has taken the oath, sir. ${M} has a new minister.`] },
+        { say: ['pres', 'Good. We need every hand we can get.', 'smile'] }] };
+  }
+  return null;
 }
 
 /* ---------- battles ---------- */
@@ -23090,7 +23341,7 @@ function wlReport(w, win) {
     if (!$('#scr-world').hidden) wlLoad(true);
   }, wait);
 }
-function wlOpen() { show('#scr-world'); wlBuild(); wlPaint(); wlRender(); wlLoad(!!WL.st); if (wlMe() && !WL.focused) { WL.focused = true; wlFocus(wlMe().home, 420); } }
+function wlOpen() { show('#scr-world'); if (wlMe() && !WL.focused) { WL.focused = true; wlFocus(wlMe().home, 420); } }
 {
   if ($('#goWorld')) $('#goWorld').addEventListener('click', () => { SFX.init(); wlOpen(); });
   const _eb = endBattle; endBattle = function (result) { const g = G, fresh = g && !g.over; const r = _eb.apply(this, arguments); if (fresh && g.over && g.cfg && g.cfg.world) { wlReport(g.cfg.world, result === 'win'); setTimeout(() => { if (G === g) $('#endBtn').textContent = 'Back to the world'; }, 2700); } return r; };
@@ -23099,7 +23350,10 @@ function wlOpen() { show('#scr-world'); wlBuild(); wlPaint(); wlRender(); wlLoad
   const _sh = show; show = function (sel) {
     if (sel === '#scr-title' && WL.back) { WL.back = false; const r = _sh.call(this, '#scr-world'); wlBuild(); wlPaint(); wlRender(); wlLoad(true); return r; }
     if (!(G && G.cfg && G.cfg.world)) WL.back = false;
-    return _sh.apply(this, arguments);
+    const r = _sh.apply(this, arguments);
+    // coming back to the World (after logging in, for example): ask again, so the right country shows
+    if (sel === '#scr-world') { wlBuild(); wlPaint(); wlRender(); wlLoad(!!WL.st); }
+    return r;
   };
   // while the World screen is open, look again every 25 seconds
   setInterval(() => { const s = $('#scr-world'); if (s && !s.hidden && SB_ON() && Date.now() - WL.loaded > 24000 && !document.hidden) wlLoad(true); }, 5000);
