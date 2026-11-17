@@ -1592,6 +1592,74 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 .wlTabs.many .btn{flex-basis:calc(33.3% - 6px)}
 .hbHead h3,.hbStory h3{text-transform:none!important;letter-spacing:0!important}
 .hbCtl i{flex:none}.hbTrack{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.15);display:flex}.hbTrack i{height:3px;background:var(--amber);border-radius:2px}
+/* ===== v72-v75: missions, nukes, council, chat, market, space details ===== */
+#spRadar{position:absolute;right:16px;top:86px;width:150px;height:150px;pointer-events:none;border-radius:50%;box-shadow:0 0 24px rgba(0,0,0,.5)}
+#scr-space.touch #spRadar{width:110px;height:110px;top:76px;right:10px}
+.ecRes{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:9px 0 2px}
+.ecR{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;column-gap:6px;padding:7px 9px;border-radius:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.ecR i{width:8px;height:8px;border-radius:50%;align-self:center}.ecR small{font:600 10.5px var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ecR b{grid-column:1/-1;font:700 16px var(--ui);color:#fff;font-variant-numeric:tabular-nums}.ecR em{grid-column:1/-1;font-style:normal;font-size:11px;color:#9fe0a8}.ecR em.down{color:#ff9b8f}
+.ecBar{grid-column:1/-1;height:3px;border-radius:2px;background:rgba(255,255,255,.08);margin-top:4px;display:flex}.ecBar u{height:3px;border-radius:2px;text-decoration:none}
+.ecWarn{color:#ffd28a!important;margin:4px 0 0!important}
+.ecMarket{display:grid;gap:9px}.ecGood{display:grid;gap:7px;padding:10px 12px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.ecGh{display:flex;align-items:center;gap:8px}.ecGh i{width:10px;height:10px;border-radius:50%}.ecGh b{font:700 15px var(--ui);color:#fff}.ecGh small{margin-left:auto;font-size:12px;color:var(--muted)}
+.ecPrice{font:700 13px var(--ui);color:var(--amber);font-variant-numeric:tabular-nums}.ecPrice.up::after{content:' ▲';color:#ff9b8f}.ecPrice.down::after{content:' ▼';color:#8fdc5a}
+.ecTrade{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}.ecTrade .btn{padding:7px 2px;font-size:11px;min-width:0}
+.ecCouncil h4,.ecChat h4{margin:12px 0 6px;font:700 13px var(--ui);color:#fff}
+.ecBanner{margin:0 0 8px;padding:9px 12px;border-radius:10px;font-size:13px}.ecBanner.peace{background:rgba(102,217,255,.12);border:1px solid rgba(102,217,255,.45);color:#d6f3ff}.ecBanner.ban{background:rgba(242,179,61,.12);border:1px solid rgba(242,179,61,.45);color:#ffe7b0}
+.ecRes1{display:grid;gap:7px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);margin-bottom:6px}.ecRes1 p{margin:0;display:grid;gap:3px}.ecRes1 small{font-size:12px;color:var(--muted);line-height:1.35}
+.ecRes1 .row{display:flex;gap:6px}.ecRes1 .row .btn{flex:1}
+.ecPropose{display:flex;gap:6px;flex-wrap:wrap}.ecPropose select{flex:1;min-width:120px;min-height:38px;background:#0d1612;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:0 8px;font:inherit}
+.ecChat{display:grid;gap:8px}.ecChans{display:flex;gap:6px;flex-wrap:wrap}.ecChans select{flex:1;min-height:34px;background:#0d1612;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:8px;font:inherit}
+.ecLog{height:320px;overflow:auto;display:grid;align-content:start;gap:6px;padding:8px;border-radius:10px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08)}
+.ecMsg{margin:0;display:grid;gap:1px;max-width:88%;padding:7px 10px;border-radius:10px;background:rgba(255,255,255,.06)}.ecMsg.me{justify-self:end;background:rgba(57,211,83,.14)}
+.ecMsg small{font:600 11px var(--ui);color:var(--muted)}.ecMsg span{font-size:14px;color:#fff;word-break:break-word}
+.ecSend{display:flex;gap:6px}.ecSend .tin{flex:1}
+.ecWar{display:grid;gap:6px;margin:4px 0 8px;padding:9px 11px;border-radius:10px;background:rgba(239,75,79,.08);border:1px solid rgba(239,75,79,.3)}
+.ecGoals{display:flex;align-items:center;gap:5px;flex-wrap:wrap}.ecGoals small{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:#ff9b8f;margin-right:4px}
+.ecWar .note{margin:0}.ecTerms{display:grid;gap:7px}.ecTerms label{display:flex;align-items:center;gap:8px;font-size:13px}.ecTerms .tin,.ecTerms select{flex:1;min-height:34px;background:#0d1612;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:0 8px;font:inherit}
+.ecTerms .row{display:flex;gap:6px}.ecTerms .row .btn{flex:1}.ecChk input{width:18px;height:18px}
+.ecTag{font-style:normal;color:#ffb36a}
+.ecFall{fill:rgba(140,255,90,.28);stroke:#9dff6a;stroke-width:1;animation:ecFall 2.4s ease-in-out infinite}.ecFallI{font:700 9px var(--ui);fill:#eaffd8;text-anchor:middle;pointer-events:none}
+@keyframes ecFall{50%{fill:rgba(140,255,90,.12)}}
+.wmCard{display:grid;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08)}.wmCard>small{font:700 10.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:#ff9b8f}
+.wmRow{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}.wmRow>div{flex:1;min-width:0;display:grid;gap:2px}
+.wmRow b{font:700 13.5px var(--ui);color:#fff}.wmRow small{font-size:11.5px;color:var(--muted);line-height:1.35}.wmRow em{font-style:normal;font-size:11.5px;color:#ffd28a}.wmRow .btn{min-width:92px;min-height:36px}
+.wmNuke{display:flex;align-items:center;gap:7px;margin-top:4px;font-size:13px}.wmNuke i{width:12px;height:12px;border-radius:3px;border:1px solid #fff6}.wmNuke b{color:#c8ffb0}.wmNuke small{color:var(--muted);font-size:11.5px}
+.wmCard .note{margin:2px 0 0}
+.wmOver{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(2,6,8,.78);backdrop-filter:blur(6px);overflow:auto}
+.wmBox{width:min(560px,100%);display:grid;gap:12px;padding:20px;border-radius:16px;background:linear-gradient(180deg,#121c1a,#0a100f);border:1px solid rgba(57,211,83,.4);box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.wmBox>em{font:700 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-style:normal}.wmBox h2{margin:0;font:800 22px var(--ui);color:#fff}
+#wmHack .wmBox{font-family:ui-monospace,Menlo,Consolas,monospace}
+.wmSeq,.wmBuf{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.wmSeq small,.wmBuf small{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.wmSeq b{padding:4px 8px;border-radius:6px;border:1px solid rgba(57,211,83,.45);color:#bdf5c8}.wmSeq b.got{background:var(--green);color:#06210d}
+.wmGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.wmCell{min-height:44px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#5d6b66;font:700 15px ui-monospace,Menlo,Consolas,monospace;cursor:default}
+.wmCell.can{color:#e8fff0;border-color:rgba(57,211,83,.6);background:rgba(57,211,83,.12);cursor:pointer}.wmCell.can:hover{background:rgba(57,211,83,.3)}.wmCell.used{color:#2a332f;background:transparent;text-decoration:line-through}
+.wmBuf i{width:36px;height:30px;display:grid;place-items:center;border-radius:6px;border:1px dashed rgba(255,255,255,.2);font-style:normal;color:#fff}
+.wmTime{margin-left:auto;font:800 18px var(--ui);color:#fff}.wmTime.low{color:#ff6b61}
+.wmOff{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.wmOff div{display:grid;gap:2px;padding:9px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.wmOff b{font:700 13px var(--ui);color:#fff}.wmOff small{font-size:11px;color:var(--muted)}.wmOff i{font-style:normal;font-size:11.5px;color:var(--muted)}
+.wmOff .cur{border-color:var(--amber)}.wmOff .yes{border-color:var(--green);background:rgba(57,211,83,.1)}.wmOff .yes i{color:var(--green)}.wmOff .no{border-color:rgba(239,75,79,.6)}.wmOff .no i{color:#ff9b8f}
+.wmQuote{margin:0;font:italic 16px/1.5 Georgia,serif;color:#f2ead8}.wmApp{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.nwBox{width:min(760px,100%)}.nwTop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.nwTop em{font:700 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#c8ffb0;font-style:normal}
+.nwPrev{display:grid;place-items:center;padding:8px;border-radius:12px;background:radial-gradient(ellipse at center,#24302c,#0b110f);border:1px solid rgba(255,255,255,.08)}.nwSvg{max-width:100%;height:auto}
+.nwName{font:700 13px var(--ui);fill:#e8f4ea}
+.nwStats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.nwStats div{display:grid;gap:1px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.nwStats small{font:700 10px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.nwStats b{font:800 18px var(--ui);color:#fff}.nwStats i{font-style:normal;font-size:11px;color:var(--muted)}
+.nwNameIn{display:flex;align-items:center;gap:8px;font-size:13px}.nwNameIn .tin{flex:1}
+.nwCat{display:grid;gap:5px}.nwCat>small{font:700 10.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.nwOpts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px}
+.nwOpt{display:grid;gap:2px;text-align:left;padding:8px 10px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25);color:var(--fg);font:inherit;cursor:pointer}
+.nwOpt b{font:700 13px var(--ui);color:#fff}.nwOpt small{font-size:11px;color:var(--muted);line-height:1.3}.nwOpt i{font-style:normal;font-size:11px;color:var(--amber)}.nwOpt.on{border-color:var(--green);background:rgba(57,211,83,.12)}
+.nwCols{display:flex;gap:7px;flex-wrap:wrap}.nwCol{width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,.25);cursor:pointer}.nwCol.on{border-color:#fff;box-shadow:0 0 0 2px var(--green)}
+.nwBox .row .btn{flex:1;min-height:46px}
+.nwArs{display:grid;gap:6px}.nwItem{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;background:rgba(0,0,0,.2)}.nwItem>div{flex:1;min-width:0}.nwItem b{display:block;font:700 13.5px var(--ui);color:#fff}.nwItem small{font-size:11.5px;color:var(--muted)}
+.nwItem svg{flex:none;width:110px;height:auto}
+.nwFilm{position:fixed;inset:0;z-index:70;background:#000}.nwFilm canvas{display:block;width:100%;height:100%}
+.nwCap{position:absolute;left:50%;bottom:calc(30px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(640px,calc(100% - 32px));display:grid;gap:6px;padding:16px 20px;border-radius:14px;background:rgba(6,9,12,.8);border:1px solid rgba(255,255,255,.2);text-align:center}
+.nwCap em{font:700 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-style:normal}.nwCap b{font:700 20px var(--ui);color:#fff}.nwCap .row{display:flex;justify-content:center}.nwCap .btn{min-width:160px;min-height:44px}
+@media (max-width:560px){.ecRes{grid-template-columns:repeat(3,1fr)}.ecTrade{grid-template-columns:repeat(3,1fr)}.nwStats{grid-template-columns:1fr 1fr}.wmOff{grid-template-columns:1fr}.wmApp{grid-template-columns:1fr}.wmGrid{gap:4px}.wmCell{min-height:40px;font-size:13px}}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -1923,6 +1991,10 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
       <div><h3>World Wars</h3>A World War starts by itself in three ways: two blocs go to war with each other (both blocs are pulled in); someone betrays their bloc (the betrayer and their allies face the betrayed bloc; an ally may refuse within the hour, which ends the alliance); or 5 or more countries are linked by wars at the same time. Every member of one side is then at war with every member of the other, and peace or alliance offers between the sides are not possible. Other countries can <b>join a side</b>, join the <b>Peacemakers</b> (in the war, against nobody: they send aid, visit and propose ceasefires), or stay out and live in a <b>warzone</b>, where something good or bad happens to them every 6 hours. The war lasts 3 days and is scored: taking a country from the other side 3 points, a homeland 5, holding off an invasion 1, knocking out a station 4, an orbital strike or raid 1, an assassination or sabotage 2. A side can <b>surrender</b>, and anyone in the war can propose a <b>ceasefire</b>; every President who has to agree must vote yes within 6 hours. If time runs out, the side with more points wins; but if the Peacemakers made more peace points than either side made war points, it ends in peace. Winners get 1,500 gold each plus 15% of the losers' gold; a peace rewards the Peacemakers with 600 gold and costs nobody anything. Only one World War can be on at a time.</div>
       <div><h3>The history book</h3>Press <b>History book</b> on the World screen. The World keeps its own calendar: one real hour is one SMFA day, counted from the day the first country was founded. <b>The Chronicle</b> lists the big moments, with "The Story of the World" told from them. Every World War has a chapter with its full record, a <b>documentary</b> (a narrated film over the map with 3D scenes for the start, a betrayal and the end), a <b>short story</b> and a <b>long novel</b>. The words are the storyteller's; the events really happened.</div>
       <div><h3>Presidential powers</h3>The <b>Powers</b> tab of the World. <b>Peaceful takeover</b>: tap a country no player holds, next to your land, and <b>buy</b> it (1,200 to 3,500 gold, double for a capital, once every 12 hours) or <b>win it by influence</b> (600 gold; after 6 hours it votes to join you, if it is still free and next to you). Countries a player holds can only be taken by force. <b>Decrees</b>, one a day for 12 hours: a tax rise (+30% gold, half the new soldiers), martial law (twice the new soldiers, 20% less gold), conscription (40 soldiers at once, 15% less gold), or a national holiday (300 gold, ends chaos at once). An <b>embargo</b> cuts a country off from trade income for 48 hours and costs it 5% of its income for every country that joins in (at most 20%); members of your bloc can join yours. A <b>speech</b> (100 gold, once a day) plays a short scene and gives 15% more gold and soldiers for 6 hours. <b>Propaganda</b> (300 gold) raises the resistance in a country occupied by someone else by 15%.</div>
+      <div><h3>Missions without a battle</h3>Tap a country next to your land on the World map: its card lists missions that take it without a battle. A <b>border crossing</b> (300 gold and 20 soldiers) is a night stealth mission: raise your flag in their capital square and get back. <b>Assassinate the governor</b> (400 gold) and his garrison surrenders. <b>Hacking</b> (350 gold) is a code puzzle: get the target sequence into the buffer, picking first in the top row and then alternately down the column and along the row of your last pick, within 45 seconds. A <b>coup</b> (900 gold) is a conversation with three officers: read what each one wants (gold, power, fear or loyalty) and win two of them. On success the country is yours. Against a player you need to have no treaty, it works once a day, and never on a homeland; if you fail or are seen, it is war and they get three days of revenge.</div>
+      <div><h3>The nuclear workshop</h3>In the <b>Powers</b> tab. Design a warhead from fictional parts: the <b>core</b> sets the blast, the <b>inside</b> lining the reliability, the <b>outside</b> casing the stealth (fewer guards on a mission), the <b>fuse</b> more reliability, and the <b>delivery</b> how it reaches the target (a missile or a bomber). A colour costs 100 gold; the name is free. It costs gold, steel and oil, and your arsenal holds three. <b>Test</b> one at the desert test site: the world hears it, and every good test makes your next warheads 2% more reliable (up to 10%). Use them in nuclear missions on any country: <b>steal the launch code</b> or <b>distract the governors</b> (missiles, stealth missions) or a <b>bomber run</b> where you fly the bomber past their air defences and drop it on the city centre. A hit takes the country (not a homeland), destroys most of its owner's army and leaves fallout that earns nothing for days. If the victim has a missile warhead of its own, it fires back at once. Every strike puts sanctions to a Council vote; during a nuclear ban, sanctions follow at once.</div>
+      <div><h3>Council, chat and peace terms</h3>The <b>Council</b> tab: any President can propose a resolution for 200 gold: <b>sanctions</b> (no trade income and 20% less income for 48 hours), a <b>condemnation</b> (10% less for 24 hours), <b>aid</b> (every other country sends 2% of its gold), <b>world peace</b> (12 hours without any attack) or a <b>nuclear ban</b> (3 days). Every President has a vote; after 24 hours it passes with more yes than no and yes from at least a third of all Presidents. The <b>Chat</b> tab talks to the world, your bloc or one country. When you are at war with a country, open it in the Countries list to set your <b>war goal</b> (conquest, tribute or humiliation) and send <b>peace terms</b>: gold, a country and an apology, demanded or offered. Accepted terms end the war; terms that give you your war goal are worth 500 gold more.</div>
+      <div><h3>Oil, steel and food</h3>Every country makes oil, steel and food each hour; oil fields, factories, farmland and ports make much more. Your army eats food: without food it grows at half speed. Upgrades from level 5, ships, warheads and rebuilding a station need steel and oil. The <b>Market</b> tab buys and sells them for gold; prices rise as people buy and fall as they sell, and drift back each hour. Your stores hold 400 of each, plus 100 for every Economy level.</div>
       <div><h3>Victory animations</h3>Win a battle and your President plays a short victory scene. Choose it in <b>Barracks → Victory</b>, where every scene has a Preview button. Parade Salute is free for everyone. Plant the Flag comes with Soldier membership, Three-Point Landing with Sergeant, Don't Look Back with Captain, and The Long Corridor and The Throne Room with General. Every scene can also be unlocked in the Store with SD or Rp, and some come in bundles. Switch them off in Settings if you prefer.</div>
       <div><h3>Nuclear warhead</h3>In the campaign, buy it in the <b>Locker room</b> for $15,000. In skirmish, press <b>Buy nuke</b> in the office to buy it with $5,000 of war budget. In skirmish you can launch it whenever you like. In the campaign, the <b>Nuke</b> button only unlocks when you are losing (HQ below half, behind on tickets, or the enemy holds more flags). Type the launch code within 30 seconds; three wrong tries or running out of time locks it for 2 to 3 minutes. On success your squads fall back, and 9 seconds later the blast destroys every soldier, vehicle and building outside the two HQ bunkers. Both HQs are left badly damaged and the battle continues. One nuke per battle. Very rarely, a losing enemy saves up and nukes you: sirens give you 12 seconds to pull your troops back, and the enemy usually forgets to save its own.</div>
       <div><h3>Story</h3>The campaign tells the story of the Smiley Face Army's return from exile. As you conquer countries, 3D cutscenes play and <b>story missions</b> unlock in the campaign panel: defend the embassy, rescue a hostage, escort a convoy, kill a general, and storm the Emperor's capital. Heroes such as Reyes (sniper), Okoro (engineer) and Brandt (ace pilot) join and fight in your campaign battles. Tap or press Enter to move through a cutscene, or Skip. Replay them from the campaign panel.</div>
@@ -2071,6 +2143,7 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
   <div id="spView"></div>
   <div id="spMarks" aria-hidden="true"></div>
   <div class="spCross" aria-hidden="true"><i></i></div>
+  <canvas id="spRadar" width="150" height="150" aria-hidden="true"></canvas>
   <div class="spTop">
     <div class="spPanel spShip"><button class="btn small" id="spLeave">Leave</button>
       <div class="spBars"><label>Hull<span class="spBar"><i id="spHp"></i></span></label><label>Shield<span class="spBar sh"><i id="spSh"></i></span></label><label>Boost<span class="spBar bo"><i id="spBo"></i></span></label></div></div>
@@ -12772,7 +12845,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '4c08c4a9'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '19dc36ad'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21818,6 +21891,10 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '75', date: '2026-11-17', name: 'A bigger orbit', items: ['Stations are bigger and more detailed: a turning habitat ring with lit windows, docking arms, solar arrays and a blinking beacon. Free ports carry cargo containers.', 'Orbit reaches out to the Moon, with a new asteroid field beside it and a fourth field over the Americas. Nebulae glow in the distance.', 'A radar in the top right shows the planet, the Moon, stations, pirates, wrecks and other pilots around you.'] },
+  { v: '74', date: '2026-11-17', name: 'Oil, steel and food', items: ['Every country now makes oil, steel and food: oil fields, factories, farmland and ports make more. The army eats food; without it, it grows at half speed.', 'Big things need materials: upgrades from level 5, ships in Space, nuclear warheads and rebuilding a station.', 'The Market buys and sells all three for gold. Prices rise when everyone buys and fall when everyone sells.'] },
+  { v: '73', date: '2026-11-17', name: 'The World Council', items: ['The World Council: any President can put a resolution to a vote: sanctions, a condemnation, aid for a country, world peace for 12 hours, or a nuclear ban.', 'Chat with the whole world, your bloc, or one country in private.', 'War goals and peace terms: fight for conquest, tribute or humiliation, and end a war with terms (gold, a country, an apology). A goal reached is worth 500 gold.', 'Nukes in the World: fallout, second strikes from a country that has its own warhead, and an automatic Council vote on sanctions after every strike.'] },
+  { v: '72', date: '2026-11-17', name: 'Missions and nukes', items: ['Take a country without a battle: a border crossing at night, the assassination of its governor, hacking its command network, or a coup with its officers. Tap a country next to your land.', 'The nuclear workshop: design your own warhead from fictional parts (core, inside, outside, fuse, delivery), choose its colour and name it, build it and test it at the desert test site.', 'Nuclear missions: steal the launch code, distract the governors while the missile launches, or fly the bomber past their air defences yourself.', 'Against a player: no treaty, once a day, never a homeland (a nuke can hit one but not take it). If you fail or are seen, it is war. This needs the new world SQL file to be run once.'] },
   { v: '71', date: '2026-11-17', name: 'Presidential powers', items: ['Peaceful takeover: tap a country no player holds, next to your land, and buy it, or win it by influence (600 gold; after 6 hours it votes to join you).', 'Decrees, one a day: a tax rise, martial law, conscription, or a national holiday that ends chaos.', 'Embargoes: cut another country off from trade for 48 hours. Members of your bloc can join in.', 'Give a speech to the nation (a short 3D scene) for 6 hours of more gold and soldiers, or spread propaganda in a country occupied by someone else.', 'Find them all in the new Powers tab of the World.'] },
   { v: '70', date: '2026-11-17', name: 'The history book', items: ['A history book for the World, with its own calendar: one real hour is one SMFA day, counted from the day the world began.', 'The Chronicle lists the big moments: countries founded, blocs, homelands fallen, betrayals, takeovers and wars. "The Story of the World" tells them as a tale.', 'Every World War gets a chapter with its full record, a documentary over the map with a narrator and 3D scenes, a short story and a long novel. The words are invented; the events are real.'] },
   { v: '69', date: '2026-11-17', name: 'World Wars', items: ['A World War starts by itself when two blocs go to war, when someone betrays their bloc (the betrayer\'s allies are pulled in and may refuse within the hour), or when 5 or more countries are linked by wars.', 'Every member of one side is at war with every member of the other. Others can join a side, join the Peacemakers who fight nobody and try to end it, or stay out and live in a warzone where something good or bad happens every 6 hours.', 'It lasts 3 days and is scored on war points. A side can surrender, or both sides can accept a ceasefire, but every President who has to agree must vote yes. Winners share reparations; Peacemakers are rewarded if the war ends in peace.', 'The start and the end play as 3D scenes. This needs the new world SQL file to be run once.'] },
@@ -21964,7 +22041,7 @@ const I18N = {
     'The Long War': 'The Long War', 'Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.': 'Tiga puluh bab dalam lima babak. Pilihan Anda menentukan akhir perang: Sang Pembebas, Sang Penakluk, atau Sang Pendamai.',
     'World event': 'Peristiwa dunia', 'Break the treaty?': 'Langgar perjanjian?', 'Attack anyway': 'Tetap serang', 'Keep the peace': 'Jaga perdamaian', 'Cutscenes': 'Cutscene',
     'Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.': 'Buka perlengkapan dengan naik level lewat EXP, membelinya dengan Smiley Dollars (SD), atau meraih medali. Keduanya didapat di setiap battle.',
-    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
+    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'A bigger orbit': 'Orbit yang lebih besar', 'Oil, steel and food': 'Minyak, baja dan pangan', 'The World Council': 'Dewan Dunia', 'Missions and nukes': 'Misi dan nuklir', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
     // what's new
     'The lobby': 'Lobi', 'Lighter battles': 'Battle lebih ringan', 'Game health': 'Kesehatan game', 'Hit feel': 'Rasa pukulan', 'Real people and car damage': 'Orang realistis dan kerusakan mobil', 'Online version lock': 'Kunci versi online', 'F1 polish and replays': 'Polesan F1 dan replay'
   }
@@ -22387,6 +22464,10 @@ I18N.how = {
   'World Wars': ['Perang Dunia', 'Perang Dunia dimulai sendiri dengan tiga cara: dua blok saling berperang (kedua blok ikut terseret); seseorang mengkhianati bloknya (si pengkhianat dan sekutunya melawan blok yang dikhianati; sekutu boleh menolak dalam satu jam, yang mengakhiri aliansinya); atau 5 negara atau lebih terhubung oleh perang pada saat yang sama. Setiap anggota satu pihak lalu berperang dengan setiap anggota pihak lain, dan tawaran damai atau aliansi antarpihak tidak bisa dibuat. Negara lain bisa <b>bergabung dengan satu pihak</b>, bergabung dengan <b>Juru Damai</b> (ikut perang tetapi tidak melawan siapa pun: mengirim bantuan, berkunjung dan mengusulkan gencatan senjata), atau tetap di luar dan hidup di <b>zona perang</b>, tempat sesuatu yang baik atau buruk terjadi setiap 6 jam. Perang berlangsung 3 hari dan dinilai: merebut negara dari pihak lain 3 poin, tanah air 5, menahan invasi 1, melumpuhkan stasiun 4, serangan orbit atau penjarahan 1, pembunuhan atau sabotase 2. Satu pihak bisa <b>menyerah</b>, dan siapa pun di dalam perang bisa mengusulkan <b>gencatan senjata</b>; setiap Presiden yang harus setuju wajib memilih ya dalam 6 jam. Kalau waktu habis, pihak dengan poin lebih banyak menang; tetapi kalau Juru Damai mengumpulkan poin damai lebih banyak daripada poin perang pihak mana pun, perang berakhir damai. Pemenang mendapat 1.500 emas masing-masing ditambah 15% emas pihak yang kalah; perdamaian memberi Juru Damai 600 emas dan tidak merugikan siapa pun. Hanya satu Perang Dunia bisa berlangsung pada satu waktu.'],
   'The history book': ['Buku sejarah', 'Tekan <b>Buku sejarah</b> di layar Dunia. Dunia punya kalendernya sendiri: satu jam nyata adalah satu hari SMFA, dihitung dari hari negara pertama didirikan. <b>Kronik</b> mencatat momen-momen besar, dengan "Kisah Dunia" yang diceritakan darinya. Setiap Perang Dunia punya bab dengan catatan lengkapnya, sebuah <b>dokumenter</b> (film bernarasi di atas peta dengan adegan 3D untuk awal, pengkhianatan dan akhir), sebuah <b>cerita pendek</b> dan sebuah <b>novel panjang</b>. Kata-katanya karangan si pencerita; peristiwanya sungguh terjadi.'],
   'Presidential powers': ['Kekuasaan Presiden', 'Tab <b>Kekuasaan</b> di Dunia. <b>Pengambilalihan damai</b>: ketuk negara yang tidak dikuasai pemain, di sebelah wilayah Anda, lalu <b>beli</b> (1.200 sampai 3.500 emas, dua kali lipat untuk ibu kota, sekali tiap 12 jam) atau <b>menangkan lewat pengaruh</b> (600 emas; setelah 6 jam negara itu memilih bergabung dengan Anda, kalau masih bebas dan masih bertetangga). Negara yang dikuasai pemain hanya bisa direbut dengan kekuatan. <b>Dekret</b>, satu per hari selama 12 jam: kenaikan pajak (+30% emas, separuh prajurit baru), darurat militer (dua kali prajurit baru, 20% emas lebih sedikit), wajib militer (40 prajurit sekaligus, 15% emas lebih sedikit), atau libur nasional (300 emas, kekacauan langsung berakhir). <b>Embargo</b> memutus pemasukan dagang sebuah negara selama 48 jam dan mengurangi pemasukannya 5% untuk setiap negara yang ikut (paling banyak 20%); anggota blok Anda bisa ikut embargo Anda. <b>Pidato</b> (100 emas, sekali sehari) memutar adegan pendek dan memberi 15% emas dan prajurit lebih banyak selama 6 jam. <b>Propaganda</b> (300 emas) menaikkan perlawanan di negara yang diduduki pihak lain sebanyak 15%.'],
+  'Missions without a battle': ['Misi tanpa pertempuran', 'Ketuk negara di sebelah wilayah Anda di peta Dunia: kartunya berisi misi untuk merebutnya tanpa pertempuran. <b>Menyeberang perbatasan</b> (300 emas dan 20 prajurit) adalah misi senyap di malam hari: kibarkan bendera Anda di alun-alun ibu kota mereka lalu kembali. <b>Bunuh gubernur</b> (400 emas) dan garnisunnya menyerah. <b>Peretasan</b> (350 emas) adalah teka-teki kode: masukkan urutan target ke buffer, pilih pertama di baris atas lalu bergantian menyusuri kolom dan baris pilihan terakhir, dalam 45 detik. <b>Kudeta</b> (900 emas) adalah percakapan dengan tiga perwira: baca apa yang diinginkan masing-masing (emas, kekuasaan, rasa takut atau kesetiaan) dan menangkan dua di antaranya. Kalau berhasil, negara itu milik Anda. Terhadap pemain Anda harus tidak punya perjanjian, hanya sekali sehari, dan tidak pernah terhadap tanah air; kalau gagal atau terlihat, terjadi perang dan mereka mendapat tiga hari balas dendam.'],
+  'The nuclear workshop': ['Bengkel nuklir', 'Di tab <b>Kekuasaan</b>. Rancang hulu ledak dari bagian-bagian fiksi: <b>inti</b> menentukan ledakan, lapisan <b>dalam</b> keandalan, selubung <b>luar</b> kesenyapan (lebih sedikit penjaga dalam misi), <b>sumbu</b> menambah keandalan, dan <b>peluncur</b> cara mencapai sasaran (rudal atau pengebom). Warna seharga 100 emas; namanya gratis. Biayanya emas, baja dan minyak, dan gudang Anda memuat tiga. <b>Uji</b> satu di lokasi uji gurun: dunia mendengarnya, dan setiap uji yang berhasil membuat hulu ledak berikutnya 2% lebih andal (sampai 10%). Gunakan dalam misi nuklir terhadap negara mana pun: <b>curi kode peluncuran</b> atau <b>alihkan perhatian para gubernur</b> (rudal, misi senyap) atau <b>serangan pengebom</b> di mana Anda menerbangkan pengebom melewati pertahanan udara mereka dan menjatuhkannya di pusat kota. Serangan yang kena merebut negara itu (bukan tanah air), menghancurkan sebagian besar pasukan pemiliknya dan meninggalkan radiasi yang tidak menghasilkan apa-apa selama beberapa hari. Kalau korban punya rudal nuklir sendiri, ia langsung membalas. Setiap serangan membawa sanksi ke pemungutan suara Dewan; selama larangan nuklir, sanksi langsung berlaku.'],
+  'Council, chat and peace terms': ['Dewan, obrolan dan syarat damai', 'Tab <b>Dewan</b>: Presiden mana pun bisa mengusulkan resolusi seharga 200 emas: <b>sanksi</b> (tanpa pemasukan dagang dan 20% pemasukan lebih sedikit selama 48 jam), <b>kecaman</b> (10% lebih sedikit selama 24 jam), <b>bantuan</b> (setiap negara lain mengirim 2% emasnya), <b>perdamaian dunia</b> (12 jam tanpa serangan apa pun) atau <b>larangan nuklir</b> (3 hari). Setiap Presiden punya satu suara; setelah 24 jam resolusi lolos dengan lebih banyak ya daripada tidak dan ya dari paling sedikit sepertiga semua Presiden. Tab <b>Obrolan</b> untuk bicara dengan dunia, blok Anda atau satu negara. Saat berperang dengan sebuah negara, buka negara itu di daftar Negara untuk menetapkan <b>tujuan perang</b> (penaklukan, upeti atau penghinaan) dan mengirim <b>syarat damai</b>: emas, sebuah negara dan permintaan maaf, diminta atau ditawarkan. Syarat yang diterima mengakhiri perang; syarat yang memenuhi tujuan perang Anda bernilai 500 emas lebih.'],
+  'Oil, steel and food': ['Minyak, baja dan pangan', 'Setiap negara menghasilkan minyak, baja dan pangan setiap jam; ladang minyak, pabrik, lahan pertanian dan pelabuhan menghasilkan jauh lebih banyak. Pasukan Anda makan pangan: tanpa pangan pasukan tumbuh setengah kecepatan. Peningkatan dari level 5, kapal, hulu ledak dan membangun ulang stasiun butuh baja dan minyak. Tab <b>Pasar</b> membeli dan menjualnya untuk emas; harga naik saat orang membeli dan turun saat orang menjual, lalu kembali perlahan setiap jam. Gudang Anda memuat 400 masing-masing, ditambah 100 untuk setiap level Ekonomi.'],
   'Visits': ['Kunjungan', 'Dengan perjanjian damai atau aliansi, ketuk sebuah negara di daftar Negara di Dunia lalu tekan <b>Kunjungi</b> (visa 20 SD). Anda tiba di kota yang dihiasi bendera mereka, tempat Presiden mereka berjalan di alun-alun bersama dua pengawal. Kalau Presidennya sedang online, ia diberi tahu dan bisa datang menemui Anda. Tekan <b>Kunjungan</b> di kiri atas untuk kegiatan: menginap di hotel (40 SD), restoran, kafe dan bioskop, balapan di Sorrel Ring, atau <b>kirim bantuan</b> (300 SD memberi mereka 500 emas). Misi rahasia: <b>sabotase kas negara</b> (500 SD, mereka tanpa pemasukan selama 6 jam) atau <b>bunuh Presiden</b> (1000 SD, 12 jam kekacauan dan Anda mencuri 20% emas mereka). Keduanya misi senyap. Kalau Anda terlihat atau gagal, terjadi perang, mereka mendapat 3 hari balas dendam, dan terhadap anggota blok Anda sendiri dihitung sebagai pengkhianatan. Kalau tidak terlihat, tidak ada yang tahu pelakunya.'],
   'Violence modes': ['Tingkat kekerasan', '<b>Normal</b>: hanya tubuh terlempar, tanpa darah. <b>Brutal</b>: Normal ditambah darah. <b>Realistis</b>: nyawa dua kali lipat, grafis lebih baik, anggota tubuh putus dengan tulang terlihat, genangan darah, dan organ dari ledakan jarak dekat. <b>Sadis</b>: Realistis dengan fisika gore lebih berat, lebih banyak organ, rusuk terlihat dan isi perut terburai. Semuanya fiksi.']
 };
@@ -22601,6 +22682,34 @@ I18N.pat.push(
   [/^Next purchase in (.+)\.$/, m => `Pembelian berikutnya dalam ${m[1]}.`],
   [/^Embargoed by (.+)\.$/, m => `Diembargo oleh ${m[1]}.`],
   [/^occupied by (.+)$/, m => `diduduki oleh ${m[1]}`]
+);
+
+/* v72-v75: missions, nukes, Council, chat, market */
+Object.assign(I18N.id, {
+  'Market': 'Pasar', 'Council': 'Dewan', 'Chat': 'Obrolan', 'Oil': 'Minyak', 'Steel': 'Baja', 'Food': 'Pangan', 'World': 'Dunia', 'Private': 'Pribadi', 'Send': 'Kirim', 'Write a message': 'Tulis pesan', 'Propose': 'Usulkan', 'Open votes': 'Pemungutan suara terbuka', 'Recent decisions': 'Keputusan terbaru', 'Nothing to vote on.': 'Tidak ada yang perlu dipilih.',
+  'Sanctions': 'Sanksi', 'Condemnation': 'Kecaman', 'Aid': 'Bantuan', 'World peace': 'Perdamaian dunia', 'Nuclear ban': 'Larangan nuklir', 'Propose a resolution · 200 gold': 'Usulkan resolusi · 200 emas',
+  'No messages yet. Say hello.': 'Belum ada pesan. Sapa yang lain.', 'Be kind. The President of the game can remove messages.': 'Bersikap baiklah. Presiden game bisa menghapus pesan.', 'Found a country to write in the chat.': 'Dirikan negara untuk menulis di obrolan.',
+  'Your war goal': 'Tujuan perang Anda', 'Conquest': 'Penaklukan', 'Tribute': 'Upeti', 'Humiliation': 'Penghinaan', 'Peace terms…': 'Syarat damai…', 'Demand': 'Minta', 'Offer': 'Tawarkan', 'Gold': 'Emas', 'Country': 'Negara', 'none': 'tidak ada', 'They apologize': 'Mereka meminta maaf', 'We apologize': 'Kami meminta maaf', 'Send the terms': 'Kirim syarat', 'Cancel': 'Batal',
+  'Missions: take it without a battle': 'Misi: rebut tanpa pertempuran', 'Border crossing': 'Menyeberang perbatasan', 'Assassinate the governor': 'Bunuh gubernur', 'Hack their network': 'Retas jaringan mereka', 'Stage a coup': 'Lakukan kudeta', 'Steal the launch code': 'Curi kode peluncuran', 'Distract the governors': 'Alihkan perhatian para gubernur', 'Bomber run': 'Serangan pengebom', 'Launch': 'Luncurkan',
+  'Abort': 'Batalkan', 'Target sequence': 'Urutan target', 'Buffer': 'Buffer', 'ACCESS GRANTED': 'AKSES DITERIMA', 'TRACED': 'TERLACAK', 'Break into their command network': 'Bobol jaringan komando mereka',
+  'Offer gold': 'Tawarkan emas', 'Promise power': 'Janjikan kekuasaan', 'Threaten': 'Ancam', 'Appeal to the nation': 'Ajak demi bangsa', 'THE GOVERNMENT FALLS': 'PEMERINTAH JATUH', 'THE COUP FAILS': 'KUDETA GAGAL', 'You need two of the three officers. Read each one carefully.': 'Anda butuh dua dari tiga perwira. Baca masing-masing dengan teliti.',
+  'with you': 'di pihak Anda', 'refused': 'menolak', 'Nuclear workshop': 'Bengkel nuklir', 'Design a warhead': 'Rancang hulu ledak', 'Core': 'Inti', 'Inside': 'Dalam', 'Outside': 'Luar', 'Fuse': 'Sumbu', 'Delivery': 'Peluncur', 'Blast': 'Ledakan', 'Reliability': 'Keandalan', 'Stealth': 'Kesenyapan', 'Cost': 'Biaya',
+  'Name (free)': 'Nama (gratis)', 'Give it a name': 'Beri nama', 'Colour (100 gold, steel grey is free)': 'Warna (100 emas, abu-abu baja gratis)', 'Test it': 'Uji', 'Scrap': 'Buang', 'Sure?': 'Yakin?', 'No warheads yet.': 'Belum ada hulu ledak.', 'test to improve': 'uji untuk meningkatkan',
+  'Desert test site · countdown': 'Lokasi uji gurun · hitung mundur', 'No food: your army grows at half speed. Buy food or build farms.': 'Tanpa pangan: pasukan Anda tumbuh setengah kecepatan. Beli pangan atau bangun lahan pertanian.',
+  'Only the President trades.': 'Hanya Presiden yang berdagang.', 'Nuclear ban in force: using a nuke means sanctions at once.': 'Larangan nuklir berlaku: memakai nuklir berarti langsung disanksi.'
+});
+I18N.pat.push(
+  [/^(Buy|Sell) (\d+)$/, m => `${m[1] === 'Buy' ? 'Beli' : 'Jual'} ${m[2]}`],
+  [/^([\d.,]+) gold$/, m => `${m[1]} emas`],
+  [/^you have (.+)$/, m => `Anda punya ${m[1]}`],
+  [/^Build it · ([\d,.]+) gold$/, m => `Buat · ${m[1]} emas`],
+  [/^Meet (.+)$/, m => `Temui ${m[1]}`],
+  [/^Hacking · (.+)$/, m => `Peretasan · ${m[1]}`],
+  [/^Coup · (.+)$/, m => `Kudeta · ${m[1]}`],
+  [/^Test of (.+)$/, m => `Uji ${m[1]}`],
+  [/^Target: (.+)$/, m => `Sasaran: ${m[1]}`],
+  [/^(\d+) day(s?) of fallout$/, m => `${m[1]} hari radiasi`],
+  [/^(\d+) fewer guards$/, m => `${m[1]} penjaga lebih sedikit`]
 );
 
 /* ================= THE LOCKER: the Barracks with a big 3D view and "try before you unlock" =================
@@ -23653,7 +23762,7 @@ function wlRender() {
   } else if (WL.tab === 'blocs') {
     h += wlBlocsHtml(st, me);
   } else if (WL.tab === 'deals') {
-    const what = o => o.kind === 'peace' ? 'a peace treaty (24 hours without attacks)' : o.kind === 'alliance' ? 'an alliance (+10% income each, no attacks)' : o.kind === 'trade' ? 'a trade deal (+15% income each for 48 hours)' : `${wlNum(o.gold)} gold for their independence`;
+    const what = o => o.kind === 'terms' && typeof wlTermsText === 'function' ? wlTermsText(o) : o.kind === 'peace' ? 'a peace treaty (24 hours without attacks)' : o.kind === 'alliance' ? 'an alliance (+10% income each, no attacks)' : o.kind === 'trade' ? 'a trade deal (+15% income each for 48 hours)' : `${wlNum(o.gold)} gold for their independence`;
     const pres = me && me.role !== 'minister';
     h += (st.join_requests || []).map(r => `<div class="wlOffer"><p><b>${esc(r.name)}</b> asks to join your government as a minister${r.has_country ? ' (they give up their own country)' : ''}.</p><div class="row"><button class="btn small primary" data-jr="${r.id}:1">Accept</button><button class="btn small" data-jr="${r.id}:0">Decline</button></div></div>`).join('');
     h += st.offers.length ? st.offers.map(o => `<div class="wlOffer"><p>${o.mine ? `You offered <b>${esc(o.to)}</b> ${what(o).replace('their', 'your')}` : `<b>${esc(o.from)}</b> offers ${what(o)}`}</p><div class="row">${o.mine ? `<button class="btn small" data-ans="${o.id}:0">Withdraw</button>` : pres ? `<button class="btn small primary" data-ans="${o.id}:1">Accept</button><button class="btn small" data-ans="${o.id}:0">Decline</button>` : '<small class="note">Only the President can answer.</small>'}</div></div>`).join('') : (st.join_requests || []).length ? '' : `<p class="note">No open offers. Tap a country in the Countries list to offer peace, an alliance or trade.</p>`;
@@ -24441,7 +24550,8 @@ function wlbDefTick() {
    in rooms of up to 32 pilots (SMFA-SPACE-1, -2, ... a full room sends you on to the next). Gold and everything that
    lasts is decided on the account server (world_space_* in the world SQL). Asteroids, pirates and wrecks are each
    pilot's own; pilots, shots, kills and spilled cargo are shared. Everything runs in its own scene and renderer. */
-const SP_R = 400, SP_ROOM = 'SMFA-SPACE-', SP_BOUNTY = 10, SP_RESPAWN = 10;
+const SP_R = 400, SP_ROOM = 'SMFA-SPACE-', SP_BOUNTY = 10, SP_RESPAWN = 10, SP_EDGE = SP_R + 900;
+const SP_MOON = new THREE.Vector3(-560, 260, -620);   // the Moon, out beyond the stations
 const SP_SHIPS = {
   fighter: { n: 'Fighter', d: 'Fast and nimble. Every country has one.', price: 0, hp: 80, sh: 40, spd: 46, bst: 120, turn: 1.7, dmg: 10, rate: 0.13, hold: 15, pax: 0, mine: 1, sc: 0.9 },
   miner: { n: 'Miner', d: 'Mines twice as fast and carries 60 ore.', price: 800, hp: 110, sh: 40, spd: 36, bst: 92, turn: 1.25, dmg: 6, rate: 0.2, hold: 60, pax: 0, mine: 2, sc: 1.05 },
@@ -24494,13 +24604,28 @@ function spcShipMesh(col, type) {
   g.rotation.y = Math.PI; out.add(g); out.scale.setScalar(T.sc); return out;   // the nose points along +Z
 }
 function spcStationMesh(col, free) {
-  const g = new THREE.Group(), hull = new THREE.MeshLambertMaterial({ color: free ? 0x9aa0a6 : 0xb9c2c8 }), paint = new THREE.MeshLambertMaterial({ color: new THREE.Color(col) }), panel = new THREE.MeshLambertMaterial({ color: 0x1d3a6b, emissive: 0x0a1a3a }), lamp = new THREE.MeshBasicMaterial({ color: new THREE.Color(col) });
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(free ? 12 : 16, 2.2, 10, 36), hull); g.add(ring);
-  const core = new THREE.Mesh(new THREE.CylinderGeometry(4.5, 4.5, 20, 14), paint); core.rotation.x = Math.PI / 2; g.add(core);
-  for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2, sp = new THREE.Mesh(new THREE.BoxGeometry(free ? 10 : 14, 1, 1), hull); sp.position.set(Math.cos(a) * (free ? 7 : 9), Math.sin(a) * (free ? 7 : 9), 0); sp.rotation.z = a; g.add(sp); }
-  if (!free) for (const s of [-1, 1]) { const p = new THREE.Mesh(new THREE.BoxGeometry(26, 0.4, 9), panel); p.position.set(0, 0, s * 15); g.add(p); }
-  const l = new THREE.Mesh(new THREE.SphereGeometry(1.6, 10, 8), lamp); l.position.set(0, 0, 10.5); g.add(l);
-  g.userData.ring = ring; g.userData.core = core; return g;
+  const g = new THREE.Group(), hull = new THREE.MeshLambertMaterial({ color: free ? 0x9aa0a6 : 0xb9c2c8 }), dark = new THREE.MeshLambertMaterial({ color: 0x3a4148 }), paint = new THREE.MeshLambertMaterial({ color: new THREE.Color(col) }),
+    panel = new THREE.MeshLambertMaterial({ color: 0x1d3a6b, emissive: 0x0a1a3a }), lamp = new THREE.MeshBasicMaterial({ color: new THREE.Color(col) }), win = new THREE.MeshBasicMaterial({ color: 0xffe9a8 }), red = new THREE.MeshBasicMaterial({ color: 0xff3b30 });
+  const add = (geo, mat, x, y, z, rx, ry, rz, parent) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); if (rx) m.rotation.x = rx; if (ry) m.rotation.y = ry; if (rz) m.rotation.z = rz; (parent || g).add(m); return m; };
+  // the habitat ring turns slowly; its windows are lit
+  const ringG = new THREE.Group(); g.add(ringG);
+  const RR = free ? 13 : 17;
+  add(new THREE.TorusGeometry(RR, 2.3, 12, 48), hull, 0, 0, 0, 0, 0, 0, ringG);
+  add(new THREE.TorusGeometry(RR, 2.45, 4, 48), paint, 0, 0, 0, 0, 0, 0, ringG).scale.set(1, 1, 0.18);
+  for (let i = 0; i < 24; i++) { const a = i / 24 * TAU; add(new THREE.BoxGeometry(0.7, 0.5, 0.3), win, Math.cos(a) * (RR + 2.25), Math.sin(a) * (RR + 2.25), 0.9, 0, 0, a, ringG); add(new THREE.BoxGeometry(0.7, 0.5, 0.3), win, Math.cos(a) * (RR + 2.25), Math.sin(a) * (RR + 2.25), -0.9, 0, 0, a, ringG); }
+  for (let i = 0; i < 6; i++) { const a = i / 6 * TAU; add(new THREE.BoxGeometry(RR - 4, 0.8, 0.8), hull, Math.cos(a) * (RR / 2 + 1.5), Math.sin(a) * (RR / 2 + 1.5), 0, 0, 0, a, ringG); }
+  // the core: a long hull in the country's colour with docking arms and lights
+  const core = add(new THREE.CylinderGeometry(4.5, 4.5, 24, 16), paint, 0, 0, 0, PI / 2);
+  add(new THREE.CylinderGeometry(5.4, 5.4, 2.2, 16), dark, 0, 0, 6, PI / 2); add(new THREE.CylinderGeometry(5.4, 5.4, 2.2, 16), dark, 0, 0, -6, PI / 2);
+  add(new THREE.SphereGeometry(5.6, 16, 12), hull, 0, 0, 12.5); add(new THREE.SphereGeometry(4.2, 14, 10), hull, 0, 0, -12.5);
+  for (const s of [-1, 1]) { const arm = add(new THREE.BoxGeometry(2, 2, 10), dark, s * 7, 0, 10); add(new THREE.BoxGeometry(4.2, 4.2, 1.2), hull, s * 7, 0, 15.4); add(new THREE.SphereGeometry(0.55, 8, 6), lamp, s * 7, 2.6, 15.4); arm.userData.arm = true; }
+  // solar arrays, radiators, an antenna and a beacon
+  if (!free) for (const s of [-1, 1]) { add(new THREE.BoxGeometry(1, 1, 18), dark, 0, s * 9, -6, 0, 0, 0); for (let k = 0; k < 3; k++) add(new THREE.BoxGeometry(30, 0.3, 5.2), panel, 0, s * (9 + 0.4), -14 + k * 6); add(new THREE.BoxGeometry(0.3, 12, 4), hull, s * 6.2, 0, -16); }
+  else { for (let i = 0; i < 8; i++) { const a = i / 8 * TAU; add(new THREE.BoxGeometry(3, 2.4, 6), new THREE.MeshLambertMaterial({ color: [0xc8102e, 0xf2b33d, 0x1f6fd1, 0x39d353][i % 4] }), Math.cos(a) * 7.4, Math.sin(a) * 7.4, -4, 0, 0, a); } }
+  add(new THREE.CylinderGeometry(0.15, 0.15, 10, 6), hull, 0, 0, 22, PI / 2); add(new THREE.SphereGeometry(1, 10, 8), hull, 0, 0, 27);
+  const beacon = add(new THREE.SphereGeometry(1.4, 10, 8), red, 0, 0, 28.6); g.userData.beacon = beacon;
+  const l = add(new THREE.SphereGeometry(1.6, 10, 8), lamp, 0, 0, 18.2);
+  g.userData.ring = ringG; g.userData.core = core; g.scale.setScalar(free ? 1.4 : 1.6); return g;
 }
 // a knocked-out station: dark, broken, smoking
 function spcWreckLook(s) {
@@ -24520,6 +24645,10 @@ function spcBuild() {
   for (let i = 0; i < n; i++) { const u = rnd() * 2 - 1, a = rnd() * Math.PI * 2, r = Math.sqrt(1 - u * u), d = 6000; pos[i * 3] = r * Math.cos(a) * d; pos[i * 3 + 1] = u * d; pos[i * 3 + 2] = r * Math.sin(a) * d; }
   const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(pos, 3)); S.stars = new THREE.Points(sg, new THREE.PointsMaterial({ color: 0xffffff, size: 2.2, sizeAttenuation: false, transparent: true, opacity: 0.9 })); sc.add(S.stars);
   const sunM = new THREE.Mesh(new THREE.SphereGeometry(260, 16, 12), new THREE.MeshBasicMaterial({ color: 0xfff1c2 })); sunM.position.copy(sun.position).multiplyScalar(5200); sc.add(sunM);
+  const moon = new THREE.Mesh(new THREE.SphereGeometry(110, 32, 24), new THREE.MeshLambertMaterial({ color: 0xb9b6ae, flatShading: true })); moon.position.copy(SP_MOON); sc.add(moon);
+  for (let i = 0; i < 14; i++) { const c = new THREE.Mesh(new THREE.CircleGeometry(6 + rnd() * 16, 14), new THREE.MeshLambertMaterial({ color: 0x8f8b84 })); const d = spV(rnd() - 0.5, rnd() - 0.5, rnd() - 0.5).normalize(); c.position.copy(SP_MOON).add(d.clone().multiplyScalar(110.4)); c.lookAt(SP_MOON.clone().add(d.multiplyScalar(300))); sc.add(c); }
+  const neb = document.createElement('canvas'); neb.width = 256; neb.height = 256; { const q = neb.getContext('2d'), gr = q.createRadialGradient(128, 128, 0, 128, 128, 128); gr.addColorStop(0, 'rgba(160,90,255,.55)'); gr.addColorStop(0.5, 'rgba(60,120,255,.18)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); q.fillStyle = gr; q.fillRect(0, 0, 256, 256); }
+  for (const [x, y, z, k] of [[-4200, 1600, 2600, 2600], [3600, -1800, -3000, 2000]]) { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(neb), transparent: true, depthWrite: false, opacity: 0.8 })); sp.position.set(x, y, z); sp.scale.set(k, k, 1); sc.add(sp); }
   S.earth = new THREE.Mesh(new THREE.SphereGeometry(SP_R, 64, 48), new THREE.MeshLambertMaterial({ map: spcEarthTex() })); sc.add(S.earth);
   sc.add(new THREE.Mesh(new THREE.SphereGeometry(SP_R * 1.035, 48, 32), new THREE.MeshBasicMaterial({ color: 0x4aa3ff, transparent: true, opacity: 0.13, side: THREE.BackSide, blending: THREE.AdditiveBlending, depthWrite: false })));
   // a station over every player's homeland, and the free ports
@@ -24534,12 +24663,12 @@ function spcBuild() {
   const addSt = (name, v, rel, up, free) => { const m = spcStationMesh(free ? '#d8dee4' : spcCol(name), free); m.position.copy(v); m.lookAt(0, 0, 0); sc.add(m);
     const s = { name, pos: m.position.clone(), mesh: m, rel, up, free, tur: [], down: 0, core: 0, seen: false };
     if (!up) spcWreckLook(s);
-    else if (rel === 'war') { for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2 + Math.PI / 4, tm = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2.4, 3.4), new THREE.MeshLambertMaterial({ color: 0x8a2f2f, emissive: 0x3a0b0b })); tm.position.set(Math.cos(a) * 16, Math.sin(a) * 16, 3); m.add(tm); s.tur.push({ mesh: tm, hp: 40, fireT: rr(0.5, 1.5), i }); } s.core = 300; }
+    else if (rel === 'war') { for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2 + Math.PI / 4, tm = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2.4, 3.4), new THREE.MeshLambertMaterial({ color: 0x8a2f2f, emissive: 0x3a0b0b })); tm.position.set(Math.cos(a) * 21, Math.sin(a) * 21, 3); m.add(tm); s.tur.push({ mesh: tm, hp: 40, fireT: rr(0.5, 1.5), i }); } s.core = 300; }
     S.st.push(s); return s; };
   for (const { p, v } of spots) addSt(p.name, v, spcRel(p.name), p.station !== false, false);
   SP_FREE.forEach(([name], i) => addSt(name, fixed[i], 'free', true, true));
   // three asteroid fields, the same for everyone
-  S.rocks = []; S.fields = [[430, 235], [705, 330], [935, 190]].map(([x, y]) => spcPos(x, y, SP_R + 135));
+  S.rocks = []; S.fields = [[430, 235], [705, 330], [935, 190], [160, 300]].map(([x, y]) => spcPos(x, y, SP_R + 135)).concat([SP_MOON.clone().add(spV(110, 40, -60))]);
   const rk = mulberry32(4242), mats = [0x7d7469, 0x6a6460, 0x8b7b62].map(c => new THREE.MeshLambertMaterial({ color: c, flatShading: true }));
   S.fields.forEach((c, fi) => { for (let i = 0; i < (MOBILE() ? 16 : 24); i++) { const r = 3 + rk() * 6, m = new THREE.Mesh(new THREE.IcosahedronGeometry(r, 0), mats[i % 3]);
     m.position.set(c.x + (rk() - 0.5) * 150, c.y + (rk() - 0.5) * 150, c.z + (rk() - 0.5) * 150); if (m.position.length() < SP_R + 40) m.position.setLength(SP_R + 40 + rk() * 60);
@@ -24638,7 +24767,8 @@ function spcStep(dt) {
     if (d < SP_R + 60) { const out = sh.position.clone().normalize(), f2 = spV(0, 0, 1).applyQuaternion(sh.quaternion), dive = -f2.dot(out);
       if (dive > 0.02) { const ax = f2.clone().cross(out); if (ax.lengthSq() > 1e-6) sh.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(ax.normalize(), Math.min(dive, dt * (d < SP_R + 35 ? 2.6 : 1.1)))).normalize(); } }
     if (d < SP_R + 14) { sh.position.setLength(SP_R + 14); spcHurt(30 * dt); if (S.t > (S.warnT || 0)) { S.warnT = S.t + 2; spcSay('Too low: the atmosphere is burning your hull. Pull up.'); } }
-    if (d > SP_R + 520) { sh.position.setLength(SP_R + 520); if (S.t > (S.warnT || 0)) { S.warnT = S.t + 4; spcSay('That is as far from the planet as your ship can go.'); } }
+    if (d > SP_EDGE) { sh.position.setLength(SP_EDGE); if (S.t > (S.warnT || 0)) { S.warnT = S.t + 4; spcSay('That is as far from the planet as your ship can go.'); } }
+    const dm = sh.position.distanceTo(SP_MOON); if (dm < 118) { sh.position.copy(SP_MOON).add(sh.position.clone().sub(SP_MOON).setLength(118)); spcHurt(20 * dt); if (S.t > (S.warnT || 0)) { S.warnT = S.t + 2; spcSay('You scraped the Moon. Pull away.'); } }
     if (S.t - S.hitT > 4) S.sh = Math.min(T.sh, S.sh + T.sh * 0.18 * dt);
     S.fireT -= dt; if ((K[' '] || S.btn.fire) && S.fireT <= 0) { S.fireT = T.rate; spcFire(); }
     sh.userData.glow.forEach(g => g.scale.setScalar(0.75 + S.speed / 160));
@@ -24654,7 +24784,7 @@ function spcStep(dt) {
   for (const b of S.bolts) { b.life -= dt; b.m.position.add(b.v.clone().multiplyScalar(dt)); } S.bolts = S.bolts.filter(b => { if (b.life > 0) return true; S.scene.remove(b.m); return false; });
   for (const f of S.fx) { f.t += dt; const k = f.t / (f.beam ? 1.6 : 0.55); if (f.beam) f.m.material.opacity = Math.max(0, 1 - k); else { f.m.scale.setScalar(f.size * (0.3 + k)); f.m.material.opacity = Math.max(0, 0.95 * (1 - k)); } }
   S.fx = S.fx.filter(f => { if (f.t < (f.beam ? 1.6 : 0.55)) return true; S.scene.remove(f.m); f.m.material.dispose(); if (f.beam) f.m.geometry.dispose(); return false; });
-  for (const s of S.st) { if (s.up) s.mesh.userData.ring.rotation.z += dt * 0.12; if (s.down && S.t - s.down > 300) { s.down = 0; if (s.up) for (const t of s.tur) { t.hp = 40; t.mesh.visible = true; } } }
+  for (const s of S.st) { if (s.up) { s.mesh.userData.ring.rotation.z += dt * 0.12; const bc = s.mesh.userData.beacon; if (bc) bc.visible = (S.t % 1.6) < 0.5; } if (s.down && S.t - s.down > 300) { s.down = 0; if (s.up) for (const t of s.tur) { t.hp = 40; t.mesh.visible = true; } } }
   // the station close enough to use
   let near = null, nd = 1e9; for (const s of S.st) { const d = s.pos.distanceTo(sh.position); if (d < nd) { nd = d; near = s; } } S.near = near && nd < 75 ? near : null; S.nearD = nd;
   spcNet(dt); spcCam(dt);
@@ -24886,6 +25016,7 @@ function spcHud() {
   if (S.troops && TBY[S.troops.id]) { const t = TBY[S.troops.id]; spcMark('dz', spcPos(t.x, t.y, SP_R + 45), 'drop', `Drop zone: ${esc(t.name)} · ${km(spcPos(t.x, t.y, SP_R + 45).distanceTo(sh))}`, true); } else spcHide('dz');
   for (const q of S.peers.values()) { if (q.mesh.visible) spcMark('p' + q.id, q.mesh.position, 'pilot ' + q.rel, `${esc(q.name)}${q.country ? ' · ' + esc(q.country) : ''}`, true); else spcHide('p' + q.id); }
   if (S.t < S.hudT) return; S.hudT = S.t + 0.12;
+  spcRadar();
   const set = (id, v) => { const e = $(id); if (e && e._v !== v) { e._v = v; e.textContent = v; } }, bar = (id, v) => { const e = $(id); if (e) e.style.width = clamp(v, 0, 100) + '%'; };
   bar('#spHp', 100 * S.hp / T.hp); bar('#spSh', 100 * S.sh / T.sh); bar('#spBo', S.boost);
   set('#spOre', `${S.cargo}/${T.hold}`); set('#spBty', String(S.bounty)); set('#spGold', wlNum(S.earned)); set('#spSpd', String(Math.round(S.speed * 10))); set('#spPil', String(S.peers.size + 1));
@@ -24896,6 +25027,22 @@ function spcHud() {
   const m = $('#spMsg'); if (m && !m.hidden && S.t > S.msgT) m.hidden = true;
 }
 
+// the radar, top right: what is around you, seen from above your ship (planet, Moon, stations, pirates, pilots)
+function spcRadar() {
+  const c = $('#spRadar'); if (!c) return; const g = c.getContext('2d'), W = c.width, H = c.height, S = SPC, sh = S.ship, me = sh.position;
+  const inv = sh.quaternion.clone().invert(), RNG = 520, k = (W / 2 - 6) / RNG;
+  g.clearRect(0, 0, W, H); g.save(); g.translate(W / 2, H / 2);
+  g.fillStyle = 'rgba(4,10,16,.72)'; g.beginPath(); g.arc(0, 0, W / 2 - 1, 0, TAU); g.fill(); g.strokeStyle = 'rgba(102,217,255,.45)'; g.lineWidth = 1; g.stroke();
+  g.strokeStyle = 'rgba(102,217,255,.15)'; for (const r of [0.33, 0.66]) { g.beginPath(); g.arc(0, 0, (W / 2 - 6) * r, 0, TAU); g.stroke(); }
+  const dot = (pos, col, r, ring) => { const v = pos.clone().sub(me).applyQuaternion(inv); let x = v.x * k, y = -v.z * k; const m = Math.hypot(x, y), lim = W / 2 - 7; if (m > lim) { x *= lim / m; y *= lim / m; } g.fillStyle = col; g.beginPath(); g.arc(-x, y, r, 0, TAU); if (ring) { g.strokeStyle = col; g.lineWidth = 1.5; g.stroke(); } else g.fill(); };
+  dot(spV(0, 0, 0), 'rgba(80,160,255,.9)', 7, true); dot(SP_MOON, 'rgba(220,220,210,.9)', 5, true);
+  for (const s of S.st) dot(s.pos, !s.up ? '#777' : s.rel === 'mine' ? '#39d353' : s.rel === 'war' ? '#ff6b61' : s.rel === 'treaty' ? '#66d9ff' : '#e8eef2', 3);
+  for (const p of S.pir) dot(p.m.position, '#ff6b61', 2);
+  for (const q of S.peers.values()) if (q.mesh.visible) dot(q.mesh.position, q.rel === 'war' ? '#ff9b8f' : '#ffffff', 2.4);
+  if (S.wreck) dot(S.wreck.pos, '#66d9ff', 2.4);
+  g.fillStyle = '#fff'; g.beginPath(); g.moveTo(0, -6); g.lineTo(4, 5); g.lineTo(-4, 5); g.closePath(); g.fill();
+  g.restore();
+}
 /* ---------- opening and closing ---------- */
 function spcSize() { const S = SPC, v = $('#spView'); if (!S.r || !v) return; S.w = v.clientWidth || innerWidth; S.h = v.clientHeight || innerHeight; S.r.setSize(S.w, S.h, false); S.cam.aspect = S.w / Math.max(1, S.h); S.cam.updateProjectionMatrix(); }
 function spcFrame(now) {
@@ -25449,5 +25596,540 @@ function wpSpeech() {
     } catch (e) { console.warn('powers', e); }
     return r;
   };
+}
+
+/* ================= THE WORLD: resources, the market, the World Council, chat, war goals and peace terms =================
+   - Oil, steel and food come from buildings (oil fields, factories, farmland, ports) and from every country; the army eats
+     food. Gold stays the main money; the materials are needed for big things: upgrades from level 5, ships, nukes, rebuilding
+     a station. Without food the army grows at half speed. The Market buys and sells them for gold; prices move with trade.
+   - The World Council: any President can put a resolution to a vote (sanctions, condemnation, aid, world peace, a nuke ban).
+   - Chat: the whole world, your bloc, or one country.
+   - War goals (conquest, tribute, humiliation) and peace terms (gold, a country, an apology) for the wars between countries.
+   The rules are in the world SQL (world_market_*, world_council_*, world_chat_*, world_war_goal, world_terms). */
+const EC_RES = { oil: ['Oil', '#f2b33d'], steel: ['Steel', '#a9b8c6'], food: ['Food', '#8fdc5a'] };
+const EC_COUNCIL = { sanction: ['Sanctions', 'No trade income and 20% less income for 48 hours.', true], condemn: ['Condemnation', '10% less income for 24 hours, and the shame.', true],
+  aid: ['Aid', 'Every other country sends 2% of its gold (at most 300).', true], peace: ['World peace', '12 hours without invasions, wars, missions or attacks in space.', false], nuke_ban: ['Nuclear ban', '3 days: anyone who uses a nuke is sanctioned at once.', false] };
+const EC_GOAL = { conquest: ['Conquest', 'their land'], tribute: ['Tribute', 'their gold (300 or more)'], humiliation: ['Humiliation', 'an apology'] };
+const EC = { chat: [], last: 0, chan: 'world', dm: '', unread: 0, seen: 0, t: 0, terms: null };
+const ecNum = v => Math.floor(v || 0).toLocaleString();
+
+/* ---------- the news ---------- */
+{
+  const _n = wlNews; wlNews = function (l) {
+    const a = `<b>${esc(l.a)}</b>`, nat = k => NATIONS[k] ? (NATIONS[k].short || NATIONS[k].name) : k, b = `<b>${esc(nat(l.b))}</b>`, c = l.country && TBY[l.country] ? TBY[l.country].name : '';
+    const M = { border: 'a squad crossed the border at night and raised the flag in the capital of', governor: 'the governor was assassinated in', hack: 'hackers took over the command network of', coup: 'officers staged a coup in',
+      nuke_code: 'a stolen launch code sent a nuclear missile into', nuke_bomber: 'a bomber dropped a nuclear bomb on', nuke_distract: 'while its governors were busy, a nuclear missile hit' };
+    if (/^mis_/.test(l.kind) && l.kind !== 'mis_failed') { const k = l.kind.slice(4); return `${l.a ? a : 'Unknown agents'}: ${M[k] || 'a secret mission in'} <b>${esc(c)}</b>${l.n ? `, which now belongs to ${l.a ? a : 'someone'}` : ''} (held by ${b})`; }
+    switch (l.kind) {
+      case 'mis_failed': return `A secret mission of ${a} in ${esc(c)} failed. ${b} knows who sent it`;
+      case 'nuke_built': return `${a} built a nuclear warhead`;
+      case 'nuke_test': return l.n ? `${a} tested a nuclear warhead: ${wlNum(l.n)} megasmiles. The ground shook around the world` : `${a} tested a nuclear warhead. It fizzled`;
+      case 'nuke_fizzle': return `A nuclear warhead of ${a} fizzled over ${esc(c)}`;
+      case 'second_strike': return `${a} fired back with a nuclear missile at ${b}: ${esc(c)} is in ruins`;
+      case 'council_new': return `${a} put ${EC_COUNCIL[l.b] ? EC_COUNCIL[l.b][0].toLowerCase() : 'a resolution'} to the World Council`;
+      case 'council_pass': return `The World Council passed ${EC_COUNCIL[l.a] ? EC_COUNCIL[l.a][0].toLowerCase() : 'a resolution'}${l.b ? ` against ${b}` : ''} (${wlNum(l.n)} votes)`;
+      case 'council_fail': return `The World Council rejected ${EC_COUNCIL[l.a] ? EC_COUNCIL[l.a][0].toLowerCase() : 'a resolution'}${l.b ? ` on ${b}` : ''}`;
+      case 'goal': return `${a} is at war with ${b} for ${['', 'conquest', 'tribute', 'humiliation'][l.n] || 'a goal'}`;
+      case 'terms': return `${b} accepted the peace terms of ${a}${l.n ? `: ${wlNum(l.n)} gold` : ''}${c ? `${l.n ? ' and' : ':'} ${esc(c)}` : ''}`;
+      case 'apology': return `${a} apologized to ${b}`;
+      case 'goal_met': return `${a} reached its war goal against ${b}`;
+    }
+    return _n.apply(this, arguments);
+  };
+}
+
+/* ---------- my resources, under my numbers ---------- */
+function ecResHtml(me) {
+  const P = me.prod || {}, cap = P.cap || 500;
+  return `<div class="ecRes">${Object.entries(EC_RES).map(([k, [n, col]]) => { const v = me[k] || 0, d = P[k] || 0;
+    return `<div class="ecR"><i style="background:${col}"></i><small>${n}</small><b>${ecNum(v)}</b><em class="${d < 0 ? 'down' : ''}">${d >= 0 ? '+' : '−'}${Math.abs(d).toFixed(d % 1 ? 1 : 0)}/h</em><span class="ecBar"><u style="width:${Math.min(100, 100 * v / cap)}%;background:${col}"></u></span></div>`; }).join('')}</div>${(me.food || 0) <= 0 && (P.food || 0) < 0 ? '<p class="note ecWarn">No food: your army grows at half speed. Buy food or build farms.</p>' : ''}`;
+}
+
+/* ---------- the market ---------- */
+WL_TABS.market = {
+  tab: (st, me) => me ? { k: 'market', n: 'Market' } : null,
+  html: (st, me) => {
+    const M = st.market || {}, pres = me.role !== 'minister', cap = (me.prod && me.prod.cap) || 500;
+    return `<div class="ecMarket"><p class="note">Oil, steel and food for gold. Buying pushes the price up, selling pushes it down; every hour prices drift back. Your stores hold ${cap} of each.</p>
+      ${Object.entries(EC_RES).map(([k, [n, col]]) => { const m = M[k] || { price: 0, base: 1 }, trend = m.price > m.base * 1.05 ? 'up' : m.price < m.base * 0.95 ? 'down' : '';
+        return `<div class="ecGood"><div class="ecGh"><i style="background:${col}"></i><b>${n}</b><span class="ecPrice ${trend}">${Number(m.price).toFixed(2)} gold</span><small>you have ${ecNum(me[k])}</small></div>
+          ${pres ? `<div class="ecTrade">${[10, 50, 200].map(q => `<button class="btn small" data-mk="${k}:${q}"${me.gold < q * m.price ? ' disabled' : ''}>Buy ${q}</button>`).join('')}${[10, 50, 200].map(q => `<button class="btn small" data-mk="${k}:-${q}"${(me[k] || 0) < q ? ' disabled' : ''}>Sell ${q}</button>`).join('')}</div>` : ''}</div>`; }).join('')}
+      ${pres ? '' : '<p class="note">Only the President trades.</p>'}
+      <p class="note">Needed for: upgrades from level 5 (steel and oil), ships in Space, nuclear warheads, rebuilding a station. Food feeds the army.</p></div>`;
+  },
+  wire: el => el.querySelectorAll('[data-mk]').forEach(b => b.onclick = () => { const [k, q] = b.dataset.mk.split(':'); b.disabled = true; wlDo('world_market_trade', { p_res: k, p_qty: +q }); })
+};
+
+/* ---------- the World Council ---------- */
+WL_TABS.council = {
+  tab: (st, me) => accOn() ? { k: 'council', n: 'Council', c: (st.council || []).filter(c => c.status === 'open' && !c.voted).length, hot: true } : null,
+  html: (st, me) => {
+    const C = st.council || [], pres = me && me.role !== 'minister', open = C.filter(c => c.status === 'open'), done = C.filter(c => c.status !== 'open');
+    const line = c => `<b>${esc(EC_COUNCIL[c.kind] ? EC_COUNCIL[c.kind][0] : c.kind)}</b>${c.target ? ` against <b>${esc(c.target)}</b>` : ''}`.replace(' against <b>', c.kind === 'aid' ? ' for <b>' : ' against <b>');
+    let h = `<div class="ecCouncil">`;
+    if (st.peace_until) h += `<p class="ecBanner peace">World peace until ${esc(smfaDate(st.peace_until))} (${esc(new Date(st.peace_until).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' }))}): no attacks of any kind.</p>`;
+    if (st.nuke_ban) h += `<p class="ecBanner ban">Nuclear ban in force: using a nuke means sanctions at once.</p>`;
+    h += `<h4>Open votes</h4>` + (open.length ? open.map(c => `<div class="ecRes1"><p><span>${line(c)}</span><small>Proposed by ${esc(c.by)} · ${esc(EC_COUNCIL[c.kind] ? EC_COUNCIL[c.kind][1] : '')}</small><small>${c.yes} yes · ${c.no} no · ends ${esc(new Date(c.ends).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' }))}. It passes with more yes than no, and yes from a third of all Presidents.</small></p>
+        ${pres ? `<div class="row"><button class="btn small${c.voted === 'yes' ? ' primary' : ''}" data-cv="${c.id}:1">Yes</button><button class="btn small${c.voted === 'no' ? ' primary' : ''}" data-cv="${c.id}:0">No</button></div>` : ''}</div>`).join('') : '<p class="note">Nothing to vote on.</p>');
+    if (pres) h += `<h4>Propose a resolution · 200 gold</h4><div class="ecPropose"><select id="ecCk">${Object.entries(EC_COUNCIL).map(([k, [n]]) => `<option value="${k}">${n}</option>`).join('')}</select><select id="ecCt">${st.players.filter(p => !p.occupier).map(p => `<option>${esc(p.name)}</option>`).join('')}</select><button class="btn small primary" id="ecCgo">Propose</button></div><p class="note" id="ecCd"></p>`;
+    if (done.length) h += `<h4>Recent decisions</h4>` + done.slice(0, 6).map(c => `<p class="wlLog"><small>${esc(c.status === 'passed' ? 'passed' : 'rejected')} · ${c.yes} to ${c.no}</small>${line(c)}</p>`).join('');
+    return h + '</div>';
+  },
+  wire: el => {
+    el.querySelectorAll('[data-cv]').forEach(b => b.onclick = () => { const [id, y] = b.dataset.cv.split(':'); wlDo('world_council_vote', { p_res: +id, p_yes: y === '1' }); });
+    const k = el.querySelector('#ecCk'), t = el.querySelector('#ecCt'), d = el.querySelector('#ecCd');
+    const upd = () => { if (!k) return; const C = EC_COUNCIL[k.value]; t.hidden = !C[2]; d.textContent = C[1]; if (typeof i18nWalk === 'function') i18nWalk(d); };
+    if (k) { k.onchange = upd; upd(); el.querySelector('#ecCgo').onclick = () => wlDo('world_council_propose', { p_kind: k.value, p_target: EC_COUNCIL[k.value][2] ? t.value : null }); }
+  }
+};
+
+/* ---------- chat ---------- */
+async function ecChatLoad() {
+  if (!accOn() || !SB_ON()) return;
+  const r = await wlCall('world_chat_get', { p_after: EC.last }, true); WL.err = '';
+  if (!Array.isArray(r) || !r.length) return;
+  for (const m of r) if (!EC.chat.some(x => x.id === m.id)) EC.chat.push(m);
+  EC.chat.sort((a, b) => a.id - b.id); EC.chat = EC.chat.slice(-150); EC.last = EC.chat[EC.chat.length - 1].id;
+  const fresh = r.filter(m => !m.me && m.id > EC.seen).length;
+  if (WL.tab === 'chat' && !$('#scr-world').hidden) { EC.seen = EC.last; ecChatPaint(); } else if (fresh) { EC.unread += fresh; EC.seen = EC.last; if (!$('#scr-world').hidden) wlRender(); }
+}
+function ecChatPaint() {
+  const box = $('#ecLog'); if (!box) return;
+  const list = EC.chat.filter(m => m.chan === EC.chan && (EC.chan !== 'dm' || !EC.dm || m.with === EC.dm));
+  box.innerHTML = list.length ? list.map(m => `<p class="ecMsg${m.me ? ' me' : ''}"><small>${esc(m.name)}${m.chan === 'dm' && m.with ? ` → ${esc(m.me ? m.with : 'you')}` : ''} · ${esc(smfaDate(m.at, null, true) || new Date(m.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))}</small><span>${esc(m.text)}</span></p>`).join('') : '<p class="note">No messages yet. Say hello.</p>';
+  box.scrollTop = box.scrollHeight;
+}
+WL_TABS.chat = {
+  tab: (st, me) => accOn() ? { k: 'chat', n: 'Chat', c: WL.tab === 'chat' ? 0 : EC.unread, hot: true } : null,
+  html: (st, me) => {
+    EC.unread = 0;
+    const others = st.players.filter(p => !p.me);
+    return `<div class="ecChat"><div class="ecChans"><button class="btn small${EC.chan === 'world' ? ' primary' : ''}" data-ch="world">World</button>${st.bloc ? `<button class="btn small${EC.chan === 'bloc' ? ' primary' : ''}" data-ch="bloc">${esc(st.bloc.name)}</button>` : ''}<button class="btn small${EC.chan === 'dm' ? ' primary' : ''}" data-ch="dm">Private</button>
+      ${EC.chan === 'dm' ? `<select id="ecDm">${others.map(p => `<option${p.name === EC.dm ? ' selected' : ''}>${esc(p.name)}</option>`).join('')}</select>` : ''}</div>
+      <div class="ecLog" id="ecLog"></div>
+      ${me ? `<div class="ecSend"><input class="tin" id="ecTxt" maxlength="300" placeholder="Write a message"><button class="btn primary" id="ecGo">Send</button></div><p class="note">Be kind. The President of the game can remove messages.</p>` : '<p class="note">Found a country to write in the chat.</p>'}</div>`;
+  },
+  wire: el => {
+    if (EC.chan === 'dm' && !EC.dm) { const s = el.querySelector('#ecDm'); if (s) EC.dm = s.value; }
+    el.querySelectorAll('[data-ch]').forEach(b => b.onclick = () => { EC.chan = b.dataset.ch; wlRender(); });
+    const dm = el.querySelector('#ecDm'); if (dm) dm.onchange = () => { EC.dm = dm.value; ecChatPaint(); };
+    const i = el.querySelector('#ecTxt'), go = el.querySelector('#ecGo');
+    const send = async () => { const t = i.value.trim(); if (!t) return; go.disabled = true; const r = await wlCall('world_chat_send', { p_chan: EC.chan, p_to: EC.chan === 'dm' ? EC.dm : null, p_text: t }, true);
+      go.disabled = false; if (r && r.ok !== false) { i.value = ''; await ecChatLoad(); ecChatPaint(); } else { toast('Chat', (r && r.err) || WL.err || 'Not sent.'); WL.err = ''; } i.focus(); };
+    if (i) { i.onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') send(); }; go.onclick = send; }
+    EC.seen = EC.last; ecChatPaint(); ecChatLoad();
+  }
+};
+
+/* ---------- war goals and peace terms (for a country at war with me, in the Countries list) ---------- */
+function wlTermsText(o) {
+  const T = o.terms || {}, parts = [T.gold ? `${wlNum(T.gold)} gold` : '', T.country && TBY[T.country] ? TBY[T.country].name : '', T.apology ? 'an apology' : ''].filter(Boolean), list = parts.join(', ').replace(/, ([^,]*)$/, ' and $1');
+  return T.dir === 'give' ? (o.mine ? `peace, and you give ${list}` : `peace, and they give you ${list}`) : (o.mine ? `peace if they give ${list}` : `peace if you give ${list}`);
+}
+function ecWarHtml(p, me) {
+  const goal = (me.goals || {})[p.name], onMe = (me.goals_on_me || {})[p.name], T = EC.terms && EC.terms.name === p.name ? EC.terms : null;
+  const giver = T && T.dir === 'give' ? me.name : p.name, lands = Object.entries(WL.st.countries).filter(([id, o]) => o === giver && !wlHomeOf(id)).map(([id]) => TBY[id]).filter(Boolean);
+  return `<div class="ecWar"><div class="ecGoals"><small>Your war goal</small>${Object.entries(EC_GOAL).map(([k, [n, d]]) => `<button class="btn small${goal === k ? ' primary' : ''}" data-goal="${k}" title="${d}">${n}</button>`).join('')}</div>
+    <p class="note">${goal ? `You fight for ${EC_GOAL[goal][1]}. Peace terms that give you that are worth 500 gold more.` : 'Choose what you fight for. Reaching it in the peace terms is worth 500 gold.'}${onMe ? ` ${esc(p.name)} fights for ${EC_GOAL[onMe][1]}.` : ''}</p>
+    ${T ? `<div class="ecTerms"><div class="row"><button class="btn small${T.dir === 'demand' ? ' primary' : ''}" data-tdir="demand">Demand</button><button class="btn small${T.dir === 'give' ? ' primary' : ''}" data-tdir="give">Offer</button></div>
+      <label>Gold <input class="tin" id="ecTg" type="number" min="0" step="50" value="${T.gold || 0}"></label>
+      <label>Country <select id="ecTc"><option value="">none</option>${lands.map(t => `<option value="${t.id}"${T.country === t.id ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></label>
+      <label class="ecChk"><input type="checkbox" id="ecTa"${T.apology ? ' checked' : ''}> ${T.dir === 'give' ? 'We apologize' : 'They apologize'}</label>
+      <div class="row"><button class="btn small primary" id="ecTsend">Send the terms</button><button class="btn small" id="ecTx">Cancel</button></div></div>` : `<button class="btn small" data-terms="1">Peace terms…</button>`}</div>`;
+}
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), me = wlMe(), st = WL.st; if (!el || !me || !st) return r;
+      // resources in my card
+      const mine = el.querySelector('.wlMine .wlStats'); if (mine && !el.querySelector('.ecRes')) { mine.insertAdjacentHTML('afterend', ecResHtml(me)); if (typeof i18nWalk === 'function') i18nWalk(el.querySelector('.ecRes')); }
+      // war goals and terms for an open row of a country at war with me
+      const acts = el.querySelector('.wlActs'), p = WL.open && wlPlayer(WL.open);
+      if (acts && p && p.rel === 'war' && me.role !== 'minister' && !(typeof wwOn === 'function' && wwOn(st.ww) && st.ww.members.some(m => m.name === p.name) && st.ww.members.some(m => m.me))) {
+        acts.insertAdjacentHTML('afterend', ecWarHtml(p, me)); const w = acts.nextElementSibling;
+        w.querySelectorAll('[data-goal]').forEach(b => b.onclick = ev => { ev.stopPropagation(); wlDo('world_war_goal', { p_name: p.name, p_goal: b.dataset.goal }); });
+        const t = w.querySelector('[data-terms]'); if (t) t.onclick = ev => { ev.stopPropagation(); EC.terms = { name: p.name, dir: 'demand', gold: 0, country: '', apology: false }; wlRender(); };
+        w.querySelectorAll('[data-tdir]').forEach(b => b.onclick = ev => { ev.stopPropagation(); EC.terms.dir = b.dataset.tdir; EC.terms.country = ''; wlRender(); });
+        w.querySelectorAll('input,select').forEach(i => { i.onclick = ev => ev.stopPropagation(); i.onkeydown = ev => ev.stopPropagation(); });
+        const s = w.querySelector('#ecTsend'); if (s) s.onclick = ev => { ev.stopPropagation(); const T = EC.terms; EC.terms = null;
+          wlDo('world_terms', { p_name: p.name, p_dir: T.dir, p_gold: +w.querySelector('#ecTg').value || 0, p_country: w.querySelector('#ecTc').value || null, p_apology: w.querySelector('#ecTa').checked }); };
+        const x = w.querySelector('#ecTx'); if (x) x.onclick = ev => { ev.stopPropagation(); EC.terms = null; wlRender(); };
+        if (typeof i18nWalk === 'function') i18nWalk(w);
+      }
+      // sanctions, condemnations and warheads on the country rows
+      el.querySelectorAll('.wlRow').forEach(row => { const q = wlPlayer(row.dataset.p); if (!q) return; const sp = row.querySelector('span small'); if (!sp || sp.dataset.ec) return; sp.dataset.ec = 1;
+        const tags = [q.sanction ? 'sanctioned' : '', q.condemned ? 'condemned' : '', q.nukes ? `☢ ${q.nukes} warhead${q.nukes > 1 ? 's' : ''}` : ''].filter(Boolean); if (tags.length) sp.insertAdjacentHTML('beforeend', `${sp.textContent ? ' · ' : ''}<em class="ecTag">${tags.join(' · ')}</em>`); });
+    } catch (e) { console.warn('economy', e); }
+    return r;
+  };
+  // fallout on the map: countries hit by a nuke glow sick green for days
+  const _p = wlPaint; wlPaint = function () {
+    const r = _p.apply(this, arguments);
+    try { const svg = $('#wldMap'), st = WL.st; if (svg && st) { let g = $('#wldFallout'); if (!g) { g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.id = 'wldFallout'; g.setAttribute('pointer-events', 'none'); svg.insertBefore(g, $('#wldM')); }
+      g.innerHTML = Object.keys(st.fallout || {}).map(id => TBY[id] ? `<path class="ecFall" d="${TBY[id].d}" vector-effect="non-scaling-stroke"/><text class="ecFallI" x="${TBY[id].x}" y="${TBY[id].y + 3}">☢</text>` : '').join(''); } } catch (e) { }
+    return r;
+  };
+  // the chat is polled while the World is open
+  setInterval(() => { if (!$('#scr-world') || $('#scr-world').hidden || document.hidden) return; if (Date.now() - EC.t < (WL.tab === 'chat' ? 5000 : 20000)) return; EC.t = Date.now(); ecChatLoad(); }, 1500);
+}
+
+/* ================= THE WORLD: missions that take a country without a battle =================
+   Tap a country next to your land (or any country, for a nuke) and choose a mission in its card:
+   - Border crossing (300 gold and 20 soldiers): a stealth mission at night; raise your flag in their capital square.
+   - Assassinate the governor (400 gold): the stealth mission against the governor of that country.
+   - Hacking (350 gold): break into their command network before the trace finds you (a code puzzle).
+   - A coup (900 gold): win over their officers (a conversation where each officer wants something else).
+   - Nuclear strike, with a warhead from your arsenal (996 + 997): steal the launch code in a stealth mission, keep the
+     governors busy while the missile is launched, or fly the bomber past their air defences.
+   On success the country is yours (a player's homeland never; a nuke can hit one, but not take it). Against a player:
+   no treaty, only once a day, and a failed or seen mission means war. Results go to world_mission_result. */
+const WM_KIND = {
+  border: ['Border crossing', 'At night, sneak past the patrols and raise your flag in their capital square.', 300, 'stealth'],
+  governor: ['Assassinate the governor', 'Kill the governor in his villa. His garrison surrenders.', 400, 'stealth'],
+  hack: ['Hack their network', 'Break into their command network before the trace finds you.', 350, 'hack'],
+  coup: ['Stage a coup', 'Win over their officers: each one wants something else.', 900, 'coup'],
+  nuke_code: ['Steal the launch code', 'Get into the bunker, take the code drive, get out: the missile flies.', 0, 'stealth'],
+  nuke_distract: ['Distract the governors', 'Plant three distractions so the governors are busy while the missile launches.', 0, 'stealth'],
+  nuke_bomber: ['Bomber run', 'Fly the bomber past their air defences and drop the bomb on the city centre.', 0, 'bomber']
+};
+const WM = { cur: null, sent: {} };
+const wmTgt = id => { const own = wlOwner(id); return own ? (wlPlayer(own) || { name: own }) : null; };
+function wmCardHtml(id) {
+  const me = wlMe(), t = TBY[id]; if (!me || !t || me.occupier || wlMine(id)) return '';
+  const pl = wmTgt(id), home = wlHomeOf(id), near = wlNear(id), done = (me.missions_done || []).length && pl ? null : null;
+  if (pl && (pl.rel === 'peace' || pl.rel === 'alliance')) return '';
+  const nukes = (me.nukes || []).filter(n => n.state === 'ready'), peace = WL.st && WL.st.peace_until;
+  const row = (k, extra, ok, why) => { const K = WM_KIND[k]; return `<div class="wmRow"><div><b>${K[0]}</b><small>${K[1]}</small>${why ? `<em>${why}</em>` : ''}</div><button class="btn small${ok ? '' : ''}" data-wm="${k}${extra ? ':' + extra : ''}"${ok ? '' : ' disabled'}>${K[2] ? `${wlNum(K[2])} gold` : 'Launch'}</button></div>`; };
+  let h = '';
+  const why = peace ? 'World peace: no missions now.' : home ? 'A homeland can only be taken in battle.' : !near ? 'Only next to your land.' : '';
+  if (why) { if (!nukes.length) return `<div class="wmCard"><small>Missions: take it without a battle</small><p class="note">${esc(why)}${home && !peace ? ' A nuclear strike can hit it, but not take it: build a warhead in the Powers tab.' : ''}</p></div>`; h += `<p class="note">${esc(why)}</p>`; }
+  else for (const k of ['border', 'governor', 'hack', 'coup']) h += row(k, '', me.gold >= WM_KIND[k][2] && (k !== 'border' || me.army >= 20), k === 'border' && me.army < 20 ? 'Needs 20 soldiers.' : '');
+  if (nukes.length) for (const n of nukes) {
+    const ks = n.delivery === 'bomber' ? ['nuke_bomber'] : ['nuke_code', 'nuke_distract'];
+    h += `<div class="wmNuke"><i style="background:${esc(n.design.color || '#c8ccd2')}"></i><b>☢ ${esc(n.name)}</b><small>blast ${n.blast} · reliability ${n.rel}% · stealth ${n.stealth}</small></div>`;
+    for (const k of ks) h += row(k, n.id, !peace, peace ? 'World peace: no missions now.' : home ? 'It hits the homeland, but cannot take it.' : '');
+  }
+  return `<div class="wmCard"><small>Missions: take it without a battle</small>${h}<p class="note">${pl ? `Against ${esc(pl.name)}: once a day. If the mission fails or they see you, it is war, and they get three days of revenge.` : 'A computer nation: once a day per country.'}${WL.st && WL.st.nuke_ban ? ' A nuclear ban is in force: a nuke means sanctions at once.' : ''}</p></div>`;
+}
+async function wmStart(kind, id, nuke) {
+  WL.err = ''; const r = await wlCall('world_mission_start', { p_kind: kind, p_country: id, p_nuke: nuke || null }, true);
+  if (!r || r.ok === false) { toast('Mission', (r && r.err) || WL.err || 'The mission could not start.'); WL.err = ''; wlRender(); return; }
+  const t = TBY[id], M = WM.cur = { id: r.mission, kind, country: id, name: t.name, npc: r.npc, defender: r.defender || '', nuke: r.nuke, homeland: r.homeland, t0: Date.now() };
+  const K = WM_KIND[kind][3];
+  if (K === 'hack') wmHack(M); else if (K === 'coup') wmCoup(M);
+  else {
+    WL.back = true;
+    const night = kind === 'border' || kind === 'nuke_distract';
+    if (K === 'bomber') startBattle({ map: t.theme && THEMES[t.theme] && !THEMES[t.theme].water ? t.theme : 'city', enemy: NATIONS[r.npc] && r.npc !== 'smfa' ? r.npc : 'french', size: 'small', msize: 'std', time: 'dusk', weather: 'clear', diff: 'normal', mode: 'normal', hardcore: false, noCommander: true, wmis: M });
+    else startBattle({ map: 'city', enemy: NATIONS[r.npc] && r.npc !== 'smfa' ? r.npc : 'french', size: 'small', msize: 'std', stealth: 'villa', time: night ? 'night' : 'dusk', weather: 'clear', diff: 'normal', mode: 'normal', target: kind === 'governor' ? `Governor of ${t.name}` : `Governor of ${t.name}`, wmis: M });
+  }
+}
+// tell the server; it refuses a result that comes too soon, so wait if needed
+function wmReport(M, win, seen) {
+  if (!M || WM.sent[M.id]) return; WM.sent[M.id] = true;
+  const wait = Math.max(0, 42000 - (Date.now() - M.t0));
+  if (wait > 1500) toast('Mission', 'Your agents slip away. The report reaches the capital shortly.');
+  setTimeout(async () => {
+    const r = await wlCall('world_mission_result', { p_mission: M.id, p_success: !!win, p_seen: !!seen }, true);
+    if (r && r.ok !== false) toast('Mission', !r.success ? `The mission in ${M.name} failed.${M.defender ? ` ${M.defender} knows it was you: it is war.` : ''}` : r.fizzle ? `The warhead fizzled over ${M.name}. Nothing happened.` : r.took ? `${M.name} is yours, without a battle.${r.known && M.defender ? ' But they know it was you.' : ''}` : `${M.name} is in ruins, but a homeland cannot be taken this way.`);
+    else if (r && r.err) toast('Mission', r.err);
+    WL.err = ''; if (!$('#scr-world').hidden) wlLoad(true);
+  }, wait);
+}
+
+/* ---------- the stealth missions: border crossing, governor, launch code, distractions ---------- */
+{
+  const _ss = stealthSetup; stealthSetup = function () {
+    const r = _ss.apply(this, arguments); const W = G.cfg.wmis; if (!W) return r;
+    const M = G.mis, T = M.target;
+    // a stealthy warhead means fewer guards on the way
+    if (W.nuke && W.nuke.stealth) { const drop = Math.min(4, Math.floor(W.nuke.stealth / 10)); for (let i = 0; i < drop; i++) { const u = M.guards[M.guards.length - 1 - i]; if (u) { u.alive = false; u.hp = 0; u.g.path = null; u.x = 999; u.z = 999; } } }
+    if (W.kind === 'governor') { banner(`THE GOVERNOR OF ${W.name.toUpperCase()}`, 3, 'var(--amber)'); return r; }
+    const pts = W.kind === 'border' ? [{ x: 0, z: -8, need: 4, label: `Raise your flag in the square of ${W.name}`, act: 'Raising the flag' }]
+      : W.kind === 'nuke_code' ? [{ x: -8, z: -21, need: 3, label: 'Take the launch code from the vault', act: 'Copying the code' }]
+      : [{ x: -14, z: 8, need: 2, label: 'Plant a distraction in the east wing (1/3)', act: 'Planting' }, { x: 14, z: -2, need: 2, label: 'Plant a distraction in the hall (2/3)', act: 'Planting' }, { x: 6, z: -20, need: 2, label: 'Plant a distraction by the office (3/3)', act: 'Planting' }];
+    M.wpts = pts; M.wi = 0; M.wt = 0;
+    T.inVeh = { netDummy: true }; T.g.path = [[-40, -50]]; T.g.wait = 1e9; T.x = -40; T.z = -50;
+    if (W.kind === 'border') { const fp = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 9, 6), new THREE.MeshLambertMaterial({ color: 0xdddddd })); fp.position.set(0, 4.5, -8); scene.add(fp); M.pole = fp; }
+    misMarker(pts[0].x, pts[0].z, 0xf2b33d, 3);
+    misObjective(pts[0].label, 'Undetected');
+    banner(W.kind === 'border' ? `ACROSS THE BORDER: ${W.name.toUpperCase()}` : W.kind === 'nuke_code' ? 'THE LAUNCH BUNKER' : 'THE GOVERNORS\' RESIDENCE', 3, 'var(--amber)');
+    return r;
+  };
+  const _st = stealthTick; stealthTick = function (dt) {
+    const W = G.cfg && G.cfg.wmis, M = G.mis;
+    if (W && M && M.wpts && M.target.alive) {
+      M.target.flee = false; const P = M.wpts[M.wi], p = G.player && G.player.alive ? G.player : null;
+      const near = p && Math.hypot(p.x - P.x, p.z - P.z) < 2.8;
+      if (near && !M.alarm) { M.wt += dt; if (Math.floor(M.wt * 2) !== Math.floor((M.wt - dt) * 2)) hint(`${P.act}… ${Math.min(100, Math.round(M.wt / P.need * 100))}%`, 0.6); } else M.wt = Math.max(0, M.wt - dt * 0.5);
+      if (M.wt >= P.need) { M.wt = 0; M.wi++;
+        if (W.kind === 'border' && M.pole) { const fl = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 1.5), new THREE.MeshLambertMaterial({ color: 0x39d353, side: THREE.DoubleSide })); fl.position.set(1.2, 8.2, -8); scene.add(fl); }
+        if (M.wi >= M.wpts.length) { M.target.alive = false; M.target.hp = 0; M.planted = true; }
+        else { misMarker(M.wpts[M.wi].x, M.wpts[M.wi].z, 0xf2b33d, 3); SFX.ok && SFX.ok() && SFX.tone(0.1, 0.15, 700, 1100, 'sine'); }
+      }
+    }
+    const r = _st.apply(this, arguments);
+    if (W && M && M.wpts && M.target.alive && !M.ended) { const P = M.wpts[M.wi]; misObjective(P.label, M.alarm ? 'ALARM' : M.wt > 0 ? `${P.act} ${Math.min(100, Math.round(M.wt / P.need * 100))}%` : 'Undetected'); }
+    return r;
+  };
+  const _bn = banner; banner = function (txt) {
+    const W = G && G.cfg && G.cfg.wmis;
+    if (W && txt === 'TARGET ELIMINATED') arguments[0] = W.kind === 'border' ? 'FLAG RAISED' : W.kind === 'nuke_code' ? 'CODE IN HAND' : W.kind === 'nuke_distract' ? 'THE GOVERNORS ARE BUSY' : 'GOVERNOR DOWN';
+    return _bn.apply(this, arguments);
+  };
+  const _eb = endBattle; endBattle = function (result, why) {
+    const g = G, fresh = g && !g.over, W = g && g.cfg && g.cfg.wmis;
+    if (fresh && W) {
+      const seen = !!(g.mis && g.mis.ever);
+      if (W.kind !== 'nuke_bomber') arguments[1] = result === 'win' ? ({ border: `Your flag flies over ${W.name}.`, governor: `The Governor of ${W.name} is dead. The garrison surrenders.`, nuke_code: `The launch code is sent. A missile is on its way to ${W.name}.`, nuke_distract: `While the governors were busy, the missile left its silo for ${W.name}.` }[W.kind] || why) + (seen ? ' But you were seen.' : ' Nobody saw you.') : why;
+      W.seen = seen; W.win = result === 'win';
+    }
+    const r = _eb.apply(this, arguments);
+    if (fresh && W && g.over) { WL.back = true; wmReport(W, result === 'win', W.kind.startsWith('nuke') ? true : W.seen); setTimeout(() => { if (G === g) $('#endBtn').textContent = 'Back to the world'; }, 2700);
+      if (result === 'win' && (W.kind === 'nuke_code' || W.kind === 'nuke_distract') && typeof nwStrikeFilm === 'function') W.film = true; }
+    return r;
+  };
+  const _lb = leaveBattle; leaveBattle = function () { const W = G && G.cfg && G.cfg.wmis; if (W && !G.over) { WL.back = true; wmReport(W, false, true); } const film = W && W.film; const r = _lb.apply(this, arguments); if (film) setTimeout(() => nwStrikeFilm(W), 300); return r; };
+}
+
+/* ---------- the bomber run ---------- */
+{
+  const _sb = startBattle; startBattle = function (cfg) {
+    const r = _sb.apply(this, arguments); const W = cfg && cfg.wmis; if (!W || W.kind !== 'nuke_bomber' || !G) return r;
+    const g = G;
+    setTimeout(() => { if (G !== g || G.over) return;
+      deployPresident(); const v = spawnPlaneAt(0, true); v.bombs = 1; v.msl = 2; const p = G.player; p.inVeh = v; v.driver = 'player'; p.x = v.x; p.z = v.z; p.y = v.y; G.camYaw = v.yaw; G.camPitch = 0; if (G.view !== 'field') G.view = 'field';
+      for (let i = 0; i < 2; i++) spawnPlaneAt(1, false);
+      const beam = new THREE.Mesh(new THREE.CylinderGeometry(6, 6, 400, 16, 1, true), new THREE.MeshBasicMaterial({ color: 0xff3a2a, transparent: true, opacity: 0.18, side: THREE.DoubleSide, depthWrite: false, fog: false })); beam.position.set(0, 200, 0); scene.add(beam); W.beam = beam;
+      W.go = true; banner(`BOMBER RUN: ${W.name.toUpperCase()}`, 3, 'var(--amber)');
+      hint(MOBILE() ? 'Fly to the red beam over the city centre and press BOMB. Flares (FLR) shake off missiles.' : 'Fly to the red beam over the city centre and press G to drop the bomb. R drops flares against missiles.', 7);
+      misObjective && misObjective('Drop the bomb on the city centre (the red beam)', 'Flying');
+    }, 1800);
+    return r;
+  };
+  const _db = dropBomb; dropBomb = function (v, isPlayer) {
+    const W = G && G.cfg && G.cfg.wmis;
+    if (W && W.kind === 'nuke_bomber' && isPlayer) {
+      if (W.dropped) return; const d = Math.hypot(v.x, v.z);
+      if (d > 130) { hint(`Not over the target yet: ${Math.round(d)} m to the red beam.`, 1.4); return; }
+      W.dropped = true; v.bombs = 0; banner('BOMB AWAY', 2, 'var(--red)'); capSound('[nuclear bomb released]', 'bomb', 1);
+      const fall = Math.max(2.5, v.y / 60); G.timers.push({ t: G.t + fall, fn: () => { if (!G || G.over) return; if (W.beam) { scene.remove(W.beam); W.beam = null; } nukeDetonate(); G.timers.push({ t: G.t + 6, fn: () => G && !G.over && endBattle('win', `The bomb hit ${W.name}.`) }); } });
+      return;
+    }
+    return _db.apply(this, arguments);
+  };
+  const _up = update; update = function (dt) {
+    _up.apply(this, arguments);
+    const W = G && G.cfg && G.cfg.wmis; if (!W || W.kind !== 'nuke_bomber' || !W.go || G.over || W.dropped) return;
+    const v = G.player && G.player.inVeh;
+    if (!v || !v.alive || !G.player.alive) { W.go = false; G.timers.push({ t: G.t + 2.5, fn: () => G && !G.over && endBattle('lose', 'Your bomber was shot down.') }); return; }
+    const d = Math.hypot(v.x, v.z); if (misObjective) misObjective('Drop the bomb on the city centre (the red beam)', d < 130 ? 'OVER THE TARGET: DROP' : `${Math.round(d)} m`);
+  };
+  // a normal end of that battle (for example the armies) is not a nuclear strike
+  const _eb = endBattle; endBattle = function (result, why) { const W = G && G.cfg && G.cfg.wmis; if (W && W.kind === 'nuke_bomber' && G && !G.over && result === 'win' && !W.dropped) { arguments[0] = 'lose'; arguments[1] = 'The battle ended, but the bomb was never dropped.'; } return _eb.apply(this, arguments); };
+}
+
+/* ---------- the hacking puzzle ---------- */
+// Pick codes to match the target sequence: the first from the top row, then alternately down the column and along the row
+// of the last pick. Six picks, 45 seconds before the trace finds you.
+function wmHack(M) {
+  const codes = ['1C', '55', 'BD', 'E9', '7A', 'FF'], N = 5, grid = [...Array(N)].map(() => [...Array(N)].map(() => pick(codes)));
+  // a solvable path: row 0 → column → row → column
+  let r = 0, c = Math.floor(Math.random() * N); const path = [[r, c]];
+  for (let i = 1; i < 4; i++) { if (i % 2) { let nr; do { nr = Math.floor(Math.random() * N); } while (nr === r || path.some(p => p[0] === nr && p[1] === c)); r = nr; } else { let nc; do { nc = Math.floor(Math.random() * N); } while (nc === c || path.some(p => p[0] === r && p[1] === nc)); c = nc; } path.push([r, c]); }
+  const seq = path.map(([a, b]) => grid[a][b]);
+  const S = { grid, seq, buf: [], used: {}, axis: 'row', line: 0, t0: Date.now(), end: 0 };
+  const el = document.createElement('div'); el.id = 'wmHack'; el.className = 'wmOver'; document.body.appendChild(el);
+  const done = win => { if (S.end) return; S.end = 1; clearInterval(S.tm); draw(win); setTimeout(() => { el.remove(); wmReport(M, win, !win); }, 2200); };
+  const ok = () => { const b = S.buf.join(' '), q = seq.join(' '); return b.includes(q); };
+  const draw = fin => {
+    const left = Math.max(0, 45 - Math.floor((Date.now() - S.t0) / 1000));
+    el.innerHTML = `<div class="wmBox"><em>Hacking · ${esc(M.name)}</em><h2>${fin === true ? 'ACCESS GRANTED' : fin === false ? 'TRACED' : 'Break into their command network'}</h2>
+      <div class="wmSeq"><small>Target sequence</small>${seq.map((s, i) => `<b class="${S.buf.join(' ').includes(seq.slice(0, i + 1).join(' ')) ? 'got' : ''}">${s}</b>`).join('')}</div>
+      <div class="wmGrid">${grid.map((row, a) => row.map((v, b) => { const can = !S.end && !S.used[a + ',' + b] && (S.axis === 'row' ? a === S.line : b === S.line); return `<button class="wmCell${can ? ' can' : ''}${S.used[a + ',' + b] ? ' used' : ''}" data-c="${a},${b}"${can ? '' : ' disabled'}>${v}</button>`; }).join('')).join('')}</div>
+      <div class="wmBuf"><small>Buffer</small>${[...Array(6)].map((_, i) => `<i>${S.buf[i] || ''}</i>`).join('')}<span class="wmTime${left < 10 ? ' low' : ''}">${left} s</span></div>
+      <p class="note">${fin === true ? `The network of ${esc(M.name)} is yours. Their army takes orders from you now.` : fin === false ? 'The trace found you. They know who it was.' : 'Pick from the highlighted line. The first pick is in the top row; after that you go down the column, then along the row, in turn. Get the whole sequence into the buffer.'}</p>
+      ${fin === undefined ? '<button class="btn" id="wmQuit">Abort</button>' : ''}</div>`;
+    el.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { const [a, c2] = b.dataset.c.split(',').map(Number); S.used[a + ',' + c2] = 1; S.buf.push(grid[a][c2]); try { SFX.tone(0.04, 0.06, 900, 1200, 'square'); } catch (e) { }
+      if (S.axis === 'row') { S.axis = 'col'; S.line = c2; } else { S.axis = 'row'; S.line = a; }
+      if (ok()) done(true); else if (S.buf.length >= 6) done(false); else draw(); });
+    const q = el.querySelector('#wmQuit'); if (q) q.onclick = () => done(false);
+    if (typeof i18nWalk === 'function') i18nWalk(el);
+  };
+  S.tm = setInterval(() => { if (Date.now() - S.t0 >= 45000) done(false); else { const t = el.querySelector('.wmTime'); if (t) { const left = Math.max(0, 45 - Math.floor((Date.now() - S.t0) / 1000)); t.textContent = left + ' s'; t.classList.toggle('low', left < 10); } } }, 500);
+  draw(); WM.hack = S; return S;
+}
+
+/* ---------- the coup: three officers, each wants something else ---------- */
+const WM_OFFICERS = [['General Vorn', 'commands the army', ['power', 'He talks about the throne more than about soldiers.'], ['fear', 'He has a family, and a past he would rather keep quiet.']],
+  ['Chief Lessa', 'runs the police', ['gold', 'Her watch costs more than her salary.'], ['loyalty', 'She has served this country for thirty years.']],
+  ['Minister Okafa', 'holds the treasury', ['gold', 'He counts every coin twice.'], ['power', 'He wants to be more than a minister.']]];
+const WM_APPROACH = { gold: ['Offer gold', 'A fortune in a briefcase.'], power: ['Promise power', 'A seat at the top of the new government.'], fear: ['Threaten', 'Some secrets are better kept.'], loyalty: ['Appeal to the nation', 'The people deserve better than this government.'] };
+function wmCoup(M) {
+  const off = WM_OFFICERS.map(o => { const w = Math.random() < 0.5 ? o[2] : o[3]; return { name: o[0], role: o[1], want: w[0], hint: w[1], res: null }; });
+  const S = { off, i: 0, end: 0, wrong: 0 };
+  const el = document.createElement('div'); el.id = 'wmCoup'; el.className = 'wmOver'; document.body.appendChild(el);
+  const draw = () => {
+    const o = off[S.i], won = off.filter(x => x.res === true).length, fin = S.end;
+    el.innerHTML = `<div class="wmBox"><em>Coup · ${esc(M.name)}</em><h2>${fin ? (won >= 2 ? 'THE GOVERNMENT FALLS' : 'THE COUP FAILS') : `Meet ${esc(o.name)}`}</h2>
+      <div class="wmOff">${off.map((x, k) => `<div class="${x.res === true ? 'yes' : x.res === false ? 'no' : k === S.i && !fin ? 'cur' : ''}"><b>${esc(x.name)}</b><small>${esc(x.role)}</small><i>${x.res === true ? 'with you' : x.res === false ? 'refused' : '…'}</i></div>`).join('')}</div>
+      ${fin ? `<p class="note">${won >= 2 ? `Two of three officers are with you. By morning ${esc(M.name)} has a new government, and it answers to you.` : 'Not enough officers would follow you. The plot is out, and they know who paid for it.'}</p>`
+        : `<p class="wmQuote">“${esc(o.name)} ${esc(o.role)}. ${esc(o.hint)}”</p><div class="wmApp">${Object.entries(WM_APPROACH).map(([k, [n, d]]) => `<button class="wpOpt" data-ap="${k}"><b>${n}</b><small>${d}</small></button>`).join('')}</div><p class="note">You need two of the three officers. Read each one carefully.</p>`}</div>`;
+    el.querySelectorAll('[data-ap]').forEach(b => b.onclick = () => { const o2 = off[S.i]; o2.res = b.dataset.ap === o2.want; if (!o2.res) S.wrong++; try { SFX.tone(0.1, 0.2, o2.res ? 700 : 300, o2.res ? 1100 : 200, 'sine'); } catch (e) { }
+      S.i++; const w = off.filter(x => x.res === true).length; if (S.i >= 3 || w >= 2 || S.wrong >= 2) { S.end = 1; draw(); setTimeout(() => { el.remove(); wmReport(M, w >= 2, S.wrong >= 2 || w < 2); }, 2600); } else draw(); });
+    if (typeof i18nWalk === 'function') i18nWalk(el);
+  };
+  draw(); WM.coup = S; return S;
+}
+{
+  // the missions in the selected country's card
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try { const el = $('#wldSide'), sel = el && el.querySelector('[data-sel]'); if (sel && !sel.querySelector('.wmCard')) { const h = wmCardHtml(sel.dataset.sel); if (h) { sel.insertAdjacentHTML('beforeend', h); const c = sel.querySelector('.wmCard');
+      c.querySelectorAll('[data-wm]').forEach(b => b.onclick = () => { const [k, n] = b.dataset.wm.split(':'); b.disabled = true; wmStart(k, sel.dataset.sel, n ? +n : null); });
+      if (typeof i18nWalk === 'function') i18nWalk(c); } } } catch (e) { console.warn('missions', e); }
+    return r;
+  };
+}
+
+/* ================= THE WORLD: the nuclear workshop =================
+   Design your own warhead from fictional parts (a core, the inside lining, the outer casing, a fuse and the delivery), give
+   it a colour (100 gold) and a name (free), pay for it in gold, steel and oil, and test it at the desert test site:
+   a 3D explosion and a report. Tests are heard around the world, and every good test makes your next warheads more
+   reliable. Warheads are used in the nuclear missions (996-world-missions.js). The server has the same parts table
+   (world_nuke_parts) and the final word on the price and the numbers. */
+const NW_PARTS = {
+  core: { smile1: ['Smilonium-1', 'A small, steady core.', 800, 40, 20, 1, 0, 0], prime: ['Smilonium Prime', 'Twice the bang.', 1600, 80, 40, 2, 0, 0], frown: ['Frownium', 'Huge and a little moody.', 2400, 120, 60, 3, -10, -5], grin: ['Grinite Star', 'The biggest core there is. Temperamental.', 4000, 200, 100, 4, -15, -10] },
+  inner: { lead: ['Lead lining', 'Heavy and dependable.', 200, 20, 0, 0, 5, 0], ceramic: ['Ceramic shell', 'Keeps the core calm.', 300, 0, 10, 0, 10, 0], graphene: ['Graphene mesh', 'Light, steady and quiet.', 600, 10, 20, 0, 15, 5], chrono: ['Chrono-gel', 'Nobody knows how it works. It works.', 900, 0, 40, 0, 20, 0] },
+  casing: { steel: ['Steel', 'Plain and strong.', 100, 40, 0, 0, 0, 0], titanium: ['Titanium', 'Lighter, harder to spot.', 400, 20, 10, 0, 0, 10], carbon: ['Carbon stealth', 'Nearly invisible to their scanners.', 700, 10, 30, 0, -5, 25], gold: ['Gold plated', 'For a President who wants to be seen.', 1500, 0, 0, 0, 0, -10] },
+  fuse: { timer: ['Timer', 'Simple. Usually on time.', 50, 0, 0, 0, 0, 0], altitude: ['Altitude', 'Goes off at the right height.', 150, 5, 0, 0, 5, 0], smart: ['Smart fuse', 'Thinks for itself.', 400, 5, 10, 0, 10, 0] },
+  delivery: { missile: ['Missile', 'Launched from a silo: steal the code or distract the governors.', 600, 30, 40, 0, 0, 0], bomber: ['Bomber', 'Dropped from a plane you fly yourself.', 300, 10, 80, 0, 5, 0] }
+};
+const NW_CAT = [['core', 'Core'], ['inner', 'Inside'], ['casing', 'Outside'], ['fuse', 'Fuse'], ['delivery', 'Delivery']];
+const NW_COLORS = ['#c8ccd2', '#2b2f33', '#ffffff', '#c8102e', '#f2b33d', '#39d353', '#1f6fd1', '#7a3df0', '#ff7ac8', '#0b7a3b'];
+const NW = { d: null, err: '', busy: false };
+function nwStats(d, tests) {
+  let g = 0, s = 0, o = 0, b = 0, rel = 60, st = 0;
+  for (const [k] of NW_CAT) { const p = NW_PARTS[k][d[k]]; if (!p) continue; g += p[2]; s += p[3]; o += p[4]; b += p[5]; rel += p[6]; st += p[7]; }
+  if ((d.color || '#c8ccd2').toLowerCase() !== '#c8ccd2') g += 100;
+  return { gold: g, steel: s, oil: o, blast: b, rel: Math.min(98, Math.max(30, rel + Math.min(10, 2 * (tests || 0)))), stealth: Math.min(40, Math.max(0, st)) };
+}
+// a side view of the warhead, drawn from its parts and colour
+function nwDraw(d, w, h) {
+  const big = { smile1: 0.62, prime: 0.75, frown: 0.88, grin: 1 }[d.core] || 0.7, col = d.color || '#c8ccd2', bomb = d.delivery === 'bomber';
+  const skin = { steel: ['#d9dde2', '#8b939b'], titanium: ['#c7d3df', '#6f8296'], carbon: ['#4a4f55', '#16191c'], gold: ['#ffe39a', '#b8860b'] }[d.casing] || ['#d9dde2', '#8b939b'];
+  const inner = { lead: '#6b7078', ceramic: '#efe6d8', graphene: '#3a3f46', chrono: '#9ef0ff' }[d.inner] || '#666';
+  const L = bomb ? 150 * big + 40 : 210 * big + 40, R = bomb ? 34 * big + 8 : 22 * big + 6, cx = 160, cy = 70, x0 = cx - L / 2, x1 = cx + L / 2;
+  const id = 'nw' + Math.floor(Math.random() * 1e6);
+  const body = bomb ? `M${x0 + 18},${cy - R} L${x1 - R},${cy - R} Q${x1 + 6},${cy} ${x1 - R},${cy + R} L${x0 + 18},${cy + R} Q${x0},${cy} ${x0 + 18},${cy - R}Z`
+    : `M${x0 + 12},${cy - R} L${x1 - 46},${cy - R} Q${x1 - 6},${cy - R * 0.4} ${x1},${cy} Q${x1 - 6},${cy + R * 0.4} ${x1 - 46},${cy + R} L${x0 + 12},${cy + R} L${x0},${cy + R * 0.7} L${x0},${cy - R * 0.7}Z`;
+  const fins = bomb ? `<path d="M${x0 + 20},${cy - R} L${x0 - 12},${cy - R - 20} L${x0 - 6},${cy} L${x0 - 12},${cy + R + 20} L${x0 + 20},${cy + R}Z" fill="${col}" stroke="#0006"/>`
+    : `<path d="M${x0 + 8},${cy - R} L${x0 - 18},${cy - R - 24} L${x0 + 30},${cy - R}Z M${x0 + 8},${cy + R} L${x0 - 18},${cy + R + 24} L${x0 + 30},${cy + R}Z" fill="${col}" stroke="#0006"/>`;
+  return `<svg viewBox="0 0 320 140" width="${w || 320}" height="${h || 140}" class="nwSvg"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${skin[0]}"/><stop offset=".5" stop-color="${skin[1]}"/><stop offset="1" stop-color="${skin[0]}"/></linearGradient>
+    ${d.casing === 'carbon' ? `<pattern id="${id}w" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0,6 L6,0" stroke="#ffffff14" stroke-width="2"/></pattern>` : ''}</defs>
+    ${fins}<path d="${body}" fill="url(#${id})" stroke="#0008" stroke-width="1.2"/>${d.casing === 'carbon' ? `<path d="${body}" fill="url(#${id}w)"/>` : ''}
+    <rect x="${cx - L * 0.12}" y="${cy - R}" width="${L * 0.1}" height="${R * 2}" fill="${col}" opacity=".95"/><rect x="${cx + L * 0.08}" y="${cy - R}" width="${L * 0.05}" height="${R * 2}" fill="${col}" opacity=".95"/>
+    <clipPath id="${id}c"><rect x="${cx - L * 0.36}" y="${cy - R}" width="${L * 0.18}" height="${R}"/></clipPath><g clip-path="url(#${id}c)"><path d="${body}" fill="${inner}"/><circle cx="${cx - L * 0.27}" cy="${cy}" r="${R * 0.55}" fill="#9dff6a" opacity=".85"/></g>
+    <text x="${cx}" y="${cy + R + 22}" text-anchor="middle" class="nwName">${esc(d.name || 'Unnamed')}</text></svg>`;
+}
+function nwShop() {
+  const me = wlMe(); if (!me) return;
+  NW.d = NW.d || { name: '', core: 'smile1', inner: 'lead', casing: 'steel', fuse: 'timer', delivery: 'missile', color: '#c8ccd2' }; NW.err = '';
+  let el = $('#nwShop'); if (!el) { el = document.createElement('div'); el.id = 'nwShop'; el.className = 'wmOver'; document.body.appendChild(el); }
+  const draw = () => {
+    const d = NW.d, S = nwStats(d, me.nuke_tests), can = me.gold >= S.gold && (me.steel || 0) >= S.steel && (me.oil || 0) >= S.oil && (me.nukes || []).length < 3;
+    el.innerHTML = `<div class="wmBox nwBox"><div class="nwTop"><div><em>Nuclear workshop · ${esc(me.name)}</em><h2>Design a warhead</h2></div><button class="btn small" id="nwX">Close</button></div>
+      <div class="nwPrev">${nwDraw(d)}</div>
+      <div class="nwStats"><div><small>Blast</small><b>${'☢'.repeat(S.blast)}</b><i>${S.blast} day${S.blast > 1 ? 's' : ''} of fallout</i></div><div><small>Reliability</small><b>${S.rel}%</b><i>${me.nuke_tests ? `+${Math.min(10, 2 * me.nuke_tests)}% from your tests` : 'test to improve'}</i></div><div><small>Stealth</small><b>${S.stealth}</b><i>${Math.min(4, Math.floor(S.stealth / 10))} fewer guards</i></div><div><small>Cost</small><b>${wlNum(S.gold)}</b><i>gold · ${S.steel} steel · ${S.oil} oil</i></div></div>
+      <label class="nwNameIn">Name (free) <input class="tin" id="nwName" maxlength="24" value="${esc(d.name)}" placeholder="Give it a name"></label>
+      ${NW_CAT.map(([k, n]) => `<div class="nwCat"><small>${n}</small><div class="nwOpts">${Object.entries(NW_PARTS[k]).map(([pk, p]) => `<button class="nwOpt${d[k] === pk ? ' on' : ''}" data-nw="${k}:${pk}"><b>${p[0]}</b><small>${p[1]}</small><i>${wlNum(p[2])} gold${p[3] ? ` · ${p[3]} steel` : ''}${p[4] ? ` · ${p[4]} oil` : ''}</i></button>`).join('')}</div></div>`).join('')}
+      <div class="nwCat"><small>Colour (100 gold, steel grey is free)</small><div class="nwCols">${NW_COLORS.map(c => `<button class="nwCol${d.color === c ? ' on' : ''}" data-col="${c}" style="background:${c}" aria-label="${c}"></button>`).join('')}</div></div>
+      ${NW.err ? `<p class="onErr">${esc(NW.err)}</p>` : ''}
+      <div class="row"><button class="btn primary" id="nwBuild"${can && !NW.busy ? '' : ' disabled'}>Build it · ${wlNum(S.gold)} gold</button></div>
+      <p class="note">You have ${wlNum(me.gold)} gold, ${wlNum(me.steel)} steel and ${wlNum(me.oil)} oil. Your arsenal holds 3 warheads (${(me.nukes || []).length} now). Every part here is invented for the game.</p></div>`;
+    el.querySelector('#nwX').onclick = () => el.remove();
+    const nm = el.querySelector('#nwName'); nm.onkeydown = e => e.stopPropagation(); nm.oninput = () => { d.name = nm.value; const t = el.querySelector('.nwName'); if (t) t.textContent = d.name || 'Unnamed'; };
+    el.querySelectorAll('[data-nw]').forEach(b => b.onclick = () => { const [k, v] = b.dataset.nw.split(':'); d[k] = v; draw(); });
+    el.querySelectorAll('[data-col]').forEach(b => b.onclick = () => { d.color = b.dataset.col; draw(); });
+    el.querySelector('#nwBuild').onclick = async () => { NW.busy = true; draw(); const r = await wlCall('world_nuke_build', { p_design: d }, true); NW.busy = false;
+      if (r && r.ok !== false) { el.remove(); toast('Nuclear workshop', `${d.name} is ready: blast ${r.blast}, reliability ${r.rel}%.`); NW.d = null; WL.err = ''; await wlLoad(true); } else { NW.err = (r && r.err) || WL.err || 'It could not be built.'; WL.err = ''; draw(); } };
+    if (typeof i18nWalk === 'function') i18nWalk(el);
+  };
+  draw();
+}
+function nwArsenalHtml(me) {
+  const N = me.nukes || [];
+  return `<div class="wpBox"><div class="wpHd"><b>Nuclear workshop</b><small>Design and build your own warheads (up to 3), test them, and use them in nuclear missions: tap a country on the map. ${WL.st && WL.st.nuke_ban ? 'A nuclear ban is in force.' : ''}</small></div>
+    ${N.length ? `<div class="nwArs">${N.map(n => `<div class="nwItem">${nwDraw(Object.assign({ name: n.name }, n.design), 150, 66)}<div><b>${esc(n.name)}</b><small>Blast ${n.blast} · reliability ${n.rel}% · stealth ${n.stealth} · ${n.delivery === 'bomber' ? 'bomber' : 'missile'}${n.state === 'armed' ? ' · on a mission' : ''}</small></div>${n.state === 'ready' ? `<button class="btn small" data-nt="${n.id}">Test it</button><button class="btn small" data-ns="${n.id}">Scrap</button>` : ''}</div>`).join('')}</div>` : '<p class="note">No warheads yet.</p>'}
+    <button class="btn primary" data-nw-open="1"${N.length >= 3 ? ' disabled' : ''}>Design a warhead</button></div>`;
+}
+
+/* ---------- the test site (and the film of a strike): a 3D explosion ---------- */
+function nwFilm(opt) {
+  const el = document.createElement('div'); el.id = 'nwFilm'; el.className = 'nwFilm'; document.body.appendChild(el);
+  const r = new THREE.WebGLRenderer({ antialias: true }); r.setPixelRatio(Math.min(2, devicePixelRatio || 1)); el.appendChild(r.domElement);
+  const cap = document.createElement('div'); cap.className = 'nwCap'; el.appendChild(cap);
+  const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(55, 1, 0.5, 6000);
+  { const c = document.createElement('canvas'); c.width = 4; c.height = 256; const q = c.getContext('2d'), gr = q.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, opt.city ? '#4d6585' : '#5f8fc4'); gr.addColorStop(0.55, opt.city ? '#9aa8b8' : '#c9d6dc'); gr.addColorStop(1, opt.city ? '#b9b3a6' : '#e6cf9f'); q.fillStyle = gr; q.fillRect(0, 0, 4, 256); sc.background = new THREE.CanvasTexture(c); }
+  sc.fog = new THREE.Fog(opt.city ? 0xb9b3a6 : 0xe6cf9f, 1800, 7000);
+  sc.add(new THREE.HemisphereLight(0xffffff, 0x6b4a2a, 0.9)); const sun = new THREE.DirectionalLight(0xffffff, 0.8); sun.position.set(1, 2, 1); sc.add(sun);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(6000, 6000), new THREE.MeshLambertMaterial({ color: opt.city ? 0x4a525a : 0xb8935e })); ground.rotation.x = -PI / 2; sc.add(ground);
+  const rk = mulberry32(9);
+  if (opt.city) for (let i = 0; i < 180; i++) { const h = 10 + rk() * 60, m = new THREE.Mesh(new THREE.BoxGeometry(14 + rk() * 16, h, 14 + rk() * 16), new THREE.MeshLambertMaterial({ color: new THREE.Color().setHSL(0.6, 0.08, 0.35 + rk() * 0.3) })); const a = rk() * TAU, d = 60 + rk() * 700; m.position.set(Math.cos(a) * d, h / 2, Math.sin(a) * d); sc.add(m); }
+  else { const tw = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 3, 60, 6), new THREE.MeshLambertMaterial({ color: 0x5a5048 })); tw.position.y = 30; sc.add(tw); for (let i = 0; i < 40; i++) { const m = new THREE.Mesh(new THREE.DodecahedronGeometry(4 + rk() * 14), new THREE.MeshLambertMaterial({ color: 0xb08a5a, flatShading: true })); const a = rk() * TAU, d = 300 + rk() * 1200; m.position.set(Math.cos(a) * d, 2, Math.sin(a) * d); sc.add(m); } }
+  const blast = opt.success ? Math.max(1, opt.blast || 1) : 0.15, R = 60 + 70 * blast;
+  const fire = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), new THREE.MeshBasicMaterial({ color: 0xfff2c0, transparent: true }));
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 1, 1, 18, 1, true), new THREE.MeshBasicMaterial({ color: 0x8a5a3a, transparent: true, side: THREE.DoubleSide }));
+  const capM = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 14), new THREE.MeshBasicMaterial({ color: 0xff8a3a, transparent: true }));
+  const skirt = new THREE.Mesh(new THREE.TorusGeometry(1, 0.16, 10, 30), new THREE.MeshBasicMaterial({ color: 0xd8b48a, transparent: true, opacity: 0.6 })); skirt.rotation.x = PI / 2;
+  const rg = new THREE.RingGeometry(0.94, 1, 80); rg.rotateX(-PI / 2); const ring = new THREE.Mesh(rg, new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, side: THREE.DoubleSide, depthWrite: false }));
+  const G0 = new THREE.Group(); G0.add(fire, stem, capM, skirt, ring);
+  // the cap is a cauliflower of puffs around a glowing heart
+  const puffs = []; for (let i = 0; i < 9; i++) { const pm = new THREE.Mesh(new THREE.SphereGeometry(1, 14, 10), new THREE.MeshLambertMaterial({ color: i % 2 ? 0xc77a48 : 0xa8653d, transparent: true, emissive: 0x552200 })); pm.userData.a = i / 9 * TAU; pm.userData.k = 0.5 + (i % 3) * 0.12; G0.add(pm); puffs.push(pm); } G0.visible = false; sc.add(G0);
+  const light = new THREE.PointLight(0xffaa55, 0, 2200, 1.5); light.position.set(0, 200, 0); sc.add(light);
+  const size = () => { const w = innerWidth, h = innerHeight; r.setSize(w, h); cam.aspect = w / h; cam.updateProjectionMatrix(); }; size(); addEventListener('resize', size);
+  let t = opt.at != null ? opt.at : -3.2, last = performance.now(), raf = 0, shown = false;
+  const say = (a, b) => { cap.innerHTML = `<em>${esc(a)}</em><b>${esc(b)}</b>`; if (typeof i18nWalk === 'function') i18nWalk(cap); };
+  say(opt.title, opt.city ? `Target: ${opt.target}` : 'Desert test site · countdown');
+  const loop = now => {
+    raf = requestAnimationFrame(loop); const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt;
+    if (t < 0) { const n = Math.ceil(-t); if (cap.dataset.n !== String(n)) { cap.dataset.n = n; say(opt.title, `${n}…`); try { SFX.tone(0.12, 0.18, 880, 880, 'square'); } catch (e) { } } }
+    else if (!G0.visible) { G0.visible = true; light.intensity = 4; const f = $('#nukeFlash'); if (f) { f.style.transition = 'none'; f.style.opacity = opt.success ? 1 : 0.3; requestAnimationFrame(() => { f.style.transition = 'opacity 3s ease-out'; f.style.opacity = 0; }); }
+      try { SFX.init(); if (opt.success) { SFX.burst(1, 6, 60, 0.4, 'lowpass'); SFX.tone(0.9, 5, 50, 18); } else SFX.burst(0.3, 1.5, 300, 0.3, 'lowpass'); } catch (e) { } }
+    const k = Math.max(0, t), e = 1 - Math.pow(1 - Math.min(1, k / 7), 3);
+    if (G0.visible) {
+      const fr = R * 0.35 * Math.min(1, k / 1.2) + 2; fire.scale.setScalar(fr); fire.position.y = fr * 0.6 + e * R * 2.2; fire.material.color.setHex(0xfff2c0).lerp(new THREE.Color(0x553322), Math.min(1, k / 7));
+      capM.scale.set(R * 0.9 * e + 1, R * 0.5 * e + 1, R * 0.9 * e + 1); capM.position.y = e * R * 2.4; capM.material.opacity = Math.max(0, 0.95 - k / 18); capM.visible = opt.success;
+      stem.scale.set(R * 0.18 * e + 1, e * R * 2.3 + 1, R * 0.18 * e + 1); stem.position.y = e * R * 1.15; stem.visible = opt.success;
+      skirt.scale.setScalar(R * 1.1 * e + 1); skirt.position.y = e * R * 1.4; skirt.visible = opt.success && k > 1.5;
+      for (const pm of puffs) { pm.visible = opt.success; const a = pm.userData.a + k * 0.05; pm.scale.setScalar(R * 0.42 * e * pm.userData.k + 1); pm.position.set(Math.cos(a) * R * 0.62 * e, e * R * 2.45 + Math.sin(a * 3) * R * 0.12 * e, Math.sin(a) * R * 0.62 * e); pm.material.opacity = Math.max(0, 1 - k / 20); }
+      ring.scale.setScalar(k * R * 2.4); ring.material.opacity = Math.max(0, 0.9 - k / 3.5);
+      light.intensity = Math.max(0, 4 - k);
+    }
+    const sh = G0.visible && k < 2.5 ? (2.5 - k) * 2.2 * (opt.success ? 1 : 0.2) : 0, ang = 0.25 + t * 0.04;
+    cam.position.set(Math.sin(ang) * (R * 6 + 380) + rr(-sh, sh), 40 + R * 0.6 + rr(-sh, sh), Math.cos(ang) * (R * 6 + 380)); cam.lookAt(0, R * 1.5, 0);
+    r.render(sc, cam);
+    if (t > 7.5 && !shown) { shown = true; cap.className = 'nwCap rep';
+      cap.innerHTML = `<em>${esc(opt.title)}</em><b>${esc(opt.report)}</b><div class="row"><button class="btn primary" id="nwOk">Close</button></div>`; if (typeof i18nWalk === 'function') i18nWalk(cap);
+      cap.querySelector('#nwOk').onclick = () => { cancelAnimationFrame(raf); removeEventListener('resize', size); sc.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }); r.dispose(); el.remove(); opt.done && opt.done(); }; }
+  };
+  raf = requestAnimationFrame(loop);
+  return el;
+}
+async function nwTest(id) {
+  const me = wlMe(), n = me && (me.nukes || []).find(x => x.id === id); if (!n) return;
+  const r = await wlCall('world_nuke_test', { p_id: id }, true); WL.err = '';
+  if (!r || r.ok === false) { toast('Nuclear workshop', (r && r.err) || 'The test was called off.'); return; }
+  nwFilm({ title: `Test of ${n.name}`, success: r.success, blast: n.blast, report: r.success ? `${n.name} worked: ${r.yield} megasmiles. The whole world felt it. Your next warheads are 2% more reliable.` : `${n.name} fizzled. A puff of smoke, and the world laughs a little.`, done: () => wlLoad(true) });
+}
+// after a missile strike (launch code or distractions), the film of the hit
+function nwStrikeFilm(W) { if (!W || !W.nuke) return; nwFilm({ title: `${W.nuke.name} over ${W.name}`, city: true, target: W.name, success: true, blast: W.nuke.blast, report: `The missile hit ${W.name}. The World Council will want a word with you.` }); }
+{
+  // the workshop sits in the Powers tab
+  const T = WL_TABS.powers, _h = T.html, _w = T.wire;
+  T.html = (st, me) => _h(st, me).replace(/<\/div>\s*$/, nwArsenalHtml(me) + '</div>');
+  T.wire = el => { _w(el); el.querySelectorAll('[data-nw-open]').forEach(b => b.onclick = () => nwShop()); el.querySelectorAll('[data-nt]').forEach(b => b.onclick = () => { b.disabled = true; nwTest(+b.dataset.nt); });
+    el.querySelectorAll('[data-ns]').forEach(b => b.onclick = () => { if (b.dataset.sure) wlDo('world_nuke_scrap', { p_id: +b.dataset.ns }); else { b.dataset.sure = 1; b.textContent = 'Sure?'; } }); };
 }
 </script>
