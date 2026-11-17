@@ -1660,6 +1660,8 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 .nwCap{position:absolute;left:50%;bottom:calc(30px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(640px,calc(100% - 32px));display:grid;gap:6px;padding:16px 20px;border-radius:14px;background:rgba(6,9,12,.8);border:1px solid rgba(255,255,255,.2);text-align:center}
 .nwCap em{font:700 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-style:normal}.nwCap b{font:700 20px var(--ui);color:#fff}.nwCap .row{display:flex;justify-content:center}.nwCap .btn{min-width:160px;min-height:44px}
 @media (max-width:560px){.ecRes{grid-template-columns:repeat(3,1fr)}.ecTrade{grid-template-columns:repeat(3,1fr)}.nwStats{grid-template-columns:1fr 1fr}.wmOff{grid-template-columns:1fr}.wmApp{grid-template-columns:1fr}.wmGrid{gap:4px}.wmCell{min-height:40px;font-size:13px}}
+.wpGive{display:grid;gap:6px;margin-top:10px;padding:10px;border-radius:10px;border:1px dashed rgba(242,179,61,.5)}.wpGive>small{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.wpGive .row{display:flex;gap:6px}.wpGive select{flex:1;min-height:36px;background:#0d1612;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:0 8px;font:inherit}.wpGive .note{margin:0}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -12845,7 +12847,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '19dc36ad'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = 'c957c1e5'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21891,6 +21893,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '76', date: '2026-11-17', name: 'Gifts from the top', items: ['The President of the game can give any country to any other country, near or far, held or not, but never to their own. A homeland given back to its owner frees them at once, with their levels and gold as they were.', 'For testing, the President of the game also gets 100,000 gold, oil, steel and food, 10,000 gold a day and 1,000 of each material an hour. This needs the new world SQL file.'] },
   { v: '75', date: '2026-11-17', name: 'A bigger orbit', items: ['Stations are bigger and more detailed: a turning habitat ring with lit windows, docking arms, solar arrays and a blinking beacon. Free ports carry cargo containers.', 'Orbit reaches out to the Moon, with a new asteroid field beside it and a fourth field over the Americas. Nebulae glow in the distance.', 'A radar in the top right shows the planet, the Moon, stations, pirates, wrecks and other pilots around you.'] },
   { v: '74', date: '2026-11-17', name: 'Oil, steel and food', items: ['Every country now makes oil, steel and food: oil fields, factories, farmland and ports make more. The army eats food; without it, it grows at half speed.', 'Big things need materials: upgrades from level 5, ships in Space, nuclear warheads and rebuilding a station.', 'The Market buys and sells all three for gold. Prices rise when everyone buys and fall when everyone sells.'] },
   { v: '73', date: '2026-11-17', name: 'The World Council', items: ['The World Council: any President can put a resolution to a vote: sanctions, a condemnation, aid for a country, world peace for 12 hours, or a nuclear ban.', 'Chat with the whole world, your bloc, or one country in private.', 'War goals and peace terms: fight for conquest, tribute or humiliation, and end a war with terms (gold, a country, an apology). A goal reached is worth 500 gold.', 'Nukes in the World: fallout, second strikes from a country that has its own warhead, and an automatic Council vote on sanctions after every strike.'] },
@@ -22041,7 +22044,7 @@ const I18N = {
     'The Long War': 'The Long War', 'Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.': 'Tiga puluh bab dalam lima babak. Pilihan Anda menentukan akhir perang: Sang Pembebas, Sang Penakluk, atau Sang Pendamai.',
     'World event': 'Peristiwa dunia', 'Break the treaty?': 'Langgar perjanjian?', 'Attack anyway': 'Tetap serang', 'Keep the peace': 'Jaga perdamaian', 'Cutscenes': 'Cutscene',
     'Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.': 'Buka perlengkapan dengan naik level lewat EXP, membelinya dengan Smiley Dollars (SD), atau meraih medali. Keduanya didapat di setiap battle.',
-    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'A bigger orbit': 'Orbit yang lebih besar', 'Oil, steel and food': 'Minyak, baja dan pangan', 'The World Council': 'Dewan Dunia', 'Missions and nukes': 'Misi dan nuklir', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
+    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'Gifts from the top': 'Hadiah dari atas', 'A bigger orbit': 'Orbit yang lebih besar', 'Oil, steel and food': 'Minyak, baja dan pangan', 'The World Council': 'Dewan Dunia', 'Missions and nukes': 'Misi dan nuklir', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
     // what's new
     'The lobby': 'Lobi', 'Lighter battles': 'Battle lebih ringan', 'Game health': 'Kesehatan game', 'Hit feel': 'Rasa pukulan', 'Real people and car damage': 'Orang realistis dan kerusakan mobil', 'Online version lock': 'Kunci versi online', 'F1 polish and replays': 'Polesan F1 dan replay'
   }
@@ -22711,6 +22714,11 @@ I18N.pat.push(
   [/^(\d+) day(s?) of fallout$/, m => `${m[1]} hari radiasi`],
   [/^(\d+) fewer guards$/, m => `${m[1]} penjaga lebih sedikit`]
 );
+
+/* v76: the President of the game gives countries away */
+Object.assign(I18N.id, { 'President of the game: give this country away': 'Presiden game: berikan negara ini', 'Give': 'Berikan', 'its computer nation': 'negara komputernya',
+  'Any country to any other country, near or far, held or not. Not to your own. A homeland given back to its owner frees them at once.': 'Negara mana pun ke negara lain mana pun, dekat atau jauh, dikuasai atau tidak. Tidak ke negara Anda sendiri. Tanah air yang dikembalikan ke pemiliknya langsung membebaskan mereka.' });
+I18N.pat.push([/^(.+) \(its homeland\)$/, m => `${m[1]} (tanah airnya)`]);
 
 /* ================= THE LOCKER: the Barracks with a big 3D view and "try before you unlock" =================
    The President and a soldier stand large beside the list. Tap any item, even a locked one, to see it on them
@@ -25598,6 +25606,27 @@ function wpSpeech() {
   };
 }
 
+// (President of the game) give any country to any player's country, or back to its computer nation; never to your own.
+// A homeland given back to its owner frees them at once, with their levels and gold as they were.
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), sel = el && el.querySelector('[data-sel]'), me = wlMe(), st = WL.st, id = sel && sel.dataset.sel;
+      if (sel && st && typeof isAdmin === 'function' && isAdmin() && !sel.querySelector('.wpGive')) {
+        const own = wlOwner(id), home = wlHomeOf(id), to = st.players.filter(p => !p.me && p.name !== own);
+        sel.insertAdjacentHTML('beforeend', `<div class="wpGive"><small>President of the game: give this country away</small><div class="row"><select id="wpGiveTo">${home && home.name !== own ? `<option value="${esc(home.name)}">${esc(home.name)} (its homeland)</option>` : ''}${to.filter(p => !(home && p.name === home.name)).map(p => `<option value="${esc(p.name)}">${esc(p.name)}</option>`).join('')}${own && !home ? '<option value="">its computer nation</option>' : ''}</select><button class="btn small primary" id="wpGiveGo">Give</button></div>
+          <p class="note">Any country to any other country, near or far, held or not. Not to your own. A homeland given back to its owner frees them at once.</p></div>`);
+        const go = sel.querySelector('#wpGiveGo'), sl = sel.querySelector('#wpGiveTo'); sl.onclick = e => e.stopPropagation();
+        if (!sl.options.length) { go.disabled = true; }
+        go.onclick = () => { go.disabled = true; wlDo('world_admin_give', { p_country: id, p_to: sl.value || null }); };
+        if (typeof i18nWalk === 'function') i18nWalk(sel.querySelector('.wpGive'));
+      }
+    } catch (e) { console.warn('admin give', e); }
+    return r;
+  };
+}
+
 /* ================= THE WORLD: resources, the market, the World Council, chat, war goals and peace terms =================
    - Oil, steel and food come from buildings (oil fields, factories, farmland, ports) and from every country; the army eats
      food. Gold stays the main money; the materials are needed for big things: upgrades from level 5, ships, nukes, rebuilding
@@ -25621,6 +25650,7 @@ const ecNum = v => Math.floor(v || 0).toLocaleString();
       nuke_code: 'a stolen launch code sent a nuclear missile into', nuke_bomber: 'a bomber dropped a nuclear bomb on', nuke_distract: 'while its governors were busy, a nuclear missile hit' };
     if (/^mis_/.test(l.kind) && l.kind !== 'mis_failed') { const k = l.kind.slice(4); return `${l.a ? a : 'Unknown agents'}: ${M[k] || 'a secret mission in'} <b>${esc(c)}</b>${l.n ? `, which now belongs to ${l.a ? a : 'someone'}` : ''} (held by ${b})`; }
     switch (l.kind) {
+      case 'admin_give': return l.a ? `The President of the game gave ${esc(c)} to ${a}` : `The President of the game gave ${esc(c)} back to ${b}`;
       case 'mis_failed': return `A secret mission of ${a} in ${esc(c)} failed. ${b} knows who sent it`;
       case 'nuke_built': return `${a} built a nuclear warhead`;
       case 'nuke_test': return l.n ? `${a} tested a nuclear warhead: ${wlNum(l.n)} megasmiles. The ground shook around the world` : `${a} tested a nuclear warhead. It fizzled`;
