@@ -1516,6 +1516,82 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 .wlOrbNote{color:#ffb39a!important;margin:4px 0 0}
 @media (max-width:640px){.spHold{grid-template-columns:repeat(2,1fr)}.spStat div:nth-child(6),.spStat div:nth-child(7){display:none}}
 @media (max-width:480px){.spStat div:nth-child(1),.spStat div:nth-child(4){display:none}.spTabs{display:grid;grid-template-columns:1fr 1fr}}
+/* ===== v69: World Wars ===== */
+.wlTabs{flex-wrap:wrap}.wlTabs .btn{flex:1 1 calc(25% - 6px);min-width:0}
+.wwCard{display:grid;gap:7px;padding:14px 15px;margin-bottom:12px;border-radius:14px;border:1px solid rgba(239,75,79,.6);background:linear-gradient(135deg,rgba(120,20,20,.45),rgba(30,8,8,.7) 60%,rgba(10,18,11,.7));box-shadow:inset 0 0 40px rgba(239,75,79,.12)}
+.wwCard.over{border-color:rgba(242,179,61,.5);background:linear-gradient(135deg,rgba(120,90,20,.3),rgba(10,18,11,.7))}
+.wwCard>em{font:700 10.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:#ff9b8f;font-style:normal}.wwCard.over>em{color:var(--amber)}
+.wwCard>b{font:800 21px var(--ui);color:#fff;letter-spacing:.01em}.wwCard>span{font-size:13px;color:var(--fg);line-height:1.4}
+.wwSides{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch}
+.wwSide{display:grid;gap:1px;padding:9px 11px;border-radius:10px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.1);min-width:0}
+.wwSide small{font:700 11px var(--ui);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wwSide b{font:800 24px var(--ui);color:#fff;font-variant-numeric:tabular-nums}.wwSide i{font-style:normal;font-size:11.5px;color:var(--muted)}
+.wwSide.A{border-color:rgba(255,107,97,.5)}.wwSide.B{border-color:rgba(90,166,255,.5)}.wwSide.mine{box-shadow:0 0 0 2px var(--green) inset}
+.wwVs{align-self:center;font:900 13px var(--ui);color:#ff9b8f;letter-spacing:.1em}
+.wwPm{margin:0;font-size:12.5px;color:#e8f4ff}.wwYou{margin:0;font-size:12.5px;color:var(--muted);line-height:1.4}
+.wwActs{display:flex;flex-wrap:wrap;gap:6px}.wwActs .btn{flex:1 1 auto;min-height:36px}
+.wwWarn{color:#ffd28a!important;margin:0}
+.wwVote{display:grid;gap:6px;padding:9px 11px;border-radius:10px;background:rgba(242,179,61,.1);border:1px solid rgba(242,179,61,.45)}.wwVote p{margin:0;display:grid;gap:2px}.wwVote small{font-size:12px;color:var(--muted)}.wwVote em{font:700 11px var(--ui);color:var(--amber);font-style:normal;text-transform:uppercase;letter-spacing:.08em}
+.wwCard .row{display:flex;gap:6px}.wwCard .row .btn{flex:1}
+.wwFront h4{margin:14px 0 6px;font:700 13px var(--ui);color:#fff;letter-spacing:.02em}
+.wwRow{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:9px;background:rgba(255,255,255,.04);margin-bottom:5px}.wwRow.me{box-shadow:0 0 0 1px var(--green) inset}
+.wwRow span{flex:1;min-width:0}.wwRow small{display:block;font-size:11.5px;color:var(--muted)}.wwRow em{font:700 10px var(--ui);color:var(--green);font-style:normal;text-transform:uppercase}
+.wwRules{margin-top:10px;font-size:12.5px;color:var(--muted)}.wwRules summary{cursor:pointer;color:var(--fg);font-weight:600}.wwRules p{line-height:1.5}
+.wwRing{fill:none;stroke-width:2;stroke-dasharray:4 3;animation:wwSpin 6s linear infinite}.wwRing.A{stroke:#ff6b61}.wwRing.B{stroke:#5aa6ff}.wwRing.P{stroke:#ffffff;stroke-dasharray:1 3}
+@keyframes wwSpin{to{stroke-dashoffset:-28}}
+@media (prefers-reduced-motion:reduce){.wwRing{animation:none}}
+/* ===== v70: the history book ===== */
+#scr-history .card{width:min(1180px,100%)}
+.hbToday{flex:1;text-align:right;margin-right:12px;font:600 13px var(--ui);color:var(--amber)}
+.hbWrap{display:grid;grid-template-columns:260px 1fr;gap:16px;margin-top:12px;min-height:60vh}
+.hbNav{display:grid;align-content:start;gap:6px}
+.hbCh{display:grid;gap:2px;text-align:left;padding:11px 13px;border-radius:11px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--fg);cursor:pointer;font:inherit}
+.hbCh b{font:700 14.5px var(--ui);color:#fff}.hbCh small{font-size:12px;color:var(--muted)}.hbCh.on{border-color:var(--amber);background:rgba(242,179,61,.1)}
+.hbBody{min-width:0;padding:4px 4px 30px;font-family:Georgia,'Times New Roman',serif}
+.hbHead{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;justify-content:space-between;border-bottom:1px solid rgba(242,179,61,.3);padding-bottom:12px;margin-bottom:12px}
+.hbHead em{font:700 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--amber);font-style:normal}.hbHead h3{margin:4px 0;font:700 28px Georgia,serif;color:#fff}.hbHead .note{margin:0;font-family:var(--ui)}
+.hbLead{font-size:16px;line-height:1.6;color:#f2ead8}
+.hbSides{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0;font-family:var(--ui)}
+.hbSide{display:grid;gap:2px;padding:11px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.hbSide small{font:700 11px var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.hbSide b{font:800 26px var(--ui);color:#fff}.hbSide i{font-style:normal;font-size:11.5px;color:var(--muted)}.hbSide span{font-size:13px;color:var(--fg)}
+.hbSide.A{border-color:rgba(255,107,97,.45)}.hbSide.B{border-color:rgba(90,166,255,.45)}.hbSide.won{box-shadow:0 0 0 2px var(--amber) inset}
+.hbMedia{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px;font-family:var(--ui)}.hbMedia .btn{min-height:44px}
+.hbBody h4{font:700 15px var(--ui);color:#fff;margin:18px 0 8px}
+.hbMonth{color:var(--amber)!important;border-bottom:1px solid rgba(242,179,61,.25);padding-bottom:4px}
+.hbLine{display:grid;grid-template-columns:170px 1fr;gap:10px;margin:0;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14.5px;line-height:1.45;color:#ece4d2}
+.hbLine small{font:600 12px var(--ui);color:var(--muted);padding-top:2px}.hbLine.k-ww_start span,.hbLine.k-ww_end span{color:#ffb3a8;font-weight:700}
+.hbStory{max-width:720px}.hbStory h3{font:700 30px Georgia,serif;color:#fff;margin:12px 0 14px}.hbStory h4{font:700 19px Georgia,serif;color:var(--amber);margin:26px 0 10px}
+.hbStory p{font-size:17px;line-height:1.75;color:#f2ead8;margin:0 0 14px}.hbStory p:first-of-type::first-letter{font-size:2.6em;float:left;line-height:.9;margin:4px 8px 0 0;color:var(--amber)}
+.hbFine{font:italic 13px var(--ui)!important;color:var(--muted)!important;margin-top:24px!important}
+.hbDoc{position:fixed;inset:0;z-index:40;background:#05080a;overflow:hidden}
+.hbDoc svg{position:absolute;inset:0;width:100%;height:100%}
+#hbLand path{stroke-width:.4;transition:fill 1.2s}
+.hbVig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75));box-shadow:inset 0 0 120px rgba(0,0,0,.6)}
+.hbCap{position:absolute;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(760px,calc(100% - 32px));display:grid;gap:5px;padding:16px 20px;border-radius:14px;background:rgba(6,9,12,.78);border:1px solid rgba(242,179,61,.35);backdrop-filter:blur(4px)}
+.hbCap em{font:700 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-style:normal}.hbCap b{font:700 24px Georgia,serif;color:#fff}.hbCap b:empty{display:none}.hbCap p{margin:0;font:17px/1.55 Georgia,serif;color:#f2ead8}
+.hbCtl{position:absolute;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:8px;align-items:center;width:min(760px,calc(100% - 32px))}
+.hbCtl .btn{min-height:40px}.hbCtl i{flex:1;height:3px;background:var(--amber);border-radius:2px;align-self:center;max-width:100%;transition:width .4s}
+.hbArrow{fill:none;stroke:#ff6b61;stroke-width:3;stroke-linecap:round;stroke-dasharray:6 4;animation:wwSpin 2s linear infinite}.hbArrow.held{stroke:#5aa6ff}
+.hbBoom{fill:rgba(255,160,60,.5);stroke:#ffb347;stroke-width:1;animation:hbBoom 1.4s ease-out infinite}
+@keyframes hbBoom{from{r:2;opacity:1}to{r:14;opacity:0}}
+.hbName{font:700 7px var(--ui);fill:#fff;text-anchor:middle;paint-order:stroke;stroke:#000;stroke-width:1.6px}
+@media (max-width:760px){.hbWrap{grid-template-columns:1fr}.hbNav{grid-auto-flow:column;grid-auto-columns:minmax(180px,70%);overflow-x:auto}.hbLine{grid-template-columns:1fr;gap:2px}.hbToday{display:none}.hbStory p{font-size:16px}.hbCap b{font-size:19px}.hbCap p{font-size:15px}}
+/* ===== v71: the President's powers ===== */
+.wpPow{display:grid;gap:10px}
+.wpBox{display:grid;gap:9px;padding:12px 13px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
+.wpHd{display:grid;gap:3px}.wpHd b{font:700 15px var(--ui);color:#fff}.wpHd small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.wpBox>.btn{min-height:42px}
+.wpGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.wpOpt{display:grid;gap:3px;text-align:left;padding:10px 11px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);color:var(--fg);font:inherit;cursor:pointer}
+.wpOpt b{font:700 13.5px var(--ui);color:#fff}.wpOpt small{font-size:11.5px;color:var(--muted);line-height:1.35}.wpOpt:hover:not([disabled]){border-color:var(--amber)}
+.wpOpt.on{border-color:var(--green);background:rgba(57,211,83,.1)}.wpOpt[disabled]{opacity:.45;cursor:default}
+.wpRows{display:grid;gap:5px}.wpRow{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:9px;background:rgba(0,0,0,.18)}.wpRow span{flex:1;min-width:0;font-size:13.5px}.wpRow small{display:block;font-size:11.5px;color:var(--muted)}.wpRow em{font:700 10px var(--ui);color:#ff9b8f;font-style:normal;text-transform:uppercase}
+.wpOn{margin:0;font-size:12.5px;color:#bdf5c8}.wpBad{margin:0;font-size:12.5px;color:#ff9b8f}
+.wpTake{display:grid;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08)}.wpTake>small{font:700 10.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.wpTake .row{display:flex;gap:6px;flex-wrap:wrap}.wpTake .btn{flex:1 1 auto;min-height:40px}.wpTake .note{margin:0}
+@media (max-width:480px){.wpGrid{grid-template-columns:1fr}}
+.wlTabs.many .btn{flex-basis:calc(33.3% - 6px)}
+.hbHead h3,.hbStory h3{text-transform:none!important;letter-spacing:0!important}
+.hbCtl i{flex:none}.hbTrack{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.15);display:flex}.hbTrack i{height:3px;background:var(--amber);border-radius:2px}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -1844,6 +1920,9 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
       <div><h3>Buildings, events and generals</h3>About half the countries in the World have a special building, shown as a small badge on the map: an <b>oil field</b> (+30 gold an hour), a <b>port</b> (+20 gold an hour), <b>farmland</b> (+20 soldiers in your army), a <b>factory</b> (upgrades 10% cheaper) or an <b>airbase</b> (invasions need 10% fewer soldiers). Whoever holds the country gets the bonus; factories and airbases count up to 30%. Every two and a half days or so a <b>world event</b> hits every country for a day: a gold rush, a pandemic, an arms fair, mercenaries for hire, or a rebellion in the largest empire, which then earns less and is easier to invade. As President you can hire up to two <b>generals</b> (Hale, Reyes, Okoro or Brandt, 1,500 gold each). They fight beside you in your invasions, and each makes your country one defence level harder to invade. Generals leave a country that is occupied.</div>
       <div><h3>Live battles</h3>When you invade a country in the World and its owner (or one of its ministers) has the game open, they are called to defend it in person. They have 30 seconds to answer. If they accept, the invasion is fought as an <b>online battle</b> between the two of you, with the same rules: capture flags, drain reinforcements or destroy the HQ core, 20 minutes at most, and leaving counts as a loss. Both games report the result to the World, so it counts even if one player closes the game. If they decline, are busy, or do not answer, their army is played by the computer as before. Both players need the same game version.</div>
       <div><h3>Space</h3>Press <b>Launch</b> under your country in the World to fly in orbit. It is the same world: the planet shows who holds what, every player's country has a <b>station</b> above its homeland, and three <b>free ports</b> belong to nobody. Steer with W A S D or the arrows (on a phone: the stick), hold Space or <b>Fire</b> to shoot, Shift or <b>Boost</b> to go fast, X or <b>Brake</b> to slow down, F to dock. <b>Ships</b> belong to your country and ministers fly them too: the <b>Fighter</b> is free; the President can buy a <b>Miner</b> (800 gold, mines twice as fast, 60 ore), a <b>Gunship</b> (1,500 gold, tough, heavy guns) and a <b>Transport</b> (1,000 gold, 8 seats) in the Hangar of your station. Shoot asteroids and fly through the green ore; destroy <b>pirates</b> for bounties; answer <b>distress calls</b> and bring survivors in; take <b>passengers</b> to another station before the time runs out. Hand everything in at your station or a free port: the gold goes to your country's treasury (at most 1,000 gold an hour for each pilot). You may only shoot the pilots and stations of countries you are <b>at war</b> with. An enemy station defends itself with turrets, also when its owner is away, but turrets only see a ship that comes in fast. With the turrets down you can <b>raid</b> its vault (5% of their gold, at most 300) or shoot its core until it is <b>knocked out</b> for 24 hours. A working station gives every country of its owner one defence level more; a knocked-out one gives nothing until its owner rebuilds it (1,000 gold). From your station's <b>Operations</b>: an <b>orbital strike</b> (400 gold, once every 12 hours) takes a defence level off an enemy country next to your land for 6 hours; a Transport can fly <b>troops</b> down over a country you will invade (the invasion then needs half the soldiers) or drop <b>spies</b> at an enemy station (if they did not see you coming, their treasury earns nothing for 6 hours). If you are shot down your cargo spills out for anyone to grab, and a new ship waits at your station after 10 seconds. Up to 32 pilots share one orbit; when it is full, the next pilots get an orbit of their own.</div>
+      <div><h3>World Wars</h3>A World War starts by itself in three ways: two blocs go to war with each other (both blocs are pulled in); someone betrays their bloc (the betrayer and their allies face the betrayed bloc; an ally may refuse within the hour, which ends the alliance); or 5 or more countries are linked by wars at the same time. Every member of one side is then at war with every member of the other, and peace or alliance offers between the sides are not possible. Other countries can <b>join a side</b>, join the <b>Peacemakers</b> (in the war, against nobody: they send aid, visit and propose ceasefires), or stay out and live in a <b>warzone</b>, where something good or bad happens to them every 6 hours. The war lasts 3 days and is scored: taking a country from the other side 3 points, a homeland 5, holding off an invasion 1, knocking out a station 4, an orbital strike or raid 1, an assassination or sabotage 2. A side can <b>surrender</b>, and anyone in the war can propose a <b>ceasefire</b>; every President who has to agree must vote yes within 6 hours. If time runs out, the side with more points wins; but if the Peacemakers made more peace points than either side made war points, it ends in peace. Winners get 1,500 gold each plus 15% of the losers' gold; a peace rewards the Peacemakers with 600 gold and costs nobody anything. Only one World War can be on at a time.</div>
+      <div><h3>The history book</h3>Press <b>History book</b> on the World screen. The World keeps its own calendar: one real hour is one SMFA day, counted from the day the first country was founded. <b>The Chronicle</b> lists the big moments, with "The Story of the World" told from them. Every World War has a chapter with its full record, a <b>documentary</b> (a narrated film over the map with 3D scenes for the start, a betrayal and the end), a <b>short story</b> and a <b>long novel</b>. The words are the storyteller's; the events really happened.</div>
+      <div><h3>Presidential powers</h3>The <b>Powers</b> tab of the World. <b>Peaceful takeover</b>: tap a country no player holds, next to your land, and <b>buy</b> it (1,200 to 3,500 gold, double for a capital, once every 12 hours) or <b>win it by influence</b> (600 gold; after 6 hours it votes to join you, if it is still free and next to you). Countries a player holds can only be taken by force. <b>Decrees</b>, one a day for 12 hours: a tax rise (+30% gold, half the new soldiers), martial law (twice the new soldiers, 20% less gold), conscription (40 soldiers at once, 15% less gold), or a national holiday (300 gold, ends chaos at once). An <b>embargo</b> cuts a country off from trade income for 48 hours and costs it 5% of its income for every country that joins in (at most 20%); members of your bloc can join yours. A <b>speech</b> (100 gold, once a day) plays a short scene and gives 15% more gold and soldiers for 6 hours. <b>Propaganda</b> (300 gold) raises the resistance in a country occupied by someone else by 15%.</div>
       <div><h3>Victory animations</h3>Win a battle and your President plays a short victory scene. Choose it in <b>Barracks → Victory</b>, where every scene has a Preview button. Parade Salute is free for everyone. Plant the Flag comes with Soldier membership, Three-Point Landing with Sergeant, Don't Look Back with Captain, and The Long Corridor and The Throne Room with General. Every scene can also be unlocked in the Store with SD or Rp, and some come in bundles. Switch them off in Settings if you prefer.</div>
       <div><h3>Nuclear warhead</h3>In the campaign, buy it in the <b>Locker room</b> for $15,000. In skirmish, press <b>Buy nuke</b> in the office to buy it with $5,000 of war budget. In skirmish you can launch it whenever you like. In the campaign, the <b>Nuke</b> button only unlocks when you are losing (HQ below half, behind on tickets, or the enemy holds more flags). Type the launch code within 30 seconds; three wrong tries or running out of time locks it for 2 to 3 minutes. On success your squads fall back, and 9 seconds later the blast destroys every soldier, vehicle and building outside the two HQ bunkers. Both HQs are left badly damaged and the battle continues. One nuke per battle. Very rarely, a losing enemy saves up and nukes you: sirens give you 12 seconds to pull your troops back, and the enemy usually forgets to save its own.</div>
       <div><h3>Story</h3>The campaign tells the story of the Smiley Face Army's return from exile. As you conquer countries, 3D cutscenes play and <b>story missions</b> unlock in the campaign panel: defend the embassy, rescue a hostage, escort a convoy, kill a general, and storm the Emperor's capital. Heroes such as Reyes (sniper), Okoro (engineer) and Brandt (ace pilot) join and fight in your campaign battles. Tap or press Enter to move through a cutscene, or Skip. Replay them from the campaign panel.</div>
@@ -1980,6 +2059,12 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
       <div class="mapbox"><svg id="wldMap" viewBox="0 0 1000 520" aria-label="World map"></svg><div class="wmctl"><button class="btn small" id="wldIn" aria-label="Zoom in">+</button><button class="btn small" id="wldOut" aria-label="Zoom out">−</button><button class="btn small" id="wldFit" aria-label="Whole world">⤢</button><button class="btn small" id="wldHome" aria-label="My homeland">◎</button></div><div class="wmhint">Drag to pan · scroll or pinch to zoom · tap a country</div></div>
       <div class="side" id="wldSide"></div>
     </div>
+  </div>
+</div>
+<div id="scr-history" class="screen page" hidden>
+  <div class="card">
+    <div class="row between"><h2>The History Book</h2><span class="hbToday" id="hbToday"></span><button class="btn small" id="hbBack">Back</button></div>
+    <div class="hbWrap"><nav class="hbNav" id="hbNav"></nav><div class="hbBody" id="hbBody"></div></div>
   </div>
 </div>
 <div id="scr-space" class="screen" hidden>
@@ -12687,7 +12772,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '6a89e0af'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '4c08c4a9'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21733,6 +21818,9 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '71', date: '2026-11-17', name: 'Presidential powers', items: ['Peaceful takeover: tap a country no player holds, next to your land, and buy it, or win it by influence (600 gold; after 6 hours it votes to join you).', 'Decrees, one a day: a tax rise, martial law, conscription, or a national holiday that ends chaos.', 'Embargoes: cut another country off from trade for 48 hours. Members of your bloc can join in.', 'Give a speech to the nation (a short 3D scene) for 6 hours of more gold and soldiers, or spread propaganda in a country occupied by someone else.', 'Find them all in the new Powers tab of the World.'] },
+  { v: '70', date: '2026-11-17', name: 'The history book', items: ['A history book for the World, with its own calendar: one real hour is one SMFA day, counted from the day the world began.', 'The Chronicle lists the big moments: countries founded, blocs, homelands fallen, betrayals, takeovers and wars. "The Story of the World" tells them as a tale.', 'Every World War gets a chapter with its full record, a documentary over the map with a narrator and 3D scenes, a short story and a long novel. The words are invented; the events are real.'] },
+  { v: '69', date: '2026-11-17', name: 'World Wars', items: ['A World War starts by itself when two blocs go to war, when someone betrays their bloc (the betrayer\'s allies are pulled in and may refuse within the hour), or when 5 or more countries are linked by wars.', 'Every member of one side is at war with every member of the other. Others can join a side, join the Peacemakers who fight nobody and try to end it, or stay out and live in a warzone where something good or bad happens every 6 hours.', 'It lasts 3 days and is scored on war points. A side can surrender, or both sides can accept a ceasefire, but every President who has to agree must vote yes. Winners share reparations; Peacemakers are rewarded if the war ends in peace.', 'The start and the end play as 3D scenes. This needs the new world SQL file to be run once.'] },
   { v: '68', date: '2026-11-16', name: 'Space', items: ['Launch from the World into orbit: the same world seen from above. Every country of a player has a station over its homeland, and three free ports take everyone.', 'Four ships for your country: a free Fighter, a Miner, a Gunship and a Transport. Mine asteroids, hunt pirates, rescue crews from wrecks and fly passengers on paid jobs. The gold goes to your treasury.', 'War rules come from the World: shoot the pilots and stations of countries you are at war with. Take down a station\'s turrets, then raid its vault or knock it out for 24 hours.', 'A working station gives your countries one more defence level. From it you can call an orbital strike on an enemy country, fly troops down before an invasion, or drop spies at an enemy station.', 'Other pilots are live: up to 32 in one orbit. On phones there is a steering stick and Fire, Boost and Brake buttons.', 'This needs the new world SQL file to be run once.'] },
   { v: '67', date: '2026-11-16', name: 'Live battles', items: ['Invade a country in the World while its owner has the game open and they are called to defend it in person. If they accept, the invasion is a real online battle between the two of you.', 'If they decline, are busy or do not answer in 30 seconds, their army is played by the computer as before.', 'Presidents and ministers can both be called. Both games report the result, so it counts even if one player closes the game.'] },
   { v: '66', date: '2026-11-16', name: 'Buildings, events and generals', items: ['About half the countries in the World now have a special building: an oil field, a port, farmland, a factory or an airbase. Hold the country and you get its bonus. Badges on the map show where they are.', 'World events: every two and a half days or so something hits every country for a day. A gold rush, a pandemic, an arms fair, mercenaries for hire, or a rebellion in the largest empire.', 'Generals: as President, hire up to two of Hale, Reyes, Okoro and Brandt. They fight beside you in your invasions and make your country harder to invade.', 'This needs the new world SQL file to be run once on the account server.'] },
@@ -21876,7 +21964,7 @@ const I18N = {
     'The Long War': 'The Long War', 'Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.': 'Tiga puluh bab dalam lima babak. Pilihan Anda menentukan akhir perang: Sang Pembebas, Sang Penakluk, atau Sang Pendamai.',
     'World event': 'Peristiwa dunia', 'Break the treaty?': 'Langgar perjanjian?', 'Attack anyway': 'Tetap serang', 'Keep the peace': 'Jaga perdamaian', 'Cutscenes': 'Cutscene',
     'Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.': 'Buka perlengkapan dengan naik level lewat EXP, membelinya dengan Smiley Dollars (SD), atau meraih medali. Keduanya didapat di setiap battle.',
-    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
+    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
     // what's new
     'The lobby': 'Lobi', 'Lighter battles': 'Battle lebih ringan', 'Game health': 'Kesehatan game', 'Hit feel': 'Rasa pukulan', 'Real people and car damage': 'Orang realistis dan kerusakan mobil', 'Online version lock': 'Kunci versi online', 'F1 polish and replays': 'Polesan F1 dan replay'
   }
@@ -22296,6 +22384,9 @@ I18N.how = {
   'Buildings, events and generals': ['Bangunan, peristiwa dan jenderal', 'Sekitar separuh negara di Dunia punya bangunan khusus, ditandai lencana kecil di peta: <b>ladang minyak</b> (+30 emas per jam), <b>pelabuhan</b> (+20 emas per jam), <b>lahan pertanian</b> (+20 prajurit dalam pasukan Anda), <b>pabrik</b> (peningkatan 10% lebih murah) atau <b>pangkalan udara</b> (serangan butuh 10% lebih sedikit prajurit). Siapa pun yang menguasai negara itu mendapat bonusnya; pabrik dan pangkalan udara dihitung sampai 30%. Kira-kira setiap dua setengah hari sebuah <b>peristiwa dunia</b> melanda semua negara selama sehari: demam emas, pandemi, pameran senjata, tentara bayaran, atau pemberontakan di kerajaan terbesar, yang lalu mendapat lebih sedikit emas dan lebih mudah diserang. Sebagai Presiden Anda bisa merekrut sampai dua <b>jenderal</b> (Hale, Reyes, Okoro atau Brandt, 1.500 emas masing-masing). Mereka bertempur di samping Anda saat menyerang, dan masing-masing membuat negara Anda satu level pertahanan lebih sulit diserang. Jenderal meninggalkan negara yang diduduki.'],
   'Live battles': ['Battle langsung', 'Saat Anda menyerang sebuah negara di Dunia dan pemiliknya (atau salah satu menterinya) sedang membuka game, ia dipanggil untuk mempertahankannya secara langsung. Ia punya 30 detik untuk menjawab. Kalau ia menerima, invasi dimainkan sebagai <b>battle online</b> antara Anda berdua, dengan aturan yang sama: rebut bendera, habiskan bala bantuan atau hancurkan inti HQ, paling lama 20 menit, dan keluar dihitung kalah. Kedua game melaporkan hasilnya ke Dunia, jadi tetap dihitung walaupun satu pemain menutup game. Kalau ia menolak, sedang sibuk, atau tidak menjawab, pasukannya dimainkan komputer seperti sebelumnya. Kedua pemain harus memakai versi game yang sama.'],
   'Space': ['Antariksa', 'Tekan <b>Luncurkan</b> di bawah negara Anda di Dunia untuk terbang di orbit. Ini dunia yang sama: planet menunjukkan siapa menguasai apa, setiap negara pemain punya <b>stasiun</b> di atas tanah airnya, dan tiga <b>pelabuhan bebas</b> bukan milik siapa pun. Kemudikan dengan W A S D atau tombol panah (di HP: tuas), tahan Spasi atau <b>Tembak</b> untuk menembak, Shift atau <b>Boost</b> untuk melaju, X atau <b>Rem</b> untuk melambat, F untuk berlabuh. <b>Kapal</b> milik negara Anda dan menteri juga menerbangkannya: <b>Fighter</b> gratis; Presiden bisa membeli <b>Miner</b> (800 emas, menambang dua kali lebih cepat, 60 bijih), <b>Gunship</b> (1.500 emas, kuat, senjata berat) dan <b>Transport</b> (1.000 emas, 8 kursi) di Hangar stasiun Anda. Tembak asteroid dan terbang melewati bijih hijau; hancurkan <b>bajak laut</b> untuk hadiah buruan; jawab <b>panggilan darurat</b> dan bawa para penyintas; antar <b>penumpang</b> ke stasiun lain sebelum waktunya habis. Serahkan semuanya di stasiun Anda atau pelabuhan bebas: emasnya masuk ke kas negara Anda (paling banyak 1.000 emas per jam untuk tiap pilot). Anda hanya boleh menembak pilot dan stasiun negara yang <b>berperang</b> dengan Anda. Stasiun musuh membela diri dengan menara, juga saat pemiliknya pergi, tetapi menara hanya melihat kapal yang datang cepat. Setelah menaranya hancur Anda bisa <b>menjarah</b> brankasnya (5% emas mereka, paling banyak 300) atau menembak intinya sampai stasiun itu <b>lumpuh</b> selama 24 jam. Stasiun yang bekerja memberi setiap negara pemiliknya satu level pertahanan lebih; stasiun yang lumpuh tidak memberi apa-apa sampai pemiliknya membangunnya lagi (1.000 emas). Dari <b>Operasi</b> stasiun Anda: <b>serangan orbit</b> (400 emas, sekali tiap 12 jam) mengurangi satu level pertahanan negara musuh di sebelah wilayah Anda selama 6 jam; Transport bisa menurunkan <b>pasukan</b> di atas negara yang akan Anda serang (invasinya lalu hanya butuh separuh prajurit) atau menurunkan <b>mata-mata</b> di stasiun musuh (kalau mereka tidak melihat Anda datang, kas mereka tidak mendapat apa-apa selama 6 jam). Kalau Anda ditembak jatuh, muatan Anda tumpah dan bisa diambil siapa saja, dan kapal baru menunggu di stasiun Anda setelah 10 detik. Sampai 32 pilot berbagi satu orbit; kalau penuh, pilot berikutnya mendapat orbit sendiri.'],
+  'World Wars': ['Perang Dunia', 'Perang Dunia dimulai sendiri dengan tiga cara: dua blok saling berperang (kedua blok ikut terseret); seseorang mengkhianati bloknya (si pengkhianat dan sekutunya melawan blok yang dikhianati; sekutu boleh menolak dalam satu jam, yang mengakhiri aliansinya); atau 5 negara atau lebih terhubung oleh perang pada saat yang sama. Setiap anggota satu pihak lalu berperang dengan setiap anggota pihak lain, dan tawaran damai atau aliansi antarpihak tidak bisa dibuat. Negara lain bisa <b>bergabung dengan satu pihak</b>, bergabung dengan <b>Juru Damai</b> (ikut perang tetapi tidak melawan siapa pun: mengirim bantuan, berkunjung dan mengusulkan gencatan senjata), atau tetap di luar dan hidup di <b>zona perang</b>, tempat sesuatu yang baik atau buruk terjadi setiap 6 jam. Perang berlangsung 3 hari dan dinilai: merebut negara dari pihak lain 3 poin, tanah air 5, menahan invasi 1, melumpuhkan stasiun 4, serangan orbit atau penjarahan 1, pembunuhan atau sabotase 2. Satu pihak bisa <b>menyerah</b>, dan siapa pun di dalam perang bisa mengusulkan <b>gencatan senjata</b>; setiap Presiden yang harus setuju wajib memilih ya dalam 6 jam. Kalau waktu habis, pihak dengan poin lebih banyak menang; tetapi kalau Juru Damai mengumpulkan poin damai lebih banyak daripada poin perang pihak mana pun, perang berakhir damai. Pemenang mendapat 1.500 emas masing-masing ditambah 15% emas pihak yang kalah; perdamaian memberi Juru Damai 600 emas dan tidak merugikan siapa pun. Hanya satu Perang Dunia bisa berlangsung pada satu waktu.'],
+  'The history book': ['Buku sejarah', 'Tekan <b>Buku sejarah</b> di layar Dunia. Dunia punya kalendernya sendiri: satu jam nyata adalah satu hari SMFA, dihitung dari hari negara pertama didirikan. <b>Kronik</b> mencatat momen-momen besar, dengan "Kisah Dunia" yang diceritakan darinya. Setiap Perang Dunia punya bab dengan catatan lengkapnya, sebuah <b>dokumenter</b> (film bernarasi di atas peta dengan adegan 3D untuk awal, pengkhianatan dan akhir), sebuah <b>cerita pendek</b> dan sebuah <b>novel panjang</b>. Kata-katanya karangan si pencerita; peristiwanya sungguh terjadi.'],
+  'Presidential powers': ['Kekuasaan Presiden', 'Tab <b>Kekuasaan</b> di Dunia. <b>Pengambilalihan damai</b>: ketuk negara yang tidak dikuasai pemain, di sebelah wilayah Anda, lalu <b>beli</b> (1.200 sampai 3.500 emas, dua kali lipat untuk ibu kota, sekali tiap 12 jam) atau <b>menangkan lewat pengaruh</b> (600 emas; setelah 6 jam negara itu memilih bergabung dengan Anda, kalau masih bebas dan masih bertetangga). Negara yang dikuasai pemain hanya bisa direbut dengan kekuatan. <b>Dekret</b>, satu per hari selama 12 jam: kenaikan pajak (+30% emas, separuh prajurit baru), darurat militer (dua kali prajurit baru, 20% emas lebih sedikit), wajib militer (40 prajurit sekaligus, 15% emas lebih sedikit), atau libur nasional (300 emas, kekacauan langsung berakhir). <b>Embargo</b> memutus pemasukan dagang sebuah negara selama 48 jam dan mengurangi pemasukannya 5% untuk setiap negara yang ikut (paling banyak 20%); anggota blok Anda bisa ikut embargo Anda. <b>Pidato</b> (100 emas, sekali sehari) memutar adegan pendek dan memberi 15% emas dan prajurit lebih banyak selama 6 jam. <b>Propaganda</b> (300 emas) menaikkan perlawanan di negara yang diduduki pihak lain sebanyak 15%.'],
   'Visits': ['Kunjungan', 'Dengan perjanjian damai atau aliansi, ketuk sebuah negara di daftar Negara di Dunia lalu tekan <b>Kunjungi</b> (visa 20 SD). Anda tiba di kota yang dihiasi bendera mereka, tempat Presiden mereka berjalan di alun-alun bersama dua pengawal. Kalau Presidennya sedang online, ia diberi tahu dan bisa datang menemui Anda. Tekan <b>Kunjungan</b> di kiri atas untuk kegiatan: menginap di hotel (40 SD), restoran, kafe dan bioskop, balapan di Sorrel Ring, atau <b>kirim bantuan</b> (300 SD memberi mereka 500 emas). Misi rahasia: <b>sabotase kas negara</b> (500 SD, mereka tanpa pemasukan selama 6 jam) atau <b>bunuh Presiden</b> (1000 SD, 12 jam kekacauan dan Anda mencuri 20% emas mereka). Keduanya misi senyap. Kalau Anda terlihat atau gagal, terjadi perang, mereka mendapat 3 hari balas dendam, dan terhadap anggota blok Anda sendiri dihitung sebagai pengkhianatan. Kalau tidak terlihat, tidak ada yang tahu pelakunya.'],
   'Violence modes': ['Tingkat kekerasan', '<b>Normal</b>: hanya tubuh terlempar, tanpa darah. <b>Brutal</b>: Normal ditambah darah. <b>Realistis</b>: nyawa dua kali lipat, grafis lebih baik, anggota tubuh putus dengan tulang terlihat, genangan darah, dan organ dari ledakan jarak dekat. <b>Sadis</b>: Realistis dengan fisika gore lebih berat, lebih banyak organ, rusuk terlihat dan isi perut terburai. Semuanya fiksi.']
 };
@@ -22468,6 +22559,48 @@ I18N.pat.push(
 I18N.pat.unshift(
   [/^(Shot down by (.+?)\.|Your ship is destroyed\.)( Your cargo spilled out for anyone to grab\.)?( Your passengers made it to the escape pods\.)? A new ship waits at your station in (\d+) seconds\.$/, m => `${m[2] ? `Ditembak jatuh oleh ${m[2]}.` : 'Kapal Anda hancur.'}${m[3] ? ' Muatan Anda tumpah dan bisa diambil siapa saja.' : ''}${m[4] ? ' Penumpang Anda selamat di kapsul penyelamat.' : ''} Kapal baru menunggu di stasiun Anda dalam ${m[5]} detik.`],
   [/^You shot down (.+?)\.( A bounty for an enemy pilot\.)?( Their cargo is floating free\.)?$/, m => `Anda menembak jatuh ${m[1]}.${m[2] ? ' Hadiah buruan untuk pilot musuh.' : ''}${m[3] ? ' Muatan mereka melayang bebas.' : ''}`]
+);
+
+/* v69-v71: World Wars, the history book, presidential powers */
+Object.assign(I18N.id, {
+  'War': 'Perang', 'Powers': 'Kekuasaan', 'VS': 'VS', 'Yes': 'Ya', 'No': 'Tidak', 'You voted': 'Anda sudah memilih', 'The front': 'Garis depan', 'History book': 'Buku sejarah', 'Propose to surrender': 'Usulkan menyerah', 'Propose a ceasefire': 'Usulkan gencatan senjata',
+  'Join the Peacemakers': 'Bergabung dengan Juru Damai', 'Refuse to fight': 'Menolak bertempur', 'Read it in the history book': 'Baca di buku sejarah', 'Nobody yet.': 'Belum ada.', 'Nothing yet.': 'Belum ada apa-apa.', 'The latest moves': 'Langkah terbaru', 'How the war is scored': 'Cara perang dinilai',
+  'You are a Peacemaker: send aid, visit, and propose a ceasefire.': 'Anda Juru Damai: kirim bantuan, berkunjung, dan usulkan gencatan senjata.', 'Your country is occupied and cannot take part.': 'Negara Anda diduduki dan tidak bisa ikut.',
+  'Your country stays out of it and lives in a warzone: every 6 hours something happens, good or bad.': 'Negara Anda tetap di luar dan hidup di zona perang: setiap 6 jam terjadi sesuatu, baik atau buruk.',
+  'You were pulled in as an ally. You may refuse within the hour, but that ends your alliance.': 'Anda terseret sebagai sekutu. Anda boleh menolak dalam satu jam, tetapi itu mengakhiri aliansi Anda.',
+  'The History Book': 'Buku Sejarah', 'The Chronicle': 'Kronik', 'The big moments of the world': 'Momen besar dunia', 'Read the Story of the World': 'Baca Kisah Dunia', 'Watch the documentary': 'Tonton dokumenter', '▶ Watch the documentary': '▶ Tonton dokumenter', 'Read the story': 'Baca ceritanya', 'Read the novel': 'Baca novelnya', 'The record': 'Catatan', '‹ Back to the chapter': '‹ Kembali ke bab',
+  'Pause': 'Jeda', 'Resume': 'Lanjutkan', 'Next': 'Berikutnya', 'Close': 'Tutup', 'The sides': 'Para pihak', 'The end': 'Akhir', 'To be continued': 'Bersambung', 'peace points': 'poin damai', 'war points': 'poin perang', 'Peacemakers': 'Juru Damai', 'nobody': 'tidak ada',
+  'That chapter is not written yet.': 'Bab itu belum ditulis.', 'The history book could not be opened.': 'Buku sejarah tidak bisa dibuka.', 'Nothing has happened yet. History starts with the first country founded.': 'Belum ada yang terjadi. Sejarah dimulai dengan negara pertama yang didirikan.',
+  'Told from the records of the World. The events are real; the words in between are the storyteller\'s.': 'Diceritakan dari catatan Dunia. Peristiwanya nyata; kata-kata di antaranya milik si pencerita.',
+  'A speech to the nation': 'Pidato untuk bangsa', 'Give a speech': 'Berpidato', 'Decrees': 'Dekret', 'Peaceful takeover': 'Pengambilalihan damai', 'Embargoes': 'Embargo', 'Propaganda': 'Propaganda', 'Embargo': 'Embargo', 'Lift': 'Cabut', 'Join the embargo': 'Ikut embargo', 'Spread propaganda': 'Sebarkan propaganda', 'Without a battle': 'Tanpa pertempuran', 'embargoed': 'diembargo',
+  'Tax rise': 'Kenaikan pajak', 'Martial law': 'Darurat militer', 'Conscription': 'Wajib militer', 'National holiday': 'Libur nasional', 'Choose one.': 'Pilih satu.',
+  '+30% gold for 12 hours, but half the new soldiers.': '+30% emas selama 12 jam, tetapi separuh prajurit baru.', 'Twice the new soldiers for 12 hours, but 20% less gold.': 'Dua kali prajurit baru selama 12 jam, tetapi 20% emas lebih sedikit.', '40 soldiers at once, and 15% less gold for 12 hours.': '40 prajurit sekaligus, dan 15% emas lebih sedikit selama 12 jam.', '300 gold: the chaos in your country ends at once.': '300 emas: kekacauan di negara Anda langsung berakhir.',
+  '100 gold, once a day. For 6 hours: 15% more gold and new soldiers.': '100 emas, sekali sehari. Selama 6 jam: 15% lebih banyak emas dan prajurit baru.',
+  'Take a country no player holds, next to your land, without a battle. Tap it on the map: buy it (once every 12 hours) or win it by influence (600 gold; it votes to join you after 6 hours).': 'Ambil negara yang tidak dikuasai pemain, di sebelah wilayah Anda, tanpa pertempuran. Ketuk di peta: beli (sekali tiap 12 jam) atau menangkan lewat pengaruh (600 emas; negara itu memilih bergabung setelah 6 jam).',
+  '48 hours: no trade income for them, and 5% less income for every country that joins in (at most 20%). Not against an ally or your bloc.': '48 jam: tanpa pemasukan dagang bagi mereka, dan 5% pemasukan lebih sedikit untuk setiap negara yang ikut (paling banyak 20%). Tidak terhadap sekutu atau blok Anda.',
+  '300 gold: leaflets and radio in a country occupied by someone else. Its resistance rises by 15%; at 100% it is free.': '300 emas: selebaran dan radio di negara yang diduduki pihak lain. Perlawanannya naik 15%; pada 100% negara itu merdeka.',
+  'No country to embargo.': 'Tidak ada negara untuk diembargo.', 'No country is occupied by anyone else right now.': 'Saat ini tidak ada negara yang diduduki pihak lain.', 'Win it by influence · 600 gold': 'Menangkan lewat pengaruh · 600 emas',
+  'Influence takes 6 hours; then the country votes to join you, if it is still free.': 'Pengaruh butuh 6 jam; lalu negara itu memilih bergabung dengan Anda, kalau masih bebas.', 'You already run a campaign somewhere else.': 'Anda sudah menjalankan kampanye di tempat lain.', 'The crowd goes wild, sir.': 'Rakyat bersorak, Pak.'
+});
+I18N.pat.push(
+  [/^World War · day (\d) of 3 · (.+)$/, m => `Perang Dunia · hari ${m[1]} dari 3 · ${m[2]}`],
+  [/^Join (.+)$/, m => `Bergabung dengan ${m[1]}`],
+  [/^(\d+) countr(?:y|ies)$/, m => `${m[1]} negara`],
+  [/^Peacemakers: (.+) · (\d+) peace points$/, m => `Juru Damai: ${m[1]} · ${m[2]} poin damai`],
+  [/^You fight for (.+?)\. Ends in (.+), unless a side surrenders or both accept a ceasefire\.$/, m => `Anda bertempur untuk ${m[1]}. Berakhir dalam ${m[2].replace(/ h /, ' j ').replace(/ min/, ' mnt')}, kecuali satu pihak menyerah atau keduanya menerima gencatan senjata.`],
+  [/^(.+) proposes a ceasefire$/, m => `${m[1]} mengusulkan gencatan senjata`],
+  [/^(.+) proposes that (.+) surrender$/, m => `${m[1]} mengusulkan agar ${m[2]} menyerah`],
+  [/^(\d+) of (\d+) Presidents agree\. Everyone must say yes within 6 hours; one no ends it\.$/, m => `${m[1]} dari ${m[2]} Presiden setuju. Semua harus berkata ya dalam 6 jam; satu tidak mengakhirinya.`],
+  [/^(.+) is over$/, m => `${m[1]} telah berakhir`],
+  [/^(.+) · (\d+) points$/, m => `${m[1]} · ${m[2]} poin`],
+  [/^Peacemakers · (\d+) peace points$/, m => `Juru Damai · ${m[1]} poin damai`],
+  [/^Today is (.+)$/, m => `Hari ini ${m[1]}`],
+  [/^Chapter (\d+)$/, m => `Bab ${m[1]}`],
+  [/^Buy it · ([\d,.]+) gold$/, m => `Beli · ${m[1]} emas`],
+  [/^Next speech in (.+)$/, m => `Pidato berikutnya dalam ${m[1]}`],
+  [/^Next purchase in (.+)\.$/, m => `Pembelian berikutnya dalam ${m[1]}.`],
+  [/^Embargoed by (.+)\.$/, m => `Diembargo oleh ${m[1]}.`],
+  [/^occupied by (.+)$/, m => `diduduki oleh ${m[1]}`]
 );
 
 /* ================= THE LOCKER: the Barracks with a big 3D view and "try before you unlock" =================
@@ -23321,6 +23454,8 @@ function recRender() {
 const WL = { st: null, sel: null, tab: 'land', open: '', err: '', busy: false, loaded: 0, poll: 0, back: false, vb: { x: 0, y: 0, w: 1000, h: 520 }, built: false, sent: {} };
 const WL_COL = ['#39d353', '#5aa6ff', '#f2b33d', '#ef4b4f', '#c77dff', '#3ad6c5', '#ff8fb1', '#b8e04a', '#ff9d4d', '#8ea0ff', '#e0d36a', '#6fe0a0'];
 const wlMe = () => WL.st && WL.st.me;
+// extra tabs on the World screen: { key: { tab(st, me) → {k, n, c, hot, at} or null, html(st, me), wire(el, st, me) } }
+const WL_TABS = {};
 const wlPlayer = n => WL.st ? WL.st.players.find(p => p.name === n) : null;
 const wlOwner = id => (WL.st && WL.st.countries[id]) || '';
 const wlMine = id => !!wlMe() && wlOwner(id) === wlMe().name;
@@ -23501,7 +23636,10 @@ function wlRender() {
   // tabs
   const nOff = st.offers.filter(o => !o.mine).length + (st.join_requests || []).length, nBloc = (st.bloc_invites || []).length + (st.cases || []).filter(c => !c.voted).length;
   const tabs = [['land', 'Countries', st.players.length, false], ['blocs', 'Blocs', nBloc, true], ['deals', 'Offers', nOff, true], ['news', 'News', 0, false]];
-  h += `<div class="wlTabs">${tabs.map(([k, n, c, hot]) => `<button class="btn small${WL.tab === k ? ' primary' : ''}" data-tab="${k}">${n}${c ? `<i class="${hot ? 'hot' : ''}">${c}</i>` : ''}</button>`).join('')}</div>`;
+  // later parts of the World add tabs of their own (the World War, the President's powers)
+  for (const T of Object.values(WL_TABS)) { const t = T.tab(st, me); if (t) tabs.splice(t.at == null ? tabs.length : t.at, 0, [t.k, t.n, t.c || 0, !!t.hot]); }
+  if (!tabs.some(t => t[0] === WL.tab)) WL.tab = 'land';
+  h += `<div class="wlTabs${tabs.length > 4 ? ' many' : ''}">${tabs.map(([k, n, c, hot]) => `<button class="btn small${WL.tab === k ? ' primary' : ''}" data-tab="${k}">${n}${c ? `<i class="${hot ? 'hot' : ''}">${c}</i>` : ''}</button>`).join('')}</div>`;
   if (WL.tab === 'land') {
     h += st.players.length ? st.players.map((p, i) => {
       const open = WL.open === p.name && !p.me && !!(me || accOn()), rel = p.rel === 'war' ? '<em class="war">at war</em>' : p.rel === 'peace' ? '<em class="peace">peace</em>' : p.rel === 'alliance' ? '<em class="ally">ally</em>' : '';
@@ -23519,7 +23657,8 @@ function wlRender() {
     const pres = me && me.role !== 'minister';
     h += (st.join_requests || []).map(r => `<div class="wlOffer"><p><b>${esc(r.name)}</b> asks to join your government as a minister${r.has_country ? ' (they give up their own country)' : ''}.</p><div class="row"><button class="btn small primary" data-jr="${r.id}:1">Accept</button><button class="btn small" data-jr="${r.id}:0">Decline</button></div></div>`).join('');
     h += st.offers.length ? st.offers.map(o => `<div class="wlOffer"><p>${o.mine ? `You offered <b>${esc(o.to)}</b> ${what(o).replace('their', 'your')}` : `<b>${esc(o.from)}</b> offers ${what(o)}`}</p><div class="row">${o.mine ? `<button class="btn small" data-ans="${o.id}:0">Withdraw</button>` : pres ? `<button class="btn small primary" data-ans="${o.id}:1">Accept</button><button class="btn small" data-ans="${o.id}:0">Decline</button>` : '<small class="note">Only the President can answer.</small>'}</div></div>`).join('') : (st.join_requests || []).length ? '' : `<p class="note">No open offers. Tap a country in the Countries list to offer peace, an alliance or trade.</p>`;
-  } else h += st.log.length ? st.log.map(l => `<p class="wlLog"><small>${wlAgo(l.at)}</small>${wlNews(l)}</p>`).join('') : `<p class="note">Nothing has happened yet.</p>`;
+  } else if (WL_TABS[WL.tab]) h += WL_TABS[WL.tab].html(st, me);
+  else h += st.log.length ? st.log.map(l => `<p class="wlLog"><small>${wlAgo(l.at)}</small>${wlNews(l)}</p>`).join('') : `<p class="note">Nothing has happened yet.</p>`;
   el.innerHTML = h;
   const on = (sel, fn) => { const e = el.querySelector(sel); if (e) e.onclick = fn; };
   el.querySelectorAll('input').forEach(i => { i.onkeydown = e => e.stopPropagation(); });
@@ -23551,6 +23690,7 @@ function wlRender() {
   on('#wlFlagBtn', () => { WL.flagEdit = !WL.flagEdit; if (WL.flagEdit) WL.fd = JSON.parse(JSON.stringify(wlFlagOf(me))); WL.fdSlot = 0; wlRender(); });
   wlFlagWire(el, me);
   wlBlocsWire(el, st);
+  if (WL_TABS[WL.tab] && WL_TABS[WL.tab].wire) WL_TABS[WL.tab].wire(el, st, me);
   if (typeof i18nWalk === 'function') i18nWalk(el);
 }
 let b0 = null;
@@ -24828,5 +24968,486 @@ function spcLeave(force) {
   const _pm = wlPowerMap; wlPowerMap = function () { _pm.apply(this, arguments); const g = $('#wldRes'), st = WL.st; if (!g || !st || !st.strikes) return;
     let h = ''; for (const id of Object.keys(st.strikes)) { const t = TBY[id]; if (t) h += `<g class="wlStrike" transform="translate(${t.x - 4} ${t.y - 3})"><circle r="3.6"/><path d="M-1.6,-2.2 L1.2,-0.2 L-0.4,0.3 L1.6,2.4 L-1.2,0.4 L0.4,-0.1 Z"/></g>`; }
     g.insertAdjacentHTML('beforeend', h); };
+}
+
+/* ================= THE WORLD: World Wars and the SMFA calendar =================
+   A World War starts by itself (on the account server) when:
+   - a war breaks out between members of two different blocs: both blocs are pulled in;
+   - someone betrays their bloc: the betrayer and their allies face the betrayed bloc (an ally may refuse within the hour,
+     which ends the alliance);
+   - 5 or more countries are linked by wars at the same time.
+   Every member of one side is at war with every member of the other. Other countries can join a side, join the
+   Peacemakers (in the war, against nobody: they try to end it), or stay out and live in a warzone where something
+   good or bad happens to them every 6 hours. The war lasts 3 days. It ends sooner if a side surrenders or both sides
+   accept a ceasefire: every President who has to agree must vote yes. At the end, war points decide; if the
+   Peacemakers made more peace points than either side made war points, it ends in peace.
+   Everything is written down for the history book (993-world-history.js), with dates on the SMFA calendar:
+   1 real hour is 1 SMFA day, counted from the day the world began. */
+const SMFA_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const SMFA_ML = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const smfaEpoch = () => (WL.st && WL.st.epoch) || (typeof HB !== 'undefined' && HB.book && HB.book.epoch) || null;
+// a real moment as an SMFA date: '14 March, Year 2' (with the hour of that SMFA day when asked)
+function smfaDate(at, epoch, withHour) {
+  epoch = epoch || smfaEpoch(); if (!at || !epoch) return '';
+  const h = Math.max(0, (new Date(at).getTime() - new Date(epoch).getTime()) / 3600000); let d = Math.floor(h);
+  const y = Math.floor(d / 365) + 1; d %= 365; let m = 0; while (d >= SMFA_ML[m]) { d -= SMFA_ML[m]; m++; }
+  const hr = Math.floor((h % 1) * 24);
+  return `${d + 1} ${SMFA_MONTHS[m]}, Year ${y}` + (withHour ? `, ${String(hr).padStart(2, '0')}:00` : '');
+}
+const smfaDays = (a, b) => Math.max(0, Math.round((new Date(b).getTime() - new Date(a).getTime()) / 3600000));
+const WW_SIDE = { A: 'a', B: 'b' };
+const wwSideName = (w, s) => s === 'A' ? w.a : s === 'B' ? w.b : 'the Peacemakers';
+const wwMe = w => w && (w.members || []).find(m => m.me);
+const wwOn = w => !!(w && !w.ended);
+function wwCause(w) {
+  const [x, y] = String(w.detail || '').split('|');
+  return w.cause === 'blocs' ? `War broke out between ${x} of the ${w.a} and ${y} of the ${w.b}, and both blocs were pulled in.`
+    : w.cause === 'betrayal' ? `${x} betrayed the ${y}. Its allies were pulled in beside it.`
+    : w.cause === 'wars' ? `Wars between five or more countries spread into one, starting with ${x} and ${y}.`
+    : `The President of the game set it off between ${x} and ${y}.`;
+}
+function wwResult(w) {
+  if (!w.ended) return '';
+  const ppl = (w.members || []).filter(m => m.side === 'P').map(m => m.name);
+  return w.result === 'peace' ? (w.how === 'ceasefire' ? `It ended in a ceasefire.${ppl.length ? ` The Peacemakers (${ppl.join(', ')}) brought both sides to the table.` : ''} Nobody paid anything.` : `It ended in peace: the Peacemakers (${ppl.join(', ')}) did more for peace than either side did for war. Nobody paid anything.`)
+    : w.result === 'A' || w.result === 'B' ? `${wwSideName(w, w.result)} won${w.how === 'surrender' ? `: ${wwSideName(w, w.result === 'A' ? 'B' : 'A')} surrendered` : ' on war points'}. The losers paid 15% of their gold in reparations.`
+    : 'It ended in a draw.';
+}
+const wwPts = (w, s) => Math.round((w.members || []).filter(m => m.side === s).reduce((t, m) => t + (s === 'P' ? m.peace : m.points), 0));
+const WW_ZONE = { refugees: ['Refugees from the war arrived and joined the army', 'soldiers', 1], arms: ['Sold weapons to both sides', 'gold', 1], smugglers: ['Smugglers paid for safe passage', 'gold', 1],
+  missile: ['A stray missile hit a warehouse', 'gold', -1], spies: ['Spies of the warring sides stole from the treasury', 'gold', -1], blackout: ['A blackout spread from the front: 2 hours of chaos', '', -1] };
+const WW_DECREE = { tax: 'a tax rise', martial: 'martial law', conscript: 'conscription', holiday: 'a national holiday' };
+{
+  // the news, written as sentences
+  const _n = wlNews; wlNews = function (l) {
+    const a = `<b>${esc(l.a)}</b>`, b = `<b>${esc(l.b)}</b>`, c = l.country && TBY[l.country] ? TBY[l.country].name : '';
+    switch (l.kind) {
+      case 'ww_start': return `<b>${esc(l.a)}</b> has begun: ${wlNum(l.n)} countries at war`;
+      case 'ww_end': return `<b>${esc(l.a)}</b> is over${l.b === 'peace' ? ', in peace' : l.b === 'draw' ? ', in a draw' : ''}`;
+      case 'ww_join': return `${a} joined the World War on the side of ${b}`;
+      case 'ww_refuse': return `${a} refused to follow ${b} into the World War and ended their alliance`;
+      case 'ww_prop': return `${a} proposed ${l.b === 'ceasefire' ? 'a ceasefire' : 'to surrender'} in the World War`;
+      case 'ww_vote_no': return `${a} voted against ${l.b === 'ceasefire' ? 'the ceasefire' : 'surrender'}`;
+      case 'warzone': { const z = WW_ZONE[l.b]; return z ? `${a}, outside the war: ${z[0].toLowerCase()}${z[1] ? ` (${z[2] > 0 ? '+' : '−'}${wlNum(l.n)} ${z[1]})` : ''}` : `${a} lives in the warzone`; }
+      case 'bought': return `${a} bought ${esc(c)} for ${wlNum(l.n)} gold, without a shot fired`;
+      case 'influence': return `${a} began a campaign to win ${esc(c)} by influence`;
+      case 'annexed': return `${esc(c)} voted to join ${a}`;
+      case 'influence_lost': return `The campaign of ${a} in ${esc(c)} came to nothing`;
+      case 'decree': return `The President of ${a} declared ${WW_DECREE[l.b] || 'a decree'}`;
+      case 'speech': return `The President of ${a} spoke to the nation`;
+      case 'embargo': return `${a} put an embargo on ${b}`;
+      case 'embargo_end': return `${a} lifted its embargo on ${b}`;
+      case 'propaganda': return `${a} spread propaganda in occupied ${b}: resistance rises`;
+    }
+    return _n.apply(this, arguments);
+  };
+}
+
+/* ---------- the war card, on top of the World screen ---------- */
+function wwCardHtml(st, me) {
+  const w = st.ww; if (!w) return '';
+  const I = wwMe(w), pres = me && me.role !== 'minister', admin = typeof isAdmin === 'function' && isAdmin();
+  if (w.ended) return `<div class="wwCard over"><em>${esc(smfaDate(w.ended))}</em><b>${esc(w.name)} is over</b><span>${esc(wwResult(w))}</span><button class="btn small" data-ww="book">Read it in the history book</button></div>`;
+  const left = Math.max(0, new Date(w.ends) - Date.now()), day = Math.min(3, Math.floor((Date.now() - new Date(w.started)) / 86400000) + 1);
+  const side = s => { const ms = w.members.filter(m => m.side === s); return `<div class="wwSide ${s}${I && I.side === s ? ' mine' : ''}"><small>${esc(wwSideName(w, s))}</small><b>${wwPts(w, s)}</b><i>${ms.length} countr${ms.length === 1 ? 'y' : 'ies'}</i></div>`; };
+  const pm = w.members.filter(m => m.side === 'P');
+  let you = '';
+  if (I) you = I.side === 'P' ? 'You are a Peacemaker: send aid, visit, and propose a ceasefire.' : `You fight for ${wwSideName(w, I.side)}.`;
+  else if (me) you = me.occupier ? 'Your country is occupied and cannot take part.' : 'Your country stays out of it and lives in a warzone: every 6 hours something happens, good or bad.';
+  let acts = '';
+  if (me && pres && !I && !me.occupier) acts += `<div class="wwActs"><button class="btn small" data-ww="join:A">Join ${esc(w.a)}</button><button class="btn small" data-ww="join:B">Join ${esc(w.b)}</button><button class="btn small" data-ww="join:P">Join the Peacemakers</button></div>`;
+  if (I && pres && I.how === 'ally' && Date.now() - new Date(I.at) < 3600000) acts += `<p class="note wwWarn">You were pulled in as an ally. You may refuse within the hour, but that ends your alliance.</p><div class="wwActs"><button class="btn small danger" data-ww="refuse">Refuse to fight</button></div>`;
+  for (const pr of w.props || []) {
+    const what = pr.kind === 'ceasefire' ? `${esc(pr.by)} proposes a ceasefire` : `${esc(pr.by)} proposes that ${esc(wwSideName(w, pr.side))} surrender`;
+    acts += `<div class="wwVote"><p><b>${what}</b><small>${pr.yes} of ${pr.need} Presidents agree. Everyone must say yes within 6 hours; one no ends it.</small></p>${pr.mine && !pr.voted && pres ? `<div class="row"><button class="btn small primary" data-ww="vote:${pr.id}:1">Yes</button><button class="btn small" data-ww="vote:${pr.id}:0">No</button></div>` : pr.voted ? '<em>You voted</em>' : ''}</div>`;
+  }
+  if (I && pres) acts += `<div class="wwActs">${I.side !== 'P' && !(w.props || []).some(p => p.kind === 'surrender' && p.side === I.side) ? '<button class="btn small" data-ww="prop:surrender">Propose to surrender</button>' : ''}${!(w.props || []).some(p => p.kind === 'ceasefire') ? '<button class="btn small" data-ww="prop:ceasefire">Propose a ceasefire</button>' : ''}</div>`;
+  if (admin) acts += `<div class="wwActs"><button class="btn small" data-ww="admin:end">End it now (game President)</button></div>`;
+  return `<div class="wwCard"><em>World War · day ${day} of 3 · ${esc(smfaDate(Date.now()))}</em><b>${esc(w.name)}</b><span>${esc(wwCause(w))}</span>
+    <div class="wwSides">${side('A')}<div class="wwVs">VS</div>${side('B')}</div>
+    ${pm.length ? `<p class="wwPm">Peacemakers: ${pm.map(m => esc(m.name)).join(', ')} · ${wwPts(w, 'P')} peace points</p>` : ''}
+    <p class="wwYou">${esc(you)} Ends in ${Math.floor(left / 3600000)} h ${Math.floor(left / 60000) % 60} min, unless a side surrenders or both accept a ceasefire.</p>${acts}
+    <div class="row"><button class="btn small" data-ww="tab">The front</button><button class="btn small" data-ww="book">History book</button></div></div>`;
+}
+function wwWire(el) {
+  el.querySelectorAll('[data-ww]').forEach(b => b.onclick = async () => {
+    const [k, x, y] = b.dataset.ww.split(':');
+    if (k === 'tab') { WL.tab = 'war'; wlRender(); return; }
+    if (k === 'book') { if (typeof hbOpen === 'function') hbOpen(WL.st && WL.st.ww ? WL.st.ww.id : null); return; }
+    b.disabled = true;
+    if (k === 'join') await wlDo('world_ww_join', { p_side: x });
+    else if (k === 'refuse') await wlDo('world_ww_refuse', {});
+    else if (k === 'prop') await wlDo('world_ww_propose', { p_kind: x });
+    else if (k === 'vote') await wlDo('world_ww_vote', { p_prop: +x, p_yes: y === '1' });
+    else if (k === 'admin') await wlDo('world_admin_ww', { p_kind: x });
+  });
+}
+// the front: both sides, every member and their points, the rules, and the latest moves
+WL_TABS.war = {
+  tab: st => st.ww && !st.ww.ended ? { k: 'war', n: 'War', c: (st.ww.props || []).filter(p => p.mine && !p.voted).length, hot: true, at: 1 } : null,
+  html: (st) => {
+    const w = st.ww; if (!w) return '';
+    const names = new Set(w.members.map(m => m.name)), list = s => w.members.filter(m => m.side === s).map(m => `<div class="wwRow${m.me ? ' me' : ''}">${wlFlagFor(m.name)}<span><b>${esc(m.name)}</b>${m.me ? ' <em>you</em>' : ''}<small>${m.how === 'ally' ? 'pulled in as an ally' : m.how === 'joined' ? 'joined' : 'pulled in'} · ${esc(smfaDate(m.at))}</small></span><b class="recVal">${Math.round(s === 'P' ? m.peace : m.points)}</b></div>`).join('') || '<p class="note">Nobody yet.</p>';
+    const moves = (st.log || []).filter(l => new Date(l.at) >= new Date(w.started) && (names.has(l.a) || names.has(l.b) || /^ww|warzone/.test(l.kind))).slice(0, 14);
+    return `<div class="wwFront"><h4>${esc(w.a)} · ${wwPts(w, 'A')} points</h4>${list('A')}<h4>${esc(w.b)} · ${wwPts(w, 'B')} points</h4>${list('B')}<h4>Peacemakers · ${wwPts(w, 'P')} peace points</h4>${list('P')}
+      <details class="wwRules"><summary>How the war is scored</summary><p>Taking a country from the other side: 3 points. A homeland that falls: 5. Holding off an invasion: 1. Knocking out a station: 4. An orbital strike or a raid: 1. An assassination or sabotage: 2. Peacemakers earn peace points by sending aid (2), visiting (1) and proposing a ceasefire (1). After 3 days the side with more points wins; if the Peacemakers have more peace points than either side has war points, it ends in peace.</p></details>
+      <h4>The latest moves</h4>${moves.length ? moves.map(l => `<p class="wlLog"><small>${esc(smfaDate(l.at, null, true))}</small>${wlNews(l)}</p>`).join('') : '<p class="note">Nothing yet.</p>'}</div>`;
+  },
+  wire: el => wwWire(el)
+};
+// countries in the war are ringed on the map in the colour of their side
+function wwMap() {
+  const svg = $('#wldMap'), st = WL.st; if (!svg || !st) return;
+  let g = $('#wldWW'); if (!g) { g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.id = 'wldWW'; g.setAttribute('pointer-events', 'none'); svg.insertBefore(g, $('#wldM')); }
+  const w = st.ww; if (!wwOn(w)) { g.innerHTML = ''; return; }
+  let h = ''; for (const m of w.members) { const p = wlPlayer(m.name), t = p && TBY[p.home]; if (t) h += `<circle class="wwRing ${m.side}" cx="${t.x}" cy="${t.y}" r="13" vector-effect="non-scaling-stroke"/>`; }
+  g.innerHTML = h;
+}
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try { const el = $('#wldSide'), st = WL.st; if (el && st && st.ww && !el.querySelector('.wwCard')) { el.insertAdjacentHTML('afterbegin', wwCardHtml(st, wlMe())); const c = el.querySelector('.wwCard'); wwWire(c); if (typeof i18nWalk === 'function') i18nWalk(c); } wwMap(); } catch (e) { console.warn('world war card', e); }
+    return r;
+  };
+  const _p = wlPaint; wlPaint = function () { const r = _p.apply(this, arguments); try { wwMap(); } catch (e) { } return r; };
+  // the start and the end of a World War play as a 3D scene, before any smaller moment
+  const _s = wlScene; wlScene = function (st) {
+    try {
+      const me = st && st.me, key = 'wlSeen:' + ((ACC.user && ACC.user.id) || accName()); let seen = 0; try { seen = +(store.get(key, 0)) || 0; } catch (e) { }
+      const ev = seen && me && Array.isArray(st.log) ? st.log.filter(l => +l.id > seen && (l.kind === 'ww_start' || l.kind === 'ww_end')).pop() : null;
+      if (ev && !(G && !G.over) && !$('#scr-world').hidden && typeof playCutscene === 'function' && !(CS && CS.raf && !$('#scr-cut').hidden)) {
+        const cut = wwCut(ev, st); try { store.set(key, Math.max(...st.log.map(l => +l.id || 0))); } catch (e) { }
+        if (cut) { CUTSCENES.wl_now = cut; playCutscene('wl_now', () => { delete CUTSCENES.wl_now; }); return; }
+      }
+    } catch (e) { console.warn('world war scene', e); }
+    return _s.apply(this, arguments);
+  };
+}
+function wwCut(ev, st) {
+  const w = st.ww, me = st.me, M = me ? me.name : '', I = w && wwMe(w);
+  const office = { pres: { p: [0, -2.05], r: 0, a: 'sit' }, hale: { p: [1.6, 1.2], r: PI - 0.5 }, mara: { p: [-1.6, 1.0], r: PI + 0.5 } };
+  const est = (p, l, dur) => ({ cam: { p, l }, dur: dur || 3 });
+  if (ev.kind === 'ww_start') {
+    const why = w ? wwCause(w) : 'The wars have joined into one.', mine = I ? (I.side === 'P' ? 'We stand with the Peacemakers. Someone has to.' : `We fight for ${wwSideName(w, I.side)}.`) : 'We are not in it. Not yet. But the war is all around us.';
+    return { title: ev.a, set: 'office', mood: 'war', actors: office, beats: [est([0, 3.4, 7.5], [0, 1.6, -2], 3.2),
+      { say: ['hale', `Mr. President. It has happened. ${ev.a} has begun.`, 'angry'] },
+      { say: ['mara', why] },
+      { say: ['pres', `Then history is watching ${M}. ${mine}`, 'angry'] },
+      { say: ['hale', 'Every unit is on alert, sir.'], act: { hale: 'salute' } }] };
+  }
+  const res = w && w.result, won = I && (res === I.side || (res === 'peace' && I.side === 'P'));
+  return { title: `${ev.a} is over`, set: 'office', mood: won || res === 'peace' ? 'light' : 'sad', actors: office, beats: [est([0, 2.6, 6], [0, 1.4, -1.5], 3),
+    { say: ['mara', w ? wwResult(w) : 'The guns are silent.'] },
+    { say: ['pres', won ? 'We will remember who stood with us.' : res === 'peace' ? 'Peace. Let us hope it holds longer than the last one.' : I ? 'We lost this one. We will not lose the next.' : 'The world will need years to forget this.', won || res === 'peace' ? 'smile' : 'sad'] },
+    { say: ['hale', 'It will all be in the history books, sir.'] }] };
+}
+
+/* ================= THE WORLD: the history book =================
+   Everything the World remembers, on the SMFA calendar (1 real hour = 1 SMFA day since the world began):
+   - The Chronicle: the big moments (countries founded, blocs, homelands fallen, betrayals, takeovers, World Wars),
+     with "The Story of the World", a short tale told from them.
+   - A chapter for every World War: how it started, who fought for whom, every move with its date, how it ended.
+     Each chapter has a documentary (a narrated film over the map, with 3D scenes for the start, a betrayal and the end),
+     a short story and a long novel. They are invented in the telling but built only from what really happened. */
+const HB = { book: null, sel: 'chron', view: 'chapter', busy: false, err: '', doc: null };
+const hbRnd = seed => { let s = (seed * 2654435761) >>> 0 || 1; return () => { s = (s ^ (s << 13)) >>> 0; s = (s ^ (s >>> 17)) >>> 0; s = (s ^ (s << 5)) >>> 0; return s / 4294967296; }; };
+const hbPick = (r, a) => a[Math.floor(r() * a.length) % a.length];
+const hbCountry = id => (id && TBY[id] ? TBY[id].name : '');
+const hbNpc = k => NATIONS[k] ? (NATIONS[k].short || NATIONS[k].name) : k;
+const hbPlain = l => wlPlain(wlNews(l));
+
+async function hbOpen(warId) {
+  show('#scr-history'); HB.sel = warId ? 'w' + warId : HB.sel || 'chron'; HB.view = 'chapter'; hbRender();
+  HB.busy = true; HB.err = ''; hbRender();
+  const r = await wlCall('world_history_book', {}, true); HB.busy = false;
+  if (r && Array.isArray(r.wars)) { HB.book = r; if (warId && !r.wars.some(w => w.id === warId)) HB.sel = 'chron'; }
+  else HB.err = WL.err || 'The history book could not be opened.';
+  WL.err = ''; hbRender();
+}
+function hbWar() { const B = HB.book; return B && HB.sel.startsWith('w') ? B.wars.find(w => 'w' + w.id === HB.sel) : null; }
+function hbRender() {
+  const el = $('#hbBody'), nav = $('#hbNav'); if (!el || !nav || $('#scr-history').hidden) return;
+  const B = HB.book, E = B && B.epoch;
+  $('#hbToday').textContent = E ? `Today is ${smfaDate(B.now || Date.now(), E)}` : '';
+  nav.innerHTML = `<button class="hbCh${HB.sel === 'chron' ? ' on' : ''}" data-hb="chron"><b>The Chronicle</b><small>The big moments of the world</small></button>`
+    + (B ? B.wars.slice().reverse().map(w => `<button class="hbCh${HB.sel === 'w' + w.id ? ' on' : ''}" data-hb="w${w.id}"><b>${esc(w.name)}</b><small>${esc(smfaDate(w.started, E))}${w.ended ? '' : ' · going on'}</small></button>`).join('') : '');
+  nav.querySelectorAll('[data-hb]').forEach(b => b.onclick = () => { HB.sel = b.dataset.hb; HB.view = 'chapter'; hbRender(); el.scrollTop = 0; });
+  let h = '';
+  if (HB.err) h += `<p class="onErr">${esc(HB.err)}</p>`;
+  if (!B) h += HB.busy ? '<div class="onSpin" style="margin:40px auto"></div>' : '';
+  else if (HB.sel === 'chron') h += HB.view === 'story' ? hbStoryHtml('The Story of the World', hbChronicleStory(B)) : hbChronicleHtml(B);
+  else { const w = hbWar(); h += !w ? '<p class="note">That chapter is not written yet.</p>' : HB.view === 'short' ? hbStoryHtml(`${w.name}: the story`, hbShortStory(w, E)) : HB.view === 'novel' ? hbStoryHtml(`${w.name}: a novel`, hbNovel(w, E)) : hbWarHtml(w, E); }
+  el.innerHTML = h;
+  el.querySelectorAll('[data-hbv]').forEach(b => b.onclick = () => { HB.view = b.dataset.hbv; hbRender(); el.scrollTop = 0; });
+  const d = el.querySelector('#hbDocGo'); if (d) d.onclick = () => hbDoc(hbWar());
+  if (typeof i18nWalk === 'function') { i18nWalk(nav); i18nWalk(el); }
+}
+function hbChronicleHtml(B) {
+  const E = B.epoch, ms = B.moments.slice();
+  if (!ms.length) return `<h3>The Chronicle</h3><p class="note">Nothing has happened yet. History starts with the first country founded.</p>`;
+  let h = `<div class="hbHead"><div><em>The Chronicle</em><h3>The World since ${esc(smfaDate(E, E))}</h3><p class="note">${ms.length} big moments. Dates follow the SMFA calendar: one hour of real time is one day.</p></div><button class="btn primary" data-hbv="story">Read the Story of the World</button></div>`;
+  let last = '';
+  for (const l of ms) { const d = smfaDate(l.at, E), mo = d.replace(/^\d+ /, ''); if (mo !== last) { h += `<h4 class="hbMonth">${esc(mo)}</h4>`; last = mo; }
+    h += `<p class="hbLine k-${esc(l.kind)}"><small>${esc(d.split(',')[0])}</small><span>${wlNews(l)}</span></p>`; }
+  return h;
+}
+function hbWarHtml(w, E) {
+  const side = s => { const ms = w.members.filter(m => m.side === s); return `<div class="hbSide ${s}${w.result === s || (w.result === 'peace' && s === 'P') ? ' won' : ''}"><small>${s === 'P' ? 'Peacemakers' : esc(wwSideName(w, s))}</small><b>${wwPts(w, s)}</b><i>${s === 'P' ? 'peace points' : 'war points'}</i><span>${ms.map(m => esc(m.name)).join(', ') || 'nobody'}</span></div>`; };
+  const end = w.ended || w.ends, days = smfaDays(w.started, end);
+  return `<div class="hbHead"><div><em>Chapter ${w.num}</em><h3>${esc(w.name)}</h3><p class="note">${esc(smfaDate(w.started, E))} to ${esc(smfaDate(end, E))}${w.ended ? '' : ' (still going on)'} · ${days} SMFA days</p></div></div>
+    <p class="hbLead">${esc(wwCause(w))} ${esc(wwResult(w))}</p>
+    <div class="hbSides">${side('A')}${side('B')}${w.members.some(m => m.side === 'P') ? side('P') : ''}</div>
+    <div class="hbMedia"><button class="btn primary" id="hbDocGo">▶ Watch the documentary</button><button class="btn" data-hbv="short">Read the story</button><button class="btn" data-hbv="novel">Read the novel</button></div>
+    <h4>The record</h4>${w.log.map(l => `<p class="hbLine k-${esc(l.kind)}"><small>${esc(smfaDate(l.at, E, true))}</small><span>${wlNews(l)}</span></p>`).join('') || '<p class="note">Nothing recorded yet.</p>'}`;
+}
+function hbStoryHtml(title, paras) {
+  return `<div class="hbStory"><button class="btn small" data-hbv="chapter">‹ Back to the chapter</button><h3>${esc(title)}</h3>${paras.map(p => p.startsWith('## ') ? `<h4>${esc(p.slice(3))}</h4>` : `<p>${esc(p)}</p>`).join('')}<p class="hbFine">Told from the records of the World. The events are real; the words in between are the storyteller's.</p></div>`;
+}
+
+/* ---------- the stories ---------- */
+// one sentence about one moment of a war, in a storyteller's voice
+function hbTell(l, w, r, E) {
+  const d = smfaDate(l.at, E), c = hbCountry(l.country), A = l.a, Bn = NATIONS[l.b] ? hbNpc(l.b) : l.b;
+  const when = hbPick(r, [`On ${d}`, `By ${d}`, `It was ${d} when`, `${d}:`]);
+  const w2 = when.endsWith('when') || when.endsWith(':');
+  const S = (t) => (w2 ? `${when} ${t}` : `${when}, ${t}`);
+  switch (l.kind) {
+    case 'ww_start': return S(hbPick(r, ['the first shots of the World War were fired.', 'the world went to war.', 'the alliances of the world turned on each other.']));
+    case 'war': return S(`${A} declared war on ${Bn}.`);
+    case 'betrayal': return S(`${A} broke its word to ${Bn} and declared war.`);
+    case 'bloc_betray': return S(`${A} betrayed the ${Bn}. The Court threw it out the same day.`);
+    case 'conquered': return S(hbPick(r, [`the armies of ${A} crossed into ${c}. By nightfall it belonged to ${A}.`, `${A} took ${c} from ${Bn}.`, `${c} fell to ${A} after a hard fight.`]));
+    case 'colony_taken': return S(`${A} seized the colony of ${c} from ${Bn}.`);
+    case 'repelled': return S(hbPick(r, [`${Bn} held ${c}, and the soldiers of ${A} fell back.`, `the attack of ${A} on ${c} broke against the defences of ${Bn}.`]));
+    case 'colonized': return S(`the homeland of ${A}, ${c}, fell to ${Bn}. ${A} was occupied.`);
+    case 'free': return S(`${A} was free again.`);
+    case 'ww_join': return S(l.b === 'the Peacemakers' ? `${A} joined the Peacemakers, refusing to fight anyone.` : `${A} entered the war on the side of ${Bn}.`);
+    case 'ww_refuse': return S(`${A} refused to follow ${Bn} into the war, and the alliance between them ended.`);
+    case 'ww_prop': return S(l.b === 'ceasefire' ? `${A} called for a ceasefire.` : `${A} asked its side to surrender.`);
+    case 'ww_vote_no': return S(`${A} said no.`);
+    case 'station_down': return S(`the station of ${A} burned in orbit, knocked out by ${Bn}.`);
+    case 'strike': return S(`${A} bombarded ${c} from orbit.`);
+    case 'space_raid': return S(`pilots of ${A} raided the station of ${Bn}.`);
+    case 'assassinated': return S(`an assassin killed the President of ${A}${l.b ? `. The trail led to ${Bn}` : ''}.`);
+    case 'sabotaged': return S(`the treasury of ${A} went up in flames${l.b ? `, the work of ${Bn}` : ''}.`);
+    case 'spy_caught': return S(`${Bn} caught an agent of ${A}.`);
+    case 'gift': case 'aid': case 'space_aid': return S(`${A} sent ${wlNum(l.n)} gold of help to ${Bn}.`);
+    case 'visit': return S(`${A} paid a visit to ${Bn}, hoping to talk.`);
+    case 'warzone': { const z = WW_ZONE[l.b]; return z ? S(`far from the front, ${A}: ${z[0].toLowerCase()}.`) : ''; }
+    case 'ww_end': return S(`the guns fell silent.`);
+    case 'peace': return S(`${A} and ${Bn} signed a peace.`);
+    default: { const t = hbPlain(l); return t ? S(t.charAt(0).toLowerCase() + t.slice(1) + '.') : ''; }
+  }
+}
+function hbShortStory(w, E) {
+  const r = hbRnd(w.id * 7 + 1), A = w.members.filter(m => m.side === 'A'), B = w.members.filter(m => m.side === 'B'), P = w.members.filter(m => m.side === 'P');
+  const big = w.log.filter(l => !['ww_start', 'warzone', 'ww_vote_no'].includes(l.kind));
+  const out = [];
+  out.push(`${hbPick(r, ['Nobody remembers who fired first.', 'It began, as these things do, with a quarrel.', 'Some wars are planned. This one simply happened.'])} ${wwCause(w)} On ${smfaDate(w.started, E)}, ${w.name} began.`);
+  out.push(`On one side stood ${w.a}: ${A.map(m => m.name).join(', ') || 'nobody'}. On the other, ${w.b}: ${B.map(m => m.name).join(', ') || 'nobody'}.${P.length ? ` Between them, unarmed, stood the Peacemakers: ${P.map(m => m.name).join(', ')}.` : ''}`);
+  const step = Math.max(1, Math.ceil(big.length / 5));
+  for (let i = 0; i < big.length && out.length < 7; i += step) out.push(big.slice(i, i + step).map(l => hbTell(l, w, r, E)).filter(Boolean).join(' '));
+  out.push(w.ended ? `${wwResult(w)} The war had lasted ${smfaDays(w.started, w.ended)} days.` : 'As this is written, the war goes on.');
+  out.push(hbPick(r, ['The maps were redrawn. The grudges were not.', 'Some called it a victory. Most just called it over.', 'Children in every country would learn its name.']));
+  return out;
+}
+function hbNovel(w, E) {
+  const r = hbRnd(w.id * 13 + 5), A = w.members.filter(m => m.side === 'A'), B = w.members.filter(m => m.side === 'B'), P = w.members.filter(m => m.side === 'P');
+  const lead = (ms) => ms.slice().sort((x, y) => y.points - x.points)[0], la = lead(A), lb = lead(B);
+  const out = ['## Prologue: Before the storm'];
+  out.push(`The world on the eve of ${w.name} was not at peace, but it was not yet at war. In the offices of ${la ? la.name : 'one country'} and ${lb ? lb.name : 'another'}, the lamps burned late.`);
+  out.push(`${wwCause(w)} ${hbPick(r, ['Generals unfolded maps they had hoped never to use.', 'Ministers argued until dawn, and then they stopped arguing.', 'Somewhere, a radio operator heard the news first and did not believe it.'])}`);
+  out.push(`By ${smfaDate(w.started, E)}, every member of ${w.a} was at war with every member of ${w.b}. ${A.length + B.length} countries, ${hbPick(r, ['one fire', 'one war', 'one long night'])}.`);
+  const moves = w.log.filter(l => l.kind !== 'ww_start');
+  const parts = Math.min(5, Math.max(1, Math.ceil(moves.length / 4))), titles = ['The first days', 'The front widens', 'The darkest weeks', 'Turning points', 'The last battles'];
+  for (let p = 0; p < parts; p++) {
+    const chunk = moves.slice(Math.floor(p * moves.length / parts), Math.floor((p + 1) * moves.length / parts)); if (!chunk.length) continue;
+    out.push(`## Chapter ${p + 1}: ${titles[Math.min(titles.length - 1, Math.round(p * (titles.length - 1) / Math.max(1, parts - 1)))]}`);
+    out.push(`${smfaDate(chunk[0].at, E)} to ${smfaDate(chunk[chunk.length - 1].at, E)}.`);
+    for (let i = 0; i < chunk.length; i += 2) {
+      const lines = chunk.slice(i, i + 2).map(l => hbTell(l, w, r, E)).filter(Boolean);
+      if (!lines.length) continue;
+      const voice = hbPick(r, [`"We hold," said the President of ${hbPick(r, A.concat(B)).name || 'a country'}. Nobody in the room believed it, and nobody said so.`,
+        `In the barracks, soldiers wrote letters they would never send.`, `The newspapers printed maps every morning; by evening they were wrong.`,
+        `Somewhere a general crossed out a name on a list and wrote another.`, `The treasuries emptied faster than anyone had planned.`, `At night the sky over the front glowed orange.`]);
+      out.push(lines.join(' ') + ' ' + voice);
+    }
+    if (P.length && r() < 0.6) out.push(`Meanwhile the Peacemakers, ${P.map(m => m.name).join(' and ')}, kept knocking on doors. ${hbPick(r, ['Most stayed shut.', 'Some opened, a little.', 'Every refusal made them more patient.'])}`);
+  }
+  out.push('## Epilogue');
+  out.push(w.ended ? `${smfaDate(w.ended, E)}. ${wwResult(w)}` : 'The war is not over. This chapter is still being written.');
+  out.push(`${A.concat(B).filter(m => m.points >= 3).map(m => `${m.name} (${Math.round(m.points)} points)`).join(', ') || 'Nobody'} ${A.concat(B).some(m => m.points >= 3) ? 'had fought hardest.' : 'had won much glory.'} ${hbPick(r, ['History is written by the survivors. This time, everyone survived, and everyone wrote.', 'The monuments went up within a month. The arguments about who started it never ended.', 'And in every capital, someone kept the old maps, just in case.'])}`);
+  return out;
+}
+function hbChronicleStory(B) {
+  const E = B.epoch, r = hbRnd(B.moments.length + 3), out = [], ms = B.moments;
+  const founded = ms.filter(l => l.kind === 'join'), blocs = ms.filter(l => l.kind === 'bloc_new'), fell = ms.filter(l => l.kind === 'colonized'), wars = B.wars;
+  out.push(`In the beginning, on ${smfaDate(E, E)}, the map belonged to the computer nations. ${founded.length ? `Then ${founded.slice(0, 4).map(l => l.a).join(', ')}${founded.length > 4 ? ` and ${founded.length - 4} more` : ''} raised their flags.` : 'Nobody had yet raised a flag of their own.'}`);
+  if (blocs.length) out.push(`Countries learned that they were stronger together. ${blocs.map(l => `On ${smfaDate(l.at, E)}, ${l.a} founded the ${l.b}.`).slice(0, 4).join(' ')}`);
+  const mid = ms.filter(l => ['bought', 'annexed', 'assassinated', 'bloc_betray', 'betrayal', 'station_down', 'free'].includes(l.kind)).slice(-6);
+  if (mid.length) out.push(mid.map(l => `On ${smfaDate(l.at, E)}, ${hbPlain(l).charAt(0).toLowerCase() + hbPlain(l).slice(1)}.`).join(' '));
+  if (fell.length) out.push(`Not every country survived. ${fell.map(l => `${l.a} fell on ${smfaDate(l.at, E)}`).slice(0, 4).join('; ')}. ${hbPick(r, ['Some rose again.', 'Their flags were folded, not burned.', 'Their people waited.'])}`);
+  for (const w of wars) out.push(`${w.name} began on ${smfaDate(w.started, E)}. ${wwCause(w)} ${w.ended ? wwResult(w) : 'It is still going on.'}`);
+  out.push(hbPick(r, ['And the story goes on, one hour, one day at a time.', 'What comes next is up to the Presidents.', 'The next page is blank.']));
+  return out;
+}
+
+/* ---------- the documentary: a narrated film over the map, with 3D scenes for the big moments ---------- */
+function hbDocBeats(w, E) {
+  const r = hbRnd(w.id * 31 + 2), beats = [];
+  const homeOf = n => { const p = wlPlayer(n); return p ? p.home : null; };
+  beats.push({ title: w.name, date: smfaDate(w.started, E), text: `${wwCause(w)}`, focus: homeOf(w.members[0] && w.members[0].name), scene: 'start' });
+  beats.push({ title: 'The sides', date: smfaDate(w.started, E), text: `${w.a}: ${w.members.filter(m => m.side === 'A').map(m => m.name).join(', ')}. Against them, ${w.b}: ${w.members.filter(m => m.side === 'B').map(m => m.name).join(', ')}.`, sides: true });
+  const keep = ['conquered', 'colony_taken', 'colonized', 'repelled', 'station_down', 'strike', 'assassinated', 'sabotaged', 'ww_join', 'ww_refuse', 'ww_prop', 'bloc_betray', 'betrayal', 'warzone', 'free'];
+  const moves = w.log.filter(l => keep.includes(l.kind));
+  const pick = moves.length > 12 ? moves.filter((l, i) => i % Math.ceil(moves.length / 12) === 0) : moves;
+  for (const l of pick) beats.push({ date: smfaDate(l.at, E, true), text: hbTell(l, w, r, E), focus: l.country || homeOf(l.a), arrow: ['conquered', 'colony_taken', 'colonized', 'repelled'].includes(l.kind) ? { from: homeOf(l.kind === 'colonized' ? l.b : l.a), to: l.country, won: l.kind !== 'repelled', who: l.kind === 'colonized' ? l.b : l.a } : null, scene: (l.kind === 'bloc_betray' || l.kind === 'betrayal') ? 'betray' : null, l });
+  beats.push({ title: w.ended ? 'The end' : 'To be continued', date: smfaDate(w.ended || Date.now(), E), text: w.ended ? `${wwResult(w)} The war lasted ${smfaDays(w.started, w.ended)} days.` : 'The war is still going on.', scene: w.ended ? 'end' : null, sides: true });
+  return beats;
+}
+function hbDocScene(kind, w) {
+  const est = (p, l, dur) => ({ cam: { p, l }, dur: dur || 3 });
+  const A = w.members.find(m => m.side === 'A'), B = w.members.find(m => m.side === 'B');
+  CHARS.hb_a = { name: `President of ${A ? A.name : w.a}`, css: '#ffb3a0', uni: 0x3a2a2a, pants: 0x221818, skin: 0xd9a77f, hat: 'hair', hatc: 0x2a1a10, voice: 0.9, face: { brow: 0x2a1a10 } };
+  CHARS.hb_b = { name: `President of ${B ? B.name : w.b}`, css: '#a0c8ff', uni: 0x22304a, pants: 0x161c28, skin: 0xc68f68, hat: 'hair', hatc: 0x1a1210, voice: 1.05, face: { brow: 0x1a1210 } };
+  const two = { a: { c: 'hb_a', p: [-1.2, 0], r: PI / 2 }, b: { c: 'hb_b', p: [1.2, 0], r: -PI / 2 } };
+  if (kind === 'start') return { title: w.name, set: 'field', mood: 'war', actors: two, beats: [est([0, 2.2, 6], [0, 1.4, 0], 3), { say: ['a', `This is the day the world will remember.`, 'angry'] }, { say: ['b', `Then let it remember who did not back down.`, 'angry'] }] };
+  if (kind === 'betray') { const [x, y] = String(w.detail || '').split('|'); return { title: 'Betrayal', set: 'office', mood: 'war', actors: two, beats: [est([0, 2.4, 5.5], [0, 1.4, 0], 3), { say: ['b', `We trusted you. The whole ${y || 'bloc'} trusted you.`, 'angry'] }, { say: ['a', `${x || 'We'} chose. Live with it.`] }] }; }
+  return { title: 'The war is over', set: 'ruins', mood: w.result === 'peace' ? 'light' : 'sad', actors: two, beats: [est([0, 2.2, 6], [0, 1.4, 0], 3), { say: ['a', w.result === 'peace' ? 'Enough. Let them write that we stopped.' : 'Count the cost before you count the victory.', 'sad'] }, { say: ['b', 'It is over. For now.', 'sad'] }] };
+}
+function hbSay(t) {
+  try { if (!('speechSynthesis' in window) || settings.voices === false || SFX.muted) return false; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.rate = 0.98; u.pitch = 0.9; u.lang = settings.ui === 'id' ? 'id-ID' : 'en-GB'; speechSynthesis.speak(u); return u; } catch (e) { return false; }
+}
+function hbDoc(w) {
+  if (!w) return; const E = HB.book.epoch, beats = hbDocBeats(w, E), D = HB.doc = { w, beats, i: -1, t: 0, vb: { x: 0, y: 0, w: 1000, h: 520 }, to: null, paused: false, own: {} };
+  const el = document.createElement('div'); el.id = 'hbDoc'; el.className = 'hbDoc';
+  const col = n => { const p = wlPlayer(n); return p ? WL_COL[p.color % WL_COL.length] : '#c9a14a'; };
+  for (const m of w.members) { const p = wlPlayer(m.name); if (p && p.home) D.own[p.home] = m.name; }
+  D.col = col;
+  el.innerHTML = `<svg id="hbMap" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid slice"><g id="hbLand">${TERRS.map(t => `<path data-t="${t.id}" d="${t.d}"/>`).join('')}</g><g id="hbFx"></g></svg>
+    <div class="hbVig"></div><div class="hbCap"><em id="hbDate"></em><b id="hbTitle"></b><p id="hbText"></p></div>
+    <div class="hbCtl"><button class="btn small" id="hbPause">Pause</button><button class="btn small" id="hbNext">Next</button><button class="btn small" id="hbClose">Close</button><span class="hbTrack"><i id="hbProg"></i></span></div>`;
+  $('#scr-history').appendChild(el);
+  $('#hbClose').onclick = () => hbDocStop(); $('#hbNext').onclick = () => { D.t = 999; }; $('#hbPause').onclick = () => { D.paused = !D.paused; $('#hbPause').textContent = D.paused ? 'Resume' : 'Pause'; if (typeof i18nWalk === 'function') i18nWalk($('#hbPause')); try { D.paused ? speechSynthesis.pause() : speechSynthesis.resume(); } catch (e) { } };
+  hbDocPaint(); D.last = performance.now(); D.raf = requestAnimationFrame(hbDocFrame); hbDocNext();
+}
+function hbDocPaint() {
+  const D = HB.doc; if (!D) return;
+  $$('#hbLand path').forEach(p => { const n = D.own[p.dataset.t]; p.setAttribute('fill', n ? D.col(n) : '#2f4a37'); p.setAttribute('stroke', n ? '#ffffffaa' : '#0b1a12'); });
+}
+function hbDocNext() {
+  const D = HB.doc; if (!D) return; D.i++; D.t = 0;
+  if (D.i >= D.beats.length) { hbDocStop(); return; }
+  const b = D.beats[D.i], go = () => {
+    $('#hbDate').textContent = b.date || ''; $('#hbTitle').textContent = b.title || ''; $('#hbText').textContent = b.text || '';
+    $('#hbProg').style.width = (100 * (D.i + 1) / D.beats.length) + '%';
+    if (typeof i18nWalk === 'function') i18nWalk($('.hbCap'));
+    const t = b.focus && TBY[b.focus]; D.to = t ? { x: t.x - 160, y: t.y - 83, w: 320, h: 166 } : { x: 0, y: 0, w: 1000, h: 520 };
+    let fx = '';
+    if (b.arrow && TBY[b.arrow.to]) { const to = TBY[b.arrow.to], fr = TBY[b.arrow.from] || to; if (b.arrow.won) D.own[b.arrow.to] = b.arrow.who; hbDocPaint();
+      const mx = (fr.x + to.x) / 2, my = (fr.y + to.y) / 2 - Math.hypot(to.x - fr.x, to.y - fr.y) * 0.25;
+      fx += `<path class="hbArrow${b.arrow.won ? '' : ' held'}" d="M${fr.x},${fr.y} Q${mx},${my} ${to.x},${to.y}" vector-effect="non-scaling-stroke"/><circle class="hbBoom" cx="${to.x}" cy="${to.y}" r="5"/>`; }
+    if (b.sides) for (const m of D.w.members) { const p = wlPlayer(m.name), t2 = p && TBY[p.home]; if (t2) fx += `<circle class="wwRing ${m.side}" cx="${t2.x}" cy="${t2.y}" r="12" vector-effect="non-scaling-stroke"/><text class="hbName" x="${t2.x}" y="${t2.y - 15}">${esc(m.name)}</text>`; }
+    $('#hbFx').innerHTML = fx;
+    const u = hbSay([b.title, b.text].filter(Boolean).join('. ')); D.dur = Math.max(5, (b.text || '').length / 15 + 2); D.speaking = !!u; if (u) u.onend = () => { D.spoke = true; }; D.spoke = false;
+  };
+  // the start, a betrayal and the end play as 3D scenes first
+  if (b.scene && typeof playCutscene === 'function') { D.paused = true; CUTSCENES.hb_now = hbDocScene(b.scene, D.w); playCutscene('hb_now', () => { delete CUTSCENES.hb_now; if (HB.doc === D) { D.paused = false; go(); } }); }
+  else go();
+}
+function hbDocFrame(now) {
+  const D = HB.doc; if (!D) return; D.raf = requestAnimationFrame(hbDocFrame);
+  const dt = Math.min(0.1, (now - D.last) / 1000); D.last = now; if (D.paused) return;
+  D.t += dt;
+  if (D.to) { const V = D.vb, k = Math.min(1, dt * 1.6); for (const q of ['x', 'y', 'w', 'h']) V[q] += (D.to[q] - V[q]) * k; const s = $('#hbMap'); if (s) s.setAttribute('viewBox', `${V.x.toFixed(1)} ${V.y.toFixed(1)} ${V.w.toFixed(1)} ${V.h.toFixed(1)}`); }
+  if (D.t > 999 || (D.t > D.dur && (!D.speaking || D.spoke)) || D.t > D.dur + 12) hbDocNext();
+}
+function hbDocStop() { const D = HB.doc; HB.doc = null; if (D) cancelAnimationFrame(D.raf); try { speechSynthesis.cancel(); } catch (e) { } const el = $('#hbDoc'); if (el) el.remove(); }
+{
+  // the music of a documentary is the film music
+  if (typeof musWant === 'function') { const _m = musWant; musWant = function () { if (HB.doc && settings.music > 0) { MUS.cutMood = 'war'; return 'cut'; } return _m.apply(this, arguments); }; }
+  const _sh = show; show = function (sel) { if (sel !== '#scr-history' && HB.doc) hbDocStop(); return _sh.apply(this, arguments); };
+  const b = $('#hbBack'); if (b) b.onclick = () => show('#scr-world');
+  // the way in: a button on the World screen's title bar
+  const head = $('#scr-world .card > .row'); if (head && !$('#goHistory')) { const x = document.createElement('button'); x.className = 'btn small'; x.id = 'goHistory'; x.textContent = 'History book'; x.onclick = () => hbOpen(null); head.insertBefore(x, head.lastElementChild); }
+}
+
+/* ================= THE WORLD: the President's powers =================
+   - Peaceful takeover of a country no player holds, next to your land: buy it (once every 12 hours) or win it by
+     influence (600 gold of campaigns; after 6 hours it votes to join you, if it is still free and next to you).
+   - Decrees, once a day for 12 hours: a tax rise, martial law, conscription, or a national holiday that ends chaos.
+   - Embargoes (48 hours): no trade income for the target and 5% less income for each country that joins in.
+   - A speech to the nation (once a day): a short 3D scene, then 6 hours of 15% more gold and soldiers.
+   - Propaganda in a country occupied by someone else: its resistance rises by 15%.
+   The rules are on the account server (world_buy, world_influence_start, world_decree, world_embargo, world_speech,
+   world_propaganda in the world SQL). */
+const WP_DECREES = [['tax', 'Tax rise', '+30% gold for 12 hours, but half the new soldiers.'], ['martial', 'Martial law', 'Twice the new soldiers for 12 hours, but 20% less gold.'], ['conscript', 'Conscription', '40 soldiers at once, and 15% less gold for 12 hours.'], ['holiday', 'National holiday', '300 gold: the chaos in your country ends at once.']];
+const wpBuyPrice = id => { const t = TBY[id]; return t ? (t.size === 'small' ? 1200 : t.size === 'large' ? 3500 : 2000) * (t.cap ? 2 : 1) : 0; };
+const wpHrs = s => s >= 3600 ? `${Math.ceil(s / 3600)} h` : `${Math.ceil(s / 60)} min`;
+const wpUntil = at => new Date(at).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+// can this country be taken without a battle? (no player holds it, it is not a player's homeland, it is next to my land)
+const wpFree = id => !!TBY[id] && !wlOwner(id) && !wlHomeOf(id) && wlNear(id);
+WL_TABS.powers = {
+  tab: (st, me) => me && me.role !== 'minister' && !me.occupier ? { k: 'powers', n: 'Powers' } : null,
+  html: (st, me) => {
+    const occ = st.players.filter(p => p.occupier && p.occupier !== me.name && !p.me), mates = st.bloc ? st.bloc.members : [], E = st.embargoes || [];
+    const others = st.players.filter(p => !p.me && p.rel !== 'alliance' && !(st.bloc && p.bloc === st.bloc.name));
+    const byMe = new Set(E.filter(e => e.by === me.name).map(e => e.target)), onMe = E.filter(e => e.target === me.name);
+    const joinable = [...new Set(E.filter(e => mates.includes(e.by) && e.by !== me.name && !byMe.has(e.target)).map(e => e.target))];
+    const inf = me.influence;
+    return `<div class="wpPow">
+      <div class="wpBox"><div class="wpHd"><b>A speech to the nation</b><small>100 gold, once a day. For 6 hours: 15% more gold and new soldiers.</small></div>
+        ${me.speech_until ? `<p class="wpOn">The nation is still cheering: until ${esc(wpUntil(me.speech_until))}.</p>` : ''}<button class="btn primary" data-wp="speech"${me.speech_in > 0 || me.gold < 100 ? ' disabled' : ''}>${me.speech_in > 0 ? `Next speech in ${wpHrs(me.speech_in)}` : 'Give a speech'}</button></div>
+      <div class="wpBox"><div class="wpHd"><b>Decrees</b><small>One a day. ${me.decree ? `In force: ${esc(WP_DECREES.find(d => d[0] === me.decree)[1])} until ${esc(wpUntil(me.decree_until))}.` : me.decree_in > 0 ? `Next decree in ${wpHrs(me.decree_in)}.` : 'Choose one.'}</small></div>
+        <div class="wpGrid">${WP_DECREES.map(([k, n, d]) => `<button class="wpOpt${me.decree === k ? ' on' : ''}" data-wp="decree:${k}"${me.decree_in > 0 || (k === 'holiday' && (!me.chaos || me.gold < 300)) ? ' disabled' : ''}><b>${n}</b><small>${d}</small></button>`).join('')}</div></div>
+      <div class="wpBox"><div class="wpHd"><b>Peaceful takeover</b><small>Take a country no player holds, next to your land, without a battle. Tap it on the map: buy it (once every 12 hours) or win it by influence (600 gold; it votes to join you after 6 hours).</small></div>
+        ${inf ? `<p class="wpOn">Campaign in ${esc(TBY[inf.country] ? TBY[inf.country].name : '')}: the vote is on ${esc(wpUntil(inf.done))}.</p>` : ''}${me.buy_in > 0 ? `<p class="note">Next purchase in ${wpHrs(me.buy_in)}.</p>` : ''}</div>
+      <div class="wpBox"><div class="wpHd"><b>Embargoes</b><small>48 hours: no trade income for them, and 5% less income for every country that joins in (at most 20%). Not against an ally or your bloc.</small></div>
+        ${onMe.length ? `<p class="wpBad">Embargoed by ${onMe.map(e => esc(e.by)).join(', ')}.</p>` : ''}
+        ${joinable.length ? `<div class="wpRows">${joinable.map(n => `<div class="wpRow"><span>Your bloc embargoes <b>${esc(n)}</b></span><button class="btn small primary" data-wp="emb:${esc(n)}:1">Join the embargo</button></div>`).join('')}</div>` : ''}
+        <div class="wpRows">${others.length ? others.map(p => `<div class="wpRow">${wlFlagFor(p.name)}<span><b>${esc(p.name)}</b>${byMe.has(p.name) ? ' <em>embargoed</em>' : ''}</span><button class="btn small" data-wp="emb:${esc(p.name)}:${byMe.has(p.name) ? 0 : 1}">${byMe.has(p.name) ? 'Lift' : 'Embargo'}</button></div>`).join('') : '<p class="note">No country to embargo.</p>'}</div></div>
+      <div class="wpBox"><div class="wpHd"><b>Propaganda</b><small>300 gold: leaflets and radio in a country occupied by someone else. Its resistance rises by 15%; at 100% it is free.</small></div>
+        <div class="wpRows">${occ.length ? occ.map(p => `<div class="wpRow">${wlFlagFor(p.name)}<span><b>${esc(p.name)}</b><small>occupied by ${esc(p.occupier)}</small></span><button class="btn small" data-wp="prop:${esc(p.name)}"${me.gold < 300 ? ' disabled' : ''}>Spread propaganda</button></div>`).join('') : '<p class="note">No country is occupied by anyone else right now.</p>'}</div></div>
+    </div>`;
+  },
+  wire: el => {
+    el.querySelectorAll('[data-wp]').forEach(b => b.onclick = async () => {
+      const [k, x, y] = b.dataset.wp.split(':'); b.disabled = true;
+      if (k === 'speech') wpSpeech();
+      else if (k === 'decree') await wlDo('world_decree', { p_kind: x });
+      else if (k === 'emb') await wlDo('world_embargo', { p_name: x, p_on: y === '1' });
+      else if (k === 'prop') await wlDo('world_propaganda', { p_name: x });
+    });
+  }
+};
+// the speech: a short 3D scene of the President at the microphone, then the bonus
+function wpSpeech() {
+  const me = wlMe(); if (!me) return;
+  const go = () => wlDo('world_speech', {});
+  if (typeof playCutscene !== 'function') { go(); return; }
+  const r = Math.random(), lines = r < 0.33 ? ['People of ' + me.name + '! They said we were too small to matter.', 'Look around you. Every road, every barracks, every field is ours, and we built it.', 'Tomorrow we work harder. Tonight, we celebrate!']
+    : r < 0.66 ? [`Citizens of ${me.name}. These are hard times.`, 'But hard times have never made us smaller. They have made us stronger.', `Long live ${me.name}!`]
+    : [`${me.motto ? `"${me.motto}." ` : ''}That is who we are.`, 'Our soldiers stand ready, our treasury is full, and our flag still flies.', 'Thank you. Now, back to work!'];
+  CHARS.wp_crowd = { name: 'The crowd', css: '#cfe3c7', uni: 0x3a4a3a, pants: 0x2a2a2a, skin: 0xd9a77f, hat: 'hair', hatc: 0x2a1a10, voice: 1, face: { brow: 0x2a1a10 } };
+  CUTSCENES.wp_now = { title: `The President of ${me.name} speaks`, set: 'throne', mood: 'light', actors: { pres: { p: [0, -1.2], r: 0 }, hale: { p: [1.4, -1.6], r: -0.3 }, mara: { p: [-1.4, -1.6], r: 0.3 } },
+    beats: [{ cam: { p: [0, 1.7, 3.2], l: [0, 1.5, -1.2] }, dur: 2.5 }].concat(lines.map(t => ({ say: ['pres', t, 'smile'] }))).concat([{ say: ['hale', 'The crowd goes wild, sir.', 'smile'], act: { hale: 'salute' } }]) };
+  playCutscene('wp_now', () => { delete CUTSCENES.wp_now; go(); });
+}
+{
+  // the selected country: buy it, or win it by influence
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), sel = el && el.querySelector('[data-sel]'), me = wlMe(), id = sel && sel.dataset.sel;
+      if (sel && me && me.role !== 'minister' && !me.occupier && wpFree(id) && !sel.querySelector('.wpTake')) {
+        const price = wpBuyPrice(id), inf = me.influence;
+        sel.insertAdjacentHTML('beforeend', `<div class="wpTake"><small>Without a battle</small><div class="row"><button class="btn" data-take="buy"${me.gold < price || me.buy_in > 0 ? ' disabled' : ''}>Buy it · ${wlNum(price)} gold</button><button class="btn" data-take="inf"${inf || me.gold < 600 ? ' disabled' : ''}>Win it by influence · 600 gold</button></div>
+          <p class="note">${me.buy_in > 0 ? `Next purchase in ${wpHrs(me.buy_in)}. ` : ''}${inf ? (inf.country === id ? `Your campaign here ends ${esc(wpUntil(inf.done))}; then the country votes.` : 'You already run a campaign somewhere else.') : 'Influence takes 6 hours; then the country votes to join you, if it is still free.'}</p></div>`);
+        sel.querySelectorAll('[data-take]').forEach(b => b.onclick = () => { b.disabled = true; wlDo(b.dataset.take === 'buy' ? 'world_buy' : 'world_influence_start', { p_country: id }); });
+        if (typeof i18nWalk === 'function') i18nWalk(sel.querySelector('.wpTake'));
+      }
+    } catch (e) { console.warn('powers', e); }
+    return r;
+  };
 }
 </script>
