@@ -1662,6 +1662,22 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 @media (max-width:560px){.ecRes{grid-template-columns:repeat(3,1fr)}.ecTrade{grid-template-columns:repeat(3,1fr)}.nwStats{grid-template-columns:1fr 1fr}.wmOff{grid-template-columns:1fr}.wmApp{grid-template-columns:1fr}.wmGrid{gap:4px}.wmCell{min-height:40px;font-size:13px}}
 .wpGive{display:grid;gap:6px;margin-top:10px;padding:10px;border-radius:10px;border:1px dashed rgba(242,179,61,.5)}.wpGive>small{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
 .wpGive .row{display:flex;gap:6px}.wpGive select{flex:1;min-height:36px;background:#0d1612;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:0 8px;font:inherit}.wpGive .note{margin:0}
+
+/* v77: seasons */
+.wsCard{display:grid;gap:7px;padding:11px 14px;margin-bottom:10px;border-radius:12px;border:1px solid rgba(242,179,61,.45);background:linear-gradient(135deg,rgba(242,179,61,.13),rgba(10,18,11,.6))}
+.wsTop{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.wsTop b{font:800 15px var(--ui);color:var(--amber);letter-spacing:.04em;text-transform:uppercase}.wsTop span{font-size:12.5px;color:var(--muted)}
+.wsMine{margin:0;font-size:13.5px}.wsMine b{color:#fff}
+.wsEnd{display:grid;gap:7px;padding-top:8px;border-top:1px dashed rgba(242,179,61,.4)}.wsEnd p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45}.wsEnd .row{display:flex;gap:8px;flex-wrap:wrap}.wsEnd .btn{min-height:38px}
+.wsMed{display:inline-grid;place-items:center;min-width:24px;height:17px;padding:0 5px;margin-left:5px;border-radius:9px;font:800 10px var(--ui);font-style:normal;color:#1a1408;vertical-align:1px}
+.wsMed.r1{background:linear-gradient(#ffe08a,#e0a520)}.wsMed.r2{background:linear-gradient(#f1f4f6,#a9b3ba)}.wsMed.r3{background:linear-gradient(#f0b98a,#b56c33)}
+.wsStart{border-color:rgba(242,179,61,.6)}.wsStart .wlPick{align-items:center;flex-wrap:wrap}.wsStart .wlPick .btn{margin-left:auto;min-height:34px}.wsStart .wlGo{width:100%}
+.wsHead{margin:0 0 10px;padding:8px 10px;border-radius:9px;background:rgba(242,179,61,.12);font-size:13px;line-height:1.45}.wsHead b{display:block;font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.wsGot{display:flex;align-items:center;gap:8px;padding:9px 12px;margin-bottom:10px;border-radius:10px;background:rgba(60,190,110,.14);border:1px solid rgba(60,190,110,.4);font-size:13px}.wsGot span{flex:1}
+.wsWait .wlUp,.wsWait .wlShield{display:none}
+.wsTab h4{margin:14px 0 6px;font:700 13px var(--ui);color:#fff;letter-spacing:.02em}.wsTab h4:first-child{margin-top:2px}
+.wsRow{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:9px;background:rgba(255,255,255,.04);margin-bottom:5px}.wsRow.me{box-shadow:0 0 0 1px var(--green) inset}.wsRow span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wsN{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);font:700 11.5px var(--ui);font-style:normal;flex:none}.wsN.r1{background:#e0a520;color:#1a1408}.wsN.r2{background:#a9b3ba;color:#1a1408}.wsN.r3{background:#b56c33;color:#1a1408}
+.wsPrizes{display:grid;gap:5px;margin-bottom:10px}.wsPrizes div{display:grid;grid-template-columns:104px 1fr;gap:8px;padding:6px 9px;border-radius:8px;background:rgba(255,255,255,.04);font-size:12.5px}.wsPrizes b{color:var(--amber)}.wsPrizes span{color:var(--fg)}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -1998,6 +2014,7 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
       <div><h3>Council, chat and peace terms</h3>The <b>Council</b> tab: any President can propose a resolution for 200 gold: <b>sanctions</b> (no trade income and 20% less income for 48 hours), a <b>condemnation</b> (10% less for 24 hours), <b>aid</b> (every other country sends 2% of its gold), <b>world peace</b> (12 hours without any attack) or a <b>nuclear ban</b> (3 days). Every President has a vote; after 24 hours it passes with more yes than no and yes from at least a third of all Presidents. The <b>Chat</b> tab talks to the world, your bloc or one country. When you are at war with a country, open it in the Countries list to set your <b>war goal</b> (conquest, tribute or humiliation) and send <b>peace terms</b>: gold, a country and an apology, demanded or offered. Accepted terms end the war; terms that give you your war goal are worth 500 gold more.</div>
       <div><h3>Oil, steel and food</h3>Every country makes oil, steel and food each hour; oil fields, factories, farmland and ports make much more. Your army eats food: without food it grows at half speed. Upgrades from level 5, ships, warheads and rebuilding a station need steel and oil. The <b>Market</b> tab buys and sells them for gold; prices rise as people buy and fall as they sell, and drift back each hour. Your stores hold 400 of each, plus 100 for every Economy level.</div>
       <div><h3>Victory animations</h3>Win a battle and your President plays a short victory scene. Choose it in <b>Barracks → Victory</b>, where every scene has a Preview button. Parade Salute is free for everyone. Plant the Flag comes with Soldier membership, Three-Point Landing with Sergeant, Don't Look Back with Captain, and The Long Corridor and The Throne Room with General. Every scene can also be unlocked in the Store with SD or Rp, and some come in bundles. Switch them off in Settings if you prefer.</div>
+      <div><h3>Seasons</h3>The World is played in seasons of a week. After 7 days the <b>President of the game</b> can end the season or let it run on; the countdown and the live ranking are in the <b>Season</b> tab. Points: 10 for every country you hold, 3 for a battle won, 4 for a mission won, 20 for a World War won, and 1 for every 1,000 gold (20 at most). When the season ends the world starts again and everyone picks a new starting country. You keep your gold, oil, steel and food, your name and flag, blocs and alliances, ships and warheads; levels, generals, soldiers, countries, wars and treaties start again. The 1st starts with levels 3, 100 extra soldiers and 3 free countries; the 2nd and 3rd with levels 2, 50 soldiers and 2 countries; the 4th and 5th with 25 soldiers and 1 country. The last third of the ranking gets a 48-hour shield.</div>
       <div><h3>Nuclear warhead</h3>In the campaign, buy it in the <b>Locker room</b> for $15,000. In skirmish, press <b>Buy nuke</b> in the office to buy it with $5,000 of war budget. In skirmish you can launch it whenever you like. In the campaign, the <b>Nuke</b> button only unlocks when you are losing (HQ below half, behind on tickets, or the enemy holds more flags). Type the launch code within 30 seconds; three wrong tries or running out of time locks it for 2 to 3 minutes. On success your squads fall back, and 9 seconds later the blast destroys every soldier, vehicle and building outside the two HQ bunkers. Both HQs are left badly damaged and the battle continues. One nuke per battle. Very rarely, a losing enemy saves up and nukes you: sirens give you 12 seconds to pull your troops back, and the enemy usually forgets to save its own.</div>
       <div><h3>Story</h3>The campaign tells the story of the Smiley Face Army's return from exile. As you conquer countries, 3D cutscenes play and <b>story missions</b> unlock in the campaign panel: defend the embassy, rescue a hostage, escort a convoy, kill a general, and storm the Emperor's capital. Heroes such as Reyes (sniper), Okoro (engineer) and Brandt (ace pilot) join and fight in your campaign battles. Tap or press Enter to move through a cutscene, or Skip. Replay them from the campaign panel.</div>
       <div><h3>Stealth missions</h3>Some story missions are solo assassinations. Guards have white sight cones; a <b>?</b> above a guard means they are getting suspicious. Crouch to stay hidden, approach from behind and use the knife for a silent kill. The SMG is suppressed; the sniper rifle is loud. If the alarm goes off the guards hunt you and the target runs for the exit. Kill the target, then return to the drop-off point. No alarm earns the Silent Assassin medal.</div>
@@ -12847,7 +12864,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = 'c957c1e5'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '262c07d2'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21893,6 +21910,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '77', date: '2026-11-18', name: 'Seasons', items: ['The World now runs in seasons of a week. After 7 days the President of the game can end the season, or let it run on. A countdown and a live ranking are on the World screen, in the new Season tab.', 'When a season ends the world starts again: countries, levels, generals, soldiers, wars and treaties are reset, and everyone picks a new starting country. You keep your gold, oil, steel and food, your name and flag, blocs and alliances, ships and warheads. The calendar and the history book go on.', 'The strongest countries get a head start next season: higher levels, extra soldiers and free countries scattered over the map, plus a season medal. The weakest get a longer shield. This needs the new world SQL file.'] },
   { v: '76', date: '2026-11-17', name: 'Gifts from the top', items: ['The President of the game can give any country to any other country, near or far, held or not, but never to their own. A homeland given back to its owner frees them at once, with their levels and gold as they were.', 'For testing, the President of the game also gets 100,000 gold, oil, steel and food, 10,000 gold a day and 1,000 of each material an hour. This needs the new world SQL file.'] },
   { v: '75', date: '2026-11-17', name: 'A bigger orbit', items: ['Stations are bigger and more detailed: a turning habitat ring with lit windows, docking arms, solar arrays and a blinking beacon. Free ports carry cargo containers.', 'Orbit reaches out to the Moon, with a new asteroid field beside it and a fourth field over the Americas. Nebulae glow in the distance.', 'A radar in the top right shows the planet, the Moon, stations, pirates, wrecks and other pilots around you.'] },
   { v: '74', date: '2026-11-17', name: 'Oil, steel and food', items: ['Every country now makes oil, steel and food: oil fields, factories, farmland and ports make more. The army eats food; without it, it grows at half speed.', 'Big things need materials: upgrades from level 5, ships in Space, nuclear warheads and rebuilding a station.', 'The Market buys and sells all three for gold. Prices rise when everyone buys and fall when everyone sells.'] },
@@ -22044,7 +22062,7 @@ const I18N = {
     'The Long War': 'The Long War', 'Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.': 'Tiga puluh bab dalam lima babak. Pilihan Anda menentukan akhir perang: Sang Pembebas, Sang Penakluk, atau Sang Pendamai.',
     'World event': 'Peristiwa dunia', 'Break the treaty?': 'Langgar perjanjian?', 'Attack anyway': 'Tetap serang', 'Keep the peace': 'Jaga perdamaian', 'Cutscenes': 'Cutscene',
     'Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.': 'Buka perlengkapan dengan naik level lewat EXP, membelinya dengan Smiley Dollars (SD), atau meraih medali. Keduanya didapat di setiap battle.',
-    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'Gifts from the top': 'Hadiah dari atas', 'A bigger orbit': 'Orbit yang lebih besar', 'Oil, steel and food': 'Minyak, baja dan pangan', 'The World Council': 'Dewan Dunia', 'Missions and nukes': 'Misi dan nuklir', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
+    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'Gifts from the top': 'Hadiah dari atas', 'Seasons': 'Musim', 'A bigger orbit': 'Orbit yang lebih besar', 'Oil, steel and food': 'Minyak, baja dan pangan', 'The World Council': 'Dewan Dunia', 'Missions and nukes': 'Misi dan nuklir', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
     // what's new
     'The lobby': 'Lobi', 'Lighter battles': 'Battle lebih ringan', 'Game health': 'Kesehatan game', 'Hit feel': 'Rasa pukulan', 'Real people and car damage': 'Orang realistis dan kerusakan mobil', 'Online version lock': 'Kunci versi online', 'F1 polish and replays': 'Polesan F1 dan replay'
   }
@@ -22425,6 +22443,7 @@ I18N.pat.push(
 
 /* ---------- How to play: whole sections, because their text is mixed with key caps and bold words ---------- */
 I18N.how = {
+  'Seasons': ['Musim', 'Dunia dimainkan dalam musim selama seminggu. Setelah 7 hari <b>Presiden game</b> bisa mengakhiri musim atau membiarkannya berjalan; hitung mundur dan peringkat langsung ada di tab <b>Musim</b>. Poin: 10 untuk tiap negara yang dikuasai, 3 untuk pertempuran yang dimenangkan, 4 untuk misi yang berhasil, 20 untuk Perang Dunia yang dimenangkan, dan 1 untuk tiap 1.000 emas (paling banyak 20). Saat musim berakhir dunia dimulai lagi dan semua orang memilih negara awal baru. Emas, minyak, baja dan pangan, nama dan bendera, blok dan aliansi, kapal dan hulu ledak tetap milik Anda; level, jenderal, prajurit, negara, perang dan perjanjian dimulai lagi. Peringkat 1 mulai dengan level 3, 100 prajurit tambahan dan 3 negara gratis; peringkat 2 dan 3 dengan level 2, 50 prajurit dan 2 negara; peringkat 4 dan 5 dengan 25 prajurit dan 1 negara. Sepertiga terbawah mendapat perisai 48 jam.'],
   'Controller': ['Kontroler', 'Tekan tombol apa saja di kontroler yang tersambung (Xbox, PlayStation atau kebanyakan pad USB/Bluetooth) dan game beralih ke <b>mode Kontroler</b>: tombol sentuh hilang dan kontroler mengerjakan semuanya. RT menembak, LT membidik, stik kiri bergerak, stik kanan melihat, A melompat, Y masuk kendaraan dan bicara dengan orang, dan d-pad menggeser sorotan hijau di menu. Di kantor muncul penunjuk yang Anda gerakkan dengan stik kiri. <button class="btn small" id="gpHelpBtn">Tampilkan semua tombol</button>'],
   'Winning': ['Menang', 'Hancurkan <b>inti komando</b> markas musuh (balok bercahaya di dalam markas mereka), atau habiskan tiket bala bantuan mereka. Menguasai lebih dari separuh bendera menguras tiket musuh dan menambah anggaran perang.'],
   'The office (laptop)': ['Kantor (laptop)', 'Geser dengan <kbd>W A S D</kbd>, putar dengan <kbd>Q</kbd> <kbd>E</kbd>, zoom dengan roda mouse. Klik kartu regu atau seorang prajurit untuk memilihnya, lalu klik peta untuk mengirimnya ke sana. Pilih satu kekuatan, lalu klik sasarannya. <kbd>Tab</kbd> untuk ikut bertempur.'],
@@ -22719,6 +22738,12 @@ I18N.pat.push(
 Object.assign(I18N.id, { 'President of the game: give this country away': 'Presiden game: berikan negara ini', 'Give': 'Berikan', 'its computer nation': 'negara komputernya',
   'Any country to any other country, near or far, held or not. Not to your own. A homeland given back to its owner frees them at once.': 'Negara mana pun ke negara lain mana pun, dekat atau jauh, dikuasai atau tidak. Tidak ke negara Anda sendiri. Tanah air yang dikembalikan ke pemiliknya langsung membebaskan mereka.' });
 I18N.pat.push([/^(.+) \(its homeland\)$/, m => `${m[1]} (tanah airnya)`]);
+
+/* v77: seasons */
+Object.assign(I18N.id, {"Season": "Musim", "Start here": "Mulai di sini", "Last season": "Musim lalu", "On the map": "Di peta", "tap a country": "ketuk sebuah negara", "Choose a country": "Pilih negara", "Keep it going": "Biarkan berjalan", "End the season": "Akhiri musim", "End the season…": "Akhiri musim…", "A new season has begun": "Musim baru telah dimulai", "Your head start": "Keunggulan awal Anda", "You are the President of the game. End the season when you like, or let it run on.": "Anda Presiden game. Akhiri musim kapan saja, atau biarkan berjalan.", "How points are counted": "Cara menghitung poin", "Prizes for next season": "Hadiah untuk musim depan", "1st": "Ke-1", "2nd and 3rd": "Ke-2 dan ke-3", "4th and 5th": "Ke-4 dan ke-5", "The last third": "Sepertiga terbawah", "Levels 3 · +100 soldiers · 3 free countries": "Level 3 · +100 prajurit · 3 negara gratis", "Levels 2 · +50 soldiers · 2 free countries": "Level 2 · +50 prajurit · 2 negara gratis", "+25 soldiers · 1 free country": "+25 prajurit · 1 negara gratis", "A 48-hour shield, not 24 (never the top 3)": "Perisai 48 jam, bukan 24 (tidak untuk 3 besar)", "Every country you hold: 10 points. Every battle won this season: 3. Every mission won: 4. A World War won: 20. Every 1,000 gold: 1 point, 20 at most. The ranking when the season ends decides the prizes.": "Tiap negara yang Anda kuasai: 10 poin. Tiap pertempuran yang dimenangkan musim ini: 3. Tiap misi yang berhasil: 4. Perang Dunia yang dimenangkan: 20. Tiap 1.000 emas: 1 poin, paling banyak 20. Peringkat saat musim berakhir menentukan hadiahnya.", "A season lasts a week; after that the President of the game ends it, or lets it run on. Then the world starts again and everyone picks a new starting country. You keep your gold, oil, steel and food, your name and flag, blocs and alliances, ships and warheads. Levels, generals, soldiers, countries, wars and treaties start again. The calendar and the history book go on.": "Satu musim berlangsung seminggu; setelah itu Presiden game mengakhirinya, atau membiarkannya berjalan. Lalu dunia dimulai lagi dan semua orang memilih negara awal baru. Emas, minyak, baja dan pangan, nama dan bendera, blok dan aliansi, kapal dan hulu ledak tetap milik Anda. Level, jenderal, prajurit, negara, perang dan perjanjian dimulai lagi. Kalender dan buku sejarah terus berjalan.", "No country yet.": "Belum ada negara."});
+I18N.pat.push([/^Season (\d+)$/, m => `Musim ${m[1]}`], [/^Season (\d+) · the ranking now$/, m => `Musim ${m[1]} · peringkat sekarang`], [/^Season (\d+) · final ranking$/, m => `Musim ${m[1]} · peringkat akhir`],
+  [/^ends in (.+), or later$/, m => `berakhir dalam ${m[1]}, atau lebih lama`], [/^the week is over: the President of the game may end it$/, () => 'minggunya sudah habis: Presiden game boleh mengakhirinya'],
+  [/^Start in (.+)$/, m => `Mulai di ${m[1]}`], [/^End Season (\d+) now\? .*$/, m => `Akhiri Musim ${m[1]} sekarang? Semua negara kembali ke negara komputernya dan semua orang mulai lagi. Ini tidak bisa dibatalkan.`]);
 
 /* ================= THE LOCKER: the Barracks with a big 3D view and "try before you unlock" =================
    The President and a soldier stand large beside the list. Tap any item, even a locked one, to see it on them
@@ -26161,5 +26186,83 @@ function nwStrikeFilm(W) { if (!W || !W.nuke) return; nwFilm({ title: `${W.nuke.
   T.html = (st, me) => _h(st, me).replace(/<\/div>\s*$/, nwArsenalHtml(me) + '</div>');
   T.wire = el => { _w(el); el.querySelectorAll('[data-nw-open]').forEach(b => b.onclick = () => nwShop()); el.querySelectorAll('[data-nt]').forEach(b => b.onclick = () => { b.disabled = true; nwTest(+b.dataset.nt); });
     el.querySelectorAll('[data-ns]').forEach(b => b.onclick = () => { if (b.dataset.sure) wlDo('world_nuke_scrap', { p_id: +b.dataset.ns }); else { b.dataset.sure = 1; b.textContent = 'Sure?'; } }); };
+}
+
+/* ================= THE WORLD: seasons =================
+   A season lasts a week. After 7 days the President of the game may end it, or let it run on. When it ends the world
+   starts again: every country goes back to its computer nation, levels, generals, armies and wars are reset, and
+   everyone picks a new starting country. Kept: gold, oil, steel, food, the country's name, flag and motto, blocs and
+   alliances, ships, warheads, the calendar and the history book. The strongest countries of the season get a head
+   start, the weakest a longer shield. The rules are on the account server (world_season_end, world_season_start). */
+const WS = { got: null, confirm: false };
+const WS_PRIZE = [['1st', 'Levels 3 · +100 soldiers · 3 free countries'], ['2nd and 3rd', 'Levels 2 · +50 soldiers · 2 free countries'], ['4th and 5th', '+25 soldiers · 1 free country'], ['The last third', 'A 48-hour shield, not 24 (never the top 3)']];
+const wsLeft = at => { const s = (new Date(at).getTime() - Date.now()) / 1000; return s <= 0 ? '' : s >= 86400 ? `${Math.floor(s / 86400)} d ${Math.floor(s % 86400 / 3600)} h` : s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.floor(s % 3600 / 60)} min` : `${Math.max(1, Math.ceil(s / 60))} min`; };
+const wsMedals = t => (t || []).map(x => `<i class="wsMed r${x.rank}" title="Season ${x.season}: ${x.rank === 1 ? 'champion' : x.rank === 2 ? 'second' : 'third'}">S${x.season}</i>`).join('');
+const wsBonus = b => !b ? '' : [b.lvl > 1 ? `every level starts at ${b.lvl}` : '', b.soldiers ? `${b.soldiers} extra soldiers` : '', b.free ? `${b.free} free countr${b.free === 1 ? 'y' : 'ies'} scattered over the map` : '', b.shield_hours > 24 ? `a ${b.shield_hours}-hour shield` : ''].filter(Boolean).join(', ');
+const wsOrd = n => n + (n % 10 === 1 && n !== 11 ? 'st' : n % 10 === 2 && n !== 12 ? 'nd' : n % 10 === 3 && n !== 13 ? 'rd' : 'th');
+const wsCanStart = id => { const t = TBY[id]; return !!t && !t.cap && !wlOwner(id) && !wlHomeOf(id); };
+function wsCard(st, me) {
+  const s = st.season; if (!s) return '';
+  const left = wsLeft(s.ends), rk = s.ranking || [], i = me ? rk.findIndex(r => r.name === me.name) : -1;
+  let h = `<div class="wsCard"><div class="wsTop"><b>Season ${s.num}</b><span>${left ? `ends in ${left}, or later` : 'the week is over: the President of the game may end it'}</span></div>`;
+  if (i >= 0 && !(me && me.needs_start)) h += `<p class="wsMine">You are <b>${wsOrd(i + 1)}</b> of ${rk.length} with <b>${wlNum(rk[i].score)}</b> points.${wsMedals(me.titles)}</p>`;
+  if (s.can_end) h += WS.confirm ? `<div class="wsEnd"><p>End Season ${s.num} now? Every country returns to its computer nation and everyone starts again. This cannot be undone.</p><div class="row"><button class="btn primary" id="wsEndYes">End the season</button><button class="btn" id="wsEndNo">Keep it going</button></div></div>`
+    : `<div class="wsEnd"><p>You are the President of the game. End the season when you like, or let it run on.</p><button class="btn" id="wsEndAsk">End the season…</button></div>`;
+  return h + '</div>';
+}
+function wsStartCard(st, me) {
+  const t = TBY[WL.sel], ok = t && wsCanStart(t.id), old = me.prev_home && TBY[me.prev_home], oldOk = old && wsCanStart(old.id), b = wsBonus(me.bonus), last = st.season && st.season.last;
+  return `<div class="wlCard wsStart"><h3>A new season has begun</h3>
+    <p class="note">${last && last.champion ? `Season ${last.num} went to <b>${esc(last.champion)}</b>. ` : ''}The world has started again. You kept your gold, oil, steel and food, your name and flag, your blocs and alliances, your ships and warheads. Choose where to start: any country no player holds, except a capital.</p>
+    ${b ? `<p class="wsHead"><b>Your head start</b> ${esc(b)}.</p>` : ''}
+    ${old ? `<div class="wlPick"><span>Last season</span><b>${esc(old.name)}</b>${oldOk ? `<button class="btn small" id="wsOld">Start here</button>` : '<em>taken</em>'}</div>` : ''}
+    <div class="wlPick"><span>On the map</span><b>${t ? esc(t.name) : 'tap a country'}</b>${t && !ok ? `<em>${t.cap ? 'a capital' : 'taken'}</em>` : ''}</div>
+    <button class="btn primary wlGo" id="wsGo"${ok ? '' : ' disabled'}>${ok ? `Start in ${esc(t.name)}` : 'Choose a country'}</button></div>`;
+}
+async function wsStart(id) {
+  const r = await wlDo('world_season_start', { p_home: id });
+  if (r && r.ok) { WS.got = (r.free || []).map(c => TBY[c] ? TBY[c].name : c); WL.sel = id; if (typeof wlFocus === 'function') wlFocus(id); wlRender(); }
+}
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), st = WL.st, me = wlMe(); if (!el || !st || !st.season) return r;
+      const mine = el.querySelector('.wlMine');
+      el.querySelectorAll('.wsCard, .wsStart, .wsGot').forEach(x => x.remove());
+      let h = wsCard(st, me);
+      if (me && me.needs_start && me.role !== 'minister') h += wsStartCard(st, me);
+      else if (WS.got && WS.got.length) h += `<div class="wsGot"><span>Your head start: you were also given <b>${WS.got.map(esc).join(', ')}</b>.</span><button class="wlX" id="wsGotX" aria-label="Close">×</button></div>`;
+      const first = el.querySelector('.wwCard, .wlCard'); if (first) first.insertAdjacentHTML('beforebegin', h); else el.insertAdjacentHTML('afterbegin', h);
+      if (mine && me && me.needs_start) mine.classList.add('wsWait');
+      const on = (q, f) => { const b = el.querySelector(q); if (b) b.onclick = f; };
+      on('#wsEndAsk', () => { WS.confirm = true; wlRender(); }); on('#wsEndNo', () => { WS.confirm = false; wlRender(); });
+      on('#wsEndYes', async e => { e.currentTarget.disabled = true; WS.confirm = false; WS.got = null; await wlDo('world_season_end', {}); wlRender(); });
+      on('#wsOld', e => { e.currentTarget.disabled = true; wsStart(me.prev_home); }); on('#wsGo', e => { e.currentTarget.disabled = true; wsStart(WL.sel); });
+      on('#wsGotX', () => { WS.got = null; wlRender(); });
+      if (typeof i18nWalk === 'function') el.querySelectorAll('.wsCard, .wsStart, .wsGot').forEach(x => i18nWalk(x));
+    } catch (e) { console.warn('season', e); }
+    return r;
+  };
+}
+// the Season tab: the live ranking, how points are counted, the prizes, and last season's result
+WL_TABS.season = {
+  tab: st => st.season ? { k: 'season', n: 'Season' } : null,
+  html: (st, me) => {
+    const s = st.season, rk = s.ranking || [], last = s.last, tOf = n => { const p = wlPlayer(n); return p ? p.titles : null; };
+    const row = (r, i, cur) => `<div class="wsRow${me && r.name === me.name ? ' me' : ''}"><i class="wsN${i < 3 ? ' r' + (i + 1) : ''}">${i + 1}</i>${wlFlagFor(r.name)}<span><b>${esc(r.name)}</b>${cur ? wsMedals(me && r.name === me.name ? me.titles : tOf(r.name)) : ''}</span><b class="recVal">${wlNum(r.score)}</b></div>`;
+    return `<div class="wsTab"><h4>Season ${s.num} · the ranking now</h4>${rk.length ? rk.map((r, i) => row(r, i, true)).join('') : '<p class="note">No country yet.</p>'}
+      <details class="wwRules"><summary>How points are counted</summary><p>Every country you hold: 10 points. Every battle won this season: 3. Every mission won: 4. A World War won: 20. Every 1,000 gold: 1 point, 20 at most. The ranking when the season ends decides the prizes.</p></details>
+      <h4>Prizes for next season</h4><div class="wsPrizes">${WS_PRIZE.map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join('')}</div>
+      <p class="note">A season lasts a week; after that the President of the game ends it, or lets it run on. Then the world starts again and everyone picks a new starting country. You keep your gold, oil, steel and food, your name and flag, blocs and alliances, ships and warheads. Levels, generals, soldiers, countries, wars and treaties start again. The calendar and the history book go on.</p>
+      ${last ? `<h4>Season ${last.num} · final ranking</h4>${(last.ranking || []).slice(0, 10).map((r, i) => row(r, i, false)).join('')}` : ''}</div>`;
+  },
+  wire: () => {}
+};
+{
+  const _n = wlNews; wlNews = function (l) {
+    if (l.kind === 'season_end') return `${esc(l.a)} is over${l.b ? `: ${esc(l.b)} is the champion` : ''}. The world starts again`;
+    return _n.apply(this, arguments);
+  };
 }
 </script>
