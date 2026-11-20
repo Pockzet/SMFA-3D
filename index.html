@@ -1678,6 +1678,50 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 .wsRow{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:9px;background:rgba(255,255,255,.04);margin-bottom:5px}.wsRow.me{box-shadow:0 0 0 1px var(--green) inset}.wsRow span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wsN{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);font:700 11.5px var(--ui);font-style:normal;flex:none}.wsN.r1{background:#e0a520;color:#1a1408}.wsN.r2{background:#a9b3ba;color:#1a1408}.wsN.r3{background:#b56c33;color:#1a1408}
 .wsPrizes{display:grid;gap:5px;margin-bottom:10px}.wsPrizes div{display:grid;grid-template-columns:104px 1fr;gap:8px;padding:6px 9px;border-radius:8px;background:rgba(255,255,255,.04);font-size:12.5px}.wsPrizes b{color:var(--amber)}.wsPrizes span{color:var(--fg)}
+/* ===== v86: planets and cities ===== */
+.spMark.planet{color:#e8d9a8}.spMark.planet i{width:20px;height:20px;border-width:2px;background:rgba(232,217,168,.12)}
+.spMark.planet.mine{color:var(--green)}.spMark.planet.war{color:#ff6b61}.spMark.planet.treaty{color:#66d9ff}.spMark.planet.none{color:#c9b8ff}
+.spMark.pturret{color:#ff6b61}.spMark.pturret i{width:12px;height:12px;border-radius:2px}
+#spPlan{position:absolute;inset:0;display:grid;place-items:center;padding:16px;background:rgba(2,5,9,.55);backdrop-filter:blur(5px)}
+.plCard{width:min(560px,100%);display:grid;gap:12px;padding:20px;border-radius:16px;background:linear-gradient(180deg,rgba(24,22,40,.98),rgba(9,12,19,.98));border:1px solid rgba(201,184,255,.4);box-shadow:0 24px 80px rgba(0,0,0,.6)}
+.plCard>em{font:700 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#c9b8ff;font-style:normal}.plCard h2{margin:0;font:700 22px var(--ui);color:#fff}
+.plCard>p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.45}
+.plList{display:grid;gap:8px;max-height:min(54vh,460px);overflow:auto;padding-right:2px}
+.plRow{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:9px 11px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.plRow.mine{border-color:rgba(57,211,83,.5);background:rgba(57,211,83,.07)}.plRow.war{border-color:rgba(255,107,97,.45)}
+.plDot{width:44px;height:44px;border-radius:50%;box-shadow:inset -8px -6px 14px rgba(0,0,0,.55),0 0 12px rgba(255,255,255,.08)}
+.plRow>div{display:grid;gap:2px;min-width:0}.plRow b{font:700 15px var(--ui);color:#fff}.plRow small{font-size:12.5px;color:var(--muted);line-height:1.35}
+.plRow .btn{min-width:86px;min-height:38px}
+.plCard .row{display:flex;gap:10px}.plCard .row .btn{flex:1;min-height:44px}
+#spWarpFx{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(circle at 50% 46%,transparent 0 18%,rgba(201,184,255,.12) 40%,rgba(255,255,255,.28) 70%,transparent 72%),repeating-conic-gradient(from 0deg at 50% 46%,rgba(255,255,255,.0) 0deg 2.4deg,rgba(220,230,255,.22) 2.6deg 2.8deg,rgba(255,255,255,0) 3deg 7deg)}
+#spWarpFx.on{opacity:1;animation:spWarp .5s linear infinite}@keyframes spWarp{from{transform:scale(1)}to{transform:scale(1.12)}}
+#scr-build{position:fixed;inset:0;padding:0;background:#02040a;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none}
+#bdView{position:absolute;inset:0}#bdView canvas{width:100%;height:100%;display:block}
+.bdTop{position:absolute;left:calc(12px + var(--sl));right:calc(12px + var(--sr));top:calc(10px + var(--st));display:flex;justify-content:space-between;align-items:flex-start;gap:10px;pointer-events:none}
+.bdPanel{pointer-events:auto;display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:12px;background:rgba(6,12,16,.66);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+.bdHead>div{display:grid;gap:1px}.bdHead em{font:700 10.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:#c9b8ff;font-style:normal}.bdHead b{font:700 17px var(--ui);color:#fff}
+#scr-build.city .bdHead em{color:var(--amber)}
+.bdTreas{gap:14px}.bdTreas div{display:grid;gap:1px;text-align:right}.bdTreas small{font:600 10px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.bdTreas b{font:700 15px var(--ui);color:#fff;font-variant-numeric:tabular-nums}
+.bdTreas b i{font-style:normal;color:var(--green);font-size:12px;margin-left:4px}
+.bdTools{position:absolute;right:calc(12px + var(--sr));bottom:calc(150px + var(--sb));display:grid;gap:8px}
+.bdTools .btn{min-width:118px;min-height:40px;background:rgba(6,12,16,.7)}.bdTools .btn.on{border-color:var(--red);color:#ffd2d3;background:rgba(239,75,79,.25)}
+#bdMsg{position:absolute;left:50%;bottom:calc(152px + var(--sb));transform:translateX(-50%);max-width:min(520px,calc(100% - 180px));padding:9px 14px;border-radius:10px;background:rgba(6,12,16,.78);border:1px solid rgba(255,255,255,.14);color:#fff;font:500 14px var(--ui);text-align:center;line-height:1.35;pointer-events:none}
+.bdPal{position:absolute;left:0;right:0;bottom:0;display:flex;gap:8px;overflow-x:auto;padding:10px calc(12px + var(--sr)) calc(12px + var(--sb)) calc(12px + var(--sl));background:linear-gradient(0deg,rgba(2,4,8,.9),rgba(2,4,8,.55) 75%,transparent);scrollbar-width:thin}
+.bdCard{flex:0 0 132px;display:grid;gap:3px;align-content:start;padding:9px 10px;border-radius:11px;background:rgba(14,20,24,.86);border:1px solid rgba(255,255,255,.12);text-align:left;color:var(--fg);min-height:112px}
+.bdCard canvas{width:100%;height:46px;display:block;border-radius:6px;background:rgba(255,255,255,.04)}
+.bdCard b{font:700 13.5px var(--ui);color:#fff}.bdCard small{font-size:11.5px;color:var(--muted);line-height:1.3}.bdCard span{font:700 11.5px var(--ui);color:var(--amber);font-variant-numeric:tabular-nums}
+.bdCard.on{border-color:var(--green);background:rgba(57,211,83,.14);box-shadow:0 0 0 1px var(--green) inset}.bdCard[disabled]{opacity:.45}
+#scr-build.ro .bdPal,#scr-build.ro .bdTools{display:none}
+#bdIntro{position:absolute;left:50%;top:22%;transform:translateX(-50%);display:grid;justify-items:center;gap:6px;text-align:center;pointer-events:none;animation:bdIn 1s ease-out both}
+#bdIntro em{font:700 13px var(--ui);letter-spacing:.32em;text-transform:uppercase;color:#efe6ff;font-style:normal;text-shadow:0 2px 10px #000,0 0 18px rgba(0,0,0,.8)}#bdIntro b{font:400 clamp(40px,8vw,84px)/1 var(--display);color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6);letter-spacing:.04em}
+#bdIntro span{font:600 14px var(--ui);color:#e8eef2;text-shadow:0 2px 10px #000}
+@keyframes bdIn{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+.wbCity{display:grid;gap:10px}.wbBox{display:grid;gap:8px;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
+.wbBox .wbHd{display:flex;align-items:center;gap:10px}.wbBox .wbHd>div{flex:1;display:grid;gap:2px;min-width:0}.wbBox b{font:700 15px var(--ui);color:#fff}.wbBox small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.wbYield{display:flex;flex-wrap:wrap;gap:6px}.wbYield span{padding:3px 8px;border-radius:99px;background:rgba(57,211,83,.1);border:1px solid rgba(57,211,83,.3);font:600 12px var(--ui);color:#cdf7d5;font-variant-numeric:tabular-nums}
+.wbPl{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center}.wbPl .plDot{width:34px;height:34px}
+.wbBox .btn{min-height:38px}
+@media (max-width:640px){.bdTreas div:nth-child(n+3){display:none}.bdCard{flex-basis:118px}.bdTools{bottom:calc(146px + var(--sb))}.bdTools .btn{min-width:96px}#bdMsg{max-width:calc(100% - 140px);font-size:13px}}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -2165,7 +2209,7 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
   <div class="spCross" aria-hidden="true"><i></i></div>
   <canvas id="spRadar" width="150" height="150" aria-hidden="true"></canvas>
   <div class="spTop">
-    <div class="spPanel spShip"><button class="btn small" id="spLeave">Leave</button>
+    <div class="spPanel spShip"><button class="btn small" id="spLeave">Leave</button><button class="btn small" id="spWarpBtn">Planets</button>
       <div class="spBars"><label>Hull<span class="spBar"><i id="spHp"></i></span></label><label>Shield<span class="spBar sh"><i id="spSh"></i></span></label><label>Boost<span class="spBar bo"><i id="spBo"></i></span></label></div></div>
     <div class="spPanel spStat"><div><small>Ship</small><b id="spShipN">Fighter</b></div><div><small>Ore</small><b id="spOre">0/15</b></div><div id="spPaxW" hidden><small>Seats</small><b id="spPax">0/8</b></div><div><small>Bounties</small><b id="spBty">0</b></div><div><small>Gold home</small><b id="spGold">0</b></div><div><small>Pilots</small><b id="spPil">1</b></div><div><small>Speed</small><b id="spSpd">0</b></div></div>
   </div>
@@ -2173,6 +2217,19 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
   <div class="spTouch"><div id="spStick"><div id="spKnob"></div></div>
     <div class="spBtns"><button id="spBrake">Brake</button><button id="spBoost">Boost</button><button id="spFire">Fire</button></div></div>
   <div id="spDock" hidden></div>
+  <div id="spPlan" hidden></div>
+  <div id="spWarpFx" aria-hidden="true"></div>
+</div>
+<div id="scr-build" class="screen" hidden>
+  <div id="bdView"></div>
+  <div class="bdTop">
+    <div class="bdPanel bdHead"><button class="btn small" id="bdClose">Back</button><div><em id="bdKind">Planet</em><b id="bdName">Vesper</b></div></div>
+    <div class="bdPanel bdTreas" id="bdTreas"></div>
+  </div>
+  <div class="bdTools" id="bdTools"><button class="btn small" id="bdRot">Rotate</button><button class="btn small" id="bdDel">Knock down</button></div>
+  <div id="bdMsg" hidden></div>
+  <div class="bdPal" id="bdPal"></div>
+  <div id="bdIntro" hidden><em id="bdIntroK"></em><b id="bdIntroT"></b><span id="bdIntroS"></span></div>
 </div>
 <div id="scr-records" class="screen page" hidden>
   <div class="card"><div class="row between"><h2>Records</h2><button class="btn small" data-back>Back</button></div>
@@ -12865,7 +12922,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '822a110d'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = 'b9d7597b'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21911,6 +21968,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '86', date: '2026-11-20', name: 'Planets and cities', items: ['Space: eight planets far out beyond the Moon: desert, jungle, ice, lava, ocean, rock, a ringed gas giant and a crystal world. Open Planets in Space to see them all and warp to any of them.', 'Claim a free planet for your country (2,000 to 4,000 gold and some steel, up to 3 planets a country). A shuttle lands, the command dome goes up, and the planet makes its own gold, oil, steel or food every hour.', 'Land on your planet to build on it: mines, greenhouses, refineries, foundries and habitats make more every hour; turrets and a shield put guns in orbit that shoot at enemy ships. Knocking a building down gives half its price back.', 'Planets of a country you are at war with can be taken: shoot down their guns in orbit, fly in close and take it. Its defences are lost and it is protected for 12 hours. Planets are freed when a season ends.', 'The World: every country now has a city around the President\'s palace. Build houses, apartments, office towers, markets, factories, farms, oil wells, parks, plazas, a hospital, barracks, monuments and a stadium. Buildings that pay add gold and materials to your treasury every hour, and your city is kept from season to season.', 'A new Build tab on the World screen shows your city, your planets and what they make, and every country has a button to look at its city.', 'For the President of the game: run the new world SQL (Version 10) once in Supabase before uploading this version. Until then the game works as before, without planets and cities.'] },
   { v: '85', date: '2026-11-19', name: 'Films and acting', items: ['HD add-on: four short films rendered in Blender from the game\'s own models. An opening when the game starts (once a day), one when a battle is won, one when it is lost, and one when a World season ends. They are silent, so the game\'s music keeps playing, and Skip, Escape, Enter or Space closes them. A new HD films switch in Settings turns them off.', 'HD add-on: characters in cutscenes act with movement keyframed in Blender. They shift their weight while they wait, gesture while they speak, and salute, point, fold their arms, aim, raise their hands, kneel, cheer, walk and run with real motion, blending from one action into the next instead of snapping.', 'To use the films, upload the four new files next to index.html: smfa-hd-intro.mp4, smfa-hd-victory.mp4, smfa-hd-defeat.mp4 and smfa-hd-season.mp4. If one is missing the game just carries on without it.'] },
   { v: '84', date: '2026-11-19', name: 'On the move', items: ['HD add-on: soldiers move with walk, run and crouch cycles keyframed in Blender. Heels strike and peel off the ground, hips and shoulders turn against each other, the body bobs and leans into a run, and unarmed people swing their arms. A standing soldier shifts his weight and breathes.', 'HD add-on: wheels turn. Jeeps and cars have four separate wheels that roll with the distance driven, and the front pair steers into a turn.', 'HD add-on: tank tracks run. Every track link travels round the road wheels, which turn with it, and in a turn the two tracks run at different speeds.', 'These are drawn only: how soldiers and vehicles move, aim and get hit is exactly the same with or without the add-on.'] },
   { v: '83', date: '2026-11-19', name: 'Hands on the weapon', items: ['HD add-on: soldiers hold their weapons properly. In third person the left arm reaches for the handguard, pump or foregrip; in first person both hands sit on the grips and are hidden behind the weapon where they should be.', 'HD add-on: soldiers in cutscenes wear the same combat gear as on the battlefield, and all soldiers now use the smooth jointed arms and legs under their gear.', 'New switch in Settings: Slenderman ragdolls. Off (the default) keeps a soldier normal when he is killed while knocked down. On brings back the long, flying bodies.'] },
@@ -22071,7 +22129,7 @@ const I18N = {
     'The Long War': 'The Long War', 'Thirty chapters across five acts. Your choices shape how the war ends: the Liberator, the Conqueror or the Peacemaker.': 'Tiga puluh bab dalam lima babak. Pilihan Anda menentukan akhir perang: Sang Pembebas, Sang Penakluk, atau Sang Pendamai.',
     'World event': 'Peristiwa dunia', 'Break the treaty?': 'Langgar perjanjian?', 'Attack anyway': 'Tetap serang', 'Keep the peace': 'Jaga perdamaian', 'Cutscenes': 'Cutscene',
     'Unlock gear by levelling up with EXP, buying it with Smiley Dollars (SD), or earning medals. You earn both in every battle.': 'Buka perlengkapan dengan naik level lewat EXP, membelinya dengan Smiley Dollars (SD), atau meraih medali. Keduanya didapat di setiap battle.',
-    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'Gifts from the top': 'Hadiah dari atas', 'On the move': 'Bergerak', 'Films and acting': 'Film dan akting', 'Seasons': 'Musim', 'HD soldiers and weapons': 'Prajurit dan senjata HD', 'Two more HD weapons': 'Dua senjata HD lagi', 'A new HD knife': 'Pisau HD baru', 'HD vehicles and buildings': 'Kendaraan dan bangunan HD', 'HD landmarks and ground': 'Bangunan ikonik dan tanah HD', 'Hands on the weapon': 'Tangan di senjata', 'A bigger orbit': 'Orbit yang lebih besar', 'Oil, steel and food': 'Minyak, baja dan pangan', 'The World Council': 'Dewan Dunia', 'Missions and nukes': 'Misi dan nuklir', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
+    'Tap any item to try it on, even a locked one.': 'Ketuk barang apa saja untuk mencobanya, termasuk yang masih terkunci.', 'Phones': 'HP', 'The look': 'Tampilan', 'New bodies': 'Tubuh baru', 'Visits': 'Kunjungan', 'Gifts from the top': 'Hadiah dari atas', 'On the move': 'Bergerak', 'Films and acting': 'Film dan akting', 'Planets and cities': 'Planet dan kota', 'Seasons': 'Musim', 'HD soldiers and weapons': 'Prajurit dan senjata HD', 'Two more HD weapons': 'Dua senjata HD lagi', 'A new HD knife': 'Pisau HD baru', 'HD vehicles and buildings': 'Kendaraan dan bangunan HD', 'HD landmarks and ground': 'Bangunan ikonik dan tanah HD', 'Hands on the weapon': 'Tangan di senjata', 'A bigger orbit': 'Orbit yang lebih besar', 'Oil, steel and food': 'Minyak, baja dan pangan', 'The World Council': 'Dewan Dunia', 'Missions and nukes': 'Misi dan nuklir', 'Presidential powers': 'Kekuasaan Presiden', 'The history book': 'Buku sejarah', 'World Wars': 'Perang Dunia', 'News from the World': 'Kabar dari Dunia', 'Space': 'Antariksa', 'Live battles': 'Battle langsung', 'Buildings, events and generals': 'Bangunan, peristiwa dan jenderal', 'Flags, blocs and ministers': 'Bendera, blok dan menteri', 'Your country on every device': 'Negara Anda di semua perangkat', 'Records and the World': 'Rekor dan Dunia', 'Co-op battle': 'Battle co-op', 'Party and friends': 'Party dan teman', 'More Bahasa Indonesia': 'Bahasa Indonesia lebih lengkap', 'Every screen': 'Semua layar', 'Photos and clips': 'Foto dan klip', 'Save a photo': 'Simpan foto', 'Record 12 s clip': 'Rekam klip 12 dtk', 'Photo saved': 'Foto tersimpan', 'Clip saved': 'Klip tersimpan', 'A picture of the scene, without the HUD.': 'Gambar adegan, tanpa HUD.', 'People and story': 'Orang dan cerita', 'The locker': 'Loker', 'Equipped': 'Dipakai', 'Unlocked': 'Terbuka', 'Equip': 'Pakai',
     // what's new
     'The lobby': 'Lobi', 'Lighter battles': 'Battle lebih ringan', 'Game health': 'Kesehatan game', 'Hit feel': 'Rasa pukulan', 'Real people and car damage': 'Orang realistis dan kerusakan mobil', 'Online version lock': 'Kunci versi online', 'F1 polish and replays': 'Polesan F1 dan replay'
   }
@@ -24601,7 +24659,7 @@ function wlbDefTick() {
    in rooms of up to 32 pilots (SMFA-SPACE-1, -2, ... a full room sends you on to the next). Gold and everything that
    lasts is decided on the account server (world_space_* in the world SQL). Asteroids, pirates and wrecks are each
    pilot's own; pilots, shots, kills and spilled cargo are shared. Everything runs in its own scene and renderer. */
-const SP_R = 400, SP_ROOM = 'SMFA-SPACE-', SP_BOUNTY = 10, SP_RESPAWN = 10, SP_EDGE = SP_R + 900;
+const SP_R = 400, SP_ROOM = 'SMFA-SPACE-', SP_BOUNTY = 10, SP_RESPAWN = 10, SP_EDGE = SP_R + 2500;   // v86: far enough out for the planets
 const SP_MOON = new THREE.Vector3(-560, 260, -620);   // the Moon, out beyond the stations
 const SP_SHIPS = {
   fighter: { n: 'Fighter', d: 'Fast and nimble. Every country has one.', price: 0, hp: 80, sh: 40, spd: 46, bst: 120, turn: 1.7, dmg: 10, rate: 0.13, hold: 15, pax: 0, mine: 1, sc: 0.9 },
@@ -24782,6 +24840,7 @@ function spcFire() {
   else if (kind === 'turret') { st.seen = true; o.hp -= T.dmg; spcBoom(at, 1.6, 0xffe0a0); if (o.hp <= 0) { o.mesh.visible = false; spcBoom(at, 6); st.down = S.t; if (!st.tur.some(t => t.hp > 0)) spcSay(`The turrets of ${st.name} are down. Raid the vault, or shoot the core to knock the station out.`, 5); } }
   else if (kind === 'core') { o.seen = true; o.core -= T.dmg; spcBoom(at.clone().add(muzzle.clone().sub(at).setLength(8)), 2.2, 0xffd080); if (o.core <= 0) spcCoreDown(o); }
   else if (kind === 'pilot') { spcBoom(at, 1.6, 0xffe0a0); if (S.room) S.room.send('h', { to: o.id, d: T.dmg * 0.8 }); }
+  else if (kind === 'pturret' && typeof plTurretHit === 'function') plTurretHit(o, at, st, T.dmg);
 }
 async function spcCoreDown(s) {
   const S = SPC; s.core = 0; spcBoom(s.pos.clone(), 30, 0xffa040); for (let i = 0; i < 6; i++) setTimeout(() => SPC.on && spcBoom(s.pos.clone().add(spV(rr(-12, 12), rr(-12, 12), rr(-12, 12))), 12), i * 180);
@@ -24883,7 +24942,7 @@ function spcCam(dt) {
   if (!S.camPos) { S.camPos = want.clone(); S.camUp = spV(0, 1, 0).applyQuaternion(q); }
   S.camPos.lerp(want, Math.min(1, dt * 7)); S.camUp.lerp(spV(0, 1, 0).applyQuaternion(q), Math.min(1, dt * 4)).normalize();
   S.cam.position.copy(S.camPos); S.cam.up.copy(S.camUp); S.cam.lookAt(sh.position.clone().add(spV(0, 2.5, 60).applyQuaternion(q)));
-  const fov = 62 + Math.max(0, S.speed - 42) * 0.16; if (Math.abs(S.cam.fov - fov) > 0.2) { S.cam.fov += (fov - S.cam.fov) * Math.min(1, dt * 4); S.cam.updateProjectionMatrix(); }
+  const fov = Math.min(84, 62 + Math.max(0, S.speed - 42) * 0.16); if (Math.abs(S.cam.fov - fov) > 0.2) { S.cam.fov += (fov - S.cam.fov) * Math.min(1, dt * 4); S.cam.updateProjectionMatrix(); }
   S.stars.position.copy(S.cam.position);
 }
 
@@ -26318,4 +26377,564 @@ const slenderOn = () => settings.slender === true;
     if ($('#st-slender')) optGroup('#st-slender', [{ k: 'off', name: 'Off', desc: 'Normal bodies' }, { k: 'on', name: 'On', desc: 'Long, flying bodies' }], slenderOn() ? 'on' : 'off', v => { settings.slender = v === 'on'; saveSettings(); renderSettings(); });
   };
 }
+
+/* ================= PLANETS AND CITIES (v86) =================
+   Space: eight planets far out beyond the Moon. Fly there (or warp from the Planets list), claim a free one for your
+   country, then land and build on it: mines, farms, refineries, foundries and habitats make gold and materials every
+   hour; turrets and a shield defend it. A country at war with the owner can shoot the turrets down in orbit and take it.
+   The World: every country also has a city around the President's palace, built the same way (houses, towers,
+   markets, factories, farms, oil wells, parks, a stadium...). Anyone can look at anyone's city.
+   The rules, prices and what everything makes are decided on the account server (Version 10 of the world SQL);
+   the tables below are the same numbers, for showing them. */
+const PLN = { old: false };
+const PL_GRID = { planet: 8, city: 10 }, PL_CELL = 5;
+const PL_CAT = {
+  planet: {
+    dome: { n: 'Command dome', d: 'Your base. It stays.', g: 0, s: 0, max: 1, w: 2 },
+    mine: { n: 'Mine', d: '+25 gold an hour', g: 400, s: 0, res: 'gold', r: 25, max: 8, w: 1 },
+    farm: { n: 'Greenhouse', d: '+10 food an hour', g: 300, s: 0, res: 'food', r: 10, max: 6, w: 1 },
+    refinery: { n: 'Refinery', d: '+8 oil an hour', g: 400, s: 20, res: 'oil', r: 8, max: 6, w: 1 },
+    foundry: { n: 'Foundry', d: '+8 steel an hour', g: 450, s: 0, res: 'steel', r: 8, max: 6, w: 1 },
+    habitat: { n: 'Habitat', d: '+6 gold an hour in rent', g: 250, s: 0, res: 'gold', r: 6, max: 10, w: 1 },
+    turret: { n: 'Turret', d: '+1 defence: shoots enemy ships in orbit', g: 500, s: 40, def: 1, max: 6, w: 1 },
+    shield: { n: 'Shield', d: '+3 defence: two more guns in orbit', g: 1200, s: 100, def: 3, max: 1, w: 2 },
+    pad: { n: 'Landing pad', d: 'For your shuttles', g: 200, s: 0, max: 4, w: 1 },
+    beacon: { n: 'Beacon', d: 'A light seen from orbit', g: 300, s: 0, max: 4, w: 1 },
+    road: { n: 'Road', d: 'Connects your buildings', g: 10, s: 0, max: 80, w: 1 }
+  },
+  city: {
+    house: { n: 'House', d: '+2 gold an hour in taxes', g: 60, s: 0, res: 'gold', r: 2, max: 30, w: 1 },
+    apartment: { n: 'Apartments', d: '+6 gold an hour', g: 180, s: 0, res: 'gold', r: 6, max: 20, w: 1 },
+    tower: { n: 'Office tower', d: '+14 gold an hour', g: 450, s: 20, res: 'gold', r: 14, max: 10, w: 1 },
+    market: { n: 'Market', d: '+10 gold an hour', g: 300, s: 0, res: 'gold', r: 10, max: 6, w: 1 },
+    factory: { n: 'Factory', d: '+6 steel an hour', g: 500, s: 0, res: 'steel', r: 6, max: 4, w: 1 },
+    farm: { n: 'Farm', d: '+8 food an hour', g: 250, s: 0, res: 'food', r: 8, max: 6, w: 1 },
+    well: { n: 'Oil well', d: '+6 oil an hour', g: 450, s: 30, res: 'oil', r: 6, max: 4, w: 1 },
+    park: { n: 'Park', d: 'Trees, a fountain, benches', g: 80, s: 0, max: 12, w: 1 },
+    plaza: { n: 'Plaza', d: 'A square with a statue', g: 120, s: 0, max: 6, w: 1 },
+    hospital: { n: 'Hospital', d: 'For the people', g: 400, s: 0, max: 2, w: 1 },
+    barracks: { n: 'Barracks', d: 'The army at home', g: 500, s: 20, max: 2, w: 1 },
+    monument: { n: 'Monument', d: 'To your country\'s glory', g: 800, s: 0, max: 2, w: 1 },
+    stadium: { n: 'Stadium', d: '+30 gold an hour in tickets', g: 1500, s: 80, res: 'gold', r: 30, max: 1, w: 2 },
+    road: { n: 'Road', d: 'Connects your city', g: 10, s: 0, max: 120, w: 1 }
+  }
+};
+// where the planets are, how big, and how they look (the server knows the same eight by id)
+const PL_LOOK = {
+  vesper: { d: [0.9, 0.2, -0.4], at: 1900, r: 110, c: ['#c8975a', '#8a5a2e', '#efc98e'], air: '#ffcf8a' },
+  aurelia: { d: [-0.3, 0.15, 0.95], at: 1750, r: 120, c: ['#2f7a3e', '#1d4d27', '#7cba52'], air: '#8affb0' },
+  cryon: { d: [0.1, 0.85, 0.3], at: 2100, r: 95, c: ['#cfe6f2', '#8fb6cc', '#ffffff'], air: '#b8e4ff' },
+  pyra: { d: [-0.9, -0.2, 0.2], at: 1800, r: 90, c: ['#2a1a16', '#120a08', '#ff5a1a'], air: '#ff7a3a', glow: true },
+  thalassa: { d: [0.4, -0.6, 0.7], at: 2000, r: 130, c: ['#1f5fa8', '#123a6e', '#4f9a4a'], air: '#6ab8ff' },
+  korr: { d: [-0.2, -0.7, -0.65], at: 1650, r: 80, c: ['#7d7468', '#4e4842', '#a99c88'], air: '#c8beb0' },
+  nimbus: { d: [-0.6, 0.55, -0.15], at: 2350, r: 170, c: ['#6a7fb8', '#3e4c80', '#c4cdf0'], air: '#a8b8ff', bands: true },
+  elysium: { d: [0.55, -0.15, -0.8], at: 2200, r: 105, c: ['#5a3fa8', '#2a1a5a', '#d6b8ff'], air: '#d8b8ff', glow: true }
+};
+const PL_KINDS = { desert: 'Desert', jungle: 'Jungle', ice: 'Ice', lava: 'Lava', ocean: 'Ocean', rock: 'Rock', storm: 'Gas giant', crystal: 'Crystal' };
+const PL_RES = { gold: 'gold', oil: 'oil', steel: 'steel', food: 'food' };
+const plPos = id => { const L = PL_LOOK[id]; return spV(L.d[0], L.d[1], L.d[2]).normalize().multiplyScalar(L.at); };
+const plList = () => (WL.st && Array.isArray(WL.st.planets) ? WL.st.planets : []).filter(p => PL_LOOK[p.id]);
+const plGet = id => plList().find(p => p.id === id) || null;
+const plRelOf = p => !p || !p.owner ? 'free' : p.mine ? 'mine' : p.rel === 'war' ? 'war' : p.rel === 'peace' || p.rel === 'alliance' ? 'treaty' : 'none';
+// what a layout makes an hour, and its defence
+function plYield(layout, mode, base) {
+  const out = { gold: 0, oil: 0, steel: 0, food: 0, def: 0 };
+  for (const it of layout || []) { const c = PL_CAT[mode][it.k]; if (!c) continue; if (c.res) out[c.res] += c.r; if (c.def) out.def += c.def; }
+  if (base) out[base.res] += base.rate;
+  return out;
+}
+const plYieldText = y => ['gold', 'oil', 'steel', 'food'].filter(k => y[k]).map(k => `+${wlNum(y[k])} ${PL_RES[k]}`).join(' · ') || 'nothing yet';
+const plDotCss = id => { const L = PL_LOOK[id]; return L ? `background:radial-gradient(circle at 35% 32%,${L.c[2]},${L.c[0]} 45%,${L.c[1]} 85%)` : ''; };
+
+// the World's state now comes with the planets and my city; an older server without them still works
+{
+  const _wc = wlCall;
+  wlCall = async function (fn, args, quiet) {
+    if ((fn === 'world_state' || fn === 'world_season_end') && !PLN.old) {
+      const e0 = WL.err, r = await _wc(fn + '_v10', args, true);
+      if (r && (fn !== 'world_state' || r.players)) return r;
+      if (r && fn === 'world_season_end') return r;
+      PLN.old = true; WL.err = e0;
+    }
+    return _wc.apply(this, arguments);
+  };
+}
+
+/* ---------- textures ---------- */
+function plNoise(seed) {
+  const rnd = mulberry32(seed), N = 64, g = new Float32Array(N * N); for (let i = 0; i < g.length; i++) g[i] = rnd();
+  const at = (x, y) => g[((y % N + N) % N) * N + ((x % N + N) % N)];
+  const sm = t => t * t * (3 - 2 * t);
+  const v = (x, y) => { const xi = Math.floor(x), yi = Math.floor(y), xf = sm(x - xi), yf = sm(y - yi); return (at(xi, yi) * (1 - xf) + at(xi + 1, yi) * xf) * (1 - yf) + (at(xi, yi + 1) * (1 - xf) + at(xi + 1, yi + 1) * xf) * yf; };
+  return (x, y) => v(x, y) * 0.5 + v(x * 2.03, y * 2.03) * 0.25 + v(x * 4.1, y * 4.1) * 0.15 + v(x * 8.3, y * 8.3) * 0.1;
+}
+const plHex = h => { const c = new THREE.Color(h); return [c.r * 255, c.g * 255, c.b * 255]; };
+function plTex(id, W, H, tile) {
+  const L = PL_LOOK[id], c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d'), im = g.createImageData(W, H), n = plNoise(id.length * 977 + id.charCodeAt(0));
+  const A = plHex(L.c[0]), B = plHex(L.c[1]), C = plHex(L.c[2]), S = tile ? 64 / W * 3 : 10 / W;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let v = tile ? n(x * S, y * S) : n(x * S * (W / 64) / 10 * 6.4, y * S * (W / 64) / 10 * 6.4);
+    if (L.bands) v = 0.55 * v + 0.45 * (0.5 + 0.5 * Math.sin(y / H * 26 + n(x * 0.02, y * 0.05) * 6));
+    let col;
+    if (id === 'thalassa') col = v > 0.6 ? C : v > 0.56 ? [214, 196, 140] : A.map((a, i) => a * (0.7 + v * 0.6));
+    else if (L.glow && v > 0.66) { const k = Math.min(1, (v - 0.66) * 6); col = A.map((a, i) => a + (C[i] - a) * k); }
+    else { const k = v; col = k < 0.5 ? B.map((b, i) => b + (A[i] - b) * (k / 0.5)) : A.map((a, i) => a + (C[i] - a) * ((k - 0.5) / 0.5) * 0.7); }
+    const o = (y * W + x) * 4; im.data[o] = col[0]; im.data[o + 1] = col[1]; im.data[o + 2] = col[2]; im.data[o + 3] = 255;
+  }
+  g.putImageData(im, 0, 0);
+  if (id === 'cryon' && !tile) { g.fillStyle = 'rgba(255,255,255,.85)'; g.fillRect(0, 0, W, H * 0.12); g.fillRect(0, H * 0.88, W, H * 0.12); }
+  const tx = new THREE.CanvasTexture(c); if (tile) { tx.wrapS = tx.wrapT = THREE.RepeatWrapping; } tx.anisotropy = 4; return tx;
+}
+// lit windows on a wall, for towers and habitats
+let PL_WIN = null;
+function plWinTex() {
+  if (PL_WIN) return PL_WIN; const c = document.createElement('canvas'); c.width = 64; c.height = 128; const g = c.getContext('2d'), rnd = mulberry32(9);
+  g.fillStyle = '#2b3138'; g.fillRect(0, 0, 64, 128);
+  for (let y = 4; y < 128; y += 10) for (let x = 4; x < 64; x += 10) { g.fillStyle = rnd() < 0.55 ? `rgba(255,${200 + rnd() * 40},${120 + rnd() * 60},.95)` : '#4b5a68'; g.fillRect(x, y, 6, 6); }
+  PL_WIN = new THREE.CanvasTexture(c); PL_WIN.wrapS = PL_WIN.wrapT = THREE.RepeatWrapping; return PL_WIN;
+}
+
+/* ---------- the planets in space ---------- */
+function plSpaceBuild() {
+  const S = SPC, sc = S.scene; S.planets = [];
+  for (const id of Object.keys(PL_LOOK)) {
+    const L = PL_LOOK[id], P = plGet(id) || { id, name: id[0].toUpperCase() + id.slice(1), owner: null, layout: [], def: 0 };
+    const g = new THREE.Group(); g.position.copy(plPos(id)); sc.add(g);
+    const body = new THREE.Mesh(new THREE.SphereGeometry(L.r, 48, 32), new THREE.MeshLambertMaterial({ map: plTex(id, 512, 256), emissive: L.glow ? 0x221008 : 0x000000 })); g.add(body);
+    g.add(new THREE.Mesh(new THREE.SphereGeometry(L.r * 1.06, 32, 24), new THREE.MeshBasicMaterial({ color: new THREE.Color(L.air), transparent: true, opacity: 0.16, side: THREE.BackSide, blending: THREE.AdditiveBlending, depthWrite: false })));
+    if (id === 'nimbus') { const ring = new THREE.Mesh(new THREE.RingGeometry(L.r * 1.35, L.r * 2.1, 64), new THREE.MeshBasicMaterial({ color: 0xc4cdf0, transparent: true, opacity: 0.35, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = 1.2; g.add(ring); }
+    const rel = plRelOf(P), pl = { id, name: P.name, P, rel, g, body, r: L.r, pos: g.position.clone(), pods: [], seen: false };
+    if (P.owner) {
+      const col = new THREE.Color(spcCol(P.owner)), band = new THREE.Mesh(new THREE.TorusGeometry(L.r * 1.18, 0.9, 6, 96), new THREE.MeshBasicMaterial({ color: col }));
+      band.rotation.x = Math.PI / 2 + 0.25; g.add(band); pl.band = band;
+      // the base on the surface: a dome and lights, facing the sun
+      const sunDir = spV(1, 0.45, 0.6).normalize(), base = new THREE.Group(); base.position.copy(sunDir.clone().multiplyScalar(L.r)); base.lookAt(sunDir.clone().multiplyScalar(L.r * 2)); g.add(base);
+      { const dm = new THREE.Mesh(new THREE.SphereGeometry(6, 16, 10, 0, TAU, 0, Math.PI / 2), new THREE.MeshLambertMaterial({ color: 0x9fd8ff, emissive: 0x224466 })); dm.rotation.x = Math.PI / 2; base.add(dm); }
+      for (let i = 0; i < 6; i++) { const a = i / 6 * TAU, m = new THREE.Mesh(new THREE.SphereGeometry(1.1, 8, 6), new THREE.MeshBasicMaterial({ color: col })); m.position.set(Math.cos(a) * 11, Math.sin(a) * 11, 0.5); base.add(m); }
+      // guns in orbit: one for every turret, two for a shield
+      const n = (P.layout || []).filter(x => x.k === 'turret').length + 2 * (P.layout || []).filter(x => x.k === 'shield').length;
+      for (let i = 0; i < n; i++) { const pod = new THREE.Group(), a = i / Math.max(1, n) * TAU;
+        pod.add(new THREE.Mesh(new THREE.BoxGeometry(5, 5, 7), new THREE.MeshLambertMaterial({ color: rel === 'war' ? 0x8a2f2f : 0x7f8a93, emissive: rel === 'war' ? 0x3a0b0b : 0x000000 })));
+        const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 7, 6), new THREE.MeshLambertMaterial({ color: 0x2a2f34 })); bar.rotation.x = Math.PI / 2; bar.position.z = 5; pod.add(bar);
+        g.add(pod); pl.pods.push({ mesh: pod, a, hp: 40, fireT: rr(0.5, 2), pl }); }
+    }
+    S.planets.push(pl);
+  }
+}
+function plPodPlace(pl, t) { const R = pl.r + 34; for (const q of pl.pods) { const a = q.a + t * 0.05; q.mesh.position.set(Math.cos(a) * R, Math.sin(a * 2) * 12, Math.sin(a) * R); q.mesh.lookAt(pl.g.position.clone().multiplyScalar(-1).add(q.mesh.position)); } }
+function plTurretHit(o, at, pl, dmg) {
+  o.hp -= dmg; spcBoom(at, 1.8, 0xffe0a0); pl.seen = true;
+  if (o.hp <= 0) { o.mesh.visible = false; spcBoom(at, 7);
+    if (!pl.pods.some(q => q.hp > 0)) spcSay(`The guns of ${pl.name} are down. Fly in close and take the planet.`, 5); }
+}
+function plSpaceStep(dt) {
+  const S = SPC; if (!S.planets) return; const sh = S.ship.position;
+  let near = null, nd = 1e9;
+  for (const pl of S.planets) {
+    pl.body.rotation.y += dt * 0.012; if (pl.band) pl.band.rotation.z += dt * 0.05; plPodPlace(pl, S.t);
+    const d = pl.pos.distanceTo(sh), alt = d - pl.r;
+    if (alt < nd) { nd = alt; near = pl; }
+    if (!S.docked && !S.dead && alt < 12) { sh.copy(pl.pos).add(sh.clone().sub(pl.pos).setLength(pl.r + 12)); spcHurt(25 * dt); if (S.t > (S.warnT || 0)) { S.warnT = S.t + 2; spcSay(`Too low over ${pl.name}. Pull up.`); } }
+    // the guns of a planet you are at war with shoot back
+    if (pl.rel === 'war' && !S.docked && !S.dead && alt < 260) {
+      if (!pl.seen && pl.pods.some(q => q.hp > 0)) { pl.seen = true; spcSay(`The guns of ${pl.name} have seen you.`, 2.5); }
+      for (const q of pl.pods) { if (q.hp <= 0) continue; q.fireT -= dt; if (q.fireT > 0) continue; q.fireT = rr(0.9, 1.7);
+        const at = q.mesh.getWorldPosition(spV(0, 0, 0)), to = sh.clone().sub(at), dd = to.length(); to.normalize(); const hit = Math.random() < 0.3;
+        spcBolt(at, hit ? to : to.clone().add(spV(rr(-0.07, 0.07), rr(-0.07, 0.07), rr(-0.07, 0.07))).normalize(), 'foe', dd); if (hit) spcHurt(6); } }
+  }
+  S.nearPl = near && nd < 110 ? near : null; S.nearPlD = nd;
+}
+// warp: a quick jump to a planet
+function plWarp(id) {
+  const S = SPC, pl = (S.planets || []).find(p => p.id === id); if (!pl || S.dead || S.warp) return;
+  if (S.docked) spcLaunch();
+  const from = S.ship.position.clone(), dir = from.clone().sub(pl.pos).normalize(), to = pl.pos.clone().add(dir.multiplyScalar(pl.r + 70));
+  S.warp = { pl, from, to, t: 0, dur: 2.6, q0: S.ship.quaternion.clone() }; $('#spPlan').hidden = true; const fx = $('#spWarpFx'); if (fx) fx.classList.add('on');
+  try { SFX.tone(0.5, 2.2, 120, 900, 'sawtooth'); } catch (e) { }
+}
+function plWarpStep(dt) {
+  const S = SPC, W = S.warp; W.t += dt; const k = Math.min(1, W.t / W.dur), e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+  S.ship.position.lerpVectors(W.from, W.to, e);
+  const look = new THREE.Matrix4().lookAt(W.pl.pos, S.ship.position, S.ship.up); const q = new THREE.Quaternion().setFromRotationMatrix(look);
+  S.ship.quaternion.slerp(q, Math.min(1, dt * 5)); S.speed = k < 1 ? 30 + 130 * Math.sin(Math.PI * k) : 30;   // (the camera widens with speed: kept below 160)
+  // streaks of light rush past the ship while it jumps
+  if (!S.warpFx) { const n = 260, pos = new Float32Array(n * 6), rnd = mulberry32(31); for (let i = 0; i < n; i++) { const a = rnd() * TAU, r = 8 + rnd() * 60, z = rnd() * 400 - 200; pos.set([Math.cos(a) * r, Math.sin(a) * r, z, Math.cos(a) * r, Math.sin(a) * r, z + 14 + rnd() * 30], i * 6); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); S.warpFx = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0xdfe6ff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false })); S.scene.add(S.warpFx); }
+  const fx3 = S.warpFx; fx3.visible = k < 1; fx3.position.copy(S.ship.position); fx3.quaternion.copy(S.ship.quaternion); fx3.material.opacity = Math.sin(Math.PI * k) * 0.9; fx3.scale.set(1, 1, 1 + 6 * Math.sin(Math.PI * k));
+  if (k >= 1) { S.warp = null; S.speed = 20; fx3.visible = false; const fx = $('#spWarpFx'); if (fx) fx.classList.remove('on'); spcSay(`${W.pl.name}. ${plActText(W.pl)}`, 5); }
+}
+function plActText(pl) { const r = pl.rel; return r === 'free' ? 'No country holds it: claim it.' : r === 'mine' ? 'Yours: land to build.' : r === 'war' ? 'An enemy planet: shoot down its guns, then take it.' : `It belongs to ${pl.P.owner}.`; }
+function plPanel() {
+  const S = SPC, el = $('#spPlan'); if (!el) return; const me = wlMe(), sh = S.ship.position, list = (S.planets || []).slice().sort((a, b) => a.pos.distanceTo(sh) - b.pos.distanceTo(sh));
+  el.innerHTML = `<div class="plCard"><em>Deep space</em><h2>Planets</h2><p>Claim a free planet for your country, build on it, and it pays every hour. A country can hold 3. Planets of a country you are at war with can be taken.</p>
+    <div class="plList">${list.map(pl => { const P = pl.P, L = PL_LOOK[pl.id], km = (pl.pos.distanceTo(sh) / 1000).toFixed(1) + ' km';
+      const who = !P.owner ? `Free · ${wlNum(P.price || 0)} gold, ${wlNum(P.steel || 0)} steel` : P.mine ? 'Yours' : `${esc(P.owner)}${pl.rel === 'war' ? ' · at war' : ''}`;
+      return `<div class="plRow ${pl.rel}"><span class="plDot" style="${plDotCss(pl.id)}"></span><div><b>${esc(pl.name)}</b><small>${PL_KINDS[P.kind] || ''} · +${wlNum(P.rate || 0)} ${PL_RES[P.res] || ''} an hour · ${who}</small><small>${km} away</small></div>
+        <button class="btn small${pl.rel === 'mine' || pl.rel === 'free' ? ' primary' : ''}" data-warp="${pl.id}">Warp</button></div>`; }).join('')}</div>
+    <div class="row"><button class="btn" id="plClose">Close</button></div></div>`;
+  el.hidden = false; el.querySelector('#plClose').onclick = () => { el.hidden = true; };
+  el.querySelectorAll('[data-warp]').forEach(b => b.onclick = () => plWarp(b.dataset.warp));
+  if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+async function plClaim(pl) {
+  const S = SPC; if (S.busy) return; S.busy = true;
+  const r = await wlCall('world_planet_claim', { p_id: pl.id }, true); S.busy = false; WL.err = '';
+  if (r && r.ok !== false) { try { SFX.ok(); } catch (e) { } await wlLoad(true); plOpenBuild({ mode: 'planet', id: pl.id, back: 'space', intro: true }); }
+  else spcSay((r && r.err) || 'The claim did not go through.', 5);
+}
+async function plSeize(pl) {
+  const S = SPC; if (S.busy) return; S.busy = true;
+  const r = await wlCall('world_planet_seize', { p_id: pl.id }, true); S.busy = false; WL.err = '';
+  if (r && r.ok !== false) { try { SFX.ok(); } catch (e) { } spcSay(`${pl.name} is yours. Its defences were destroyed in the fight.`, 6); await wlLoad(true); plOpenBuild({ mode: 'planet', id: pl.id, back: 'space', intro: true, taken: true }); }
+  else spcSay((r && r.err) || 'The planet held.', 5);
+}
+{
+  // wire the planets into the flight: building the scene, every step, the action button, the markers and the radar
+  const _b = spcBuild; spcBuild = function () { const r = _b.apply(this, arguments); try { plSpaceBuild(); } catch (e) { console.warn('planets', e); } return r; };
+  const _s = spcStep; spcStep = function (dt) {
+    const S = SPC;
+    if (S.warp) { const keep = S.docked; S.docked = { warp: true }; plWarpStep(dt); const r = _s.call(this, dt); S.docked = keep; plSpaceStep(0); return r; }
+    const r = _s.apply(this, arguments); try { plSpaceStep(dt); } catch (e) { console.warn('planets step', e); } return r;
+  };
+  const _t = spcTargets; spcTargets = function () { const T = _t.apply(this, arguments), S = SPC;
+    for (const pl of S.planets || []) if (pl.rel === 'war') for (const q of pl.pods) if (q.hp > 0 && q.mesh.visible) T.push([q, q.mesh.getWorldPosition(spV(0, 0, 0)), 5, 'pturret', pl]);
+    return T; };
+  const _a = spcActNow; spcActNow = function () {
+    const S = SPC, A = _a.apply(this, arguments); if (A && A.l) return A; if (S.docked || S.dead || S.warp) return A;
+    const pl = S.nearPl; if (!pl) return A; const me = wlMe(), pres = me && me.role !== 'minister', P = pl.P;
+    if (pl.rel === 'free') return pres ? { l: `Claim ${pl.name} · ${wlNum(P.price)} gold`, fn: () => plClaim(pl) } : { l: '', why: 'Only the President can claim a planet.' };
+    if (pl.rel === 'mine') return { l: `Land on ${pl.name}`, fn: () => plOpenBuild({ mode: 'planet', id: pl.id, back: 'space' }) };
+    if (pl.rel === 'war') { if (P.protect && new Date(P.protect) > new Date()) return { l: '', why: `${pl.name} is protected for now.` };
+      return pl.pods.some(q => q.hp > 0) ? { l: '', why: `Shoot down the guns of ${pl.name} first.` } : { l: `Take ${pl.name}`, fn: () => plSeize(pl) }; }
+    return { l: `Look at ${pl.name}`, fn: () => plOpenBuild({ mode: 'planet', id: pl.id, back: 'space', ro: true }) };
+  };
+  const _h = spcHud; spcHud = function () { const r = _h.apply(this, arguments), S = SPC; if (!S.planets) return r; const sh = S.ship.position;
+    for (const pl of S.planets) { const d = pl.pos.distanceTo(sh) - pl.r, lab = `${esc(pl.name)}${pl.P.owner ? ' · ' + esc(pl.P.owner) : ''} · ${d > 1000 ? (d / 1000).toFixed(1) + ' km' : Math.round(d) + ' m'}`;
+      spcMark('pl' + pl.id, pl.pos, 'planet ' + (pl.rel === 'free' ? 'none' : pl.rel), lab, pl.rel === 'mine' || (S.warp && S.warp.pl === pl));
+      pl.pods.forEach((q, i) => { if (pl.rel === 'war' && q.hp > 0 && d < 300) spcMark(`pq${pl.id}${i}`, q.mesh.getWorldPosition(spV(0, 0, 0)), 'pturret', 'Gun', false); else spcHide(`pq${pl.id}${i}`); }); }
+    return r; };
+  const _rd = spcRadar; spcRadar = function () { const r = _rd.apply(this, arguments), c = $('#spRadar'), S = SPC; if (!c || !S.planets) return r;
+    const g = c.getContext('2d'), W = c.width, sh = S.ship, inv = sh.quaternion.clone().invert(), k = (W / 2 - 6) / 520; g.save(); g.translate(W / 2, c.height / 2);
+    for (const pl of S.planets) { const v = pl.pos.clone().sub(sh.position).applyQuaternion(inv); let x = v.x * k, y = -v.z * k; const m = Math.hypot(x, y), lim = W / 2 - 7; if (m > lim) { x *= lim / m; y *= lim / m; }
+      g.fillStyle = PL_LOOK[pl.id].c[0]; g.strokeStyle = pl.rel === 'mine' ? '#39d353' : pl.rel === 'war' ? '#ff6b61' : '#c9b8ff'; g.lineWidth = 1.3; g.beginPath(); g.arc(-x, y, 4, 0, TAU); g.fill(); g.stroke(); }
+    g.restore(); return r; };
+  const btn = $('#spWarpBtn'); if (btn) btn.onclick = () => { const p = $('#spPlan'); if (p && !p.hidden) p.hidden = true; else plPanel(); };
+  const _o = spcOpen; spcOpen = function () { SPC.warpFx = null; const r = _o.apply(this, arguments); const p = $('#spPlan'); if (p) p.hidden = true; const fx = $('#spWarpFx'); if (fx) fx.classList.remove('on'); SPC.warp = null; return r; };
+}
+
+/* ---------- the builder: one screen for a planet's base and for a city ---------- */
+const BLD = { on: false, r: null, scene: null, cam: null, raf: 0, mode: 'planet', id: '', ro: false, layout: [], meshes: [], pick: '', rot: 0, del: false, yaw: 0.7, pitch: 0.72, dist: 120, tgt: null, anim: [], t: 0, busy: false, back: 'world', intro: null, msgT: 0 };
+const bdHalf = () => PL_GRID[BLD.mode];
+const bdW = k => (PL_CAT[BLD.mode][k] || { w: 1 }).w;
+function bdFits(layout, k, x, z) {
+  const half = bdHalf(), w = bdW(k);
+  if (x < -half || z < -half || x + w > half || z + w > half) return false;
+  if (BLD.mode === 'city' && x <= 0 && x + w - 1 >= -1 && z <= 0 && z + w - 1 >= -1) return false;
+  return !layout.some(it => { const iw = bdW(it.k); return x < it.x + iw && it.x < x + w && z < it.z + iw && it.z < z + w; });
+}
+const bdMat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.75, metalness: 0.05 }, o || {}));
+// one building, about one cell (5 m) across, or two for the big ones; its front faces +z
+function bdModel(mode, k, seed) {
+  const g = new THREE.Group(), rnd = mulberry32((seed || 1) * 7919 + k.length * 131), C = PL_CELL;
+  const box = (w, h, d, m, x, y, z, ry) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); o.position.set(x || 0, (y || 0) + h / 2, z || 0); if (ry) o.rotation.y = ry; o.castShadow = o.receiveShadow = true; g.add(o); return o; };
+  const cyl = (rt, rb, h, m, x, y, z, seg) => { const o = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg || 16), m); o.position.set(x || 0, (y || 0) + h / 2, z || 0); o.castShadow = o.receiveShadow = true; g.add(o); return o; };
+  const sph = (r, m, x, y, z, half) => { const o = new THREE.Mesh(new THREE.SphereGeometry(r, 20, 12, 0, TAU, 0, half ? Math.PI / 2 : Math.PI), m); o.position.set(x || 0, y || 0, z || 0); o.castShadow = true; g.add(o); return o; };
+  const lamp = (c, x, y, z, r) => { const o = new THREE.Mesh(new THREE.SphereGeometry(r || 0.18, 8, 6), new THREE.MeshBasicMaterial({ color: c })); o.position.set(x, y, z); g.add(o); return o; };
+  const steel = bdMat(0x9aa3ab, { metalness: 0.5, roughness: 0.45 }), dark = bdMat(0x3a4148, { metalness: 0.4, roughness: 0.5 }), white = bdMat(0xe8ebee), glass = bdMat(0x9fd8ff, { transparent: true, opacity: 0.45, metalness: 0.2, roughness: 0.1 });
+  const win = bdMat(0xffffff, { map: plWinTex(), emissive: 0xffffff, emissiveMap: plWinTex(), emissiveIntensity: 0.55 });
+  const tick = fn => { g.userData.tick = fn; };
+  if (mode === 'planet') {
+    if (k === 'dome') { cyl(4.6, 4.9, 0.8, dark); sph(4.4, glass, 0, 0.8, 0, true); cyl(1.2, 1.2, 3.2, steel, 0, 0.8); cyl(0.12, 0.12, 4, steel, 3, 0.8, 3); const fl = box(1.4, 0.8, 0.05, bdMat(0x39d353), 3.7, 4, 3); fl.userData.flag = true; g.userData.flag = fl;
+      for (let i = 0; i < 8; i++) { const a = i / 8 * TAU; lamp(0x66d9ff, Math.cos(a) * 4.8, 0.9, Math.sin(a) * 4.8); } box(1.6, 1.6, 2.4, steel, 0, 0, 5); }
+    else if (k === 'mine') { box(4, 0.4, 4, dark); for (const [x, z] of [[-1.3, -1.3], [1.3, -1.3], [-1.3, 1.3], [1.3, 1.3]]) { const leg = box(0.22, 5, 0.22, steel, x * 0.8, 0.4, z * 0.8); leg.rotation.z = x * 0.04; }
+      box(2.2, 1, 2.2, bdMat(0xf2b33d, { metalness: 0.3 }), 0, 5.2); const drill = cyl(0.25, 0.6, 3, dark, 0, 0.4); const pile = new THREE.Mesh(new THREE.ConeGeometry(1.2, 1.2, 10), bdMat(0x7dffb0, { emissive: 0x1a6a3a, roughness: 0.4 })); pile.position.set(1.4, 0.9, 1.4); g.add(pile);
+      tick(t => { drill.rotation.y = t * 4; drill.position.y = 0.4 + Math.abs(Math.sin(t * 1.3)) * 0.5; }); }
+    else if (k === 'farm') { box(4.4, 0.3, 4.4, dark); const arch = new THREE.Mesh(new THREE.CylinderGeometry(1.9, 1.9, 4.2, 18, 1, false, 0, Math.PI), glass); arch.rotation.set(0, 0, Math.PI / 2); arch.rotation.order = 'ZYX'; arch.rotation.y = Math.PI / 2; arch.position.y = 0.3; g.add(arch);
+      for (let i = -1; i <= 1; i++) box(0.7, 0.5, 3.8, bdMat(0x3fae4a, { emissive: 0x0e3a12 }), i * 1.1, 0.3); lamp(0xb8ffc0, 0, 2.1, 2.1, 0.22); }
+    else if (k === 'refinery') { box(4.4, 0.3, 4.4, dark); cyl(1, 1, 3, white, -1, 0.3, -0.8); cyl(0.8, 0.8, 2.4, white, 0.9, 0.3, -0.9); cyl(0.18, 0.18, 4.6, steel, 1.5, 0.3, 1.4); const fl = new THREE.Mesh(new THREE.ConeGeometry(0.35, 1.1, 8), new THREE.MeshBasicMaterial({ color: 0xffa040, transparent: true, opacity: 0.9 })); fl.position.set(1.5, 5.4, 1.4); g.add(fl);
+      box(3, 0.3, 0.3, steel, 0, 1.5, 0.6); tick(t => { const s = 0.85 + Math.sin(t * 13) * 0.15 + Math.sin(t * 7.3) * 0.1; fl.scale.set(s, s * 1.2, s); }); }
+    else if (k === 'foundry') { box(4, 2.6, 3.4, bdMat(0x6a5a50)); box(4.2, 0.4, 3.6, dark, 0, 2.6); cyl(0.45, 0.55, 3.6, dark, 1.2, 2.6, -0.8); const fw = box(1.8, 1, 0.1, new THREE.MeshBasicMaterial({ color: 0xff7a2a }), -0.6, 0.6, 1.72);
+      tick(t => { fw.material.color.setHSL(0.06, 1, 0.48 + Math.sin(t * 5) * 0.06); }); }
+    else if (k === 'habitat') { const h = 2 + Math.floor(rnd() * 2); for (let i = 0; i < h; i++) cyl(1.6, 1.6, 1.5, i % 2 ? white : steel, 0, i * 1.6); for (let i = 0; i < h; i++) cyl(1.62, 1.62, 0.5, win, 0, i * 1.6 + 0.5); sph(1.6, glass, 0, h * 1.6, 0, true); }
+    else if (k === 'turret') { cyl(1.6, 1.9, 1.2, dark); const head = new THREE.Group(); head.position.y = 1.2; g.add(head); const hb = new THREE.Mesh(new THREE.BoxGeometry(2, 1.2, 2), bdMat(0x8a2f2f, { metalness: 0.4 })); hb.position.y = 0.6; head.add(hb);
+      for (const s of [-0.45, 0.45]) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 2.6, 8), dark); b.rotation.x = Math.PI / 2 - 0.35; b.position.set(s, 1.1, 1.3); head.add(b); }
+      tick(t => { head.rotation.y = Math.sin(t * 0.5 + (seed || 0)) * 1.4; }); }
+    else if (k === 'shield') { cyl(1.2, 1.6, 4.5, steel); sph(0.9, new THREE.MeshBasicMaterial({ color: 0x8fd8ff }), 0, 4.8, 0);
+      const bub = sph(C * 2.6, new THREE.MeshBasicMaterial({ color: 0x66d9ff, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }), 0, 0, 0, true); bub.castShadow = false;
+      tick(t => { bub.material.opacity = 0.1 + Math.sin(t * 2) * 0.03; }); }
+    else if (k === 'pad') { box(4.6, 0.25, 4.6, bdMat(0x4a5058)); const c = document.createElement('canvas'); c.width = c.height = 64; const q = c.getContext('2d'); q.fillStyle = '#4a5058'; q.fillRect(0, 0, 64, 64); q.strokeStyle = '#f2b33d'; q.lineWidth = 4; q.beginPath(); q.arc(32, 32, 24, 0, TAU); q.stroke(); q.fillStyle = '#fff'; q.font = 'bold 34px sans-serif'; q.textAlign = 'center'; q.textBaseline = 'middle'; q.fillText('H', 32, 34);
+      const top = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 4.2), new THREE.MeshStandardMaterial({ map: new THREE.CanvasTexture(c) })); top.rotation.x = -Math.PI / 2; top.position.y = 0.27; g.add(top);
+      for (const [x, z] of [[-2.1, -2.1], [2.1, -2.1], [-2.1, 2.1], [2.1, 2.1]]) lamp(0x66d9ff, x, 0.4, z); }
+    else if (k === 'beacon') { cyl(0.8, 1, 0.6, dark); cyl(0.14, 0.2, 7, steel, 0, 0.6); const b = lamp(0xff3b30, 0, 7.8, 0, 0.45); tick(t => { b.visible = (t + (seed || 0) * 0.3) % 1.4 < 0.6; }); }
+    else if (k === 'road') { box(5, 0.12, 5, bdMat(0x3a3d42)); box(0.3, 0.13, 2, bdMat(0xd8d0a0), 0, 0, 0); }
+  } else {
+    const roofs = [0xa0402e, 0x5a6a7a, 0x7a4a2a, 0x3f5f45], walls = [0xe8dcc4, 0xd8c8a8, 0xc8d0d8, 0xf0e8dc];
+    if (k === 'palace') { box(9.2, 0.6, 9.2, bdMat(0xd8d2c4)); box(7.5, 3.6, 5.5, white, 0, 0.6); for (let i = -3; i <= 3; i++) cyl(0.25, 0.25, 3.4, white, i * 1.1, 0.6, 3.1); box(8.2, 0.6, 6.4, bdMat(0xd8d2c4), 0, 4.2); sph(2, bdMat(0x8fa3b8, { metalness: 0.5, roughness: 0.3 }), 0, 4.8, 0, true);
+      cyl(0.08, 0.08, 3, steel, 0, 6.8, 0); const fl = box(1.6, 0.9, 0.05, bdMat(0x39d353), 0.8, 8.8, 0); g.userData.flag = fl; box(3, 0.3, 2.4, bdMat(0xc8c0b0), 0, 0.6, 4.6); }
+    else if (k === 'house') { const w = 2.8 + rnd() * 0.8, d = 2.6 + rnd() * 0.6; box(4.6, 0.1, 4.6, bdMat(0x5f9a4a)); box(w, 2.2, d, bdMat(walls[Math.floor(rnd() * 4)]), 0, 0.1, -0.3);
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.max(w, d) * 0.78, 1.5, 4), bdMat(roofs[Math.floor(rnd() * 4)])); roof.rotation.y = Math.PI / 4; roof.position.set(0, 3.05, -0.3); roof.scale.set(1, 1, d / w); roof.castShadow = true; g.add(roof);
+      box(0.7, 1.3, 0.08, bdMat(0x6a4a2a), 0, 0.1, d / 2 - 0.3 + 0.02); box(0.6, 0.6, 0.08, win, w / 4, 1.1, d / 2 - 0.3 + 0.02); if (rnd() < 0.6) { const tr = cyl(0.12, 0.15, 1, bdMat(0x5a3a1e), 1.6, 0.1, 1.7); sph(0.7, bdMat(0x3f8a3a), 1.6, 1.6, 1.7); } }
+    else if (k === 'apartment') { const h = 5 + Math.floor(rnd() * 3) * 1.4; box(4.2, h, 3.6, bdMat(walls[Math.floor(rnd() * 4)])); const f = box(4.25, h - 0.8, 3.65, win, 0, 0.4); f.material = win.clone(); f.material.map = plWinTex().clone(); f.material.map.repeat.set(1, h / 4); f.material.map.needsUpdate = true; f.material.emissiveMap = f.material.map; box(4.4, 0.3, 3.8, dark, 0, h); }
+    else if (k === 'tower') { const h = 14 + Math.floor(rnd() * 4) * 3; const t = box(3.6, h, 3.6, win); t.material = win.clone(); t.material.map = plWinTex().clone(); t.material.map.repeat.set(1, h / 6); t.material.map.needsUpdate = true; t.material.emissiveMap = t.material.map; t.material.color.setHex(0xbfd8ee); t.material.metalness = 0.4;
+      box(3.9, 0.6, 3.9, dark, 0, h); cyl(0.08, 0.08, 3, steel, 0.8, h + 0.6, 0.8); lamp(0xff3b30, 0.8, h + 3.7, 0.8, 0.2); }
+    else if (k === 'market') { box(4.6, 0.12, 4.6, bdMat(0xb8a888)); const cols = [0xc8102e, 0xf2b33d, 0x1f6fd1, 0x39d353];
+      for (const [x, z] of [[-1.2, -1.2], [1.2, -1.2], [-1.2, 1.2], [1.2, 1.2]]) { box(1.6, 0.8, 1.2, bdMat(0x8a6a4a), x, 0.12, z); const aw = new THREE.Mesh(new THREE.ConeGeometry(1.3, 0.8, 4), bdMat(cols[Math.floor(rnd() * 4)])); aw.rotation.y = Math.PI / 4; aw.position.set(x, 2.1, z); aw.castShadow = true; g.add(aw); cyl(0.05, 0.05, 1.3, steel, x, 0.12, z); } }
+    else if (k === 'factory') { box(4.4, 2.6, 3.8, bdMat(0x8a8478)); for (let i = 0; i < 3; i++) { const t = box(1.45, 0.9, 3.8, bdMat(0x6a6a6a), -1.45 + i * 1.45, 2.6); t.rotation.z = 0.35; } cyl(0.4, 0.5, 5.5, bdMat(0x7a3a2a), 1.5, 0, -1.2);
+      const pf = []; for (let i = 0; i < 3; i++) { const p = sph(0.6, new THREE.MeshStandardMaterial({ color: 0x9a9a9a, transparent: true, opacity: 0.6 }), 1.5, 6, -1.2); p.castShadow = false; pf.push(p); }
+      tick(t => pf.forEach((p, i) => { const k2 = ((t * 0.35 + i / 3) % 1); p.position.set(1.5 + k2 * 1.2, 6 + k2 * 4, -1.2); p.scale.setScalar(0.6 + k2 * 1.6); p.material.opacity = 0.6 * (1 - k2); })); }
+    else if (k === 'farm') { for (let i = 0; i < 6; i++) box(0.72, 0.18, 4.6, bdMat(i % 2 ? 0xc8b040 : 0x6aa040), -1.9 + i * 0.76, 0); box(1.6, 1.6, 1.4, bdMat(0xa0302a), 1.4, 0.18, -1.4); cyl(0.6, 0.6, 3, bdMat(0xd8d8d8), -1.6, 0.18, -1.6); }
+    else if (k === 'well') { box(4.6, 0.1, 4.6, bdMat(0x9a8a6a)); box(0.4, 2.4, 0.4, dark, 0, 0.1, 0); const beam = new THREE.Group(); beam.position.set(0, 2.6, 0); g.add(beam); const bb = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 3.6), bdMat(0xf2b33d)); beam.add(bb);
+      const head = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.9, 0.6), dark); head.position.set(0, -0.2, 1.8); beam.add(head); cyl(1, 1, 1.6, bdMat(0xc8c8c8), -1.4, 0.1, -1.4); tick(t => { beam.rotation.x = Math.sin(t * 1.6 + (seed || 0)) * 0.3; }); }
+    else if (k === 'park') { box(4.8, 0.12, 4.8, bdMat(0x4f9a3a)); for (let i = 0; i < 3; i++) { const x = (rnd() - 0.5) * 3.4, z = (rnd() - 0.5) * 3.4; cyl(0.15, 0.2, 1.4, bdMat(0x5a3a1e), x, 0.12, z); sph(0.9 + rnd() * 0.4, bdMat(0x2f7a32), x, 1.9, z); }
+      cyl(0.8, 0.9, 0.35, bdMat(0xb8b0a0), 0, 0.12, 0); const water = cyl(0.65, 0.65, 0.02, bdMat(0x5ab0e8, { emissive: 0x0a2a4a }), 0, 0.42, 0); box(1.2, 0.3, 0.35, bdMat(0x6a4a2a), 1.4, 0.12, 1.6); }
+    else if (k === 'plaza') { box(4.8, 0.14, 4.8, bdMat(0xc8c0ae)); box(1.2, 1.2, 1.2, bdMat(0xd8d0c0), 0, 0.14); const st = cyl(0.25, 0.35, 1.6, bdMat(0xb08a3a, { metalness: 0.6, roughness: 0.35 }), 0, 1.34); sph(0.35, bdMat(0xb08a3a, { metalness: 0.6, roughness: 0.35 }), 0, 3.15, 0); for (let i = 0; i < 4; i++) lamp(0xffe9a8, (i % 2 ? 1 : -1) * 1.9, 0.6, (i < 2 ? 1 : -1) * 1.9, 0.2); }
+    else if (k === 'hospital') { box(4.4, 3.2, 3.6, white); box(4.6, 0.3, 3.8, bdMat(0xc8d0d8), 0, 3.2); box(0.4, 1.4, 0.1, bdMat(0xd8202a), 0, 1.6, 1.82); box(1.4, 0.4, 0.1, bdMat(0xd8202a), 0, 2.1, 1.82); const f = box(4.45, 1.6, 3.65, win, 0, 0.8); f.material = win.clone(); f.material.emissiveIntensity = 0.3; }
+    else if (k === 'barracks') { box(4.4, 0.1, 4.6, bdMat(0x8a8a6a)); box(4, 1.8, 2, bdMat(0x5a6a42), 0, 0.1, -1); box(4.2, 0.3, 2.2, bdMat(0x3a4a2e), 0, 1.9, -1); cyl(0.06, 0.06, 4, steel, 1.8, 0.1, 1.6); const fl = box(1.2, 0.7, 0.04, bdMat(0x39d353), 2.4, 3.3, 1.6); g.userData.flag = fl; box(1.6, 0.8, 0.9, bdMat(0x4a5a3a), -1, 0.1, 1.2); }
+    else if (k === 'monument') { box(3.4, 0.6, 3.4, bdMat(0xd8d2c4)); box(1.6, 1.2, 1.6, bdMat(0xc8c0b0), 0, 0.6); const ob = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.7, 8, 4), bdMat(0xe8e4dc)); ob.position.y = 5.8; ob.rotation.y = Math.PI / 4; ob.castShadow = true; g.add(ob); const tip = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.8, 4), bdMat(0xf2c14e, { metalness: 0.7, roughness: 0.3 })); tip.position.y = 10.2; tip.rotation.y = Math.PI / 4; g.add(tip); }
+    else if (k === 'stadium') { const bowl = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4, 2.6, 32, 1, true), bdMat(0xc8c8c8, { side: THREE.DoubleSide })); bowl.position.y = 1.3; bowl.scale.z = 0.72; bowl.castShadow = true; g.add(bowl);
+      const pitch = new THREE.Mesh(new THREE.CircleGeometry(3.6, 32), bdMat(0x3f9a3a)); pitch.rotation.x = -Math.PI / 2; pitch.position.y = 0.12; pitch.scale.y = 0.7; g.add(pitch);
+      const seats = new THREE.Mesh(new THREE.CylinderGeometry(4.5, 3.7, 2.2, 32, 1, true), bdMat(0xc8102e, { side: THREE.BackSide })); seats.position.y = 1.2; seats.scale.z = 0.72; g.add(seats);
+      for (const [x, z] of [[-4, -2.6], [4, -2.6], [-4, 2.6], [4, 2.6]]) { cyl(0.1, 0.1, 5, steel, x, 0, z); box(0.9, 0.5, 0.2, bdMat(0xffffff, { emissive: 0xfff1c0, emissiveIntensity: 0.9 }), x, 5, z); } }
+    else if (k === 'road') { box(5, 0.08, 5, bdMat(0x34373b)); box(0.25, 0.09, 1.6, bdMat(0xe8e0b0), 0, 0, 0); box(0.12, 0.09, 5, bdMat(0x8a8a8a), -2.4, 0, 0); box(0.12, 0.09, 5, bdMat(0x8a8a8a), 2.4, 0, 0); }
+  }
+  return g;
+}
+function bdScene() {
+  const S = BLD, host = $('#bdView');
+  if (!S.r) { S.r = new THREE.WebGLRenderer({ antialias: !MOBILE(), powerPreference: 'high-performance' }); S.r.setPixelRatio(Math.min(MOBILE() ? 1.5 : 2, devicePixelRatio || 1)); S.r.shadowMap.enabled = true; S.r.shadowMap.type = THREE.PCFSoftShadowMap; host.appendChild(S.r.domElement); }
+  const sc = S.scene = new THREE.Scene(), city = S.mode === 'city', L = PL_LOOK[S.id] || PL_LOOK.vesper, size = bdHalf() * 2 * PL_CELL;
+  S.cam = new THREE.PerspectiveCamera(48, 1, 0.5, 6000);
+  // sky: a gradient dome; a city has a blue day sky, a planet a dark one with its own colour at the horizon and a big neighbour in the sky
+  const skyC = document.createElement('canvas'); skyC.width = 4; skyC.height = 256; const q = skyC.getContext('2d'), gr = q.createLinearGradient(0, 0, 0, 256);
+  if (city) { gr.addColorStop(0, '#4f86c8'); gr.addColorStop(0.55, '#a8cbe8'); gr.addColorStop(1, '#e8eef0'); } else { gr.addColorStop(0, '#02030a'); gr.addColorStop(0.6, '#0a0c1e'); gr.addColorStop(0.92, L.air); gr.addColorStop(1, L.air); }
+  q.fillStyle = gr; q.fillRect(0, 0, 4, 256); const sky = new THREE.Mesh(new THREE.SphereGeometry(2500, 32, 16), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(skyC), side: THREE.BackSide, depthWrite: false })); sc.add(sky);
+  if (!city) { const n = 900, pos = new Float32Array(n * 3), rnd = mulberry32(5); for (let i = 0; i < n; i++) { const u = rnd() * 0.9 + 0.1, a = rnd() * TAU, rr2 = Math.sqrt(1 - u * u); pos[i * 3] = rr2 * Math.cos(a) * 2300; pos[i * 3 + 1] = u * 2300; pos[i * 3 + 2] = rr2 * Math.sin(a) * 2300; }
+    const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(pos, 3)); sc.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0xffffff, size: 1.8, sizeAttenuation: false })));
+    const moon = new THREE.Mesh(new THREE.SphereGeometry(260, 32, 24), new THREE.MeshLambertMaterial({ map: spcEarthTexSafe(), emissive: 0x0a1424 })); moon.position.set(-900, 700, -1500); sc.add(moon); S.sky2 = moon; }
+  else { for (let i = 0; i < 16; i++) { const a = i / 16 * TAU, hill = new THREE.Mesh(new THREE.SphereGeometry(140 + (i % 3) * 40, 16, 8, 0, TAU, 0, Math.PI / 2), new THREE.MeshLambertMaterial({ color: i % 2 ? 0x6a8a5a : 0x5f7f52 })); hill.position.set(Math.cos(a) * 620, -30, Math.sin(a) * 620); hill.scale.y = 0.45; sc.add(hill); } }
+  sc.add(new THREE.HemisphereLight(city ? 0xcfe3ff : 0x8fa3c4, city ? 0x4a5a3a : 0x1a1410, city ? 0.75 : 0.5));
+  const sun = new THREE.DirectionalLight(city ? 0xfff2dc : 0xfff0d8, city ? 1.2 : 1.35); sun.position.set(60, 90, 40); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); const sh = sun.shadow.camera; sh.left = -70; sh.right = 70; sh.top = 70; sh.bottom = -70; sh.far = 300; sun.shadow.bias = -0.0005; sc.add(sun);
+  // the ground: a wide disc of the planet's surface (or grass), the building lot in the middle with its grid
+  const gt = city ? bdGrassTex() : plTex(S.id || 'vesper', 256, 256, true); gt.repeat.set(city ? 24 : 10, city ? 24 : 10);
+  const ground = new THREE.Mesh(new THREE.CircleGeometry(900, 64), new THREE.MeshStandardMaterial({ map: gt, roughness: 0.95 })); ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; sc.add(ground);
+  const lot = new THREE.Mesh(new THREE.PlaneGeometry(size + 2, size + 2), city ? bdMat(0xa8b890, { transparent: true, opacity: 0.35 }) : bdMat(0x55585e, { transparent: true, opacity: 0.35 })); lot.rotation.x = -Math.PI / 2; lot.position.y = 0.03; lot.receiveShadow = true; sc.add(lot);
+  const grid = new THREE.GridHelper(size, bdHalf() * 2, 0xffffff, 0xffffff); grid.material.transparent = true; grid.material.opacity = city ? 0.18 : 0.14; grid.position.y = 0.05; sc.add(grid); S.grid = grid;
+  if (!city) for (let i = 0; i < 40; i++) { const rnd = mulberry32(i + 3), a = rnd() * TAU, d = 60 + rnd() * 500, rock = new THREE.Mesh(new THREE.IcosahedronGeometry(2 + rnd() * 9, 0), new THREE.MeshStandardMaterial({ color: new THREE.Color(L.c[1]).lerp(new THREE.Color(L.c[0]), 0.5), flatShading: true })); rock.position.set(Math.cos(a) * d, 0, Math.sin(a) * d); rock.scale.y = 0.6; rock.castShadow = true; sc.add(rock); }
+  S.ghost = null; S.meshes = []; S.anim = [];
+  sc.add(S.root = new THREE.Group());
+  if (city) { const pal = bdModel('city', 'palace', 1); pal.position.set(0, 0, 0); S.root.add(pal); bdFlag(pal); S.anim.push(pal); }
+}
+const spcEarthTexSafe = () => { try { return spcEarthTex(); } catch (e) { return null; } };
+// grass for a city: two greens and a little dry earth, tiled
+function bdGrassTex() {
+  const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d'), im = g.createImageData(256, 256), n = plNoise(4711);
+  for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) { const v = n(x / 256 * 64 / 4, y / 256 * 64 / 4), w = n(x / 256 * 64 / 1.2 + 9, y / 256 * 64 / 1.2), o = (y * 256 + x) * 4;
+    const k = v * 0.7 + w * 0.3; im.data[o] = 62 + k * 50 + (k > 0.72 ? 40 : 0); im.data[o + 1] = 104 + k * 62; im.data[o + 2] = 46 + k * 26; im.data[o + 3] = 255; }
+  g.putImageData(im, 0, 0); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+}
+function bdFlag(m) { const fl = m.userData.flag; if (!fl) return; const own = BLD.owner || (wlMe() && wlMe().name); if (own) fl.material = fl.material.clone(), fl.material.color.set(spcCol(own)); }
+function bdPlace(it, i) {
+  const S = BLD, w = bdW(it.k), m = bdModel(S.mode, it.k, i + 1 + (it.x + 20) * 41 + (it.z + 20) * 7);
+  m.position.set((it.x + w / 2) * PL_CELL, 0, (it.z + w / 2) * PL_CELL); m.rotation.y = (it.r || 0) * Math.PI / 2; if (w === 2) m.scale.setScalar(1.95);
+  bdFlag(m); S.root.add(m); S.meshes.push(m); if (m.userData.tick) S.anim.push(m); return m;
+}
+function bdRebuild() {
+  const S = BLD, old = new Set(S.meshes); for (const m of S.meshes) { S.root.remove(m); m.traverse(o => { if (o.geometry) o.geometry.dispose(); }); }
+  S.meshes = []; S.anim = S.anim.filter(m => !old.has(m));
+  S.layout.forEach((it, i) => bdPlace(it, i)); bdTreas(); bdPal();
+}
+function bdTreas() {
+  const S = BLD, me = wlMe(), el = $('#bdTreas'); if (!el) return; const P = S.mode === 'planet' ? plGet(S.id) : null, y = plYield(S.layout, S.mode, P ? { res: P.res, rate: P.rate } : null);
+  el.innerHTML = S.ro ? `<div><small>Makes an hour</small><b>${plYieldText(y)}</b></div>${S.mode === 'planet' ? `<div><small>Defence</small><b>${y.def}</b></div>` : ''}`
+    : `<div><small>Gold</small><b>${wlNum(me ? me.gold : 0)}</b></div><div><small>Steel</small><b>${wlNum(me ? me.steel : 0)}</b></div><div><small>Makes an hour</small><b>${plYieldText(y)}</b></div>${S.mode === 'planet' ? `<div><small>Defence</small><b>${y.def}</b></div>` : ''}`;
+  if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+function bdIcon(k) { const c = document.createElement('canvas'); c.width = 112; c.height = 46; return c; }
+function bdPal() {
+  const S = BLD, el = $('#bdPal'); if (!el || S.ro) return; const me = wlMe(), cat = PL_CAT[S.mode];
+  el.innerHTML = Object.entries(cat).filter(([k]) => k !== 'dome').map(([k, c]) => { const n = S.layout.filter(it => it.k === k).length, full = n >= c.max, poor = me && (me.gold < c.g || (me.steel || 0) < c.s);
+    return `<button class="bdCard${S.pick === k ? ' on' : ''}" data-k="${k}"${full ? ' disabled' : ''}><b>${c.n}</b><small>${c.d}</small><span>${c.g ? wlNum(c.g) + ' gold' : 'free'}${c.s ? ' · ' + c.s + ' steel' : ''}</span><small>${n} of ${c.max}${poor && !full ? ' · not enough' : ''}</small></button>`; }).join('');
+  el.querySelectorAll('[data-k]').forEach(b => b.onclick = () => { if (b.disabled) return; S.pick = S.pick === b.dataset.k ? '' : b.dataset.k; S.del = false; $('#bdDel').classList.remove('on'); bdPal(); bdGhost(null); bdSay(S.pick ? `Tap the ground to build a ${cat[S.pick].n.toLowerCase()}.` : ''); });
+  if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+function bdSay(t, sec) { const el = $('#bdMsg'); if (!el) return; el.textContent = t || ''; el.hidden = !t; BLD.msgT = BLD.t + (sec || 4); if (t && typeof i18nWalk === 'function') i18nWalk(el); }
+const _bdRay = new THREE.Raycaster(), _bdV = new THREE.Vector2(), _bdP = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), _bdHit = new THREE.Vector3();
+function bdCellAt(cx, cy) {
+  const S = BLD, r = S.r.domElement.getBoundingClientRect(); _bdV.set((cx - r.left) / r.width * 2 - 1, -(cy - r.top) / r.height * 2 + 1); _bdRay.setFromCamera(_bdV, S.cam);
+  if (!_bdRay.ray.intersectPlane(_bdP, _bdHit)) return null; const w = S.pick ? bdW(S.pick) : 1;
+  return { x: Math.round(_bdHit.x / PL_CELL - w / 2), z: Math.round(_bdHit.z / PL_CELL - w / 2), hx: _bdHit.x, hz: _bdHit.z };
+}
+function bdGhost(cell) {
+  const S = BLD; if (S.ghost) { S.root.remove(S.ghost); S.ghost = null; } if (!cell || !S.pick) return;
+  const w = bdW(S.pick), ok = bdFits(S.layout, S.pick, cell.x, cell.z), g = bdModel(S.mode, S.pick, 3); g.traverse(o => { if (o.isMesh) { o.material = new THREE.MeshBasicMaterial({ color: ok ? 0x7dffb0 : 0xff6b61, transparent: true, opacity: 0.45, depthWrite: false }); o.castShadow = false; } });
+  g.position.set((cell.x + w / 2) * PL_CELL, 0.05, (cell.z + w / 2) * PL_CELL); g.rotation.y = S.rot * Math.PI / 2; if (w === 2) g.scale.setScalar(1.95); S.root.add(g); S.ghost = g; S.ghostCell = cell; S.ghostOk = ok;
+}
+function bdItemAt(cell) { const S = BLD; if (!cell) return -1; const x = Math.floor(cell.hx / PL_CELL), z = Math.floor(cell.hz / PL_CELL); return S.layout.findIndex(it => { const w = bdW(it.k); return x >= it.x && x < it.x + w && z >= it.z && z < it.z + w; }); }
+async function bdTap(cx, cy) {
+  const S = BLD; if (S.ro || S.busy || S.intro) return; const cell = bdCellAt(cx, cy); if (!cell) return;
+  if (S.del) { const i = bdItemAt(cell); if (i < 0) return; const it = S.layout[i]; if (it.k === 'dome') { bdSay('The command dome stays.'); return; }
+    S.busy = true; const r = await wlCall('world_unbuild', { p_mode: S.mode, p_id: S.id || null, p_i: i }, true); S.busy = false;
+    if (r && r.ok !== false) { S.layout = Array.isArray(r.layout) ? r.layout : S.layout.filter((_, j) => j !== i); bdSync(); bdRebuild(); bdSay(`Knocked down. Half of its price came back.`); try { SFX.ok(); } catch (e) { } wlLoad(true).then(() => BLD.on && bdTreas()); }
+    else bdSay((r && r.err) || WL.err || 'That did not work.'); WL.err = ''; return; }
+  if (!S.pick) { bdSay('Pick something to build at the bottom.'); return; }
+  if (!bdFits(S.layout, S.pick, cell.x, cell.z)) { bdSay('That does not fit there.'); return; }
+  const it = { k: S.pick, x: cell.x, z: cell.z, r: S.rot }; S.busy = true; bdGhost(null);
+  const r = await wlCall('world_build', { p_mode: S.mode, p_id: S.id || null, p_kind: it.k, p_x: it.x, p_z: it.z, p_r: it.r }, true); S.busy = false;
+  if (r && r.ok !== false) { S.layout = Array.isArray(r.layout) ? r.layout : S.layout.concat([it]); const me = wlMe(), c = PL_CAT[S.mode][it.k]; if (me) { me.gold -= c.g; me.steel = (me.steel || 0) - c.s; }
+    bdSync(); const m = bdPlace(it, S.layout.length - 1); m.userData.grow = S.t; bdTreas(); bdPal(); try { SFX.tone(0.08, 0.12, 500, 900, 'triangle'); } catch (e) { } wlLoad(true).then(() => BLD.on && bdTreas()); }
+  else bdSay((r && r.err) || WL.err || 'That did not work.'); WL.err = '';
+}
+// keep the World's copy of what I built up to date
+function bdSync() { const S = BLD, st = WL.st; if (!st) return; if (S.mode === 'city') st.city = S.layout; else { const P = plGet(S.id); if (P) P.layout = S.layout; } }
+function bdCam(dt) {
+  const S = BLD, half = bdHalf() * PL_CELL; S.dist = clamp(S.dist, 30, half * 4.2); S.pitch = clamp(S.pitch, 0.18, 1.35);
+  const t = S.tgt || spV(0, 0, 0), want = spV(t.x + Math.sin(S.yaw) * Math.cos(S.pitch) * S.dist, t.y + Math.sin(S.pitch) * S.dist, t.z + Math.cos(S.yaw) * Math.cos(S.pitch) * S.dist);
+  S.cam.position.lerp(want, dt >= 1 ? 1 : Math.min(1, dt * 8)); S.cam.lookAt(t);
+}
+function bdFrame(now) {
+  const S = BLD; if (!S.on) return; S.raf = requestAnimationFrame(bdFrame); if ($('#scr-build').hidden) { bdStop(); return; }
+  const dt = Math.min(0.05, Math.max(0.001, (now - S.last) / 1000)); S.last = now; bdStep(dt); S.r.render(S.scene, S.cam);
+}
+function bdStep(dt) {
+  const S = BLD; S.t += dt;
+  for (const m of S.anim) if (m.userData.tick) m.userData.tick(S.t);
+  for (const m of S.meshes) if (m.userData.grow) { const k = Math.min(1, (S.t - m.userData.grow) / 0.45), e = 1 - Math.pow(1 - k, 3); const w = m.scale.x > 1.5 || m.userData.w2 ? 1.95 : 1; m.scale.set(w, w * e, w); if (k >= 1) m.userData.grow = 0; }
+  if (S.sky2) S.sky2.rotation.y += dt * 0.01;
+  if (S.intro) bdIntroStep(dt); else bdCam(dt);
+  if (S.msgT && S.t > S.msgT) { S.msgT = 0; const el = $('#bdMsg'); if (el) el.hidden = true; }
+}
+function bdSize() { const S = BLD, v = $('#bdView'); if (!S.r || !v) return; const w = v.clientWidth || innerWidth, h = v.clientHeight || innerHeight; S.r.setSize(w, h, false); S.cam.aspect = w / Math.max(1, h); S.cam.updateProjectionMatrix(); }
+// the landing: a shuttle comes down on the new base, the dome goes up, the planet's name
+function bdIntroStart(taken) {
+  const S = BLD, P = plGet(S.id), dome = S.meshes.find((m, i) => S.layout[i] && S.layout[i].k === 'dome');
+  const sh = spcShipMesh(spcCol((wlMe() && wlMe().name) || ''), 'transport'); sh.scale.setScalar(1.6); S.root.add(sh); const fl = []; sh.traverse(o => { if (o.isMesh && o.material && o.material.type === 'MeshBasicMaterial') fl.push(o); });
+  const burn = new THREE.Mesh(new THREE.ConeGeometry(1.4, 6, 10), new THREE.MeshBasicMaterial({ color: 0x9fd8ff, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false })); burn.rotation.x = Math.PI; burn.position.y = -3.5; sh.add(burn);
+  const dust = new THREE.Mesh(new THREE.RingGeometry(1, 2.2, 32), new THREE.MeshBasicMaterial({ color: 0xd8c8a8, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false })); dust.rotation.x = -Math.PI / 2; dust.position.set(10, 0.2, 10); S.root.add(dust);
+  if (dome) dome.scale.set(1.95, 0.001, 1.95);
+  S.intro = { t: 0, sh, burn, dust, dome, taken, dur: 8.5 }; $('#bdIntro').hidden = true; $('#bdPal').style.visibility = 'hidden'; $('#bdTools').style.visibility = 'hidden';
+  $('#bdIntroK').textContent = taken ? 'Taken in battle' : 'A new world'; $('#bdIntroT').textContent = P ? P.name : ''; $('#bdIntroS').textContent = P ? `${taken ? 'Yours now.' : 'Yours.'} It makes +${wlNum(P.rate)} ${PL_RES[P.res]} an hour. Build mines, farms and turrets to make it grow.` : '';
+}
+function bdIntroStep(dt) {
+  const S = BLD, I = S.intro; I.t += dt; const t = I.t, ease = k => k < 0 ? 0 : k > 1 ? 1 : k * k * (3 - 2 * k);
+  // the camera: from high orbit down to the base, turning slowly
+  const a = 0.4 + t * 0.12, k = ease(t / 6.5), dist = 520 - 400 * k, h = 300 - 230 * k; S.cam.position.set(Math.sin(a) * dist, h, Math.cos(a) * dist); S.cam.lookAt(0, 6 * k, 0);
+  // the shuttle drops onto the pad beside the dome
+  const kd = ease((t - 0.6) / 3.6); I.sh.position.set(10, 160 - 156 * kd, 10); I.sh.rotation.y = 0.6; I.burn.visible = kd < 1; I.burn.scale.setScalar(0.7 + Math.random() * 0.4);
+  I.dust.material.opacity = kd > 0.75 && kd < 1 ? 0.6 : Math.max(0, I.dust.material.opacity - dt * 0.4); I.dust.scale.setScalar(1 + Math.max(0, t - 3.2) * 6);
+  if (I.dome) { const kb = ease((t - 4.2) / 1.2); I.dome.scale.set(1.95, Math.max(0.001, 1.95 * kb), 1.95); }
+  if (t > 4.6 && $('#bdIntro').hidden) { $('#bdIntro').hidden = false; if (typeof i18nWalk === 'function') i18nWalk($('#bdIntro')); try { SFX.ok(); } catch (e) { } }
+  if (t >= I.dur) bdIntroEnd();
+}
+function bdIntroEnd() { const S = BLD, I = S.intro; if (!I) return; S.intro = null; if (I.dome) I.dome.scale.setScalar(1.95); I.sh.position.y = 2; I.burn.visible = false; $('#bdIntro').hidden = true; $('#bdPal').style.visibility = ''; $('#bdTools').style.visibility = ''; S.root.remove(I.dust); bdSay('Pick a building at the bottom, then tap the ground.', 6); }
+function plOpenBuild(o) {
+  const S = BLD, me = wlMe(); o = o || {};
+  const P = o.mode === 'planet' ? plGet(o.id) : null; if (o.mode === 'planet' && !P) { toast('Planets', 'That planet is not known yet.'); return; }
+  const fromSpace = SPC.on;
+  Object.assign(S, { on: true, mode: o.mode, id: o.id || '', ro: !!o.ro || (o.mode === 'planet' ? !P.mine : !!o.owner && (!me || o.owner !== me.name)) || (me && me.role === 'minister'), owner: o.mode === 'planet' ? (P.owner || '') : (o.owner || (me && me.name) || ''),
+    layout: o.mode === 'planet' ? (P.layout || []).slice() : (o.layout || (WL.st && WL.st.city) || []).slice(), pick: '', rot: 0, del: false, yaw: 0.7, pitch: 0.72, dist: o.mode === 'city' ? 150 : 120, tgt: spV(0, 0, 0), t: 0, busy: false, back: o.back || (fromSpace ? 'space' : 'world'), intro: null, last: performance.now() });
+  if (S.mode === 'planet' && S.layout.length === 0 && P.mine) S.layout = [{ k: 'dome', x: -1, z: -1, r: 0 }];
+  show('#scr-build'); const scr = $('#scr-build'); scr.classList.toggle('city', S.mode === 'city'); scr.classList.toggle('ro', S.ro);
+  $('#bdKind').textContent = S.mode === 'city' ? (S.ro ? 'City' : 'Your city') : `${PL_KINDS[P.kind] || ''} planet${P.owner ? ' · ' + P.owner : ''}`;
+  $('#bdName').textContent = S.mode === 'city' ? (S.owner || '') : P.name; $('#bdDel').classList.remove('on'); $('#bdMsg').hidden = true; $('#bdIntro').hidden = true;
+  bdScene(); bdRebuild(); bdSize(); bdCam(1);
+  if (o.intro && S.mode === 'planet') bdIntroStart(!!o.taken);
+  else if (!S.ro) bdSay(S.mode === 'city' ? 'Build your city around the palace. Pick a building at the bottom, then tap the ground.' : 'Pick a building at the bottom, then tap the ground. Drag to look around.', 6);
+  if (typeof i18nWalk === 'function') i18nWalk(scr);
+  cancelAnimationFrame(S.raf); S.raf = requestAnimationFrame(bdFrame);
+}
+function bdStop() { const S = BLD; if (!S.on) return; S.on = false; cancelAnimationFrame(S.raf); if (S.scene) { S.scene.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material && o.material.map && o.material.map !== PL_WIN) o.material.map.dispose(); }); S.scene = null; } }
+function bdClose() {
+  const S = BLD, back = S.back, id = S.id, mode = S.mode; bdStop();
+  if (back === 'space') { spcOpen(); if (mode === 'planet') plSpawnAt(id); }
+  else { show('#scr-world'); try { WL.tab = 'build'; wlRender(); } catch (e) { } }
+}
+// back in orbit above the planet you just left
+function plSpawnAt(id) { const S = SPC, pl = (S.planets || []).find(p => p.id === id); if (!pl || !S.ship) return; const out = spV(1, 0.45, 0.6).normalize(); S.ship.position.copy(pl.pos).add(out.clone().multiplyScalar(pl.r + 60)); S.ship.lookAt(pl.pos.clone().add(spV(0, pl.r * 1.5, 0))); S.speed = 15; S.camPos = null; spcCam(1); }
+{
+  const v = $('#bdView'), pts = new Map(); let drag = null, pinch = null;
+  if (v) {
+    v.addEventListener('pointerdown', e => { if (BLD.intro) { bdIntroEnd(); return; } try { v.setPointerCapture(e.pointerId); } catch (x) { } pts.set(e.pointerId, [e.clientX, e.clientY]);
+      if (pts.size === 1) drag = { x: e.clientX, y: e.clientY, yaw: BLD.yaw, pitch: BLD.pitch, moved: false }; else if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), dist: BLD.dist }; drag = null; } });
+    v.addEventListener('pointermove', e => {
+      if (!BLD.on) return;
+      if (!pts.has(e.pointerId)) { if (e.pointerType === 'mouse' && BLD.pick && !BLD.ro) bdGhost(bdCellAt(e.clientX, e.clientY)); return; }
+      pts.set(e.pointerId, [e.clientX, e.clientY]);
+      if (pinch && pts.size === 2) { const [a, b] = [...pts.values()]; BLD.dist = pinch.dist * pinch.d / Math.max(10, Math.hypot(a[0] - b[0], a[1] - b[1])); return; }
+      if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 7) drag.moved = true;
+      if (drag.moved) { BLD.yaw = drag.yaw - dx * 0.006; BLD.pitch = drag.pitch + dy * 0.004; } else if (BLD.pick && !BLD.ro) bdGhost(bdCellAt(e.clientX, e.clientY));
+    });
+    const up = e => { const d = drag; pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (d && !d.moved && pts.size === 0 && BLD.on) bdTap(e.clientX, e.clientY); if (pts.size === 0) drag = null; };
+    v.addEventListener('pointerup', up); v.addEventListener('pointercancel', e => { pts.delete(e.pointerId); drag = null; pinch = null; });
+    v.addEventListener('wheel', e => { e.preventDefault(); BLD.dist *= e.deltaY > 0 ? 1.12 : 0.89; }, { passive: false });
+    $('#bdClose').onclick = () => bdClose();
+    $('#bdRot').onclick = () => { BLD.rot = (BLD.rot + 1) % 4; if (BLD.ghostCell) bdGhost(BLD.ghostCell); bdSay('Turned a quarter.', 1.5); };
+    $('#bdDel').onclick = () => { BLD.del = !BLD.del; BLD.pick = ''; bdGhost(null); $('#bdDel').classList.toggle('on', BLD.del); bdPal(); bdSay(BLD.del ? 'Tap a building to knock it down. Half of its price comes back.' : ''); };
+    addEventListener('resize', () => { if (BLD.on) bdSize(); });
+    addEventListener('keydown', e => { if (!BLD.on || $('#scr-build').hidden) return; if (e.key === 'Escape') { if (BLD.intro) bdIntroEnd(); else if (BLD.pick || BLD.del) { BLD.pick = ''; BLD.del = false; $('#bdDel').classList.remove('on'); bdGhost(null); bdPal(); } else bdClose(); } if (e.key.toLowerCase() === 'r' && !BLD.ro) $('#bdRot').click(); });
+  }
+}
+
+/* ---------- the World: a Build tab, and a look at other countries' cities ---------- */
+WL_TABS.build = {
+  tab: (st, me) => me && !me.needs_start ? { k: 'build', n: 'Build', at: 1 } : null,
+  html: (st, me) => {
+    const city = st.city || [], cy = plYield(city, 'city'), pres = me.role !== 'minister', mine = plList().filter(p => p.mine), others = plList().filter(p => !p.mine);
+    const pTot = mine.reduce((a, p) => { const y = plYield(p.layout, 'planet', { res: p.res, rate: p.rate }); for (const k of ['gold', 'oil', 'steel', 'food']) a[k] += y[k]; return a; }, { gold: 0, oil: 0, steel: 0, food: 0 });
+    const chips = y => ['gold', 'oil', 'steel', 'food'].filter(k => y[k]).map(k => `<span>+${wlNum(y[k])} ${PL_RES[k]}/h</span>`).join('') || '<span>nothing yet</span>';
+    return `<div class="wbCity">
+      <div class="wbBox"><div class="wbHd"><div><b>The city of ${esc(me.name)}</b><small>${city.length} building${city.length === 1 ? '' : 's'} around the President's palace. Houses, towers, markets and the stadium pay taxes; factories, farms and oil wells make materials. Kept from season to season.</small></div></div>
+        <div class="wbYield">${chips(cy)}</div><button class="btn primary" id="wbCity">${pres ? 'Build your city' : 'Look at the city'}</button></div>
+      <div class="wbBox"><div class="wbHd"><div><b>Your planets</b><small>${mine.length ? `${mine.length} of 3. What they make is paid into your treasury every hour.` : 'None yet. Launch into Space, open Planets and warp to a free one to claim it.'}</small></div></div>
+        ${mine.length ? `<div class="wbYield">${chips(pTot)}</div>${mine.map(p => { const y = plYield(p.layout, 'planet', { res: p.res, rate: p.rate }); return `<div class="wbPl"><span class="plDot" style="${plDotCss(p.id)}"></span><div><b>${esc(p.name)}</b><small>${PL_KINDS[p.kind] || ''} · ${plYieldText(y)} an hour · defence ${y.def}${p.protect ? ' · protected' : ''}</small></div><button class="btn small" data-wbpl="${p.id}">Build</button></div>`; }).join('')}` : ''}
+        <button class="btn" id="wbSpace"${me.occupier ? ' disabled' : ''}>Launch into Space</button></div>
+      <div class="wbBox"><div class="wbHd"><div><b>All planets</b><small>Free planets can be claimed from orbit. Planets of a country you are at war with can be taken when their guns are down.</small></div></div>
+        ${others.map(p => `<div class="wbPl"><span class="plDot" style="${plDotCss(p.id)}"></span><div><b>${esc(p.name)}</b><small>${PL_KINDS[p.kind] || ''} · +${wlNum(p.rate)} ${PL_RES[p.res]} an hour · ${p.owner ? esc(p.owner) + (p.rel === 'war' ? ' · at war' : '') : `free · ${wlNum(p.price)} gold, ${wlNum(p.steel)} steel`}</small></div>${p.owner ? `<button class="btn small" data-wblook="${p.id}">Look</button>` : ''}</div>`).join('') || '<p class="note">The planets appear once the account server has Version 10 of the world.</p>'}
+      </div></div>`;
+  },
+  wire: (el, st, me) => {
+    const c = el.querySelector('#wbCity'); if (c) c.onclick = () => plOpenBuild({ mode: 'city', back: 'world' });
+    const s = el.querySelector('#wbSpace'); if (s) s.onclick = () => spcOpen();
+    el.querySelectorAll('[data-wbpl]').forEach(b => b.onclick = () => plOpenBuild({ mode: 'planet', id: b.dataset.wbpl, back: 'world' }));
+    el.querySelectorAll('[data-wblook]').forEach(b => b.onclick = () => plOpenBuild({ mode: 'planet', id: b.dataset.wblook, back: 'world', ro: true }));
+  }
+};
+async function plSeeCity(name) {
+  const r = await wlCall('world_city_get', { p_name: name }, true); WL.err = '';
+  if (!r || r.ok === false) { toast('City', (r && r.err) || 'Could not load that city.'); return; }
+  plOpenBuild({ mode: 'city', owner: r.name || name, layout: Array.isArray(r.city) ? r.city : [], back: 'world', ro: true });
+}
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try { const el = $('#wldSide'), sel = el && el.querySelector('[data-sel]'), me = wlMe(); if (sel && !sel.querySelector('.wbSee')) { const own = wlOwner(sel.dataset.sel), pl = own && wlPlayer(own);
+      if (pl && (!me || pl.name !== me.name)) { sel.insertAdjacentHTML('beforeend', `<button class="btn small wbSee">See the city of ${esc(pl.name)}</button>`); sel.querySelector('.wbSee').onclick = () => plSeeCity(pl.name); if (typeof i18nWalk === 'function') i18nWalk(sel.querySelector('.wbSee')); } } } catch (e) { console.warn('city button', e); }
+    return r;
+  };
+  const _n = wlNews; wlNews = function (l) {
+    if (l.kind === 'planet') return `<b>${esc(l.a)}</b> claimed the planet <b>${esc(l.b)}</b>`;
+    if (l.kind === 'planet_taken') return `<b>${esc(l.a)}</b> took a planet from <b>${esc(l.b)}</b> in orbit`;
+    return _n.apply(this, arguments);
+  };
+}
+
+/* ---------- Bahasa Indonesia ---------- */
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'Planets': 'Planet', 'Build': 'Bangun', 'Rotate': 'Putar', 'Knock down': 'Robohkan', 'Back': 'Kembali', 'Warp': 'Lompat', 'Close': 'Tutup', 'Deep space': 'Luar angkasa jauh',
+  'Gold': 'Emas', 'Steel': 'Baja', 'Makes an hour': 'Hasil per jam', 'Defence': 'Pertahanan', 'nothing yet': 'belum ada', 'Your city': 'Kotamu', 'City': 'Kota', 'Your planets': 'Planetmu', 'All planets': 'Semua planet',
+  'Build your city': 'Bangun kotamu', 'Look at the city': 'Lihat kotanya', 'Launch into Space': 'Meluncur ke Luar Angkasa', 'Look': 'Lihat', 'A new world': 'Dunia baru', 'Taken in battle': 'Direbut dalam pertempuran',
+  'Command dome': 'Kubah komando', 'Mine': 'Tambang', 'Greenhouse': 'Rumah kaca', 'Refinery': 'Kilang', 'Foundry': 'Pengecoran', 'Habitat': 'Habitat', 'Turret': 'Menara senjata', 'Shield': 'Perisai', 'Landing pad': 'Landasan', 'Beacon': 'Mercusuar', 'Road': 'Jalan',
+  'House': 'Rumah', 'Apartments': 'Apartemen', 'Office tower': 'Gedung kantor', 'Market': 'Pasar', 'Factory': 'Pabrik', 'Farm': 'Pertanian', 'Oil well': 'Sumur minyak', 'Park': 'Taman', 'Plaza': 'Alun-alun', 'Hospital': 'Rumah sakit', 'Barracks': 'Barak', 'Monument': 'Monumen', 'Stadium': 'Stadion',
+  'Your base. It stays.': 'Pangkalanmu. Tetap berdiri.', 'For your shuttles': 'Untuk pesawat ulang-alikmu', 'A light seen from orbit': 'Cahaya yang terlihat dari orbit', 'Connects your buildings': 'Menghubungkan bangunanmu', 'Connects your city': 'Menghubungkan kotamu',
+  'Trees, a fountain, benches': 'Pohon, air mancur, bangku', 'A square with a statue': 'Lapangan dengan patung', 'For the people': 'Untuk rakyat', 'The army at home': 'Tentara di rumah', 'To your country\'s glory': 'Demi kejayaan negaramu',
+  'That does not fit there.': 'Tidak muat di situ.', 'Pick something to build at the bottom.': 'Pilih bangunan di bawah.', 'The command dome stays.': 'Kubah komando tetap berdiri.', 'Turned a quarter.': 'Diputar seperempat.',
+  'Tap a building to knock it down. Half of its price comes back.': 'Ketuk bangunan untuk merobohkannya. Separuh harganya kembali.', 'Knocked down. Half of its price came back.': 'Dirobohkan. Separuh harganya kembali.',
+  'Pick a building at the bottom, then tap the ground.': 'Pilih bangunan di bawah, lalu ketuk tanah.', 'Pick a building at the bottom, then tap the ground. Drag to look around.': 'Pilih bangunan di bawah, lalu ketuk tanah. Seret untuk melihat sekeliling.',
+  'Build your city around the palace. Pick a building at the bottom, then tap the ground.': 'Bangun kotamu di sekitar istana. Pilih bangunan di bawah, lalu ketuk tanah.',
+  'Claim a free planet for your country, build on it, and it pays every hour. A country can hold 3. Planets of a country you are at war with can be taken.': 'Klaim planet kosong untuk negaramu, bangun di atasnya, dan planet itu membayar setiap jam. Satu negara bisa memiliki 3. Planet milik negara yang sedang berperang denganmu bisa direbut.',
+  'Free planets can be claimed from orbit. Planets of a country you are at war with can be taken when their guns are down.': 'Planet kosong bisa diklaim dari orbit. Planet milik negara yang berperang denganmu bisa direbut setelah senjatanya hancur.',
+  'None yet. Launch into Space, open Planets and warp to a free one to claim it.': 'Belum ada. Meluncurlah ke Luar Angkasa, buka Planet, lalu lompat ke planet kosong untuk mengklaimnya.',
+  'Only the President can claim a planet.': 'Hanya Presiden yang bisa mengklaim planet.', 'Yours: land to build.': 'Milikmu: mendarat untuk membangun.', 'No country holds it: claim it.': 'Belum dimiliki negara mana pun: klaim.',
+  'An enemy planet: shoot down its guns, then take it.': 'Planet musuh: tembak jatuh senjatanya, lalu rebut.', 'HD films': 'Film HD',
+  'Planets and cities': 'Planet dan kota'
+});
 </script>
