@@ -1722,6 +1722,26 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 .wbPl{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center}.wbPl .plDot{width:34px;height:34px}
 .wbBox .btn{min-height:38px}
 @media (max-width:640px){.bdTreas div:nth-child(n+3){display:none}.bdCard{flex-basis:118px}.bdTools{bottom:calc(146px + var(--sb))}.bdTools .btn{min-width:96px}#bdMsg{max-width:calc(100% - 140px);font-size:13px}}
+
+/* ---------- v87: President of the game's tools ---------- */
+.ptBan{margin:0 0 10px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,107,107,.55);background:rgba(120,24,24,.28)}
+.ptBan b{display:block;font:700 15px var(--ui);color:#ffb3b3}.ptBan p{margin:4px 0;font-size:13.5px;line-height:1.4}.ptBan small{opacity:.7;font-size:12px}
+.ptTake{display:grid;gap:6px;margin-top:10px;padding:10px;border-radius:10px;border:1px dashed rgba(242,179,61,.5)}
+.ptTake>small{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}.ptTake .row{display:flex;gap:6px}.ptTake .btn{flex:1;min-height:38px}.ptTake .note{margin:0}
+.ptWrap{display:grid;gap:10px}
+.ptSw{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.07)}.ptSw>div{flex:1;min-width:0}
+.ptSw b{display:block;font:700 14px var(--ui)}.ptSw small{display:block;margin-top:2px;font-size:12px;line-height:1.35;opacity:.72}
+.ptTog{flex:none;display:flex;align-items:center;gap:8px;min-height:36px;padding:0 12px 0 6px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:#0d1612;color:var(--fg);font:700 12px var(--ui);cursor:pointer}
+.ptTog i{width:34px;height:20px;border-radius:999px;background:rgba(255,255,255,.18);position:relative;transition:background .15s}
+.ptTog i::after{content:'';position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .15s}
+.ptTog.on{border-color:rgba(242,179,61,.6)}.ptTog.on i{background:var(--amber)}.ptTog.on i::after{left:17px}.ptTog[disabled]{opacity:.5}
+.ptRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}.ptRow .btn{flex:1 1 180px;min-height:40px}
+.ptBanForm{display:grid;gap:8px;margin-top:4px}.ptBanForm select{min-height:40px;background:#0d1612;color:var(--fg);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:0 10px;font:inherit}
+.ptHrs{display:flex;gap:6px;flex-wrap:wrap}.ptHrs .btn{flex:1 1 auto;min-height:34px}
+.ptBanForm .row{display:flex;gap:8px}.ptBanForm .tin{flex:1;min-width:0;min-height:40px}
+.ptList{display:grid;gap:6px;margin-top:10px}.ptBanRow{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.25)}
+.ptBanRow>div{flex:1;min-width:0}.ptBanRow b{display:block;font-size:14px}.ptBanRow small{display:block;font-size:12px;opacity:.72;overflow-wrap:anywhere}
+.ptWrap p.note,.ptTake p.note{margin:0;font-size:12.5px;line-height:1.4;color:var(--muted)}.ptRow .btn{font-size:13px;letter-spacing:.06em;padding:0 12px}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -12922,7 +12942,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = 'b9d7597b'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '6c1268c6'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21968,6 +21988,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '87', date: '2026-11-20', name: 'President tools', items: ['For the President of the game, a new President tab on the World screen (only you see it).', 'Take any country for yourself at once, or give it back: tap it on the map. Or take every free country in one go, and give them all back later. Other players keep their own land.', 'Ban a country for 1 hour, 1 day, 3 days, a week or until you lift it. Its President and ministers can still look at the World, but cannot attack, visit, chat, trade or build. They see why, and until when.', 'Protection: nobody else can invade you, sabotage or assassinate, raid or strike, sanction, embargo, declare war on you or take your countries and planets. The account server enforces it.', 'Endless gold, oil, steel and food, shown as ∞. While protection or endless materials are on, you are left out of the season ranking, so your friends win the titles and head starts.', 'Run the new world SQL (Version 11) once in Supabase before uploading this version. Until then the game works as before.'] },
   { v: '86', date: '2026-11-20', name: 'Planets and cities', items: ['Space: eight planets far out beyond the Moon: desert, jungle, ice, lava, ocean, rock, a ringed gas giant and a crystal world. Open Planets in Space to see them all and warp to any of them.', 'Claim a free planet for your country (2,000 to 4,000 gold and some steel, up to 3 planets a country). A shuttle lands, the command dome goes up, and the planet makes its own gold, oil, steel or food every hour.', 'Land on your planet to build on it: mines, greenhouses, refineries, foundries and habitats make more every hour; turrets and a shield put guns in orbit that shoot at enemy ships. Knocking a building down gives half its price back.', 'Planets of a country you are at war with can be taken: shoot down their guns in orbit, fly in close and take it. Its defences are lost and it is protected for 12 hours. Planets are freed when a season ends.', 'The World: every country now has a city around the President\'s palace. Build houses, apartments, office towers, markets, factories, farms, oil wells, parks, plazas, a hospital, barracks, monuments and a stadium. Buildings that pay add gold and materials to your treasury every hour, and your city is kept from season to season.', 'A new Build tab on the World screen shows your city, your planets and what they make, and every country has a button to look at its city.', 'For the President of the game: run the new world SQL (Version 10) once in Supabase before uploading this version. Until then the game works as before, without planets and cities.'] },
   { v: '85', date: '2026-11-19', name: 'Films and acting', items: ['HD add-on: four short films rendered in Blender from the game\'s own models. An opening when the game starts (once a day), one when a battle is won, one when it is lost, and one when a World season ends. They are silent, so the game\'s music keeps playing, and Skip, Escape, Enter or Space closes them. A new HD films switch in Settings turns them off.', 'HD add-on: characters in cutscenes act with movement keyframed in Blender. They shift their weight while they wait, gesture while they speak, and salute, point, fold their arms, aim, raise their hands, kneel, cheer, walk and run with real motion, blending from one action into the next instead of snapping.', 'To use the films, upload the four new files next to index.html: smfa-hd-intro.mp4, smfa-hd-victory.mp4, smfa-hd-defeat.mp4 and smfa-hd-season.mp4. If one is missing the game just carries on without it.'] },
   { v: '84', date: '2026-11-19', name: 'On the move', items: ['HD add-on: soldiers move with walk, run and crouch cycles keyframed in Blender. Heels strike and peel off the ground, hips and shoulders turn against each other, the body bobs and leans into a run, and unarmed people swing their arms. A standing soldier shifts his weight and breathes.', 'HD add-on: wheels turn. Jeeps and cars have four separate wheels that roll with the distance driven, and the front pair steers into a turn.', 'HD add-on: tank tracks run. Every track link travels round the road wheels, which turn with it, and in a turn the two tracks run at different speeds.', 'These are drawn only: how soldiers and vehicles move, aim and get hit is exactly the same with or without the add-on.'] },
@@ -23685,7 +23706,7 @@ function wlCost(id) { const t = TBY[id]; if (!t) return 0; if (wlOwner(id)) retu
 async function wlCall(fn, args, quiet) {
   if (!SB_ON()) return null;
   try { if (accOn()) await accRefreshIfNeeded(); const r = await sbRpc(fn, args || {}); if (r && r.ok === false) { WL.err = r.err || 'That did not work.'; if (!quiet) wlRender(); return r; } return r; }
-  catch (e) { WL.err = /function|schema|not find|relation/i.test(e.message) ? 'The world is not on the account server yet. The President needs to run the world SQL file once.' : 'Could not reach the world: ' + e.message; if (!quiet) wlRender(); return null; }
+  catch (e) { WL.err = /President of the game/.test(e.message) ? e.message : /function|schema|not find|relation/i.test(e.message) ? 'The world is not on the account server yet. The President needs to run the world SQL file once.' : 'Could not reach the world: ' + e.message; if (!quiet) wlRender(); return null; }
 }
 async function wlLoad(quiet) {
   if (!SB_ON()) { WL.err = 'The world needs the SMFA account server, which is not set up in this copy of the game.'; wlRender(); return; }
@@ -23763,7 +23784,8 @@ function wlFlagSvg(f, w, h, x, y) {
 const wlFlagFor = name => wlFlagSvg(wlFlagOf(wlPlayer(name)), 21, 14);
 
 /* ---------- the side panel ---------- */
-const wlNum = v => Math.round(v || 0).toLocaleString();
+// a billion or more is the President of the game's endless supply (v87), shown as ∞
+const wlNum = v => (v || 0) >= 1e9 ? '∞' : Math.round(v || 0).toLocaleString();
 function wlNews(l) {
   const c = l.country && TBY[l.country] ? TBY[l.country].name : '', a = `<b>${esc(l.a)}</b>`, nat = k => NATIONS[k] ? NATIONS[k].short : k, b = `<b>${esc(NATIONS[l.b] ? nat(l.b) : l.b)}</b>`;
   switch (l.kind) {
@@ -26936,5 +26958,109 @@ if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
   'Only the President can claim a planet.': 'Hanya Presiden yang bisa mengklaim planet.', 'Yours: land to build.': 'Milikmu: mendarat untuk membangun.', 'No country holds it: claim it.': 'Belum dimiliki negara mana pun: klaim.',
   'An enemy planet: shoot down its guns, then take it.': 'Planet musuh: tembak jatuh senjatanya, lalu rebut.', 'HD films': 'Film HD',
   'Planets and cities': 'Planet dan kota'
+});
+
+// v87: tools for the President of the game (the admin account) in the online World.
+//  * take any country for yourself or give it back, also every free country at once
+//  * ban a country: its President and ministers can look but not act, for some hours or until the ban is lifted
+//  * protection: nobody else can invade, sabotage, raid, strike, sanction, embargo, declare war on or take anything from you
+//  * endless gold, oil, steel and food (shown as ∞)
+// Everything is enforced by the account server (SQL Version 11); this file only shows it. An older server keeps working.
+const PRT = { old: false, banHours: 24 };
+const ptAdmin = () => typeof isAdmin === 'function' && isAdmin() && WL.st && WL.st.admin;
+
+// ask for world_state_v11 first; fall back to the older answer (planets, then plain)
+{
+  const _wc = wlCall;
+  wlCall = async function (fn, args, quiet) {
+    if (fn === 'world_state' && !PRT.old) {
+      const e0 = WL.err, r = await _wc('world_state_v11', args, true);
+      if (r && r.players) return r;
+      PRT.old = true; WL.err = e0;
+    }
+    return _wc.apply(this, arguments);
+  };
+}
+const ptDo = async (fn, args, msg) => { const r = await wlDo(fn, args); if (r && r.ok !== false && msg) toast('President of the game', typeof msg === 'function' ? msg(r) : msg); return r; };
+const ptUntil = u => { if (!u) return 'until you lift it'; const d = new Date(u); return isNaN(d) ? '' : 'until ' + d.toLocaleString([], { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); };
+
+// the banned player's notice, and the President's take / give back on the selected country
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), st = WL.st; if (!el || !st) return r;
+      if (st.banned && !el.querySelector('.ptBan')) {
+        el.insertAdjacentHTML('afterbegin', `<div class="ptBan"><b>You are banned from the World</b><p>${esc(st.banned.msg)}</p><small>You can still look at the map and the news.</small></div>`);
+      }
+      const sel = el.querySelector('[data-sel]'), me = wlMe(), id = sel && sel.dataset.sel;
+      if (sel && ptAdmin() && me && !me.needs_start && !sel.querySelector('.ptTake')) {
+        const mine = wlOwner(id) === me.name, home = id === me.home;
+        sel.insertAdjacentHTML('beforeend', `<div class="ptTake"><small>President of the game</small><div class="row">${mine ? `<button class="btn small" data-pt="back"${home ? ' disabled' : ''}>Give it back</button>` : `<button class="btn small primary" data-pt="take">Take it for ${esc(me.name)}</button>`}</div>
+          <p class="note">${home ? 'Your homeland stays yours.' : mine ? (wlHomeOf(id) ? 'It goes back to its owner, who is free again.' : 'It goes back to its computer nation.') : wlHomeOf(id) ? `It is the homeland of ${esc(wlHomeOf(id).name)}: they become your colony.` : 'At once, without a battle.'}</p></div>`);
+        sel.querySelectorAll('[data-pt]').forEach(b => b.onclick = e => { e.stopPropagation(); b.disabled = true; ptDo('world_admin_take', { p_country: id, p_mine: b.dataset.pt === 'take' }); });
+        if (typeof i18nWalk === 'function') i18nWalk(sel.querySelector('.ptTake'));
+      }
+    } catch (e) { console.warn('president tools', e); }
+    return r;
+  };
+}
+
+// the President tab
+const PRT_HOURS = [[1, '1 hour'], [24, '1 day'], [72, '3 days'], [168, '1 week'], [0, 'Until I lift it']];
+WL_TABS.pres = {
+  tab: (st, me) => ptAdmin() ? { k: 'pres', n: 'President', c: (st.admin.bans || []).length } : null,
+  html: (st, me) => {
+    const A = st.admin, bans = A.bans || [], banned = new Set(bans.map(b => b.country)), others = st.players.filter(p => !p.me && !banned.has(p.name));
+    const sw = (k, on, title, what) => `<div class="ptSw"><div><b>${title}</b><small>${what}</small></div><button class="ptTog${on ? ' on' : ''}" data-ptsw="${k}" aria-pressed="${on}"><i></i><span>${on ? 'On' : 'Off'}</span></button></div>`;
+    const mine = me ? st.players.find(p => p.me) : null;
+    return `<div class="ptWrap">
+      <div class="wbBox"><div class="wbHd"><div><b>Your country</b><small>Only you see this tab. The account server checks every one of these.</small></div></div>
+        ${sw('protect', A.protect, 'Protection', 'Nobody can invade you, sabotage or assassinate, raid or strike, sanction, embargo, declare war on you or take your countries and planets.')}
+        ${sw('infinite', A.infinite, 'Endless gold and materials', 'Gold, oil, steel and food never run out (∞). While this or protection is on, you are left out of the season ranking, so friends win the titles.')}
+      </div>
+      <div class="wbBox"><div class="wbHd"><div><b>Countries</b><small>${me ? `You hold ${mine ? mine.countries : 0} countr${mine && mine.countries === 1 ? 'y' : 'ies'}; ${wlNum(A.free)} more have no player. Tap any country on the map to take it or give it back.` : 'Found your country first.'}</small></div></div>
+        <div class="ptRow"><button class="btn primary" data-ptall="1"${!me || me.needs_start || !A.free ? ' disabled' : ''}>Take every free country</button><button class="btn" data-ptall="0"${!me || me.needs_start ? ' disabled' : ''}>${PRT.confirm === 'all' ? 'Confirm: give all back' : 'Give back all but my homeland'}</button></div>
+        <p class="note">Free means held by a computer nation; other players keep theirs. Giving back frees any player whose homeland you hold.</p>
+      </div>
+      <div class="wbBox"><div class="wbHd"><div><b>Ban a country</b><small>Its President and ministers can still look, but cannot do anything in the World: no attacks, missions, visits, deals, chat or building.</small></div></div>
+        ${others.length ? `<div class="ptBanForm"><select id="ptWho">${others.map(p => `<option value="${esc(p.name)}">${esc(p.name)}${p.president ? ' · ' + esc(p.president) : ''}</option>`).join('')}</select>
+          <div class="ptHrs">${PRT_HOURS.map(([h, n]) => `<button class="btn small${PRT.banHours === h ? ' primary' : ''}" data-pth="${h}">${n}</button>`).join('')}</div>
+          <div class="row"><input class="tin" id="ptWhy" maxlength="120" placeholder="Reason (they see it), optional"><button class="btn danger" id="ptBanGo">Ban</button></div></div>` : '<p class="note">No other countries to ban.</p>'}
+        ${bans.length ? `<div class="ptList">${bans.map(b => `<div class="ptBanRow"><div><b>${esc(b.country)}</b><small>${esc(b.user || '')} · ${esc(ptUntil(b.until))}${b.reason ? ' · ' + esc(b.reason) : ''}</small></div><button class="btn small" data-unban="${esc(b.country)}">Lift</button></div>`).join('')}</div>` : ''}
+      </div></div>`;
+  },
+  wire: (el, st, me) => {
+    const A = st.admin;
+    el.querySelectorAll('[data-ptsw]').forEach(b => b.onclick = () => { b.disabled = true; const k = b.dataset.ptsw;
+      ptDo('world_admin_opts_set', { p_protect: k === 'protect' ? !A.protect : A.protect, p_infinite: k === 'infinite' ? !A.infinite : A.infinite }, `${k === 'protect' ? 'Protection' : 'Endless gold and materials'} ${(k === 'protect' ? A.protect : A.infinite) ? 'off' : 'on'}`); });
+    el.querySelectorAll('[data-ptall]').forEach(b => b.onclick = () => {
+      if (b.dataset.ptall === '0' && PRT.confirm !== 'all') { PRT.confirm = 'all'; wlRender(); return; }
+      PRT.confirm = ''; b.disabled = true; const take = b.dataset.ptall === '1';
+      ptDo('world_admin_take_all', { p_mine: take }, r => take ? `You took ${wlNum(r.n)} countries` : `You gave back ${wlNum(r.n)} countries`);
+    });
+    el.querySelectorAll('[data-pth]').forEach(b => b.onclick = () => { PRT.banHours = +b.dataset.pth; el.querySelectorAll('[data-pth]').forEach(x => x.classList.toggle('primary', x === b)); });
+    const go = el.querySelector('#ptBanGo');
+    if (go) go.onclick = () => { const who = el.querySelector('#ptWho').value; if (!who) return; go.disabled = true;
+      ptDo('world_admin_ban', { p_name: who, p_hours: PRT.banHours, p_reason: el.querySelector('#ptWhy').value }, `${who} is banned ${ptUntil(PRT.banHours ? Date.now() + PRT.banHours * 3600e3 : null)}`); };
+    el.querySelectorAll('[data-unban]').forEach(b => b.onclick = () => { b.disabled = true; ptDo('world_admin_unban', { p_name: b.dataset.unban }, `${b.dataset.unban} can play again`); });
+  }
+};
+
+// news: taking or giving back many countries at once
+{
+  const _n = wlNews; wlNews = function (l) {
+    if (l.kind === 'admin_give' && !l.country && l.n != null) return l.a ? `The President of the game took ${wlNum(l.n)} free countries for <b>${esc(l.a)}</b>` : `The President of the game gave ${wlNum(l.n)} countries back`;
+    return _n.apply(this, arguments);
+  };
+}
+
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'President': 'Presiden', 'President of the game': 'Presiden game', 'Your country': 'Negara Anda', 'Protection': 'Perlindungan', 'Endless gold and materials': 'Emas dan bahan tak terbatas',
+  'Countries': 'Negara', 'Take every free country': 'Ambil semua negara bebas', 'Give back all but my homeland': 'Kembalikan semua kecuali tanah air', 'Confirm: give all back': 'Konfirmasi: kembalikan semua',
+  'Ban a country': 'Larang sebuah negara', 'Ban': 'Larang', 'Lift': 'Cabut', '1 hour': '1 jam', '1 day': '1 hari', '3 days': '3 hari', '1 week': '1 minggu', 'Until I lift it': 'Sampai saya cabut',
+  'Give it back': 'Kembalikan', 'You are banned from the World': 'Anda dilarang dari Dunia', 'You can still look at the map and the news.': 'Anda masih bisa melihat peta dan berita.',
+  'Your homeland stays yours.': 'Tanah air Anda tetap milik Anda.', 'At once, without a battle.': 'Langsung, tanpa pertempuran.', 'It goes back to its computer nation.': 'Kembali ke negara komputernya.',
+  'It goes back to its owner, who is free again.': 'Kembali ke pemiliknya, yang merdeka lagi.', 'On': 'Nyala', 'Off': 'Mati', 'No other countries to ban.': 'Tidak ada negara lain untuk dilarang.'
 });
 </script>
