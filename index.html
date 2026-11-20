@@ -1742,6 +1742,69 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
 .ptList{display:grid;gap:6px;margin-top:10px}.ptBanRow{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.25)}
 .ptBanRow>div{flex:1;min-width:0}.ptBanRow b{display:block;font-size:14px}.ptBanRow small{display:block;font-size:12px;opacity:.72;overflow-wrap:anywhere}
 .ptWrap p.note,.ptTake p.note{margin:0;font-size:12.5px;line-height:1.4;color:var(--muted)}.ptRow .btn{font-size:13px;letter-spacing:.06em;padding:0 12px}
+
+/* ---------- v88: Sports & Games, the OST player ---------- */
+.ic-music{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18V5.5l11-2.5v12.5'/%3E%3Ccircle cx='6.5' cy='18' r='2.5'/%3E%3Ccircle cx='17.5' cy='15.5' r='2.5'/%3E%3Cpath d='M9 9l11-2.5'/%3E%3C/svg%3E")}
+.ic-ball{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7.5l4 2.9-1.5 4.7h-5L8 10.4z'/%3E%3Cpath d='M12 3v4.5M20.6 9.3l-4.6 1.1M17.3 19.4l-2.8-4.3M6.7 19.4l2.8-4.3M3.4 9.3l4.6 1.1'/%3E%3C/svg%3E")}
+.sgCard,.ostCard{width:min(860px,100%)}
+.sgStrip{display:grid;gap:3px;padding:10px 14px;margin:6px 0 10px;border-radius:10px;background:rgba(56,214,92,.08);border:1px solid rgba(56,214,92,.28)}
+.sgStrip b{font:700 14px var(--ui);color:var(--fg)}.sgStrip span{font-size:13px;color:var(--muted);line-height:1.4}.sgStrip em{font-style:normal;color:var(--amber);font-weight:700}
+.sgTitles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 12px}
+.sgTitles>div{display:grid;gap:1px;padding:8px 10px;border-radius:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);min-width:0}
+.sgTitles small{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}.sgTitles b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sgTitles em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.sgGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.sgGame{display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto;gap:8px 12px;padding:14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.sgGame .sgIcon{grid-row:span 2;width:52px;height:52px;display:grid;place-items:center;font-size:28px;border-radius:12px;background:rgba(56,214,92,.12);border:1px solid rgba(56,214,92,.3)}
+.sgTxt{display:grid;gap:3px;min-width:0}.sgTxt b{font:700 16px var(--ui)}.sgTxt small{font-size:13px;line-height:1.4;color:var(--muted)}.sgTxt em{font-style:normal;font-size:12px;color:var(--amber)}
+.sgGame .btn{grid-column:2;justify-self:start;min-width:120px;min-height:40px}.sgGame.soon{opacity:.6}.sgGame.soon .sgIcon{filter:grayscale(1)}
+.sgQuiz{display:grid;gap:12px;max-width:640px;margin:4px auto 0}
+.sgQTop{display:flex;align-items:center;gap:10px;font:600 13px var(--ui);color:var(--muted)}.sgQTop b{flex:1;text-align:center;color:var(--amber)}
+.sgQTop #sgQSec{min-width:34px;height:34px;display:grid;place-items:center;border-radius:50%;border:2px solid rgba(56,214,92,.6);color:var(--fg);font-weight:800}
+.sgQBar{height:5px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}.sgQBar i{display:block;height:100%;background:var(--green,#38d65c);transition:width .2s linear}
+.sgQ{margin:6px 0 2px!important;font:700 20px/1.35 var(--ui)!important;text-transform:none!important;letter-spacing:0!important;color:var(--fg)!important}
+.sgOpts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sgOpt{display:flex;align-items:center;gap:10px;min-height:56px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--fg);font:600 15px var(--ui);text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+.sgOpt b{flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:7px;background:rgba(255,255,255,.08);font-size:13px}
+.sgOpt:hover:not([disabled]){border-color:rgba(56,214,92,.6);background:rgba(56,214,92,.08)}
+.sgOpt.right{border-color:#38d65c;background:rgba(56,214,92,.2)}.sgOpt.right b{background:#38d65c;color:#06120a}
+.sgOpt.wrong{border-color:#ff6b6b;background:rgba(255,107,107,.16)}.sgOpt.wrong b{background:#ff6b6b;color:#1a0505}.sgOpt.dim{opacity:.5}.sgOpt[disabled]{cursor:default}
+.sgQuit{justify-self:center}.sgLate{text-align:center;margin:0}
+.sgEnd{text-align:center;justify-items:center;padding:10px 0}.sgEnd h3{margin:0!important;text-transform:none!important;font:700 22px var(--ui)!important;color:var(--fg)!important}
+.sgBig{font:800 64px/1 var(--ui);color:var(--muted)}.sgBig.win{color:#38d65c}.sgBig small{font-size:22px;margin-left:4px;color:var(--muted)}.sgEndRow{justify-content:center;gap:8px}
+.sgRace{display:grid;gap:6px;margin:0 0 8px;padding:9px 12px;border-radius:10px;background:rgba(242,179,61,.07);border:1px solid rgba(242,179,61,.3)}
+.sgRace small{font:700 10.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}.sgRace>div{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.sgRace span{display:grid;min-width:0}.sgRace i{font-style:normal;font-size:11px;color:var(--muted)}.sgRace b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sgTag.gold{color:var(--amber)!important}
+.ostNow{display:grid;gap:10px;padding:14px;margin:6px 0 12px;border-radius:14px;background:linear-gradient(160deg,rgba(56,214,92,.12),rgba(255,255,255,.03));border:1px solid rgba(56,214,92,.25)}
+.ostNowTop{display:flex;align-items:center;gap:14px}.ostNowTxt{display:grid;gap:2px;min-width:0}.ostNowTxt b{font:700 20px var(--ui);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ostNowTxt small{font-size:13px;color:var(--muted)}
+.ostDisc{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#0b1a10 0 22%,#38d65c 23% 30%,#122016 31% 100%);border:1px solid rgba(56,214,92,.5)}
+.ostDisc span{font:800 11px var(--ui);color:#38d65c}#scr-ost .ostPlaying .ostDisc,.ostDisc.spin{animation:ostSpin 4s linear infinite}
+@keyframes ostSpin{to{transform:rotate(360deg)}}
+#ostViz{width:100%;height:70px;display:block}
+.ostBar{height:4px;border-radius:9px;background:rgba(255,255,255,.1);overflow:hidden}.ostBar i{display:block;height:100%;width:0;background:#38d65c}
+.ostCtl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ostBtn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:var(--fg);cursor:pointer;position:relative}
+.ostBtn.play{width:52px;height:52px;background:#38d65c;border-color:#38d65c;color:#06120a}
+.ostBtn::before{content:"";position:absolute;inset:0;margin:auto;background:currentColor}
+.ostBtn.play::before{width:16px;height:18px;clip-path:polygon(15% 0,100% 50%,15% 100%)}
+.ostBtn.play.on::before{clip-path:polygon(0 0,35% 0,35% 100%,0 100%,0 0,65% 0,100% 0,100% 100%,65% 100%,65% 0)}
+.ostBtn.prev::before{width:14px;height:14px;clip-path:polygon(0 0,18% 0,18% 45%,100% 0,100% 100%,18% 55%,18% 100%,0 100%)}
+.ostBtn.next::before{width:14px;height:14px;clip-path:polygon(0 0,82% 45%,82% 0,100% 0,100% 100%,82% 100%,82% 55%,0 100%)}
+.ostTime{font:600 13px var(--ui);color:var(--muted);min-width:84px;font-variant-numeric:tabular-nums}
+.ostVol{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px;color:var(--muted)}.ostVol input{width:120px;accent-color:#38d65c}
+.ostList{display:grid;gap:4px}
+.ostRow{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:8px 12px;border-radius:10px;border:1px solid transparent;background:rgba(255,255,255,.03);color:var(--fg);text-align:left;cursor:pointer;font:inherit}
+.ostRow:hover{background:rgba(255,255,255,.07)}.ostRow.cur{border-color:rgba(56,214,92,.45);background:rgba(56,214,92,.08)}
+.ostRow>b{width:24px;font:700 13px var(--ui);color:var(--muted);font-variant-numeric:tabular-nums}.ostRow.on>b{color:#38d65c}
+.ostRow span{flex:1;display:grid;min-width:0}.ostRow i{font-style:normal;font:700 15px var(--ui);display:flex;align-items:center;gap:8px}.ostRow small{font-size:12.5px;color:var(--muted)}
+.ostRow em{font:800 9.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:5px;background:var(--amber);color:#1a1205}
+.ostRow time{font:600 12.5px var(--ui);color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:640px){
+  .sgGrid{grid-template-columns:1fr}.sgTitles,.sgRace>div{grid-template-columns:repeat(2,1fr)}.sgOpts{grid-template-columns:1fr}.sgQ{font-size:18px!important}
+  .ostVol{margin-left:0;width:100%}.ostVol input{flex:1;width:auto}.ostNowTxt b{font-size:17px}
+}
+body.sgSport #powers,body.sgSport #fpowers,body.sgSport #fpowersM,body.sgSport #budget,body.sgSport #topbar{display:none!important}
+.sgEnd h3{letter-spacing:0!important}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -1884,6 +1947,7 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
         <button class="ic-medal" id="goMedals">Medals</button>
         <button class="ic-help" id="goHow">How to play</button>
         <button class="ic-key" id="goSaves">Save codes</button>
+        <button class="ic-music" id="goOst">Listen to the OST</button>
         <button class="ic-bell" id="goNews">What's new<i class="newsDot" id="newsDot" hidden></i></button>
         <button class="ic-star" id="goAdmin" hidden>President's Desk</button>
       </nav>
@@ -1923,12 +1987,42 @@ body.coguest #dock::before{content:"Co-op: the party leader commands the army. Y
         <button class="lbMode ic-flag" id="goCampaign" data-d="The Long War: 30 chapters, your choices, three endings.">Campaign</button>
         <button class="lbMode ic-cross" id="goSkirmish" data-d="One battle, your rules: map, enemy, size and violence level.">Skirmish</button>
         <button class="lbMode ic-globe" id="goOnline" data-d="One against one: your army against another player's, live.">Online battle</button>
+        <button class="lbMode ic-ball" id="goGames" data-d="Paintball, Tank Derby and Quiz Night. Wins pay your World country gold.">Sports &amp; Games</button>
         <button class="lbMode ic-stick" id="goArcade" data-d="Waves, King of the Hill, Tank Brawl and Dogfight Arena.">Arcade</button>
         <button class="lbMode ic-pin" id="goFree" data-d="Walk the headquarters, drive, fly, and visit the towns and the circuit.">Free roam: headquarters</button>
         <button class="lbMode ic-house" id="goHome" data-d="Straight to your own front door." hidden>Free roam: go home</button>
         <button class="lbMode ic-bolt" id="goGod" data-d="A sandbox with every power switched on.">God Mode</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Sports & Games (v88) -->
+<div id="scr-games" class="screen page" hidden>
+  <div class="card sgCard">
+    <div class="row between"><h2>Sports &amp; Games</h2><button class="btn small" id="sgBack">Back</button></div>
+    <p class="note">Short matches, no wars. Every match counts for your country in the World.</p>
+    <div id="sgWorld"></div>
+    <div id="sgBody"></div>
+  </div>
+</div>
+
+<!-- The SMFA 3D Original Soundtrack (v88) -->
+<div id="scr-ost" class="screen page" hidden>
+  <div class="card ostCard">
+    <div class="row between"><h2>SMFA 3D Original Soundtrack</h2><button class="btn small" id="ostBack">Back</button></div>
+    <div class="ostNow">
+      <div class="ostNowTop"><div class="ostDisc" aria-hidden="true"><span>&gt;:)</span></div><div class="ostNowTxt"><b id="ostNowT">Choose a track</b><small id="ostNowW"></small></div></div>
+      <canvas id="ostViz" aria-hidden="true"></canvas>
+      <div class="ostBar"><i id="ostProg"></i></div>
+      <div class="ostCtl">
+        <button class="ostBtn prev" id="ostPrev" aria-label="Previous"></button><button class="ostBtn play" id="ostPlay" aria-label="Play"></button><button class="ostBtn next" id="ostNext" aria-label="Next"></button>
+        <span class="ostTime" id="ostTime"></span>
+        <button class="btn small" id="ostMode">Play all</button>
+        <label class="ostVol"><span>Volume</span><input type="range" id="ostVol" min="0" max="1" step="0.05"></label>
+      </div>
+    </div>
+    <div class="ostList" id="ostList"></div>
   </div>
 </div>
 
@@ -12942,7 +13036,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '6c1268c6'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '692529e0'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -21988,6 +22082,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '88', date: '2026-11-21', name: 'Peace and play', items: ['Sports & Games, in Modes: Paintball (two teams, paint guns, no blood, first to 25 tags), Tank Derby (your tank against seven, be the last one rolling) and Quiz Night (ten questions about SMFA 3D and the world). Football is next.', 'Every match counts for your country in the online World: 300 gold for a win, 60 for a loss, 6 paid matches a day, and 4 season points for every win.', 'Four season titles: Warlord (most countries), Tycoon (most gold), Architect (biggest city) and Champion (most match wins). The World shows who leads each one, and winners keep the title on their country.', 'The season score now also counts your city, your planets and your match wins, so you can do well without conquering anybody.', 'Help for the smallest countries: a country with a quarter or less of the biggest one\'s land earns 50% more, and big countries pay 50% more soldiers to invade it. It is marked underdog in the list.', 'New daily missions that are not about fighting: play or win a match, get 7 right at Quiz Night, build in your city, hang out in a friend\'s country.', 'Four new songs: Iron Smile (World battles), Beyond the Moon (Space), Island Sea (naval battles) and Quick Draw (Arcade and Sports & Games).', 'Listen to the OST, on the main menu: all 11 songs of SMFA 3D, with play all or repeat one.', 'For the President of the game: run the world SQL (Version 12) once in Supabase. Until then matches are counted on each device only.'] },
   { v: '87', date: '2026-11-20', name: 'President tools', items: ['For the President of the game, a new President tab on the World screen (only you see it).', 'Take any country for yourself at once, or give it back: tap it on the map. Or take every free country in one go, and give them all back later. Other players keep their own land.', 'Ban a country for 1 hour, 1 day, 3 days, a week or until you lift it. Its President and ministers can still look at the World, but cannot attack, visit, chat, trade or build. They see why, and until when.', 'Protection: nobody else can invade you, sabotage or assassinate, raid or strike, sanction, embargo, declare war on you or take your countries and planets. The account server enforces it.', 'Endless gold, oil, steel and food, shown as ∞. While protection or endless materials are on, you are left out of the season ranking, so your friends win the titles and head starts.', 'Run the new world SQL (Version 11) once in Supabase before uploading this version. Until then the game works as before.'] },
   { v: '86', date: '2026-11-20', name: 'Planets and cities', items: ['Space: eight planets far out beyond the Moon: desert, jungle, ice, lava, ocean, rock, a ringed gas giant and a crystal world. Open Planets in Space to see them all and warp to any of them.', 'Claim a free planet for your country (2,000 to 4,000 gold and some steel, up to 3 planets a country). A shuttle lands, the command dome goes up, and the planet makes its own gold, oil, steel or food every hour.', 'Land on your planet to build on it: mines, greenhouses, refineries, foundries and habitats make more every hour; turrets and a shield put guns in orbit that shoot at enemy ships. Knocking a building down gives half its price back.', 'Planets of a country you are at war with can be taken: shoot down their guns in orbit, fly in close and take it. Its defences are lost and it is protected for 12 hours. Planets are freed when a season ends.', 'The World: every country now has a city around the President\'s palace. Build houses, apartments, office towers, markets, factories, farms, oil wells, parks, plazas, a hospital, barracks, monuments and a stadium. Buildings that pay add gold and materials to your treasury every hour, and your city is kept from season to season.', 'A new Build tab on the World screen shows your city, your planets and what they make, and every country has a button to look at its city.', 'For the President of the game: run the new world SQL (Version 10) once in Supabase before uploading this version. Until then the game works as before, without planets and cities.'] },
   { v: '85', date: '2026-11-19', name: 'Films and acting', items: ['HD add-on: four short films rendered in Blender from the game\'s own models. An opening when the game starts (once a day), one when a battle is won, one when it is lost, and one when a World season ends. They are silent, so the game\'s music keeps playing, and Skip, Escape, Enter or Space closes them. A new HD films switch in Settings turns them off.', 'HD add-on: characters in cutscenes act with movement keyframed in Blender. They shift their weight while they wait, gesture while they speak, and salute, point, fold their arms, aim, raise their hands, kneel, cheer, walk and run with real motion, blending from one action into the next instead of snapping.', 'To use the films, upload the four new files next to index.html: smfa-hd-intro.mp4, smfa-hd-victory.mp4, smfa-hd-defeat.mp4 and smfa-hd-season.mp4. If one is missing the game just carries on without it.'] },
@@ -27062,5 +27157,490 @@ if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
   'Give it back': 'Kembalikan', 'You are banned from the World': 'Anda dilarang dari Dunia', 'You can still look at the map and the news.': 'Anda masih bisa melihat peta dan berita.',
   'Your homeland stays yours.': 'Tanah air Anda tetap milik Anda.', 'At once, without a battle.': 'Langsung, tanpa pertempuran.', 'It goes back to its computer nation.': 'Kembali ke negara komputernya.',
   'It goes back to its owner, who is free again.': 'Kembali ke pemiliknya, yang merdeka lagi.', 'On': 'Nyala', 'Off': 'Mati', 'No other countries to ban.': 'Tidak ada negara lain untuk dilarang.'
+});
+
+/* ================= v88: Sports & Games =================
+   Short matches that are not wars. Paintball (teams, no blood, paint instead), Tank Derby (your tank against seven,
+   last one rolling wins) and Quiz Night (ten questions about SMFA 3D and the world). A match counts for your country in
+   the online World: 300 gold for a win, 60 for a loss, 6 paid matches a day, and 4 season points for every win
+   (server Version 12). Football is next. */
+const SG = { quiz: null, key: 'smfa3d.games' };
+const sgData = () => store.get(SG.key, { best: {}, wins: {}, played: {} });
+Object.assign(ARCADE, {
+  paint: { name: 'Paintball', desc: 'Two teams, paint guns, no blood. First to 25 tags, or the leader after 4 minutes, wins.', icon: '🎯', len: 240 },
+  derby: { name: 'Tank Derby', desc: 'Your tank against seven in a small arena. Be the last tank rolling.', icon: '🛡', len: 240 }
+});
+const SG_GAMES = [
+  { k: 'paint', n: 'Paintball', d: 'Two teams of soldiers with paint guns. Tag 25 before they do, or lead after 4 minutes. No blood, only paint.', icon: '🎯' },
+  { k: 'derby', n: 'Tank Derby', d: 'You and seven enemy tanks in a small arena. Knock them all out and be the last tank rolling.', icon: '🛡' },
+  { k: 'quiz', n: 'Quiz Night', d: 'Ten questions about SMFA 3D and the world, 15 seconds each. Get 7 right to win.', icon: '❓' },
+  { k: 'football', n: 'Football 5-a-side', d: 'Coming in a later update.', icon: '⚽', soon: true }
+];
+const SG_PAINT = [[0.22, 0.84, 0.36], [1, 0.32, 0.72]];
+
+/* ---------- reporting a match: missions, records, and the World ---------- */
+async function sgReport(kind, won, score) {
+  const D = sgData(); D.played[kind] = (D.played[kind] || 0) + 1; if (won) D.wins[kind] = (D.wins[kind] || 0) + 1; if ((score || 0) > (D.best[kind] || 0)) D.best[kind] = score; store.set(SG.key, D);
+  try { misAdd('game', 1); if (won) misAdd('gamewin', 1); if (kind === 'quiz' && score >= 7) misAdd('quiz7', 1); misAdd('mode', 1, 'games'); } catch (e) { }
+  if (typeof accOn !== 'function' || !accOn() || typeof SB_ON !== 'function' || !SB_ON()) return null;
+  try {
+    if (accRefreshIfNeeded) await accRefreshIfNeeded();
+    const r = await sbRpc('world_game_result', { p_kind: kind, p_won: !!won, p_score: Math.round(score || 0) });
+    if (r && r.ok !== false && r.gold > 0) toast('The World', `${won ? 'A win' : 'A good try'}: +${r.gold} gold for your country${won ? ' and 4 season points' : ''}.`);
+    else if (r && r.ok !== false && r.gold === 0 && !r.note) toast('The World', 'Six matches have paid today. More count again tomorrow.');
+    SG.last = r; return r;
+  } catch (e) { return null; }   // an older server without Version 12: the match still counts on this device
+}
+
+/* ---------- Paintball and Tank Derby: two more arcade modes ---------- */
+function sgStart(kind) {
+  SFX.init();
+  if (kind === 'quiz') { sgQuizStart(); return; }
+  const map = kind === 'derby' ? 'desert' : pick(['jungle', 'desert', 'snow', 'city'].filter(m => THEMES[m]));
+  const cfg = arcadeCfg(kind, map || 'desert', 'normal', { sport: kind, skipArmy: [true, true], mode: kind === 'paint' ? 'normal' : (settings.sk && settings.sk.mode) || 'normal', time: 'noon' });
+  startBattle(cfg);
+}
+{
+  const _as = arcadeSetup; arcadeSetup = function () {
+    const r = _as.apply(this, arguments), A = G.arc;
+    if (A.mode === 'paint' || A.mode === 'derby') document.body.classList.add('sgSport');
+    if (A.mode === 'paint') {
+      G.teams[0].tickets = 999; G.teams[1].tickets = 999;
+      for (let t = 0; t < 2; t++) for (let s = 0; s < 3; s++) { const sq = newSquad(t); sq.kit = 'standard'; for (let k = 0; k < 5; k++) spawnMember(sq, true); }
+      setTimeout(() => { if (G && G.arc && !G.player) { G.deployCd = 0; spawnPresident('foot'); } }, 400);
+      setTimeout(() => G && G.arc && hint('Paintball: tag the other team. First to 25 tags wins.', 4), 1200);
+    } else if (A.mode === 'derby') {
+      document.body.classList.add('arcv');
+      for (let k = 0; k < 7; k++) { const a = (k / 7) * TAU + 0.4, v = makeVehicle('tank', 1, Math.sin(a) * 42, Math.cos(a) * 42, a + PI); v.arc = true; }
+      setTimeout(() => { if (G && G.arc) { G.spawnCd = {}; spawnPresident('tank'); } }, 300);
+      setTimeout(() => G && G.arc && hint('Tank Derby: seven tanks hunt you. Be the last one rolling.', 4), 1200);
+    }
+    return r;
+  };
+  const _at = arcadeTick; arcadeTick = function (dt) {
+    const A = G.arc; if (!A || (A.mode !== 'paint' && A.mode !== 'derby')) return _at.apply(this, arguments);
+    if (G.over || A.done) return;
+    const left = Math.max(0, ARCADE[A.mode].len - (G.t - A.t0)), clock = `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`;
+    $('#tutObj').hidden = false;
+    if (A.mode === 'paint') {
+      $('#tutObjTxt').textContent = `PAINTBALL · SMFA ${A.score[0]} – ${A.score[1]} ${G.teams[1].nat.short}`; $('#tutObjProg').textContent = clock;
+      G.arcScore = A.score[0];
+      if (!G.player && G.view === 'office' && !(A.pr > G.t)) { A.pr = G.t + 3; G.timers.push({ t: G.t + 2.5, fn: () => { if (G && G.arc && !G.over && !G.player) { G.deployCd = 0; spawnPresident('foot'); } } }); }
+      if (A.score[0] >= 25 || A.score[1] >= 25 || left <= 0) arcFinish(A.score[0] > A.score[1] ? 'win' : 'lose', `Tags: SMFA ${A.score[0]}, ${G.teams[1].nat.short} ${A.score[1]}.${A.score[0] === A.score[1] ? ' A draw counts as a loss.' : ''}`);
+    } else {
+      const foes = G.vehicles.filter(v => v.alive && v.team === 1 && v.type === 'tank').length;
+      $('#tutObjTxt').textContent = `TANK DERBY · ${foes} tank${foes === 1 ? '' : 's'} left`; $('#tutObjProg').textContent = clock;
+      G.arcScore = 7 - foes;
+      if (!foes) arcFinish('win', 'Last tank rolling: yours.');
+      else if (left <= 0) arcFinish('lose', `Time is up with ${foes} tank${foes === 1 ? '' : 's'} still rolling.`);
+    }
+  };
+  const _pd = presDown; presDown = function () {
+    if (G && G.arc && G.arc.mode === 'derby' && !G.arc.done) { G.stats.presDeaths++; arcFinish('lose', `Your tank was knocked out after taking ${G.arcScore || 0} down.`); return; }
+    return _pd.apply(this, arguments);
+  };
+  // paint instead of blood: a splash in the shooter's colour, and a splat on the ground when someone is tagged
+  const _hu = hurtUnit; hurtUnit = function (u, dmg, hx, hy, hz, dx, dy, dz, part, kind, attacker) {
+    if (G && G.arc && G.arc.mode === 'paint' && u && u.alive && kind !== 'burn' && kind !== 'explosion') { const c = SG_PAINT[attacker && attacker.team === 1 ? 1 : 0]; try { hitPuff(hx, hy, hz, c[0], c[1], c[2], 7); } catch (e) { } }
+    return _hu.apply(this, arguments);
+  };
+  const _ku = killUnit; killUnit = function (u, part, kind, dir, attacker) {
+    const paint = G && G.arc && G.arc.mode === 'paint' && u && u.alive;
+    const r = _ku.apply(this, arguments);
+    if (paint) {
+      const c = SG_PAINT[attacker && attacker.team === 1 ? 1 : 0];
+      try { addDecal(u.x, u.y || 0, u.z, 0.3, 1.1 + R() * 0.5, 6, c[0], c[1], c[2]); } catch (e) { }
+      if (attacker && attacker.team !== undefined && attacker.team !== u.team) G.arc.score[attacker.team]++;
+    }
+    return r;
+  };
+  const _dv = destroyVehicle; destroyVehicle = function (v, attacker) {
+    const r = _dv.apply(this, arguments);
+    if (G && G.arc && G.arc.mode === 'derby' && attacker && attacker.team === 0 && v.team === 1) G.arc.score[0]++;
+    return r;
+  };
+  // derby tanks hunt the player's tank
+  const _vt = vehThink; vehThink = function (v) {
+    _vt.apply(this, arguments);
+    if (G && G.arc && G.arc.mode === 'derby' && v.team === 1) { let best = null, bd = 1e9; for (const o of G.vehicles) { if (!o.alive || o.team === v.team) continue; const d = Math.hypot(o.x - v.x, o.z - v.z); if (d < bd) { bd = d; best = o; } } if (best) { v.dest.x = best.x; v.dest.z = best.z; } }
+  };
+  const _af = arcFinish; arcFinish = function (result) {
+    const A = G && G.arc, sport = A && !A.done && (A.mode === 'paint' || A.mode === 'derby') ? A.mode : null, sc = A ? (A.mode === 'paint' ? A.score[0] : G.arcScore || 0) : 0;
+    const r = _af.apply(this, arguments);
+    if (sport) sgReport(sport, result === 'win', sc);
+    return r;
+  };
+}
+
+{ const _lb = leaveBattle; leaveBattle = function () { document.body.classList.remove('sgSport'); return _lb.apply(this, arguments); };
+  const _sb = startBattle; startBattle = function (cfg) { document.body.classList.remove('sgSport'); return _sb.apply(this, arguments); }; }
+
+/* ---------- Quiz Night ---------- */
+// [question, the right answer, three wrong ones]
+const SG_QUIZ = [
+  ['Which empire is the Smiley Face Army at war with in the story?', 'The Gedagedigedagedago Empire', ['The Grumpy Republic', 'The Frown Federation', 'The Sad Kingdom']],
+  ['How many chapters does the campaign The Long War have?', '30', ['12', '20', '50']],
+  ['What is the racing circuit in SMFA 3D called?', 'The Sorrel Ring', ['The Smile Speedway', 'Monza Grin', 'The Iron Loop']],
+  ['How many planets are out in Space beyond the Moon?', '8', ['3', '5', '12']],
+  ['How many planets can one country hold at most?', '3', ['1', '5', '8']],
+  ['How long is a season of the online World?', 'A week', ['A day', 'A month', 'A year']],
+  ['What do SD stand for in the Store?', 'Smiley Dollars', ['Soldier Dollars', 'Smile Diamonds', 'Super Deals']],
+  ['What is the face on the flag of the SMFA?', '>:)', [':(', ':P', 'XD']],
+  ['Who runs the training course at headquarters?', 'Sgt. Hale', ['Captain Grin', 'General Frown', 'Major Smile']],
+  ['What is the news channel in SMFA 3D called?', 'SNN', ['SMN', 'BBC', 'GNN']],
+  ['Which of these is a computer nation in SMFA 3D?', 'The French Empire', ['The Moon Republic', 'The Dutch Kingdom', 'The Sky Union']],
+  ['In the World, what does a peace treaty stop for 24 hours?', 'Attacks between the two countries', ['All trade', 'The season', 'The chat']],
+  ['Which planet is the largest in our solar system?', 'Jupiter', ['Saturn', 'Neptune', 'Earth']],
+  ['Which planet is closest to the Sun?', 'Mercury', ['Venus', 'Mars', 'Earth']],
+  ['Which planet is called the Red Planet?', 'Mars', ['Venus', 'Jupiter', 'Mercury']],
+  ['How many players does a football team have on the field?', '11', ['9', '10', '12']],
+  ['What is hit over the net in badminton?', 'A shuttlecock', ['A puck', 'A ball', 'A disc']],
+  ['At sea level, water boils at…', '100 °C', ['90 °C', '80 °C', '120 °C']],
+  ['Which is the largest ocean on Earth?', 'The Pacific', ['The Atlantic', 'The Indian', 'The Arctic']],
+  ['On which date did Indonesia declare independence?', '17 August 1945', ['1 June 1945', '17 August 1949', '28 October 1928']],
+  ['What is the national motto of Indonesia?', 'Bhinneka Tunggal Ika', ['Gotong Royong', 'Merdeka atau Mati', 'Tut Wuri Handayani']],
+  ['In which province is the Borobudur temple?', 'Central Java', ['Bali', 'East Java', 'Yogyakarta City']],
+  ['Komodo dragons live wild on islands in which province of Indonesia?', 'East Nusa Tenggara', ['Bali', 'West Java', 'North Sulawesi']],
+  ['Which is the fastest land animal?', 'The cheetah', ['The lion', 'The horse', 'The greyhound']],
+  ['What is the chemical symbol for gold?', 'Au', ['Ag', 'Gd', 'Go']],
+  ['How many sides does a hexagon have?', '6', ['5', '7', '8']],
+  ['What is the smallest prime number?', '2', ['1', '3', '0']],
+  ['In which year did people first walk on the Moon?', '1969', ['1959', '1975', '1981']],
+  ['Which is the highest mountain above sea level?', 'Mount Everest', ['K2', 'Kilimanjaro', 'Mont Blanc']],
+  ['What is the currency of Japan?', 'The yen', ['The won', 'The yuan', 'The ringgit']],
+  ['How many bones does an adult human body usually have?', '206', ['180', '250', '312']],
+  ['What do bees make?', 'Honey', ['Silk', 'Wax paper', 'Milk']],
+  ['Which gas do plants take in to make food?', 'Carbon dioxide', ['Oxygen', 'Helium', 'Nitrogen']],
+  ['How many minutes are in a day?', '1,440', ['1,200', '1,000', '2,400']],
+  ['Which is the hardest natural material?', 'Diamond', ['Iron', 'Granite', 'Glass']],
+  ['How many continents are there (the usual count)?', '7', ['5', '6', '8']]
+];
+function sgQuizStart() {
+  const pool = SG_QUIZ.slice(); for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+  SG.quiz = { qs: pool.slice(0, 10).map(([q, a, w]) => { const opts = [a, ...w]; for (let i = 3; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [opts[i], opts[j]] = [opts[j], opts[i]]; } return { q, a, opts }; }), i: 0, right: 0, picked: null, t: 0, iv: 0, done: false };
+  sgQuizNext(true);
+}
+function sgQuizNext(first) {
+  const Q = SG.quiz; if (!Q) return;
+  if (!first) Q.i++;
+  if (Q.i >= Q.qs.length) { sgQuizEnd(); return; }
+  Q.picked = null; Q.until = Date.now() + 15000;
+  clearInterval(Q.iv); Q.iv = setInterval(() => { if (!SG.quiz || SG.quiz !== Q) { clearInterval(Q.iv); return; } if (Q.picked === null && Date.now() >= Q.until) sgQuizPick(-1); else sgQuizClock(); }, 200);
+  sgRender();
+}
+function sgQuizClock() { const Q = SG.quiz, b = $('#sgQClock'); if (!Q || !b) return; const l = Math.max(0, Q.until - Date.now()); b.style.width = (l / 150) + '%'; const n = $('#sgQSec'); if (n) n.textContent = Math.ceil(l / 1000); }
+function sgQuizPick(i) {
+  const Q = SG.quiz; if (!Q || Q.picked !== null) return;
+  const cur = Q.qs[Q.i]; Q.picked = i; if (i >= 0 && cur.opts[i] === cur.a) { Q.right++; SFX.cap && SFX.cap(); }
+  sgRender(); setTimeout(() => { if (SG.quiz === Q) sgQuizNext(); }, 1300);
+}
+function sgQuizEnd() {
+  const Q = SG.quiz; clearInterval(Q.iv); Q.done = true; const won = Q.right >= 7;
+  sgRender(); sgReport('quiz', won, Q.right).then(() => sgRender());
+}
+function sgQuizHtml() {
+  const Q = SG.quiz;
+  if (Q.done) {
+    const won = Q.right >= 7, r = SG.last;
+    return `<div class="sgQuiz sgEnd"><div class="sgBig${won ? ' win' : ''}">${Q.right}<small>/ 10</small></div><h3>${won ? 'You win Quiz Night!' : 'Not this time'}</h3><p class="note">${won ? 'Seven or more right.' : 'You need 7 right to win.'}${r && r.gold > 0 ? ` Your country got ${r.gold} gold.` : ''}</p>
+      <div class="row sgEndRow"><button class="btn primary" id="sgQAgain">Play again</button><button class="btn" id="sgQOut">Back to the games</button></div></div>`;
+  }
+  const cur = Q.qs[Q.i], sec = Math.ceil(Math.max(0, Q.until - Date.now()) / 1000);
+  return `<div class="sgQuiz"><div class="sgQTop"><span>Question ${Q.i + 1} of 10</span><b>${Q.right} right</b><span id="sgQSec">${sec}</span></div>
+    <div class="sgQBar"><i id="sgQClock" style="width:${(Q.until - Date.now()) / 150}%"></i></div>
+    <h3 class="sgQ">${esc(cur.q)}</h3>
+    <div class="sgOpts">${cur.opts.map((o, i) => { const st = Q.picked === null ? '' : o === cur.a ? ' right' : i === Q.picked ? ' wrong' : ' dim'; return `<button class="sgOpt${st}" data-qa="${i}"${Q.picked !== null ? ' disabled' : ''}><b>${'ABCD'[i]}</b><span>${esc(o)}</span></button>`; }).join('')}</div>
+    ${Q.picked === -1 ? '<p class="note sgLate">Time is up.</p>' : ''}<button class="btn small sgQuit" id="sgQOut">Stop the quiz</button></div>`;
+}
+
+/* ---------- the hub ---------- */
+function sgWorldHtml() {
+  const st = typeof WL !== 'undefined' && WL.st, me = st && st.me, g = st && st.games;
+  if (!accOn || !accOn()) return `<div class="sgStrip"><b>Play for your country</b><span>Log in and found a country in the World: every match pays it gold and wins count for the season.</span></div>`;
+  if (!me) return `<div class="sgStrip"><b>Play for your country</b><span>Found a country in the World and every match pays it gold: 300 for a win, 60 for a loss.</span></div>`;
+  const c = st.cats || {}, CAT = [['warlord', 'Warlord', 'most countries'], ['tycoon', 'Tycoon', 'most gold'], ['architect', 'Architect', 'biggest city'], ['champion', 'Champion', 'most match wins']];
+  return `<div class="sgStrip"><b>Playing for ${esc(me.name)}</b><span>300 gold a win, 60 a loss, 6 paid matches a day${g ? ` · <em>${Math.min(6, g.paid)} of 6 paid today</em> · ${g.wins} win${g.wins === 1 ? '' : 's'} this season` : ''}</span></div>
+    <div class="sgTitles">${CAT.map(([k, n, w]) => `<div><small>${n}</small><b>${c[k] ? esc(c[k].name) : 'nobody yet'}</b><em>${w}</em></div>`).join('')}</div>`;
+}
+function sgRender() {
+  const el = $('#sgBody'); if (!el) return;
+  $('#sgWorld').innerHTML = SG.quiz ? '' : sgWorldHtml();
+  if (SG.quiz) el.innerHTML = sgQuizHtml();
+  else {
+    const D = sgData();
+    el.innerHTML = `<div class="sgGrid">${SG_GAMES.map(g => `<div class="sgGame${g.soon ? ' soon' : ''}"><div class="sgIcon" aria-hidden="true">${g.icon}</div><div class="sgTxt"><b>${g.n}</b><small>${g.d}</small>${g.soon ? '' : `<em>${D.wins[g.k] || 0} won of ${D.played[g.k] || 0}${D.best[g.k] ? ` · best ${D.best[g.k]}${g.k === 'quiz' ? '/10' : g.k === 'paint' ? ' tags' : ' tanks'}` : ''}</em>`}</div><button class="btn${g.soon ? '' : ' primary'}" data-sg="${g.k}"${g.soon ? ' disabled' : ''}>${g.soon ? 'Soon' : 'Play'}</button></div>`).join('')}</div>`;
+  }
+  el.querySelectorAll('[data-sg]').forEach(b => b.onclick = () => sgStart(b.dataset.sg));
+  el.querySelectorAll('[data-qa]').forEach(b => b.onclick = () => sgQuizPick(+b.dataset.qa));
+  const ag = $('#sgQAgain'); if (ag) ag.onclick = () => sgQuizStart();
+  const out = $('#sgQOut'); if (out) out.onclick = () => { if (SG.quiz) clearInterval(SG.quiz.iv); SG.quiz = null; sgRender(); };
+  if (typeof i18nWalk === 'function') i18nWalk($('#scr-games'));
+}
+async function sgOpen() {
+  show('#scr-games'); sgRender();
+  if (typeof accOn === 'function' && accOn() && typeof wlLoad === 'function' && (!WL.st || Date.now() - (WL.loaded || 0) > 60000)) { try { await wlLoad(true); } catch (e) { } if (!$('#scr-games').hidden) sgRender(); }
+}
+{
+  $('#goGames').addEventListener('click', sgOpen);
+  $('#sgBack').addEventListener('click', () => { if (SG.quiz) clearInterval(SG.quiz.iv); SG.quiz = null; show('#scr-title'); });
+  addEventListener('keydown', e => { if (!SG.quiz || $('#scr-games').hidden || SG.quiz.done) return; const i = 'abcd1234'.indexOf(e.key.toLowerCase()) % 4; if (i >= 0 && e.key.length === 1) sgQuizPick(i); });
+}
+
+/* ---------- the World: Version 12 (titles, underdogs, the matches) ---------- */
+{
+  const _wc = wlCall; SG.old = false;
+  wlCall = async function (fn, args, quiet) {
+    if (fn === 'world_state' && !SG.old) {
+      const e0 = WL.err, r = await _wc('world_state_v12', args, true);
+      if (r && r.players) return r;
+      SG.old = true; WL.err = e0;
+    }
+    const r = await _wc.apply(this, arguments);
+    try { if (r && r.ok !== false) { if (fn === 'world_build') misAdd('build', 1); else if (fn === 'world_visit_start' && args && args.p_kind === 'hangout') misAdd('visit', 1); } } catch (e) { }
+    return r;
+  };
+  const CATN = { warlord: 'Warlord', tycoon: 'Tycoon', architect: 'Architect', champion: 'Champion' };
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), st = WL.st; if (!el || !st || WL.tab !== 'land') return r;
+      const ud = new Set(st.underdogs || []), tt = st.cat_titles || [];
+      el.querySelectorAll('.wlRow[data-p]').forEach(row => {
+        const n = row.dataset.p, sp = row.querySelector('span'); if (!sp || sp.querySelector('.sgTag')) return;
+        let h = ud.has(n) ? '<em class="sgTag peace" title="Earns 50% more; big countries pay more soldiers to invade it">underdog</em>' : '';
+        const mine = tt.filter(t => t.name === n); if (mine.length) h += `<em class="sgTag gold" title="${mine.map(t => `${CATN[t.cat]} of season ${t.season}`).join(', ')}">${CATN[mine[0].cat]}${mine.length > 1 ? ' +' + (mine.length - 1) : ''}</em>`;
+        if (h) { const b = sp.querySelector('b'); if (b) b.insertAdjacentHTML('afterend', ' ' + h); }
+      });
+      if (st.cats && !el.querySelector('.sgRace')) {
+        const first = el.querySelector('.wlRow[data-p]');
+        if (first) first.insertAdjacentHTML('beforebegin', `<div class="sgRace"><small>Season titles: who leads now</small><div>${Object.entries(CATN).map(([k, n]) => `<span><i>${n}</i><b>${st.cats[k] ? esc(st.cats[k].name) : '-'}</b></span>`).join('')}</div></div>`);
+      }
+    } catch (e) { console.warn('games world', e); }
+    return r;
+  };
+  const _n = wlNews; wlNews = function (l) {
+    if (l.kind === 'game_star') return `<b>${esc(l.a)}</b> got all 10 right at Quiz Night`;
+    return _n.apply(this, arguments);
+  };
+}
+
+/* ---------- missions that are not about fighting ---------- */
+MIS_POOL.day.push(
+  { id: 'game1', g: 'game', t: 'Play a Sports & Games match', n: 1, k: 'game', sd: 150, xp: 70 },
+  { id: 'gamewin', g: 'game', t: 'Win a Sports & Games match', n: 1, k: 'gamewin', sd: 210, xp: 90 },
+  { id: 'quiz7', g: 'quiz', t: 'Get 7 or more right at Quiz Night', n: 1, k: 'quiz7', sd: 180, xp: 80 },
+  { id: 'build1', g: 'build', t: 'Build something in your World city or on a planet', n: 1, k: 'build', sd: 150, xp: 70 },
+  { id: 'visit1', g: 'visit', t: "Hang out in a friend's country in the World", n: 1, k: 'visit', sd: 150, xp: 70 }
+);
+MIS_POOL.week.push({ id: 'w_games', t: 'Win 5 Sports & Games matches', n: 5, k: 'gamewin', sd: 1100, xp: 450 });
+
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'Sports & Games': 'Olahraga & Permainan', 'Paintball': 'Paintball', 'Tank Derby': 'Derby Tank', 'Quiz Night': 'Malam Kuis', 'Football 5-a-side': 'Sepak bola 5 lawan 5', 'Coming in a later update.': 'Hadir di pembaruan berikutnya.',
+  'Play': 'Main', 'Soon': 'Segera', 'Short matches, no wars. Every match counts for your country in the World.': 'Pertandingan singkat, tanpa perang. Setiap pertandingan dihitung untuk negara Anda di Dunia.',
+  'Play for your country': 'Bermain untuk negara Anda', 'Play again': 'Main lagi', 'Back to the games': 'Kembali ke permainan', 'Stop the quiz': 'Hentikan kuis', 'Time is up.': 'Waktu habis.',
+  'You win Quiz Night!': 'Anda menang Malam Kuis!', 'Not this time': 'Belum kali ini', 'Season titles: who leads now': 'Gelar musim: siapa yang memimpin', 'underdog': 'tertinggal',
+  'Play a Sports & Games match': 'Mainkan satu pertandingan Olahraga & Permainan', 'Win a Sports & Games match': 'Menangkan satu pertandingan Olahraga & Permainan', 'Get 7 or more right at Quiz Night': 'Jawab benar 7 atau lebih di Malam Kuis',
+  'Build something in your World city or on a planet': 'Bangun sesuatu di kota Dunia atau di planet Anda', "Hang out in a friend's country in the World": 'Nongkrong di negara teman di Dunia', 'Win 5 Sports & Games matches': 'Menangkan 5 pertandingan Olahraga & Permainan'
+});
+
+/* ================= v88: four new tracks, and the SMFA 3D Original Soundtrack player =================
+   Like the others, the new tracks are written in code and played by the game's own synth voices: nothing to download.
+   "Iron Smile" plays in World battles, "Beyond the Moon" in Space, "Island Sea" in naval battles on the Island Sea and
+   "Quick Draw" in Arcade and Sports & Games. All of them listen to the fighting, like "Contact Front". */
+Object.assign(MUS_CH, {
+  Cm: [36, [55, 60, 63]], Ab: [32, [56, 60, 63]], Eb: [39, [55, 58, 63]], Fm: [41, [56, 60, 65]], Fsm: [42, [54, 57, 61]], Bm: [35, [54, 59, 62]]
+});
+Object.assign(MUS_TRACKS, {
+  // "Iron Smile": C minor, a heavy march for the World's wars. Calm: low strings and a drum like a heartbeat
+  war: {
+    bpm: 112, rev: 0.3, bars: 16,
+    ch: ['Cm', 'Cm', 'Ab', 'Bb', 'Cm', 'Cm', 'Ab', 'G', 'Fm', 'Fm', 'Cm', 'Cm', 'Ab', 'Bb', 'G', 'G'],
+    mel: [
+      [[0, 3, 67], [3, 1, 67], [4, 4, 72], [8, 4, 70], [12, 4, 67]], [[0, 2, 68], [2, 2, 67], [4, 4, 65], [8, 8, 67]],
+      [[0, 3, 68], [3, 1, 68], [4, 4, 72], [8, 4, 75], [12, 4, 72]], [[0, 4, 74], [4, 4, 70], [8, 8, 74]],
+      [[0, 3, 67], [3, 1, 67], [4, 4, 72], [8, 4, 70], [12, 4, 67]], [[0, 2, 68], [2, 2, 70], [4, 4, 72], [8, 8, 75]],
+      [[0, 4, 75], [4, 4, 72], [8, 4, 68], [12, 4, 72]], [[0, 6, 71], [6, 2, 74], [8, 8, 79]],
+      [[0, 4, 77], [4, 2, 75], [6, 2, 72], [8, 8, 68]], [[0, 4, 77], [4, 2, 79], [6, 2, 80], [8, 8, 79]],
+      [[0, 3, 75], [3, 1, 75], [4, 4, 79], [8, 4, 84], [12, 4, 79]], [[0, 4, 80], [4, 4, 79], [8, 8, 75]],
+      [[0, 4, 80], [4, 4, 75], [8, 4, 72], [12, 4, 75]], [[0, 4, 77], [4, 4, 74], [8, 4, 70], [12, 4, 74]],
+      [[0, 6, 74], [6, 2, 71], [8, 4, 74], [12, 4, 79]], [[0, 12, 79]]
+    ],
+    snare: [0.9, 0, 0, 0.35, 0.6, 0, 0.3, 0.3, 0.9, 0, 0, 0.35, 0.6, 0.3, 0.45, 0.6],
+    bar(P, b, t, s, k) {
+      const T = this, i = b % 16, [root, pad] = MUS_CH[T.ch[i]], lo = root < 33 ? root + 12 : root, second = i >= 8, end = i === 7 || i === 15;
+      mvStrings(P, t, pad, 16 * s, 0.017 + 0.006 * k, 650 + 600 * k); mvStrings(P, t, [pad[0] - 12], 16 * s, 0.014, 500);
+      mvTimp(P, t, lo + 12, 0.2); mvTimp(P, t + 8 * s, lo + 12, 0.12);
+      if (k < 0.3) { mvBass(P, t, lo, 15 * s, 0.09, 260); if (i % 2) mvBrass(P, t + 8 * s, lo + 24, 7 * s, 0.03); return; }
+      // the ostinato: low strings and bass hammer eighth notes, up an octave on the off-beat
+      for (let q = 0; q < 16; q += 2) mvBass(P, t + q * s, lo + (q % 8 === 6 ? 12 : 0), 1.6 * s, 0.075 + 0.03 * k, 420 + 300 * k);
+      T.snare.forEach((g, q) => { if (g) mvSnare(P, t + q * s, g * (0.05 + 0.05 * k)); });
+      mvKick(P, t, 0.2); mvKick(P, t + 8 * s, 0.16);
+      if (end) for (let q = 8; q < 16; q++) mvTimp(P, t + q * s, lo + 12 + (q > 11 ? 7 : 0), 0.05 + (q - 8) * 0.012);
+      if (i === 0 || i === 8) mvCrash(P, t, 0.05);
+      if (k >= 0.5) for (const [st, len, n] of T.mel[i]) { mvBrass(P, t + st * s, n - (second ? 0 : 12), len * s * 0.93, 0.085); mvBrass(P, t + st * s, n - (second ? 12 : 24), len * s * 0.93, 0.045); if (second && len >= 4) mvBell(P, t + st * s, n + 12, 0.025); }
+      else if (i % 2 === 0) mvBrass(P, t, pad[2], 14 * s, 0.04);
+    }
+  },
+  // "Beyond the Moon": A major, slow and wide, for flying in Space. Bells drift; a soft beat comes in when it gets busy
+  space: {
+    bpm: 92, rev: 0.55, bars: 16, vol: 0.9,
+    ch: ['A', 'Fsm', 'D', 'E', 'A', 'Fsm', 'D', 'E', 'Bm', 'D', 'A', 'E', 'Fsm', 'D', 'E', 'E'],
+    mel: [
+      [[0, 6, 76], [6, 2, 73], [8, 8, 69]], [[0, 4, 73], [4, 4, 76], [8, 8, 78]], [[0, 6, 74], [6, 2, 73], [8, 8, 69]], [[0, 4, 71], [4, 4, 73], [8, 8, 76]],
+      [[0, 6, 81], [6, 2, 80], [8, 8, 76]], [[0, 4, 78], [4, 4, 81], [8, 8, 85]], [[0, 6, 83], [6, 2, 81], [8, 4, 78], [12, 4, 74]], [[0, 4, 76], [4, 4, 80], [8, 8, 83]]
+    ],
+    bar(P, b, t, s, k) {
+      const T = this, i = b % 16, [root, pad] = MUS_CH[T.ch[i]], lo = root < 33 ? root + 12 : root, kk = Math.max(0.45, k);
+      mvStrings(P, t, pad, 16 * s, 0.02, 850); mvStrings(P, t, [pad[2] + 12], 16 * s, 0.009, 1400);
+      mvNote(P, t, lo, 15.5 * s, { g: 0.1, type: 'sine', a: 0.4, r: 0.9 });
+      // the bells: a slow climb through the chord, each one echoing in the big room
+      const ar = [pad[0] + 12, pad[1] + 12, pad[2] + 12, pad[0] + 24, pad[2] + 12, pad[1] + 24, pad[2] + 24, pad[1] + 12];
+      ar.forEach((n, q) => mvBell(P, t + q * 2 * s, n, q === 0 ? 0.035 : 0.022));
+      if (kk >= 0.55) { mvKick(P, t, 0.13); mvKick(P, t + 10 * s, 0.09); for (let q = 2; q < 16; q += 4) mvHat(P, t + q * s, 0.012); mvSnare(P, t + 8 * s, 0.035); }
+      if (i >= 4) for (const [st, len, n] of T.mel[i % 8]) mvLead(P, t + st * s, n - 12, len * s * 0.95, 0.032 + 0.012 * kk);
+    }
+  },
+  // "Island Sea": D minor, rolling like waves (arpeggios in threes over the beat), a horn tune like a sea song
+  sea: {
+    bpm: 100, rev: 0.4, bars: 16,
+    ch: ['Dm', 'Dm', 'Bb', 'C', 'Dm', 'Am', 'Bb', 'A', 'F', 'C', 'Dm', 'Bb', 'Gm', 'Dm', 'A', 'A'],
+    mel: [
+      [[0, 3, 62], [3, 1, 64], [4, 4, 65], [8, 3, 69], [11, 1, 67], [12, 4, 65]], [[0, 4, 64], [4, 4, 62], [8, 8, 57]],
+      [[0, 3, 62], [3, 1, 64], [4, 4, 65], [8, 3, 70], [11, 1, 69], [12, 4, 67]], [[0, 4, 69], [4, 4, 67], [8, 8, 64]],
+      [[0, 3, 69], [3, 1, 70], [4, 4, 72], [8, 4, 69], [12, 4, 65]], [[0, 4, 64], [4, 4, 65], [8, 8, 64]],
+      [[0, 3, 62], [3, 1, 65], [4, 4, 70], [8, 4, 69], [12, 4, 67]], [[0, 4, 64], [4, 4, 61], [8, 8, 69]]
+    ],
+    bar(P, b, t, s, k) {
+      const T = this, i = b % 16, [root, pad] = MUS_CH[T.ch[i]], lo = root < 33 ? root + 12 : root, second = i >= 8;
+      mvStrings(P, t, pad, 16 * s, 0.018 + 0.005 * k, 700 + 500 * k);
+      // the swell: a timpani roll that grows into the bar, like a wave
+      mvTimp(P, t, lo + 12, 0.16); if (i % 4 === 3) for (let q = 10; q < 16; q++) mvTimp(P, t + q * s, lo + 12, 0.03 + (q - 10) * 0.014);
+      [0, 6, 10].forEach(q => mvBass(P, t + q * s, lo, (q === 0 ? 5 : 3.5) * s, 0.09, 380 + 200 * k));
+      const ar = [pad[0] + 12, pad[1] + 12, pad[2] + 12];
+      for (let q = 0; q < 16; q++) mvPluck(P, t + q * s, ar[q % 3] + (q % 6 >= 3 ? 12 : 0), 1.2 * s, 0.02 + 0.012 * k);
+      if (k < 0.35) return;
+      mvKick(P, t, 0.17); mvKick(P, t + 6 * s, 0.1); mvKick(P, t + 10 * s, 0.12);
+      if (k >= 0.5) { mvSnare(P, t + 4 * s, 0.08); mvSnare(P, t + 12 * s, 0.09); if (i === 0 || i === 8) mvCrash(P, t, 0.045); }
+      for (const [st, len, n] of T.mel[i % 8]) { mvBrass(P, t + st * s, n - (second ? 0 : 12), len * s * 0.92, 0.075); if (second) mvBell(P, t + st * s, n + 12, 0.024); }
+    }
+  },
+  // "Quick Draw": G minor, fast and punchy, for Arcade and Sports & Games
+  quick: {
+    bpm: 160, rev: 0.18, bars: 16,
+    ch: ['Gm', 'Gm', 'Eb', 'F', 'Gm', 'Gm', 'Eb', 'D', 'Cm', 'Cm', 'Gm', 'Gm', 'Eb', 'F', 'D', 'D'],
+    mel: [
+      [[0, 2, 67], [2, 2, 70], [4, 2, 74], [6, 2, 72], [8, 4, 70], [12, 4, 67]], [[0, 2, 65], [2, 2, 67], [4, 4, 70], [8, 8, 67]],
+      [[0, 2, 67], [2, 2, 70], [4, 2, 74], [6, 2, 75], [8, 4, 74], [12, 4, 70]], [[0, 4, 72], [4, 4, 69], [8, 8, 66]],
+      [[0, 2, 79], [2, 2, 77], [4, 2, 74], [6, 2, 77], [8, 4, 79], [12, 4, 82]], [[0, 4, 82], [4, 4, 79], [8, 8, 75]],
+      [[0, 2, 77], [2, 2, 75], [4, 2, 74], [6, 2, 72], [8, 4, 70], [12, 4, 72]], [[0, 6, 74], [6, 2, 72], [8, 8, 78]]
+    ],
+    bar(P, b, t, s, k) {
+      const T = this, i = b % 16, [root, pad] = MUS_CH[T.ch[i]], lo = root < 33 ? root + 12 : root;
+      for (let q = 0; q < 16; q += 2) mvBass(P, t + q * s, lo + (q % 4 === 2 ? 12 : 0), 1.4 * s, 0.085 + 0.02 * k, 500 + 500 * k);
+      for (let q = 0; q < 16; q++) mvHat(P, t + q * s, q % 4 === 2 ? 0.028 : 0.011, q === 14 && i % 2);
+      if (k < 0.3) { mvKick(P, t, 0.18); mvKick(P, t + 8 * s, 0.14); mvStrings(P, t, pad, 16 * s, 0.01, 700); return; }
+      for (let q = 0; q < 16; q += 4) mvKick(P, t + q * s, 0.24);
+      mvSnare(P, t + 4 * s, 0.12); mvSnare(P, t + 12 * s, 0.12); if (i % 4 === 3) { mvSnare(P, t + 14 * s, 0.07); mvSnare(P, t + 15 * s, 0.1); }
+      if (i === 0 || i === 8) mvCrash(P, t, 0.05);
+      // stabs on the off-beat
+      for (const q of [2, 6, 10, 14]) for (const n of pad) mvPluck(P, t + q * s, n + 12, 1.1 * s, 0.022);
+      if (k >= 0.55) for (const [st, len, n] of T.mel[i % 8]) mvLead(P, t + st * s, n - (i >= 8 ? 0 : 12), len * s * 0.9, 0.052);
+      else if (i % 2 === 0) mvBrass(P, t, pad[2] + 12, 6 * s, 0.035);
+    }
+  }
+});
+// which of the new tracks a place gets
+{
+  const _mw = musWant; musWant = function () {
+    if (MUS.ost) return MUS.ost.k;
+    const w = _mw.apply(this, arguments);
+    if (w === 'battle' && G && G.cfg) { if (G.cfg.world) return 'war'; if (G.cfg.map === 'ocean') return 'sea'; if (G.cfg.arcade || G.cfg.sport) return 'quick'; }
+    if (w === 'menu' && typeof SPC !== 'undefined' && SPC.on) return 'space';
+    if (w === 'menu' && typeof SG !== 'undefined' && SG.quiz) return 'quick';
+    return w;
+  };
+}
+
+/* ---------- the OST player ---------- */
+const OST_LIST = [
+  { k: 'menu', n: "Smile, You're Enlisted", w: 'The main menu' },
+  { k: 'battle', n: 'Contact Front', w: 'Battles' },
+  { k: 'race', n: 'Lights Out', w: 'Races at the Sorrel Ring' },
+  { k: 'cut', mood: 'brief', n: 'Briefing Room', w: 'Cutscenes and SNN news' },
+  { k: 'cut', mood: 'war', n: 'War Room', w: 'Cutscenes before a fight' },
+  { k: 'cut', mood: 'light', n: 'Comic Relief', w: 'The funny scenes' },
+  { k: 'cut', mood: 'sad', n: 'Fallen Friends', w: 'The sad scenes' },
+  { k: 'war', n: 'Iron Smile', w: 'World battles and World Wars', isNew: true },
+  { k: 'space', n: 'Beyond the Moon', w: 'Space and the planets', isNew: true },
+  { k: 'sea', n: 'Island Sea', w: 'Naval battles', isNew: true },
+  { k: 'quick', n: 'Quick Draw', w: 'Arcade and Sports & Games', isNew: true }
+];
+const OST = { i: -1, playing: false, all: true, t0: 0, raf: 0, an: null, loops: 3 };
+const ostLoopLen = it => { const T = MUS_TRACKS[it.k]; return (T.bars || 16) * 16 * (60 / T.bpm / 4); };
+const ostLen = it => ostLoopLen(it) * OST.loops;   // a song in the player is its loop played three times
+const ostTime = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+function ostPlay(i) {
+  SFX.init(); musEnsure(); if (!MUS.X) return;
+  if (MUS.X.ctx.state !== 'running') MUS.X.ctx.resume();
+  if (!(settings.music > 0)) { settings.music = 0.55; saveSettings(); }
+  const it = OST_LIST[i]; OST.i = i; OST.playing = true; OST.t0 = MUS.X.ctx.currentTime + 0.5;
+  if (it.mood) MUS.cutMood = it.mood;
+  MUS.heat = 0; MUS.inten = 0; MUS.ost = { k: it.k, n: i };
+  if (MUS.cur === it.k) musSwitch(null);   // the same track again (another mood): start it from the top
+  musTick(); ostRender();
+}
+function ostStop() { OST.playing = false; MUS.ost = null; MUS.cutMood = 'brief'; ostRender(); }
+function ostLeave() { cancelAnimationFrame(OST.raf); OST.raf = 0; OST.playing = false; MUS.ost = null; MUS.cutMood = 'brief'; }
+function ostRender() {
+  const el = $('#ostList'); if (!el) return;
+  const cur = OST_LIST[OST.i];
+  $('#ostNowT').textContent = cur ? cur.n : 'Choose a track';
+  $('#ostNowW').textContent = cur ? `${cur.w}${cur.isNew ? ' · new in v88' : ''}` : `${OST_LIST.length} tracks, all written in code for SMFA 3D`;
+  $('#ostPlay').classList.toggle('on', OST.playing); $('.ostDisc').classList.toggle('spin', OST.playing); $('#ostPlay').setAttribute('aria-label', OST.playing ? 'Pause' : 'Play');
+  $('#ostMode').textContent = OST.all ? 'Play all' : 'Repeat one'; $('#ostMode').classList.toggle('primary', !OST.all);
+  el.innerHTML = OST_LIST.map((it, i) => `<button class="ostRow${i === OST.i ? ' cur' : ''}${i === OST.i && OST.playing ? ' on' : ''}" data-ost="${i}"><b>${String(i + 1).padStart(2, '0')}</b><span><i>${esc(it.n)}${it.isNew ? '<em>New</em>' : ''}</i><small>${esc(it.w)}</small></span><time>${ostTime(ostLen(it))}</time></button>`).join('');
+  el.querySelectorAll('[data-ost]').forEach(b => b.onclick = () => { const i = +b.dataset.ost; if (i === OST.i && OST.playing) ostStop(); else ostPlay(i); });
+  if (typeof i18nWalk === 'function') i18nWalk($('#scr-ost'));
+}
+// a level meter and the place in the loop, drawn while the screen is open
+function ostFrame() {
+  OST.raf = requestAnimationFrame(ostFrame);
+  const cv = $('#ostViz'); if (!cv || $('#scr-ost').hidden) return;
+  const X = MUS.X, w = cv.clientWidth, h = cv.clientHeight, dpr = Math.min(2, devicePixelRatio || 1);
+  if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+  const c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
+  if (X && !OST.an) { try { OST.an = X.ctx.createAnalyser(); OST.an.fftSize = 128; OST.an.smoothingTimeConstant = 0.78; X.out.connect(OST.an); OST.buf = new Uint8Array(OST.an.frequencyBinCount); } catch (e) { OST.an = null; } }
+  const n = 40, gap = 3, bw = (w - gap * (n - 1)) / n;
+  if (OST.an && OST.playing) OST.an.getByteFrequencyData(OST.buf);
+  for (let i = 0; i < n; i++) {
+    const v = OST.an && OST.playing ? OST.buf[Math.min(OST.buf.length - 1, Math.floor(Math.pow(i / n, 1.5) * OST.buf.length * 0.8) + 1)] / 255 : 0;
+    const bh = Math.max(3, v * (h - 4)), x = i * (bw + gap);
+    c.fillStyle = `rgba(56,214,92,${0.35 + 0.65 * v})`; c.beginPath(); c.roundRect ? c.roundRect(x, h - bh, bw, bh, 2) : c.rect(x, h - bh, bw, bh); c.fill();
+  }
+  const it = OST_LIST[OST.i], pr = $('#ostProg'), tm = $('#ostTime');
+  if (it && X && OST.playing) {
+    const L = ostLen(it), el = Math.max(0, X.ctx.currentTime - OST.t0);
+    pr.style.width = Math.min(100, 100 * el / L).toFixed(2) + '%'; tm.textContent = `${ostTime(Math.min(el, L))} / ${ostTime(L)}`;
+    MUS.heat = Math.min(75, el * 5);   // the battle tracks build up as if a fight were starting
+    if (el >= L - 0.2) { if (OST.all) ostPlay((OST.i + 1) % OST_LIST.length); else OST.t0 = X.ctx.currentTime; }
+  } else if (!OST.playing) { pr.style.width = '0%'; tm.textContent = it ? `0:00 / ${ostTime(ostLen(it))}` : ''; }
+}
+function ostOpen() { SFX.init(); musEnsure(); show('#scr-ost'); const v = $('#ostVol'); if (v) v.value = settings.music || 0.55; ostRender(); if (!OST.raf) ostFrame(); }
+{
+  const go = $('#goOst'); if (go) go.addEventListener('click', ostOpen);
+  $('#ostBack').addEventListener('click', () => { ostLeave(); show('#scr-title'); });
+  $('#ostPlay').addEventListener('click', () => { if (OST.playing) ostStop(); else ostPlay(OST.i < 0 ? 0 : OST.i); });
+  $('#ostPrev').addEventListener('click', () => ostPlay((Math.max(0, OST.i) - 1 + OST_LIST.length) % OST_LIST.length));
+  $('#ostNext').addEventListener('click', () => ostPlay((OST.i + 1) % OST_LIST.length));
+  $('#ostMode').addEventListener('click', () => { OST.all = !OST.all; ostRender(); });
+  $('#ostVol').addEventListener('input', e => { settings.music = +e.target.value; saveSettings(); });
+  // leaving the screen any other way stops the player too
+  const _sh = show; show = function (sel) { if (sel !== '#scr-ost' && MUS.ost) ostLeave(); return _sh.apply(this, arguments); };
+}
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'Listen to the OST': 'Dengarkan OST', 'SMFA 3D Original Soundtrack': 'Soundtrack Asli SMFA 3D', 'Choose a track': 'Pilih lagu', 'Play all': 'Putar semua', 'Repeat one': 'Ulangi satu',
+  'The main menu': 'Menu utama', 'Battles': 'Pertempuran', 'Races at the Sorrel Ring': 'Balapan di Sorrel Ring', 'Cutscenes and SNN news': 'Cutscene dan berita SNN', 'Cutscenes before a fight': 'Cutscene sebelum bertempur',
+  'The funny scenes': 'Adegan lucu', 'The sad scenes': 'Adegan sedih', 'World battles and World Wars': 'Pertempuran Dunia dan Perang Dunia', 'Space and the planets': 'Luar angkasa dan planet', 'Naval battles': 'Pertempuran laut',
+  'Arcade and Sports & Games': 'Arcade dan Olahraga & Permainan', 'Volume': 'Volume', 'New': 'Baru'
 });
 </script>
