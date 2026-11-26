@@ -2129,6 +2129,53 @@ body.tEditing #fbHelp,body.tEditing #fbBanner{display:none!important}
 .festPill{white-space:nowrap}
 .festHead.tap{cursor:pointer}.festHead.tap:hover b{text-decoration:underline}.festN{font-style:normal;font:700 var(--t-s) var(--ui);color:var(--fc);white-space:nowrap}
 .misSheetCard .festHead .festN{display:none}
+/* v99: space events and the International Smiley Station */
+#seEv{align-self:center;padding:5px 12px;border-radius:var(--r-pill);background:rgba(239,75,79,.18);border:1px solid rgba(239,75,79,.5);color:#ffd0c8;font:700 var(--t-s) var(--ui);letter-spacing:.08em;text-transform:uppercase}
+#scr-space.seStorm #spView::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 70% 20%,rgba(255,170,60,.18),transparent 60%);animation:seFlick 1.3s infinite}
+@keyframes seFlick{50%{opacity:.4}}
+#sePanel{position:absolute;left:calc(12px + var(--sl));top:calc(70px + var(--st));z-index:6;width:min(380px,calc(100% - 24px));display:grid;gap:8px;padding:12px}
+#sePanel small{color:var(--muted);font-size:var(--t-s)}#sePanel .seGrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}#sePanel .row{gap:6px;flex-wrap:nowrap}#sePanel select{min-width:0}
+#scr-iss{padding:0;display:block;background:#000;touch-action:none}
+#scr-iss #issView{position:absolute;inset:0}#scr-iss #issView canvas{display:block;width:100%;height:100%}
+#issMarks{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#issFx{position:absolute;inset:0;pointer-events:none;transition:background .6s}
+#issFx.alarm{animation:issAlarm 1s infinite}
+@keyframes issAlarm{50%{box-shadow:inset 0 0 140px rgba(255,30,20,.55)}}
+#issFx.hiding{background:radial-gradient(ellipse at center,transparent 18%,rgba(0,0,0,.92) 55%)}
+#issFx.hiding.floor{background:repeating-linear-gradient(90deg,rgba(0,0,0,.85) 0 18px,transparent 18px 30px),radial-gradient(ellipse at center,transparent 20%,rgba(0,0,0,.9) 60%)}
+#issFx.hiding.locker{background:repeating-linear-gradient(0deg,rgba(10,14,10,.95) 0 14px,transparent 14px 22px)}
+#issFx.eaten{animation:issEat 2.6s forwards}
+@keyframes issEat{0%{background:transparent}60%{background:rgba(90,0,8,.6)}100%{background:#000}}
+#issFx.sucked{animation:issOut 2.6s forwards}@keyframes issOut{0%{background:transparent}70%{background:rgba(200,220,255,.25)}100%{background:#000}}
+#issFx.noair{animation:issOut2 2.6s forwards}@keyframes issOut2{0%{background:transparent}100%{background:#000;backdrop-filter:blur(6px)}}
+#scr-iss .spTop{position:absolute;left:calc(12px + var(--sl));right:calc(12px + var(--sr));top:calc(10px + var(--st));display:flex;justify-content:space-between;gap:10px;align-items:flex-start;pointer-events:none}
+#scr-iss .spPanel{pointer-events:auto}
+.issTopL{display:flex;flex-wrap:wrap;gap:6px;align-items:center;max-width:60%}.issTopL #issAdm{display:flex;gap:6px}
+#issEmg{position:absolute;left:50%;transform:translateX(-50%);top:calc(70px + var(--st));display:grid;gap:3px;justify-items:center;padding:8px 16px;border-radius:var(--r-l);background:rgba(60,4,4,.82);border:1px solid #ef4b4f;color:#fff;min-width:240px;text-align:center}
+#issEmg b{font:800 var(--t-b) var(--ui);letter-spacing:.12em;color:#ff8a80}#issEmg span{font-size:var(--t-m)}
+.issAirW{display:flex;gap:8px;align-items:center;width:100%}.issAirW small{font-size:var(--t-xs);color:#ffd0c8}.issAirW i{flex:1;height:7px;border-radius:4px;background:#2a0a0a;overflow:hidden}.issAirW b{display:block;height:100%;background:#9fd8ff}
+#scr-iss .spMid{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(150px + var(--sb));display:grid;gap:8px;justify-items:center;width:min(560px,calc(100% - 24px))}
+#issMsg{padding:7px 14px;border-radius:var(--r-m);background:rgba(6,12,16,.78);border:1px solid rgba(255,255,255,.12);font-size:var(--t-m);text-align:center}
+#issHold{width:200px;height:8px;border-radius:4px;background:rgba(0,0,0,.6);overflow:hidden}#issHold i{display:block;height:100%;width:0;background:var(--green)}
+#issTool{position:absolute;right:calc(14px + var(--sr));bottom:calc(150px + var(--sb));display:grid;padding:8px 12px;border-radius:var(--r-m);background:rgba(6,12,16,.78);border:1px solid rgba(255,255,255,.14)}
+#issTool small{color:var(--muted);font-size:var(--t-xs)}#issTool.fire{animation:issFire .25s}@keyframes issFire{0%{box-shadow:0 0 0 0 var(--fc)}50%{box-shadow:0 0 26px 6px var(--fc)}}
+.issTouch{display:none}#scr-iss.touch .issTouch{display:block}
+#issStick{position:absolute;left:calc(22px + var(--sl));bottom:calc(22px + var(--sb));width:130px;height:130px;border-radius:50%;border:2px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);touch-action:none}
+#issKnob{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(57,211,83,.45);border:2px solid rgba(255,255,255,.4)}
+#issLook{position:absolute;left:40%;right:0;top:20%;bottom:150px;touch-action:none}
+.issBtns{position:absolute;right:calc(14px + var(--sr));bottom:calc(18px + var(--sb));display:grid;grid-template-columns:repeat(3,62px);gap:8px}
+.issBtns button{height:54px;border-radius:14px;background:rgba(10,20,10,.6);border:2px solid rgba(255,255,255,.28);color:#fff;font:700 var(--t-s) var(--ui);touch-action:none}
+.issBtns button.on{background:rgba(57,211,83,.5)}#issFireB{background:rgba(200,40,40,.55)!important}#issTalk.on{background:rgba(90,166,255,.6)!important}
+#scr-iss:not(.touch) .spMid{bottom:calc(40px + var(--sb))}#scr-iss:not(.touch) #issTool{bottom:calc(40px + var(--sb))}
+.issOver{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);z-index:5;padding:16px}
+.issBox{display:grid;gap:12px;justify-items:center;padding:18px 20px;border-radius:var(--r-l);background:var(--panel);border:1px solid var(--line2);width:min(420px,100%)}
+.issBox.wide{width:min(720px,100%);justify-items:stretch}.issBox em{font:700 var(--t-xs) var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-style:normal}.issBox h3{margin:0}
+.issSeq{display:flex;gap:8px}.issSeq i{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.25)}
+.issCols{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%}.issCols button{height:52px;border-radius:var(--r-m);border:2px solid var(--c);background:color-mix(in srgb,var(--c) 30%,transparent);color:#fff;font:700 var(--t-m) var(--ui)}
+.issBook{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.issBook div{padding:9px;border-radius:var(--r-m);border:1px dashed var(--line2);display:grid;gap:3px}.issBook div.got{border:1px solid var(--green);background:var(--sel-bg)}
+.issBook b{font-size:var(--t-m)}.issBook small{color:var(--muted);font-size:var(--t-xs);line-height:1.35}
+@media (max-width:640px){#scr-iss .spStat div:nth-child(n+3){display:none}.issTopL{max-width:100%}}
+#scr-iss.dying .spCross,#scr-iss.dying #issMsg,#scr-iss.dying #issAct,#scr-iss.dying #issMarks,#scr-iss.dying .issTouch{display:none!important}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -13510,7 +13557,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '0dbff36e'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '498749eb'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -22580,6 +22627,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '99', date: '2026-11-26', name: 'Trouble in orbit', items: ['Meteors: about twice a week a meteor heads for a planet, with an hour\'s warning in the news and in Space. Shoot it down together: it adapts to each pilot, so your hits count for less and less until it ignores you. Small meteors break easily but adapt fast; big ones are tough but adapt slowly. If it lands, the planet turns to rubble for 1 to 12 Smiley days, belongs to nobody and loses everything on it.', 'Space events about every two hours, the same for every pilot: a meteor shower (rocks that hurt, and give ore when shot), a solar storm (no shields, and planet and station guns are silent), a pirate armada (double bounties) and a derelict ship (the first pilot to search it takes the loot).', 'The International Smiley Station: fly up to it in Space and board it as your own President, floating through ten modules: hub, laboratory, containment lab, greenhouse, cargo bay, crew quarters, hygiene bay, observatory, power module and docking port. Friends aboard at the same time see each other, and can talk with push-to-talk voice (switch Voice on, then hold V or Talk).', 'Station jobs: repairs, experiments and cargo runs. Six a day pay 150 gold and 3 season points each; every job pays SD; experiments can make one of 12 discoveries. 3, 6, 9 and 12 discoveries unlock a Spacesuit, the Nebula paint, the Star Map emblem and the Explorer medal.', 'Station emergencies, for everyone aboard: a hull breach (get a patch kit, seal the hole, pressurise the hub before the air runs out) or the giant specimen breaking out of its tank (survive 5 minutes, in first person: hide in a sleep pod, a toilet stall, a storage locker or under a floor panel, or fight with the extinguisher, welding torch and flares). Nobody can leave Space until it is over. Survive for 400 gold and a discovery; die and you lose the day\'s station earnings.', 'For the President of the game: an Events button in Space starts any space event or sends a meteor at any planet, and Hull breach and Creature buttons start an emergency on the station. Run the world SQL (Version 15) once in Supabase before uploading this version.'] },
   { v: '98', date: '2026-11-26', name: 'To the victor', items: ['Capturing a homeland now takes everything it has: its gold, oil, steel and food, its ships, warheads and generals, its planets and its city, plus half of its Economy, Army and Defences levels. Cities and planets it was holding go to the winner too. Countries that are occupied right now are handed over the same way.', 'A held city pays its holder every hour, but the holder cannot build in it or knock anything down. The same goes for held planets.', 'Winning your freedom back: you keep your own levels and start again with 500 gold and 100 soldiers, but your city and planets stay with whoever holds them. Win the city back in a battle from the Build tab (20 soldiers, every 10 minutes), and each planet in a fight in orbit, against the holder\'s Defences level.', 'At the end of a season held cities go home and planets are freed.', 'Defences now go up to level 20. From level 10 each step costs more: 27,300 gold for level 11, rising to 167,300 for level 20, plus steel and oil.', 'Battles against a country\'s Defences: 6 to 9 is Hard, 10 and up is Nightmare and gets harder with every level (sharper aim, faster reactions, more damage, more health, more reinforcements). An uprising against an occupier with level 10 is Nightmare too. Held planets get more and tougher guns in orbit.', 'Spying on a strong country is harder: guards see further, notice you faster and walk faster with every Defences level, two more guards patrol from level 10, and if they catch you, you are dead and the mission is lost. The hacking timer drops from 45 seconds to 10 at level 20, a coup fails at the first wrong approach from level 8, and every mission costs 10% more per level.', 'For the President of the game: run the world SQL (Version 14) once in Supabase before uploading this version.'] },
   { v: '97', date: '2026-11-25', name: 'Full screen and a living World', items: ['Full screen: a button on the main menu, in the pause menu and in Settings. On phones the game can go full screen by itself with the first tap of every game (Settings, Screen). iPhones do not allow it in the browser: add SMFA 3D to the Home Screen and open it from there instead.', 'City rating: every World city gets 1 to 5 stars. Parks, plazas, monuments, the stadium and a hospital make it nicer; factories and oil wells put visitors off. The rating brings tourists, and tourists pay gold every hour.', 'Visit a friend\'s city from the Build tab\'s Best cities list or from their country: your visit pays them a little gold, and you can leave a like. Likes raise a city\'s rating.', 'The News tab opens with a front page, The World Herald: the day\'s big story, then war and politics, sport, cities, and trade and friendship.', 'Festivals: New Year, Smile Day (1 to 7 April), Independence Day (14 to 20 August) and the Harvest Festival (22 November to 6 December). Each has three small tasks on the main menu, and finishing them gives a festival emblem and vehicle paint for the Barracks. During a festival, city tourism pays double.', 'New daily mission: visit a friend\'s city.', 'For the President of the game: run the world SQL (Version 13) once in Supabase. Until then the front page, ratings and festivals still show, but tourism gold, visits and likes wait for it.'] },
   { v: '96', date: '2026-11-24', name: 'Your controls', items: ['Football on phones plays like FC Mobile: with the ball you get Shoot, Pass, Through ball, Skill move and Curve; when they have it the same places become Tackle, Switch and Press (hold to close their man down, a team-mate helps). Sprint stays, and Flow lights up when the Spirit bar is full.', 'New in football on every device: through balls (T on a keyboard), skill moves (X) and pressing (hold Z).', 'Customize controls (Settings): move any action to another key on the keyboard or another button on the controller, for battle and free roam, racing, football and space. Taking a key another action uses swaps the two. Reset per section or all at once.', 'Phones: Edit buttons (in the pause menu, or ✎ Buttons in football and space) lets you drag any button to a new place and make it bigger or smaller. Settings also has see-through buttons and a left-handed layout. Each kind of game keeps its own layout.', 'Football and space now work with a controller.'] },
@@ -29867,5 +29915,851 @@ if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
   'Look at your city': 'Lihat kotamu', 'CAUGHT': 'TERTANGKAP', 'You were caught. Their guards do not take prisoners.': 'Kamu tertangkap. Penjaga mereka tidak menyisakan tawanan.',
   'Invaders face a stronger army. Up to level 20: 6+ is Hard, 10+ is beyond Nightmare, and spies and hackers struggle more each level.': 'Penyerang menghadapi tentara lebih kuat. Sampai level 20: 6+ Sulit, 10+ melebihi Nightmare, dan mata-mata serta peretas makin kesulitan setiap level.',
   'Your city is yours again.': 'Kotamu kembali menjadi milikmu.', 'Your homeland is free. You keep your levels; win back your city and planets.': 'Tanah airmu bebas. Levelmu tetap; rebut kembali kota dan planetmu.'
+});
+
+/* ================= SPACE EVENTS (v99): meteors, showers, storms, armadas, derelicts, and the way to the station =================
+   Server: Version 15 (world_space_now, world_meteor_hit, world_derelict_claim, world_admin_meteor, world_admin_space_event).
+   - Meteors on planets: the server sends one now and then with an hour's warning. It flies in towards its planet;
+     anyone in Space can shoot it. It adapts to each pilot: the more you hit it, the less your hits count, until it
+     ignores you. Small meteors are fragile but adapt fast; big ones are tough but adapt slowly. If it lands, the
+     planet becomes rubble for 1 to 12 hours and belongs to nobody.
+   - Space events, about one every two hours, worked out from the clock so every pilot sees the same one at the same
+     time (the President of the game can start one now): a meteor shower, a solar storm (no shields, no guns on planets
+     and stations), a pirate armada, and a derelict ship whose loot goes to the first pilot to search it.
+   - The International Smiley Station orbits above the world; fly up to it and board (1120-iss.js). */
+const SE = { data: null, pollT: 0, met: new Map(), dmg: new Map(), sendT: 0, ev: null, evKey: '', fx: [], rocks: [], derelict: null, armadaKey: '', panel: false };
+const SE_SLOT = 2 * 3600e3;
+{
+  const _wc = wlCall; SE.old = false;
+  wlCall = async function (fn, args, quiet) {
+    if (fn === 'world_state' && !SE.old) { const e0 = WL.err, r = await _wc('world_state_v15', args, true); if (r && r.players) { if (r.space) { SE.data = Object.assign({}, r.space); SE.skew = new Date(r.space.now).getTime() - Date.now(); } return r; } SE.old = true; WL.err = e0; }
+    return _wc.apply(this, arguments);
+  };
+}
+const SE_KIND = { shower: { n: 'Meteor shower', d: 'Rocks are flying through. They hurt, but shooting them gives ore.', min: 5 },
+  storm: { n: 'Solar storm', d: 'Shields are down, and the guns of planets and stations are silent. A chance to attack.', min: 8 },
+  armada: { n: 'Pirate armada', d: 'A pirate fleet is attacking. Every pirate pays a double bounty.', min: 7 },
+  derelict: { n: 'Derelict ship', d: 'An abandoned ship is drifting in orbit. The first pilot to search it takes the loot.', min: 10 } };
+const seHash = n => { let h = 2166136261 ^ n; h = Math.imul(h ^ (h >>> 15), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); return (h ^ (h >>> 16)) >>> 0; };
+// the event going on now: the President of the game's, or the clock's
+function seNow() {
+  const now = Date.now(), A = SE.data && SE.data.event;
+  if (A && A.kind && SE_KIND[A.kind]) { const st = new Date(A.at).getTime(), end = st + SE_KIND[A.kind].min * 60e3; if (now < end) return { kind: A.kind, start: st, end, id: 'a' + A.id }; }
+  if (A && A.kind === 'none' && now - new Date(A.at).getTime() < 15 * 60e3) return null;
+  const slot = Math.floor(now / SE_SLOT), h = seHash(slot), kind = ['shower', 'storm', 'armada', 'derelict'][h % 4], st = slot * SE_SLOT + (10 + (h >>> 3) % 90) * 60e3, end = st + SE_KIND[kind].min * 60e3;
+  return now >= st && now < end ? { kind, start: st, end, id: 's' + slot } : null;
+}
+const seStorm = () => SE.ev && SE.ev.kind === 'storm';
+async function sePoll() {
+  const r = await wlCall('world_space_now', {}, true); WL.err = '';
+  if (r && r.ok !== false && Array.isArray(r.meteors)) { SE.data = r; SE.skew = new Date(r.now).getTime() - Date.now(); }
+}
+const seT = s => new Date(s).getTime() - (SE.skew || 0);
+/* ---------- meteors ---------- */
+function seMeteorMesh(size) {
+  const r = [0, 7, 12, 20][size] || 12, g = new THREE.Group();
+  const geo = new THREE.IcosahedronGeometry(r, 1), pos = geo.attributes.position;
+  for (let i = 0; i < pos.count; i++) { const k = 0.8 + 0.4 * ((seHash(i * 7 + size) % 1000) / 1000); pos.setXYZ(i, pos.getX(i) * k, pos.getY(i) * k, pos.getZ(i) * k); }
+  geo.computeVertexNormals();
+  g.add(new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color: 0x5a4a3e, emissive: 0x3a1004, flatShading: true })));
+  const tail = new THREE.Mesh(new THREE.ConeGeometry(r * 0.9, r * 7, 12, 1, true), new THREE.MeshBasicMaterial({ color: 0xff8a3a, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
+  tail.rotation.x = -Math.PI / 2; tail.position.z = -r * 3.6; g.add(tail); g.userData.r = r; return g;
+}
+function seMeteorsStep(dt) {
+  const S = SPC, list = (SE.data && SE.data.meteors) || [], seen = new Set();
+  for (const m of list) {
+    seen.add(m.id); const pl = (S.planets || []).find(p => p.id === m.planet); if (!pl) continue;
+    let o = SE.met.get(m.id);
+    if (!o) { o = { id: m.id, mesh: seMeteorMesh(m.size), m, dir: spV(Math.cos(m.id * 2.1), 0.35 * Math.sin(m.id * 1.3), Math.sin(m.id * 2.1)).normalize(), pl, meteor: true }; S.scene.add(o.mesh); SE.met.set(m.id, o); }
+    o.m = m; const t0 = seT(m.at), t1 = seT(m.strike_at), f = clamp((t1 - Date.now()) / Math.max(1, t1 - t0), 0, 1);
+    o.mesh.position.copy(pl.pos).add(o.dir.clone().multiplyScalar(pl.r + 25 + 1500 * f)); o.mesh.lookAt(pl.pos); o.mesh.children[0].rotation.x += dt * 0.6;
+  }
+  for (const [id, o] of SE.met) if (!seen.has(id)) { if (o.downNow) spcBoom(o.mesh.position.clone(), 40, 0xffa040); S.scene.remove(o.mesh); SE.met.delete(id); }
+  // report the hits once a second
+  SE.sendT -= dt; if (SE.sendT <= 0) { SE.sendT = 1; for (const [id, d] of SE.dmg) { SE.dmg.delete(id); seSendHit(id, d); } }
+}
+async function seSendHit(id, d) {
+  const r = await wlCall('world_meteor_hit', { p_id: id, p_dmg: Math.round(d) }, true); WL.err = ''; const o = SE.met.get(id); if (!r || !o) return;
+  if (r.ok === false) { if (r.state && r.state !== 'coming') { o.downNow = r.state === 'down'; const L = SE.data && SE.data.meteors; if (L) SE.data.meteors = L.filter(x => x.id !== id); } return; }
+  const was = o.m.adapt || 0; o.m.hp = r.hp; o.m.adapt = r.adapt;
+  if (r.state === 'down') { o.downNow = true; SE.data.meteors = SE.data.meteors.filter(x => x.id !== id); spcSay(`You broke up the meteor. ${o.pl.name} is safe.`, 6); try { misAdd('meteor', 1); } catch (e) { } }
+  else if (r.adapt >= 1 && was < 1) spcSay('The meteor has adapted to your guns: your shots do nothing now. Other pilots must finish it.', 6);
+  else if (r.adapt >= 0.5 && was < 0.5) spcSay('The meteor is adapting to your guns: each hit counts for less.', 4);
+}
+/* ---------- the clock's events ---------- */
+function seEventStep(dt) {
+  const S = SPC, sh = S.ship, ev = seNow(), key = ev ? ev.id : '';
+  if (key !== SE.evKey) {
+    // an event ends or begins
+    for (const r of SE.rocks) S.scene.remove(r.m); SE.rocks = [];
+    if (SE.derelict) { S.scene.remove(SE.derelict.m); SE.derelict = null; }
+    SE.evKey = key; SE.ev = ev; $('#scr-space').classList.toggle('seStorm', !!ev && ev.kind === 'storm');
+    if (ev) { const K = SE_KIND[ev.kind]; spcSay(`${K.n}! ${K.d}`, 7); try { SFX.tone(0.25, 0.6, 300, 600, 'sawtooth'); } catch (e) { }
+      if (ev.kind === 'derelict') { const h = seHash(ev.id.length * 977 + ev.start / 1000 | 0), c = S.fields[h % S.fields.length].clone().add(spV((h % 200) - 100, ((h >>> 8) % 120) - 60, ((h >>> 16) % 200) - 100));
+        if (c.length() < SP_R + 80) c.setLength(SP_R + 100); const m = spcShipMesh('#6e5a3a', 'gunship'); m.scale.setScalar(2.2); m.position.copy(c); m.rotation.set(0.6, 1.2, 0.3);
+        m.traverse(o => { if (o.isMesh && o.material && o.material.color) { o.material = o.material.clone(); o.material.color.multiplyScalar(0.5); } }); S.scene.add(m); SE.derelict = { m, pos: c, id: 'd-' + ev.id, done: false }; } }
+  }
+  if (!ev || S.dead || S.docked) return;
+  if (ev.kind === 'shower') {
+    SE.rockT = (SE.rockT || 0) - dt;
+    if (SE.rockT <= 0 && SE.rocks.length < 26) { SE.rockT = 0.25; const dir = spV(1, -0.2, 0.4).normalize(), side = spV(rr(-1, 1), rr(-1, 1), rr(-1, 1)).normalize().multiplyScalar(rr(20, 140));
+      const r = rr(1.2, 3.4), m = new THREE.Mesh(new THREE.DodecahedronGeometry(r, 0), new THREE.MeshLambertMaterial({ color: 0x7a6a5a, emissive: 0x2a0c02, flatShading: true }));
+      m.position.copy(sh.position).add(side).sub(dir.clone().multiplyScalar(320)); S.scene.add(m); SE.rocks.push({ m, v: dir.clone().multiplyScalar(rr(70, 110)), r, hp: 4, life: 7, shower: true }); }
+    for (const R of SE.rocks) { R.life -= dt; R.m.position.add(R.v.clone().multiplyScalar(dt)); R.m.rotation.x += dt * 2;
+      if (R.hp > 0 && R.m.position.distanceTo(sh.position) < R.r + 3.5) { R.hp = 0; R.life = 0; spcBoom(R.m.position.clone(), 4, 0xc9b28a); spcHurt(9); } }
+    SE.rocks = SE.rocks.filter(R => { if (R.life > 0 && R.hp > 0) return true; S.scene.remove(R.m); return false; });
+  }
+  if (ev.kind === 'storm') { S.sh = 0; for (const pl of S.planets || []) for (const q of pl.pods) q.fireT = Math.max(q.fireT, 0.5); }
+  if (ev.kind === 'armada' && SE.armadaKey !== ev.id) {
+    SE.armadaKey = ev.id; const at = sh.position.clone().add(spV(0, 0, 1).applyQuaternion(sh.quaternion).multiplyScalar(320));
+    if (at.length() < SP_R + 60) at.setLength(SP_R + 90);
+    for (let i = 0; i < 9; i++) { const m = spcShipMesh('#b3261e', i === 0 ? 'gunship' : 'fighter'); m.scale.setScalar(i === 0 ? 1.8 : 1.15); m.position.copy(at).add(spV(rr(-40, 40), rr(-30, 30), rr(-40, 40))); S.scene.add(m); S.pir.push({ m, hp: i === 0 ? 140 : 40, fireT: 2 + i * 0.3, speed: 50, armada: true }); }
+  }
+}
+// the station's place in orbit
+const SE_ISS = () => spcPos(520, 205, SP_R + 175);
+function seIssMesh() {
+  const g = new THREE.Group(), mat = c => new THREE.MeshLambertMaterial({ color: c });
+  const truss = new THREE.Mesh(new THREE.BoxGeometry(70, 2.2, 2.2), mat(0xb8bcc0)); g.add(truss);
+  for (const x of [-30, -18, 18, 30]) for (const s of [-1, 1]) { const p = new THREE.Mesh(new THREE.BoxGeometry(9, 0.3, 22), new THREE.MeshLambertMaterial({ color: 0x1d3a7a, emissive: 0x08122a })); p.position.set(x, 0, s * 13); g.add(p); }
+  const mods = [[0, 0, 0, 16], [0, 0, 10, 10], [0, 0, -10, 10], [8, 0, 0, 8], [-8, 0, 0, 8]];
+  for (const [x, y, z, L] of mods) { const c = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.6, L, 14), mat(0xe8e6df)); if (z) c.rotation.x = Math.PI / 2; else c.rotation.z = Math.PI / 2; c.position.set(x, y + 3, z); g.add(c); }
+  const smile = new THREE.Mesh(new THREE.CircleGeometry(1.8, 20), new THREE.MeshBasicMaterial({ color: 0x39d353 })); smile.position.set(0, 3, 15.05); g.add(smile);
+  const bc = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 6), new THREE.MeshBasicMaterial({ color: 0x39d353 })); bc.position.set(0, 6.5, 0); g.add(bc); g.userData.beacon = bc;
+  g.scale.setScalar(1.4); return g;
+}
+{
+  const _b = spcBuild; spcBuild = function () {
+    const r = _b.apply(this, arguments);
+    try { const S = SPC; SE.met.clear(); SE.dmg.clear(); SE.rocks = []; SE.derelict = null; SE.evKey = ''; S.iss = seIssMesh(); S.iss.position.copy(SE_ISS()); S.iss.lookAt(0, 0, 0); S.scene.add(S.iss); } catch (e) { console.warn('iss', e); }
+    return r;
+  };
+  const _o = spcOpen; spcOpen = function () { const r = _o.apply(this, arguments); SE.pollT = 0; sePanelBtn(); return r; };
+  const _s = spcStep; spcStep = function (dt) {
+    const r = _s.apply(this, arguments), S = SPC;
+    try {
+      SE.pollT -= dt; if (SE.pollT <= 0) { SE.pollT = 20; sePoll(); }
+      if (S.iss) { S.iss.rotateY(dt * 0.02); const b = S.iss.userData.beacon; if (b) b.visible = (S.t % 1.4) < 0.5; }
+      seMeteorsStep(dt); seEventStep(dt);
+    } catch (e) { console.warn('space events', e); }
+    return r;
+  };
+  const _t = spcTargets; spcTargets = function () {
+    const T = _t.apply(this, arguments);
+    for (const o of SE.met.values()) T.push([o, o.mesh.position, o.mesh.userData.r + 2, 'pturret', null]);
+    for (const R of SE.rocks) if (R.hp > 0) T.push([R, R.m.position, R.r + 1, 'pturret', null]);
+    return T;
+  };
+  const _h = plTurretHit; plTurretHit = function (o, at, pl, dmg) {
+    if (o && o.meteor) { SE.dmg.set(o.id, (SE.dmg.get(o.id) || 0) + dmg); spcBoom(at.clone().add(SPC.ship.position.clone().sub(at).setLength(o.mesh.userData.r)), 2.4, (o.m.adapt || 0) >= 1 ? 0x8a8f94 : 0xffb060); return; }
+    if (o && o.shower) { o.hp = 0; spcBoom(at, 4, 0xc9b28a); spcDropOre(at, 1); return; }
+    return _h.apply(this, arguments);
+  };
+  // no turret fire in a solar storm
+  const _tu = spcTurrets; spcTurrets = function () { if (seStorm()) return; return _tu.apply(this, arguments); };
+  // armada pirates pay double
+  const _f = spcFire; spcFire = function () { const before = SPC.pir.filter(p => p.armada).length, r = _f.apply(this, arguments), after = SPC.pir.filter(p => p.armada).length;
+    if (after < before) SPC.bounty = Math.min(SP_BOUNTY, SPC.bounty + 1); return r; };
+  const _a = spcActNow; spcActNow = function () {
+    const S = SPC, sh = S.ship.position; if (S.dead || S.docked || S.warp) return _a.apply(this, arguments);
+    if (S.iss && sh.distanceTo(S.iss.position) < 60) return { l: 'Board the International Smiley Station', fn: () => typeof issOpen === 'function' && issOpen() };
+    const D = SE.derelict; if (D && !D.done && sh.distanceTo(D.pos) < 40) return { l: 'Search the derelict ship', fn: seSearch };
+    const pl = S.nearPl, ru = pl && SE.data && SE.data.rubble && SE.data.rubble[pl.id];
+    if (ru && new Date(ru) > new Date()) return { l: '', why: `${pl.name} is rubble after a meteor strike. It is rebuilt in ${Math.max(1, Math.ceil((seT(ru) - Date.now()) / 3600e3))} h.` };
+    return _a.apply(this, arguments);
+  };
+  const _hd = spcHud; spcHud = function () {
+    const r = _hd.apply(this, arguments), S = SPC, sh = S.ship.position, km = d => d > 1000 ? (d / 1000).toFixed(1) + ' km' : Math.round(d) + ' m';
+    if (S.iss) spcMark('iss', S.iss.position, 'st free', `International Smiley Station · ${km(S.iss.position.distanceTo(sh))}`, false);
+    for (const o of SE.met.values()) { const left = Math.max(0, seT(o.m.strike_at) - Date.now()), mm = Math.ceil(left / 60000);
+      spcMark('met' + o.id, o.mesh.position, 'pir', `Meteor → ${esc(o.pl.name)} · ${mm} min · ${Math.round(100 * o.m.hp / o.m.max)}%${o.m.adapt >= 1 ? ' · ignores you' : o.m.adapt > 0.05 ? ` · adapted ${Math.round(o.m.adapt * 100)}%` : ''}`, true); }
+    for (const k of [...S.marks.keys()]) if (k.startsWith('met') && !SE.met.has(+k.slice(3))) spcHide(k);
+    if (SE.derelict && !SE.derelict.done) spcMark('der', SE.derelict.pos, 'wreck', `Derelict ship · ${km(SE.derelict.pos.distanceTo(sh))}`, true); else spcHide('der');
+    const ev = SE.ev, el = $('#seEv'); if (el) { const t = ev ? `${SE_KIND[ev.kind].n} · ${Math.max(0, Math.ceil((ev.end - Date.now()) / 60000))} min` : ''; if (el._v !== t) { el._v = t; el.textContent = t; el.hidden = !t; } }
+    return r;
+  };
+  // the planets that are rubble look burnt out
+  const _ps = plSpaceStep; plSpaceStep = function (dt) {
+    const r = _ps.apply(this, arguments);
+    try { const ru = SE.data && SE.data.rubble || {}; for (const pl of SPC.planets || []) { const on = !!ru[pl.id] && seT(ru[pl.id]) > Date.now(); if (pl._ru !== on) { pl._ru = on; pl.body.material.color.setHex(on ? 0x3a2a24 : 0xffffff); pl.body.material.emissive.setHex(on ? 0x2a0802 : 0x000000); } } } catch (e) { }
+    return r;
+  };
+}
+async function seSearch() {
+  const D = SE.derelict; if (!D || D.busy) return; D.busy = true;
+  const r = await wlCall('world_derelict_claim', { p_slot: D.id }, true); D.busy = false; WL.err = '';
+  if (!r || r.ok === false) { spcSay((r && r.err) || 'The hatch is jammed. Try again.', 4); return; }
+  D.done = true;
+  if (!r.first) { spcSay(`${r.by || 'Another pilot'} got here first. The derelict is empty.`, 5); return; }
+  let disc = null; try { if (typeof issDiscover === 'function' && Math.random() < 0.5) disc = issDiscover('derelict'); } catch (e) { }
+  spcSay(`You searched the derelict first: ${wlNum(r.gold)} gold for your treasury${disc ? `, and a discovery: ${disc.n}` : ''}.`, 7);
+  try { SFX.ok(); } catch (e) { }
+}
+// the President of the game: start an event, or send a meteor at a planet
+function sePanelBtn() {
+  const host = $('#scr-space .spShip'); if (!host) return;
+  if (!$('#seEv')) { const ev = document.createElement('div'); ev.id = 'seEv'; ev.hidden = true; $('#scr-space .spMid').prepend(ev); }
+  let b = $('#seAdm'); const admin = typeof isAdmin === 'function' && isAdmin();
+  if (!b && admin) { b = document.createElement('button'); b.className = 'btn small'; b.id = 'seAdm'; b.textContent = 'Events'; b.onclick = () => sePanel(!SE.panel); $('#spWarpBtn').after(b); }
+  if (b) b.hidden = !admin;
+}
+function sePanel(on) {
+  SE.panel = on; let el = $('#sePanel');
+  if (!on) { if (el) el.hidden = true; return; }
+  if (!el) { el = document.createElement('div'); el.id = 'sePanel'; el.className = 'spPanel'; $('#scr-space').appendChild(el); }
+  const pls = (WL.st && WL.st.planets || []).map(p => `<option value="${p.id}">${esc(p.name)}${p.owner ? ' · ' + esc(p.owner) : ''}</option>`).join('');
+  el.innerHTML = `<div class="row between"><b>President of the game</b><button class="btn small" id="sePx">Close</button></div><small>Start a space event now (everyone in Space sees it)</small>
+    <div class="seGrid">${Object.entries(SE_KIND).map(([k, K]) => `<button class="btn small" data-sev="${k}">${K.n}</button>`).join('')}<button class="btn small" data-sev="none">End the event</button></div>
+    <small>Send a meteor (lands in 1 hour unless shot down)</small><div class="row"><select id="sePl" class="tin">${pls}</select><select id="seSz" class="tin"><option value="1">Small</option><option value="2" selected>Medium</option><option value="3">Big</option></select><button class="btn small danger" id="seGo">Send</button></div>`;
+  el.hidden = false;
+  el.querySelector('#sePx').onclick = () => sePanel(false);
+  el.querySelectorAll('[data-sev]').forEach(b => b.onclick = async () => { const r = await wlCall('world_admin_space_event', { p_kind: b.dataset.sev }, true); WL.err = ''; if (r && r.ok !== false) { SE.pollT = 0; await sePoll(); spcSay(b.dataset.sev === 'none' ? 'Event ended.' : `${SE_KIND[b.dataset.sev].n} started.`); } else spcSay((r && r.err) || 'That did not work.'); });
+  el.querySelector('#seGo').onclick = async () => { const r = await wlCall('world_admin_meteor', { p_planet: $('#sePl').value, p_size: +$('#seSz').value }, true); WL.err = ''; if (r && r.ok !== false) { await sePoll(); spcSay('A meteor is on its way.'); } else spcSay((r && r.err) || 'That did not work.'); };
+  if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+// the news
+{
+  const _n = wlNews; wlNews = function (l) {
+    const sz = ['', 'small', 'medium', 'big'][l.n] || '';
+    if (l.kind === 'meteor_coming') return `A ${sz} meteor is heading for the planet <b>${esc(l.a)}</b>. It lands in an hour unless pilots shoot it down`;
+    if (l.kind === 'meteor_hit') return `A meteor hit <b>${esc(l.a)}</b>${l.b ? `, the planet of <b>${esc(l.b)}</b>` : ''}: it is rubble for ${l.n} hour${l.n === 1 ? '' : 's'}`;
+    if (l.kind === 'meteor_down') return `${l.b ? `<b>${esc(l.b)}</b> broke up` : 'Pilots broke up'} the ${sz} meteor heading for <b>${esc(l.a)}</b>`;
+    return _n.apply(this, arguments);
+  };
+}
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'Meteor shower': 'Hujan meteor', 'Solar storm': 'Badai matahari', 'Pirate armada': 'Armada bajak laut', 'Derelict ship': 'Kapal terbengkalai', 'Events': 'Peristiwa',
+  'Board the International Smiley Station': 'Naik ke Stasiun Smiley Internasional', 'Search the derelict ship': 'Geledah kapal terbengkalai', 'End the event': 'Akhiri peristiwa', 'Send': 'Kirim'
+});
+
+/* ================= THE INTERNATIONAL SMILEY STATION (v99) =================
+   Fly up to the station in Space and board it: you float through its modules as your own President.
+   - Jobs: repairs (hold Use at a sparking panel), experiments (repeat the sample colours at the lab console) and cargo
+     (carry a crate from the cargo bay to where it is needed). Six jobs a day pay 150 gold and 3 season points each
+     (world_iss_job); every job pays SD, and experiments can make a discovery.
+   - Discoveries: 12 to find (experiments, emergencies survived, derelict ships). 3, 6, 9 and 12 found unlock a
+     spacesuit, a vehicle paint, an emblem and the Explorer medal.
+   - Friends on the station at the same time see each other (room server, SMFA-ISS-n), and can talk with push-to-talk
+     voice (the sound goes through the room server as small 8 kHz chunks, so it works on every network).
+   - Emergencies (about 1 visit in 4, or started by the President of the game), for everyone aboard at once. Nobody can
+     leave the station, or Space, until it is over:
+       Hull breach: air rushes out of a hole. Get a patch kit from a tool locker, seal the hole (hold Use), then
+       pressurise at the hub. Too close to the hole, or out of air, and you are sucked out / suffocate.
+       The creature: the giant specimen breaks out of the containment lab. Survive 5 minutes, in first person. Hide in
+       a sleep pod, or fight with the tools from a locker: the extinguisher slows it, the welding torch burns it (it
+       backs off), flares stun it. If it catches you, you are eaten.
+     Surviving pays 400 gold (3 a day) and a discovery. Dying loses the day's station gold and SD, and you wake up in
+     your ship outside. */
+const ISS_MODS = [
+  { id: 'hub', n: 'Hub', min: [-5, -3, -5], max: [5, 3, 5], c: 0xd9dcd6 },
+  { id: 'lab', n: 'Laboratory', min: [5, -2.2, -2.2], max: [25, 2.2, 2.2], c: 0xe2e6ea },
+  { id: 'contain', n: 'Containment Lab', min: [25, -4, -4], max: [35, 4, 4], c: 0xc9ccd4 },
+  { id: 'green', n: 'Greenhouse', min: [-25, -2.2, -2.2], max: [-5, 2.2, 2.2], c: 0xdfe8d6 },
+  { id: 'cargo', n: 'Cargo Bay', min: [-37, -4, -4], max: [-25, 4, 4], c: 0xcfc9bd },
+  { id: 'crew', n: 'Crew Quarters', min: [-2.2, -2.2, 5], max: [2.2, 2.2, 22], c: 0xe4ded6 },
+  { id: 'bath', n: 'Hygiene Bay', min: [2.2, -2.2, 11], max: [9, 2.2, 17], c: 0xdfe9ee },
+  { id: 'cupola', n: 'Observatory', min: [-3, -3, 22], max: [3, 3, 28], c: 0xd8dbe0 },
+  { id: 'power', n: 'Power Module', min: [-2.2, -2.2, -22], max: [2.2, 2.2, -5], c: 0xd6d6cc },
+  { id: 'dock', n: 'Docking Port', min: [-3, -3, -28], max: [3, 3, -22], c: 0xd2d4d8 }
+];
+const ISS_LINK = { hub: ['lab', 'green', 'crew', 'power'], lab: ['hub', 'contain'], contain: ['lab'], green: ['hub', 'cargo'], cargo: ['green'], crew: ['hub', 'cupola', 'bath'], bath: ['crew'], cupola: ['crew'], power: ['hub', 'dock'], dock: ['power'] };
+const ISS_M = Object.fromEntries(ISS_MODS.map(m => [m.id, m]));
+const issC = m => new THREE.Vector3((m.min[0] + m.max[0]) / 2, (m.min[1] + m.max[1]) / 2, (m.min[2] + m.max[2]) / 2);
+const ISS_DISC = [
+  ['moss', 'Glowing moss', 'A moss that lights up when someone smiles at it.'], ['crystal', 'Zero-g crystal', 'Grew in a perfect sphere with no gravity to pull it.'],
+  ['bact', 'Smiley bacteria', 'A colony that arranges itself into >:) under the microscope.'], ['dust', 'Comet dust', 'Older than the sun, and it smells of pepper.'],
+  ['freq', 'The silent frequency', 'A radio signal that only plays when nobody listens.'], ['probe', 'An ancient probe', 'Nobody on Earth remembers launching it.'],
+  ['water', 'Magnetic water', 'Water that follows a magnet like a dog.'], ['seed', 'Starlight seed', 'It only sprouts under starlight.'],
+  ['nebula', 'Pocket nebula', 'A cloud of colour small enough to hold in a jar.'], ['metal', 'Singing metal', 'Hums a different note in every module.'],
+  ['spark', 'Frozen spark', 'An electric spark that stopped in mid-air and stayed.'], ['ice', 'Black ice', 'Ice so cold it bends light around it.']
+];
+const ISS = { on: false, peers: new Map(), keys: {}, btn: {}, stick: { x: 0, y: 0, id: null }, look: { id: null, x: 0, y: 0 }, marks: new Map(), voice: { on: false, talk: false, peers: new Map() }, lockUntil: 0 };
+const ISS_ROOM = 'SMFA-ISS-';
+const issV = (x, y, z) => new THREE.Vector3(x, y, z);
+const issNow = () => ISS.room && ISS.room.open ? ISS.room.now() : Date.now();
+
+/* ---------- discoveries (also found in derelict ships) ---------- */
+const DISC_KEY = 'smfa3d.disc';
+const discGot = () => { let v = []; try { v = store.get(DISC_KEY, []) || []; } catch (e) { } return Array.isArray(v) ? v : []; };
+function issDiscover() {
+  const got = discGot(), left = ISS_DISC.filter(d => !got.includes(d[0])); if (!left.length) return null;
+  const d = left[Math.floor(Math.random() * left.length)]; got.push(d[0]); try { store.set(DISC_KEY, got); } catch (e) { }
+  const n = got.length; toast('Discovery!', `${d[1]}: ${d[2]} (${n} of 12)`);
+  const P = prof(), give = (slot, id) => { P.owned[id + '@' + slot] = true; };
+  if (n >= 3) give('pres', 'd_suit'); if (n >= 6) give('paint', 'd_nebula'); if (n >= 9) give('emblem', 'd_map'); profSave(P);
+  if (n === 3) toast('Unlocked', 'The Spacesuit for your President, in the Barracks.'); if (n === 6) toast('Unlocked', 'The Nebula vehicle paint, in the Barracks.'); if (n === 9) toast('Unlocked', 'The Star Map emblem, in the Barracks.');
+  if (n >= 12) { try { medalGive('explorer'); } catch (e) { } }
+  return { id: d[0], n: d[1], d: d[2] };
+}
+MEDALS.push({ id: 'explorer', name: 'Explorer', desc: 'Make all 12 discoveries in space.', c: '#5aa6ff' });
+COS.pres.push({ id: 'd_suit', name: 'Spacesuit', c: [0xeceeef, 0xd8dbde, 'helmet', 0xffffff, 0xf2b33d], disc: 3, _slot: 'pres' });
+COS.paint.push({ id: 'd_nebula', name: 'Nebula', col: 0x5a3aa8, disc: 6, _slot: 'paint' });
+COS.emblem.push({ id: 'd_map', name: 'Star Map', sym: '✧', disc: 9, _slot: 'emblem' });
+{ const _cl = cosLock; cosLock = function (it) { if (it && it.disc) { if (prof().owned[it.id + '@' + it._slot] || (typeof isAdmin === 'function' && isAdmin())) return null; return { text: `Discoveries: ${discGot().length} of ${it.disc}` }; } return _cl.apply(this, arguments); }; }
+
+/* ---------- the station: walls, inside and out ---------- */
+function issPanelTex(c) {
+  const cv = document.createElement('canvas'); cv.width = cv.height = 128; const g = cv.getContext('2d'), col = '#' + c.toString(16).padStart(6, '0');
+  g.fillStyle = col; g.fillRect(0, 0, 128, 128); g.strokeStyle = 'rgba(0,0,0,.18)'; g.lineWidth = 2; g.strokeRect(2, 2, 124, 124); g.strokeRect(10, 10, 50, 50); g.strokeRect(68, 10, 50, 108);
+  g.fillStyle = 'rgba(0,0,0,.25)'; for (const [x, y] of [[6, 6], [122, 6], [6, 122], [122, 122]]) { g.beginPath(); g.arc(x, y, 2, 0, 7); g.fill(); }
+  g.fillStyle = 'rgba(57,211,83,.5)'; g.fillRect(18, 70, 30, 4); g.fillStyle = 'rgba(242,179,61,.5)'; g.fillRect(18, 80, 18, 4);
+  const t = new THREE.CanvasTexture(cv); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+}
+function issBuild() {
+  const S = ISS, sc = S.scene = new THREE.Scene(); sc.background = new THREE.Color(0x02040a);
+  S.amb = new THREE.AmbientLight(0xffffff, 0.3); sc.add(S.amb); sc.add(new THREE.HemisphereLight(0xdfe8ff, 0x2a2a34, 0.22));
+  S.lights = [];
+  for (const id of ['hub', 'lab', 'green', 'crew', 'power', 'cargo', 'contain']) { const l = new THREE.PointLight(0xfff4e0, 0.42, 22, 1.4); l.position.copy(issC(ISS_M[id])); sc.add(l); S.lights.push(l); }
+  for (const m of ISS_MODS) {
+    const w = m.max[0] - m.min[0], h = m.max[1] - m.min[1], d = m.max[2] - m.min[2], c = issC(m);
+    const tex = issPanelTex(m.c); tex.repeat.set(Math.max(1, Math.round(Math.max(w, d) / 3)), Math.max(1, Math.round(h / 3)));
+    const glass = m.id === 'cupola';
+    tex.repeat.set(1 / 3, 1 / 3);
+    const mat = glass ? new THREE.MeshLambertMaterial({ color: 0x9ab8d8, transparent: true, opacity: 0.18, side: THREE.DoubleSide, depthWrite: false }) : new THREE.MeshLambertMaterial({ map: tex, side: THREE.DoubleSide });
+    for (let a = 0; a < 3; a++) for (const side of [0, 1]) issFace(sc, m, a, side, glass && !(a === 2 && side === 0) ? mat : glass ? new THREE.MeshLambertMaterial({ map: tex, side: THREE.DoubleSide }) : mat);
+    // light strips along the ceiling, handrails along the floor
+    const long = w >= d ? 'x' : 'z', L = Math.max(w, d) - 1;
+    const strip = new THREE.Mesh(new THREE.BoxGeometry(long === 'x' ? L : 0.3, 0.06, long === 'x' ? 0.3 : L), new THREE.MeshBasicMaterial({ color: 0xfff6e0 })); strip.position.set(c.x, m.max[1] - 0.04, c.z); sc.add(strip); m.strip = strip;
+    for (const s of [-1, 1]) { const rail = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, L, 6), new THREE.MeshLambertMaterial({ color: 0xf2b33d })); if (long === 'x') rail.rotation.z = Math.PI / 2; else rail.rotation.x = Math.PI / 2;
+      rail.position.set(long === 'x' ? c.x : c.x + s * (w / 2 - 0.25), m.min[1] + 0.5, long === 'x' ? c.z + s * (d / 2 - 0.25) : c.z); sc.add(rail); }
+  }
+  // details: lab racks and console, greenhouse plants, cargo crates, sleep pods, the reactor, the containment tank
+  const box = (x, y, z, w, h, d, c, e) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshLambertMaterial({ color: c, emissive: e || 0 })); m.position.set(x, y, z); sc.add(m); return m; };
+  for (let x = 8; x < 24; x += 3.2) { box(x, 0, -1.95, 1.4, 2.6, 0.4, 0x8a9096); box(x, 0.6, -1.7, 1.0, 0.25, 0.1, 0x1a2a3a, 0x0a3a5a); }
+  S.console = box(15, -1.4, 1.6, 2.2, 1.0, 0.8, 0x4a5058, 0x0a2a14);
+  for (let x = -23; x < -6; x += 2.4) for (const s of [-1, 1]) { box(x, -1.9, s * 1.7, 1.6, 0.3, 0.6, 0x6a4a2a); const p = new THREE.Mesh(new THREE.SphereGeometry(0.45, 8, 6), new THREE.MeshLambertMaterial({ color: 0x3a8a3a })); p.position.set(x, -1.4, s * 1.7); sc.add(p); }
+  for (let i = 0; i < 9; i++) box(-35 + (i % 3) * 1.6, -3.4 + Math.floor(i / 3) * 1.2, 3 - (i % 2) * 0.4, 1.2, 1.1, 1.2, 0xa8743a);
+  // places to hide from the creature: sleep pods (the bedrooms), toilet stalls, storage lockers, and crawlspaces under the floor
+  S.pods = [];
+  const hide = (kind, n, pos, at) => S.pods.push({ kind, n, pos, at, who: null });
+  for (let k = 0; k < 4; k++) { const z = 8 + k * 3.6, s = k % 2 ? 1 : -1; const pod = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.75, 2.6, 12), new THREE.MeshLambertMaterial({ color: 0x5a6a7a })); pod.position.set(s * 1.5, 0, z); sc.add(pod);
+    const win = new THREE.Mesh(new THREE.CircleGeometry(0.28, 12), new THREE.MeshBasicMaterial({ color: 0x9fd8ff })); win.position.set(s * 1.5 - s * 0.76, 0.5, z); win.rotation.y = s * Math.PI / 2; sc.add(win);
+    hide('pod', 'Hide in the sleep pod', issV(s * 1.5, 0.3, z), issV(s * 1.0, 0, z)); }
+  // the hygiene bay: two toilet stalls, a sink, a shower
+  for (const [x, i] of [[4.2, 0], [6.2, 1]]) { box(x, 0, 16.6, 1.8, 4.2, 0.1, 0x9ab0bc); box(x - 0.9, 0, 15.8, 0.08, 4.2, 1.6, 0x9ab0bc); const t = box(x, -1.6, 16.2, 0.6, 0.7, 0.6, 0xf4f4f0); hide('toilet', 'Hide in the toilet stall', issV(x, 0, 16.2), issV(x, 0, 14.6)); }
+  box(8.4, -0.6, 12.2, 0.8, 0.3, 0.9, 0xf4f4f0); box(8.6, 0.6, 12.2, 0.1, 1.0, 0.9, 0xb8d8ee, 0x0a1a24);
+  const sh = box(7.6, 0, 14, 1.4, 4.2, 1.4, 0xbfe0ff); sh.material.transparent = true; sh.material.opacity = 0.35;
+  // storage lockers big enough to squeeze into
+  for (const [x, y, z, ry] of [[3.6, 0, -4.4, 0], [-29, 0, 3.6, 0], [-31.5, 0, 3.6, 0], [20, 0, 1.95, 0]]) { box(x, y, z, 1.1, 2.6, 0.7, 0x6a7a6a); box(x + 0.25, y + 0.3, z + (z > 0 ? -0.36 : 0.36), 0.08, 0.3, 0.04, 0xf2b33d); hide('locker', 'Squeeze into the storage locker', issV(x, 0, z), issV(x, 0, z + (z > 0 ? -1.2 : 1.2))); }
+  // crawlspaces under the floor panels
+  for (const [x, z, mm] of [[-12, 0, 'green'], [0, -10, 'power'], [-31, -1, 'cargo'], [0, 2.5, 'hub']]) { const m = ISS_M[mm]; const h = box(x, m.min[1] + 0.03, z, 1.2, 0.05, 1.2, 0x4a4e52); h.material.emissive = new THREE.Color(0x101010);
+    hide('floor', 'Slip under the floor panel', issV(x, m.min[1] - 0.45, z), issV(x, m.min[1] + 0.6, z)); }
+  S.reactor = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 2.2, 16), new THREE.MeshLambertMaterial({ color: 0x3a6aff, emissive: 0x1a3a9a })); S.reactor.position.set(0, 0, -14); sc.add(S.reactor);
+  S.tank = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, 7, 20), new THREE.MeshLambertMaterial({ color: 0x8ad0c8, transparent: true, opacity: 0.25, depthWrite: false })); S.tank.position.set(31, 0, 0); sc.add(S.tank);
+  S.lockers = [['hub', issV(-4.4, -1, -4.4)], ['green', issV(-15, 1.4, 1.6)], ['cargo', issV(-30, 0, -3.4)], ['crew', issV(1.6, 1.2, 19)]].map(([m, p]) => { box(p.x, p.y, p.z, 1.0, 1.8, 0.6, 0xd03a2a, 0x3a0a04); return { mod: m, pos: p }; });
+  // outside: the Earth below the cupola, and stars
+  const earth = new THREE.Mesh(new THREE.SphereGeometry(400, 48, 32), new THREE.MeshLambertMaterial({ map: issEarthTex(), color: 0xffffff, emissive: 0x0a1428 }));
+  earth.position.set(0, -60, 460); sc.add(earth); S.earth = earth;
+  const sun = new THREE.DirectionalLight(0xffffff, 0.35); sun.position.set(1, 0.5, 1); sc.add(sun);
+  const sg = new THREE.BufferGeometry(), sp = []; for (let i = 0; i < 1200; i++) { const v = issV(rr(-1, 1), rr(-1, 1), rr(-1, 1)).normalize().multiplyScalar(900); sp.push(v.x, v.y, v.z); }
+  sg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3)); sc.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0xffffff, size: 1.6, sizeAttenuation: false })));
+}
+function issEarthTex() { try { return typeof spcEarthTex === 'function' ? spcEarthTex() : null; } catch (e) { return null; } }
+// one wall of a module, with a doorway cut wherever a linked module joins it
+function issFace(sc, m, a, side, mat) {
+  const u = (a + 1) % 3, v = (a + 2) % 3, c = side ? m.max[a] : m.min[a];
+  const sh = new THREE.Shape(); sh.moveTo(m.min[u], m.min[v]); sh.lineTo(m.max[u], m.min[v]); sh.lineTo(m.max[u], m.max[v]); sh.lineTo(m.min[u], m.max[v]); sh.lineTo(m.min[u], m.min[v]);
+  for (const id of ISS_LINK[m.id] || []) { const N = ISS_M[id]; if (Math.abs((side ? N.min[a] : N.max[a]) - c) > 0.01) continue;
+    const u0 = Math.max(m.min[u], N.min[u]), u1 = Math.min(m.max[u], N.max[u]), v0 = Math.max(m.min[v], N.min[v]), v1 = Math.min(m.max[v], N.max[v]); if (u1 - u0 < 0.5 || v1 - v0 < 0.5) continue;
+    if (u1 - u0 > m.max[u] - m.min[u] - 0.01 && v1 - v0 > m.max[v] - m.min[v] - 0.01) return;      // the whole wall is the doorway
+    const h = new THREE.Path(); h.moveTo(u0, v0); h.lineTo(u0, v1); h.lineTo(u1, v1); h.lineTo(u1, v0); h.lineTo(u0, v0); sh.holes.push(h); }
+  const g = new THREE.ShapeGeometry(sh), P = g.attributes.position, out = new Float32Array(P.count * 3);
+  for (let i = 0; i < P.count; i++) { const o = [0, 0, 0]; o[u] = P.getX(i); o[v] = P.getY(i); o[a] = c; out.set(o, i * 3); }
+  g.setAttribute('position', new THREE.BufferAttribute(out, 3)); g.computeVertexNormals(); sc.add(new THREE.Mesh(g, mat));
+}
+// is a point inside the station (r = how far from the walls)?
+function issInside(p, r) { for (const m of ISS_MODS) if (p.x > m.min[0] + r && p.x < m.max[0] - r && p.y > m.min[1] + r && p.y < m.max[1] - r && p.z > m.min[2] + r && p.z < m.max[2] - r) return m; return null; }
+function issModAt(p) { return issInside(p, -0.2) || issInside(p, -1) || ISS_M.hub; }
+// the way between two modules (through the module graph)
+function issPath(a, b) {
+  if (a === b) return [b]; const prev = { [a]: null }, q = [a];
+  while (q.length) { const x = q.shift(); for (const y of ISS_LINK[x]) if (!(y in prev)) { prev[y] = x; if (y === b) { const p = [b]; let z = x; while (z !== a) { p.unshift(z); z = prev[z]; } return p; } q.push(y); } }
+  return [b];
+}
+// where two linked modules meet
+function issDoor(a, b) { const A = ISS_M[a], B = ISS_M[b], p = issV(0, 0, 0); for (let i = 0; i < 3; i++) { const lo = Math.max(A.min[i], B.min[i]), hi = Math.min(A.max[i], B.max[i]); p.setComponent(i, (lo + hi) / 2); } return p; }
+
+/* ---------- people: my President, friends, the crew ---------- */
+function issAvatar(col, helmet) {
+  const g = new THREE.Group(), m = c => new THREE.MeshLambertMaterial({ color: c });
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.3, 0.72, 10), m(col)); body.position.y = 0.1; g.add(body);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.19, 12, 10), m(0xd9a57e)); head.position.y = 0.66; g.add(head);
+  const shades = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.06, 0.08), m(0x050505)); shades.position.set(0, 0.69, 0.16); g.add(shades);
+  if (helmet) { const h = new THREE.Mesh(new THREE.SphereGeometry(0.27, 14, 10), new THREE.MeshLambertMaterial({ color: 0xbfe0ff, transparent: true, opacity: 0.3, depthWrite: false })); h.position.y = 0.66; g.add(h); }
+  const limb = (x, y, len, r) => { const l = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 8), m(col)); l.position.set(x, y, 0); g.add(l); return l; };
+  g.userData.armL = limb(-0.36, 0.12, 0.62, 0.075); g.userData.armR = limb(0.36, 0.12, 0.62, 0.075);
+  g.userData.legL = limb(-0.12, -0.52, 0.66, 0.09); g.userData.legR = limb(0.12, -0.52, 0.66, 0.09);
+  return g;
+}
+function issPose(g, t, spd) { const U = g.userData, s = Math.sin(t * 1.6), k = 0.3 + Math.min(1, spd / 4) * 0.5; if (!U.armL) return; U.armL.rotation.z = 0.5 + s * 0.15; U.armR.rotation.z = -0.5 - s * 0.15; U.legL.rotation.x = 0.25 + s * k * 0.4; U.legR.rotation.x = 0.25 - s * k * 0.4; }
+const ISS_CREW = [['Commander Ilsa Varga', ['Welcome aboard, President. Mind the handrails.', 'The specimen in the containment lab? Do not tap on the glass.', 'Jobs are on your screen. The station runs on volunteers.']],
+  ['Dr. Ben Okoro', ['The lab console needs steady hands: repeat the sample colours.', 'Every experiment might find something nobody has seen.', 'If the alarm sounds, find a red locker first.']],
+  ['Engineer Mira Sato', ['If the hull breaks, the patch kits are in the red lockers.', 'The cargo bay always needs someone to haul crates.', 'Sleep pods in the crew quarters lock from the inside. Remember that.']]];
+
+/* ---------- jobs ---------- */
+const ISS_JOBK = { repair: 'Repair', experiment: 'Experiment', cargo: 'Cargo' };
+function issNewJob() {
+  const S = ISS, k = pick(['repair', 'repair', 'experiment', 'cargo']);
+  if (k === 'repair') { const m = ISS_M[pick(['hub', 'lab', 'green', 'power', 'crew', 'cargo'])], c = issC(m), wall = m.max[1] - m.min[1] > 5 ? 3.4 : 1.7;
+    const pos = c.clone().add(issV(rr(-1, 1) * ((m.max[0] - m.min[0]) / 2 - 1), rr(-0.6, 0.6), 0)); pos.z = m.max[2] - m.min[2] > 6 ? pos.z + rr(-3, 3) : pos.z; pos.y = c.y + wall * (Math.random() < 0.5 ? 1 : -1) * 0.8;
+    const sp = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.5, 0.7), new THREE.MeshLambertMaterial({ color: 0x555a60, emissive: 0x5a2a00 })); sp.position.copy(pos); S.scene.add(sp);
+    return { k, mod: m.id, pos, mesh: sp, n: `Repair the panel in the ${m.n}`, hold: 3 }; }
+  if (k === 'experiment') return { k, mod: 'lab', pos: S.console.position.clone().add(issV(0, 0.9, 0)), n: 'Run an experiment at the lab console' };
+  const to = pick(['lab', 'green', 'crew', 'power']); return { k, mod: 'cargo', pos: issV(-34, -1.5, 2.6), to, n: `Bring a crate from the Cargo Bay to the ${ISS_M[to].n}` };
+}
+async function issJobDone(J, ok) {
+  const S = ISS; if (J.mesh) S.scene.remove(J.mesh); S.jobs = S.jobs.filter(x => x !== J); S.jobs.push(issNewJob());
+  if (!ok) { issSay('The experiment failed. Try another one.', 3); return; }
+  try { SFX.ok(); } catch (e) { }
+  let disc = null; if (J.k === 'experiment' && Math.random() < 0.4) disc = issDiscover();
+  const sd = 60; try { grantRewards(25, sd, 'station'); } catch (e) { } issSdAdd(sd);
+  const r = await wlCall('world_iss_job', { p_kind: J.k }, true); WL.err = '';
+  const g = r && r.ok !== false ? r.gold : 0; if (g) S.gold += g;
+  issSay(`${ISS_JOBK[J.k]} done: +${sd} SD${g ? `, +${g} gold for your treasury` : r && r.ok !== false ? ' (the 6 paid jobs of the day are done; SD still counts)' : ''}${disc ? `. Discovery: ${disc.n}!` : ''}.`, 5);
+  if (r && r.ok !== false && typeof r.left === 'number') S.left = r.left;
+}
+// SD earned on the station today (lost if you die in an emergency)
+function issSdAdd(n) { const k = 'smfa3d.issSd', d = new Date().toDateString(); let v = null; try { v = store.get(k, null); } catch (e) { } if (!v || v.d !== d) v = { d, n: 0 }; v.n += n; try { store.set(k, v); } catch (e) { } }
+function issSdToday() { let v = null; try { v = store.get('smfa3d.issSd', null); } catch (e) { } return v && v.d === new Date().toDateString() ? v.n : 0; }
+// the experiment: watch four sample colours, then repeat them
+function issExperiment(J) {
+  const S = ISS; if (S.exp) return; const cols = [['#39d353', 'Green'], ['#5aa6ff', 'Blue'], ['#f2b33d', 'Amber'], ['#ef4b4f', 'Red']], seq = [...Array(4)].map(() => Math.floor(Math.random() * 4)), got = [];
+  const el = document.createElement('div'); el.className = 'issOver'; $('#scr-iss').appendChild(el); S.exp = el;
+  const draw = (show, msg) => { el.innerHTML = `<div class="issBox"><em>Experiment</em><h3>${msg || (show ? 'Watch the samples' : 'Repeat them in order')}</h3><div class="issSeq">${seq.map((c, i) => `<i style="background:${show || i < got.length ? cols[c][0] : '#1a221b'}"></i>`).join('')}</div>
+    <div class="issCols">${cols.map(([c, n], i) => `<button style="--c:${c}" data-c="${i}"${show ? ' disabled' : ''}>${n}</button>`).join('')}</div></div>`;
+    el.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { const i = +b.dataset.c; if (seq[got.length] !== i) { draw(false, 'Wrong sample'); setTimeout(() => { el.remove(); S.exp = null; issJobDone(J, false); }, 900); return; } got.push(i); if (got.length === seq.length) { draw(false, 'It worked!'); setTimeout(() => { el.remove(); S.exp = null; issJobDone(J, true); }, 700); } else draw(false); });
+    if (typeof i18nWalk === 'function') i18nWalk(el); };
+  draw(true); setTimeout(() => { if (S.exp === el) draw(false); }, 2200);
+}
+
+/* ---------- open, close, the frame ---------- */
+async function issOpen() {
+  const S = ISS; if (S.on) return; const me = wlMe();
+  S.fromSpace = SPC.on; if (SPC.on) { SPC.boarding = true; SPC.docked = { iss: true }; }
+  show('#scr-iss'); S.on = true; S.t = 0; S.last = performance.now(); S.keys = {}; S.btn = {}; S.gold = 0; S.left = WL.st && WL.st.iss ? Math.max(0, 6 - WL.st.iss.paid) : 6; S.carry = null; S.hold = null; S.emg = null; S.dead = false; S.fp = false; S.hidden = null; S.tools = null; S.tool = 0;
+  if (!S.r) { S.r = new THREE.WebGLRenderer({ antialias: true }); S.r.setPixelRatio(Math.min(2, devicePixelRatio || 1)); $('#issView').appendChild(S.r.domElement); }
+  S.cam = new THREE.PerspectiveCamera(70, 1, 0.05, 2000); issBuild(); issSize();
+  S.P = { pos: issV(0, 0, -24), vel: issV(0, 0, 0), yaw: 0, pitch: 0, mesh: issAvatar(me ? (PRES_LOOK.uni || 0x15171a) : 0x15171a, prof().equip.pres === 'd_suit'), spd: 0, stam: 100 };
+  S.scene.add(S.P.mesh);
+  S.jobs = [issNewJob(), issNewJob(), issNewJob()];
+  S.npc = ISS_CREW.map(([n, lines], i) => { const mesh = issAvatar(0xeceeef, true); const at = issC(ISS_M[['hub', 'lab', 'green'][i]]).clone(); mesh.position.copy(at); S.scene.add(mesh); return { n, lines, mesh, mod: ['hub', 'lab', 'green'][i], to: null, wait: rr(2, 6), li: 0 }; });
+  for (const m of S.marks.values()) m.remove(); S.marks.clear();
+  S.rollAt = Math.random() < 0.25 ? rr(60, 180) : 0;
+  issUi(); issSay(S.touch ? 'Left stick to float, drag to look, Up and Down to rise and sink. Use to work. Jobs are marked in green.' : 'W A S D to float, mouse to look (click the view), Space and C to rise and sink, F to use. Jobs are marked in green.', 7);
+  cancelAnimationFrame(S.raf); S.raf = requestAnimationFrame(issFrame);
+  issJoin(1);
+}
+function issClose(toSpace) {
+  const S = ISS; if (!S.on) return; S.on = false; cancelAnimationFrame(S.raf); issVoiceStop();
+  if (S.room) { S.room.close(); S.room = null; } S.peers.clear();
+  if (S.exp) { S.exp.remove(); S.exp = null; } try { document.exitPointerLock && document.pointerLockElement && document.exitPointerLock(); } catch (e) { }
+  if (S.scene) { S.scene.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { if (o.material.map) o.material.map.dispose(); o.material.dispose(); } }); S.scene = null; }
+  $('#issFx').className = '';
+  if (SPC.boarding) {
+    SPC.boarding = false; show('#scr-space');
+    if (SPC.on && SPC.ship) { SPC.docked = null; const at = SE_ISS(); SPC.ship.position.copy(at).add(at.clone().normalize().multiplyScalar(45)); SPC.ship.lookAt(at.clone().multiplyScalar(2)); SPC.speed = 8; if (S.diedMsg) { SPC.hp = Math.max(SPC.hp, 20); } SPC.last = performance.now(); cancelAnimationFrame(SPC.raf); SPC.raf = requestAnimationFrame(spcFrame); spcSay(S.diedMsg || 'Back in your ship, beside the station.', 6); }
+    else spcOpen();
+  } else show(toSpace === false ? '#scr-title' : '#scr-world');
+  S.diedMsg = '';
+}
+function issSize() { const S = ISS, v = $('#issView'); if (!S.r || !v) return; const w = v.clientWidth || innerWidth, h = v.clientHeight || innerHeight; S.r.setSize(w, h, false); S.cam.aspect = w / h; S.cam.updateProjectionMatrix(); S.w = w; S.h = h; }
+function issFrame(now) {
+  const S = ISS; if (!S.on) return; S.raf = requestAnimationFrame(issFrame);
+  if ($('#scr-iss').hidden) { issClose(); return; }
+  const dt = Math.min(0.05, Math.max(0.001, (now - S.last) / 1000)); S.last = now;
+  try { issStep(dt); issHud(); } catch (e) { console.warn('iss step', e); }
+  S.r.render(S.scene, S.cam);
+}
+function issSay(t, sec) { const el = $('#issMsg'); if (!el) return; el.textContent = t; el.hidden = !t; ISS.msgT = ISS.t + (sec || 3); if (typeof i18nWalk === 'function') i18nWalk(el); }
+
+/* ---------- one step ---------- */
+function issStep(dt) {
+  const S = ISS, P = S.P; S.t += dt;
+  if (S.dying) { issDeathStep(dt); return; }
+  // looking: arrow keys and the touch look pad
+  const K = S.keys;
+  S.P.yaw -= ((K.arrowright ? 1 : 0) - (K.arrowleft ? 1 : 0)) * 1.8 * dt; S.P.pitch = clamp(S.P.pitch + ((K.arrowup ? 1 : 0) - (K.arrowdown ? 1 : 0)) * 1.4 * dt, -1.35, 1.35);
+  // floating
+  const fwd = issV(-Math.sin(P.yaw) * Math.cos(P.pitch), Math.sin(P.pitch), -Math.cos(P.yaw) * Math.cos(P.pitch)), right = issV(Math.cos(P.yaw), 0, -Math.sin(P.yaw)), up = issV(0, 1, 0);
+  let mx = (K.d ? 1 : 0) - (K.a ? 1 : 0) + S.stick.x, mz = (K.w ? 1 : 0) - (K.s ? 1 : 0) - S.stick.y, my = (K[' '] || S.btn.up ? 1 : 0) - (K.c || K.control || S.btn.down ? 1 : 0);
+  if (S.hidden) { mx = mz = my = 0; P.vel.set(0, 0, 0); P.pos.copy(S.hidden.pos); }
+  const sprint = (K.shift || S.btn.sprint) && P.stam > 2 && (mx || mz || my); P.stam = clamp(P.stam + (sprint ? -22 : 14) * dt, 0, 100);
+  const acc = fwd.clone().multiplyScalar(clamp(mz, -1, 1)).add(right.multiplyScalar(clamp(mx, -1, 1))).add(up.multiplyScalar(my));
+  const top = sprint ? 6.5 : 4; if (acc.lengthSq() > 1) acc.normalize();
+  P.vel.add(acc.multiplyScalar(top * 3.2 * dt)); P.vel.multiplyScalar(Math.max(0, 1 - 2.2 * dt)); if (P.vel.length() > top * 1.4) P.vel.setLength(top * 1.4);
+  if (S.emg && S.emg.k === 'breach' && !S.emg.sealed && !S.hidden) issVent(dt);
+  if (!S.hidden) for (const ax of ['x', 'y', 'z']) { const n = P.pos.clone(); n[ax] += P.vel[ax] * dt; if (issInside(n, 0.45)) P.pos.copy(n); else P.vel[ax] *= -0.2; }
+  P.spd = P.vel.length(); P.mesh.position.copy(P.pos); P.mesh.rotation.set(0, P.yaw + Math.PI, 0); issPose(P.mesh, S.t, P.spd);
+  // the camera: behind my President, or first person in the creature emergency
+  const fp = S.fp || !!S.hidden; P.mesh.visible = !fp;
+  const eye = P.pos.clone().add(issV(0, 0.62, 0));
+  if (fp) S.cam.position.copy(eye);
+  else { const back = fwd.clone().multiplyScalar(-3.0).add(issV(0, 0.7, 0)); let c = eye.clone(); for (let i = 1; i <= 12; i++) { const t = eye.clone().add(back.clone().multiplyScalar(i / 12)); if (!issInside(t, 0.15)) break; c = t; } S.cam.position.lerp(c, Math.min(1, dt * 10)); }
+  S.cam.lookAt(S.cam.position.clone().add(fwd));
+  // the use button held down
+  issHoldStep(dt);
+  // the crew drift about
+  for (const N of S.npc) { N.wait -= dt; if (!N.to && N.wait <= 0) { N.to = pick(ISS_LINK[N.mod]); } if (N.to) { const goal = issC(ISS_M[N.to]), d = goal.clone().sub(N.mesh.position); if (d.length() < 0.6) { N.mod = N.to; N.to = null; N.wait = rr(4, 10); } else N.mesh.position.add(d.setLength(Math.min(d.length(), 1.2 * dt))); N.mesh.rotation.y = Math.atan2(d.x, d.z); } issPose(N.mesh, S.t + N.n.length, N.to ? 1 : 0.2); N.mesh.visible = !(S.emg && S.emg.k === 'beast'); }
+  for (const J of S.jobs) if (J.mesh) J.mesh.material.emissive.setHex((S.t * 4 | 0) % 2 ? 0x6a3a00 : 0x2a1000);
+  S.reactor.rotation.y += dt * 0.8; if (S.earth) S.earth.rotation.y += dt * 0.004;
+  issNet(dt); issEmgStep(dt);
+  if (S.rollAt && S.t > S.rollAt && !S.emg) { S.rollAt = 0; issEmgCall(pick(['breach', 'beast'])); }
+}
+// the action under the Use button
+function issActNow() {
+  const S = ISS, P = S.P, near = (p, r) => P.pos.distanceTo(p) < (r || 2.4);
+  if (S.dying) return null;
+  if (S.hidden) return { l: 'Come out', fn: () => { S.hidden.who = null; S.P.pos.copy(S.hidden.at); S.hidden = null; $('#issFx').className = S.emg ? 'alarm' : ''; } };
+  const E = S.emg;
+  if (E && E.k === 'breach') {
+    if (!E.kit && S.lockers.some(L => near(L.pos, 2.2))) return { l: 'Take a patch kit', fn: () => { E.kit = true; issSay('Patch kit in hand. Seal the hole: hold Use beside it.', 4); } };
+    if (E.kit && !E.sealed && near(E.hole, 2.2)) return { l: 'Seal the hole', hold: 4, fn: () => issEmgStepDone('seal') };
+    if (E.sealed && !E.press && near(issC(ISS_M.hub), 2.6)) return { l: 'Pressurise the station', hold: 2, fn: () => issEmgStepDone('press') };
+  }
+  if (E && E.k === 'beast') {
+    if (S.lockers.some(L => near(L.pos, 2.2)) && (!S.tools || S.tools.ext < 8 || S.tools.flare < 3)) return { l: S.tools ? 'Refill your tools' : 'Take the tools', fn: () => { S.tools = { ext: 8, fuel: 100, flare: 3 }; if (!S.tool) S.tool = 1; issSay('Extinguisher, welding torch and flare gun. Switch with Q or Tool; use with E, a click or Fire.', 5); } };
+    const pod = S.pods.find(p => !p.who && near(p.at, 1.8)); if (pod) return { l: pod.n, fn: () => { pod.who = 'me'; S.hidden = pod; S.hidPeek = issSeen(); $('#issFx').className = 'alarm hiding ' + pod.kind; } };
+    return null;
+  }
+  if (S.carry) { const to = ISS_M[S.carry.to]; if (issModAt(P.pos).id === to.id) return { l: 'Deliver the crate', fn: () => { const J = S.carry; S.carry = null; S.P.mesh.remove(J.crate); issJobDone(J, true); } }; }
+  for (const J of S.jobs) {
+    if (J.k === 'repair' && near(J.pos, 2.2)) return { l: J.n, hold: J.hold, fn: () => issJobDone(J, true) };
+    if (J.k === 'experiment' && near(J.pos, 2.4)) return { l: 'Run the experiment', fn: () => issExperiment(J) };
+    if (J.k === 'cargo' && !S.carry && near(J.pos, 3)) return { l: 'Pick up the crate', fn: () => { S.carry = J; J.crate = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.6, 0.6), new THREE.MeshLambertMaterial({ color: 0xa8743a })); J.crate.position.set(0, 0.1, -0.55); S.P.mesh.add(J.crate); issSay(`Bring it to the ${ISS_M[J.to].n}.`, 4); } };
+  }
+  for (const N of S.npc) if (near(N.mesh.position, 2.4)) return { l: `Talk to ${N.n}`, fn: () => { issSay(`${N.n}: ${N.lines[N.li++ % N.lines.length]}`, 5); } };
+  if (near(issV(0, 0, -25.5), 3)) return E ? { l: '', why: 'Nobody leaves the station during an emergency.' } : { l: 'Back to your ship', fn: () => issClose(true) };
+  return null;
+}
+function issUse(down) {
+  const S = ISS; if (!S.on) return; const A = issActNow();
+  if (!down) { S.hold = null; return; }
+  if (!A) return; if (A.why) { issSay(A.why); return; } if (!A.fn) return;
+  if (A.hold) S.hold = { t: 0, need: A.hold, l: A.l }; else A.fn();
+}
+function issHoldStep(dt) {
+  const S = ISS; if (!S.hold) return; const A = issActNow(); if (!A || A.l !== S.hold.l || !(S.keys.f || S.btn.use)) { S.hold = null; return; }
+  S.hold.t += dt; if (S.hold.t >= S.hold.need) { S.hold = null; A.fn(); }
+}
+
+/* ---------- friends on the station ---------- */
+async function issJoin(n) {
+  const S = ISS; if (!ROOMS_ON() || S.room || n > 6 || !S.on) return;
+  try {
+    const room = await roomOpen(ISS_ROOM + n, { player: accName(), max: 16, fullMsg: 'full',
+      on: { hi: (p, from) => issPeer(from, p), p: (p, from) => issPeerPose(from, p), emg: p => issEmgStart(p), ev: p => issEmgRemote(p), cp: p => issBeastPose(p), cd: p => issBeastHurt(p, true), vo: (p, from) => issVoicePlay(from, p) },
+      onJoin: () => issHi(), onLeave: id => issPeerGone(id), onClose: () => { S.room = null; for (const id of [...S.peers.keys()]) issPeerGone(id); } });
+    if (!S.on) { room.close(); return; }
+    S.room = room; issHi();
+  } catch (e) { S.room = null; if (e && e.message === 'full') return issJoin(n + 1); }
+}
+function issHi() { const S = ISS, me = wlMe(); if (S.room) S.room.send('hi', { n: accName(), c: me ? me.name : '', col: PRES_LOOK.uni || 0x15171a, suit: prof().equip.pres === 'd_suit', e: S.emg ? { k: S.emg.k, seed: S.emg.seed, at: S.emg.at } : null }); }
+function issPeer(id, p) {
+  const S = ISS; if (!p || !S.on || (S.room && id === S.room.me)) return; let q = S.peers.get(id);
+  if (!q) { q = { id, mesh: issAvatar(+p.col || 0x15171a, !!p.suit), tp: null, yaw: 0, last: S.t }; S.scene.add(q.mesh); S.peers.set(id, q); issSay(`${ptClean(p.n) || 'Someone'} came aboard.`, 3); }
+  q.name = ptClean(p.n) || 'Astronaut'; q.country = String(p.c || '').slice(0, 24);
+  if (p.e && !S.emg) issEmgStart(p.e);
+}
+function issPeerPose(id, a) { const q = ISS.peers.get(id); if (!q || !Array.isArray(a) || a.length < 6) return; const v = a.map(Number); if (v.slice(0, 5).some(x => !isFinite(x))) return; q.tp = issV(v[0], v[1], v[2]); q.yaw = v[3]; q.state = v[5]; q.last = ISS.t; }
+function issPeerGone(id) { const S = ISS, q = S.peers.get(id); if (!q) return; if (S.scene) S.scene.remove(q.mesh); S.peers.delete(id); const m = S.marks.get('p' + id); if (m) { m.remove(); S.marks.delete('p' + id); } }
+function issNet(dt) {
+  const S = ISS;
+  for (const q of S.peers.values()) { if (q.tp) { q.mesh.position.lerp(q.tp, Math.min(1, dt * 9)); q.mesh.rotation.y = q.yaw + Math.PI; } q.mesh.visible = !(q.state & 1) && S.t - q.last < 8; issPose(q.mesh, S.t + q.id.length, 1); }
+  S.sendT = (S.sendT || 0) - dt; if (S.room && S.sendT <= 0) { S.sendT = 0.125; const p = S.P.pos, r = v => Math.round(v * 100) / 100;
+    S.room.send('p', [r(p.x), r(p.y), r(p.z), r(S.P.yaw), r(S.P.pitch), (S.hidden || S.dead || S.dying ? 1 : 0) | (S.voice.talk ? 2 : 0)]); }
+}
+
+/* ---------- voice: push to talk, through the room server ---------- */
+const MU = { enc: s => { const sign = s < 0 ? 0x80 : 0; s = Math.min(32635, Math.abs(s * 32767) + 132); let e = 7; for (let m = 0x4000; (s & m) === 0 && e > 0; e--, m >>= 1); return ~(sign | (e << 4) | ((s >> (e + 3)) & 0x0f)) & 0xff; },
+  dec: u => { u = ~u & 0xff; const sign = u & 0x80, e = (u >> 4) & 7, m = u & 0x0f; let s = ((m << 3) + 132) << e; s -= 132; return (sign ? -s : s) / 32768; } };
+function issAudio() { const V = ISS.voice; if (!V.ctx) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; V.ctx = new C(); } if (V.ctx.state === 'suspended') V.ctx.resume(); return V.ctx; }
+async function issTalk(on) {
+  const V = ISS.voice; if (!V.on) return; V.talk = on; $('#issTalk') && $('#issTalk').classList.toggle('on', on);
+  if (!on) return; const ctx = issAudio(); if (!ctx) { issSay('This browser cannot do voice.'); return; }
+  if (!V.mic) {
+    try { V.mic = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } }); }
+    catch (e) { V.talk = false; issSay('The microphone was not allowed. Voice needs it to talk (you can still listen).', 5); return; }
+    const src = ctx.createMediaStreamSource(V.mic), proc = ctx.createScriptProcessor(4096, 1, 1), ratio = ctx.sampleRate / 8000; V.buf = []; V.acc = 0;
+    proc.onaudioprocess = e => { if (!V.talk || !ISS.room) return; const inp = e.inputBuffer.getChannelData(0);
+      for (V.acc = V.acc || 0; V.acc < inp.length; V.acc += ratio) V.buf.push(MU.enc(inp[Math.floor(V.acc)])); V.acc -= inp.length;
+      while (V.buf.length >= 1600) { const chunk = V.buf.splice(0, 1600); let s = ''; for (const b of chunk) s += String.fromCharCode(b); ISS.room.send('vo', btoa(s)); } };
+    const mute = ctx.createGain(); mute.gain.value = 0; src.connect(proc); proc.connect(mute); mute.connect(ctx.destination); V.proc = proc; V.src = src;
+  }
+}
+function issVoicePlay(from, b64) {
+  const V = ISS.voice; if (!V.on || typeof b64 !== 'string' || b64.length > 4000) return; const ctx = issAudio(); if (!ctx) return;
+  let s; try { s = atob(b64); } catch (e) { return; } const buf = ctx.createBuffer(1, s.length, 8000), d = buf.getChannelData(0); for (let i = 0; i < s.length; i++) d[i] = MU.dec(s.charCodeAt(i));
+  const src = ctx.createBufferSource(); src.buffer = buf; src.connect(ctx.destination);
+  const q = V.peers.get(from) || { next: 0 }; const at = Math.max(ctx.currentTime + 0.08, q.next); src.start(at); q.next = at + buf.duration; q.talkT = ISS.t + 0.5; V.peers.set(from, q);
+}
+function issVoiceStop() { const V = ISS.voice; V.talk = false; if (V.proc) { try { V.proc.disconnect(); V.src.disconnect(); } catch (e) { } V.proc = null; } if (V.mic) { V.mic.getTracks().forEach(t => t.stop()); V.mic = null; } }
+
+/* ---------- emergencies ---------- */
+const ISS_EMG = { breach: { n: 'HULL BREACH', secs: 150 }, beast: { n: 'CONTAINMENT FAILURE', secs: 300 } };
+// start one here and tell everyone aboard (a roll on arrival, or the President of the game)
+function issEmgCall(k) { const e = { k, seed: Math.floor(Math.random() * 1e6), at: issNow() }; issEmgStart(e); if (ISS.room) ISS.room.send('emg', e); }
+function issEmgStart(e) {
+  const S = ISS; if (!S.on || S.emg || !e || !ISS_EMG[e.k]) return; const end = (+e.at || issNow()) + ISS_EMG[e.k].secs * 1000; if (issNow() > end - 5000) return;
+  const E = S.emg = { k: e.k, seed: e.seed | 0, at: +e.at || issNow(), end, air: 100 };
+  ISS.lockUntil = Date.now() + (end - issNow());
+  $('#issFx').className = 'alarm';
+  try { SFX.tone(0.4, 1.4, 500, 800, 'sawtooth'); } catch (e2) { }
+  if (E.k === 'breach') {
+    const mods = ['lab', 'green', 'crew', 'power', 'cargo'], m = ISS_M[mods[E.seed % mods.length]], c = issC(m);
+    E.hole = c.clone(); E.hole.y = m.max[1] - 0.1; E.mod = m.id;
+    const h = new THREE.Mesh(new THREE.CircleGeometry(0.9, 16), new THREE.MeshBasicMaterial({ color: 0x000000 })); h.rotation.x = Math.PI / 2; h.position.copy(E.hole).add(issV(0, -0.05, 0)); S.scene.add(h); E.mesh = h;
+    E.parts = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Array(240 * 3).fill(0), 3)), new THREE.PointsMaterial({ color: 0xdde8ff, size: 0.035, transparent: true, opacity: 0.8 })); S.scene.add(E.parts);
+    issSay(`Hull breach in the ${m.n}! Get a patch kit from a red locker, seal the hole, then pressurise at the hub.`, 8);
+  } else {
+    S.fp = true; S.tank.material.opacity = 0.06; issBeastMake();
+    issSay('The specimen has broken out of the containment lab! Survive for 5 minutes. Red lockers have tools. Hide in a sleep pod, a toilet stall, a storage locker or under a floor panel.', 9);
+  }
+}
+function issEmgRemote(p) {
+  const E = ISS.emg; if (!E || !p) return;
+  if (p.k === 'seal') { E.sealed = true; issSay('Someone sealed the hole! Now pressurise at the hub.', 4); if (E.mesh) E.mesh.material.color.setHex(0x8a8f94); }
+  if (p.k === 'press') issEmgEnd(true);
+  if (p.k === 'beastdead') issEmgEnd(true, 'The creature is dead.');
+}
+function issEmgStepDone(k) {
+  const S = ISS, E = S.emg; if (!E) return; if (S.room) S.room.send('ev', { k });
+  if (k === 'seal') { E.sealed = true; if (E.mesh) E.mesh.material.color.setHex(0x8a8f94); issSay('Sealed. Now pressurise the station at the hub.', 4); }
+  if (k === 'press') issEmgEnd(true);
+}
+// the air rushing out: a pull towards the hole, stronger the closer you are
+function issVent(dt) {
+  const S = ISS, E = S.emg, P = S.P, to = E.hole.clone().sub(P.pos), d = to.length(), m = issModAt(P.pos).id;
+  const k = m === E.mod ? 9 : ISS_LINK[E.mod].includes(m) ? 3 : 0.8; P.vel.add(to.normalize().multiplyScalar(k / Math.max(1.2, d) * dt * 3));
+  if (d < 1.0) issDie('sucked');
+}
+function issEmgStep(dt) {
+  const S = ISS, E = S.emg; if (!E) return;
+  const left = (E.end - issNow()) / 1000;
+  if (E.k === 'breach') {
+    if (!E.sealed) E.air = Math.max(0, E.air - dt * 100 / 115);
+    if (E.parts) { const a = E.parts.geometry.attributes.position; for (let i = 0; i < a.count; i++) { const t = ((S.t * 0.6 + i / a.count) % 1); const c = issC(ISS_M[E.mod]); a.setXYZ(i, c.x + Math.sin(i * 12.9) * 3 * (1 - t), c.y + (E.hole.y - c.y) * t, c.z + Math.cos(i * 7.3) * 1.5 * (1 - t)); } a.needsUpdate = true; E.parts.visible = !E.sealed; }
+    if (E.air <= 0) issDie('air');
+    else if (left <= 0) issDie('air');
+  } else {
+    issBeastStep(dt);
+    if (left <= 0) issEmgEnd(true, 'Five minutes. The creature crawls back into its tank, and the crew lock it in.');
+  }
+  for (const l of S.lights) l.color.setHex((S.t * 2 | 0) % 2 ? 0xff3a2a : 0xfff4e0);
+}
+async function issEmgEnd(win, why) {
+  const S = ISS, E = S.emg; if (!E) return; S.emg = null; S.fp = false; ISS.lockUntil = 0; $('#issFx').className = '';
+  for (const l of S.lights) l.color.setHex(0xfff4e0);
+  if (E.mesh) S.scene.remove(E.mesh); if (E.parts) S.scene.remove(E.parts); if (S.beast) { S.scene.remove(S.beast.mesh); S.beast = null; } S.tank.material.opacity = 0.25; S.tools = null;
+  if (S.hidden) { S.P.pos.copy(S.hidden.at); S.hidden.who = null; S.hidden = null; }
+  if (!win || S.dead) return;
+  const r = await wlCall('world_iss_job', { p_kind: E.k }, true); WL.err = ''; const g = r && r.ok !== false ? r.gold : 0;
+  const sd = 200; try { grantRewards(80, sd, 'station'); } catch (e) { } issSdAdd(sd);
+  const disc = issDiscover();
+  issSay(`${why || (E.k === 'breach' ? 'The station is safe again.' : 'You survived.')} +${sd} SD${g ? `, +${g} gold` : ''}${disc ? `, and a discovery: ${disc.n}` : ''}.`, 8);
+  try { SFX.ok(); } catch (e) { }
+}
+
+/* ---------- the creature ---------- */
+function issBeastMesh() {
+  const g = new THREE.Group(), skin = new THREE.MeshLambertMaterial({ color: 0x8a7a92, emissive: 0x1a0a1a }), dark = new THREE.MeshLambertMaterial({ color: 0x3a2a3a });
+  const body = new THREE.Mesh(new THREE.SphereGeometry(1.5, 16, 12), skin); body.scale.set(1, 0.75, 1.5); g.add(body);
+  const back = new THREE.Mesh(new THREE.SphereGeometry(1.1, 14, 10), skin); back.position.set(0, 0.3, -1.8); back.scale.set(1, 0.8, 1.2); g.add(back);
+  for (let i = 0; i < 7; i++) { const sp = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.7, 6), dark); sp.position.set(0, 1.0 - i * 0.04, 0.8 - i * 0.55); sp.rotation.x = -0.4; g.add(sp); }
+  const head = new THREE.Group(); head.position.set(0, 0.1, 2.0); g.add(head);
+  const skull = new THREE.Mesh(new THREE.SphereGeometry(0.9, 14, 10), skin); skull.scale.set(1, 0.85, 1.1); head.add(skull);
+  const jaw = new THREE.Mesh(new THREE.SphereGeometry(0.7, 12, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), dark); jaw.position.set(0, -0.2, 0.35); head.add(jaw); g.userData.jaw = jaw;
+  const mouth = new THREE.Mesh(new THREE.CircleGeometry(0.55, 16), new THREE.MeshBasicMaterial({ color: 0x2a0004 })); mouth.position.set(0, -0.15, 0.95); head.add(mouth); g.userData.mouth = mouth;
+  for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2, t = new THREE.Mesh(new THREE.ConeGeometry(0.05, 0.22, 4), new THREE.MeshLambertMaterial({ color: 0xf0ead8 })); t.position.set(Math.cos(a) * 0.45, -0.15 + Math.sin(a) * 0.45, 0.97); t.rotation.x = Math.PI / 2; t.lookAt(t.position.clone().multiplyScalar(0).add(issV(0, -0.15, 1.2))); head.add(t); }
+  for (let i = 0; i < 6; i++) { const a = -0.7 + i * 0.28, e = new THREE.Mesh(new THREE.SphereGeometry(0.11, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffb020 })); e.position.set(Math.sin(a) * 0.75, 0.35 + (i % 2) * 0.12, 0.55 + Math.cos(a) * 0.2); head.add(e); }
+  g.userData.legs = [];
+  for (let i = 0; i < 8; i++) { const s = i % 2 ? 1 : -1, z = 1.2 - Math.floor(i / 2) * 1.0, leg = new THREE.Group(); leg.position.set(s * 1.1, 0, z); g.add(leg);
+    const up = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.09, 1.8, 6), skin); up.position.set(s * 0.6, 0.5, 0); up.rotation.z = -s * 1.0; leg.add(up);
+    const lo = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.03, 2.0, 6), dark); lo.position.set(s * 1.55, -0.5, 0); lo.rotation.z = s * 0.35; leg.add(lo); g.userData.legs.push(leg); }
+  return g;
+}
+function issBeastMake() { const S = ISS; S.beast = { mesh: issBeastMesh(), pos: issV(31, 0, 0), yaw: -Math.PI / 2, hp: 1500, slowT: 0, stunT: 0, fleeT: 0, hurt: 0, hurtT: 0, lungeT: 0, cd: 0, tgt: null, seenAt: null, think: 0, sendT: 0, mod: 'contain' }; S.beast.mesh.position.copy(S.beast.pos); S.scene.add(S.beast.mesh); }
+const issHost = () => !ISS.room || ISS.room.isHost;
+// who the creature can see: in the same module or the next one, and not hidden in a pod
+function issSeen() { const S = ISS, B = S.beast; if (!B) return false; const a = issModAt(B.pos).id, b = issModAt(S.P.pos).id; return (a === b || ISS_LINK[a].includes(b)) && B.pos.distanceTo(S.P.pos) < 18; }
+function issBeastStep(dt) {
+  const S = ISS, B = S.beast; if (!B) return;
+  if (issHost()) {
+    B.slowT -= dt; B.stunT -= dt; B.fleeT -= dt; B.lungeT -= dt; B.cd -= dt; B.hurtT -= dt; if (B.hurtT <= 0) B.hurt = 0;
+    B.think -= dt;
+    if (B.think <= 0) { B.think = 0.5;
+      // targets: me and every friend aboard (a friend in a pod sends the hidden flag)
+      const T = [{ pos: S.P.pos, hid: !!S.hidden && !S.hidPeek }].concat([...S.peers.values()].filter(q => q.tp && !(q.state & 1)).map(q => ({ pos: q.mesh.position })));
+      const bm = issModAt(B.pos).id; let best = null, bd = 1e9;
+      for (const t of T) { if (t.hid) continue; const tm = issModAt(t.pos).id, d = t.pos.distanceTo(B.pos); if ((tm === bm || ISS_LINK[bm].includes(tm)) && d < 18 && d < bd) { bd = d; best = t; } }
+      if (best) { B.tgt = best.pos.clone(); B.seenAt = B.tgt.clone(); } else if (B.seenAt && B.pos.distanceTo(B.seenAt) < 2) B.seenAt = null;
+      if (!best) B.tgt = B.seenAt || (B.wander && B.pos.distanceTo(B.wander) > 2 ? B.wander : (B.wander = issC(ISS_M[pick(Object.keys(ISS_M))])));
+      if (B.fleeT > 0) B.tgt = issC(ISS_M.contain);
+    }
+    let sp = B.stunT > 0 ? 0 : B.fleeT > 0 ? 5 : 3.3; if (B.slowT > 0) sp *= 0.3;
+    if (B.tgt && B.cd <= 0 && B.fleeT <= 0 && B.tgt.distanceTo(B.pos) < 7 && B.stunT <= 0) { B.lungeT = 0.8; B.cd = 4; }
+    if (B.lungeT > 0 && B.slowT <= 0) sp = 7.5;
+    if (B.tgt && sp > 0) { const bm = issModAt(B.pos).id, tm = issModAt(B.tgt).id, path = issPath(bm, tm), goal = path[0] !== bm && path.length ? (B.pos.distanceTo(issDoor(bm, path[0])) > 1 ? issDoor(bm, path[0]) : issC(ISS_M[path[0]])) : B.tgt;
+      const d = goal.clone().sub(B.pos); if (d.length() > 0.2) { B.pos.add(d.clone().setLength(Math.min(d.length(), sp * dt))); B.yaw = Math.atan2(d.x, d.z); } }
+    if (B.hp <= 0) { if (S.room) S.room.send('ev', { k: 'beastdead' }); issEmgEnd(true, 'You killed the creature!'); return; }
+    B.sendT -= dt; if (S.room && B.sendT <= 0) { B.sendT = 0.12; const r = v => Math.round(v * 100) / 100; S.room.send('cp', [r(B.pos.x), r(B.pos.y), r(B.pos.z), r(B.yaw), B.stunT > 0 ? 1 : 0, Math.round(B.hp)]); }
+  } else if (B.tp) { B.pos.lerp(B.tp, Math.min(1, dt * 8)); }
+  // the creature fills the corridor: it is drawn a little smaller in the tubes
+  const m = issModAt(B.pos), wide = m.max[1] - m.min[1] > 5; B.mesh.position.copy(B.pos); B.mesh.rotation.y = B.yaw; B.mesh.scale.setScalar(wide ? 1 : 0.8);
+  B.mesh.userData.legs.forEach((l, i) => { l.rotation.x = Math.sin(S.t * 9 + i) * 0.4; });
+  B.mesh.userData.jaw.rotation.x = 0.2 + Math.max(0, Math.sin(S.t * 3)) * 0.4;
+  // caught
+  if (!S.hidden && !S.dying && B.pos.distanceTo(S.P.pos) < (wide ? 2.4 : 1.8) && (B.stunT || 0) <= 0) issDie('eaten');
+  if (S.hidden && S.hidPeek && B.pos.distanceTo(S.P.pos) < 2.6) issDie('eaten');
+  // my tools
+  issToolsStep(dt);
+}
+function issBeastPose(a) { const B = ISS.beast; if (!B || issHost() || !Array.isArray(a)) return; const v = a.map(Number); if (v.slice(0, 4).some(x => !isFinite(x))) return; B.tp = issV(v[0], v[1], v[2]); B.yaw = v[3]; B.stunT = v[4] ? 0.2 : 0; B.hp = v[5]; }
+function issBeastHurt(p, remote) {
+  const B = ISS.beast; if (!B || !p) return;
+  if (!issHost()) { if (!remote && ISS.room) ISS.room.send('cd', p); B.hp -= +p.d || 0; return; }
+  B.hp -= clamp(+p.d || 0, 0, 80); if (p.slow) B.slowT = Math.max(B.slowT, 4); if (p.stun) B.stunT = Math.max(B.stunT, 3);
+  B.hurt += +p.d || 0; B.hurtT = 3; if (B.hurt > 80 && B.fleeT <= 0) { B.fleeT = 8; B.hurt = 0; }
+}
+function issToolsStep(dt) {
+  const S = ISS, T = S.tools; if (!T || S.hidden) return; const firing = S.keys.e || S.btn.fire || S.mouseFire; if (!firing) { S.toolT = 0; return; }
+  const B = S.beast, eye = S.cam.position, dir = new THREE.Vector3(); S.cam.getWorldDirection(dir); const to = B ? B.pos.clone().sub(eye) : null, d = to ? to.length() : 99, ahead = to ? to.normalize().dot(dir) : 0;
+  S.toolT = (S.toolT || 0) - dt; if (S.toolT > 0) return;
+  if (S.tool === 1) { if (T.ext <= 0) { issSay('The extinguisher is empty. A red locker refills it.'); S.toolT = 1; return; } T.ext--; S.toolT = 0.5; issFlash('#e8f4ff'); if (B && d < 6.5 && ahead > 0.8) issBeastHurt({ d: 2, slow: 1 }); }
+  else if (S.tool === 2) { if (T.fuel <= 0) { issSay('The torch is out of gas.'); S.toolT = 1; return; } T.fuel -= 4; S.toolT = 0.1; issFlash('#ff9a3a'); if (B && d < 3.6 && ahead > 0.75) issBeastHurt({ d: 4 }); }
+  else if (S.tool === 3) { if (T.flare <= 0) { issSay('No flares left.'); S.toolT = 1; return; } T.flare--; S.toolT = 1.2; issFlash('#ff3a2a'); try { SFX.tone(0.1, 0.3, 900, 200, 'square'); } catch (e) { } if (B && d < 14 && ahead > 0.9) issBeastHurt({ d: 60, stun: 1 }); }
+}
+function issFlash(c) { const el = $('#issTool'); if (el) { el.style.setProperty('--fc', c); el.classList.remove('fire'); void el.offsetWidth; el.classList.add('fire'); } }
+
+/* ---------- dying: eaten, sucked out, out of air ---------- */
+function issDie(how) {
+  const S = ISS; if (S.dying || S.dead) return; S.dying = { how, t: 0, from: S.cam.position.clone(), w0: performance.now() }; S.fp = true;
+  if (S.hidden) { S.hidden.who = null; S.hidden = null; }
+  try { if (how === 'eaten') { SFX.tone(0.5, 0.5, 120, 40, 'sawtooth'); setTimeout(() => SFX.tone(0.6, 0.3, 80, 30, 'square'), 900); } else SFX.tone(0.5, 1.4, 400, 60, 'sine'); } catch (e) { }
+  $('#issFx').className = how === 'eaten' ? 'eaten' : how === 'sucked' ? 'sucked' : 'noair';
+}
+function issDeathStep(dt) {
+  const S = ISS, D = S.dying, B = S.beast; D.t += dt;
+  if (D.how === 'eaten' && B) {
+    const mouth = B.mouthW || new THREE.Vector3(); B.mesh.userData.mouth.getWorldPosition(mouth); B.mouthW = mouth;
+    B.mesh.userData.jaw.rotation.x = Math.min(1.1, 0.3 + D.t * 1.5);
+    const stop = mouth.clone().add(D.from.clone().sub(mouth).setLength(Math.max(0.5, 1.6 - D.t * 0.6))); S.cam.position.lerp(stop, Math.min(1, dt * (1.5 + D.t * 2))); S.cam.lookAt(mouth);
+  } else if (D.how === 'sucked' && S.emg) {
+    const out = S.emg.hole.clone().add(issV(0, 1, 0)), v = out.sub(D.from).normalize(); S.cam.position.add(v.multiplyScalar(dt * (3 + D.t * 18)));
+    S.cam.rotateZ(dt * 3); S.cam.rotateX(dt * 1.2);
+  } else { S.cam.rotateZ(dt * 0.3); }
+  if (performance.now() - D.w0 > 2600) issDead();
+}
+async function issDead() {
+  const S = ISS, how = S.dying.how; S.dying = null; S.dead = true; S.fp = false; S.emg = null;
+  const r = await wlCall('world_iss_forfeit', {}, true); WL.err = ''; const lostG = r && r.ok !== false ? Math.round(r.lost || 0) : 0;
+  const sd = issSdToday(); if (sd > 0) { const P = prof(); P.coins = Math.max(0, P.coins - sd); profSave(P); try { store.set('smfa3d.issSd', { d: new Date().toDateString(), n: 0 }); } catch (e) { } }
+  S.diedMsg = `${how === 'eaten' ? 'You were eaten.' : how === 'sucked' ? 'You were sucked out into space.' : 'You ran out of air.'} The crew fished you out: you wake up in your ship. You lost today's station earnings${lostG || sd ? ` (${lostG ? wlNum(lostG) + ' gold' : ''}${lostG && sd ? ', ' : ''}${sd ? sd + ' SD' : ''})` : ''}.`;
+  setTimeout(() => issClose(true), 400);
+}
+// the space Leave button waits until the emergency is over
+{
+  const _l = spcLeave; spcLeave = function () { if (ISS.lockUntil > Date.now()) { const s = Math.ceil((ISS.lockUntil - Date.now()) / 1000); spcSay(`An emergency on the station: nobody leaves Space until it is over (${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}).`, 4); return; } return _l.apply(this, arguments); };
+  const _st = spcStop; spcStop = function () { if (SPC.boarding) { cancelAnimationFrame(SPC.raf); return; } return _st.apply(this, arguments); };
+}
+
+/* ---------- the screen: HUD, markers, controls ---------- */
+function issUi() {
+  const S = ISS; S.touch = MOBILE() || matchMedia('(pointer:coarse)').matches; const scr = $('#scr-iss'); scr.classList.toggle('touch', S.touch);
+  const adm = typeof isAdmin === 'function' && isAdmin();
+  $('#issAdm').hidden = !adm; $('#issTalk').hidden = !S.voice.on; $('#issVoice').textContent = S.voice.on ? 'Voice: on' : 'Voice: off';
+  if (typeof i18nWalk === 'function') i18nWalk(scr);
+}
+function issMark(key, pos, cls, label) {
+  const S = ISS, v = pos.clone().project(S.cam); let el = S.marks.get(key);
+  if (!el) { el = document.createElement('div'); el.className = 'spMark'; $('#issMarks').appendChild(el); S.marks.set(key, el); }
+  const x = (v.x * 0.5 + 0.5) * S.w, y = (-v.y * 0.5 + 0.5) * S.h; if (v.z > 1 || x < 0 || x > S.w || y < 0 || y > S.h) { el.hidden = true; return; }
+  el.hidden = false; const c = 'spMark ' + cls; if (el.className !== c) el.className = c; if (el._l !== label) { el._l = label; el.innerHTML = `<i></i><span>${label}</span>`; }
+  el.style.transform = `translate(${Math.round(x)}px,${Math.round(y)}px)`; el._t = S.t;
+}
+function issHud() {
+  const S = ISS, P = S.P, E = S.emg, d = p => Math.round(p.distanceTo(P.pos)) + ' m';
+  if (!E) S.jobs.forEach((J, i) => issMark('j' + i, J.k === 'cargo' && S.carry === J ? issC(ISS_M[J.to]) : J.pos, 'field', `${ISS_JOBK[J.k]} · ${d(J.pos)}`));
+  else S.jobs.forEach((J, i) => { const m = S.marks.get('j' + i); if (m) m.hidden = true; });
+  for (const q of S.peers.values()) { const talk = S.voice.peers.get(q.id); issMark('p' + q.id, q.mesh.position.clone().add(issV(0, 1, 0)), 'pilot treaty', `${esc(q.name)}${talk && talk.talkT > S.t ? ' 🔊' : ''}`); if (!q.mesh.visible) S.marks.get('p' + q.id).hidden = true; }
+  if (E && E.k === 'breach') { issMark('hole', E.hole, 'pir', E.sealed ? 'Sealed' : 'HULL BREACH'); for (const [i, L] of S.lockers.entries()) issMark('l' + i, L.pos, 'wreck', 'Patch kit'); }
+  else if (E && E.k === 'beast') { for (const [i, L] of S.lockers.entries()) issMark('l' + i, L.pos, 'wreck', 'Tools'); const m = S.marks.get('hole'); if (m) m.hidden = true;
+    S.pods.forEach((H, i) => { if (H.at.distanceTo(P.pos) < 9 && !S.hidden) issMark('h' + i, H.at, 'st treaty', 'Hide'); else { const x = S.marks.get('h' + i); if (x) x.hidden = true; } }); }
+  else { for (const k of S.marks.keys()) if (k === 'hole' || k[0] === 'l' || k[0] === 'h') S.marks.get(k).hidden = true; }
+  issMark('dock', issV(0, 0, -25.5), 'st mine', 'Your ship');
+  if (S.t < (S.hudT || 0)) return; S.hudT = S.t + 0.12;
+  const set = (id, v) => { const e = $(id); if (e && e._v !== v) { e._v = v; e.textContent = v; } };
+  set('#issMod', issModAt(P.pos).n); set('#issGold', wlNum(S.gold)); set('#issLeft', String(S.left)); set('#issDisc', `${discGot().length}/12`);
+  $('#scr-iss').classList.toggle('dying', !!S.dying); const eb = $('#issEmg'); if (eb) { eb.hidden = !E || !!S.dying; if (E) { const s = Math.max(0, Math.ceil((E.end - issNow()) / 1000)), mm = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    set('#issEmgT', `${ISS_EMG[E.k].n} · ${mm}`); set('#issEmgS', E.k === 'breach' ? (E.sealed ? 'Pressurise at the hub' : E.kit ? 'Seal the hole (hold Use)' : 'Get a patch kit from a red locker') : S.hidden ? 'Hidden. Stay quiet.' : `Survive · creature ${S.beast ? Math.max(0, Math.round(S.beast.hp / 15)) : 0}%`);
+    const ab = $('#issAir'); if (ab) { ab.closest('.issAirW').hidden = E.k !== 'breach'; ab.style.width = E.air + '%'; } } }
+  const tl = $('#issTool'); if (tl) { tl.hidden = !(E && E.k === 'beast' && S.tools); if (S.tools) set('#issToolN', [, `Extinguisher · ${S.tools.ext}`, `Welding torch · ${Math.round(S.tools.fuel)}%`, `Flare gun · ${S.tools.flare}`][S.tool] || ''); }
+  $('#issFireB').hidden = !(E && E.k === 'beast' && S.tools); $('#issToolB').hidden = $('#issFireB').hidden;
+  const a = $('#issAct'), A = issActNow(), t = A && A.l ? A.l : ''; if (a._v !== t) { a._v = t; a.textContent = t ? t + (S.touch ? '' : '  [F]') : ''; if (typeof i18nWalk === 'function') i18nWalk(a); } a.hidden = !t;
+  const hb = $('#issHold'); if (hb) { hb.hidden = !S.hold; if (S.hold) hb.firstChild.style.width = Math.round(100 * S.hold.t / S.hold.need) + '%'; }
+  $('#issLeave').disabled = !!E || !!S.dying; const m = $('#issMsg'); if (m && !m.hidden && S.t > S.msgT) m.hidden = true;
+  $('#issAdm').hidden = !(typeof isAdmin === 'function' && isAdmin()) || !!E;
+}
+function issDiscBook(on) {
+  let el = $('#issBook'); if (!on) { if (el) el.remove(); return; }
+  if (!el) { el = document.createElement('div'); el.id = 'issBook'; el.className = 'issOver'; $('#scr-iss').appendChild(el); }
+  const got = discGot();
+  el.innerHTML = `<div class="issBox wide"><div class="row between"><h3>Discoveries · ${got.length} of 12</h3><button class="btn small" id="issBookX">Close</button></div>
+    <div class="issBook">${ISS_DISC.map(([id, n, d]) => got.includes(id) ? `<div class="got"><b>${esc(n)}</b><small>${esc(d)}</small></div>` : '<div><b>?</b><small>Not found yet</small></div>').join('')}</div>
+    <p class="note">3 found: Spacesuit · 6: Nebula paint · 9: Star Map emblem · 12: the Explorer medal. Experiments, emergencies and derelict ships make discoveries.</p></div>`;
+  el.querySelector('#issBookX').onclick = () => issDiscBook(false); if (typeof i18nWalk === 'function') i18nWalk(el);
+}
+{
+  const scr = document.createElement('div'); scr.id = 'scr-iss'; scr.className = 'screen'; scr.hidden = true;
+  scr.innerHTML = `<div id="issView"></div><div id="issFx"></div><div id="issMarks" aria-hidden="true"></div><div class="spCross" aria-hidden="true"><i></i></div>
+    <div class="spTop"><div class="spPanel issTopL"><button class="btn small" id="issLeave">Leave</button><button class="btn small" id="issBookB">Discoveries</button><button class="btn small" id="issVoice">Voice: off</button>
+      <span id="issAdm" hidden><button class="btn small danger" data-emg="breach">Hull breach</button><button class="btn small danger" data-emg="beast">Creature</button></span></div>
+      <div class="spPanel spStat"><div><small>Module</small><b id="issMod">Docking Port</b></div><div><small>Gold today</small><b id="issGold">0</b></div><div><small>Paid jobs left</small><b id="issLeft">6</b></div><div><small>Found</small><b id="issDisc">0/12</b></div></div></div>
+    <div id="issEmg" hidden><b id="issEmgT"></b><span id="issEmgS"></span><div class="issAirW"><small>Air</small><i><b id="issAir"></b></i></div></div>
+    <div class="spMid"><div id="issMsg" hidden></div><div id="issHold" hidden><i></i></div><button class="btn primary" id="issAct" hidden></button></div>
+    <div id="issTool" hidden><b id="issToolN"></b><small>Q / Tool to switch · E, click or Fire to use</small></div>
+    <div class="issTouch"><div id="issStick"><div id="issKnob"></div></div><div id="issLook"></div>
+      <div class="issBtns"><button id="issUp">Up</button><button id="issDown">Down</button><button id="issUseB">Use</button><button id="issToolB" hidden>Tool</button><button id="issFireB" hidden>Fire</button><button id="issTalk" hidden>Talk</button></div></div>`;
+  document.body.appendChild(scr);
+  const S = ISS;
+  $('#issLeave').onclick = () => { if (!S.emg) issClose(true); };
+  $('#issBookB').onclick = () => issDiscBook(!$('#issBook'));
+  $('#issVoice').onclick = () => { S.voice.on = !S.voice.on; if (!S.voice.on) issVoiceStop(); else issAudio(); issUi(); issSay(S.voice.on ? (S.touch ? 'Voice on: hold Talk to speak.' : 'Voice on: hold V to speak.') : 'Voice off.'); };
+  scr.querySelectorAll('[data-emg]').forEach(b => b.onclick = () => issEmgCall(b.dataset.emg));
+  const key = (e, on) => { if (!S.on || scr.hidden) return; if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return; const k = e.key.toLowerCase();
+    if ([' ', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) e.preventDefault(); S.keys[k] = on;
+    if (k === 'f' || k === 'enter') issUse(on);
+    if (k === 'v' && !e.repeat) issTalk(on);
+    if (on && !e.repeat && k === 'q' && S.tools) S.tool = S.tool % 3 + 1;
+    if (on && !e.repeat && k === 'escape' && !S.emg && !$('#issBook') && !S.exp && !document.pointerLockElement) issClose(true); };
+  addEventListener('keydown', e => key(e, true)); addEventListener('keyup', e => key(e, false)); addEventListener('blur', () => { S.keys = {}; if (S.voice.talk) issTalk(false); });
+  addEventListener('resize', () => { if (S.on) issSize(); });
+  // mouse: click the view to look with the mouse (pointer lock); hold the button to use a tool
+  const view = $('#issView');
+  view.addEventListener('mousedown', e => { if (S.touch) return; if (document.pointerLockElement !== view) { try { view.requestPointerLock(); } catch (x) { } } else S.mouseFire = true; });
+  addEventListener('mouseup', () => { S.mouseFire = false; });
+  addEventListener('mousemove', e => { if (!S.on || document.pointerLockElement !== view) return; S.P.yaw -= e.movementX * 0.0025 * (settings.sens || 1); S.P.pitch = clamp(S.P.pitch - e.movementY * 0.0022 * (settings.sens || 1), -1.35, 1.35); });
+  // touch: a stick on the left, a look pad on the right, and buttons
+  const J = $('#issStick'), Kn = $('#issKnob'), st = S.stick;
+  const mv = e => { const r = J.getBoundingClientRect(); let dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2); const m = Math.hypot(dx, dy), R0 = r.width / 2 - 22; if (m > R0) { dx *= R0 / m; dy *= R0 / m; } st.x = dx / R0; st.y = dy / R0; Kn.style.transform = `translate(${dx}px,${dy}px)`; };
+  J.addEventListener('pointerdown', e => { e.preventDefault(); st.id = e.pointerId; try { J.setPointerCapture(e.pointerId); } catch (x) { } mv(e); });
+  J.addEventListener('pointermove', e => { if (e.pointerId === st.id) mv(e); });
+  for (const ev of ['pointerup', 'pointercancel']) J.addEventListener(ev, e => { if (e.pointerId !== st.id) return; st.id = null; st.x = st.y = 0; Kn.style.transform = ''; });
+  const L = $('#issLook'), lk = S.look;
+  L.addEventListener('pointerdown', e => { e.preventDefault(); lk.id = e.pointerId; lk.x = e.clientX; lk.y = e.clientY; try { L.setPointerCapture(e.pointerId); } catch (x) { } });
+  L.addEventListener('pointermove', e => { if (e.pointerId !== lk.id || !S.on) return; S.P.yaw -= (e.clientX - lk.x) * 0.006; S.P.pitch = clamp(S.P.pitch - (e.clientY - lk.y) * 0.005, -1.35, 1.35); lk.x = e.clientX; lk.y = e.clientY; });
+  for (const ev of ['pointerup', 'pointercancel']) L.addEventListener(ev, e => { if (e.pointerId === lk.id) lk.id = null; });
+  const hold = (id, fnOn, fnOff) => { const b = $(id); b.addEventListener('pointerdown', e => { e.preventDefault(); try { b.setPointerCapture(e.pointerId); } catch (x) { } b.classList.add('on'); fnOn(); }); for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) b.addEventListener(ev, () => { if (!b.classList.contains('on')) return; b.classList.remove('on'); fnOff(); }); };
+  hold('#issUp', () => S.btn.up = true, () => S.btn.up = false); hold('#issDown', () => S.btn.down = true, () => S.btn.down = false);
+  hold('#issUseB', () => { S.btn.use = true; issUse(true); }, () => { S.btn.use = false; issUse(false); });
+  hold('#issFireB', () => S.btn.fire = true, () => S.btn.fire = false); hold('#issTalk', () => issTalk(true), () => issTalk(false));
+  $('#issToolB').onclick = () => { if (S.tools) S.tool = S.tool % 3 + 1; };
+  $('#issAct').onclick = () => { const A = issActNow(); if (A && A.fn && !A.hold) A.fn(); else if (A && A.hold) issSay('Hold F (or the Use button) to do that.', 2); };
+}
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'Discoveries': 'Penemuan', 'Voice: on': 'Suara: aktif', 'Voice: off': 'Suara: mati', 'Talk': 'Bicara', 'Use': 'Pakai', 'Up': 'Naik', 'Down': 'Turun', 'Tool': 'Alat', 'Fire': 'Tembak',
+  'Hull breach': 'Lambung bocor', 'Creature': 'Makhluk', 'Module': 'Modul', 'Gold today': 'Emas hari ini', 'Paid jobs left': 'Tugas berbayar tersisa', 'Found': 'Ditemukan', 'Air': 'Udara',
+  'Take a patch kit': 'Ambil kit tambalan', 'Seal the hole': 'Tutup lubangnya', 'Pressurise the station': 'Kembalikan tekanan stasiun', 'Take the tools': 'Ambil alat', 'Refill your tools': 'Isi ulang alat',
+  'Hide in the sleep pod': 'Sembunyi di kapsul tidur', 'Come out': 'Keluar', 'Hide in the toilet stall': 'Sembunyi di bilik toilet', 'Squeeze into the storage locker': 'Masuk ke loker penyimpanan', 'Slip under the floor panel': 'Menyelinap ke bawah lantai', 'Back to your ship': 'Kembali ke kapalmu', 'Run the experiment': 'Jalankan eksperimen', 'Pick up the crate': 'Ambil peti', 'Deliver the crate': 'Serahkan peti',
+  'Spacesuit': 'Baju antariksa', 'Nebula': 'Nebula', 'Star Map': 'Peta Bintang', 'Explorer': 'Penjelajah'
 });
 </script>
