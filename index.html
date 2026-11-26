@@ -13510,7 +13510,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '66aecf68'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '0dbff36e'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -22580,6 +22580,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '98', date: '2026-11-26', name: 'To the victor', items: ['Capturing a homeland now takes everything it has: its gold, oil, steel and food, its ships, warheads and generals, its planets and its city, plus half of its Economy, Army and Defences levels. Cities and planets it was holding go to the winner too. Countries that are occupied right now are handed over the same way.', 'A held city pays its holder every hour, but the holder cannot build in it or knock anything down. The same goes for held planets.', 'Winning your freedom back: you keep your own levels and start again with 500 gold and 100 soldiers, but your city and planets stay with whoever holds them. Win the city back in a battle from the Build tab (20 soldiers, every 10 minutes), and each planet in a fight in orbit, against the holder\'s Defences level.', 'At the end of a season held cities go home and planets are freed.', 'Defences now go up to level 20. From level 10 each step costs more: 27,300 gold for level 11, rising to 167,300 for level 20, plus steel and oil.', 'Battles against a country\'s Defences: 6 to 9 is Hard, 10 and up is Nightmare and gets harder with every level (sharper aim, faster reactions, more damage, more health, more reinforcements). An uprising against an occupier with level 10 is Nightmare too. Held planets get more and tougher guns in orbit.', 'Spying on a strong country is harder: guards see further, notice you faster and walk faster with every Defences level, two more guards patrol from level 10, and if they catch you, you are dead and the mission is lost. The hacking timer drops from 45 seconds to 10 at level 20, a coup fails at the first wrong approach from level 8, and every mission costs 10% more per level.', 'For the President of the game: run the world SQL (Version 14) once in Supabase before uploading this version.'] },
   { v: '97', date: '2026-11-25', name: 'Full screen and a living World', items: ['Full screen: a button on the main menu, in the pause menu and in Settings. On phones the game can go full screen by itself with the first tap of every game (Settings, Screen). iPhones do not allow it in the browser: add SMFA 3D to the Home Screen and open it from there instead.', 'City rating: every World city gets 1 to 5 stars. Parks, plazas, monuments, the stadium and a hospital make it nicer; factories and oil wells put visitors off. The rating brings tourists, and tourists pay gold every hour.', 'Visit a friend\'s city from the Build tab\'s Best cities list or from their country: your visit pays them a little gold, and you can leave a like. Likes raise a city\'s rating.', 'The News tab opens with a front page, The World Herald: the day\'s big story, then war and politics, sport, cities, and trade and friendship.', 'Festivals: New Year, Smile Day (1 to 7 April), Independence Day (14 to 20 August) and the Harvest Festival (22 November to 6 December). Each has three small tasks on the main menu, and finishing them gives a festival emblem and vehicle paint for the Barracks. During a festival, city tourism pays double.', 'New daily mission: visit a friend\'s city.', 'For the President of the game: run the world SQL (Version 13) once in Supabase. Until then the front page, ratings and festivals still show, but tourism gold, visits and likes wait for it.'] },
   { v: '96', date: '2026-11-24', name: 'Your controls', items: ['Football on phones plays like FC Mobile: with the ball you get Shoot, Pass, Through ball, Skill move and Curve; when they have it the same places become Tackle, Switch and Press (hold to close their man down, a team-mate helps). Sprint stays, and Flow lights up when the Spirit bar is full.', 'New in football on every device: through balls (T on a keyboard), skill moves (X) and pressing (hold Z).', 'Customize controls (Settings): move any action to another key on the keyboard or another button on the controller, for battle and free roam, racing, football and space. Taking a key another action uses swaps the two. Reset per section or all at once.', 'Phones: Edit buttons (in the pause menu, or ✎ Buttons in football and space) lets you drag any button to a new place and make it bigger or smaller. Settings also has see-through buttons and a left-handed layout. Each kind of game keeps its own layout.', 'Football and space now work with a controller.'] },
   { v: '95', date: '2026-11-22', name: 'Pictures and the office', items: ['Skirmish, God Mode, Arcade and Online show a picture of each battlefield (rendered from the game itself) instead of a small colour square.', 'The President\'s office in the cutscenes is a real room now: wood panelling, a red rug, bookshelves and a green desk lamp with warm light.'] },
@@ -24450,7 +24451,7 @@ function wlRender() {
       <div class="row"><input class="tin" id="wlName" maxlength="24" placeholder="Name of your country"><button class="btn primary" id="wlJoin"${ok ? '' : ' disabled'}>Found it</button></div>
       <p class="note wlOr">${st.my_request ? `Waiting for <b>${esc(st.my_request)}</b> to accept you as a minister.` : 'Or serve a friend\'s country as a minister: press <b>Join as minister</b> on it in the Countries list.'}</p></div>`;
   } else {
-    const up = (k, label, lvl, what) => `<div class="wlUp"><div><b>${label} <i>level ${lvl}</i></b><small>${what}</small></div>${lvl >= 10 ? '<em>max</em>' : `<button class="btn small" data-up="${k}"${me.gold >= wlUpPrice(me, k, lvl) && !me.occupier ? '' : ' disabled'}>${wlNum(wlUpPrice(me, k, lvl))} gold</button>`}</div>`;
+    const up = (k, label, lvl, what) => `<div class="wlUp"><div><b>${label} <i>level ${lvl}</i></b><small>${what}</small></div>${lvl >= (k === 'def' ? (me.def_max || 10) : 10) ? '<em>max</em>' : `<button class="btn small" data-up="${k}"${me.gold >= wlUpPrice(me, k, lvl) && !me.occupier ? '' : ' disabled'}>${wlNum(wlUpPrice(me, k, lvl))} gold</button>`}</div>`;
     const pres = me.role !== 'minister', mins = me.ministers || [];
     h += `<div class="wlCard wlMine"><div class="wlHead">${wlFlagSvg(wlFlagOf(me), 33, 22)}<div class="wlTitle"><h3>${esc(me.name)}</h3>${me.motto ? `<em>“${esc(me.motto)}”</em>` : ''}</div>${pres ? `<button class="btn small" id="wlFlagBtn">Flag</button><button class="btn small" id="wlRename">Rename</button>` : ''}</div>
       ${pres ? '' : `<div class="wlRole"><b>You are a minister</b><span>President ${esc(me.president || '')}. You can invade and start uprisings for this country; deals, upgrades and the flag are the President's.</span><button class="btn small" id="wlQuit">Leave the government</button></div>`}
@@ -24692,12 +24693,12 @@ function wlBattle(id, r) {
   let size = r.kind === 'uprising' ? 'small' : (t.size || 'medium'); if (size === 'large' && MOBILE()) size = 'medium';
   const weather = t.theme === 'snow' ? pick(['snow', 'clear', 'fog']) : t.theme === 'desert' ? pick(['clear', 'clear', 'fog']) : pick(['clear', 'clear', 'rain', 'fog']);
   WL.back = true;
-  startBattle({ msize: t.tiny || size === 'small' ? 'std' : 'big', diff: pvp && def >= 7 ? 'hard' : 'normal', mode: (settings.sk && settings.sk.mode) || 'normal', map: t.theme, enemy: NATIONS[r.npc] && r.npc !== 'smfa' ? r.npc : wlNpc(t), size, time: 'cycle', weather, hardcore: false,
+  startBattle({ msize: t.tiny || size === 'small' ? 'std' : 'big', diff: pvp ? wlDiffFor(def) : 'normal', overN: pvp ? Math.max(0, def - 9) : 0, mode: (settings.sk && settings.sk.mode) || 'normal', map: t.theme, enemy: NATIONS[r.npc] && r.npc !== 'smfa' ? r.npc : wlNpc(t), size, time: 'cycle', weather, hardcore: false,
     up: { armor: Math.floor(L / 3), rifles: Math.floor((L - 1) / 3), recruit: Math.floor(L / 4), tanks: L >= 5 ? 1 : 0, air: L >= 8 ? 1 : 0 },
-    enemyBoost: pvp ? 1 + 0.07 * (def - 1) : t.cap ? 1.25 : 1,
+    enemyBoost: pvp ? 1 + 0.07 * (Math.min(def, 10) - 1) + 0.04 * Math.max(0, def - 10) : t.cap ? 1.25 : 1,
     heroes: (r.heroes || []).filter(k => HEROES[k]),
     world: { battle: r.battle, at: Date.now(), country: t.name, kind: r.kind, defender: r.defender || '' } });
-  if (G) setTimeout(() => { if (G && G.cfg.world && !G.over) banner(r.kind === 'uprising' ? `Uprising against ${r.defender}` : pvp ? `${me.name} invades ${t.name}, held by ${r.defender}` : `${me.name} invades ${t.name}`, 3.5, 'var(--amber)'); }, 2800);
+  if (G) setTimeout(() => { if (G && G.cfg.world && !G.over) banner(r.kind === 'uprising' ? `Uprising against ${r.defender}` : r.kind === 'city' ? `Take back your city from ${r.defender}` : pvp ? `${me.name} invades ${t.name}, held by ${r.defender}` : `${me.name} invades ${t.name}`, 3.5, 'var(--amber)'); }, 2800);
 }
 // tell the server how it ended. The server refuses an answer that comes too soon after the start, so wait if needed.
 function wlReport(w, win) {
@@ -24705,7 +24706,7 @@ function wlReport(w, win) {
   const wait = Math.max(0, 47000 - (Date.now() - w.at));
   setTimeout(async () => {
     const r = await wlCall('world_result', { p_battle: w.battle, p_win: !!win }, true);
-    if (r && r.ok !== false) toast('The World', w.kind === 'uprising' ? (win ? 'Your homeland is free. You start again from the beginning.' : 'The uprising failed, but the resistance grows.') : win ? `${w.country} is yours` : `The invasion of ${w.country} failed`);
+    if (r && r.ok !== false) toast('The World', w.kind === 'uprising' ? (win ? 'Your homeland is free. You keep your levels; win back your city and planets.' : 'The uprising failed, but the resistance grows.') : w.kind === 'city' ? (win ? 'Your city is yours again.' : `${w.defender || 'The occupier'} still holds your city.`) : win ? `${w.country} is yours` : `The invasion of ${w.country} failed`);
     else if (r && r.err) toast('The World', r.err);
     if (!$('#scr-world').hidden) wlLoad(true);
   }, wait);
@@ -24853,7 +24854,7 @@ async function visDo(k) {
     if (typeof frnLeave === 'function') frnLeave(true);
     frSave(); frLeave(); VIS.on = null;
     startBattle({ map: theme, enemy: typeof wlNpc === 'function' && t.owner ? wlNpc(t) : 'french', size: 'small', msize: 'std', stealth: 'villa', time: 'night', weather: 'clear', diff: 'normal', mode: (settings.sk && settings.sk.mode) || 'normal', hardcore: false,
-      target: k === 'assassinate' ? `President ${V.president}` : 'the vault keeper', visit: { id: r.visit, kind: k, name: V.name, at: Date.now() } });
+      target: k === 'assassinate' ? `President ${V.president}` : 'the vault keeper', visit: { id: r.visit, kind: k, name: V.name, at: Date.now(), def: Math.max(1, V.def || 1) } });
   }
 }
 function visEnd(toWorld) {
@@ -26575,7 +26576,7 @@ function wmCardHtml(id) {
 async function wmStart(kind, id, nuke) {
   WL.err = ''; const r = await wlCall('world_mission_start', { p_kind: kind, p_country: id, p_nuke: nuke || null }, true);
   if (!r || r.ok === false) { toast('Mission', (r && r.err) || WL.err || 'The mission could not start.'); WL.err = ''; wlRender(); return; }
-  const t = TBY[id], M = WM.cur = { id: r.mission, kind, country: id, name: t.name, npc: r.npc, defender: r.defender || '', nuke: r.nuke, homeland: r.homeland, t0: Date.now() };
+  const t = TBY[id], M = WM.cur = { id: r.mission, kind, country: id, name: t.name, npc: r.npc, defender: r.defender || '', nuke: r.nuke, homeland: r.homeland, t0: Date.now(), def: r.defender ? Math.max(1, r.def || 1) : 0 };
   const K = WM_KIND[kind][3];
   if (K === 'hack') wmHack(M); else if (K === 'coup') wmCoup(M);
   else {
@@ -26692,19 +26693,20 @@ function wmReport(M, win, seen) {
 
 /* ---------- the hacking puzzle ---------- */
 // Pick codes to match the target sequence: the first from the top row, then alternately down the column and along the row
-// of the last pick. Six picks, 45 seconds before the trace finds you.
+// of the last pick. Six picks, 45 seconds before the trace finds you (down to 10 against Defences level 20).
+const wmHackSecs = M => M && M.def > 1 ? Math.round(45 - (Math.min(20, M.def) - 1) * 35 / 19) : 45;
 function wmHack(M) {
   const codes = ['1C', '55', 'BD', 'E9', '7A', 'FF'], N = 5, grid = [...Array(N)].map(() => [...Array(N)].map(() => pick(codes)));
   // a solvable path: row 0 → column → row → column
   let r = 0, c = Math.floor(Math.random() * N); const path = [[r, c]];
   for (let i = 1; i < 4; i++) { if (i % 2) { let nr; do { nr = Math.floor(Math.random() * N); } while (nr === r || path.some(p => p[0] === nr && p[1] === c)); r = nr; } else { let nc; do { nc = Math.floor(Math.random() * N); } while (nc === c || path.some(p => p[0] === r && p[1] === nc)); c = nc; } path.push([r, c]); }
   const seq = path.map(([a, b]) => grid[a][b]);
-  const S = { grid, seq, buf: [], used: {}, axis: 'row', line: 0, t0: Date.now(), end: 0 };
+  const S = { grid, seq, buf: [], used: {}, axis: 'row', line: 0, t0: Date.now(), end: 0, secs: wmHackSecs(M) };
   const el = document.createElement('div'); el.id = 'wmHack'; el.className = 'wmOver'; document.body.appendChild(el);
   const done = win => { if (S.end) return; S.end = 1; clearInterval(S.tm); draw(win); setTimeout(() => { el.remove(); wmReport(M, win, !win); }, 2200); };
   const ok = () => { const b = S.buf.join(' '), q = seq.join(' '); return b.includes(q); };
   const draw = fin => {
-    const left = Math.max(0, 45 - Math.floor((Date.now() - S.t0) / 1000));
+    const left = Math.max(0, S.secs - Math.floor((Date.now() - S.t0) / 1000));
     el.innerHTML = `<div class="wmBox"><em>Hacking · ${esc(M.name)}</em><h2>${fin === true ? 'ACCESS GRANTED' : fin === false ? 'TRACED' : 'Break into their command network'}</h2>
       <div class="wmSeq"><small>Target sequence</small>${seq.map((s, i) => `<b class="${S.buf.join(' ').includes(seq.slice(0, i + 1).join(' ')) ? 'got' : ''}">${s}</b>`).join('')}</div>
       <div class="wmGrid">${grid.map((row, a) => row.map((v, b) => { const can = !S.end && !S.used[a + ',' + b] && (S.axis === 'row' ? a === S.line : b === S.line); return `<button class="wmCell${can ? ' can' : ''}${S.used[a + ',' + b] ? ' used' : ''}" data-c="${a},${b}"${can ? '' : ' disabled'}>${v}</button>`; }).join('')).join('')}</div>
@@ -26717,7 +26719,7 @@ function wmHack(M) {
     const q = el.querySelector('#wmQuit'); if (q) q.onclick = () => done(false);
     if (typeof i18nWalk === 'function') i18nWalk(el);
   };
-  S.tm = setInterval(() => { if (Date.now() - S.t0 >= 45000) done(false); else { const t = el.querySelector('.wmTime'); if (t) { const left = Math.max(0, 45 - Math.floor((Date.now() - S.t0) / 1000)); t.textContent = left + ' s'; t.classList.toggle('low', left < 10); } } }, 500);
+  S.tm = setInterval(() => { if (Date.now() - S.t0 >= S.secs * 1000) done(false); else { const t = el.querySelector('.wmTime'); if (t) { const left = Math.max(0, S.secs - Math.floor((Date.now() - S.t0) / 1000)); t.textContent = left + ' s'; t.classList.toggle('low', left < 10); } } }, 500);
   draw(); WM.hack = S; return S;
 }
 
@@ -26728,7 +26730,7 @@ const WM_OFFICERS = [['General Vorn', 'commands the army', ['power', 'He talks a
 const WM_APPROACH = { gold: ['Offer gold', 'A fortune in a briefcase.'], power: ['Promise power', 'A seat at the top of the new government.'], fear: ['Threaten', 'Some secrets are better kept.'], loyalty: ['Appeal to the nation', 'The people deserve better than this government.'] };
 function wmCoup(M) {
   const off = WM_OFFICERS.map(o => { const w = Math.random() < 0.5 ? o[2] : o[3]; return { name: o[0], role: o[1], want: w[0], hint: w[1], res: null }; });
-  const S = { off, i: 0, end: 0, wrong: 0 };
+  const S = { off, i: 0, end: 0, wrong: 0, miss: M && M.def >= 8 ? 1 : 2 };   // strong defences (8+): one wrong approach ends the coup
   const el = document.createElement('div'); el.id = 'wmCoup'; el.className = 'wmOver'; document.body.appendChild(el);
   const draw = () => {
     const o = off[S.i], won = off.filter(x => x.res === true).length, fin = S.end;
@@ -26737,7 +26739,7 @@ function wmCoup(M) {
       ${fin ? `<p class="note">${won >= 2 ? `Two of three officers are with you. By morning ${esc(M.name)} has a new government, and it answers to you.` : 'Not enough officers would follow you. The plot is out, and they know who paid for it.'}</p>`
         : `<p class="wmQuote">“${esc(o.name)} ${esc(o.role)}. ${esc(o.hint)}”</p><div class="wmApp">${Object.entries(WM_APPROACH).map(([k, [n, d]]) => `<button class="wpOpt" data-ap="${k}"><b>${n}</b><small>${d}</small></button>`).join('')}</div><p class="note">You need two of the three officers. Read each one carefully.</p>`}</div>`;
     el.querySelectorAll('[data-ap]').forEach(b => b.onclick = () => { const o2 = off[S.i]; o2.res = b.dataset.ap === o2.want; if (!o2.res) S.wrong++; try { SFX.tone(0.1, 0.2, o2.res ? 700 : 300, o2.res ? 1100 : 200, 'sine'); } catch (e) { }
-      S.i++; const w = off.filter(x => x.res === true).length; if (S.i >= 3 || w >= 2 || S.wrong >= 2) { S.end = 1; draw(); setTimeout(() => { el.remove(); wmReport(M, w >= 2, S.wrong >= 2 || w < 2); }, 2600); } else draw(); });
+      S.i++; const w = off.filter(x => x.res === true).length; if (S.i >= 3 || w >= 2 || S.wrong >= S.miss) { S.end = 1; draw(); setTimeout(() => { el.remove(); wmReport(M, w >= 2, S.wrong >= 2 || w < 2); }, 2600); } else draw(); });
     if (typeof i18nWalk === 'function') i18nWalk(el);
   };
   draw(); WM.coup = S; return S;
@@ -27140,11 +27142,12 @@ function plSpaceBuild() {
       { const dm = new THREE.Mesh(new THREE.SphereGeometry(6, 16, 10, 0, TAU, 0, Math.PI / 2), new THREE.MeshLambertMaterial({ color: 0x9fd8ff, emissive: 0x224466 })); dm.rotation.x = Math.PI / 2; base.add(dm); }
       for (let i = 0; i < 6; i++) { const a = i / 6 * TAU, m = new THREE.Mesh(new THREE.SphereGeometry(1.1, 8, 6), new THREE.MeshBasicMaterial({ color: col })); m.position.set(Math.cos(a) * 11, Math.sin(a) * 11, 0.5); base.add(m); }
       // guns in orbit: one for every turret, two for a shield
-      const n = (P.layout || []).filter(x => x.k === 'turret').length + 2 * (P.layout || []).filter(x => x.k === 'shield').length;
+      const hd = rel === 'war' ? Math.max(1, P.hdef || 1) : 0;   // v98: a held planet is also guarded by its holder's Defences level
+      const n = (P.layout || []).filter(x => x.k === 'turret').length + 2 * (P.layout || []).filter(x => x.k === 'shield').length + (hd > 1 ? Math.ceil(hd / 3) : 0);
       for (let i = 0; i < n; i++) { const pod = new THREE.Group(), a = i / Math.max(1, n) * TAU;
         pod.add(new THREE.Mesh(new THREE.BoxGeometry(5, 5, 7), new THREE.MeshLambertMaterial({ color: rel === 'war' ? 0x8a2f2f : 0x7f8a93, emissive: rel === 'war' ? 0x3a0b0b : 0x000000 })));
         const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.6, 7, 6), new THREE.MeshLambertMaterial({ color: 0x2a2f34 })); bar.rotation.x = Math.PI / 2; bar.position.z = 5; pod.add(bar);
-        g.add(pod); pl.pods.push({ mesh: pod, a, hp: 40, fireT: rr(0.5, 2), pl }); }
+        g.add(pod); pl.pods.push({ mesh: pod, a, hp: Math.round(40 * (1 + 0.05 * Math.max(0, hd - 1))), fireT: rr(0.5, 2), pl }); }
     }
     S.planets.push(pl);
   }
@@ -27167,7 +27170,7 @@ function plSpaceStep(dt) {
     if (pl.rel === 'war' && !S.docked && !S.dead && alt < 260) {
       if (!pl.seen && pl.pods.some(q => q.hp > 0)) { pl.seen = true; spcSay(`The guns of ${pl.name} have seen you.`, 2.5); }
       for (const q of pl.pods) { if (q.hp <= 0) continue; q.fireT -= dt; if (q.fireT > 0) continue; q.fireT = rr(0.9, 1.7);
-        const at = q.mesh.getWorldPosition(spV(0, 0, 0)), to = sh.clone().sub(at), dd = to.length(); to.normalize(); const hit = Math.random() < 0.3;
+        const at = q.mesh.getWorldPosition(spV(0, 0, 0)), to = sh.clone().sub(at), dd = to.length(); to.normalize(); const hit = Math.random() < 0.3 + 0.012 * Math.max(0, (pl.P && pl.P.hdef || 1) - 1);
         spcBolt(at, hit ? to : to.clone().add(spV(rr(-0.07, 0.07), rr(-0.07, 0.07), rr(-0.07, 0.07))).normalize(), 'foe', dd); if (hit) spcHurt(6); } }
   }
   S.nearPl = near && nd < 110 ? near : null; S.nearPlD = nd;
@@ -27196,7 +27199,7 @@ function plPanel() {
   const S = SPC, el = $('#spPlan'); if (!el) return; const me = wlMe(), sh = S.ship.position, list = (S.planets || []).slice().sort((a, b) => a.pos.distanceTo(sh) - b.pos.distanceTo(sh));
   el.innerHTML = `<div class="plCard"><em>Deep space</em><h2>Planets</h2><p>Claim a free planet for your country, build on it, and it pays every hour. A country can hold 3. Planets of a country you are at war with can be taken.</p>
     <div class="plList">${list.map(pl => { const P = pl.P, L = PL_LOOK[pl.id], km = (pl.pos.distanceTo(sh) / 1000).toFixed(1) + ' km';
-      const who = !P.owner ? `Free · ${wlNum(P.price || 0)} gold, ${wlNum(P.steel || 0)} steel` : P.mine ? 'Yours' : `${esc(P.owner)}${pl.rel === 'war' ? ' · at war' : ''}`;
+      const who = !P.owner ? `Free · ${wlNum(P.price || 0)} gold, ${wlNum(P.steel || 0)} steel` : P.mine ? 'Yours' : `${esc(P.owner)}${P.reclaim ? ' · yours: take it back' : pl.rel === 'war' ? ' · at war' : ''}`;
       return `<div class="plRow ${pl.rel}"><span class="plDot" style="${plDotCss(pl.id)}"></span><div><b>${esc(pl.name)}</b><small>${PL_KINDS[P.kind] || ''} · +${wlNum(P.rate || 0)} ${PL_RES[P.res] || ''} an hour · ${who}</small><small>${km} away</small></div>
         <button class="btn small${pl.rel === 'mine' || pl.rel === 'free' ? ' primary' : ''}" data-warp="${pl.id}">Warp</button></div>`; }).join('')}</div>
     <div class="row"><button class="btn" id="plClose">Close</button></div></div>`;
@@ -27513,10 +27516,10 @@ WL_TABS.build = {
       <div class="wbBox"><div class="wbHd"><div><b>The city of ${esc(me.name)}</b><small>${city.length} building${city.length === 1 ? '' : 's'} around the President's palace. Houses, towers, markets and the stadium pay taxes; factories, farms and oil wells make materials. Kept from season to season.</small></div></div>
         <div class="wbYield">${chips(cy)}</div><button class="btn primary" id="wbCity">${pres ? 'Build your city' : 'Look at the city'}</button></div>
       <div class="wbBox"><div class="wbHd"><div><b>Your planets</b><small>${mine.length ? `${mine.length} of 3. What they make is paid into your treasury every hour.` : 'None yet. Launch into Space, open Planets and warp to a free one to claim it.'}</small></div></div>
-        ${mine.length ? `<div class="wbYield">${chips(pTot)}</div>${mine.map(p => { const y = plYield(p.layout, 'planet', { res: p.res, rate: p.rate }); return `<div class="wbPl"><span class="plDot" style="${plDotCss(p.id)}"></span><div><b>${esc(p.name)}</b><small>${PL_KINDS[p.kind] || ''} · ${plYieldText(y)} an hour · defence ${y.def}${p.protect ? ' · protected' : ''}</small></div><button class="btn small" data-wbpl="${p.id}">Build</button></div>`; }).join('')}` : ''}
+        ${mine.length ? `<div class="wbYield">${chips(pTot)}</div>${mine.map(p => { const y = plYield(p.layout, 'planet', { res: p.res, rate: p.rate }); return `<div class="wbPl"><span class="plDot" style="${plDotCss(p.id)}"></span><div><b>${esc(p.name)}</b><small>${PL_KINDS[p.kind] || ''} · ${plYieldText(y)} an hour · defence ${y.def}${p.protect ? ' · protected' : ''}${p.orig ? ` · held from ${esc(p.orig)}: it earns for you, no building` : ''}</small></div><button class="btn small" data-wbpl="${p.id}">Build</button></div>`; }).join('')}` : ''}
         <button class="btn" id="wbSpace"${me.occupier ? ' disabled' : ''}>Launch into Space</button></div>
       <div class="wbBox"><div class="wbHd"><div><b>All planets</b><small>Free planets can be claimed from orbit. Planets of a country you are at war with can be taken when their guns are down.</small></div></div>
-        ${others.map(p => `<div class="wbPl"><span class="plDot" style="${plDotCss(p.id)}"></span><div><b>${esc(p.name)}</b><small>${PL_KINDS[p.kind] || ''} · +${wlNum(p.rate)} ${PL_RES[p.res]} an hour · ${p.owner ? esc(p.owner) + (p.rel === 'war' ? ' · at war' : '') : `free · ${wlNum(p.price)} gold, ${wlNum(p.steel)} steel`}</small></div>${p.owner ? `<button class="btn small" data-wblook="${p.id}">Look</button>` : ''}</div>`).join('') || '<p class="note">The planets appear once the account server has Version 10 of the world.</p>'}
+        ${others.map(p => `<div class="wbPl"><span class="plDot" style="${plDotCss(p.id)}"></span><div><b>${esc(p.name)}</b><small>${PL_KINDS[p.kind] || ''} · +${wlNum(p.rate)} ${PL_RES[p.res]} an hour · ${p.owner ? esc(p.owner) + (p.reclaim ? ` · yours: take it back in orbit (Defences ${p.hdef || 1})` : p.rel === 'war' ? ' · at war' : '') : `free · ${wlNum(p.price)} gold, ${wlNum(p.steel)} steel`}</small></div>${p.owner ? `<button class="btn small" data-wblook="${p.id}">Look</button>` : ''}</div>`).join('') || '<p class="note">The planets appear once the account server has Version 10 of the world.</p>'}
       </div></div>`;
   },
   wire: (el, st, me) => {
@@ -29747,5 +29750,122 @@ if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
   'Tip: a park costs 80 gold and makes the city nicer.': 'Tips: taman seharga 80 emas membuat kota lebih indah.', 'Tip: a plaza adds to the rating and to the kinds of building.': 'Tips: alun-alun menambah peringkat dan jenis bangunan.',
   'Tip: a monument is the biggest step up after the stadium.': 'Tips: monumen adalah kenaikan terbesar setelah stadion.', 'Tip: the stadium sells tickets and draws the most visitors.': 'Tips: stadion menjual tiket dan paling banyak menarik pengunjung.',
   'Tip: factories and oil wells lower the rating. Parks around them help.': 'Tips: pabrik dan sumur minyak menurunkan peringkat. Taman di sekitarnya membantu.'
+});
+
+/* ================= CONQUEST (v98): the winner takes everything, strong defences are really strong =================
+   Server: Version 14 (world_state_v14, world_city_attack, the hand-over in world_seize_all).
+   - A fallen homeland gives the winner its gold, materials, ships, warheads, generals, planets and city, and half of
+     its levels. A freed country keeps its own levels; its city and planets have to be won back: the city in a
+     battle (Build tab), each planet in orbit (Space, like taking a planet), against the holder's Defences level.
+   - Defences go to 20. Battles against a player: levels 1-5 Normal, 6-9 Hard, 10 and up Nightmare and harder with
+     every level (enemy aim, reactions, damage, health and reinforcements).
+   - World stealth missions against a player (visits: sabotage and assassination; missions: border crossing,
+     governor, nuclear code and distraction): guards see further, notice you faster and walk faster with every
+     Defences level; level 10 and up adds two guards; and being caught ends the mission: you die. The hacking
+     timer drops from 45 seconds to 10 at level 20; from level 8 one wrong approach ends a coup. */
+const CQ = { old: false };
+function wlDiffFor(def) { return def >= 10 ? 'nightmare' : def >= 6 ? 'hard' : 'normal'; }
+{
+  const _wc = wlCall;
+  wlCall = async function (fn, args, quiet) {
+    if (fn === 'world_state' && !CQ.old) {
+      const e0 = WL.err, r = await _wc('world_state_v14', args, true);
+      if (r && r.players) return r;
+      CQ.old = true; WL.err = e0;
+    }
+    return _wc.apply(this, arguments);
+  };
+}
+// beyond Nightmare: every Defences level above 9 makes the enemy a little better at everything
+{
+  const _sb = startBattle; startBattle = function (cfg) {
+    const r = _sb.apply(this, arguments);
+    try {
+      const n = cfg && cfg.overN || 0;
+      if (n > 0 && G && G.diff) { const d = G.diff; G.diff = Object.assign({}, d, { acc: d.acc * (1 + 0.025 * n), react: d.react * Math.max(0.5, 1 - 0.03 * n), dmg: d.dmg * (1 + 0.04 * n), hp: d.hp * (1 + 0.04 * n), tickets: d.tickets * (1 + 0.03 * n), name: d.name + '+' + n }); }
+    } catch (e) { console.warn('over nightmare', e); }
+    return r;
+  };
+}
+/* ---------- stealth missions against a player's defences ---------- */
+const cqDef = () => { const c = G && G.cfg; if (!c) return 0; if (c.visit) return Math.max(1, c.visit.def || 1); if (c.wmis && c.wmis.def) return c.wmis.def; return 0; };
+{
+  const _ss = stealthSetup; stealthSetup = function () {
+    const r = _ss.apply(this, arguments);
+    const d = cqDef(); if (!d) return r;
+    const M = G.mis; M.cqDef = d; M.range *= 1 + 0.03 * (d - 1);
+    if (d >= 10 && M.guards && M.cones) {
+      // two more guards walk the inner yard
+      const extra = [[-10, -8, [[-10, -8], [10, -8], [10, -28], [-10, -28]]], [10, 28, [[10, 28], [-10, 28], [-10, 14], [10, 14]]]];
+      for (const [x, z, path] of extra) {
+        const u = makeUnit(1, pick(['rifle', 'smg']), null, x, z); u.dummy = 'guard'; u.yaw = 0; u.g = { base: 0, path, i: 0, wait: rr(1, 3), meter: 0 }; poseUnit(u); M.guards.push(u);
+        const geo = new THREE.CircleGeometry(1, 18, -0.75, 1.5); geo.rotateX(-Math.PI / 2); const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.1, depthWrite: false, fog: false })); scene.add(m); M.cones.push(m);
+      }
+    }
+    setTimeout(() => G && G.mis === M && hint(`Their Defences are level ${d}: ${d >= 10 ? 'elite guards. ' : ''}If they catch you, you are dead.`, 5), 9500);
+    return r;
+  };
+  // guards notice you faster and walk faster
+  const _sp = seesPoint; seesPoint = function () { const s = _sp.apply(this, arguments), M = G && G.mis; return s > 0 && M && M.cqDef ? Math.min(1, s * (1 + 0.05 * (M.cqDef - 1))) : s; };
+  const _gw = guardWalk; guardWalk = function (u, dt, speed) { const M = G && G.mis; if (M && M.cqDef) arguments[2] = speed * (1 + 0.035 * (M.cqDef - 1)); return _gw.apply(this, arguments); };
+  // caught = the mission is over: the guards shoot you dead
+  const _ra = raiseAlarm; raiseAlarm = function () {
+    const M = G && G.mis, was = M && M.alarm; const r = _ra.apply(this, arguments);
+    if (M && M.cqDef && !was && M.alarm && !M.cqCaught) {
+      M.cqCaught = true; banner('CAUGHT', 2, 'var(--red)');
+      G.timers.push({ t: G.t + 1.4, fn: () => { if (!G || G.mis !== M || M.ended) return; const p = G.player; if (p && p.alive) { G.godT = 0; try { const g = M.guards.find(u => u.alive) || p; hurtUnit(p, 9999, p.x, p.y + 1.5, p.z, p.x - g.x, 0, p.z - g.z, 'torso', 'bullet', g === p ? null : g); } catch (e) { } } try { misEnd('lose', 'You were caught. Their guards do not take prisoners.', 1.5); } catch (e) { endBattle('lose', 'You were caught.'); } } });
+    }
+    return r;
+  };
+}
+/* ---------- the World: your city held by someone else, the cities you hold, Defences to 20 ---------- */
+{
+  const B = WL_TABS.build, _h = B.html, _w = B.wire;
+  B.html = function (st, me) {
+    let h = _h.apply(this, arguments);
+    try {
+      const held = st.held_cities || [];
+      let box = '';
+      if (me.city_holder) box += `<div class="wbBox cqHeld"><div class="wbHd"><div><b>Your city is held by ${esc(me.city_holder)}</b><small>It pays ${esc(me.city_holder)} every hour until you take it back. A battle against their Defences (level ${me.city_holder_def || 1}${(me.city_holder_def || 1) >= 10 ? ', beyond Nightmare' : (me.city_holder_def || 1) >= 6 ? ', Hard' : ''}). It costs 20 soldiers; you can try every 10 minutes.</small></div></div>
+        <button class="btn primary" id="cqCity"${me.occupier || (me.army || 0) < 20 ? ' disabled' : ''}>${me.occupier ? 'Free your homeland first' : (me.army || 0) < 20 ? 'Needs 20 soldiers' : 'Take back your city'}</button></div>`;
+      if (held.length) box += `<div class="wbBox cqHold"><div class="wbHd"><div><b>Cities you hold</b><small>${held.map(esc).join(', ')}: they pay you every hour until their owners win them back. You cannot build in them.</small></div></div></div>`;
+      if (box) { const i = h.indexOf('<div class="wbBox">'); h = i >= 0 ? h.slice(0, i) + box + h.slice(i) : h; }
+      if (me.city_holder) h = h.replace('<button class="btn primary" id="wbCity">Build your city', '<button class="btn" id="wbCity">Look at your city');
+    } catch (e) { console.warn('held city', e); }
+    return h;
+  };
+  B.wire = function (el, st, me) {
+    _w.apply(this, arguments);
+    const c = el.querySelector('#cqCity'); if (c) c.onclick = async () => { c.disabled = true; WL.err = ''; const r = await wlCall('world_city_attack', {}); if (!r || r.ok === false) { c.disabled = false; if (WL.err || (r && r.err)) toast('The World', (r && r.err) || WL.err); WL.err = ''; return; } wlBattle(null, r); };
+    if (me && me.city_holder) { const b = el.querySelector('#wbCity'); if (b) b.onclick = () => plOpenBuild({ mode: 'city', back: 'world', ro: true }); }
+  };
+}
+// a planet you hold for someone else opens to look at only
+{ const _o = plOpenBuild; plOpenBuild = function (o) { try { if (o && o.mode === 'planet') { const P = plGet(o.id); if (P && P.mine && P.orig) o = Object.assign({}, o, { ro: true }); } } catch (e) { } return _o.call(this, o); }; }
+// the news
+{
+  const _n = wlNews; wlNews = function (l) {
+    const a = `<b>${esc(l.a)}</b>`, b = `<b>${esc(l.b)}</b>`;
+    if (l.kind === 'seized') return `${a} took everything ${b} had: its treasury, ships, warheads, generals, planets and city`;
+    if (l.kind === 'city_back') return `${a} took its city back from ${b}`;
+    if (l.kind === 'city_held') return `${a} held on to the city of ${b}`;
+    if (l.kind === 'planet_back') return `${a} took its planet back from ${b} in orbit`;
+    return _n.apply(this, arguments);
+  };
+}
+// Defences: say what the levels mean
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try { const b = $('#wldSide [data-up="def"]'), row = b ? b.closest('.wlUp') : $$('#wldSide .wlUp').find(x => /Defences/.test(x.textContent)); const sm = row && row.querySelector('small');
+      if (sm && !sm.dataset.cq) { sm.dataset.cq = 1; sm.textContent = 'Invaders face a stronger army. Up to level 20: 6+ is Hard, 10+ is beyond Nightmare, and spies and hackers struggle more each level.'; if (typeof i18nWalk === 'function') i18nWalk(sm); } } catch (e) { }
+    return r;
+  };
+}
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'Take back your city': 'Rebut kembali kotamu', 'Free your homeland first': 'Bebaskan tanah airmu dulu', 'Needs 20 soldiers': 'Perlu 20 prajurit', 'Cities you hold': 'Kota yang kamu kuasai',
+  'Look at your city': 'Lihat kotamu', 'CAUGHT': 'TERTANGKAP', 'You were caught. Their guards do not take prisoners.': 'Kamu tertangkap. Penjaga mereka tidak menyisakan tawanan.',
+  'Invaders face a stronger army. Up to level 20: 6+ is Hard, 10+ is beyond Nightmare, and spies and hackers struggle more each level.': 'Penyerang menghadapi tentara lebih kuat. Sampai level 20: 6+ Sulit, 10+ melebihi Nightmare, dan mata-mata serta peretas makin kesulitan setiap level.',
+  'Your city is yours again.': 'Kotamu kembali menjadi milikmu.', 'Your homeland is free. You keep your levels; win back your city and planets.': 'Tanah airmu bebas. Levelmu tetap; rebut kembali kota dan planetmu.'
 });
 </script>
