@@ -2,6 +2,11 @@
 <title>SMFA 3D</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SMFA 3D">
+<meta name="theme-color" content="#070a07">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira+Stencil+One&display=swap">
 <style>
@@ -2077,6 +2082,53 @@ body.tEditing #fbHelp,body.tEditing #fbBanner{display:none!important}
 .tEditBtn{display:none}#scr-foot.touch .tEditBtn,#scr-space.touch .tEditBtn{display:inline-flex}
 #fbEditBtn{position:absolute;right:0;top:0;pointer-events:auto}
 @media (max-height:420px){#tEditBar{padding:6px 10px;gap:4px 10px}.teHint{display:none}}
+
+/* v97: full screen */
+.ic-full{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5'/%3E%3C/svg%3E")}
+.ic-full.on{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5'/%3E%3C/svg%3E")}
+/* v97: a living World — city rating, festivals, the front page */
+.cityStars{color:var(--amber);letter-spacing:1px;font-size:.92em;white-space:nowrap}.cityStars i{font-style:normal;color:rgba(255,255,255,.18)}
+.wbRate .wbHd b em{font-style:normal;font:700 var(--t-m) var(--ui);color:var(--amber);margin-left:4px}
+.wbTip{color:#cfe8d0!important}
+.festTxt{display:inline;font:600 var(--t-s) var(--ui)!important;color:var(--fc)!important}
+.wbCityRow{display:grid;grid-template-columns:36px 21px minmax(0,1fr) auto;align-items:center;gap:10px;min-height:46px;padding:4px 10px 4px 6px;border:1px solid var(--line2);border-radius:var(--r-m);background:var(--panel2)}
+.wbCityRow.me{border-color:var(--green)}.wbCityRow span{display:grid;min-width:0}.wbCityRow span b{font-size:var(--t-b);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wbCityRow em{font:700 10.5px var(--ui);letter-spacing:.08em;text-transform:uppercase;font-style:normal;color:var(--green)}
+.wbCityRow .btn{min-height:34px}
+.bdRate b{display:flex;align-items:baseline;gap:6px;justify-content:flex-end}.bdRate b>i{color:var(--amber)!important;margin:0!important}.bdRate .cityStars i{color:rgba(255,255,255,.22)!important;font-size:inherit!important;margin:0!important}
+.bdLike{align-self:center;min-height:36px;border-color:#7a2a3a}.bdLike.on{background:rgba(239,75,79,.18);color:#ffc2c8;opacity:1}
+.bdNice{display:block;font:700 10px var(--ui);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-top:1px}.bdNice.bad{color:#ff9c8a}
+.festPill{font:700 10.5px var(--ui);letter-spacing:.08em;text-transform:uppercase;color:#120d02;background:var(--fc);padding:1px 7px;border-radius:var(--r-pill)}
+.misList .festHead{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:4px;padding-top:6px;font-size:var(--t-s);color:var(--muted)}
+.festHead b{font:700 var(--t-s) var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--fc)}.festHead span{min-width:0}.festHead small{margin-left:auto;white-space:nowrap}
+.misRow.fest .misBar i{background:var(--amber)}
+.lbHero canvas.festSky{pointer-events:none;z-index:1}
+.lwFest{display:grid;gap:2px;margin:0 0 8px;padding:8px 12px;border-radius:var(--r-l);border:1px solid color-mix(in srgb,var(--fc) 45%,transparent);background:color-mix(in srgb,var(--fc) 9%,transparent);font-size:var(--t-s);color:#e6e0cc}
+.lwFest b{font:700 var(--t-s) var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--fc)}
+.fpPaper{margin:2px 0 10px;padding:12px 14px 10px;border-radius:var(--r-l);background:#ece6d4;color:#1d1a14;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.fpMast{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:3px double #1d1a14;padding-bottom:6px;margin-bottom:8px}
+.fpMast b{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.02em;line-height:1}.fpMast small{font:600 var(--t-xs) var(--ui);letter-spacing:.08em;text-transform:uppercase;color:#5a5446}
+.fpFest{margin:0 0 8px;padding:5px 8px;border-left:4px solid var(--fc);background:rgba(0,0,0,.05);font-size:var(--t-s);line-height:1.4}.fpFest b{text-transform:uppercase;letter-spacing:.08em;font-size:var(--t-xs)}
+.fpLead{padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,.25);margin-bottom:8px}
+.fpLead em{font:700 var(--t-xs) var(--ui);letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:#8a2a1a}
+.fpLead h3{margin:3px 0 0;font:700 21px/1.2 var(--ui);letter-spacing:0;text-transform:none;color:#14110c}
+.fpCols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}
+.fpSec h4{margin:0 0 4px;font:700 var(--t-xs) var(--ui);letter-spacing:.14em;text-transform:uppercase;color:#5a5446;border-bottom:1px solid rgba(0,0,0,.2);padding-bottom:2px}
+.fpSec ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.fpSec li{font-size:var(--t-m);line-height:1.35;color:#2a261d}.fpSec li small{display:block;font-size:var(--t-xs);color:#6e6858}.fpSec li b{color:#14110c}
+.fpSec li .cityStars{color:#a8741a}.fpSec li .cityStars i{color:rgba(0,0,0,.18)}
+.fpSec li.fpNone{color:#6e6858;font-style:italic}
+.fpAll{margin:12px 0 4px}
+@media (max-width:520px){.fpCols{grid-template-columns:1fr}.fpLead h3{font-size:18px}.fpMast b{font-size:22px}}
+/* phones held upright: the full-screen button sits between the level card and the friends button */
+@media (max-width:560px),(max-aspect-ratio:3/4){
+  .lbTop{grid-template-columns:minmax(0,1fr) auto auto auto;grid-template-areas:"logo acc acc gear" "prof prof full party"}
+  .lobby #goFull{grid-area:full}
+  .lbMis .festPill{display:none}
+}
+.festPill{white-space:nowrap}
+.festHead.tap{cursor:pointer}.festHead.tap:hover b{text-decoration:underline}.festN{font-style:normal;font:700 var(--t-s) var(--ui);color:var(--fc);white-space:nowrap}
+.misSheetCard .festHead .festN{display:none}
 </style>
 
 <div id="ldScr" role="status" aria-live="polite">
@@ -13458,7 +13510,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '107587f8'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '66aecf68'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -22528,6 +22580,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '97', date: '2026-11-25', name: 'Full screen and a living World', items: ['Full screen: a button on the main menu, in the pause menu and in Settings. On phones the game can go full screen by itself with the first tap of every game (Settings, Screen). iPhones do not allow it in the browser: add SMFA 3D to the Home Screen and open it from there instead.', 'City rating: every World city gets 1 to 5 stars. Parks, plazas, monuments, the stadium and a hospital make it nicer; factories and oil wells put visitors off. The rating brings tourists, and tourists pay gold every hour.', 'Visit a friend\'s city from the Build tab\'s Best cities list or from their country: your visit pays them a little gold, and you can leave a like. Likes raise a city\'s rating.', 'The News tab opens with a front page, The World Herald: the day\'s big story, then war and politics, sport, cities, and trade and friendship.', 'Festivals: New Year, Smile Day (1 to 7 April), Independence Day (14 to 20 August) and the Harvest Festival (22 November to 6 December). Each has three small tasks on the main menu, and finishing them gives a festival emblem and vehicle paint for the Barracks. During a festival, city tourism pays double.', 'New daily mission: visit a friend\'s city.', 'For the President of the game: run the world SQL (Version 13) once in Supabase. Until then the front page, ratings and festivals still show, but tourism gold, visits and likes wait for it.'] },
   { v: '96', date: '2026-11-24', name: 'Your controls', items: ['Football on phones plays like FC Mobile: with the ball you get Shoot, Pass, Through ball, Skill move and Curve; when they have it the same places become Tackle, Switch and Press (hold to close their man down, a team-mate helps). Sprint stays, and Flow lights up when the Spirit bar is full.', 'New in football on every device: through balls (T on a keyboard), skill moves (X) and pressing (hold Z).', 'Customize controls (Settings): move any action to another key on the keyboard or another button on the controller, for battle and free roam, racing, football and space. Taking a key another action uses swaps the two. Reset per section or all at once.', 'Phones: Edit buttons (in the pause menu, or ✎ Buttons in football and space) lets you drag any button to a new place and make it bigger or smaller. Settings also has see-through buttons and a left-handed layout. Each kind of game keeps its own layout.', 'Football and space now work with a controller.'] },
   { v: '95', date: '2026-11-22', name: 'Pictures and the office', items: ['Skirmish, God Mode, Arcade and Online show a picture of each battlefield (rendered from the game itself) instead of a small colour square.', 'The President\'s office in the cutscenes is a real room now: wood panelling, a red rug, bookshelves and a green desk lamp with warm light.'] },
   { v: '94', date: '2026-11-22', name: 'Light and sky', items: ['Real shadows on Auto graphics too. Laptops start with them on; a phone switches them on by itself after it has run a battle smoothly. If shadows make battles slow, Auto turns them off again.', 'The sea has small moving waves that catch the sun, takes the sky colour at a low angle and fades into the haze. Beaches are a warmer sand.', 'Distant mountains have rough, rocky sides instead of perfect cones, and the tallest have snow on top (not on islands or in the desert).', 'Football: real kits with shorts, socks and short sleeves (no more belts), and a calmer crowd.', 'Racing: the grandstand crowd wears clothes and team colours instead of random rainbow squares.', 'Main menu: the three on the parade ground cast soft shadows, so they stand on it.'] },
@@ -29305,4 +29358,394 @@ if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
 if (typeof GP_GUIDE !== 'undefined') GP_GUIDE.splice(GP_GUIDE.length - 1, 0,
   ['Football', [['Left stick', 'Run'], ['A', 'Pass (defending: switch)'], ['X', 'Shoot, hold to charge (defending: tackle)'], ['B', 'Curve shot'], ['Y', 'Through ball'], ['RB', 'Skill move'], ['LB', 'Switch player'], ['RT', 'Sprint'], ['LT', 'Press (hold)'], ['R3', 'Flow Zone'], ['Menu', 'Leave']]],
   ['Space', [['Left stick', 'Steer'], ['RT', 'Fire'], ['LT', 'Brake'], ['RB', 'Boost'], ['A', 'Dock / use'], ['Menu', 'Leave']]]);
+
+/* ================= FULL SCREEN (v97) =================
+   A full-screen button on the main menu, in the pause menu and in Settings. On phones it can also go full screen
+   by itself whenever a game is being played (the browser only allows it after a tap, so it happens on the first tap
+   of the game). iPhones do not let web pages go full screen; there the game tells you to add it to the Home Screen,
+   which opens it without the browser bars. */
+const FS = {
+  can: () => !!(document.fullscreenEnabled || document.webkitFullscreenEnabled),
+  on: () => !!(document.fullscreenElement || document.webkitFullscreenElement),
+  ios: () => /iPhone|iPod/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1 && !FS.can()),
+  standalone: () => !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches))
+};
+function fsEnter() {
+  const el = document.documentElement;
+  try {
+    const p = el.requestFullscreen ? el.requestFullscreen({ navigationUI: 'hide' }) : el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null;
+    if (p && p.catch) p.catch(() => { });
+  } catch (e) { }
+}
+function fsExit() { try { const p = document.exitFullscreen ? document.exitFullscreen() : document.webkitExitFullscreen ? document.webkitExitFullscreen() : null; if (p && p.catch) p.catch(() => { }); } catch (e) { } }
+function fsToggle() { if (!FS.can()) { fsHelp(); return; } FS.on() ? fsExit() : fsEnter(); }
+function fsHelp() { toast('Full screen', FS.ios() ? 'iPhone browsers cannot go full screen. Tap Share, then Add to Home Screen, and open SMFA 3D from its icon: it opens without the browser bars.' : 'This browser cannot go full screen. On a computer, F11 does it.'); }
+// is a game being played right now (not a menu)?
+function fsPlaying() {
+  try {
+    if (typeof FB !== 'undefined' && FB.on) return true;
+    if (typeof SPC !== 'undefined' && SPC.on) return true;
+    if (typeof G !== 'undefined' && G && !G.over && $('#hud') && !$('#hud').hidden) return true;
+  } catch (e) { }
+  return false;
+}
+// every full-screen button shows the right picture and words
+function fsSync() {
+  const on = FS.on(), lab = on ? 'Leave full screen' : 'Full screen';
+  document.querySelectorAll('.fsBtn').forEach(b => { b.classList.toggle('on', on); b.setAttribute('aria-label', lab); b.title = lab; const t = b.querySelector('.fsT'); if (t) t.textContent = lab; });
+  const st = $('#st-fsNow'); if (st) st.textContent = on ? 'Leave full screen' : 'Go full screen now';
+  document.body.classList.toggle('isFS', on || FS.standalone());
+}
+document.addEventListener('fullscreenchange', fsSync); document.addEventListener('webkitfullscreenchange', fsSync);
+// the buttons
+{
+  const top = $('.lbTopR'), gear = $('#goSettings');
+  if (top && gear && !$('#goFull')) { const b = document.createElement('button'); b.className = 'lbIcon ic-full fsBtn'; b.id = 'goFull'; b.onclick = fsToggle; top.insertBefore(b, gear); }
+  const st = $('#pauseSettings');
+  if (st && !$('#pauseFull')) { const b = document.createElement('button'); b.className = 'btn fsBtn'; b.id = 'pauseFull'; b.innerHTML = '<span class="fsT">Full screen</span>'; b.onclick = fsToggle; st.before(b); }
+  // Settings: a Screen section under the controls layout
+  const ctl = $('#scr-settings .devchip');
+  if (ctl && !$('#st-fs')) {
+    const note = ctl.parentNode.querySelector('.devchip ~ p.note') || ctl;
+    note.insertAdjacentHTML('afterend', `<h3>Screen</h3><div class="row"><button class="btn small" id="st-fsNow">Go full screen now</button></div>
+      <p class="note" id="st-fsN"></p><div class="opts" id="st-fs"></div>`);
+    $('#st-fsNow').onclick = fsToggle;
+  }
+  fsSync();
+}
+{
+  const _rs = renderSettings; renderSettings = function () {
+    _rs.apply(this, arguments);
+    if (!$('#st-fs')) return;
+    const can = FS.can();
+    optGroup('#st-fs', [{ k: 'auto', name: 'Phones: full screen in games', desc: 'Goes full screen with the first tap of every game' }, { k: 'off', name: 'Only when I ask', desc: 'Use the full-screen button' }], settings.fsAuto === false ? 'off' : 'auto', v => { settings.fsAuto = v === 'auto'; saveSettings(); });
+    $('#st-fs').hidden = !can; $('#st-fsNow').parentNode.hidden = !can;
+    $('#st-fsN').textContent = can ? 'Full screen hides the browser bars and gives the game the whole screen. Press Esc (or swipe from the edge on a phone) to leave it.' : FS.standalone() ? 'SMFA 3D is open from the Home Screen, so it already has the whole screen.' : FS.ios() ? 'iPhone browsers cannot go full screen. Tap Share, then Add to Home Screen, and open SMFA 3D from its icon: it opens without the browser bars.' : 'This browser cannot go full screen.';
+    fsSync();
+  };
+}
+// phones: go full screen on the first tap of a game (and again if a swipe took you out of it)
+{
+  const auto = () => { if (settings.fsAuto === false || !MOBILE() || !FS.can() || FS.on() || !fsPlaying()) return; if (typeof TE !== 'undefined' && TE.on) return; fsEnter(); };
+  addEventListener('pointerup', auto, true); addEventListener('touchend', auto, true);
+}
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'Full screen': 'Layar penuh', 'Leave full screen': 'Keluar layar penuh', 'Go full screen now': 'Layar penuh sekarang', 'Screen': 'Layar',
+  'Phones: full screen in games': 'HP: layar penuh saat main', 'Goes full screen with the first tap of every game': 'Layar penuh pada ketukan pertama setiap permainan',
+  'Only when I ask': 'Hanya kalau saya minta', 'Use the full-screen button': 'Pakai tombol layar penuh',
+  'Full screen hides the browser bars and gives the game the whole screen. Press Esc (or swipe from the edge on a phone) to leave it.': 'Layar penuh menyembunyikan bilah browser sehingga game memakai seluruh layar. Tekan Esc (atau geser dari tepi di HP) untuk keluar.',
+  'iPhone browsers cannot go full screen. Tap Share, then Add to Home Screen, and open SMFA 3D from its icon: it opens without the browser bars.': 'Browser iPhone tidak bisa layar penuh. Ketuk Bagikan, lalu Tambah ke Layar Utama, dan buka SMFA 3D dari ikonnya: game terbuka tanpa bilah browser.',
+  'SMFA 3D is open from the Home Screen, so it already has the whole screen.': 'SMFA 3D dibuka dari Layar Utama, jadi sudah memakai seluruh layar.',
+  'This browser cannot go full screen.': 'Browser ini tidak bisa layar penuh.', 'This browser cannot go full screen. On a computer, F11 does it.': 'Browser ini tidak bisa layar penuh. Di komputer, tekan F11.'
+});
+
+/* ================= A LIVING WORLD (v97): city ratings and tourism, the front page, festivals =================
+   From the PRD (Proposals C): C1 city rating and tourism, C6 the World's front page, C3 festivals.
+   - City rating: 0 to 100 (1 to 5 stars) from what is built; parks, plazas, monuments, the stadium and a hospital
+     make a city nicer, factories and oil wells uglier, and many kinds of building score extra. Visitors' likes add up
+     to 10 a season. The rating pays tourism gold every hour, double during a festival. The same formula is on the
+     server (Version 13: world_city_base); the server is what pays.
+   - Visiting a friend's city pays its owner a little gold (once every 12 hours per visiting country), and you can
+     leave a like.
+   - The News tab opens with a front page: the day's big story, then war and politics, sports, cities, and trade
+     and friendship, from the World's own news and the server's lists.
+   - Festivals by the calendar (Jakarta time, the same dates as the server): three small tasks each, and a festival
+     emblem and vehicle paint for the Barracks when all three are done. The main menu gets falling leaves,
+     fireworks or confetti while one is on. */
+const LW = { old: false };
+const CITY_W = { park: 4, plaza: 5, monument: 12, stadium: 15, hospital: 6, house: 1, apartment: 1.5, tower: 3, market: 3, farm: 0.5, factory: -4, well: -5, barracks: -1 };
+function cityBase(layout) {
+  const L = Array.isArray(layout) ? layout : []; let raw = 0, roads = 0; const kinds = new Set();
+  for (const it of L) { if (it.k === 'road') { roads++; continue; } raw += CITY_W[it.k] || 0; kinds.add(it.k); }
+  raw += Math.min(8, 0.25 * roads) + 2 * kinds.size; raw = Math.max(0, raw);
+  return Math.round(100 * raw / (raw + 60));
+}
+const cityRating = (layout, likes) => Math.min(100, cityBase(layout) + Math.min(10, likes || 0));
+const cityStars = r => r <= 0 ? 0 : Math.min(5, Math.ceil(r / 20));
+const cityStarsHtml = r => { const n = cityStars(r); return `<span class="cityStars" role="img" aria-label="${n} of 5 stars">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`; };
+const cityTour = (r, fest) => r * 0.6 * (fest ? 2 : 1);
+
+/* ---------- festivals ---------- */
+const FESTS = [
+  { id: 'newyear', name: 'New Year', from: '1230', to: '0103', fx: 'fireworks', col: '#ffd76a', blurb: 'Fireworks over every capital to see the year out.',
+    tasks: [['win', 3, 'Win 3 battles'], ['game', 3, 'Play 3 Sports & Games matches'], ['cityvisit', 1, "Visit a friend's city in the World"]],
+    reward: { emblem: { id: 'f_spark', name: 'Firework', sym: '✦' }, paint: { id: 'f_midnight', name: 'New Year Midnight', col: 0x2a2350 } } },
+  { id: 'smile', name: 'Smile Day', from: '0401', to: '0407', fx: 'confetti', col: '#39d353', blurb: 'The week of the >:) . Pranks welcome.',
+    tasks: [['arcade', 3, 'Play 3 rounds of Arcade'], ['gamewin', 2, 'Win 2 Sports & Games matches'], ['roam', 5, 'Spend 5 minutes in free roam']],
+    reward: { emblem: { id: 'f_grin', name: 'Grin', sym: '☺' }, paint: { id: 'f_prank', name: 'Prank Purple', col: 0x7a3ab8 } } },
+  { id: 'merdeka', name: 'Independence Day', from: '0814', to: '0820', fx: 'fireworks', col: '#ff4a4a', blurb: 'Seventeenth of August: flags out, games in the street.',
+    tasks: [['win', 3, 'Win 3 battles'], ['kill', 40, 'Take down 40 enemies yourself'], ['gamewin', 2, 'Win 2 Sports & Games matches']],
+    reward: { emblem: { id: 'f_free', name: 'Freedom Star', sym: '✪' }, paint: { id: 'f_proud', name: 'Proud Red', col: 0xc8102e } } },
+  { id: 'harvest', name: 'Harvest Festival', from: '1122', to: '1206', fx: 'leaves', col: '#f2b33d', blurb: 'The fields are in. Markets, lanterns and full stadiums.',
+    tasks: [['build', 3, 'Build 3 things in your World city or on a planet'], ['cityvisit', 2, "Visit 2 friends' cities in the World"], ['gamewin', 2, 'Win 2 Sports & Games matches']],
+    reward: { emblem: { id: 'f_bloom', name: 'Harvest Bloom', sym: '❀' }, paint: { id: 'f_rust', name: 'Autumn Rust', col: 0xa8531e } } }
+];
+const FEST_KEY = 'smfa3d.fest';
+// today in Jakarta, as the server counts it
+function festToday() {
+  let s; try { s = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jakarta', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) { const d = new Date(Date.now() + 7 * 3600e3); s = d.toISOString().slice(0, 10); }
+  const [y, m, d] = s.split('-'); return { y: +y, md: m + d };
+}
+function festOn() {
+  if (LW.force !== undefined) return LW.force ? FESTS.find(f => f.id === LW.force) || null : null;
+  const t = festToday();
+  return FESTS.find(f => f.from <= f.to ? t.md >= f.from && t.md <= f.to : t.md >= f.from || t.md <= f.to) || null;
+}
+// one key per festival per year (New Year counts for the year it opens)
+function festKey(f) { const t = festToday(); return f.id + ':' + (f.from > f.to && t.md <= f.to ? t.y - 1 : t.y); }
+// when it ends (end of its last day, Jakarta time)
+function festEnds(f) { const t = festToday(); let y = t.y; if (f.from > f.to && t.md >= f.from) y++; const ms = Date.UTC(y, +f.to.slice(0, 2) - 1, +f.to.slice(2), 24 - 7); return ms; }
+function festLeft(f) { const s = Math.max(0, (festEnds(f) - Date.now()) / 1000); return s >= 86400 ? `${Math.ceil(s / 86400)} days left` : s >= 3600 ? `${Math.floor(s / 3600)} h left` : `${Math.max(1, Math.round(s / 60))} min left`; }
+function festLoad() { let v = null; try { v = store.get(FEST_KEY, null); } catch (e) { } return v && typeof v === 'object' ? v : {}; }
+function festState(f) { const all = festLoad(), k = festKey(f); const s = all[k] || { n: {}, done: false }; s.n = s.n || {}; return s; }
+function festSave(f, s) { const all = festLoad(); all[festKey(f)] = s; for (const k of Object.keys(all)) if (!FESTS.some(x => k.startsWith(x.id + ':'))) delete all[k]; try { store.set(FEST_KEY, all); } catch (e) { } }
+function festAdd(kind, amount) {
+  const f = festOn(); if (!f || !(amount > 0)) return; const s = festState(f); if (s.done) return;
+  let moved = false;
+  f.tasks.forEach(([k, n], i) => { if (k !== kind) return; const was = s.n[i] || 0; if (was >= n) return; s.n[i] = Math.min(n, was + amount); moved = true; });
+  if (!moved) return;
+  if (f.tasks.every(([k, n], i) => (s.n[i] || 0) >= n)) { s.done = true; festSave(f, s); festGrant(f); } else festSave(f, s);
+  try { if (!$('#scr-title').hidden) misRender(); } catch (e) { }
+}
+function festGrant(f) {
+  const P = prof(); P.owned[f.reward.emblem.id + '@emblem'] = true; P.owned[f.reward.paint.id + '@paint'] = true; profSave(P);
+  try { grantRewards(200, 500, f.name); } catch (e) { }
+  toast(`${f.name}: all done!`, `The ${f.reward.emblem.name} emblem and ${f.reward.paint.name} paint are yours in the Barracks, plus 500 SD.`);
+}
+// the festival items in the Barracks
+for (const f of FESTS) {
+  COS.emblem.push(Object.assign({ fest: f.id, _slot: 'emblem' }, f.reward.emblem));
+  COS.paint.push(Object.assign({ fest: f.id, _slot: 'paint' }, f.reward.paint));
+}
+{
+  const _cl = cosLock; cosLock = function (it) {
+    if (it && it.fest) {
+      if (prof().owned[it.id + '@' + it._slot] || (typeof isAdmin === 'function' && isAdmin())) return null;
+      const f = FESTS.find(x => x.id === it.fest); return { text: `Festival: ${f ? f.name : it.fest}` };
+    }
+    return _cl.apply(this, arguments);
+  };
+}
+{ const _ma = misAdd; misAdd = function (kind, amount) { try { festAdd(kind, amount); } catch (e) { } return _ma.apply(this, arguments); }; }
+// the festival on the main menu, inside the missions box
+function festRows() {
+  const f = festOn(); if (!f) return ''; const s = festState(f);
+  const rows = f.tasks.map(([k, n, t], i) => {
+    const v = Math.min(n, s.n[i] || 0), shown = k === 'roam' ? Math.floor(v) : Math.round(v), pct = Math.round(v / n * 100), done = v >= n;
+    return `<li class="misRow fest${done ? ' done' : ''}"><span class="misTick" aria-hidden="true">${done ? '✓' : ''}</span><span class="misT">${esc(t)}</span><span class="misBar" role="img" aria-label="${shown} of ${n}"><i style="width:${pct}%"></i></span><span class="misN">${shown}/${n}</span><span class="misR">${i === 2 ? '' : ''}</span></li>`;
+  }).join('');
+  return `<li class="festHead" style="--fc:${f.col}"><b>${esc(f.name)}</b><span>${s.done ? 'Done: festival items unlocked' : `${esc(f.reward.emblem.name)} emblem + ${esc(f.reward.paint.name)} paint`}</span><small>${festLeft(f)}</small></li>${rows}`;
+}
+{
+  const _mr = misRows; misRows = function () { return _mr.apply(this, arguments) + festRows(); };
+  const _r = misRender; misRender = function () {
+    _r.apply(this, arguments);
+    const f = festOn(), el = $('#lbMis'); if (el) el.classList.toggle('hasFest', !!f);
+    // on the menu the festival is one line (its tasks are in the list it opens), so the menu keeps its height
+    if (el && f) { el.querySelectorAll('.misRow.fest').forEach(r => r.remove()); const fh = el.querySelector('.festHead'), S = festState(f), n = f.tasks.filter(([k, m], i) => (S.n[i] || 0) >= m).length;
+      if (fh) { fh.classList.add('tap'); fh.insertAdjacentHTML('beforeend', `<em class="festN">${n}/3 ›</em>`); fh.onclick = () => misSheet(true); fh.setAttribute('role', 'button'); fh.tabIndex = 0; } }
+    const h = el && el.querySelector('#misHead'); if (h && f && !h.querySelector('.festPill')) h.querySelector('b').insertAdjacentHTML('afterend', `<span class="festPill" style="--fc:${f.col}">${esc(f.name)}</span>`);
+    festFx();
+  };
+}
+
+/* ---------- the menu's festival sky: leaves, fireworks or confetti ---------- */
+const FX = { cv: null, raf: 0, p: [], kind: '', t: 0, last: 0 };
+function festFx() {
+  const f = festOn(), host = $('#lbHero');
+  const want = f && host && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? f.fx : '';
+  if (!want) { if (FX.cv) FX.cv.hidden = true; cancelAnimationFrame(FX.raf); FX.raf = 0; return; }
+  if (!FX.cv) { FX.cv = document.createElement('canvas'); FX.cv.className = 'festSky'; FX.cv.setAttribute('aria-hidden', 'true'); host.appendChild(FX.cv); }
+  FX.cv.hidden = false; if (FX.kind !== want) { FX.kind = want; FX.p.length = 0; }
+  if (!FX.raf) { FX.last = performance.now(); FX.raf = requestAnimationFrame(festFrame); }
+}
+function festFrame(now) {
+  FX.raf = 0; const cv = FX.cv; if (!cv || cv.hidden || $('#scr-title').hidden || document.hidden) { if (cv && !cv.hidden) FX.raf = requestAnimationFrame(festFrame); return; }
+  const dt = Math.min(0.05, (now - FX.last) / 1000); FX.last = now; FX.t += dt;
+  const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) { FX.raf = requestAnimationFrame(festFrame); return; }
+  if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  const g = cv.getContext('2d'); g.clearRect(0, 0, w, h); const P = FX.p, rnd = Math.random;
+  if (FX.kind === 'leaves') {
+    while (P.length < 26) P.push({ x: rnd() * w, y: -20 - rnd() * h, v: 18 + rnd() * 26, s: 4 + rnd() * 5, a: rnd() * 6, sp: 0.6 + rnd() * 1.4, c: ['#c9772b', '#e0a43a', '#a8531e', '#d9b24a'][P.length % 4] });
+    for (const q of P) { q.y += q.v * dt; q.a += q.sp * dt; q.x += Math.sin(q.a) * 14 * dt; if (q.y > h + 12) { q.y = -12; q.x = rnd() * w; }
+      g.save(); g.translate(q.x, q.y); g.rotate(q.a); g.fillStyle = q.c; g.globalAlpha = 0.8; g.beginPath(); g.ellipse(0, 0, q.s, q.s * 0.45, 0, 0, Math.PI * 2); g.fill(); g.restore(); }
+  } else if (FX.kind === 'confetti') {
+    while (P.length < 40) P.push({ x: rnd() * w, y: -10 - rnd() * h, v: 30 + rnd() * 40, s: 3 + rnd() * 3, a: rnd() * 6, c: ['#39d353', '#f2b33d', '#5aa6ff', '#ef4b4f', '#ffffff'][P.length % 5] });
+    for (const q of P) { q.y += q.v * dt; q.a += 4 * dt; q.x += Math.sin(q.a * 0.7) * 20 * dt; if (q.y > h + 8) { q.y = -8; q.x = rnd() * w; }
+      g.save(); g.translate(q.x, q.y); g.rotate(q.a); g.fillStyle = q.c; g.globalAlpha = 0.85; g.fillRect(-q.s, -q.s * 0.4, q.s * 2, q.s * 0.8); g.restore(); }
+  } else {
+    // fireworks: a shell climbs, bursts into sparks that fall and fade
+    if (rnd() < dt * 0.9 && P.filter(q => q.shell).length < 2) P.push({ shell: true, x: w * (0.15 + rnd() * 0.7), y: h, vy: -(h * 0.55 + rnd() * h * 0.25), top: h * (0.12 + rnd() * 0.3), c: ['#ffd76a', '#ff4a4a', '#ffffff', '#39d353', '#5aa6ff'][Math.floor(rnd() * 5)] });
+    for (let i = P.length - 1; i >= 0; i--) {
+      const q = P[i];
+      if (q.shell) { q.y += q.vy * dt; g.fillStyle = q.c; g.globalAlpha = 0.9; g.fillRect(q.x - 1, q.y - 4, 2, 6);
+        if (q.y <= q.top) { P.splice(i, 1); for (let k = 0; k < 34; k++) { const a = k / 34 * Math.PI * 2, sp = 40 + rnd() * 70; P.push({ x: q.x, y: q.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1.4 + rnd() * 0.6, c: q.c }); } }
+        continue; }
+      q.life -= dt; if (q.life <= 0) { P.splice(i, 1); continue; }
+      q.vy += 40 * dt; q.x += q.vx * dt; q.y += q.vy * dt; g.globalAlpha = Math.min(1, q.life); g.fillStyle = q.c; g.fillRect(q.x - 1.2, q.y - 1.2, 2.4, 2.4);
+    }
+  }
+  g.globalAlpha = 1; FX.raf = requestAnimationFrame(festFrame);
+}
+{ const _s = show; show = function (sel) { const r = _s.apply(this, arguments); if (sel === '#scr-title') { try { misRender(); } catch (e) { } } return r; }; }
+
+/* ---------- the World: Version 13 ---------- */
+{
+  const _wc = wlCall;
+  wlCall = async function (fn, args, quiet) {
+    if (fn === 'world_state' && !LW.old) {
+      const e0 = WL.err, r = await _wc('world_state_v13', args, true);
+      if (r && r.players) return r;
+      LW.old = true; WL.err = e0;
+    }
+    return _wc.apply(this, arguments);
+  };
+}
+const lwFest = st => { const f = festOn(); return (st && st.fest && FESTS.find(x => x.id === st.fest)) || f; };
+// city buildings say what they do for the rating
+{
+  const _p = bdPal; bdPal = function () {
+    _p.apply(this, arguments); if (BLD.mode !== 'city' || BLD.ro) return;
+    $$('#bdPal .bdCard').forEach(c => { const w = CITY_W[c.dataset.k]; if (!w || (w > 0 && w < 4) || c.querySelector('.bdNice')) return; c.querySelector('b').insertAdjacentHTML('afterend', `<em class="bdNice${w < 0 ? ' bad' : ''}">${w < 0 ? 'less pretty' : 'nicer city'}</em>`); if (typeof i18nWalk === 'function') i18nWalk(c.querySelector('.bdNice')); });
+  };
+}
+// the Build tab: the city's rating, tourism and visitors, and the best cities
+{
+  const B = WL_TABS.build, _h = B.html, _w = B.wire;
+  B.html = function (st, me) {
+    let h = _h.apply(this, arguments);
+    try {
+      const mc = st.my_city, likes = mc ? mc.likes : 0, r = mc ? mc.rating : cityRating(st.city, 0), f = lwFest(st), tour = mc ? mc.tour : cityTour(r, !!f);
+      const tips = cityTips(st.city || []);
+      const box = `<div class="wbBox wbRate"><div class="wbHd"><div><b>City rating ${cityStarsHtml(r)} <em>${r}</em></b><small>${LW.old ? 'Tourism and visits start once the President of the game runs the world SQL (Version 13). ' : ''}Visitors come for parks, plazas, monuments, the stadium and a hospital; factories and oil wells put them off. Many kinds of building score extra.${f ? ` <b class="festTxt" style="--fc:${f.col}">${esc(f.name)}: tourism pays double.</b>` : ''}</small></div></div>
+        <div class="wbYield"><span>+${wlNum(tour)} gold/h from tourists</span>${mc ? `<span>${mc.visits} visit${mc.visits === 1 ? '' : 's'} today · +${wlNum(mc.earned)} gold</span><span>${likes} like${likes === 1 ? '' : 's'} this season</span>` : ''}</div>
+        ${tips ? `<small class="wbTip">${tips}</small>` : ''}</div>`;
+      const board = (st.city_board || []).length ? `<div class="wbBox"><div class="wbHd"><div><b>Best cities</b><small>Visit a friend's city: they earn gold from your visit, and you can leave a like.</small></div></div>
+        ${st.city_board.map((c, i) => `<div class="wbCityRow${c.name === me.name ? ' me' : ''}"><b class="recRank${i === 0 ? ' g' : i === 1 ? ' s' : i === 2 ? ' b' : ''}">${i + 1}</b>${wlFlagFor(c.name)}<span><b>${esc(c.name)}</b><small>${cityStarsHtml(c.rating)} ${c.rating} · ${c.n} buildings${c.likes ? ` · ${c.likes} ♥` : ''}</small></span>${c.name === me.name ? '<em>you</em>' : `<button class="btn small" data-wbvisit="${esc(c.name)}">Visit</button>`}</div>`).join('')}</div>` : '';
+      const i2 = h.indexOf('<div class="wbBox">', h.indexOf('<div class="wbBox">') + 5); h = (i2 > 0 ? h.slice(0, i2) + box + h.slice(i2) : h).replace(/<\/div>\s*$/, board + '</div>');
+    } catch (e) { console.warn('city rating', e); }
+    return h;
+  };
+  B.wire = function (el) { _w.apply(this, arguments); el.querySelectorAll('[data-wbvisit]').forEach(b => b.onclick = () => plSeeCity(b.dataset.wbvisit)); };
+}
+// the one thing that would help a city most
+function cityTips(L) {
+  const n = k => L.filter(it => it.k === k).length;
+  if (!L.length) return '';
+  if (!n('park')) return 'Tip: a park costs 80 gold and makes the city nicer.';
+  if (!n('plaza')) return 'Tip: a plaza adds to the rating and to the kinds of building.';
+  if (!n('monument')) return 'Tip: a monument is the biggest step up after the stadium.';
+  if (!n('stadium')) return 'Tip: the stadium sells tickets and draws the most visitors.';
+  if (n('factory') + n('well') > 3) return 'Tip: factories and oil wells lower the rating. Parks around them help.';
+  return '';
+}
+// looking at another country's city is a visit (Version 13), with a like button on the city screen
+async function plSeeCity(name) {
+  let r = null;
+  if (!LW.old) { r = await wlCall('world_city_visit', { p_name: name, p_like: false }, true); if (!r || !Array.isArray(r.city)) r = null; }
+  if (!r) r = await wlCall('world_city_get', { p_name: name }, true);
+  WL.err = '';
+  if (!r || r.ok === false) { toast('City', (r && r.err) || 'Could not load that city.'); return; }
+  LW.visit = { name: r.name || name, rating: r.rating, likes: r.likes || 0, liked: !!r.liked, paid: r.paid || 0, v13: r.rating !== undefined };
+  plOpenBuild({ mode: 'city', owner: r.name || name, layout: Array.isArray(r.city) ? r.city : [], back: 'world', ro: true });
+  const me = wlMe();
+  if (me && LW.visit.name !== me.name) { try { misAdd('cityvisit', 1); } catch (e) { } if (LW.visit.paid) bdSay(`Your visit brought ${LW.visit.name} ${LW.visit.paid} gold from tourism.`, 5); }
+}
+async function lwLike() {
+  const V = LW.visit; if (!V || V.liked) return;
+  const r = await wlCall('world_city_visit', { p_name: V.name, p_like: true }, true); WL.err = '';
+  if (r && r.ok !== false) { V.liked = !!r.liked; V.likes = r.likes || V.likes; V.rating = r.rating !== undefined ? r.rating : V.rating; bdTreas(); if (r.liked_now) bdSay(`You liked the city of ${V.name}.`, 3); try { SFX.ok(); } catch (e) { } }
+  else toast('City', (r && r.err) || 'Could not send the like.');
+}
+{
+  const _t = bdTreas; bdTreas = function () {
+    _t.apply(this, arguments);
+    const S = BLD, el = $('#bdTreas'); if (!el || S.mode !== 'city') return;
+    const me = wlMe(), mine = !S.ro || (me && S.owner === me.name), V = !mine && LW.visit && LW.visit.name === S.owner ? LW.visit : null;
+    const likes = mine ? (WL.st && WL.st.my_city ? WL.st.my_city.likes : 0) : V ? V.likes : 0;
+    const r = !mine && V && V.rating !== undefined ? V.rating : cityRating(S.layout, likes);
+    el.insertAdjacentHTML('afterbegin', `<div class="bdRate"><small>City rating</small><b>${cityStarsHtml(r)}<i>${r}</i></b></div>`);
+    if (V && V.v13 && !LW.old) { el.insertAdjacentHTML('beforeend', `<button class="btn small bdLike${V.liked ? ' on' : ''}" id="bdLike"${V.liked ? ' disabled' : ''}>${V.liked ? '♥ Liked' : '♡ Like'}</button>`); $('#bdLike').onclick = lwLike; }
+    if (typeof i18nWalk === 'function') i18nWalk(el);
+  };
+}
+// a festival banner over the World's side panel
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), st = WL.st, f = lwFest(st); if (!el || !st || !f || el.querySelector('.lwFest')) return r;
+      el.insertAdjacentHTML('afterbegin', `<div class="lwFest" style="--fc:${f.col}"><b>${esc(f.name)}</b><span>${esc(f.blurb)} City tourism pays double. ${festLeft(f)}.</span></div>`);
+      if (typeof i18nWalk === 'function') i18nWalk(el.querySelector('.lwFest'));
+    } catch (e) { console.warn('festival', e); }
+    return r;
+  };
+}
+
+/* ---------- the front page (News tab) ---------- */
+const FP_WAR = ['war', 'betrayal', 'conquered', 'colony_taken', 'repelled', 'colonized', 'uprising_lost', 'free', 'bloc_betray', 'assassinated', 'sabotaged', 'spy_caught', 'strike', 'station_down', 'space_raid', 'planet_taken', 'event', 'bloc_leave_bad'];
+const FP_PEACE = ['peace', 'alliance', 'trade', 'gift', 'aid', 'bloc_new', 'bloc_join', 'bloc_leave_good', 'minister', 'visit', 'space_aid', 'station_up', 'planet', 'join'];
+const FP_W = { colonized: 9, assassinated: 8, bloc_betray: 8, betrayal: 7, free: 7, conquered: 6, war: 6, event: 5, game_star: 5, peace: 5, strike: 5, station_down: 5, planet_taken: 5, sabotaged: 4, alliance: 4, bloc_new: 4, planet: 4, uprising_lost: 4, repelled: 3, trade: 3, aid: 3, space_raid: 3, colony_taken: 3, gift: 2, join: 2 };
+const fpPlain = html => String(html).replace(/<[^>]+>/g, '');
+function fpPaper(st) {
+  const day = 86400e3, now = Date.now(), log = (st.log || []).filter(l => now - new Date(l.at).getTime() < day);
+  const used = new Set(), take = (kinds, n) => log.filter(l => kinds.includes(l.kind) && !used.has(l)).slice(0, n).map(l => (used.add(l), l));
+  const lead = log.slice().sort((a, b) => (FP_W[b.kind] || 1) - (FP_W[a.kind] || 1) || new Date(b.at) - new Date(a.at))[0];
+  if (lead) used.add(lead);
+  const f = lwFest(st), cb = st.city_board || [], sd = st.sports_day || [], cats = st.cats || {};
+  const story = l => `<li><span>${wlNews(l)}</span><small>${wlAgo(l.at)}</small></li>`;
+  const war = take(FP_WAR, 3), peace = take(FP_PEACE, 3), stars = log.filter(l => l.kind === 'game_star' && !used.has(l)).slice(0, 2);
+  let leadH, leadS;
+  if (lead) { leadH = wlNews(lead); leadS = (FP_WAR.includes(lead.kind) ? 'The front line' : lead.kind === 'game_star' ? 'Sport' : 'The World') + ' · ' + wlAgo(lead.at); }
+  else if (sd.length) { leadH = `<b>${esc(sd[0].name)}</b> rules the pitch: ${sd[0].wins} win${sd[0].wins === 1 ? '' : 's'} today`; leadS = 'Sport'; }
+  else if (cb.length) { leadH = `<b>${esc(cb[0].name)}</b> has the finest city in the World`; leadS = 'Cities'; }
+  else { leadH = 'A quiet day in the World'; leadS = 'No big news in the last 24 hours'; }
+  const sec = (t, items) => `<section class="fpSec"><h4>${t}</h4><ul>${items}</ul></section>`;
+  const sport = sd.map((s, i) => `<li><span><b>${esc(s.name)}</b> won ${s.wins} match${s.wins === 1 ? '' : 'es'} today${i === 0 && sd.length > 1 ? ', more than anyone' : ''}</span></li>`).join('') + stars.map(story).join('')
+    + (cats.champion ? `<li><span>Season Champion so far: <b>${esc(cats.champion.name)}</b>, ${cats.champion.n} win${cats.champion.n === 1 ? '' : 's'}</span></li>` : '');
+  const cities = cb.slice(0, 3).map((c, i) => `<li><span>${i === 0 ? 'Finest city: ' : ''}<b>${esc(c.name)}</b> ${cityStarsHtml(c.rating)} ${c.rating}${c.likes ? ` · ${c.likes} ♥` : ''}</span></li>`).join('')
+    + (cats.architect ? `<li><span>Biggest city: <b>${esc(cats.architect.name)}</b>, ${cats.architect.n} buildings</span></li>` : '');
+  const date = new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+  return `<article class="fpPaper" aria-label="The front page">
+    <header class="fpMast"><b>The World Herald</b><small>${esc(date)}${st.season ? ` · Season ${st.season.num}` : ''}</small></header>
+    ${f ? `<p class="fpFest" style="--fc:${f.col}"><b>${esc(f.name)}</b> ${esc(f.blurb)} ${festLeft(f)}.</p>` : ''}
+    <div class="fpLead"><em>${esc(leadS)}</em><h3>${leadH}</h3></div>
+    <div class="fpCols">
+      ${sec('War and politics', war.map(story).join('') || '<li class="fpNone"><span>The guns are quiet.</span></li>')}
+      ${sec('Sport', sport || '<li class="fpNone"><span>No matches today. Sports & Games is in Modes.</span></li>')}
+      ${sec('Cities', cities || '<li class="fpNone"><span>No city has a rating yet. Build one in the Build tab.</span></li>')}
+      ${sec('Trade and friendship', peace.map(story).join('') || '<li class="fpNone"><span>No deals today.</span></li>')}
+    </div></article><h3 class="fpAll">All the news</h3>`;
+}
+{
+  const _r = wlRender; wlRender = function () {
+    const r = _r.apply(this, arguments);
+    try {
+      const el = $('#wldSide'), st = WL.st; if (!el || !st || WL.tab !== 'news' || el.querySelector('.fpPaper')) return r;
+      const first = el.querySelector('.wlLog') || el.querySelector('p.note:last-of-type');
+      const h = fpPaper(st); if (first) first.insertAdjacentHTML('beforebegin', h); else el.insertAdjacentHTML('beforeend', h);
+      if (typeof i18nWalk === 'function') i18nWalk(el.querySelector('.fpPaper'));
+    } catch (e) { console.warn('front page', e); }
+    return r;
+  };
+}
+
+/* ---------- a daily mission for visits ---------- */
+MIS_POOL.day.push({ id: 'cityvisit1', g: 'cityvisit', t: "Visit a friend's city in the World", n: 1, k: 'cityvisit', sd: 150, xp: 70 });
+
+if (typeof I18N !== 'undefined' && I18N.id) Object.assign(I18N.id, {
+  'New Year': 'Tahun Baru', 'Smile Day': 'Hari Senyum', 'Independence Day': 'Hari Kemerdekaan', 'Harvest Festival': 'Festival Panen',
+  'Win 3 battles': 'Menangkan 3 pertempuran', 'Play 3 Sports & Games matches': 'Mainkan 3 pertandingan Olahraga & Permainan', "Visit a friend's city in the World": 'Kunjungi kota teman di Dunia',
+  'Play 3 rounds of Arcade': 'Mainkan 3 ronde Arcade', 'Win 2 Sports & Games matches': 'Menangkan 2 pertandingan Olahraga & Permainan', 'Spend 5 minutes in free roam': 'Habiskan 5 menit di mode bebas',
+  'Take down 40 enemies yourself': 'Kalahkan 40 musuh sendiri', 'Build 3 things in your World city or on a planet': 'Bangun 3 hal di kota Dunia atau di planet Anda', "Visit 2 friends' cities in the World": 'Kunjungi 2 kota teman di Dunia',
+  'Done: festival items unlocked': 'Selesai: item festival terbuka', 'City rating': 'Peringkat kota', 'Best cities': 'Kota terbaik', 'Visit': 'Kunjungi', '♡ Like': '♡ Suka', '♥ Liked': '♥ Disukai',
+  'The World Herald': 'The World Herald', 'War and politics': 'Perang dan politik', 'Sport': 'Olahraga', 'Cities': 'Kota', 'Trade and friendship': 'Dagang dan persahabatan', 'All the news': 'Semua berita',
+  'A quiet day in the World': 'Hari yang tenang di Dunia', 'No big news in the last 24 hours': 'Tidak ada berita besar dalam 24 jam terakhir', 'The guns are quiet.': 'Senjata sedang diam.',
+  'No matches today. Sports & Games is in Modes.': 'Belum ada pertandingan hari ini. Olahraga & Permainan ada di Mode.', 'No city has a rating yet. Build one in the Build tab.': 'Belum ada kota yang punya peringkat. Bangun di tab Bangun.',
+  'No deals today.': 'Belum ada kesepakatan hari ini.', 'nicer city': 'kota lebih indah', 'less pretty': 'kurang indah', 'from tourists': 'dari turis', 'The front line': 'Garis depan', 'The World': 'Dunia',
+  "Visit a friend's city: they earn gold from your visit, and you can leave a like.": 'Kunjungi kota teman: mereka mendapat emas dari kunjungan Anda, dan Anda bisa memberi suka.',
+  'Tip: a park costs 80 gold and makes the city nicer.': 'Tips: taman seharga 80 emas membuat kota lebih indah.', 'Tip: a plaza adds to the rating and to the kinds of building.': 'Tips: alun-alun menambah peringkat dan jenis bangunan.',
+  'Tip: a monument is the biggest step up after the stadium.': 'Tips: monumen adalah kenaikan terbesar setelah stadion.', 'Tip: the stadium sells tickets and draws the most visitors.': 'Tips: stadion menjual tiket dan paling banyak menarik pengunjung.',
+  'Tip: factories and oil wells lower the rating. Parks around them help.': 'Tips: pabrik dan sumur minyak menurunkan peringkat. Taman di sekitarnya membantu.'
+});
 </script>
