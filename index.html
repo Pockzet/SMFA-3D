@@ -3006,7 +3006,7 @@ const CTL_KEYS = {
   football: [['up', 'Run up the pitch', 'KeyW'], ['down', 'Run down the pitch', 'KeyS'], ['left', 'Run left', 'KeyA'], ['right', 'Run right', 'KeyD'], ['sprint', 'Sprint', 'ShiftLeft'],
     ['shoot', 'Shoot (hold to charge)', 'Space'], ['curve', 'Curve shot (hold)', 'KeyC'], ['pass', 'Pass / switch', 'KeyE'], ['through', 'Through ball', 'KeyT'], ['skill', 'Skill move', 'KeyX'],
     ['switch', 'Switch player', 'KeyQ'], ['tackle', 'Slide tackle', 'KeyR'], ['press', 'Press (hold)', 'KeyZ'], ['flow', 'Flow Zone', 'KeyF']],
-  space: [['up', 'Pitch up / forward', 'KeyW'], ['down', 'Pitch down / back', 'KeyS'], ['left', 'Turn left', 'KeyA'], ['right', 'Turn right', 'KeyD'], ['fire', 'Fire', 'Space'],
+  space: [['up', 'Throttle up', 'KeyW'], ['down', 'Throttle down', 'KeyS'], ['left', 'Bank left', 'KeyA'], ['right', 'Bank right', 'KeyD'], ['fire', 'Fire', 'Space'],
     ['boost', 'Boost', 'ShiftLeft'], ['brake', 'Brake', 'KeyX'], ['act', 'Dock / use', 'KeyF']]
 };
 // [action, label, default button] (standard gamepad numbers: 0 A, 1 B, 2 X, 3 Y, 4 LB, 5 RB, 6 LT, 7 RT, 10 L3, 11 R3, 12-15 d-pad)
@@ -13557,7 +13557,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '498749eb'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '3c78e902'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -22627,6 +22627,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '99.1', date: '2026-11-27', name: 'Jets in orbit', items: ['Fixed: on the International Smiley Station you could not float out of the docking port into the hallway. Every doorway between modules is open now, and you arrive facing into the station.', 'Space ships fly like jets: W and S set the throttle (it stays where you leave it), A and D bank the ship and it turns into the bank, the arrows pitch the nose. Let go and the wings level out with the planet below as your horizon. On a laptop you can also click the view and fly with the mouse (hold the button to fire, Esc to let go). On phones the stick banks and pitches.'] },
   { v: '99', date: '2026-11-26', name: 'Trouble in orbit', items: ['Meteors: about twice a week a meteor heads for a planet, with an hour\'s warning in the news and in Space. Shoot it down together: it adapts to each pilot, so your hits count for less and less until it ignores you. Small meteors break easily but adapt fast; big ones are tough but adapt slowly. If it lands, the planet turns to rubble for 1 to 12 Smiley days, belongs to nobody and loses everything on it.', 'Space events about every two hours, the same for every pilot: a meteor shower (rocks that hurt, and give ore when shot), a solar storm (no shields, and planet and station guns are silent), a pirate armada (double bounties) and a derelict ship (the first pilot to search it takes the loot).', 'The International Smiley Station: fly up to it in Space and board it as your own President, floating through ten modules: hub, laboratory, containment lab, greenhouse, cargo bay, crew quarters, hygiene bay, observatory, power module and docking port. Friends aboard at the same time see each other, and can talk with push-to-talk voice (switch Voice on, then hold V or Talk).', 'Station jobs: repairs, experiments and cargo runs. Six a day pay 150 gold and 3 season points each; every job pays SD; experiments can make one of 12 discoveries. 3, 6, 9 and 12 discoveries unlock a Spacesuit, the Nebula paint, the Star Map emblem and the Explorer medal.', 'Station emergencies, for everyone aboard: a hull breach (get a patch kit, seal the hole, pressurise the hub before the air runs out) or the giant specimen breaking out of its tank (survive 5 minutes, in first person: hide in a sleep pod, a toilet stall, a storage locker or under a floor panel, or fight with the extinguisher, welding torch and flares). Nobody can leave Space until it is over. Survive for 400 gold and a discovery; die and you lose the day\'s station earnings.', 'For the President of the game: an Events button in Space starts any space event or sends a meteor at any planet, and Hull breach and Creature buttons start an emergency on the station. Run the world SQL (Version 15) once in Supabase before uploading this version.'] },
   { v: '98', date: '2026-11-26', name: 'To the victor', items: ['Capturing a homeland now takes everything it has: its gold, oil, steel and food, its ships, warheads and generals, its planets and its city, plus half of its Economy, Army and Defences levels. Cities and planets it was holding go to the winner too. Countries that are occupied right now are handed over the same way.', 'A held city pays its holder every hour, but the holder cannot build in it or knock anything down. The same goes for held planets.', 'Winning your freedom back: you keep your own levels and start again with 500 gold and 100 soldiers, but your city and planets stay with whoever holds them. Win the city back in a battle from the Build tab (20 soldiers, every 10 minutes), and each planet in a fight in orbit, against the holder\'s Defences level.', 'At the end of a season held cities go home and planets are freed.', 'Defences now go up to level 20. From level 10 each step costs more: 27,300 gold for level 11, rising to 167,300 for level 20, plus steel and oil.', 'Battles against a country\'s Defences: 6 to 9 is Hard, 10 and up is Nightmare and gets harder with every level (sharper aim, faster reactions, more damage, more health, more reinforcements). An uprising against an occupier with level 10 is Nightmare too. Held planets get more and tougher guns in orbit.', 'Spying on a strong country is harder: guards see further, notice you faster and walk faster with every Defences level, two more guards patrol from level 10, and if they catch you, you are dead and the mission is lost. The hacking timer drops from 45 seconds to 10 at level 20, a coup fails at the first wrong approach from level 8, and every mission costs 10% more per level.', 'For the President of the game: run the world SQL (Version 14) once in Supabase before uploading this version.'] },
   { v: '97', date: '2026-11-25', name: 'Full screen and a living World', items: ['Full screen: a button on the main menu, in the pause menu and in Settings. On phones the game can go full screen by itself with the first tap of every game (Settings, Screen). iPhones do not allow it in the browser: add SMFA 3D to the Home Screen and open it from there instead.', 'City rating: every World city gets 1 to 5 stars. Parks, plazas, monuments, the stadium and a hospital make it nicer; factories and oil wells put visitors off. The rating brings tourists, and tourists pay gold every hour.', 'Visit a friend\'s city from the Build tab\'s Best cities list or from their country: your visit pays them a little gold, and you can leave a like. Likes raise a city\'s rating.', 'The News tab opens with a front page, The World Herald: the day\'s big story, then war and politics, sport, cities, and trade and friendship.', 'Festivals: New Year, Smile Day (1 to 7 April), Independence Day (14 to 20 August) and the Harvest Festival (22 November to 6 December). Each has three small tasks on the main menu, and finishing them gives a festival emblem and vehicle paint for the Barracks. During a festival, city tourism pays double.', 'New daily mission: visit a friend\'s city.', 'For the President of the game: run the world SQL (Version 13) once in Supabase. Until then the front page, ratings and festivals still show, but tourism gold, visits and likes wait for it.'] },
@@ -25542,12 +25543,24 @@ function spcStep(dt) {
   const S = SPC, sh = S.ship, T = SPS(); S.t += dt;
   if (S.dead) { if (S.t >= S.dead) { spcSpawn(); spcSay('A new ship is ready at your station.'); } }
   else if (!S.docked) {
-    const K = S.keys, tx = clamp((K.d || K.arrowright ? 1 : 0) - (K.a || K.arrowleft ? 1 : 0) + S.stick.x, -1, 1), ty = clamp((K.w || K.arrowup ? 1 : 0) - (K.s || K.arrowdown ? 1 : 0) - S.stick.y, -1, 1);
-    S.yaw += (tx - S.yaw) * Math.min(1, dt * 6); S.pitch += (ty - S.pitch) * Math.min(1, dt * 6);
-    sh.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(spV(0, 1, 0), -S.yaw * T.turn * dt)).multiply(new THREE.Quaternion().setFromAxisAngle(spV(1, 0, 0), -S.pitch * T.turn * 0.84 * dt)).normalize();
+    // v99.1: flown like a jet. W/S set the throttle, A/D bank the ship and it turns into the bank (the planet below is the
+    // horizon; let go and the wings level out), the arrows or the mouse pitch the nose. Touch: the stick banks and pitches.
+    const K = S.keys, M = S.mouse || (S.mouse = { x: 0, y: 0 });
+    const tx = clamp((K.d ? 1 : 0) - (K.a ? 1 : 0) + S.stick.x + M.x, -1, 1);
+    const ty = clamp((K.arrowup ? 1 : 0) - (K.arrowdown ? 1 : 0) - S.stick.y + M.y, -1, 1);
+    M.x *= Math.max(0, 1 - dt * 2.5); M.y *= Math.max(0, 1 - dt * 2.5);
+    if (S.thr === undefined) S.thr = 0.7;
+    if (K.w || K.s) S.thr = clamp(S.thr + ((K.w ? 1 : 0) - (K.s ? 1 : 0)) * dt * 0.8, 0, 1);
+    S.yaw += (tx - S.yaw) * Math.min(1, dt * 5); S.pitch += (ty - S.pitch) * Math.min(1, dt * 5);
+    { const q = sh.quaternion, up = sh.position.clone().normalize(), lw = spV(1, 0, 0).applyQuaternion(q), f0 = spV(0, 0, 1).applyQuaternion(q);
+      const level = 1 - Math.abs(f0.dot(up)), bank = Math.asin(clamp(lw.dot(up), -1, 1));
+      const want = (S.yaw + (K.arrowright ? 1 : 0) * 0.6 - (K.arrowleft ? 1 : 0) * 0.6) * 1.15;
+      q.multiply(new THREE.Quaternion().setFromAxisAngle(spV(0, 0, 1), clamp((want - bank) * 3.2, -2.6, 2.6) * dt * Math.max(0.35, level)));
+      q.premultiply(new THREE.Quaternion().setFromAxisAngle(up, -Math.sin(bank) * T.turn * 1.15 * dt * Math.max(0.3, level)));
+      q.multiply(new THREE.Quaternion().setFromAxisAngle(spV(1, 0, 0), -S.pitch * T.turn * 0.9 * dt)).normalize(); }
     const boosting = (K.shift || S.btn.boost) && S.boost > 1, braking = K.control || K.x || S.btn.brake;
     S.boost = clamp(S.boost + (boosting ? -24 : 13) * dt, 0, 100);
-    S.speed += ((boosting ? T.bst : braking ? 8 : T.spd) - S.speed) * Math.min(1, dt * 1.8);
+    S.speed += ((boosting ? T.bst : braking ? 8 : T.spd * (0.3 + 0.7 * S.thr)) - S.speed) * Math.min(1, dt * (boosting ? 1.8 : 1.1));
     const fwd = spV(0, 0, 1).applyQuaternion(sh.quaternion); sh.position.add(fwd.multiplyScalar(S.speed * dt));
     const d = sh.position.length();
     // close to the planet the nose is eased back up, so nobody burns up by accident
@@ -25806,7 +25819,7 @@ function spcHud() {
   spcRadar();
   const set = (id, v) => { const e = $(id); if (e && e._v !== v) { e._v = v; e.textContent = v; } }, bar = (id, v) => { const e = $(id); if (e) e.style.width = clamp(v, 0, 100) + '%'; };
   bar('#spHp', 100 * S.hp / T.hp); bar('#spSh', 100 * S.sh / T.sh); bar('#spBo', S.boost);
-  set('#spOre', `${S.cargo}/${T.hold}`); set('#spBty', String(S.bounty)); set('#spGold', wlNum(S.earned)); set('#spSpd', String(Math.round(S.speed * 10))); set('#spPil', String(S.peers.size + 1));
+  set('#spOre', `${S.cargo}/${T.hold}`); set('#spBty', String(S.bounty)); set('#spGold', wlNum(S.earned)); set('#spSpd', String(Math.round(S.speed * 10)) + (S.touch ? '' : ` · ${Math.round((S.thr === undefined ? 0.7 : S.thr) * 100)}%`)); set('#spPil', String(S.peers.size + 1));
   set('#spShipN', T.n); const px = $('#spPaxW'); if (px) { px.hidden = !T.pax; set('#spPax', `${spPax()}/${T.pax}`); }
   const job = $('#spJob'); if (job) { const j = S.job ? `${S.job.n} ${S.job.who} → ${S.job.to} · ${Math.max(0, Math.ceil(S.job.until - S.t))} s` : S.troops ? `Troops for ${S.troops.name}` : S.spies ? `Spies for ${S.spies}${S.near && S.near.name === S.spies && S.near.seen ? ' · SEEN' : ''}` : ''; job.hidden = !j; set('#spJob', j); }
   const a = $('#spAct'), A = spcActNow(), t = A && A.l ? A.l : '';
@@ -25849,7 +25862,7 @@ function spcOpen() {
   for (const m of S.marks.values()) m.remove(); S.marks.clear(); $('#spDock').hidden = true;
   spcSpawn(); spcSize(); spcCam(1); spcJoin(1);
   const home = spcHome(); if (home && home.rel === 'mine' && !home.up) spcSay('Your station is knocked out. You start beside it, but nothing works there until it is rebuilt from the World. Free ports still buy your cargo.', 8);
-  else spcSay(S.touch ? 'Left stick to steer. Hold FIRE to shoot. Follow the amber marker to the asteroids.' : 'W A S D or the arrows to steer, Space to fire, Shift to boost, X to brake, F to dock. Follow the amber marker to the asteroids.', 7);
+  else spcSay(S.touch ? 'Flies like a jet: the stick banks and turns, push it up or down to dive and climb. Hold FIRE to shoot, BOOST for speed, BRAKE to slow down.' : 'Flies like a jet: W and S throttle, A and D bank and turn, the arrows or the mouse (click the view) pitch the nose. Space to fire, Shift to boost, X to brake, F to dock.', 7);
   S.raf = requestAnimationFrame(spcFrame);
 }
 function spcStop() {
@@ -25867,11 +25880,17 @@ function spcLeave(force) {
   if (scr) {
     const key = (e, on) => { if (!SPC.on || $('#scr-space').hidden) return; const k = e.key.toLowerCase(); if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
       if ([' ', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) e.preventDefault(); SPC.keys[k] = on;
-      if (on && !e.repeat) { if (k === 'f' || k === 'enter') spcAct(); if (k === 'escape') { if (SPC.docked) spcLaunch(); else spcLeave(); } } };
+      if (on && !e.repeat) { if (k === 'f' || k === 'enter') spcAct(); if (k === 'escape' && !document.pointerLockElement && Date.now() - (SPC.unlockAt || 0) > 400) { if (SPC.docked) spcLaunch(); else spcLeave(); } } };
     addEventListener('keydown', e => key(e, true)); addEventListener('keyup', e => key(e, false)); addEventListener('blur', () => { SPC.keys = {}; });
     addEventListener('resize', () => { if (SPC.on) spcSize(); });
     const hold = (id, k) => { const b = $(id); if (!b) return; const set = v => e => { e.preventDefault(); SPC.btn[k] = v; b.classList.toggle('on', v); }; b.addEventListener('pointerdown', e => { try { b.setPointerCapture(e.pointerId); } catch (x) { } set(true)(e); }); for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) b.addEventListener(ev, set(false)); };
     hold('#spFire', 'fire'); hold('#spBoost', 'boost'); hold('#spBrake', 'brake');
+    // v99.1: the mouse flies the jet: click the view to take the mouse (Esc gives it back), move it to bank and pitch, hold the button to fire
+    const view = $('#spView'); document.addEventListener('pointerlockchange', () => { if (!document.pointerLockElement) { SPC.unlockAt = Date.now(); SPC.btn.fire = false; } });
+    view.addEventListener('mousedown', e => { if (SPC.touch) return; if (document.pointerLockElement !== view) { try { view.requestPointerLock(); } catch (x) { } } else SPC.btn.fire = true; });
+    addEventListener('mouseup', () => { if (document.pointerLockElement === view) SPC.btn.fire = false; });
+    addEventListener('mousemove', e => { if (!SPC.on || document.pointerLockElement !== view) return; const M = SPC.mouse || (SPC.mouse = { x: 0, y: 0 }), k = 0.006 * (settings.sens || 1);
+      M.x = clamp(M.x + e.movementX * k, -1, 1); M.y = clamp(M.y - e.movementY * k * (settings.invertY ? -1 : 1), -1, 1); });
     $('#spAct').onclick = () => spcAct(); $('#spLeave').onclick = () => spcLeave();
     const J = $('#spStick'), K = $('#spKnob'), st = SPC.stick;
     const mv = e => { const r = J.getBoundingClientRect(); let dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2); const m = Math.hypot(dx, dy), R0 = r.width / 2 - 22; if (m > R0) { dx *= R0 / m; dy *= R0 / m; } st.x = dx / R0; st.y = dy / R0; K.style.transform = `translate(${dx}px,${dy}px)`; };
@@ -30268,7 +30287,18 @@ function issFace(sc, m, a, side, mat) {
   g.setAttribute('position', new THREE.BufferAttribute(out, 3)); g.computeVertexNormals(); sc.add(new THREE.Mesh(g, mat));
 }
 // is a point inside the station (r = how far from the walls)?
-function issInside(p, r) { for (const m of ISS_MODS) if (p.x > m.min[0] + r && p.x < m.max[0] - r && p.y > m.min[1] + r && p.y < m.max[1] - r && p.z > m.min[2] + r && p.z < m.max[2] - r) return m; return null; }
+// v99.1: the doorways between modules are part of the inside too (before, the wall margin of both modules left a gap
+// at every doorway, so you were stuck in the docking port)
+const ISS_DOORS = [];
+for (const A of ISS_MODS) for (const id of ISS_LINK[A.id]) { const B = ISS_M[id]; if (A.id > B.id) continue;
+  for (let i = 0; i < 3; i++) { const c = Math.abs(A.max[i] - B.min[i]) < 0.01 ? A.max[i] : Math.abs(B.max[i] - A.min[i]) < 0.01 ? A.min[i] : null; if (c === null) continue;
+    const min = [0, 0, 0], max = [0, 0, 0]; for (let k = 0; k < 3; k++) { if (k === i) { min[k] = c - 1.2; max[k] = c + 1.2; } else { min[k] = Math.max(A.min[k], B.min[k]); max[k] = Math.min(A.max[k], B.max[k]); } }
+    ISS_DOORS.push({ min, max, m: A }); } }
+function issInside(p, r) {
+  for (const m of ISS_MODS) if (p.x > m.min[0] + r && p.x < m.max[0] - r && p.y > m.min[1] + r && p.y < m.max[1] - r && p.z > m.min[2] + r && p.z < m.max[2] - r) return m;
+  if (r > 0) for (const d of ISS_DOORS) { let ok = true; for (let k = 0; k < 3 && ok; k++) { const v = k === 0 ? p.x : k === 1 ? p.y : p.z, inset = d.max[k] - d.min[k] > 2.39 && Math.abs(d.max[k] - d.min[k] - 2.4) < 0.01 ? 0 : r; ok = v > d.min[k] + inset && v < d.max[k] - inset; } if (ok) return d.m; }
+  return null;
+}
 function issModAt(p) { return issInside(p, -0.2) || issInside(p, -1) || ISS_M.hub; }
 // the way between two modules (through the module graph)
 function issPath(a, b) {
@@ -30339,7 +30369,7 @@ async function issOpen() {
   show('#scr-iss'); S.on = true; S.t = 0; S.last = performance.now(); S.keys = {}; S.btn = {}; S.gold = 0; S.left = WL.st && WL.st.iss ? Math.max(0, 6 - WL.st.iss.paid) : 6; S.carry = null; S.hold = null; S.emg = null; S.dead = false; S.fp = false; S.hidden = null; S.tools = null; S.tool = 0;
   if (!S.r) { S.r = new THREE.WebGLRenderer({ antialias: true }); S.r.setPixelRatio(Math.min(2, devicePixelRatio || 1)); $('#issView').appendChild(S.r.domElement); }
   S.cam = new THREE.PerspectiveCamera(70, 1, 0.05, 2000); issBuild(); issSize();
-  S.P = { pos: issV(0, 0, -24), vel: issV(0, 0, 0), yaw: 0, pitch: 0, mesh: issAvatar(me ? (PRES_LOOK.uni || 0x15171a) : 0x15171a, prof().equip.pres === 'd_suit'), spd: 0, stam: 100 };
+  S.P = { pos: issV(0, 0, -24), vel: issV(0, 0, 0), yaw: Math.PI, pitch: 0, mesh: issAvatar(me ? (PRES_LOOK.uni || 0x15171a) : 0x15171a, prof().equip.pres === 'd_suit'), spd: 0, stam: 100 };
   S.scene.add(S.P.mesh);
   S.jobs = [issNewJob(), issNewJob(), issNewJob()];
   S.npc = ISS_CREW.map(([n, lines], i) => { const mesh = issAvatar(0xeceeef, true); const at = issC(ISS_M[['hub', 'lab', 'green'][i]]).clone(); mesh.position.copy(at); S.scene.add(mesh); return { n, lines, mesh, mod: ['hub', 'lab', 'green'][i], to: null, wait: rr(2, 6), li: 0 }; });
