@@ -13557,7 +13557,7 @@ const VA_SCRIPTS = {
 // Each player simulates and owns their own army; the other army is drawn from network snapshots ("puppets").
 // Damage is decided by the shooter and sent to the owner of the target. The host owns the flags and the time limit.
 // The guest's map is the host's map turned 180 degrees, so both players start at the bottom of the screen.
-const BUILD_ID = '3c78e902'; // replaced at build time with a fingerprint of the game code
+const BUILD_ID = '6427dbc5'; // replaced at build time with a fingerprint of the game code
 // online play only pairs players on exactly the same build: an older copy (often a cached page) would not understand newer features like the President's powers
 const NET_VER = 'smfa3d-online-' + BUILD_ID;
 const NET_RATE = 1 / 7, NET_DELAY = 0.24, NET_TIMEOUT = 15, NET_LIMIT = 20 * 60;
@@ -22627,6 +22627,7 @@ misRender();
    until the player has opened the list. The build refuses to run if the newest entry does not match the
    version in package.json, so an update cannot ship without its notes. */
 const UPDATES = [
+  { v: '99.2', date: '2026-11-27', name: 'All aboard', items: ['Fixed: pressing F beside the International Smiley Station put you straight back in your ship. The same key press also pressed "Back to your ship" inside the station. Now F boards it, and the way back to your ship is the hatch at the very end of the docking port.'] },
   { v: '99.1', date: '2026-11-27', name: 'Jets in orbit', items: ['Fixed: on the International Smiley Station you could not float out of the docking port into the hallway. Every doorway between modules is open now, and you arrive facing into the station.', 'Space ships fly like jets: W and S set the throttle (it stays where you leave it), A and D bank the ship and it turns into the bank, the arrows pitch the nose. Let go and the wings level out with the planet below as your horizon. On a laptop you can also click the view and fly with the mouse (hold the button to fire, Esc to let go). On phones the stick banks and pitches.'] },
   { v: '99', date: '2026-11-26', name: 'Trouble in orbit', items: ['Meteors: about twice a week a meteor heads for a planet, with an hour\'s warning in the news and in Space. Shoot it down together: it adapts to each pilot, so your hits count for less and less until it ignores you. Small meteors break easily but adapt fast; big ones are tough but adapt slowly. If it lands, the planet turns to rubble for 1 to 12 Smiley days, belongs to nobody and loses everything on it.', 'Space events about every two hours, the same for every pilot: a meteor shower (rocks that hurt, and give ore when shot), a solar storm (no shields, and planet and station guns are silent), a pirate armada (double bounties) and a derelict ship (the first pilot to search it takes the loot).', 'The International Smiley Station: fly up to it in Space and board it as your own President, floating through ten modules: hub, laboratory, containment lab, greenhouse, cargo bay, crew quarters, hygiene bay, observatory, power module and docking port. Friends aboard at the same time see each other, and can talk with push-to-talk voice (switch Voice on, then hold V or Talk).', 'Station jobs: repairs, experiments and cargo runs. Six a day pay 150 gold and 3 season points each; every job pays SD; experiments can make one of 12 discoveries. 3, 6, 9 and 12 discoveries unlock a Spacesuit, the Nebula paint, the Star Map emblem and the Explorer medal.', 'Station emergencies, for everyone aboard: a hull breach (get a patch kit, seal the hole, pressurise the hub before the air runs out) or the giant specimen breaking out of its tank (survive 5 minutes, in first person: hide in a sleep pod, a toilet stall, a storage locker or under a floor panel, or fight with the extinguisher, welding torch and flares). Nobody can leave Space until it is over. Survive for 400 gold and a discovery; die and you lose the day\'s station earnings.', 'For the President of the game: an Events button in Space starts any space event or sends a meteor at any planet, and Hull breach and Creature buttons start an emergency on the station. Run the world SQL (Version 15) once in Supabase before uploading this version.'] },
   { v: '98', date: '2026-11-26', name: 'To the victor', items: ['Capturing a homeland now takes everything it has: its gold, oil, steel and food, its ships, warheads and generals, its planets and its city, plus half of its Economy, Army and Defences levels. Cities and planets it was holding go to the winner too. Countries that are occupied right now are handed over the same way.', 'A held city pays its holder every hour, but the holder cannot build in it or knock anything down. The same goes for held planets.', 'Winning your freedom back: you keep your own levels and start again with 500 gold and 100 soldiers, but your city and planets stay with whoever holds them. Win the city back in a battle from the Build tab (20 soldiers, every 10 minutes), and each planet in a fight in orbit, against the holder\'s Defences level.', 'At the end of a season held cities go home and planets are freed.', 'Defences now go up to level 20. From level 10 each step costs more: 27,300 gold for level 11, rising to 167,300 for level 20, plus steel and oil.', 'Battles against a country\'s Defences: 6 to 9 is Hard, 10 and up is Nightmare and gets harder with every level (sharper aim, faster reactions, more damage, more health, more reinforcements). An uprising against an occupier with level 10 is Nightmare too. Held planets get more and tougher guns in orbit.', 'Spying on a strong country is harder: guards see further, notice you faster and walk faster with every Defences level, two more guards patrol from level 10, and if they catch you, you are dead and the mission is lost. The hacking timer drops from 45 seconds to 10 at level 20, a coup fails at the first wrong approach from level 8, and every mission costs 10% more per level.', 'For the President of the game: run the world SQL (Version 14) once in Supabase before uploading this version.'] },
@@ -30369,7 +30370,7 @@ async function issOpen() {
   show('#scr-iss'); S.on = true; S.t = 0; S.last = performance.now(); S.keys = {}; S.btn = {}; S.gold = 0; S.left = WL.st && WL.st.iss ? Math.max(0, 6 - WL.st.iss.paid) : 6; S.carry = null; S.hold = null; S.emg = null; S.dead = false; S.fp = false; S.hidden = null; S.tools = null; S.tool = 0;
   if (!S.r) { S.r = new THREE.WebGLRenderer({ antialias: true }); S.r.setPixelRatio(Math.min(2, devicePixelRatio || 1)); $('#issView').appendChild(S.r.domElement); }
   S.cam = new THREE.PerspectiveCamera(70, 1, 0.05, 2000); issBuild(); issSize();
-  S.P = { pos: issV(0, 0, -24), vel: issV(0, 0, 0), yaw: Math.PI, pitch: 0, mesh: issAvatar(me ? (PRES_LOOK.uni || 0x15171a) : 0x15171a, prof().equip.pres === 'd_suit'), spd: 0, stam: 100 };
+  S.openT = performance.now(); S.P = { pos: issV(0, 0, -23.2), vel: issV(0, 0, 0), yaw: Math.PI, pitch: 0, mesh: issAvatar(me ? (PRES_LOOK.uni || 0x15171a) : 0x15171a, prof().equip.pres === 'd_suit'), spd: 0, stam: 100 };
   S.scene.add(S.P.mesh);
   S.jobs = [issNewJob(), issNewJob(), issNewJob()];
   S.npc = ISS_CREW.map(([n, lines], i) => { const mesh = issAvatar(0xeceeef, true); const at = issC(ISS_M[['hub', 'lab', 'green'][i]]).clone(); mesh.position.copy(at); S.scene.add(mesh); return { n, lines, mesh, mod: ['hub', 'lab', 'green'][i], to: null, wait: rr(2, 6), li: 0 }; });
@@ -30458,12 +30459,13 @@ function issActNow() {
     if (J.k === 'cargo' && !S.carry && near(J.pos, 3)) return { l: 'Pick up the crate', fn: () => { S.carry = J; J.crate = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.6, 0.6), new THREE.MeshLambertMaterial({ color: 0xa8743a })); J.crate.position.set(0, 0.1, -0.55); S.P.mesh.add(J.crate); issSay(`Bring it to the ${ISS_M[J.to].n}.`, 4); } };
   }
   for (const N of S.npc) if (near(N.mesh.position, 2.4)) return { l: `Talk to ${N.n}`, fn: () => { issSay(`${N.n}: ${N.lines[N.li++ % N.lines.length]}`, 5); } };
-  if (near(issV(0, 0, -25.5), 3)) return E ? { l: '', why: 'Nobody leaves the station during an emergency.' } : { l: 'Back to your ship', fn: () => issClose(true) };
+  if (near(issV(0, 0, -27), 1.8)) return E ? { l: '', why: 'Nobody leaves the station during an emergency.' } : { l: 'Back to your ship', fn: () => issClose(true) };
   return null;
 }
 function issUse(down) {
   const S = ISS; if (!S.on) return; const A = issActNow();
   if (!down) { S.hold = null; return; }
+  if (performance.now() - (S.openT || 0) < 600) return;   // v99.2: the F that boarded the station must not also press Use inside it
   if (!A) return; if (A.why) { issSay(A.why); return; } if (!A.fn) return;
   if (A.hold) S.hold = { t: 0, need: A.hold, l: A.l }; else A.fn();
 }
@@ -30715,7 +30717,7 @@ function issHud() {
   else if (E && E.k === 'beast') { for (const [i, L] of S.lockers.entries()) issMark('l' + i, L.pos, 'wreck', 'Tools'); const m = S.marks.get('hole'); if (m) m.hidden = true;
     S.pods.forEach((H, i) => { if (H.at.distanceTo(P.pos) < 9 && !S.hidden) issMark('h' + i, H.at, 'st treaty', 'Hide'); else { const x = S.marks.get('h' + i); if (x) x.hidden = true; } }); }
   else { for (const k of S.marks.keys()) if (k === 'hole' || k[0] === 'l' || k[0] === 'h') S.marks.get(k).hidden = true; }
-  issMark('dock', issV(0, 0, -25.5), 'st mine', 'Your ship');
+  issMark('dock', issV(0, 0, -27.4), 'st mine', 'Your ship');
   if (S.t < (S.hudT || 0)) return; S.hudT = S.t + 0.12;
   const set = (id, v) => { const e = $(id); if (e && e._v !== v) { e._v = v; e.textContent = v; } };
   set('#issMod', issModAt(P.pos).n); set('#issGold', wlNum(S.gold)); set('#issLeft', String(S.left)); set('#issDisc', `${discGot().length}/12`);
